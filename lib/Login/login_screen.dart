@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
                     } ,
-                    child: Text('Chưa có tài khoản? Đăng ký ngay'),
+                    child: Text('Chưa có tài khoản? Đăng ký'),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
 
