@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_tts/flutter_tts.dart';
 class TextToSpeech extends StatefulWidget {
   const TextToSpeech({Key? key}) : super(key: key);
 
@@ -11,75 +11,55 @@ class _TextToSpeechState extends State<TextToSpeech> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Container(
-            // color: Colors.green[300],
-            padding: EdgeInsets.only(left: 0, top: 80, right: 0, bottom: 0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  child: Text(
-                    "Tạo tài khoản ngay",
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.black26,
-                    ),
-                  ),
-
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Tài khoản',
-                      hintText: 'Nhập tài khoản',
-                    ),
-                  ),
-                ),
-
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.remove_red_eye),
-                      border: OutlineInputBorder(),
-                      labelText: 'Mật khẩu',
-                      hintText: 'Nhập mật khẩu',
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: (){},
-                  child: Text('Đăng ký'),
-                  style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-                      backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-                      elevation: MaterialStateProperty.resolveWith<double>((Set<MaterialState>states){
-                        if (states.contains(MaterialState.pressed) || (states.contains(MaterialState.disabled))){
-                          return 0;
-                        }
-                        return 5;
-                      })
-                  ) ,
-                ),
-                TextButton(
-                  onPressed: (){
-
-                  } ,
-                  child: Text('Đã có tài khoản? Đăng nhập'),
-                  style: ButtonStyle(
-                    foregroundColor: MaterialStateProperty.all<Color>(Colors.black38),
-
-                  ),
-                ),
-
-              ],
-            ),
-          )
+      backgroundColor: const Color(0xffD9D9D9),
+      appBar:PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppBar(
+          title: Image.asset('assets/images/logo_ALS.png', width: 100,),
+          centerTitle: true,
+          backgroundColor: const Color(0xffffffff),
+        ),
       ),
-      // This trailing comma makes auto-formatting nicer for build methods.
+      body: Home(),
+    );
+  }
+}
+class Home extends StatelessWidget{
+  final FlutterTts flutterTts= FlutterTts();
+  TextEditingController textEditingController= TextEditingController();
+  speak(String text) async{
+    await flutterTts.setLanguage("vi-VN");
+    await flutterTts.speak(text);
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    hintText: 'Nhập để nói',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                          width: 10,
+                        )
+
+                    )
+                ),
+                controller: textEditingController,
+              ),
+            ),
+            ElevatedButton(
+              child: Text("Nhấn để phát"),
+              onPressed: () => speak(textEditingController.text),
+            )
+          ],
+        )
     );
   }
 }
