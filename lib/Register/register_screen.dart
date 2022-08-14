@@ -19,7 +19,7 @@ class _RegisterState extends State<Register> {
               children: <Widget>[
                 Container(
                   child: Text(
-                    "Tạo tài khoản",
+                    "Tạo tài khoản ngay",
                     style: TextStyle(
                       fontSize: 30,
                       color: Colors.black26,
