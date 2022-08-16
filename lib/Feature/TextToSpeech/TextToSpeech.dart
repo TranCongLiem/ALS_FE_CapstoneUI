@@ -11,7 +11,6 @@ class _TextToSpeechState extends State<TextToSpeech> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffD9D9D9),
       appBar:PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
@@ -35,12 +34,15 @@ class Home extends StatelessWidget{
   Widget build(BuildContext context) {
     return Container(
         alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 40),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
+                maxLines: 10,
+                autofocus: true,
                 decoration: InputDecoration(
                     hintText: 'Nhập để nói',
                     border: OutlineInputBorder(
@@ -57,6 +59,16 @@ class Home extends StatelessWidget{
             ElevatedButton(
               child: Text("Nhấn để phát"),
               onPressed: () => speak(textEditingController.text),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+                textStyle: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontStyle: FontStyle.normal,
+
+                ),
+                padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10)
+              ),
             )
           ],
         )

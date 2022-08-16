@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.green
+        primarySwatch: Colors.green,
+          fontFamily: 'Sans',
       ),
       debugShowCheckedModeBanner: false,
 
