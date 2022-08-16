@@ -24,15 +24,20 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Container(
             color: Colors.white,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.all(5),
-
-                    child: Image.asset('assets/images/logo_ALS.png', width: 450),
+                
+                Flexible(
+                  flex: 1,
+                  child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Image.asset('assets/images/logo_ALS.png', width: 450),
+                  ),
                 ),
                 Padding(
                     padding: EdgeInsets.all(10),
                   child: TextField(
+                    autofocus: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'Tài khoản',
@@ -44,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: TextField(
-                    autofocus: true,
                     obscureText: true,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(

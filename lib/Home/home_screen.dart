@@ -1,6 +1,6 @@
-import 'package:capstone_ui/Feature/TextToSpeech/ListExcerise.dart';
-import 'package:capstone_ui/Feature/TextToSpeech/SaveRecording.dart';
-import 'package:capstone_ui/Feature/TextToSpeech/SpeechToText.dart';
+import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
+import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
+import 'package:capstone_ui/Feature/SpeechToText/SpeechToText.dart';
 import 'package:flutter/material.dart';
 
 import '../Feature/TextToSpeech/TextToSpeech.dart';
