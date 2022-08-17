@@ -11,13 +11,8 @@ class _TextToSpeechState extends State<TextToSpeech> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppBar(
-          title: Image.asset('assets/images/logo_ALS.png', width: 100,),
-          centerTitle: true,
-          backgroundColor: const Color(0xffffffff),
-        ),
+      appBar: AppBar(
+        title: Text('Văn bản thành giọng nói'),
       ),
       body: Home(),
     );

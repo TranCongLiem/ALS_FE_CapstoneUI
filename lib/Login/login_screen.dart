@@ -1,6 +1,6 @@
 import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:flutter/material.dart';
-
+import '';
 import '../Home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -39,6 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: TextField(
                     autofocus: true,
                     decoration: InputDecoration(
+                      suffixIcon: Icon(Icons.person),
                       border: OutlineInputBorder(),
                       labelText: 'Tài khoản',
                       hintText: 'Nhập tài khoản',
@@ -62,11 +63,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                    },
-                    child: Text('Đăng nhập'),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          return ScaleTransition(
+                            alignment: Alignment.center,
+                            scale: Tween<double>(begin: 0.1, end: 1).animate(
+                              CurvedAnimation(
+                                parent: animation,
+                                curve: Curves.bounceIn,
+                              ),
+                            ),
+                            child: child,
+                          );
+                        },
+                        transitionDuration: Duration(seconds: 1),
+                        pageBuilder: (BuildContext context,
+                            Animation<double> animation,
+                            Animation<double> secondaryAnimation) {
+                          return HomeScreen();
+                        },
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.login),
+                    label: Text('Đăng nhập'),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.green),

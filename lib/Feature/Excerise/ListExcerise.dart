@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -12,27 +13,19 @@ class _ListExceriseState extends State<ListExcerise> {
   Widget build(BuildContext context) {
     final Size size= MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Bài tập'),
+      ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: [
-            //header
-            Container(
-              height: size.height/35,
-              alignment: Alignment.center,
-              child: Row(
-                children: [
-                  Icon(Icons.arrow_back_ios_new),
-                  Text('Bài tập')
-                ],
-              ),
-            ),
             //search bar
             Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
             ),
             SizedBox(
-              height: size.height/20,
+
               child: Row(
                 children: [
                   Expanded(child: Container(
@@ -72,6 +65,16 @@ class _ListExceriseState extends State<ListExcerise> {
                     color: Colors.blueAccent,
                   ),),
                 ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: ElevatedButton(
+                    onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailExcerise()));
+                    },
+                    child: Text('Chi tiết')),
               ),
             ),
             Container(
