@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:flutter/material.dart';
 import 'DetailExcerise.dart';
 
@@ -72,7 +73,7 @@ class _ListExceriseState extends State<ListExcerise> {
               child: Container(
                 child: ElevatedButton(
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => DetailExcerise()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoScreen()));
                     },
                     child: Text('Chi tiết')),
               ),
