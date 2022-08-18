@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Register/register_screen.dart';
+import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
 import '';
 import '../Home/home_screen.dart';
@@ -105,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 TextButton(
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Register()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => RoleScreen()));
                     } ,
                     child: Text('Chưa có tài khoản? Đăng ký'),
                     style: ButtonStyle(
