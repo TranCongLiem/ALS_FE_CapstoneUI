@@ -1,26 +1,30 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:flutter/services.dart';
-import '';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'Home/home_screen.dart';
 import 'Login/login_screen.dart';
 
 void main() => runApp(MyApp());
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.green,
+    return ChangeNotifierProvider(
+      create: (context) => NavItems(),
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.green,
           fontFamily: 'Sans',
+        ),
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
       ),
-      debugShowCheckedModeBanner: false,
-
-      home: SplashScreen(),
     );
   }
 }
