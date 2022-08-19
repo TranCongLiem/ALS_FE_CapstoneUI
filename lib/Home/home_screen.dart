@@ -1,10 +1,10 @@
+import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
 import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
 import 'package:capstone_ui/Feature/SpeechToText/SpeechToText.dart';
 import 'package:flutter/material.dart';
 
 import '../Feature/TextToSpeech/TextToSpeech.dart';
-import 'Components/BottomNavigation.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,21 +18,24 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffD9D9D9),
-      appBar:PreferredSize(
+      appBar: PreferredSize(
         preferredSize: Size.fromHeight(50),
         child: AppBar(
-        title: Image.asset('assets/images/logo_ALS.png', width: 100,),
-        centerTitle: true,
-        backgroundColor: const Color(0xffffffff),
-      ),
+          title: Image.asset(
+            'assets/images/logo_ALS.png',
+            width: 100,
+          ),
+          centerTitle: true,
+          backgroundColor: const Color(0xffffffff),
+        ),
       ),
       body: HomeBody(),
       bottomNavigationBar: MyBottomNavBar(
-        index: index,
-        callback: (newIndex) => setState(
-              () => this.index = newIndex,
-        ),
-
+        index: this.index,
+        // index: index,
+        // callback: (newIndex) => setState(
+        //       () => this.index = newIndex,
+        // ),
       ),
     );
   }
@@ -43,14 +46,14 @@ class HomeBody extends StatelessWidget {
   //Create and Return GridView filled with our data
   Widget createGridView(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.notifications_active),
-        onPressed: (){},
-      ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.notifications_active),
+          onPressed: () {},
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         body: GridView.count(
           crossAxisCount: 2,
-          children:[
+          children: [
             Container(
               margin: EdgeInsets.only(top: 10),
               decoration: ShapeDecoration(
@@ -61,16 +64,22 @@ class HomeBody extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children:<Widget>[
+                children: <Widget>[
                   IconButton(
                     icon: Icon(Icons.message_rounded),
                     iconSize: 80,
                     color: const Color(0xff6ABF4B),
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => TextToSpeech()));
-                    }, 
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TextToSpeech()));
+                    },
                   ),
-                  Text('Chuyển thành giọng nói', textAlign: TextAlign.center,)
+                  Text(
+                    'Chuyển thành giọng nói',
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             ),
@@ -84,16 +93,21 @@ class HomeBody extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children:<Widget>[
+                children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.keyboard_voice),
                       iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SpeechToText()));
-                      }
-                  ),
-                  Text('Chuyển thành văn bản', textAlign: TextAlign.center,)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SpeechToText()));
+                      }),
+                  Text(
+                    'Chuyển thành văn bản',
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             ),
@@ -107,16 +121,21 @@ class HomeBody extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children:<Widget>[
+                children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.save),
                       iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SaveRecording()));
-                      }
-                  ),
-                  Text('Lưu giọng nói', textAlign: TextAlign.center,)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SaveRecording()));
+                      }),
+                  Text(
+                    'Lưu giọng nói',
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             ),
@@ -130,16 +149,21 @@ class HomeBody extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children:<Widget>[
+                children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.list_alt_sharp),
                       iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => ListExcerise()));
-                      }
-                  ),
-                  Text('Bài tập', textAlign: TextAlign.center,)
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListExcerise()));
+                      }),
+                  Text(
+                    'Bài tập',
+                    textAlign: TextAlign.center,
+                  )
                 ],
               ),
             ),
@@ -147,8 +171,7 @@ class HomeBody extends StatelessWidget {
           padding: EdgeInsets.all(30),
           mainAxisSpacing: 30,
           crossAxisSpacing: 20,
-        )
-    );
+        ));
   }
 
   @override
@@ -161,31 +184,31 @@ class HomeBody extends StatelessWidget {
   }
 }
 
-class MyBottomNavBar extends StatelessWidget {
-  MyBottomNavBar({required this.index, required this.callback});
-  final int index;
-  final Function(int) callback;
-  @override
-  Widget build(BuildContext context) {
-    /// BottomNavigationBar is automatically set to type 'fixed'
-    /// when there are three of less items
-    return BottomNavigationBar(
-      currentIndex: index,
-      onTap: callback,
-      items: <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Trang chủ'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.newspaper),
-          label: 'Tin tức'
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Tài khoản'
-        ),
-      ],
-    );
-  }
-}
+// class MyBottomNavBar extends StatelessWidget {
+//   MyBottomNavBar({required this.index, required this.callback});
+//   final int index;
+//   final Function(int) callback;
+//   @override
+//   Widget build(BuildContext context) {
+//     /// BottomNavigationBar is automatically set to type 'fixed'
+//     /// when there are three of less items
+//     return BottomNavigationBar(
+//       currentIndex: index,
+//       onTap: callback,
+//       items: <BottomNavigationBarItem>[
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.home),
+//           label: 'Trang chủ'
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.newspaper),
+//           label: 'Tin tức'
+//         ),
+//         BottomNavigationBarItem(
+//           icon: Icon(Icons.person),
+//           label: 'Tài khoản'
+//         ),
+//       ],
+//     );
+//   }
+// }
