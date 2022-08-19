@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.capstone_ui">
    <application
-        android:label="capstone_ui"
+        android:label="ALS VietNam"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/logo_als">
         <activity
             android:name=".MainActivity"
             android:exported="true"

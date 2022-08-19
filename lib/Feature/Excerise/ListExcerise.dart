@@ -18,7 +18,7 @@ class _ListExceriseState extends State<ListExcerise> {
         title: Text('Bài tập'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 8),
         child: Column(
           children: [
             //search bar
@@ -26,7 +26,6 @@ class _ListExceriseState extends State<ListExcerise> {
                 padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
             ),
             SizedBox(
-
               child: Row(
                 children: [
                   Expanded(child: Container(
@@ -80,7 +79,7 @@ class _ListExceriseState extends State<ListExcerise> {
             ),
             Container(
                 padding: const EdgeInsets.only(top: 15),
-              height: size.height/3,
+              height: size.height/5,
               width: size.width/1,
               child: ListView(
                 scrollDirection: Axis.horizontal,
@@ -99,15 +98,18 @@ class _ListExceriseState extends State<ListExcerise> {
               )
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children:[
-                  Text('Phân loại', style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: Text('Phân loại', style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    ),
                   ),
                   Text('Xem tất cả', style: TextStyle(
                     color: Colors.blueAccent,
@@ -144,7 +146,7 @@ class _ListExceriseState extends State<ListExcerise> {
 }
 Widget  buildCardRecommend() => Expanded(
   child: Container(
-    height: 200,
+    height: 100,
     width: 200,
     decoration: BoxDecoration(
       color: Colors.green[50],
