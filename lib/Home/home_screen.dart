@@ -67,7 +67,7 @@ class HomeBody extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                     icon: Icon(Icons.message_rounded),
-                    iconSize: 60,
+                    iconSize: 80,
                     color: const Color(0xff6ABF4B),
                     onPressed: () {
                       Navigator.push(
@@ -96,7 +96,7 @@ class HomeBody extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.keyboard_voice),
-                      iconSize: 60,
+                      iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
                         Navigator.push(
@@ -124,7 +124,7 @@ class HomeBody extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.save),
-                      iconSize: 60,
+                      iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
                         Navigator.push(
@@ -152,7 +152,7 @@ class HomeBody extends StatelessWidget {
                 children: <Widget>[
                   IconButton(
                       icon: Icon(Icons.list_alt_sharp),
-                      iconSize: 60,
+                      iconSize: 80,
                       color: const Color(0xff6ABF4B),
                       onPressed: () {
                         Navigator.push(

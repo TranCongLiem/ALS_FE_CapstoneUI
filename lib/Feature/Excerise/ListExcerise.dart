@@ -18,7 +18,7 @@ class _ListExceriseState extends State<ListExcerise> {
         title: Text('Bài tập'),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 8),
         child: Column(
           children: [
             //search bar
@@ -88,6 +88,7 @@ class _ListExceriseState extends State<ListExcerise> {
             ),
             Container(
                 padding: const EdgeInsets.only(top: 15),
+
                 height: size.height / 3,
                 width: size.width / 1,
                 child: ListView(
@@ -115,8 +116,9 @@ class _ListExceriseState extends State<ListExcerise> {
                     ),
                   ],
                 )),
+
             Padding(
-              padding: const EdgeInsets.only(top: 15),
+              padding: const EdgeInsets.only(top: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,6 +134,7 @@ class _ListExceriseState extends State<ListExcerise> {
                     'Xem tất cả',
                     style: TextStyle(
                       color: Colors.blueAccent,
+
                     ),
                   ),
                 ],
@@ -172,6 +175,22 @@ class _ListExceriseState extends State<ListExcerise> {
     );
   }
 }
+
+Widget  buildCardRecommend() => Expanded(
+  child: Container(
+    height: 100,
+    width: 200,
+    decoration: BoxDecoration(
+      color: Colors.green[50],
+      borderRadius: BorderRadius.circular(10),
+  ),
+    child: Column(
+      children: [
+        Image.asset('assets/images/logo_ALS.png', width: 200,),
+      ],
+    ),
+)
+);
 
 Widget buildCardRecommend() => Expanded(
         child: Container(
