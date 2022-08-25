@@ -1,6 +1,9 @@
+
 import 'package:capstone_ui/Feature/News/article_screen.dart';
 import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:flutter/material.dart';
+
+import '../../Feature/News/detail_news.dart';
 
 Widget customTitleList(Article article, BuildContext context) {
   return InkWell(
@@ -8,7 +11,8 @@ Widget customTitleList(Article article, BuildContext context) {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: ((context) => ArticleScreen(article: article))));
+              // builder: ((context) => ArticleScreen(article: article))));
+              builder: ((context) => DetailNewsScreen(article: article))));
     },
     child: Container(
       margin: EdgeInsets.all(15.0),

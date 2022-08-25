@@ -3,7 +3,7 @@
    <application
         android:label="ALS VietNam"
         android:name="${applicationName}"
-        android:icon="@mipmap/logo_als">
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true"
