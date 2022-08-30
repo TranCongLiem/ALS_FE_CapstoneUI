@@ -104,15 +104,15 @@ class MyBottomNavBar extends StatelessWidget {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
-            label: 'News',
+            label: 'Tin tức',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'Tài khoản',
           ),
         ],
       ),

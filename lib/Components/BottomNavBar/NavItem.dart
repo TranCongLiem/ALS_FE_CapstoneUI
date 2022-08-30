@@ -3,6 +3,8 @@ import 'package:capstone_ui/Feature/Profile/profile_screen.dart';
 import 'package:capstone_ui/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../Home/home.dart';
+
 class NavItem {
   final int id;
   final String icon;
@@ -30,7 +32,8 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 1,
       icon: "assets/images/home-svgrepo-com.svg",
-      destination: HomeScreen(),
+      // destination: HomeScreen(),
+      destination: Home(),
     ),
     NavItem(
       id: 2,

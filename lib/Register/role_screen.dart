@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Register/register_screen.dart';
+import 'package:capstone_ui/Register/register_supporter_screen.dart';
 import 'package:flutter/material.dart';
 class RoleScreen extends StatefulWidget {
   const RoleScreen({Key? key}) : super(key: key);
@@ -79,7 +80,9 @@ class _RoleScreenState extends State<RoleScreen> {
                 children: [
                   InkWell(
                     splashColor: Colors.black26,
-                    onTap: (){},
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterSupporter()));
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [

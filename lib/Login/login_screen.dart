@@ -2,6 +2,7 @@ import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
 import '';
+import '../Home/home.dart';
 import '../Home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         pageBuilder: (BuildContext context,
                             Animation<double> animation,
                             Animation<double> secondaryAnimation) {
-                          return HomeScreen();
+                          return Home();
                         },
                       ),
                     );
