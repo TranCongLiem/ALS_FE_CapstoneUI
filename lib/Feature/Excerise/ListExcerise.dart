@@ -192,23 +192,23 @@ Widget  buildCardRecommend() => Expanded(
 )
 );
 
-Widget buildCardRecommend() => Expanded(
-        child: Container(
-      height: 200,
-      width: 200,
-      decoration: BoxDecoration(
-        color: Colors.green[50],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            'assets/images/logo_ALS.png',
-            width: 200,
-          ),
-        ],
-      ),
-    ));
+// Widget buildCardRecommend() => Expanded(
+//         child: Container(
+//       height: 200,
+//       width: 200,
+//       decoration: BoxDecoration(
+//         color: Colors.green[50],
+//         borderRadius: BorderRadius.circular(10),
+//       ),
+//       child: Column(
+//         children: [
+//           Image.asset(
+//             'assets/images/logo_ALS.png',
+//             width: 200,
+//           ),
+//         ],
+//       ),
+//     ));
 
 Widget buildCardCategory() => Expanded(
         child: Container(
