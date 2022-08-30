@@ -57,7 +57,7 @@ class _SpeechToTextState extends State<SpeechToText> {
     return Scaffold(
       appBar: AppBar(
         title:
-        Text('Confidence : ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+        Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
             centerTitle: true,
             actions: [
               Builder(

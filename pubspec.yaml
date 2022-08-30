@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_screenutil: ^3.0.1
-  flutter_svg: ^1.1.3
+  flutter_svg: ^1.1.4
   provider: ^6.0.3
   http: ^0.13.0-nullsafety.0
 
@@ -50,6 +50,7 @@ dependencies:
   highlight_text: ^1.4.1
   clipboard: ^0.1.3
   url_launcher: ^6.1.5
+
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +83,7 @@ flutter:
 
   assets:
   - assets/images/
-  #- assets/icons/
+  - assets/icons/
   - assets/fonts/
   - assets/lottie/
   - assets/video/

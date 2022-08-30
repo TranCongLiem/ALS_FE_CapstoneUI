@@ -11,8 +11,11 @@ class _VideoScreenState extends State<VideoScreen> {
   Widget build(BuildContext context) {
     final Size size= MediaQuery.of(context).size;
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Video'),
+        // backgroundColor: Colors.green,
+        backgroundColor: Color(0xffffff),
+        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
