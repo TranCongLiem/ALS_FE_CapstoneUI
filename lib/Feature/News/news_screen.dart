@@ -1,5 +1,6 @@
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Components/News/custom_title_list.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:capstone_ui/Home/home_screen.dart';
 import 'package:capstone_ui/services/api_services.dart';
@@ -25,8 +26,12 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.green,
-        title: Text("Tin tức"),
+        backgroundColor: greenALS,
+        title: Text("Tin tức", style: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold
+        ),),
+        automaticallyImplyLeading: false,
       ),
       body: FutureBuilder(
         future: client.getArticle(),

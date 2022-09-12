@@ -29,7 +29,6 @@ class _HomeState extends State<Home> {
       ),
 
       body: Stack(
-
         children: <Widget>[
           Container(
             // Here the height of the container is 45% of our total height
@@ -42,80 +41,90 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 52,
-                      width: 52,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: new DecorationImage(image: ExactAssetImage('assets/images/logo_Avatar.jpg')),
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/anh_web.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 52,
+                        width: 52,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: new DecorationImage(image: ExactAssetImage('assets/images/logo_Avatar.jpg')),
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 30.0),
-                    child: Text(
-                      "Chào bạn, \nTôi có thể giúp gì cho bạn?",
-                      style: TextStyle(
-                        fontSize: 35,
-                        color: Colors.white
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30.0),
+                      child: Text(
+                        "Xin chào!\nHôm nay bạn cần gì?",
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      childAspectRatio: .85,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                      children: <Widget>[
-                        CategoryCard(
-                          title: "Chuyển văn bản thành giọng nói",
-                          svgSrc: 'assets/icons/text.svg',
-                          press: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => TextToSpeech()));
-                          },
-                        ),
-                        CategoryCard(
-                          title: "Chuyển giọng nói thành văn bản",
-                          svgSrc: 'assets/icons/microphone.svg',
-                          press: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SpeechToText()));
-                          },
-                        ),
-                        CategoryCard(
-                          title: "Lưu giọng nói",
-                          svgSrc: "assets/icons/saverecord1.svg",
-                          press: () {},
-                        ),
-                        CategoryCard(
-                          title: "Bài tập",
-                          svgSrc: "assets/icons/ex1.svg",
-                          press: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ListExcerise()));
-                          },
-                        ),
-                      ],
+                    Expanded(
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        childAspectRatio: .85,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        children: <Widget>[
+                          CategoryCard(
+                            title: "Chuyển văn bản thành giọng nói",
+                            svgSrc: 'assets/icons/text.svg',
+                            press: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TextToSpeech()));
+                            },
+                          ),
+                          CategoryCard(
+                            title: "Chuyển giọng nói thành văn bản",
+                            svgSrc: 'assets/icons/microphone.svg',
+                            press: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SpeechToText()));
+                            },
+                          ),
+                          CategoryCard(
+                            title: "Lưu giọng nói",
+                            svgSrc: "assets/icons/saverecord1.svg",
+                            press: () {
+                                Navigator.of(context).pushNamed('/login');
+                            },
+                          ),
+                          CategoryCard(
+                            title: "Bài tập",
+                            svgSrc: "assets/icons/ex1.svg",
+                            press: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ListExcerise()));
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )

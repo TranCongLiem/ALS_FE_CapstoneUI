@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 
 class ProfileInfo extends StatelessWidget {
@@ -20,7 +21,7 @@ class ProfileInfo extends StatelessWidget {
             clipper: CustomeShape(),
             child: Container(
               height: 150,
-              color: Colors.green,
+              color: greenALS,
             ),
           ),
           Center(

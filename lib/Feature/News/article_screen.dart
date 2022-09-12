@@ -1,6 +1,8 @@
 import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../Constant/constant.dart';
+
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({Key? key, required this.article}) : super(key: key);
 
@@ -12,8 +14,9 @@ class ArticleScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           article.title ?? "",
+
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: greenALS,
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

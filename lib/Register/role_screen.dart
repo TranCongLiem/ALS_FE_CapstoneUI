@@ -14,12 +14,20 @@ class _RoleScreenState extends State<RoleScreen> {
   Widget build(BuildContext context) {
     final Size size= MediaQuery.of(context).size;
     return Scaffold(
-
-        appBar: AppBar(
-          title: Image.asset('assets/images/logo_ALS.png', width: 100,),
-          centerTitle: true,
-          backgroundColor: const Color(0xffffffff),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(70.0),
+          child: AppBar(
+              title: Image.asset('assets/images/logo_als2.png', fit: BoxFit.contain, height: 70,),
+              centerTitle: true,
+              backgroundColor: const Color(0xffffffff),
+          ),
         ),
+        // appBar: AppBar(
+        //
+        //   title: Image.asset('assets/images/logo_als2.png', width: 100,),
+        //   centerTitle: true,
+        //   backgroundColor: const Color(0xffffffff),
+        // ),
 
       body: Center(
         child: Column(
@@ -27,7 +35,7 @@ class _RoleScreenState extends State<RoleScreen> {
           children: [
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
-              child: Text('Đăng ký', style: TextStyle(
+              child: Text('Đăng ký với vai trò', style: TextStyle(
                 fontSize: 35
               ),),
             ),
