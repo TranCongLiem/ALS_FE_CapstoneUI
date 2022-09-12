@@ -1,7 +1,10 @@
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import '';
+
 import '../Home/home.dart';
 import '../Home/home_screen.dart';
 
@@ -13,12 +16,12 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _obscureText = true;
-  void _togglePasswordStatus(){
-    setState((){
-      _obscureText= !_obscureText;
-    });
-  }
+  bool hidePassword = true;
+
+  TextEditingController emailController= TextEditingController();
+  TextEditingController passwordController= TextEditingController();
+
+  
   @override
   Widget build(BuildContext context) {
      return Scaffold(
@@ -38,7 +41,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Padding(
                     padding: EdgeInsets.all(10),
-                  child: TextField(
+                  child: TextFormField(
+                    controller: emailController,
                     autofocus: true,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.person),
@@ -46,22 +50,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Tài khoản',
                       hintText: 'Nhập tài khoản',
                   ),
+                    style: TextStyle(
+                      fontSize: 25
+                    ),
                 ),
                 ),
 
                 Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextField(
-                    obscureText: true,
+                  child: TextFormField(
+                    controller: passwordController,
+                    obscureText: hidePassword,
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
-                        icon: Icon(_obscureText ? Icons.visibility:Icons.visibility_off,),
-                        onPressed: _togglePasswordStatus,
+                        icon: Icon(hidePassword? Icons.visibility_off:Icons.visibility,),
+                        onPressed: (){
+                          setState((){
+                            hidePassword= !hidePassword;
+                          });
+                        },
                         color: Colors.green,
                       ),
                       border: OutlineInputBorder(),
                       labelText: 'Mật khẩu',
                       hintText: 'Nhập mật khẩu',
+                    ),
+                    style: TextStyle(
+                        fontSize: 25
                     ),
                   ),
                 ),
@@ -93,7 +108,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     );
                   },
                   icon: Icon(Icons.login),
-                    label: Text('Đăng nhập'),
+                    label: Text('Đăng nhập', style: TextStyle(
+                      fontSize: 22,
+                      fontFamily: 'GothamB'
+                    ),),
                     style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
                       backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
@@ -102,17 +120,37 @@ class _LoginScreenState extends State<LoginScreen> {
                           return 0;
                         }
                         return 5;
-                      })
+                      }),
                     ) ,
                 ),
                 TextButton(
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => RoleScreen()));
                     } ,
-                    child: Text('Chưa có tài khoản? Đăng ký'),
-                    style: ButtonStyle(
-                      foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-
+                    // child: Text('Chưa có tài khoản? Đăng ký'),
+                    // style: ButtonStyle(
+                    //   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
+                    //
+                    // ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Chưa có tài khoản?', style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20
+                        ),),
+                        TextButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => RoleScreen()));
+                            },
+                            child: Text('Đăng ký', style: TextStyle(
+                              color: greenALS,
+                              fontSize: 20,
+                              fontFamily: 'GothamB'
+                            )
+                        )
+                        ),
+                      ],
                     ),
                 ),
               ],

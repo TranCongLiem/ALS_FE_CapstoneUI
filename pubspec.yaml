@@ -50,7 +50,8 @@ dependencies:
   highlight_text: ^1.4.1
   clipboard: ^0.1.3
   url_launcher: ^6.1.5
-
+  audioplayers: ^1.0.1
+  path_provider: ^2.0.11
 
 dev_dependencies:
   flutter_test:
@@ -75,18 +76,22 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-    - family: Sans
+    - family: Gotham
       fonts:
-        - asset: assets/fonts/SourceSansPro-Black.ttf
-          weight: 100
-
+        - asset: assets/fonts/Gotham-XLight.otf
+    - family: GothamB
+      fonts:
+        - asset: assets/fonts/GothamMedium.ttf
+    - family: San
+      fonts:
+        - asset: assets/fonts/SourceSansPro-Light.ttf
 
   assets:
   - assets/images/
   - assets/icons/
   - assets/fonts/
   - assets/lottie/
-  - assets/video/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

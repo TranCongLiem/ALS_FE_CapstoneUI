@@ -42,6 +42,7 @@ class DetailNewsScreen extends StatelessWidget {
                             article.title ?? "",
                             style: TextStyle(
                               fontSize: 30.0,
+                              fontFamily: 'GothamB'
                               //
                             ),
                           ),

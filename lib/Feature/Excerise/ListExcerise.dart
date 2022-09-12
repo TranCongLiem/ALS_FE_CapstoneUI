@@ -1,5 +1,7 @@
+import 'package:capstone_ui/Components/Feature/Excerise/category_recommend.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:flutter/material.dart';
+import '../TextToSpeech/TextToSpeech.dart';
 import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
@@ -15,7 +17,11 @@ class _ListExceriseState extends State<ListExcerise> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bài tập'),
+        centerTitle: true,
+        title: Text('Bài tập', style: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold
+        ),),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 20, right: 20, top: 8),
@@ -88,16 +94,11 @@ class _ListExceriseState extends State<ListExcerise> {
             ),
             Container(
                 padding: const EdgeInsets.only(top: 15),
-
                 height: size.height / 3,
                 width: size.width / 1,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    buildCardRecommend(),
-                    SizedBox(
-                      width: 12,
-                    ),
                     buildCardRecommend(),
                     SizedBox(
                       width: 12,

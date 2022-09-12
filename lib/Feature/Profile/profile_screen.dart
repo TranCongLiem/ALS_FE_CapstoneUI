@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,13 @@ class _ProfiletState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Hồ sơ"),
-        backgroundColor: Colors.green,
+        title: Text("Hồ sơ", style: TextStyle(
+          fontSize: 25.0,
+          fontWeight: FontWeight.bold
+        ),),
+        backgroundColor: greenALS,
         actions: <Widget>[
           FlatButton(
             onPressed: () {},

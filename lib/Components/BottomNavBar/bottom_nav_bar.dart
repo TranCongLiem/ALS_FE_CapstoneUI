@@ -60,6 +60,7 @@
 //   }
 // }
 
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +90,7 @@ class MyBottomNavBar extends StatelessWidget {
       builder: (context, navItems, child) => BottomNavigationBar(
         currentIndex: index ?? 0,
         showUnselectedLabels: false,
-        selectedItemColor: Colors.green,
+        selectedItemColor: greenALS,
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           if (NavItems().items[index].destinationChecker()) {

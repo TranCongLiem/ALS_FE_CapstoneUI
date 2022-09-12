@@ -12,7 +12,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Văn bản thành giọng nói'),
+        title: Text('Chuyển văn bản thành giọng nói'),
       ),
       body: Home(),
     );
@@ -36,7 +36,7 @@ class Home extends StatelessWidget{
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextFormField(
-                maxLines: 10,
+                maxLines: 5,
                 autofocus: true,
                 decoration: InputDecoration(
                     hintText: 'Nhập để nói',
@@ -49,6 +49,10 @@ class Home extends StatelessWidget{
                     )
                 ),
                 controller: textEditingController,
+                style: TextStyle(
+                  fontSize: 32.0,
+                  color: Colors.black
+                ),
               ),
             ),
             ElevatedButton(

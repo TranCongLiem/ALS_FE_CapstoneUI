@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
+import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +21,11 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.green,
-          fontFamily: 'Sans',
+          fontFamily: 'San',
         ),
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        initialRoute: '/',
+        onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
   }

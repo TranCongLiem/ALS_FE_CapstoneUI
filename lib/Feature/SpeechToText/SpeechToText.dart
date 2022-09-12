@@ -18,13 +18,6 @@ class SpeechToText extends StatefulWidget {
 class _SpeechToTextState extends State<SpeechToText> {
 
   final Map<String, HighlightedWord> _highlights = {
-    'flutter': HighlightedWord(
-      onTap: () => print('Flutter'),
-      textStyle: const TextStyle(
-        color: Colors.blue,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
     'gọi': HighlightedWord(
       onTap: () async{
         const uri = 'tel:+1 222 060 888';
@@ -57,7 +50,8 @@ class _SpeechToTextState extends State<SpeechToText> {
     return Scaffold(
       appBar: AppBar(
         title:
-        Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+        // Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+        Text('Chuyển giọng nói thành văn bản'),
             centerTitle: true,
             actions: [
               Builder(
@@ -97,8 +91,7 @@ class _SpeechToTextState extends State<SpeechToText> {
             words: _highlights,
             textStyle: const TextStyle(
               fontSize: 32.0,
-              color: Colors.black,
-              fontWeight: FontWeight.w400,
+              color: Colors.black
             ),
           ),
         ),
