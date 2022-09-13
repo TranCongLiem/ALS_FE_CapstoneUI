@@ -27,6 +27,8 @@ class _HomeState extends State<Home> {
         builder: (context, orientation, deviceType) {
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
+              width: 100.w,
+              height: 20.5.h,
               child: Scaffold(
               bottomNavigationBar: MyBottomNavBar(
               index: this.index,
@@ -131,6 +133,8 @@ class _HomeState extends State<Home> {
           )
           )
               : Container(
+              width: 100.w,
+              height: 12.5.h,
               child: Scaffold(
                 bottomNavigationBar: MyBottomNavBar(
                   index: this.index,

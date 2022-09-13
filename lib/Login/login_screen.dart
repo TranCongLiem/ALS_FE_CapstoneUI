@@ -179,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
           )
               : Container(
             width: 100.w,
-            height: 20.5.h,
+            height: 12.5.h,
             child: Scaffold(
               body: Center(
                   child: Container(
