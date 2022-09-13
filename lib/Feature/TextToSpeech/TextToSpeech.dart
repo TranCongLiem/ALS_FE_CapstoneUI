@@ -28,6 +28,12 @@ class Home extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/anh_web.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
         alignment: Alignment.center,
         padding: EdgeInsets.only(top: 40),
         child: Column(
@@ -44,8 +50,7 @@ class Home extends StatelessWidget{
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
                           width: 10,
-                        )
-
+                        ),
                     )
                 ),
                 controller: textEditingController,

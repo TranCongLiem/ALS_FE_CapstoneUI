@@ -82,16 +82,24 @@ class _SpeechToTextState extends State<SpeechToText> {
           child: Icon(_isListening ? Icons.mic : Icons.mic_none),
         ),
       ),
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Container(
-          padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
-          child: TextHighlight(
-            text: _text,
-            words: _highlights,
-            textStyle: const TextStyle(
-              fontSize: 32.0,
-              color: Colors.black
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/anh_web.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SingleChildScrollView(
+          reverse: true,
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 150.0),
+            child: TextHighlight(
+              text: _text,
+              words: _highlights,
+              textStyle: const TextStyle(
+                fontSize: 32.0,
+                color: Colors.black
+              ),
             ),
           ),
         ),
