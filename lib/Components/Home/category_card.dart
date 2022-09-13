@@ -27,7 +27,9 @@ class CategoryCard extends StatelessWidget {
           child: ClipRRect(
           borderRadius: BorderRadius.circular(13),
           child: Container(
-          // padding: EdgeInsets.all(20),
+            width: 20.w,    //It will take a 20% of screen width
+            height:30.h,
+            // padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
@@ -52,8 +54,8 @@ class CategoryCard extends StatelessWidget {
           child: Column(
           children: <Widget>[
           Spacer(),
-          SvgPicture.asset(svgSrc, width: 50.h,      //It will take a 30% of screen height
-            height: 50.h, ),
+          SvgPicture.asset(svgSrc, width: 60.h,
+            height: 45.h, ),
           Spacer(),
           Text(
           title,
