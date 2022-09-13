@@ -107,7 +107,7 @@ class _HomeState extends State<Home> {
                             title: "Lưu giọng nói",
                             svgSrc: "assets/icons/saverecord1.svg",
                             press: () {
-                                Navigator.of(context).pushNamed('/login');
+                                Navigator.of(context).pushNamed('/saveRecord');
                             },
                           ),
                           CategoryCard(

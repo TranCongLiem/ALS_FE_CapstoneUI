@@ -28,7 +28,7 @@ class _ProfiletState extends State<Profile> {
         ),),
         backgroundColor: greenALS,
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {},
             child: Text(
               "Chỉnh sửa",

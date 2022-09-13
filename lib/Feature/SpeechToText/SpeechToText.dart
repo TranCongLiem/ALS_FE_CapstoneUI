@@ -59,7 +59,7 @@ class _SpeechToTextState extends State<SpeechToText> {
                   return IconButton(
                       onPressed: () async {
                         await FlutterClipboard.copy(_text);
-                        Scaffold.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Đã sao chép")),
                         );
                       },
