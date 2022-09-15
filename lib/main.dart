@@ -2,14 +2,16 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Splash/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'Home/home_screen.dart';
 import 'Login/login_screen.dart';
 
-void main() => runApp(MyApp());
-
+void main() async {
+  Firebase.initializeApp();
+  runApp(MyApp());
+}
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

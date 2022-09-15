@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
+import 'package:capstone_ui/Feature/SpeechToText/voice_to_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
@@ -72,6 +73,7 @@ class _HomeState extends State<Home> {
           style: TextStyle(
           fontSize: 35,
           color: Colors.black,
+            fontWeight: FontWeight.bold
           ),
           ),
           ),
@@ -99,7 +101,7 @@ class _HomeState extends State<Home> {
           Navigator.push(
           context,
           MaterialPageRoute(
-          builder: (context) => SpeechToText()));
+          builder: (context) => SpeechSampleApp()));
           },
           ),
           CategoryCard(

@@ -2,7 +2,6 @@ import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Components/News/custom_title_list.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/News/model/article_model.dart';
-import 'package:capstone_ui/Home/home_screen.dart';
 import 'package:capstone_ui/services/api_services.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';

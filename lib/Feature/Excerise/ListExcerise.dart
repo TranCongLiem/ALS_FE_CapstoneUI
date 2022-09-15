@@ -1,7 +1,8 @@
 import 'package:capstone_ui/Components/Feature/Excerise/category_recommend.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
+import 'package:capstone_ui/Feature/Excerise/voice_to_text_search.dart';
 import 'package:flutter/material.dart';
-import '../TextToSpeech/TextToSpeech.dart';
+
 import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
@@ -50,7 +51,15 @@ class _ListExceriseState extends State<ListExcerise> {
                             child: TextField(
                           decoration: InputDecoration(
                               hintText: 'Tìm kiếm', border: InputBorder.none),
-                        ))
+                        )),
+                        IconButton(
+                            onPressed: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => VoiceToTextSearch()));
+                            },
+                            icon: Icon(Icons.mic))
                       ],
                     ),
                   )),

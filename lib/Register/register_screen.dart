@@ -63,6 +63,7 @@ class _RegisterState extends State<Register> {
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: TextFormField(
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
                     controller: passwordController,
                     obscureText: hidePassword,
                     decoration: InputDecoration(

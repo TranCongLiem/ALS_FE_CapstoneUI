@@ -1,6 +1,5 @@
 import 'package:capstone_ui/Feature/News/news_screen.dart';
 import 'package:capstone_ui/Feature/Profile/profile_screen.dart';
-import 'package:capstone_ui/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../Home/home.dart';

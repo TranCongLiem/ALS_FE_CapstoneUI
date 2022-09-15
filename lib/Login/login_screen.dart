@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:sizer/sizer.dart';
 import '';
 
 import '../Home/home.dart';
-import '../Home/home_screen.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -66,6 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: EdgeInsets.all(10),
                           child: TextFormField(
+                            keyboardType: TextInputType.numberWithOptions(decimal: false),
                             controller: passwordController,
                             obscureText: hidePassword,
                             decoration: InputDecoration(
@@ -137,6 +139,16 @@ class _LoginScreenState extends State<LoginScreen> {
                               return 5;
                             }),
                           ),
+                        ),
+                        TextButton(
+                            onPressed: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (
+                                  context) => VerifyScreen()));
+                            },
+                            child: Text('Quên mật khẩu', style: TextStyle(
+                                fontSize: 18.sp,
+                              color: Colors.black
+                            ),)
                         ),
                         TextButton(
                           onPressed: () {
@@ -215,6 +227,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: EdgeInsets.all(10),
                           child: TextFormField(
+                            keyboardType: TextInputType.numberWithOptions(decimal: false),
                             controller: passwordController,
                             obscureText: hidePassword,
                             decoration: InputDecoration(
