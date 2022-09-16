@@ -1,10 +1,10 @@
-
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Login/otp.dart';
 import 'package:flutter/material.dart';
 
 class VerifyScreen extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _VerifyScreenState createState() => _VerifyScreenState();
 }
 
@@ -46,7 +46,6 @@ class _VerifyScreenState extends State<VerifyScreen> {
             )
           ]),
           Container(
-
             margin: EdgeInsets.all(10),
             padding: EdgeInsets.all(10),
             width: double.infinity,
