@@ -114,7 +114,7 @@ class _HomeState extends State<Home> {
                                       svgSrc: "assets/icons/saverecord1.svg",
                                       press: () {
                                         Navigator.of(context)
-                                            .pushNamed('/login');
+                                            .pushNamed('/saveRecord');
                                       },
                                     ),
                                     CategoryCard(
