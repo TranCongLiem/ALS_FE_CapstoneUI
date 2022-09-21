@@ -14,7 +14,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Xác thực'),
+        title: Text('Xác thực ngay'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,8 +50,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
             padding: EdgeInsets.all(10),
             width: double.infinity,
             height: 80,
-            child: FlatButton(
-              color: greenALS,
+            child: TextButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => OTPScreen(_controller.text)));
