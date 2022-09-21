@@ -50,11 +50,13 @@ dependencies:
   highlight_text: ^1.4.1
   clipboard: ^0.1.3
   url_launcher: ^6.1.5
-  audioplayers: ^1.0.1
+  audioplayers: ^0.19.1
   path_provider: ^2.0.11
   sizer: ^2.0.15
+  firebase_storage: ^9.0.0
+  flutter_audio_recorder2: ^0.0.2
 
-dev_dependencies:
+dev_dependencies:npm install -g firebase-tools
   flutter_test:
     sdk: flutter
 
