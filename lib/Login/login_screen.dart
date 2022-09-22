@@ -1,4 +1,6 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
+
 import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:capstone_ui/Register/role_screen.dart';
@@ -109,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               pageBuilder: (BuildContext context,
                                   Animation<double> animation,
                                   Animation<double> secondaryAnimation) {
-                                return Home();
+                                return NewFeed();
                               },
                             ),
                           );
@@ -273,7 +275,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               pageBuilder: (BuildContext context,
                                   Animation<double> animation,
                                   Animation<double> secondaryAnimation) {
-                                return Home();
+                                return NewFeed();
                               },
                             ),
                           );

@@ -45,6 +45,7 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
               // ignore: prefer_const_constructors
               Text('Chuyển giọng nói thành văn bản'),
           centerTitle: true,
+          backgroundColor: greenALS,
           actions: [
             Builder(builder: (context) {
               return IconButton(

@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -14,6 +15,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Chuyển văn bản thành giọng nói'),
+        backgroundColor: greenALS,
       ),
       body: Home(),
     );
@@ -52,9 +54,7 @@ class Home extends StatelessWidget {
                     hintText: 'Nhập để nói',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(
-                        width: 10,
-                      ),
+                      borderSide: BorderSide(width: 10, color: greenALS),
                     )),
                 controller: textEditingController,
                 style: TextStyle(fontSize: 32.0, color: Colors.black),

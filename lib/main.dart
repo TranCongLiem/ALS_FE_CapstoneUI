@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'San',
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: '/newsfeed',
+        initialRoute: '/login',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
