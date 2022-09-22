@@ -89,9 +89,12 @@ class MyBottomNavBar extends StatelessWidget {
     return Consumer<NavItems>(
       builder: (context, navItems, child) => BottomNavigationBar(
         currentIndex: index ?? 0,
-        showUnselectedLabels: false,
+        showUnselectedLabels: true,
         selectedItemColor: greenALS,
         unselectedItemColor: Colors.grey,
+        unselectedFontSize: 15,
+        selectedFontSize: 15,
+        iconSize: 30.0,
         onTap: (index) {
           if (NavItems().items[index].destinationChecker()) {
             Navigator.push(
@@ -108,8 +111,16 @@ class MyBottomNavBar extends StatelessWidget {
             label: 'Trang chủ',
           ),
           BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Trợ giúp',
+          ),
+          BottomNavigationBarItem(
             icon: Icon(Icons.newspaper),
-            label: 'Tin tức',
+            label: 'Kiến thức',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.calendar_today_outlined),
+            label: 'Tập luyện',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),

@@ -1,8 +1,10 @@
 import 'package:capstone_ui/Components/Feature/Excerise/category_recommend.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Feature/Excerise/voice_to_text_search.dart';
 import 'package:flutter/material.dart';
 
+import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
@@ -13,16 +15,23 @@ class ListExcerise extends StatefulWidget {
 }
 
 class _ListExceriseState extends State<ListExcerise> {
+  int index = 3;
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      bottomNavigationBar: MyBottomNavBar(
+        // ignore: unnecessary_this
+        index: this.index,
+      ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Bài tập', style: TextStyle(
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold
-        ),),
+        automaticallyImplyLeading: false,
+        backgroundColor: greenALS,
+        title: Text(
+          'Bài tập',
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 20, right: 20, top: 8),
@@ -53,11 +62,12 @@ class _ListExceriseState extends State<ListExcerise> {
                               hintText: 'Tìm kiếm', border: InputBorder.none),
                         )),
                         IconButton(
-                            onPressed: (){
+                            onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => VoiceToTextSearch()));
+                                      builder: (context) =>
+                                          VoiceToTextSearch()));
                             },
                             icon: Icon(Icons.mic))
                       ],
@@ -67,13 +77,46 @@ class _ListExceriseState extends State<ListExcerise> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => VideoScreen()));
+                  },
+                  label: Text(
+                    'Tạo buổi tập',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  icon: Icon(Icons.add),
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.green),
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed) ||
+                          (states.contains(MaterialState.disabled))) {
+                        return 0;
+                      }
+                      return 5;
+                    }),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
               padding: const EdgeInsets.only(top: 15),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Gợi ý',
+                    'Lịch sử luyện tập',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.w500,
@@ -88,19 +131,7 @@ class _ListExceriseState extends State<ListExcerise> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VideoScreen()));
-                    },
-                    child: Text('Chi tiết')),
-              ),
-            ),
+
             Container(
                 padding: const EdgeInsets.only(top: 15),
                 height: size.height / 3,
@@ -144,7 +175,6 @@ class _ListExceriseState extends State<ListExcerise> {
                     'Xem tất cả',
                     style: TextStyle(
                       color: Colors.blueAccent,
-
                     ),
                   ),
                 ],

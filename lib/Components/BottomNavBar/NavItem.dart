@@ -1,4 +1,6 @@
+import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
 import 'package:capstone_ui/Feature/News/news_screen.dart';
+import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
 import 'package:capstone_ui/Feature/Profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +34,26 @@ class NavItems extends ChangeNotifier {
       id: 1,
       icon: "assets/images/home-svgrepo-com.svg",
       // destination: HomeScreen(),
-      destination: Home(),
+      destination: NewFeed(),
     ),
     NavItem(
       id: 2,
+      icon: "assets/images/home-svgrepo-com.svg",
+      // destination: HomeScreen(),
+      destination: Home(),
+    ),
+    NavItem(
+      id: 3,
       icon: "assets/images/newspaper-svgrepo-com.svg",
       destination: NewsScreen(),
     ),
     NavItem(
-      id: 3,
+      id: 4,
+      icon: "assets/images/newspaper-svgrepo-com.svg",
+      destination: ListExcerise(),
+    ),
+    NavItem(
+      id: 5,
       icon: "assets/images/person-svgrepo-com.svg",
       destination: Profile(),
     ),
