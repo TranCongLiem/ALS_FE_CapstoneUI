@@ -38,7 +38,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
           trailing: IconButton(
             icon: selectedIndex == index
                 ? Icon(Icons.pause)
-                : Icon(Icons.play_arrow),
+                : Icon(Icons.play_circle),
             onPressed: () => _onListTileButtonPressed(index),
           ),
         );

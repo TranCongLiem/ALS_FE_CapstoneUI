@@ -2,6 +2,7 @@ import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 // ignore: unused_import
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
+import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
 import 'package:capstone_ui/Feature/SpeechToText/voice_to_text.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
@@ -113,8 +114,11 @@ class _HomeState extends State<Home> {
                                       title: "Lưu giọng nói",
                                       svgSrc: "assets/icons/saverecord1.svg",
                                       press: () {
-                                        Navigator.of(context)
-                                            .pushNamed('/saveRecord');
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SaveRecording()));
                                       },
                                     ),
                                     CategoryCard(
