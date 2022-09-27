@@ -1,6 +1,10 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+
+import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
+import 'catalog.dart';
 
 class CloudRecordListView extends StatefulWidget {
   final List<Reference> references;
@@ -15,6 +19,13 @@ class CloudRecordListView extends StatefulWidget {
 }
 
 class _CloudRecordListViewState extends State<CloudRecordListView> {
+  // List<String> images = [
+  //   "assets/images/logo_ALS.png",
+  //   "assets/images/logo_Avatar.jpg",
+  //   "assets/images/logoALS1.png",
+  //   "assets/images/role-patient.png",
+  // ];
+
   bool? isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
@@ -29,20 +40,34 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: widget.references.length,
-      reverse: true,
-      itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          title: Text(widget.references.elementAt(index).name),
-          trailing: IconButton(
-            icon: selectedIndex == index
-                ? Icon(Icons.pause)
-                : Icon(Icons.play_circle),
-            onPressed: () => _onListTileButtonPressed(index),
-          ),
-        );
-      },
+    return SafeArea(
+      child: ListView.builder(
+        scrollDirection: Axis.vertical,
+        itemCount: widget.references.length,
+        reverse: true,
+        primary: false,
+        shrinkWrap: true,
+        itemBuilder: (BuildContext context, int index) {
+          return Card(
+            elevation: 2,
+            margin: const EdgeInsets.all(10),
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                backgroundImage: NetworkImage(
+                    "https://image.shutterstock.com/image-vector/little-boy-happy-eat-breakfast-260nw-586610600.jpg"),
+              ),
+              title: Text(widget.references.elementAt(index).name),
+              trailing: IconButton(
+                icon: selectedIndex == index
+                    ? Icon(Icons.pause)
+                    : Icon(Icons.play_circle),
+                onPressed: () => _onListTileButtonPressed(index),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 

@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../Constant/constant.dart';
+import '../../../../Constant/constant.dart';
 
-class CategoryCard extends StatelessWidget {
+class CategoryListSaveRecord extends StatelessWidget {
   final String svgSrc;
-  final String title;
+  final String name;
   final press;
-  const CategoryCard({
+  const CategoryListSaveRecord({
     Key? key,
     required this.svgSrc,
-    required this.title,
+    required this.name,
     required this.press,
   }) : super(key: key);
 
@@ -52,14 +52,14 @@ class CategoryCard extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Spacer(),
-                            SvgPicture.asset(
+                            SvgPicture.network(
                               svgSrc,
                               width: 60.h,
                               height: 45.h,
                             ),
                             Spacer(),
                             Text(
-                              title,
+                              name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 34.0.sp, color: Colors.black),
@@ -102,10 +102,10 @@ class CategoryCard extends StatelessWidget {
                         child: Column(
                           children: <Widget>[
                             Spacer(),
-                            SvgPicture.asset(svgSrc),
+                            SvgPicture.network(svgSrc),
                             Spacer(),
                             Text(
-                              title,
+                              name,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontSize: 18.0.sp, color: Colors.black),

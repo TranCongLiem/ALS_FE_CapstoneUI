@@ -50,8 +50,8 @@ class _SaveRecordingState extends State<SaveRecording> {
                       "android.permission.RECORD_AUDIO");
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(greenALS),
-                ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(greenALS)),
                 child: FeatureButtonsView(
                   onUploadComplete: _onUploadComplete,
                 ),

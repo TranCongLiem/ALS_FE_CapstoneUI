@@ -3,6 +3,7 @@ import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
 import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
+import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:capstone_ui/Feature/SpeechToText/voice_to_text.dart';
 import 'package:flutter/material.dart';
 // ignore: unused_import
@@ -118,20 +119,20 @@ class _HomeState extends State<Home> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    SaveRecording()));
+                                                    HomeViewRecord()));
                                       },
                                     ),
-                                    CategoryCard(
-                                      title: "Bài tập",
-                                      svgSrc: "assets/icons/ex1.svg",
-                                      press: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ListExcerise()));
-                                      },
-                                    ),
+                                    // CategoryCard(
+                                    //   title: "Bài tập",
+                                    //   svgSrc: "assets/icons/ex1.svg",
+                                    //   press: () {
+                                    //     Navigator.push(
+                                    //         context,
+                                    //         MaterialPageRoute(
+                                    //             builder: (context) =>
+                                    //                 ListExcerise()));
+                                    //   },
+                                    // ),
                                   ],
                                 ),
                               ),
