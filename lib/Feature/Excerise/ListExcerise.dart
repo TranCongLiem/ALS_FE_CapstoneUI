@@ -1,8 +1,14 @@
+import 'dart:math';
+
 import 'package:capstone_ui/Components/Feature/Excerise/category_recommend.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Feature/Excerise/voice_to_text_search.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:speech_to_text/speech_recognition_error.dart';
+import 'package:speech_to_text/speech_recognition_result.dart';
+import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import 'DetailExcerise.dart';
@@ -15,7 +21,20 @@ class ListExcerise extends StatefulWidget {
 }
 
 class _ListExceriseState extends State<ListExcerise> {
+  String outputText='Tìm kiếm';
+  final SpeechToText speech= SpeechToText();
+  bool _hasSpeech= false;
+  String _currentLocaleId= 'vi_VN';
+  double minSoundLevel= 50000;
+  double maxSoundLevel= -50000;
+  double level=0.0;
   int index = 3;
+  @override
+  void initState() {
+    super.initState();
+    initSpeechState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -58,46 +77,39 @@ class _ListExceriseState extends State<ListExcerise> {
                         ),
                         Expanded(
                             child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Tìm kiếm',
-                            border: InputBorder.none,
-                            suffixIcon: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                InkWell(
-                                  child: Image.asset(
-                                    "assets/images/logo_ALS.png",
-                                    height: 20,
-                                    color: Colors.deepOrangeAccent,
-                                  ),
+                              decoration: InputDecoration(
+                                hintText: outputText,
+                                border: InputBorder.none,
+                                suffixIcon: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    InkWell(
+                                      child: Image.asset(
+                                        "assets/images/logo_ALS.png",
+                                        height: 20,
+                                        color: Colors.deepOrangeAccent,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                // _buildVoiceInput(
-                                //   onPressed: _speechRecognitionAvailable &&
-                                //           !_isListening
-                                //       ? () => start()
-                                //       : () => stop(),
-                                //   label: _isListening
-                                //       ? S.of(context).listening
-                                //       : '',
-                                // ),
-                              ],
-                            ),
-                          ),
-                        )),
+                              ),
+                            )),
                         IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          VoiceToTextSearch()));
-                            },
-                            icon: Icon(Icons.mic))
+                            icon: Icon(Icons.mic),
+                            onPressed: (){
+                              !_hasSpeech || speech.isListening
+                                ? null
+                                : startListening();
+                            })
                       ],
                     ),
-                  )),
-                ],
+                    // child: _tan(outputText: 'aa',
+                    //     onPressed: !_hasSpeech || speech.isListening
+                    //     ? null
+                    //     : startListening()),
+                       ),
+                  )],
               ),
             ),
             Padding(
@@ -238,25 +250,91 @@ class _ListExceriseState extends State<ListExcerise> {
       ),
     );
   }
+  Future<void> initSpeechState() async {
+    bool hasSpeech= await speech.initialize(
+        onError: errorListener, onStatus: statusListener
+    );
+    if(!mounted) return;
+    setState(() {
+      _hasSpeech= hasSpeech;
+    });
+  }
+
+  void statusListener(String status) {
+    print(status);
+  }
+  void errorListener(SpeechRecognitionError errorNotification) {
+  }
+
+  startListening() async {
+    PermissionStatus microStatus= await Permission.microphone.request();
+    if(microStatus == PermissionStatus.granted){}
+    if(microStatus == PermissionStatus.denied){
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
+    }
+    if(microStatus == PermissionStatus.permanentlyDenied){
+      openAppSettings();
+    }
+    speech.listen(
+        onResult: resultListener,
+        listenFor: Duration(seconds: 4),
+        partialResults: true,
+        localeId: _currentLocaleId,
+        onSoundLevelChange: soundLevelListener,
+        cancelOnError: true,
+        listenMode: ListenMode.confirmation);
+  }
+
+  void resultListener(SpeechRecognitionResult result) {
+    if(result.finalResult)
+      setState(() {
+        outputText= result.recognizedWords;
+      });
+  }
+
+  soundLevelListener(double level) {
+    minSoundLevel= min(minSoundLevel, level);
+    maxSoundLevel= max(maxSoundLevel, level);
+    setState(() {
+      this.level= level;
+    });
+  }
+
+  // Widget _tan ({required String outputText, required VoidCallback onPressed}) =>
+  //     new Row(
+  //       children: [
+  //         Padding(
+  //           padding: EdgeInsets.only(left: 24),
+  //           child: Icon(Icons.search),
+  //         ),
+  //         Expanded(
+  //             child: TextField(
+  //               decoration: InputDecoration(
+  //                 hintText: outputText,
+  //                 border: InputBorder.none,
+  //                 suffixIcon: Row(
+  //                   mainAxisSize: MainAxisSize.min,
+  //                   mainAxisAlignment: MainAxisAlignment.end,
+  //                   children: [
+  //                     InkWell(
+  //                       child: Image.asset(
+  //                         "assets/images/logo_ALS.png",
+  //                         height: 20,
+  //                         color: Colors.deepOrangeAccent,
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             )),
+  //         IconButton(
+  //             icon: Icon(Icons.mic),
+  //             onPressed:(){} )
+  //       ],
+  //     );
 }
 
-// Widget  buildCardRecommend() => Expanded(
-//   child: Container(
-//     height: 100,
-//     width: 200,
-//     decoration: BoxDecoration(
-//       color: Colors.green[50],
-//       borderRadius: BorderRadius.circular(10),
-//   ),
-//     child: Column(
-//       children: [
-//         Image.asset('assets/images/logo_ALS.png', width: 200,),
-//       ],
-//     ),
-// )
-// );
-
-Widget buildCardRecommend() => Expanded(
+  Widget buildCardRecommend() => Expanded(
         child: Container(
       height: 200,
       width: 200,
@@ -291,3 +369,4 @@ Widget buildCardCategory() => Expanded(
         ],
       ),
     ));
+
