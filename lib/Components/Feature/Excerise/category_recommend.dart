@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../Constant/constant.dart';
 
-
 class CategoryRecommend extends StatelessWidget {
   final String svgSrc;
   // final String title;

@@ -4,11 +4,11 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../Constant/constant.dart';
 
-class CategoryListSaveRecord extends StatelessWidget {
+class CategoryListExcerise extends StatelessWidget {
   final String svgSrc;
   final String name;
   final press;
-  const CategoryListSaveRecord({
+  const CategoryListExcerise({
     Key? key,
     required this.svgSrc,
     required this.name,

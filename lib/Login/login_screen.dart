@@ -50,7 +50,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.all(10),
                         child: TextFormField(
                           controller: emailController,
-                          autofocus: true,
                           decoration: InputDecoration(
                             suffixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(),

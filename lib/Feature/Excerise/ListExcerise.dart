@@ -59,7 +59,31 @@ class _ListExceriseState extends State<ListExcerise> {
                         Expanded(
                             child: TextField(
                           decoration: InputDecoration(
-                              hintText: 'Tìm kiếm', border: InputBorder.none),
+                            hintText: 'Tìm kiếm',
+                            border: InputBorder.none,
+                            suffixIcon: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  child: Image.asset(
+                                    "assets/images/logo_ALS.png",
+                                    height: 20,
+                                    color: Colors.deepOrangeAccent,
+                                  ),
+                                ),
+                                // _buildVoiceInput(
+                                //   onPressed: _speechRecognitionAvailable &&
+                                //           !_isListening
+                                //       ? () => start()
+                                //       : () => stop(),
+                                //   label: _isListening
+                                //       ? S.of(context).listening
+                                //       : '',
+                                // ),
+                              ],
+                            ),
+                          ),
                         )),
                         IconButton(
                             onPressed: () {

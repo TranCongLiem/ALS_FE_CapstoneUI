@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:math';
-
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -157,33 +156,33 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
   }
 }
 
-class SpeechStatusWidget extends StatelessWidget {
-  const SpeechStatusWidget({
-    Key? key,
-    required this.speech,
-  }) : super(key: key);
-  final SpeechToText speech;
+// class SpeechStatusWidget extends StatelessWidget {
+//   const SpeechStatusWidget({
+//     Key? key,
+//     required this.speech,
+//   }) : super(key: key);
+//   final SpeechToText speech;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      color: Theme.of(context).backgroundColor,
-      child: Column(
-        children: [
-          Center(
-            child: speech.isListening
-                ? Text(
-                    "Đang nghe...",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                : Text(
-                    'Chưa phát hiện âm thanh',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Container(
+  //     padding: EdgeInsets.symmetric(vertical: 20),
+  //     color: Theme.of(context).backgroundColor,
+  //     child: Column(
+  //       children: [
+  //         Center(
+  //           child: speech.isListening
+  //               ? Text(
+  //                   "Đang nghe...",
+  //                   style: TextStyle(fontWeight: FontWeight.bold),
+  //                 )
+  //               : Text(
+  //                   'Chưa phát hiện âm thanh',
+  //                   style: TextStyle(fontWeight: FontWeight.bold),
+  //                 ),
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+// }
