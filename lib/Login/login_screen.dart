@@ -155,7 +155,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => RoleScreen()));
+                                  builder: (context) => Register()));
                         },
                         // child: Text('Chưa có tài khoản? Đăng ký'),
                         // style: ButtonStyle(
@@ -175,7 +175,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => RoleScreen()));
+                                          builder: (context) => Register()));
                                 },
                                 child: Text('Đăng ký',
                                     style: TextStyle(
@@ -305,7 +305,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => RoleScreen()));
+                                  builder: (context) => Register()));
                         },
                         // child: Text('Chưa có tài khoản? Đăng ký'),
                         // style: ButtonStyle(
@@ -325,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => RoleScreen()));
+                                          builder: (context) => Register()));
                                 },
                                 child: Text('Đăng ký',
                                     style: TextStyle(

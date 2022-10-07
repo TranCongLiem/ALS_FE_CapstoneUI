@@ -2,7 +2,6 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-
 import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
 import 'catalog.dart';
 
@@ -19,13 +18,6 @@ class CloudRecordListView extends StatefulWidget {
 }
 
 class _CloudRecordListViewState extends State<CloudRecordListView> {
-  // List<String> images = [
-  //   "assets/images/logo_ALS.png",
-  //   "assets/images/logo_Avatar.jpg",
-  //   "assets/images/logoALS1.png",
-  //   "assets/images/role-patient.png",
-  // ];
-
   bool? isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
@@ -49,21 +41,53 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            elevation: 2,
+            clipBehavior: Clip.antiAlias,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            elevation: 5,
             margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: CircleAvatar(
-                radius: 25,
-                backgroundImage: NetworkImage(
-                    "https://image.shutterstock.com/image-vector/little-boy-happy-eat-breakfast-260nw-586610600.jpg"),
-              ),
-              title: Text(widget.references.elementAt(index).name),
-              trailing: IconButton(
-                icon: selectedIndex == index
-                    ? Icon(Icons.pause)
-                    : Icon(Icons.play_circle),
-                onPressed: () => _onListTileButtonPressed(index),
-              ),
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Ink.image(
+                        height: 150,
+                        width: 150,
+                        fit: BoxFit.cover,
+                        child: InkWell(
+                          onTap: () {},
+                        ),
+                        image: NetworkImage(
+                            'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
+                    ElevatedButton.icon(
+                        onPressed: () => _onListTileButtonPressed(index),
+                        icon: selectedIndex == index
+                            ? Icon(Icons.pause, size: 60.0)
+                            : Icon(
+                                Icons.play_circle,
+                                size: 60.0,
+                              ),
+                        label: Text(''),
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.only(left: 7),
+                          backgroundColor: greenALS,
+                        ))
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'Đọc sách',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                      fontSize: 24.0,
+                    ),
+                  ),
+                )
+              ],
             ),
           );
         },

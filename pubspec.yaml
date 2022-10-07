@@ -57,12 +57,14 @@ dependencies:
   firebase_auth: ^3.8.0
   firebase_core: ^1.22.0
   pinput: ^2.2.12
-  flutterfire_cli: ^0.2.5
+  flutterfire_cli: ^0.2.6
   firebase_storage: ^10.3.8
   flutter_audio_recorder2: ^0.0.2
   audioplayers: ^0.19.1
   request_permission: ^2.1.4
-  
+  toggle_switch: ^2.0.1
+  font_awesome_flutter: ^10.2.1
+  customtogglebuttons: ^0.0.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

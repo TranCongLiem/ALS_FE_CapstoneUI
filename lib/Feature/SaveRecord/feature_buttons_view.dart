@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
@@ -17,6 +18,7 @@ class FeatureButtonsView extends StatefulWidget {
 }
 
 class _FeatureButtonsViewState extends State<FeatureButtonsView> {
+  List<bool> isSelected = [false, false, false];
   late bool _isPlaying;
   late bool _isUploading;
   late bool _isRecorded;
@@ -56,24 +58,93 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    IconButton(
-                      icon: Icon(Icons.replay),
-                      onPressed: _onRecordAgainButtonPressed,
-                    ),
-                    IconButton(
-                      icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow),
-                      onPressed: _onPlayButtonPressed,
-                    ),
-                    IconButton(
-                      icon: Icon(Icons.upload_file),
-                      onPressed: _onFileUploadButtonPressed,
+                    ToggleButtons(
+                      fillColor: Colors.grey,
+                      borderWidth: 1,
+                      selectedBorderColor: greenALS,
+                      selectedColor: Colors.white,
+                      borderRadius: BorderRadius.circular(15.0),
+                      borderColor: Colors.white,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.replay,
+                              size: 35.0,
+                              color: Colors.white,
+                            ),
+                            onPressed: _onRecordAgainButtonPressed,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            icon: Icon(
+                                _isPlaying ? Icons.pause : Icons.play_arrow,
+                                size: 35.0,
+                                color: Colors.white),
+                            onPressed: _onPlayButtonPressed,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: IconButton(
+                            icon: Icon(Icons.save_alt,
+                                size: 35.0, color: Colors.white),
+                            onPressed: _onFileUploadButtonPressed,
+                          ),
+                        ),
+                      ],
+                      onPressed: (int newindex) {
+                        setState(() {
+                          for (int i = 0; i < isSelected.length; i++) {
+                            if (i == newindex)
+                              isSelected[i] = !isSelected[i];
+                            else {
+                              isSelected[i] = false;
+                            }
+                          }
+                        });
+                      },
+                      isSelected: isSelected,
                     ),
                   ],
+                  // children: [
+                  //   Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: IconButton(
+                  //       icon: Icon(Icons.replay, size: 35.0),
+                  //       onPressed: _onRecordAgainButtonPressed,
+                  //     ),
+                  //   ),
+                  //   Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: IconButton(
+                  //       icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow,
+                  //           size: 35.0),
+                  //       onPressed: _onPlayButtonPressed,
+                  //     ),
+                  //   ),
+                  //   Padding(
+                  //     padding: const EdgeInsets.all(8.0),
+                  //     child: IconButton(
+                  //       icon: Icon(Icons.save_alt, size: 35.0),
+                  //       onPressed: _onFileUploadButtonPressed,
+                  //     ),
+                  //   ),
+                  // ],
                 )
           : IconButton(
               icon: _isRecording
-                  ? Icon(Icons.pause)
-                  : Icon(Icons.fiber_manual_record),
+                  ? Icon(
+                      Icons.pause,
+                      size: 35.0,
+                    )
+                  : Icon(
+                      Icons.fiber_manual_record,
+                      size: 35.0,
+                    ),
               onPressed: _onRecordButtonPressed,
             ),
     );

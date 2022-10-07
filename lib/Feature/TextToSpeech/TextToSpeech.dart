@@ -28,17 +28,12 @@ class Home extends StatelessWidget {
   speak(String text) async {
     await flutterTts.setLanguage("vi-VN");
     await flutterTts.speak(text);
+    await flutterTts.synthesizeToFile(text, 'test.mp3');
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/anh_web.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
       padding: EdgeInsets.only(top: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

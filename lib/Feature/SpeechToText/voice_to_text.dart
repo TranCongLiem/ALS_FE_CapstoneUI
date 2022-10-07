@@ -66,7 +66,11 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Text(
-                  outputText,
+                  speech.isListening
+                      ? '$outputText'
+                      : _hasSpeech
+                          ? outputText
+                          : 'Speech not available',
                   style: TextStyle(
                     fontSize: 30.sp,
                   ),
@@ -80,9 +84,12 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
                   ], borderRadius: BorderRadius.all(Radius.circular(100))),
                   child: ElevatedButton(
                     onPressed: () {
-                      !_hasSpeech || speech.isListening
-                          ? null
-                          : startListening();
+                      // !_hasSpeech || speech.isListening
+                      //     ? null
+                      //     : startListening();
+                      speech.isNotListening
+                          ? startListening()
+                          : _stopListening();
                     },
                     // ignore: sort_child_properties_last
                     child: Icon(Icons.mic,
@@ -137,6 +144,12 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
         onSoundLevelChange: soundLevelListener,
         cancelOnError: true,
         listenMode: ListenMode.confirmation);
+    setState(() {});
+  }
+
+  void _stopListening() async {
+    await speech.stop();
+    setState(() {});
   }
 
   void resultListener(SpeechRecognitionResult result) {

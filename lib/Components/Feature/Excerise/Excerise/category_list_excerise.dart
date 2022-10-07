@@ -41,7 +41,11 @@ class CategoryListExcerise extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Spacer(),
-                Image.network(svgSrc),
+                Image.network(
+                  svgSrc,
+                  height: 200.0,
+                  width: 200.0,
+                ),
                 Spacer(),
                 Text(
                   name,

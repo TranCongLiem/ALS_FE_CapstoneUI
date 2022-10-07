@@ -17,13 +17,13 @@ class VoiceToTextSearch extends StatefulWidget {
 }
 
 class _VoiceToTextSearchState extends State<VoiceToTextSearch> {
-  String outputText='Xin mời nói...';
-  final SpeechToText speech= SpeechToText();
-  bool _hasSpeech= false;
-  String _currentLocaleId= 'vi_VN';
-  double minSoundLevel= 50000;
-  double maxSoundLevel= -50000;
-  double level=0.0;
+  String outputText = 'Xin mời nói...';
+  final SpeechToText speech = SpeechToText();
+  bool _hasSpeech = false;
+  String _currentLocaleId = 'vi_VN';
+  double minSoundLevel = 50000;
+  double maxSoundLevel = -50000;
+  double level = 0.0;
 
   @override
   void initState() {
@@ -33,81 +33,76 @@ class _VoiceToTextSearchState extends State<VoiceToTextSearch> {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(
-        builder: (context, orientation, deviceType) {
-          return Scaffold(
-            backgroundColor: Colors.white,
-            body: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text(
-                      outputText,
-                      style: TextStyle(
-                        fontSize: 30.sp,
-                      ),
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: .26,
-                                spreadRadius: level * 1.5,
-                                color: greenALS.withOpacity(.1)
-                            )
-                          ],
-                          borderRadius: BorderRadius.all(Radius.circular(100))
-                      ),
-                      child: ElevatedButton(
-                        onPressed: () {
-                          !_hasSpeech || speech.isListening
-                              ? null
-                              : startListening();
-                        },
-                        child: Icon(Icons.mic, color: speech.isListening ? Colors
-                            .red : Colors.white, size:15.w),
-                        style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(),
-                          padding: EdgeInsets.all(30),
-                          primary: greenALS, // <-- Button color
-                        ),
-                      ),
-                    ),
-                    // SpeechStatusWidget(speech: speech)
-                  ],
+    return Sizer(builder: (context, orientation, deviceType) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                Text(
+                  outputText,
+                  style: TextStyle(
+                    fontSize: 30.sp,
+                  ),
                 ),
-              ),
+                Container(
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                        blurRadius: .26,
+                        spreadRadius: level * 1.5,
+                        color: greenALS.withOpacity(.1))
+                  ], borderRadius: BorderRadius.all(Radius.circular(100))),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      !_hasSpeech || speech.isListening
+                          ? null
+                          : startListening();
+                    },
+                    child: Icon(Icons.mic,
+                        color: speech.isListening ? Colors.red : Colors.white,
+                        size: 15.w),
+                    style: ElevatedButton.styleFrom(
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(30),
+                      primary: greenALS, // <-- Button color
+                    ),
+                  ),
+                ),
+                // SpeechStatusWidget(speech: speech)
+              ],
             ),
-          );
-        }
-    );
+          ),
+        ),
+      );
+    });
   }
 
   Future<void> initSpeechState() async {
-    bool hasSpeech= await speech.initialize(
-        onError: errorListener, onStatus: statusListener
-    );
-    if(!mounted) return;
+    bool hasSpeech = await speech.initialize(
+        onError: errorListener, onStatus: statusListener);
+    if (!mounted) return;
     setState(() {
-      _hasSpeech= hasSpeech;
+      _hasSpeech = hasSpeech;
     });
   }
 
   void statusListener(String status) {
     print(status);
   }
-  void errorListener(SpeechRecognitionError errorNotification) {
-  }
+
+  void errorListener(SpeechRecognitionError errorNotification) {}
 
   startListening() async {
-    PermissionStatus microStatus= await Permission.microphone.request();
-    if(microStatus == PermissionStatus.granted){}
-    if(microStatus == PermissionStatus.denied){
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
+    PermissionStatus microStatus = await Permission.microphone.request();
+    if (microStatus == PermissionStatus.granted) {}
+    if (microStatus == PermissionStatus.denied) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
     }
-    if(microStatus == PermissionStatus.permanentlyDenied){
+    if (microStatus == PermissionStatus.permanentlyDenied) {
       openAppSettings();
     }
     speech.listen(
@@ -121,20 +116,21 @@ class _VoiceToTextSearchState extends State<VoiceToTextSearch> {
   }
 
   void resultListener(SpeechRecognitionResult result) {
-    if(result.finalResult)
+    if (result.finalResult)
       setState(() {
-        outputText= result.recognizedWords;
+        outputText = result.recognizedWords;
       });
   }
 
   soundLevelListener(double level) {
-    minSoundLevel= min(minSoundLevel, level);
-    maxSoundLevel= max(maxSoundLevel, level);
+    minSoundLevel = min(minSoundLevel, level);
+    maxSoundLevel = max(maxSoundLevel, level);
     setState(() {
-      this.level= level;
+      this.level = level;
     });
   }
 }
+
 class SpeechStatusWidget extends StatelessWidget {
   const SpeechStatusWidget({
     Key? key,
@@ -152,20 +148,16 @@ class SpeechStatusWidget extends StatelessWidget {
           Center(
             child: speech.isListening
                 ? Text(
-              "Đang nghe...",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            )
+                    "Đang nghe...",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )
                 : Text(
-              'Chưa phát hiện âm thanh',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+                    'Chưa phát hiện âm thanh',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
           ),
         ],
       ),
     );
   }
 }
-
-
-
-

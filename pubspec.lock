@@ -120,6 +120,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  customtogglebuttons:
+    dependency: "direct main"
+    description:
+      name: customtogglebuttons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   dart_console:
     dependency: transitive
     description:
@@ -196,7 +203,7 @@ packages:
       name: firebase_core_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.2"
+    version: "1.7.3"
   firebase_storage:
     dependency: "direct main"
     description:
@@ -274,7 +281,14 @@ packages:
       name: flutterfire_cli
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.5"
+    version: "0.2.6"
+  font_awesome_flutter:
+    dependency: "direct main"
+    description:
+      name: font_awesome_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "10.2.1"
   highlight_text:
     dependency: "direct main"
     description:
@@ -651,6 +665,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  toggle_switch:
+    dependency: "direct main"
+    description:
+      name: toggle_switch
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   typed_data:
     dependency: transitive
     description:
