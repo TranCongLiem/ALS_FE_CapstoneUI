@@ -15,20 +15,20 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfiletState extends State<Profile> {
-  int index = 2;
+  int index = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         centerTitle: true,
-        title: Text("Hồ sơ", style: TextStyle(
-          fontSize: 25.0,
-          fontWeight: FontWeight.bold
-        ),),
+        title: Text(
+          "Hồ sơ",
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: greenALS,
         actions: <Widget>[
-          FlatButton(
+          TextButton(
             onPressed: () {},
             child: Text(
               "Chỉnh sửa",

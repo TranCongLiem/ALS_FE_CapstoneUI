@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sizer/sizer.dart';
 
-import '../../../Constant/constant.dart';
+import '../../../../Constant/constant.dart';
 
-class CategoryRecommend extends StatelessWidget {
+class CategoryListSaveRecord extends StatelessWidget {
   final String svgSrc;
-  // final String title;
+  final String name;
   final press;
-  const CategoryRecommend({
+  const CategoryListSaveRecord({
     Key? key,
     required this.svgSrc,
-    // required this.title,
+    required this.name,
     required this.press,
   }) : super(key: key);
 
@@ -23,9 +24,7 @@ class CategoryRecommend extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(13),
-          border: Border.all(
-            color: greenALS,
-          ),
+          border: Border.all(),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, 17),
@@ -39,22 +38,20 @@ class CategoryRecommend extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: press,
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                children: <Widget>[
-                  Spacer(),
-                  SvgPicture.asset(svgSrc),
-                  Spacer(),
-                  // Text(
-                  //   title,
-                  //   textAlign: TextAlign.center,
-                  //   style: TextStyle(
-                  //       fontSize: 18.0,
-                  //       color: Colors.black
-                  //   ),
-                ],
-              ),
+            child: Column(
+              children: <Widget>[
+                Spacer(),
+                Image.network(svgSrc),
+                Spacer(),
+                Text(
+                  name,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 22.0,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
         ),

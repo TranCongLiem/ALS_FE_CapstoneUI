@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "261252948566",
+    "project_id": "als-vietnam",
+    "storage_bucket": "als-vietnam.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261252948566:android:611fd0b1b62bbe74f391f7",
+        "android_client_info": {
+          "package_name": "com.example.capstone_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "261252948566-g5p8j39serllugcktjd9r349nlqtdma0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe_XUK5bJi4at14tbH5zDZ5ARkF1wHlJ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "261252948566-g5p8j39serllugcktjd9r349nlqtdma0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
