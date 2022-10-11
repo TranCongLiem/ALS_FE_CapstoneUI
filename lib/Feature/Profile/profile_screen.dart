@@ -1,5 +1,6 @@
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Profile/profile_update.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -29,7 +30,10 @@ class _ProfiletState extends State<Profile> {
         backgroundColor: greenALS,
         actions: <Widget>[
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfileUpdate()));
+            },
             child: Text(
               "Chỉnh sửa",
               style: TextStyle(
