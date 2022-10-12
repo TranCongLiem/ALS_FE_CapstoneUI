@@ -64,8 +64,7 @@ dependencies:
   request_permission: ^2.1.4
   toggle_switch: ^2.0.1
   font_awesome_flutter: ^10.2.1
-  customtogglebuttons: ^0.0.5
-  animated_theme_switcher: ^2.0.7
+  getwidget: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
