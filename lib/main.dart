@@ -1,10 +1,14 @@
 // import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/services/api_login.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'firebase_options.dart';
@@ -28,17 +32,32 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
-    return ChangeNotifierProvider(
-      create: (context) => NavItems(),
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          primaryColor: greenALS,
-          fontFamily: 'San',
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider(
+          create: (context) => UserService(),
         ),
-        debugShowCheckedModeBanner: false,
-        initialRoute: '/login',
-        onGenerateRoute: RouteGenerator.generateRoute,
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                BottomNavBarBloc()..add(BottomNavBarItemSelected(0)),
+          ),
+          BlocProvider(
+            create: (context) =>
+                AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+          ),
+        ],
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.green,
+            fontFamily: 'San',
+          ),
+          debugShowCheckedModeBanner: false,
+          initialRoute: '/login',
+          onGenerateRoute: RouteGenerator.generateRoute,
+        ),
       ),
     );
   }
