@@ -22,7 +22,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int index = 1;
+  // int index = 1;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -34,9 +34,9 @@ class _HomeState extends State<Home> {
               height: 20.5.h,
               child: Scaffold(
                 bottomNavigationBar: MyBottomNavBar(
-                  // ignore: unnecessary_this
-                  index: this.index,
-                ),
+                    // ignore: unnecessary_this
+                    // index: this.index,
+                    ),
                 floatingActionButton: FloatingActionButton(
                   // ignore: prefer_const_constructors
                   child: Icon(Icons.notifications_active),
@@ -149,8 +149,8 @@ class _HomeState extends State<Home> {
               height: 12.5.h,
               child: Scaffold(
                   bottomNavigationBar: MyBottomNavBar(
-                    index: this.index,
-                  ),
+                      // index: this.index,
+                      ),
                   floatingActionButton: FloatingActionButton(
                     child: Icon(Icons.notifications_active),
                     onPressed: () {},

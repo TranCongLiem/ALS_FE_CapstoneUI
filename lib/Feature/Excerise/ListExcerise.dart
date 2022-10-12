@@ -28,7 +28,7 @@ class _ListExceriseState extends State<ListExcerise> {
   double minSoundLevel = 50000;
   double maxSoundLevel = -50000;
   double level = 0.0;
-  int index = 3;
+  // int index = 3;
   @override
   void initState() {
     super.initState();
@@ -40,9 +40,9 @@ class _ListExceriseState extends State<ListExcerise> {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       bottomNavigationBar: MyBottomNavBar(
-        // ignore: unnecessary_this
-        index: this.index,
-      ),
+          // ignore: unnecessary_this
+          // index: this.index,
+          ),
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
@@ -300,7 +300,6 @@ class WidgetEx1 extends StatelessWidget {
   }
 }
 
-
 class ButtonCreateEx extends StatelessWidget {
   const ButtonCreateEx({
     Key? key,
@@ -359,8 +358,6 @@ Widget buildCardRecommend() => Expanded(
         ],
       ),
     ));
-
-
 
 class SpeechStatusWidget extends StatelessWidget {
   const SpeechStatusWidget({

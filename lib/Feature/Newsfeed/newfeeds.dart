@@ -14,7 +14,7 @@ class NewFeed extends StatefulWidget {
 }
 
 class _NewFeedState extends State<NewFeed> {
-  int index = 0;
+  // int index = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,9 +27,9 @@ class _NewFeedState extends State<NewFeed> {
             centerTitle: true,
           ),
           bottomNavigationBar: MyBottomNavBar(
-            // ignore: unnecessary_this
-            index: this.index,
-          ),
+              // ignore: unnecessary_this
+              // index: this.index,
+              ),
           body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
