@@ -16,7 +16,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfiletState extends State<Profile> {
-  int index = 4;
+  // int index = 4;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,8 +47,8 @@ class _ProfiletState extends State<Profile> {
       ),
       body: ProfileBody(),
       bottomNavigationBar: MyBottomNavBar(
-        index: this.index,
-      ),
+          // index: this.index,
+          ),
     );
   }
 }

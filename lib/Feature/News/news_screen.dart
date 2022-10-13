@@ -17,7 +17,7 @@ class NewsScreen extends StatefulWidget {
 }
 
 class _NewsScreenState extends State<NewsScreen> {
-  int index = 2;
+  // int index = 2;
 
   ApiService client = ApiService();
   @override
@@ -51,8 +51,8 @@ class _NewsScreenState extends State<NewsScreen> {
         },
       ),
       bottomNavigationBar: MyBottomNavBar(
-        index: this.index,
-      ),
+          // index: this.index,
+          ),
     );
   }
 }

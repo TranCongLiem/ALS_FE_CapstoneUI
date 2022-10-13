@@ -24,10 +24,10 @@ class NavItem {
 class NavItems extends ChangeNotifier {
   int selectedIndex = 0;
 
-  void changeNavIndex({int? index}) {
-    selectedIndex = index!;
-    notifyListeners();
-  }
+  // void changeNavIndex({int? index}) {
+  //   selectedIndex = index!;
+  //   notifyListeners();
+  // }
 
   List<NavItem> items = [
     NavItem(

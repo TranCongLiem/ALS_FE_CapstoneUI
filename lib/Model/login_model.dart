@@ -1,23 +1,26 @@
 class LoginResponeModel {
-   String? token;
-   String? error;
-  LoginResponeModel({this.token, this.error});
+  String? phoneNumber;
+  String? role;
+  //String? message;
+  LoginResponeModel({this.phoneNumber, this.role});
 
-  factory LoginResponeModel.fromJson(Map<String, dynamic> json){
-    return LoginResponeModel(token: json["token"] != null ? json["token"]: "", error: json["error"] != null ? json["error"]: "");
-
+  factory LoginResponeModel.fromJson(Map<String, dynamic> json) {
+    return LoginResponeModel(
+      role: json["role"],
+      phoneNumber: json["phoneNumber"],
+    );
+    //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
   }
-
 }
 
 class LoginRequestModel {
-  String email;
+  String phoneNumber;
   String password;
 
-  LoginRequestModel({required this.email, required this.password});
+  LoginRequestModel({required this.phoneNumber, required this.password});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'email': email.trim(),
+      'phoneNumber': phoneNumber.trim(),
       'password': password.trim()
     };
     return map;
