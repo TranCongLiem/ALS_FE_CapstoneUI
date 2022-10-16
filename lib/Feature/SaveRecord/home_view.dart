@@ -363,7 +363,7 @@ Widget buildImageCard() => SingleChildScrollView(
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(15),
-                        backgroundColor: greenALS,
+                        //backgroundColor: greenALS,
                       ),
                     ),
                   ],

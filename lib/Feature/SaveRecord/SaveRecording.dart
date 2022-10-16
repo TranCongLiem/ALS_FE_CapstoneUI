@@ -190,7 +190,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                     "android.permission.RECORD_AUDIO");
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: greenALS,
+                 // backgroundColor: greenALS,
                   padding: EdgeInsets.all(8.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
