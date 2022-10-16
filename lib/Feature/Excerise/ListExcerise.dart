@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:capstone_ui/Components/Feature/Excerise/Excerise/category_ex.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
+import 'package:capstone_ui/Feature/Excerise/listexercise_bycategory.dart';
 import 'package:capstone_ui/Feature/Excerise/session_exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -328,8 +329,10 @@ class ButtonCreateEx extends StatelessWidget {
       child: Container(
         child: ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SessionExercise()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ListExerciseByCategory()));
           },
           label: Text(
             'Tạo buổi tập',
