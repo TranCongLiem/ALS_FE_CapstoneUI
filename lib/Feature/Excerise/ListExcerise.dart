@@ -52,14 +52,15 @@ class _ListExceriseState extends State<ListExcerise> {
           style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 8),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
-          children: [
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
             //search bar
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+            // ),
             SizedBox(
               child: Row(
                 children: [
@@ -142,43 +143,58 @@ class _ListExceriseState extends State<ListExcerise> {
                   ],
                 )),
             WidgetEx2(),
-            Container(
-                padding: const EdgeInsets.only(top: 15),
-                height: size.height / 3,
-                width: size.width / 1,
-                child: GridView.count(
-                    crossAxisCount: 1,
-                    childAspectRatio: .99,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    children: [
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          CategoryEx(
-                              svgSrc:
-                                  "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
-                              name: "Tay",
-                              press: () {}),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          CategoryEx(
-                              svgSrc:
-                                  "https://hips.hearstapps.com/hmg-prod/images/mindset-is-everything-royalty-free-image-1571082203.jpg",
-                              name: "Chân",
-                              press: () {}),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          CategoryEx(
-                              svgSrc:
-                                  "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
-                              name: "Tay",
-                              press: () {}),
-                        ],
-                      ),
-                    ])),
+            Expanded(
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                primary: false,
+                shrinkWrap: true,
+                itemCount: 3,
+                itemBuilder: (context, index) {
+                  return Container(
+                      width: 80,
+                      child: ListTile(
+                        title: Text('1'),
+                      ));
+                },
+              ),
+            )
+            // Container(
+            //     padding: const EdgeInsets.only(top: 15),
+            //     height: size.height / 3,
+            //     width: size.width / 1,
+            //     child: GridView.count(
+            //         crossAxisCount: 1,
+            //         childAspectRatio: .99,
+            //         crossAxisSpacing: 15,
+            //         mainAxisSpacing: 15,
+            //         children: [
+            //           ListView(
+            //             scrollDirection: Axis.horizontal,
+            //             children: [
+            //               CategoryEx(
+            //                   svgSrc:
+            //                       "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
+            //                   name: "Tay",
+            //                   press: () {}),
+            //               SizedBox(
+            //                 width: 12,
+            //               ),
+            //               CategoryEx(
+            //                   svgSrc:
+            //                       "https://hips.hearstapps.com/hmg-prod/images/mindset-is-everything-royalty-free-image-1571082203.jpg",
+            //                   name: "Chân",
+            //                   press: () {}),
+            //               SizedBox(
+            //                 width: 12,
+            //               ),
+            //               CategoryEx(
+            //                   svgSrc:
+            //                       "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
+            //                   name: "Tay",
+            //                   press: () {}),
+            //             ],
+            //           ),
+            //         ])),
           ],
         ),
       ),
