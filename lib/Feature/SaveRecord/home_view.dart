@@ -48,7 +48,32 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             ButtonCreateRecord(),
-                            Expanded(
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Danh sách',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Xem tất cả',
+                                    style: TextStyle(
+                                      color: Colors.blueAccent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: size.height / 3.5,
+                              width: size.width,
                               child: references.isEmpty
                                   ? Center(
                                       child: Text('Chưa có bản ghi âm nào'),
@@ -57,160 +82,89 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
                                       references: references,
                                     ),
                             ),
-                            // SingleChildScrollView(
-                            //   scrollDirection: Axis.horizontal,
-                            //   child: Row(
-                            //     children: [
-                            //       Card(
-                            //         clipBehavior: Clip.antiAlias,
-                            //         shape: RoundedRectangleBorder(
-                            //             borderRadius:
-                            //                 BorderRadius.circular(20.0)),
-                            //         child: Column(
-                            //           children: [
-                            //             Stack(
-                            //               alignment: Alignment.center,
-                            //               children: [
-                            //                 Ink.image(
-                            //                     height: 150,
-                            //                     width: 150,
-                            //                     fit: BoxFit.cover,
-                            //                     child: InkWell(
-                            //                       onTap: () {},
-                            //                     ),
-                            //                     image: NetworkImage(
-                            //                       'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                            //                     )),
-                            //                 ElevatedButton.icon(
-                            //                   onPressed: () {},
-                            //                   icon: Icon(
-                            //                     Icons.play_arrow_rounded,
-                            //                     size: 30.0,
-                            //                   ),
-                            //                   label: Text(''),
-                            //                   style: ElevatedButton.styleFrom(
-                            //                     shape: CircleBorder(),
-                            //                     padding: EdgeInsets.all(15),
-                            //                     backgroundColor: greenALS,
-                            //                   ),
-                            //                 ),
-                            //               ],
-                            //             ),
-                            //             Padding(
-                            //               padding: const EdgeInsets.all(8.0),
-                            //               child: Text(
-                            //                 'Sáng',
-                            //                 style: TextStyle(
-                            //                   fontWeight: FontWeight.bold,
-                            //                   color: Colors.black,
-                            //                   fontSize: 24.0,
-                            //                 ),
-                            //               ),
-                            //             )
-                            //           ],
-                            //         ),
-                            //       ),
-                            //       Card(
-                            //         clipBehavior: Clip.antiAlias,
-                            //         shape: RoundedRectangleBorder(
-                            //             borderRadius:
-                            //                 BorderRadius.circular(20.0)),
-                            //         child: Column(
-                            //           children: [
-                            //             Stack(
-                            //               alignment: Alignment.center,
-                            //               children: [
-                            //                 Ink.image(
-                            //                     height: 150,
-                            //                     width: 150,
-                            //                     fit: BoxFit.cover,
-                            //                     child: InkWell(
-                            //                       onTap: () {},
-                            //                     ),
-                            //                     image: NetworkImage(
-                            //                       'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                            //                     )),
-                            //                 ElevatedButton.icon(
-                            //                   onPressed: () {},
-                            //                   icon: Icon(
-                            //                     Icons.play_arrow_rounded,
-                            //                     size: 30.0,
-                            //                   ),
-                            //                   label: Text(''),
-                            //                   style: ElevatedButton.styleFrom(
-                            //                     shape: CircleBorder(),
-                            //                     padding: EdgeInsets.all(15),
-                            //                     backgroundColor: greenALS,
-                            //                   ),
-                            //                 ),
-                            //               ],
-                            //             ),
-                            //             Padding(
-                            //               padding: const EdgeInsets.all(8.0),
-                            //               child: Text(
-                            //                 'Trưa',
-                            //                 style: TextStyle(
-                            //                   fontWeight: FontWeight.bold,
-                            //                   color: Colors.black,
-                            //                   fontSize: 24.0,
-                            //                 ),
-                            //               ),
-                            //             )
-                            //           ],
-                            //         ),
-                            //       ),
-                            //       Card(
-                            //         clipBehavior: Clip.antiAlias,
-                            //         shape: RoundedRectangleBorder(
-                            //             borderRadius:
-                            //                 BorderRadius.circular(20.0)),
-                            //         child: Column(
-                            //           children: [
-                            //             Stack(
-                            //               alignment: Alignment.center,
-                            //               children: [
-                            //                 Ink.image(
-                            //                     height: 150,
-                            //                     width: 150,
-                            //                     fit: BoxFit.cover,
-                            //                     child: InkWell(
-                            //                       onTap: () {},
-                            //                     ),
-                            //                     image: NetworkImage(
-                            //                       'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                            //                     )),
-                            //                 ElevatedButton.icon(
-                            //                   onPressed: () {},
-                            //                   icon: Icon(
-                            //                     Icons.play_arrow_rounded,
-                            //                     size: 30.0,
-                            //                   ),
-                            //                   label: Text(''),
-                            //                   style: ElevatedButton.styleFrom(
-                            //                     shape: CircleBorder(),
-                            //                     padding: EdgeInsets.all(15),
-                            //                     backgroundColor: greenALS,
-                            //                   ),
-                            //                 ),
-                            //               ],
-                            //             ),
-                            //             Padding(
-                            //               padding: const EdgeInsets.all(8.0),
-                            //               child: Text(
-                            //                 'Tối',
-                            //                 style: TextStyle(
-                            //                   fontWeight: FontWeight.bold,
-                            //                   color: Colors.black,
-                            //                   fontSize: 24.0,
-                            //                 ),
-                            //               ),
-                            //             )
-                            //           ],
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Mẫu ghi sẵn',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                  Text(
+                                    'Xem tất cả',
+                                    style: TextStyle(
+                                      color: Colors.blueAccent,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              height: size.height / 3,
+                              width: 600,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: 5,
+                                reverse: true,
+                                primary: false,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                    elevation: 5,
+                                    margin: const EdgeInsets.all(10),
+                                    child: Column(
+                                      children: [
+                                        Stack(
+                                          alignment: Alignment.center,
+                                          children: [
+                                            Ink.image(
+                                                height: 150,
+                                                width: 150,
+                                                fit: BoxFit.cover,
+                                                child: InkWell(
+                                                  onTap: () {},
+                                                ),
+                                                image: NetworkImage(
+                                                    'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
+                                            ElevatedButton.icon(
+                                                onPressed: () {},
+                                                icon: Icon(Icons.play_arrow,
+                                                    size: 60.0),
+                                                label: Text(''),
+                                                style: ElevatedButton.styleFrom(
+                                                  shape: CircleBorder(),
+                                                  padding:
+                                                      EdgeInsets.only(left: 7),
+                                                  backgroundColor: greenALS,
+                                                ))
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Text(
+                                            'Đọc sách',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.black,
+                                              fontSize: 24.0,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                           ],
                         ),
                       ),

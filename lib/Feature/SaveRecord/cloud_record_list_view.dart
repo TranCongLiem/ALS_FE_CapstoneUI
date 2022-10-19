@@ -32,16 +32,16 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: ListView.builder(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         itemCount: widget.references.length,
         reverse: true,
         primary: false,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           return Card(
-            clipBehavior: Clip.antiAlias,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
             elevation: 5,

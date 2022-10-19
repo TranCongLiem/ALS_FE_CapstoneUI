@@ -125,6 +125,14 @@ class _RegisterState extends State<Register> {
                 }),
               ),
             ),
+            // Expanded(
+            //     child: Container(
+            //   child: Image.asset(
+            //     'assets/images/imgRegister.png',
+            //     alignment: Alignment.bottomLeft,
+            //     fit: BoxFit.cover,
+            //   ),
+            // ))
           ],
         ),
       )),

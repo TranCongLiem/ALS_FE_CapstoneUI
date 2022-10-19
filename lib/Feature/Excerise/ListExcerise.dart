@@ -329,10 +329,8 @@ class ButtonCreateEx extends StatelessWidget {
       child: Container(
         child: ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ListExerciseByCategory()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => VideoScreen()));
           },
           label: Text(
             'Tạo buổi tập',
