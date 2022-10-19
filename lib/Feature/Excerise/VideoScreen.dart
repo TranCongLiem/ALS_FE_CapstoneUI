@@ -38,79 +38,81 @@ class _VideoScreenState extends State<VideoScreen> {
           backgroundColor: greenALS,
           title: Text('Video'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              controller.value.isInitialized
-                  ? AspectRatio(
-                      aspectRatio: controller.value.aspectRatio,
-                      child: VideoPlayer(controller),
-                    )
-                  : Center(
-                      child: Text('Đang tải...'),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                controller.value.isInitialized
+                    ? AspectRatio(
+                        aspectRatio: controller.value.aspectRatio,
+                        child: VideoPlayer(controller),
+                      )
+                    : Center(
+                        child: Text('Đang tải...'),
+                      ),
+                VideoProgressIndicator(controller, allowScrubbing: true),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.skip_previous_rounded, size: 50.0),
+                      color: Colors.black54,
                     ),
-              VideoProgressIndicator(controller, allowScrubbing: true),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.skip_previous_rounded, size: 50.0),
-                    color: Colors.black54,
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        controller.value.isPlaying
-                            ? controller.pause()
-                            : controller.play();
-                      });
-                    },
-                    // icon: Icon(Icons.play_arrow),
-                    icon: controller.value.isPlaying
-                        ? Icon(
-                            Icons.pause,
-                            size: 50.0,
-                          )
-                        : Icon(Icons.play_arrow, size: 50.0),
-                    color: Colors.black54,
-                  ),
-                  SizedBox(
-                    width: 20.0,
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.skip_next_rounded, size: 50.0),
-                    color: Colors.black54,
-                  )
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
-                child: Text(
-                  'Bài tập này là về tay. Hãy tập theo',
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.w600),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        setState(() {
+                          controller.value.isPlaying
+                              ? controller.pause()
+                              : controller.play();
+                        });
+                      },
+                      // icon: Icon(Icons.play_arrow),
+                      icon: controller.value.isPlaying
+                          ? Icon(
+                              Icons.pause,
+                              size: 50.0,
+                            )
+                          : Icon(Icons.play_arrow, size: 50.0),
+                      color: Colors.black54,
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.skip_next_rounded, size: 50.0),
+                      color: Colors.black54,
+                    )
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 18.0),
-                child: Text(
-                  'Đây là bài tập kinh điển và đã được chứng minh là cực kỳ hiệu quả qua hàng thế hệ. Đây là bài tập không thể thiếu khi tập tay trước',
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.w300),
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0, bottom: 18.0),
+                  child: Text(
+                    'Bài tập này là về tay. Hãy tập theo ',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: Text(
+                    'Đây là bài tập kinh điển và đã được chứng minh là cực kỳ hiệu quả qua hàng thế hệ. Đây là bài tập không thể thiếu khi tập tay trước',
+                    style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 26.0,
+                        fontWeight: FontWeight.w300),
+                  ),
+                )
+              ],
+            ),
           ),
         ));
   }
