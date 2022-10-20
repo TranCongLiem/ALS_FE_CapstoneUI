@@ -65,6 +65,7 @@ dependencies:
   toggle_switch: ^2.0.1
   font_awesome_flutter: ^10.2.1
   getwidget: ^3.0.1
+  youtube_player_flutter: ^8.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -13,6 +13,7 @@ import 'package:speech_to_text/speech_to_text.dart';
 
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import 'DetailExcerise.dart';
+import 'Video.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -329,8 +330,8 @@ class ButtonCreateEx extends StatelessWidget {
       child: Container(
         child: ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => VideoScreen()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Video()));
           },
           label: Text(
             'Tạo buổi tập',
