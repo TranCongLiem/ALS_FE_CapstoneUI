@@ -15,12 +15,16 @@ class _VideoState extends State<Video> {
   late YoutubePlayerController controller;
   bool _muted = false;
   bool _isPlayerReady = true;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    String videoID;
+    videoID = YoutubePlayer.convertUrlToId(
+        "https://www.youtube.com/watch?v=q1xLwFUZ_Hc")!;
     controller = YoutubePlayerController(
-      initialVideoId: 'NYVMx34BGEY',
+      initialVideoId: videoID,
       flags: YoutubePlayerFlags(
         autoPlay: true,
         mute: false,
