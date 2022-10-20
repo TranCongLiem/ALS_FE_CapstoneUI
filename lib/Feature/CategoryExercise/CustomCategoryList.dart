@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Feature/Excerise/ListExerciseByCategory.dart';
 import 'package:capstone_ui/Model/getListCategory_model.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +10,7 @@ import '../../Feature/News/model/article_model.dart';
 
 Widget CustomCategoryList(
     CategoryExercise categoryExericse, BuildContext context) {
+       
   //return Container(
   // return InkWell(
   // onTap: () {
@@ -108,7 +110,12 @@ Widget CustomCategoryList(
                     //  width: 150,
                     //fit: BoxFit.cover,
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context, 
+                          MaterialPageRoute(
+                            builder: (context)=> ListExerciseByCategory(categoryExericse: categoryExericse)));
+                      },
                     ),
                     // image: NetworkImage(
                     //     "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg")),

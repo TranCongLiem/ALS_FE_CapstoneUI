@@ -49,10 +49,10 @@ class _ListExceriseState extends State<ListExcerise> {
     final Size size = MediaQuery.of(context).size;
     return MultiBlocProvider(
         providers: [
-          BlocProvider(
-              create: (context) => ExerciseBlocBloc(
-                  RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadExerciseEvent())),
+          // BlocProvider(
+          //     create: (context) => ExerciseBlocBloc(
+          //         RepositoryProvider.of<ExerciseService>(context))
+          //       ..add(LoadExerciseByCateEvent())),
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))
