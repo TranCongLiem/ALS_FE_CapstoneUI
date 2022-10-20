@@ -245,8 +245,8 @@ class _VideoState extends State<Video> {
               Padding(
                 padding:
                     const EdgeInsets.only(top: 18.0, bottom: 18.0, left: 10.0),
-                child: Text(widget.exericse.ExerciseName??
-                  'Bài tập này là về tay. Hãy tập theo ',
+                child: Text(
+                  widget.exericse.ExerciseName ?? '',
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 30.0,
@@ -261,8 +261,8 @@ class _VideoState extends State<Video> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 18.0, left: 10.0),
-                child: Text( widget.exericse.Description??
-                  'Đây là bài tập kinh điển và đã được chứng minh là cực kỳ hiệu quả qua hàng thế hệ. Đây là bài tập không thể thiếu khi tập tay trước',
+                child: Text(
+                  widget.exericse.Description ?? '',
                   style: TextStyle(
                       color: Colors.black87,
                       fontSize: 26.0,
