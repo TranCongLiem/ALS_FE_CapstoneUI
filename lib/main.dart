@@ -1,9 +1,12 @@
 // import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
+import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/services/api_CategoryExercise.dart';
+import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_login.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +14,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'firebase_options.dart';
 // import 'Login/login_screen.dart';
 
@@ -37,6 +41,12 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => UserService(),
         ),
+        RepositoryProvider(
+          create: (context) => ExerciseService(),
+        ),
+        RepositoryProvider(
+          create: (context) => CategoryExerciseService(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -48,6 +58,16 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
           ),
+          //   BlocProvider(
+          //    // create: (context) =>
+          //        // ExerciseBlocBloc(RepositoryProvider.of<ExerciseService>(context)),
+          //     create: (context) => ExerciseBlocBloc(RepositoryProvider.of<ExerciseService>(context))
+          // ..add(LoadExerciseEvent())
+          //    // child: Container(),
+          //   ),
+          //   BlocProvider(
+          //     create: (context) => CategoryExerciseBlocBloc(RepositoryProvider.of<CategoryExerciseService>(context))
+          //     ),
         ],
         child: MaterialApp(
           theme: ThemeData(

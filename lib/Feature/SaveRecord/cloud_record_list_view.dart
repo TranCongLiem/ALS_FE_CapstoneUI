@@ -72,7 +72,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                         style: ElevatedButton.styleFrom(
                           shape: CircleBorder(),
                           padding: EdgeInsets.only(left: 7),
-                          backgroundColor: greenALS,
+                          //backgroundColor: greenALS,
                         ))
                   ],
                 ),

@@ -277,6 +277,7 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     ListResult listResult =
         await firebaseStorage.ref().child('upload-voice-firebase').list();
+        print(listResult);
     setState(() {
       references = listResult.items;
     });
@@ -363,7 +364,7 @@ Widget buildImageCard() => SingleChildScrollView(
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(15),
-                        backgroundColor: greenALS,
+                        //backgroundColor: greenALS,
                       ),
                     ),
                   ],

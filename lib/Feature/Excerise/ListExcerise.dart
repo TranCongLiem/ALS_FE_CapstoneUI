@@ -1,10 +1,18 @@
 import 'dart:math';
 
+import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Components/Feature/Excerise/Excerise/category_ex.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
+import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Feature/Excerise/session_exercise.dart';
+import 'package:capstone_ui/Bloc/exercise/exercise_bloc_bloc.dart';
+import 'package:capstone_ui/Feature/TextToSpeech/TextToSpeech.dart';
+import 'package:capstone_ui/services/api_CategoryExercise.dart';
+import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -29,6 +37,7 @@ class _ListExceriseState extends State<ListExcerise> {
   double maxSoundLevel = -50000;
   double level = 0.0;
   // int index = 3;
+
   @override
   void initState() {
     super.initState();
@@ -38,151 +47,147 @@ class _ListExceriseState extends State<ListExcerise> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      bottomNavigationBar: MyBottomNavBar(
-          // ignore: unnecessary_this
-          // index: this.index,
-          ),
-      appBar: AppBar(
-        centerTitle: true,
-        automaticallyImplyLeading: false,
-        backgroundColor: greenALS,
-        title: Text(
-          'Bài tập',
-          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-        ),
-      ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 8),
-        child: Column(
-          children: [
-            //search bar
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+    return MultiBlocProvider(
+        providers: [
+          // BlocProvider(
+          //     create: (context) => ExerciseBlocBloc(
+          //         RepositoryProvider.of<ExerciseService>(context))
+          //       ..add(LoadExerciseByCateEvent())),
+          BlocProvider(
+              create: (context) => CategoryExerciseBlocBloc(
+                  RepositoryProvider.of<CategoryExerciseService>(context))
+                ..add(LoadCategoryExerciseEvent())),
+        ],
+        child: Scaffold(
+          bottomNavigationBar: MyBottomNavBar(
+              // ignore: unnecessary_this
+              // index: this.index,
+              ),
+          appBar: AppBar(
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            backgroundColor: greenALS,
+            title: Text(
+              'Bài tập',
+              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Container(
-                    height: size.height / 15,
-                    decoration: BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.circular(22)),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 24),
-                        ),
-                        Expanded(
-                            child: TextField(
-                          decoration: InputDecoration(
-                              hintText: outputText,
-                              border: InputBorder.none,
-                              suffixIcon: Icon(Icons.search),
-                              hintStyle: TextStyle(
-                                  fontSize: 22.0, fontWeight: FontWeight.w500)),
-                        )),
-                        Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: .26,
-                                    spreadRadius: level * 1.5,
-                                    color: greenALS.withOpacity(.1))
-                              ],
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(100))),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              !_hasSpeech || speech.isListening
-                                  ? null
-                                  : startListening();
-                            },
-                            // ignore: sort_child_properties_last
-                            child: Icon(Icons.mic,
-                                color: speech.isListening
-                                    ? Colors.red
-                                    : Colors.white,
-                                size: 25),
-                            style: ElevatedButton.styleFrom(
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.all(7.0),
-                              primary: greenALS, // <-- Button color
+          ),
+          body: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              //search bar
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+              ),
+              SizedBox(
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: Container(
+                      height: size.height / 15,
+                      decoration: BoxDecoration(
+                          color: Colors.black12,
+                          borderRadius: BorderRadius.circular(22)),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 24),
+                          ),
+                          Expanded(
+                              child: TextField(
+                            decoration: InputDecoration(
+                                hintText: outputText,
+                                border: InputBorder.none,
+                                suffixIcon: Icon(Icons.search),
+                                hintStyle: TextStyle(
+                                    fontSize: 22.0,
+                                    fontWeight: FontWeight.w500)),
+                          )),
+                          Container(
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: .26,
+                                      spreadRadius: level * 1.5,
+                                      color: greenALS.withOpacity(.1))
+                                ],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100))),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                !_hasSpeech || speech.isListening
+                                    ? null
+                                    : startListening();
+                              },
+                              // ignore: sort_child_properties_last
+                              child: Icon(Icons.mic,
+                                  color: speech.isListening
+                                      ? Colors.red
+                                      : Colors.white,
+                                  size: 25),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.all(7.0),
+                                primary: greenALS, // <-- Button color
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )),
-                ],
-              ),
-            ),
-            ButtonCreateEx(),
-            WidgetEx1(),
-            Container(
-                padding: const EdgeInsets.only(top: 15),
-                height: size.height / 4,
-                width: size.width / 1,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    buildCardRecommend(),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    buildCardRecommend(),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    buildCardRecommend(),
-                    SizedBox(
-                      width: 12,
-                    ),
-                  ],
-                )),
-            WidgetEx2(),
-            Container(
-                padding: const EdgeInsets.only(top: 15),
-                height: size.height / 3,
-                width: size.width / 1,
-                child: GridView.count(
-                    crossAxisCount: 1,
-                    childAspectRatio: .99,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    children: [
-                      ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          CategoryEx(
-                              svgSrc:
-                                  "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
-                              name: "Tay",
-                              press: () {}),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          CategoryEx(
-                              svgSrc:
-                                  "https://hips.hearstapps.com/hmg-prod/images/mindset-is-everything-royalty-free-image-1571082203.jpg",
-                              name: "Chân",
-                              press: () {}),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          CategoryEx(
-                              svgSrc:
-                                  "https://cdn-prod.medicalnewstoday.com/content/images/articles/324/324489/wrist-rotations.jpg",
-                              name: "Tay",
-                              press: () {}),
                         ],
                       ),
-                    ])),
-          ],
-        ),
-      ),
-    );
+                    )),
+                  ],
+                ),
+              ),
+              ButtonCreateEx(),
+              WidgetEx1(),
+              Container(
+                  padding: const EdgeInsets.only(top: 15),
+                  height: size.height / 4,
+                  width: size.width / 1,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: [
+                      buildCardRecommend(),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      buildCardRecommend(),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      buildCardRecommend(),
+                      SizedBox(
+                        width: 12,
+                      ),
+                    ],
+                  )),
+              WidgetEx2(), //Phan Loai/Xem tat ca
+
+              Expanded(
+                child: BlocBuilder<CategoryExerciseBlocBloc, CategoryExerciseBlocState>(
+                    builder: (context, state) {
+                  print('abc' + state.toString());
+                  if (state is CategoryExerciseLoadedState) {
+                    print('Print ExState');
+
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.list.length,
+                      itemBuilder: (context, index) {
+                        return CustomCategoryList(state.list[index], context);
+                      },
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }),
+              ),
+            ],
+          ),
+        ));
+
+    ;
   }
 
   Future<void> initSpeechState() async {
