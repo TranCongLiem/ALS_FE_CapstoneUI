@@ -71,9 +71,9 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
                                 ],
                               ),
                             ),
-                            Container(
-                              height: size.height / 3.5,
-                              width: size.width,
+                            Expanded(
+                              // height: size.height / 3.5,
+                              // width: size.width,
                               child: references.isEmpty
                                   ? Center(
                                       child: Text('Chưa có bản ghi âm nào'),
@@ -106,7 +106,7 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
                               ),
                             ),
                             Container(
-                              height: size.height / 3,
+                              height: size.height / 3.5,
                               width: 600,
                               child: ListView.builder(
                                 scrollDirection: Axis.horizontal,

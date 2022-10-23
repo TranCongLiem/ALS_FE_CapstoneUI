@@ -41,7 +41,7 @@ class _VideoState extends State<Video> {
         SystemChrome.setPreferredOrientations(DeviceOrientation.values);
       },
       player: YoutubePlayer(
-        controller: controller!,
+        controller: controller,
         showVideoProgressIndicator: true,
         progressIndicatorColor: Colors.red,
         progressColors: ProgressBarColors(
