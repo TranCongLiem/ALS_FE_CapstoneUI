@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
 class CreateRecordResponeModel {
-  Bool? success;
+  bool? success;
   String? message;
   CreateRecordResponeModel({this.success, this.message});
 
@@ -14,12 +14,12 @@ class CreateRecordResponeModel {
   }
 }
 
-class CreateRecordQuestModel {
+class CreateRecordReQuestModel {
   String userId;
   String recordName;
   String linkAudio;
 
-  CreateRecordQuestModel({required this.userId, required this.recordName, required this.linkAudio});
+  CreateRecordReQuestModel({required this.userId, required this.recordName, required this.linkAudio});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'userId': userId,

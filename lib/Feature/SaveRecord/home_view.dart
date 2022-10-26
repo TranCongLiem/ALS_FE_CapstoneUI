@@ -16,7 +16,8 @@ class HomeViewRecord extends StatefulWidget {
   _HomeViewRecordState createState() => _HomeViewRecordState();
 }
 
-class _HomeViewRecordState extends State<HomeViewRecord> {
+class _HomeViewRecordState extends State<HomeViewRecord>
+    with TickerProviderStateMixin {
   List<Reference> references = [];
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
 
   @override
   Widget build(BuildContext context) {
+    TabController tabController = TabController(length: 2, vsync: this);
     var size = MediaQuery.of(context).size;
     return MultiBlocProvider(
       providers: [
@@ -61,81 +63,148 @@ class _HomeViewRecordState extends State<HomeViewRecord> {
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                   mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     ButtonCreateRecord(),
-                                    
+
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(top: 5),
+                                    //   child: Row(
+                                    //     mainAxisAlignment:
+                                    //         MainAxisAlignment.spaceBetween,
+                                    //     crossAxisAlignment:
+                                    //         CrossAxisAlignment.center,
+                                    //     children: [
+                                    //       Text(
+                                    //         'Mẫu ghi sẵn',
+                                    //         style: TextStyle(
+                                    //           fontSize: 25,
+                                    //           fontWeight: FontWeight.w600,
+                                    //         ),
+                                    //       ),
+                                    //       Text(
+                                    //         'Xem tất cả',
+                                    //         style: TextStyle(
+                                    //           color: Colors.blueAccent,
+                                    //           fontSize: 20.0
+                                    //         ),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                    // Expanded(
+                                    //   child: state.list.isEmpty
+                                    //       ? Center(
+                                    //           child: Text(
+                                    //               'Chưa có bản ghi âm nào'),
+                                    //         )
+                                    //       : CloudRecordListView(
+                                    //           references: state.list,
+                                    //         ),
+                                    // ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(top: 5),
+                                    //   child: Row(
+                                    //     mainAxisAlignment:
+                                    //         MainAxisAlignment.spaceBetween,
+                                    //     crossAxisAlignment:
+                                    //         CrossAxisAlignment.center,
+                                    //     children: [
+                                    //       Text(
+                                    //         'Danh sách',
+                                    //         style: TextStyle(
+                                    //           fontSize: 25,
+                                    //           fontWeight: FontWeight.w600,
+                                    //         ),
+                                    //       ),
+                                    //       Text(
+                                    //         'Xem tất cả',
+                                    //         style: TextStyle(
+                                    //           color: Colors.blueAccent,
+                                    //           fontSize: 20.0
+                                    //         ),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
+                                    // Expanded(
+
+                                    //   child: state.list.isEmpty
+                                    //       ? Center(
+                                    //           child: Text(
+                                    //               'Chưa có bản ghi âm nào'),
+                                    //         )
+                                    //       : CloudRecordListView(
+                                    //           references: state.list,
+                                    //         ),
+                                    // ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Mẫu ghi sẵn',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 18.0),
+                                      child: Card(
+                                        margin: EdgeInsets.only(left: 40.0),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12)),
+                                        elevation: 5,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            color:
+                                                Colors.black.withOpacity(0.1),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
                                           ),
-                                          Text(
-                                            'Xem tất cả',
-                                            style: TextStyle(
-                                              color: Colors.blueAccent,
-                                              fontSize: 20.0
-                                            ),
+                                          child: TabBar(
+                                            indicator: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                                color: greenALS),
+                                            controller: tabController,
+                                            isScrollable: true,
+                                            labelPadding: EdgeInsets.symmetric(
+                                                horizontal: 30),
+                                            tabs: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(2.0),
+                                                child: Tab(
+                                                  child: Text(
+                                                    "Mẫu",
+                                                    style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontSize: 26.0),
+                                                  ),
+                                                ),
+                                              ),
+                                              Tab(
+                                                child: Text(
+                                                  "Thêm",
+                                                  style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontSize: 26.0),
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        ],
+                                        ),
                                       ),
                                     ),
                                     Expanded(
-                                      child: state.list.isEmpty
-                                          ? Center(
-                                              child: Text(
-                                                  'Chưa có bản ghi âm nào'),
-                                            )
-                                          : CloudRecordListView(
-                                              references: state.list,
-                                            ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            'Danh sách',
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w600,
-                                            ),
+                                        child: TabBarView(
+                                            controller: tabController,
+                                            children: [
+                                          CloudRecordListView(
+                                            references: state.list,
                                           ),
-                                          Text(
-                                            'Xem tất cả',
-                                            style: TextStyle(
-                                              color: Colors.blueAccent,
-                                              fontSize: 20.0
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                     
-                                      child: state.list.isEmpty
-                                          ? Center(
-                                              child: Text(
-                                                  'Chưa có bản ghi âm nào'),
-                                            )
-                                          : CloudRecordListView(
-                                              references: state.list,
-                                            ),
-                                    ),
+                                          state.list.isEmpty
+                                              ? Center(
+                                                  child: Text(
+                                                      'Chưa có bản ghi âm nào'),
+                                                )
+                                              : CloudRecordListView(
+                                                  references: state.list,
+                                                ),
+                                        ])),
                                   ],
                                 ),
                               ),

@@ -3,6 +3,7 @@ import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/SaveRecord/Category_List_Record/custom_record_list.exercise.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,8 +47,8 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
     return SafeArea(
         child: GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 2.25 / 3),
-            scrollDirection: Axis.horizontal,
+                crossAxisCount: 2),
+            scrollDirection: Axis.vertical,
             itemCount: widget.references.length,
             itemBuilder: (BuildContext context, int index) {
               //return CustomRecordList(widget.references[index], context , selectedIndex);
@@ -55,49 +56,81 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                 clipBehavior: Clip.antiAlias,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0)),
-                elevation: 5,
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.center,
+                elevation: 3,
+                margin: const EdgeInsets.all(5),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Ink.image(
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                            child: InkWell(
-                              onTap: () {},
-                            ),
-                            image: NetworkImage(
-                                'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
-                        ElevatedButton.icon(
-                            onPressed: () {
-                              _onListTileButtonPressed(
-                                  widget.references[index], index);
+                        Text(
+                          '1',
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(95, 177, 23, 23),
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30),
+                                  topRight: Radius.circular(30))),
+                          child: IconButton(
+                            icon: Icon(Icons.delete),
+                            onPressed: () async {
+                              if (await confirm(context)) {
+                                return print('pressedOK');
+                              }
+                              return print('pressedCancel');
                             },
-                            icon: selectedIndex == index
-                                ? Icon(Icons.pause, size: 80.0)
-                                : Icon(
-                                    Icons.play_circle,
-                                    size: 80.0,
-                                  ),
-                            label: Text(''),
-                            style: ElevatedButton.styleFrom(
-                              shape: CircleBorder(),
-                              padding: EdgeInsets.only(left: 7),
-                              backgroundColor: greenALS,
-                            ))
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     ),
-                    Text(
-                      widget.references[index].recordName ?? '',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                        fontSize: 20.0,
+                    
+                          Ink.image(
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.cover,
+                              child: InkWell(
+                                onTap: () {},
+                              ),
+                              image: NetworkImage(
+                                  'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
+                          ElevatedButton.icon(
+                              onPressed: () {
+                                _onListTileButtonPressed(
+                                    widget.references[index], index);
+                              },
+                              icon: selectedIndex == index
+                                  ? Icon(Icons.pause, size: 80.0)
+                                  : Icon(
+                                      Icons.play_circle,
+                                      size: 80.0,
+                                    ),
+                              label: Text(''),
+                              style: ElevatedButton.styleFrom(
+                                shape: CircleBorder(),
+                                padding: EdgeInsets.only(left: 7),
+                                backgroundColor: greenALS,
+                              ))
+                        ],
                       ),
-                    )
-                  ],
+                      Text(
+                        widget.references[index].recordName ?? '',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 24.0,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             }));

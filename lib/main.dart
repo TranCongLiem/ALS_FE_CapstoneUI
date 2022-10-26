@@ -2,6 +2,7 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
+import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
@@ -71,7 +72,10 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 ListKnowledgeBlocBloc(RepositoryProvider.of<ListKnowledgeService>(context))
           ),
-
+          BlocProvider(
+            create: (context) =>
+                CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),
+          ),
             BlocProvider(
              // create: (context) =>
                  // ExerciseBlocBloc(RepositoryProvider.of<ExerciseService>(context)),
