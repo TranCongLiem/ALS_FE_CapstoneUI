@@ -19,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
+import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'firebase_options.dart';
 // import 'Login/login_screen.dart';
 
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => ListKnowledgeService(),
-          )
+        )
       ],
       child: MultiBlocProvider(
         providers: [
@@ -69,23 +70,24 @@ class MyApp extends StatelessWidget {
                 AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
           ),
           BlocProvider(
-            create: (context) =>
-                ListKnowledgeBlocBloc(RepositoryProvider.of<ListKnowledgeService>(context))
-          ),
+              create: (context) => ListKnowledgeBlocBloc(
+                  RepositoryProvider.of<ListKnowledgeService>(context))),
           BlocProvider(
             create: (context) =>
                 CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),
           ),
-            BlocProvider(
-             // create: (context) =>
-                 // ExerciseBlocBloc(RepositoryProvider.of<ExerciseService>(context)),
-              create: (context) => ExerciseBlocBloc(RepositoryProvider.of<ExerciseService>(context))
-          ..add(LoadExerciseEvent())
-             // child: Container(),
-            ),
-            BlocProvider(
-              create: (context) => CategoryExerciseBlocBloc(RepositoryProvider.of<CategoryExerciseService>(context))
+          BlocProvider(
+            create: (context) =>
+                RemoveRecordBloc(RepositoryProvider.of<RecordService>(context)),
+          ),
+          BlocProvider(
+              create: (context) => ExerciseBlocBloc(
+                  RepositoryProvider.of<ExerciseService>(context))
+                ..add(LoadExerciseEvent())
               ),
+          BlocProvider(
+              create: (context) => CategoryExerciseBlocBloc(
+                  RepositoryProvider.of<CategoryExerciseService>(context))),
         ],
         child: MaterialApp(
           theme: ThemeData(

@@ -9,5 +9,4 @@ class CreateRecordEvent with _$CreateRecordEvent {
   const factory CreateRecordEvent.createRecordRequest() = _CreateRecordRequest;
   const factory CreateRecordEvent.createCheckRequested() = _CreateCheckRequested;
   const factory CreateRecordEvent.setStateFlase() = _SetStateFlase;
-
 }

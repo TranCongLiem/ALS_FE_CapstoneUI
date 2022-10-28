@@ -6,11 +6,14 @@ import 'package:capstone_ui/Model/createRecord_model.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../Model/removeRecord_model.dart';
+
 
 class RecordService {
   final endPointUrl =
       "https://als.cosplane.asia/api/record/";
   static bool isCreatedRecord = false;
+  static bool isRemovedRecord = false;
 
   Future<List<RecordById>> getRecordById() async {
     final response = await http.get(Uri.parse(endPointUrl + "GetRecordByUserId?id=43b6fcf9-b69b-40b0-93ab-87092eb25715"));
@@ -44,20 +47,21 @@ class RecordService {
     }
     
   }
-  Future<CreateRecordResponeModel> deleteRecord(CreateRecordReQuestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/record/RemoveRecord";
-    final response = await http.post(
+  Future<RemoveRecordByIdResponeModel> deleteRecord(RemoveRecordByIdRequestModel requestModel) async {
+    String url="https://als.cosplane.asia/api/record/UpdateStatusRecord?recordId=" + requestModel.recordId;
+    final response = await http.put(
       Uri.parse(url),
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json',      
       },
-      body: jsonEncode(requestModel.toJson()),
+      
+    //  body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == 200) {
-      RecordService.isCreatedRecord = true;
-      return CreateRecordResponeModel.fromJson(json.decode(response.body));
+      RecordService.isRemovedRecord = true;
+      return RemoveRecordByIdResponeModel.fromJson(json.decode(response.body));
     } else {
-      RecordService.isCreatedRecord = false;
+      RecordService.isRemovedRecord = false;
       throw Exception('Lỗi dữ liệu');
     }
   }
@@ -65,6 +69,9 @@ class RecordService {
 
   bool isCreated() {
     return isCreatedRecord;
+  }
+  bool isRemoved() {
+    return isRemovedRecord;
   }
 
 
