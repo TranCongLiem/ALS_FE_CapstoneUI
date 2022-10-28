@@ -65,7 +65,6 @@ class _NewsScreenState extends State<NewsScreen> {
         body: Container(
                   child: BlocBuilder<ListKnowledgeBlocBloc, ListKnowledgeBlocState>(
                       builder: (context, state) {
-                    print('abc' + state.toString());
                     if (state is ListKnowledgeLoadedState) {
                       print('Print ExState');
     
