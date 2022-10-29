@@ -6,22 +6,25 @@ import 'package:flutter/material.dart';
 import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
 import 'catalog.dart';
 
-class CloudRecordListView extends StatefulWidget {
+class CloudRecordListViewNewUI extends StatefulWidget {
   final List<Reference> references;
-  const CloudRecordListView({
+  const CloudRecordListViewNewUI({
     Key? key,
     required this.references,
   }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CloudRecordListViewState createState() => _CloudRecordListViewState();
+  _CloudRecordListViewNewUIState createState() =>
+      _CloudRecordListViewNewUIState();
 }
 
-class _CloudRecordListViewState extends State<CloudRecordListView> {
+class _CloudRecordListViewNewUIState extends State<CloudRecordListViewNewUI> {
   bool? isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
+
+  List<bool> isSelected = [true, false];
 
   @override
   void initState() {
@@ -29,6 +32,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
     isPlaying = false;
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
+    isSelected = [true, false];
   }
 
   @override
@@ -38,13 +42,13 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       child: GridView.builder(
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.horizontal,
         itemCount: widget.references.length,
         itemBuilder: (BuildContext context, int index) {
           return Card(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0)),
-            elevation: 3,
+            elevation: 5,
             margin: const EdgeInsets.all(5),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -53,67 +57,18 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '1',
-                      ),
+                      Text('Xóa'),
                       Container(
+                        padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(155, 177, 23, 23),
+                            color: Color.fromARGB(95, 177, 23, 23),
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(30),
                                 bottomLeft: Radius.circular(30),
                                 bottomRight: Radius.circular(30),
                                 topRight: Radius.circular(30))),
-                        child: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(20.0)),
-                                    title: Row(children: [
-                                      Icon(
-                                        Icons.delete_rounded,
-                                        color: Colors.red,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Xác nhận',
-                                        style: TextStyle(fontSize: 26.0),
-                                      )
-                                    ]),
-                                    content: Text(
-                                      'Bạn có muốn xóa bản ghi?',
-                                      style: TextStyle(fontSize: 20.0),
-                                    ),
-                                    buttonPadding: EdgeInsets.all(20.0),
-                                    actions: [
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              Navigator.of(context).pop();
-                                            });
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.red),
-                                          child: Text('Xóa',
-                                              style:
-                                                  TextStyle(fontSize: 20.0))),
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.black12),
-                                          child: Text('Hủy',
-                                              style: TextStyle(fontSize: 20.0)))
-                                    ],
-                                  );
-                                });
-                          },
+                        child: Icon(
+                          Icons.delete,
                           color: Colors.white,
                         ),
                       ),
@@ -123,8 +78,8 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                     alignment: Alignment.center,
                     children: [
                       Ink.image(
-                          height: 80,
-                          width: 80,
+                          height: 90,
+                          width: 90,
                           fit: BoxFit.cover,
                           child: InkWell(
                             onTap: () {},
@@ -134,10 +89,10 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       ElevatedButton.icon(
                           onPressed: () => _onListTileButtonPressed(index),
                           icon: selectedIndex == index
-                              ? Icon(Icons.pause, size: 80.0)
+                              ? Icon(Icons.pause, size: 60.0)
                               : Icon(
                                   Icons.play_circle,
-                                  size: 80.0,
+                                  size: 60.0,
                                 ),
                           label: Text(''),
                           style: ElevatedButton.styleFrom(
@@ -153,7 +108,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       'Đọc sách',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Colors.black,
                         fontSize: 26.0,
                       ),
                     ),

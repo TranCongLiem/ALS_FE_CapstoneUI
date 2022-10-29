@@ -24,7 +24,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
               elevation: 0,
               actions: <Widget>[
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     'Lưu',
                     style: TextStyle(color: greenALS, fontSize: 25),
