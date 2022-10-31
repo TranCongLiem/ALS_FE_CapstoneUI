@@ -63,7 +63,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       parent: animation,
                       curve: Curves.bounceIn,
                     ),
-                  ), 
+                  ),
                   child: child,
                 );
               },
@@ -171,14 +171,16 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                   ))
                             ],
                           ),
-                          Text(
-                            widget.references[index].recordName ?? '',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                              fontSize: 18.0,
-                            ),
-                          )
+                          Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Text(
+                                widget.references[index].recordName ?? '',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 26.0,
+                                ),
+                              ))
                         ],
                       ),
                     ),

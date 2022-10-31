@@ -22,7 +22,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
   @override
   void initState() {
     super.initState();
-    //_onUploadComplete();
   }
 
   @override
@@ -44,9 +43,12 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                 height: 20.5.h,
                 child: Scaffold(
                   appBar: AppBar(
-                      title: Text('Hỗ trợ ghi âm'),
+                      title: Text(
+                        'Hỗ trợ ghi âm',
+                        style: TextStyle(
+                            fontSize: 26.0, fontWeight: FontWeight.bold),
+                      ),
                       backgroundColor: greenALS,
-                      centerTitle: true,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
                               bottomLeft: Radius.circular(20.0),
@@ -57,28 +59,24 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                       if (state is RecordLoadedState) {
                         return SafeArea(
                           child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 5),
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 ButtonCreateRecord(),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(bottom: 18.0),
+                                  padding: const EdgeInsets.only(bottom: 18.0),
                                   child: Card(
-                                    margin: EdgeInsets.only(left: 40.0),
+                                    margin: EdgeInsets.only(left: 80.0),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(12)),
-                                    elevation: 5,
+                                    elevation: 3,
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color:
-                                            Colors.black.withOpacity(0.1),
-                                        borderRadius:
-                                            BorderRadius.circular(12),
+                                        color: Colors.black.withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: TabBar(
                                         indicator: BoxDecoration(
@@ -91,13 +89,12 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                             horizontal: 30),
                                         tabs: [
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.all(2.0),
+                                            padding: const EdgeInsets.all(2.0),
                                             child: Tab(
                                               child: Text(
                                                 "Mẫu",
                                                 style: TextStyle(
-                                                    color: Colors.black,
+                                                    color: Colors.black87,
                                                     fontSize: 26.0),
                                               ),
                                             ),
@@ -106,7 +103,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                             child: Text(
                                               "Thêm",
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: Colors.black87,
                                                   fontSize: 26.0),
                                             ),
                                           )

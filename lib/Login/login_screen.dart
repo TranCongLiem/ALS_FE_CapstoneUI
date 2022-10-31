@@ -32,7 +32,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-        //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
             Navigator.push(
               context,
@@ -53,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 transitionDuration: Duration(seconds: 1),
                 pageBuilder: (BuildContext context, Animation<double> animation,
                     Animation<double> secondaryAnimation) {
-                  return NewFeed();
+                  return Home();
                 },
               ),
             );

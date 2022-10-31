@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:request_permission/request_permission.dart';
 import 'package:sizer/sizer.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -18,6 +19,7 @@ class SpeechSampleApp extends StatefulWidget {
 }
 
 class _SpeechSampleAppState extends State<SpeechSampleApp> {
+  RequestPermission requestPermission = RequestPermission.instace;
   String outputText = 'Xin mời nói...';
   final SpeechToText speech = SpeechToText();
   bool _hasSpeech = false;
@@ -84,6 +86,8 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
                   ], borderRadius: BorderRadius.all(Radius.circular(100))),
                   child: ElevatedButton(
                     onPressed: () {
+                      requestPermission.requestAndroidPermission(
+                          "android.permission.RECORD_AUDIO");
                       // !_hasSpeech || speech.isListening
                       //     ? null
                       //     : startListening();
@@ -127,15 +131,15 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
   void errorListener(SpeechRecognitionError errorNotification) {}
 
   startListening() async {
-    PermissionStatus microStatus = await Permission.microphone.request();
-    if (microStatus == PermissionStatus.granted) {}
-    if (microStatus == PermissionStatus.denied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
-    }
-    if (microStatus == PermissionStatus.permanentlyDenied) {
-      openAppSettings();
-    }
+    // PermissionStatus microStatus = await Permission.microphone.request();
+    // if (microStatus == PermissionStatus.granted) {}
+    // if (microStatus == PermissionStatus.denied) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
+    // }
+    // if (microStatus == PermissionStatus.permanentlyDenied) {
+    //   openAppSettings();
+    // }
     speech.listen(
         onResult: resultListener,
         listenFor: Duration(seconds: 10),

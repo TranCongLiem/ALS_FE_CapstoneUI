@@ -49,10 +49,10 @@ class _ListExceriseState extends State<ListExcerise> {
     final Size size = MediaQuery.of(context).size;
     return MultiBlocProvider(
         providers: [
-          BlocProvider(
-              create: (context) => ExerciseBlocBloc(
-                  RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadExerciseEvent())),
+          // BlocProvider(
+          //     create: (context) => ExerciseBlocBloc(
+          //         RepositoryProvider.of<ExerciseService>(context))
+          //       ..add(LoadExerciseByCateEvent())),
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))
@@ -164,8 +164,8 @@ class _ListExceriseState extends State<ListExcerise> {
               WidgetEx2(), //Phan Loai/Xem tat ca
 
               Expanded(
-                child: BlocBuilder<CategoryExerciseBlocBloc, CategoryExerciseBlocState>(
-                    builder: (context, state) {
+                child: BlocBuilder<CategoryExerciseBlocBloc,
+                    CategoryExerciseBlocState>(builder: (context, state) {
                   print('abc' + state.toString());
                   if (state is CategoryExerciseLoadedState) {
                     print('Print ExState');

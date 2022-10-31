@@ -71,21 +71,6 @@ class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({Key? key, this.index}) : super(key: key);
   final int? index;
 
-  // void onTapped(int index){
-  //   if(NavItems().items[index].destinationChecker()) {
-  //     Navigator.push(context, )
-  //   }
-  //   navItems.changeNavIndex(index: index);
-  //                       if (navItems.items[index].destinationChecker())
-  //                         Navigator.push(
-  //                           (context),
-  //                           MaterialPageRoute(
-  //                             builder: (context) =>
-  //                                 navItems.items[index].destination!,
-  //                           ),
-  //                         );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavBarBloc, BottomNavBarState>(
@@ -96,9 +81,11 @@ class MyBottomNavBar extends StatelessWidget {
           showUnselectedLabels: true,
           selectedItemColor: greenALS,
           unselectedItemColor: Colors.grey,
-          unselectedFontSize: 15,
-          selectedFontSize: 15,
+          unselectedFontSize: 20,
+          selectedFontSize: 20,
           iconSize: 30.0,
+          selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+          unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           onTap: (index) {
             if (NavItems().items[index].destinationChecker()) {
               BlocProvider.of<BottomNavBarBloc>(context)
@@ -112,10 +99,6 @@ class MyBottomNavBar extends StatelessWidget {
             }
           },
           items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Trang chủ',
-            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.category),
               label: 'Trợ giúp',

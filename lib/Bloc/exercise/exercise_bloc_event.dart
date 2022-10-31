@@ -5,15 +5,16 @@
 //   const factory ExerciseBlocEvent.started() = _Started;
 // }
 
-
 part of 'exercise_bloc_bloc.dart';
+
 abstract class ExerciseBlocEvent {
   const ExerciseBlocEvent();
 }
 
-class LoadExerciseEvent extends ExerciseBlocEvent{
+class LoadExerciseByCateEvent extends ExerciseBlocEvent {
+  final String categoryId;
+  const LoadExerciseByCateEvent({required this.categoryId});
   @override
   // TODO: implement props
-  List<Object?> get props => [];
-
+  List<Object?> get props => [categoryId];
 }

@@ -15,22 +15,28 @@
 //   }
 // }
 import 'package:bloc/bloc.dart';
+import 'package:capstone_ui/Model/getDetailKnowledge_model.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:flutter/cupertino.dart';
 
-part 'exercise_bloc_event.dart';
-part 'exercise_bloc_state.dart';
+import '../../services/api_DetailKnowledge.dart';
 
-class ExerciseBlocBloc extends Bloc<ExerciseBlocEvent, ExerciseBlocState> {
-  final ExerciseService _exerciseService;
+part 'detailknowledge_event.dart';
+part 'detailknowledge_state.dart';
 
-  ExerciseBlocBloc(this._exerciseService) : super(ExerciseBlocInitial()) {
-    on<LoadExerciseByCateEvent>((event, emit) async {
+class DetailKnowledgeBlocBloc
+    extends Bloc<DetailKnowledgeBlocEvent, DetailKnowledgeBlocState> {
+  final DetailKnowledgeService _detailKnowledgeService;
+
+  DetailKnowledgeBlocBloc(this._detailKnowledgeService)
+      : super(DetailKnowledgeBlocInitial()) {
+    on<LoadDetailKnowledgeEvent>((event, emit) async {
       // TODO: implement event handler
-      final categoryId = event.categoryId;
-      final list = await _exerciseService.getListExerciseByCateId(categoryId);
-      emit(ExerciseLoadedState(list));
+      final newsId = event.newsId;
+      final list =
+          await _detailKnowledgeService.getListDetailKnowledgeById(newsId);
+      emit(DetailKnowledgeLoadedState(list));
     });
   }
 }

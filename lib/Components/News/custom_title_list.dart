@@ -1,6 +1,4 @@
-
 import 'package:capstone_ui/Feature/News/article_screen.dart';
-import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:capstone_ui/Model/getListKnowledge_model.dart';
 import 'package:flutter/material.dart';
 
