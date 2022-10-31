@@ -138,7 +138,7 @@ class _ListExceriseState extends State<ListExcerise> {
                   ],
                 ),
               ),
-              ButtonCreateEx(),
+
               WidgetEx1(),
               Container(
                   padding: const EdgeInsets.only(top: 15),
@@ -166,10 +166,7 @@ class _ListExceriseState extends State<ListExcerise> {
               Expanded(
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
-                  print('abc' + state.toString());
                   if (state is CategoryExerciseLoadedState) {
-                    print('Print ExState');
-
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: state.list.length,
@@ -300,47 +297,6 @@ class WidgetEx1 extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class ButtonCreateEx extends StatelessWidget {
-  const ButtonCreateEx({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        child: ElevatedButton.icon(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SessionExercise()));
-          },
-          label: Text(
-            'Tạo buổi tập',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          icon: Icon(Icons.add),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            elevation: MaterialStateProperty.resolveWith<double>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed) ||
-                  (states.contains(MaterialState.disabled))) {
-                return 0;
-              }
-              return 5;
-            }),
-          ),
-        ),
       ),
     );
   }

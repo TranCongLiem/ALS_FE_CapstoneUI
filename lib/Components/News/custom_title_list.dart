@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Feature/News/article_screen.dart';
+import 'package:capstone_ui/Model/getDetailKnowledge_model.dart';
 import 'package:capstone_ui/Model/getListKnowledge_model.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,11 @@ import '../../Feature/News/detail_news.dart';
 Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
   return InkWell(
     onTap: () {
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         // builder: ((context) => ArticleScreen(article: article))));
-      //         builder: ((context) => DetailNewsScreen(article: article))));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) =>
+                  DetailKnowledgeCustom(listKnowledge: listKnowledge))));
     },
     child: Container(
       margin: EdgeInsets.all(15.0),

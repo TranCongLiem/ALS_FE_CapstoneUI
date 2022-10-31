@@ -15,24 +15,32 @@ class ProfileUpdate extends StatefulWidget {
 
 class _ProfileUpdateState extends State<ProfileUpdate> {
   @override
-  Widget build(BuildContext context) => SafeArea(
-        child: Builder(
-          builder: (context) => Scaffold(
-            appBar: AppBar(
-              leading: BackButton(color: Colors.black),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Lưu',
-                    style: TextStyle(color: greenALS, fontSize: 25),
-                  ),
-                )
-              ],
+  Widget build(BuildContext context) => Builder(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            leading: BackButton(color: Colors.white),
+            title: Text(
+              'Chỉnh sửa tài khoản',
+              style: TextStyle(
+                fontSize: 22.0,
+              ),
             ),
-            body: ListView(
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Lưu',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 32),
               physics: BouncingScrollPhysics(),
               children: [
