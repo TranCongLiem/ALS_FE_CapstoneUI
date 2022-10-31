@@ -106,6 +106,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       setState(() {
         selectedIndex = -1;
       });
-    });
+    })
+    ;
   }
 }
