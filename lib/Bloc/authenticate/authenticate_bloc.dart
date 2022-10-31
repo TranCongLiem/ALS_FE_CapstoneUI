@@ -20,6 +20,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       final result = await _userService.login(reqModel);
       if (result.role != null && result.phoneNumber != null) {
         emit(state.copyWith(
+          userId: state.userId,
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
           isAuthenticated: true,
