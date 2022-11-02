@@ -35,8 +35,8 @@ Widget CustomCategoryList(
                   categoryExericse.categoryName ?? '',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 251, 252, 251),
-                      fontSize: 20.0),
+                      color: Colors.black87,
+                      fontSize: 26.0),
                 )
               ],
             ),

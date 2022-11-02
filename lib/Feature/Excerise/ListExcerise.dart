@@ -138,37 +138,14 @@ class _ListExceriseState extends State<ListExcerise> {
                   ],
                 ),
               ),
-
-              WidgetEx1(),
-              Container(
-                  padding: const EdgeInsets.only(top: 15),
-                  height: size.height / 4,
-                  width: size.width / 1,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                    ],
-                  )),
-              WidgetEx2(), //Phan Loai/Xem tat ca
-
               Expanded(
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
                   if (state is CategoryExerciseLoadedState) {
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
+                    return GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2, childAspectRatio: 3 / 3),
+                      scrollDirection: Axis.vertical,
                       itemCount: state.list.length,
                       itemBuilder: (context, index) {
                         return CustomCategoryList(state.list[index], context);
@@ -253,38 +230,6 @@ class WidgetEx2 extends StatelessWidget {
         children: [
           Text(
             'Phân loại',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            'Xem tất cả',
-            style: TextStyle(
-              color: Colors.blueAccent,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WidgetEx1 extends StatelessWidget {
-  const WidgetEx1({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Lịch sử luyện tập',
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.w500,
