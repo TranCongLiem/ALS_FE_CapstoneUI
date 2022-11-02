@@ -10,6 +10,8 @@ class ExerciseService {
   //final getListExerciseByCategory = "http://als.cosplane.asia/api/exercise/GetAllExercise";
   final getListExerciseByCategory =
       "https://als.cosplane.asia/api/exercise/GetExerciseByCategoryId?categoryID=";
+  final getListExercise =
+      "https://als.cosplane.asia/api/exercise/GetAllExercise";
 
   Future<List<Exericse>> getListExerciseByCateId(String categoryId) async {
     final response =
@@ -80,6 +82,22 @@ class ExerciseService {
       // return exercises;
     } else {
       throw Exception("Failed to load Exercise");
+    }
+  }
+
+  Future<List<Exericse>> getAllExercise() async {
+    Response response = await get(Uri.parse(getListExercise));
+
+    if (response.statusCode == 200) {     
+      List<Exericse> exercises = [];
+      final List<dynamic> result= jsonDecode(response.body);
+       print("result: + ${result.map((e) => Exericse.fromJson(e)).toList()}");
+      return result.map((e) => Exericse.fromJson(e)).toList();
+      //--------------
+
+      return exercises;
+    } else {
+      throw ("Can't get the Exercises");
     }
   }
 }
