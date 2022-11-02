@@ -19,7 +19,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'Bloc/detailknowledge/detailknowledge_bloc.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'firebase_options.dart';
@@ -77,9 +76,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => ListKnowledgeBlocBloc(
                   RepositoryProvider.of<ListKnowledgeService>(context))),
-          BlocProvider(
-              create: (context) => DetailKnowledgeBlocBloc(
-                  RepositoryProvider.of<DetailKnowledgeService>(context))),
+
           //Record
           BlocProvider(
             create: (context) =>
