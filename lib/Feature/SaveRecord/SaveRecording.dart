@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -8,6 +9,7 @@ import 'package:request_permission/request_permission.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import '../Newsfeed/newfeeds.dart';
 import 'cloud_record_list_view.dart';
 import 'feature_buttons_view.dart';
 
@@ -42,68 +44,67 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          elevation: 0.0,
-          centerTitle: true,
-          title: Text('Tạo bản ghi'),
-          backgroundColor: greenALS,
-          // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  'Bạn sẽ tạo bản ghi bằng:',
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
-                ),
+    return Center(
+        child: Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        centerTitle: true,
+        title: Text('Tạo bản ghi'),
+        backgroundColor: greenALS,
+        // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                'Bạn sẽ tạo bản ghi bằng:',
+                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15.0),
-                child: ToggleButtons(
-                  fillColor: Colors.grey,
-                  borderWidth: 2,
-                  selectedBorderColor: greenALS,
-                  selectedColor: Colors.white,
-                  borderRadius: BorderRadius.circular(15.0),
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        'Văn bản',
-                        style: TextStyle(fontSize: 22),
-                      ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: ToggleButtons(
+                fillColor: Colors.grey,
+                borderWidth: 2,
+                selectedBorderColor: greenALS,
+                selectedColor: Colors.white,
+                borderRadius: BorderRadius.circular(15.0),
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      'Văn bản',
+                      style: TextStyle(fontSize: 22),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        'Giọng nói',
-                        style: TextStyle(fontSize: 22),
-                      ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      'Giọng nói',
+                      style: TextStyle(fontSize: 22),
                     ),
-                  ],
-                  onPressed: (int index) {
-                    setState(() {
-                      for (int i = 0; i < isSelected.length; i++) {
-                        isSelected[i] = i == index;
-                      }
-                    });
-                  },
-                  isSelected: isSelected,
-                ),
+                  ),
+                ],
+                onPressed: (int index) {
+                  setState(() {
+                    for (int i = 0; i < isSelected.length; i++) {
+                      isSelected[i] = i == index;
+                    }
+                  });
+                },
+                isSelected: isSelected,
               ),
-              if (isSelected[0]) getGraphWidget(), //văn bản
-              if (isSelected[1]) getGraphWidget2(), //giọng nói
-            ],
-          ),
+            ),
+            if (isSelected[0]) getGraphWidget(), //văn bản
+            if (isSelected[1]) getGraphWidget2(), //giọng nói
+          ],
         ),
       ),
-    );
+    ));
   }
 
   Future<void> _onUploadComplete() async {
@@ -134,13 +135,14 @@ class _SaveRecordingState extends State<SaveRecording> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextField(
-                maxLines: 5,
-                decoration: InputDecoration(
-                    labelText: "Nhập nội dung",
-                    border: myinputborder(),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder(),
-                    labelStyle: TextStyle(fontSize: 20.0))),
+              maxLines: 5,
+              decoration: InputDecoration(
+                  labelText: "Nhập nội dung",
+                  border: myinputborder(),
+                  enabledBorder: myinputborder(),
+                  focusedBorder: myfocusborder(),
+                  labelStyle: TextStyle(fontSize: 20.0)),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(15.0),
@@ -173,14 +175,20 @@ class _SaveRecordingState extends State<SaveRecording> {
         children: [
           Padding(
             padding: EdgeInsets.all(10),
-            child: TextField(
-                decoration: InputDecoration(
-                    labelText: outputText,
-                    suffixIcon: voice(),
-                    border: myinputborder(),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder(),
-                    labelStyle: TextStyle(fontSize: 20.0))),
+            child: TextFormField(
+              decoration: InputDecoration(
+                  labelText: outputText,
+                  suffixIcon: voice(),
+                  border: myinputborder(),
+                  enabledBorder: myinputborder(),
+                  focusedBorder: myfocusborder(),
+                  labelStyle: TextStyle(fontSize: 20.0)),
+              onChanged: (value) {
+                // context
+                //     .read<CreateRecordBloc>()
+                //     .add(CreateRecordEvent.recordNameChanged(value));
+              },
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
@@ -190,7 +198,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                     "android.permission.RECORD_AUDIO");
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: greenALS,
+                  // backgroundColor: greenALS,
                   padding: EdgeInsets.all(8.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),

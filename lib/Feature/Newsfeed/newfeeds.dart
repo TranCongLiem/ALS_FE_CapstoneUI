@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -65,10 +66,23 @@ class _NewFeedState extends State<NewFeed> {
                                 padding: EdgeInsets.only(left: 30),
                               ),
                               Expanded(
-                                  child: TextField(
-                                decoration: InputDecoration(
-                                    hintText: 'Bạn đang nghĩ gì?',
-                                    border: InputBorder.none),
+                                  child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CreatePostNewFeed()));
+                                },
+                                child: Text(
+                                  'Bạn đang nghĩ gì',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Colors.black38, fontSize: 24.0),
+                                ),
+                                // decoration: InputDecoration(
+                                //     hintText: 'Bạn đang nghĩ gì?',
+                                //     border: InputBorder.none),
                               )),
                             ],
                           ),

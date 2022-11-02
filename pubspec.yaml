@@ -29,6 +29,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+      
   
   flutter_screenutil: ^3.0.1
   flutter_svg: ^1.1.4
@@ -67,6 +68,10 @@ dependencies:
   getwidget: ^3.0.1
   youtube_player_flutter: ^8.1.1
   confirm_dialog: ^1.0.1
+  image_picker: ^0.8.6
+  file_picker: ^4.5.1
+  flutter_datetime_picker: ^1.5.1
+  intl: ^0.17.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

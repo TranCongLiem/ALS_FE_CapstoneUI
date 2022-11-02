@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Register/register_info.dart';
 import 'package:flutter/material.dart';
 
 import '../Home/home.dart';
@@ -82,30 +83,8 @@ class _RegisterState extends State<Register> {
             ),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return ScaleTransition(
-                        alignment: Alignment.center,
-                        scale: Tween<double>(begin: 0.1, end: 1).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.bounceIn,
-                          ),
-                        ),
-                        child: child,
-                      );
-                    },
-                    transitionDuration: Duration(seconds: 1),
-                    pageBuilder: (BuildContext context,
-                        Animation<double> animation,
-                        Animation<double> secondaryAnimation) {
-                      return Home();
-                    },
-                  ),
-                );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RegisterInfo()));
               },
               icon: Icon(Icons.app_registration),
               label: Text(
