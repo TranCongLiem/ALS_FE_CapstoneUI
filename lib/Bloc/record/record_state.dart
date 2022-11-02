@@ -20,19 +20,3 @@ class RecordLoadedState extends RecordBlocState {
   List<Object?> get props => [list];
 
 }
-
-// class CreateRecordState extends RecordBlocState{
-//   const factory CreateRecordState({
-//     required String userId,
-//     required String recordName,
-//     required String linkAudio,
-//   }) = CreateRecordState;
-
-//   factory CreateRecordState.initial() => CreateRecordState(
-//         userId: '',
-//         recordName: '',
-//         linkAudio: '',
-//       );
-// }
-
-
