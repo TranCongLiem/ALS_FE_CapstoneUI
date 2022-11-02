@@ -9,4 +9,9 @@ class LoadRecordEvent extends RecordBlocEvent{
   // TODO: implement props
   List<Object?> get props => [];
 
+}class LoadRecordEventByAdmin extends RecordBlocEvent{
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
 }

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:capstone_ui/Constant/constant.dart';
@@ -5,6 +6,7 @@ import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:request_permission/request_permission.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -23,8 +25,11 @@ class SaveRecording extends StatefulWidget {
 }
 
 class _SaveRecordingState extends State<SaveRecording> {
+  late bool _isUploading;
   TextEditingController textEditingController = TextEditingController();
-  List<bool> isSelected = [true, false];
+  final FlutterTts flutterTts = FlutterTts();
+
+  List<bool> isSelected = [false, true];
   List<Reference> references = [];
   RequestPermission requestPermission = RequestPermission.instace;
 
@@ -39,9 +44,10 @@ class _SaveRecordingState extends State<SaveRecording> {
   @override
   void initState() {
     super.initState();
-    isSelected = [true, false];
+    isSelected = [false, true];
     _onUploadComplete();
     initSpeechState();
+    _isUploading = false;
   }
 
   @override
@@ -78,69 +84,67 @@ class _SaveRecordingState extends State<SaveRecording> {
       }
     }, builder: (context, state) {
       return Center(
-          child: SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0.0,
-            centerTitle: true,
-            title: Text('Tạo bản ghi'),
-            backgroundColor: greenALS,
-            // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Text(
-                    'Bạn sẽ tạo bản ghi bằng:',
-                    style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 15.0),
-                  child: ToggleButtons(
-                    fillColor: Colors.grey,
-                    borderWidth: 2,
-                    selectedBorderColor: greenALS,
-                    selectedColor: Colors.white,
-                    borderRadius: BorderRadius.circular(15.0),
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Văn bản',
-                          style: TextStyle(fontSize: 22),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          'Giọng nói',
-                          style: TextStyle(fontSize: 22),
-                        ),
-                      ),
-                    ],
-                    onPressed: (int index) {
-                      setState(() {
-                        for (int i = 0; i < isSelected.length; i++) {
-                          isSelected[i] = i == index;
-                        }
-                      });
-                    },
-                    isSelected: isSelected,
-                  ),
-                ),
-                if (isSelected[0]) getGraphWidget(), //văn bản
-                if (isSelected[1]) getGraphWidget2(), //giọng nói
-              ],
+          child: Scaffold(
+            appBar: AppBar(
+              elevation: 0.0,
+              centerTitle: true,
+              title: Text('Tạo bản ghi'),
+              backgroundColor: greenALS,
+              // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
             ),
-          ),
-        ),
-      ));
+            body: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      'Bạn sẽ tạo bản ghi bằng:',
+                      style:
+                          TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 15.0),
+                    child: ToggleButtons(
+                      fillColor: Colors.grey,
+                      borderWidth: 2,
+                      selectedBorderColor: greenALS,
+                      selectedColor: Colors.white,
+                      borderRadius: BorderRadius.circular(15.0),
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Văn bản',
+                            style: TextStyle(fontSize: 22),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Giọng nói',
+                            style: TextStyle(fontSize: 22),
+                          ),
+                        ),
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          for (int i = 0; i < isSelected.length; i++) {
+                            isSelected[i] = i == index;
+                          }
+                        });
+                      },
+                      isSelected: isSelected,
+                    ),
+                  ),
+                  if (isSelected[0]) getGraphWidget(), //văn bản
+                  if (isSelected[1]) getGraphWidget2(), //giọng nói
+                ],
+              ),
+            ),
+          ));
     });
   }
 
@@ -154,54 +158,99 @@ class _SaveRecordingState extends State<SaveRecording> {
   }
 
   Widget getGraphWidget() {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(
-                decoration: InputDecoration(
-                    labelText: outputText,
-                    suffixIcon: Icon(Icons.type_specimen),
-                    border: myinputborder(),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder(),
-                    labelStyle: TextStyle(fontSize: 20.0))),
-          ),
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextField(
-                maxLines: 5,
-                decoration: InputDecoration(
-                    labelText: "Nhập nội dung",
-                    border: myinputborder(),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder(),
-                    labelStyle: TextStyle(fontSize: 20.0))),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: ElevatedButton(
-              child: Text("Lưu trữ"),
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                padding:
-                    EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
-                primary: greenALS,
-                textStyle: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w300),
+    return BlocConsumer<CreateRecordBloc, CreateRecordState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        return Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: TextField(
+                    decoration: InputDecoration(
+                        labelText: outputText,
+                        suffixIcon: Icon(Icons.type_specimen),
+                        border: myinputborder(),
+                        enabledBorder: myinputborder(),
+                        focusedBorder: myfocusborder(),
+                        labelStyle: TextStyle(fontSize: 20.0)),
+                        onChanged: (value) {
+                    context
+                        .read<CreateRecordBloc>()
+                        .add(CreateRecordEvent.recordNameChanged(value));
+                  },
+                        ),
               ),
-            ),
+              Padding(
+                padding: EdgeInsets.all(10),
+                child: TextFormField(
+                  controller: textEditingController,
+                  maxLines: 2,
+                  decoration: InputDecoration(
+                      labelText: "Nhập nội dung",
+                      border: myinputborder(),
+                      enabledBorder: myinputborder(),
+                      focusedBorder: myfocusborder(),
+                      labelStyle: TextStyle(fontSize: 20.0)),
+                ),
+              ),
+              Center(
+                child: _isUploading 
+                ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: LinearProgressIndicator()),
+                        Text('Đang lưu trữ...'),
+                      ],
+                    )
+                : Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ElevatedButton(
+                    child: Text("Lưu trữ"),
+                    onPressed: () {
+                      speak(textEditingController.text);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      padding: EdgeInsets.only(
+                          top: 20, bottom: 20, left: 30, right: 30),
+                      primary: greenALS,
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w300),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
+  }
+
+  speak(String text) async {
+    String filepath = DateTime.now().millisecondsSinceEpoch.toString();
+    String filepath2 = filepath + '.acc';
+    await flutterTts.setLanguage("vi-VN");
+    await flutterTts.speak(text);
+    await flutterTts.synthesizeToFile(text, filepath2);
+    String filepath3 =
+        '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
+            filepath2;
+    _onFileUploadButtonPressed(filepath3);
+    context
+          .read<CreateRecordBloc>()
+          .add(CreateRecordEvent.linkAudioChanged(filepath));
   }
 
   Widget getGraphWidget2() {
@@ -333,5 +382,33 @@ class _SaveRecordingState extends State<SaveRecording> {
     setState(() {
       this.level = level;
     });
+  }
+
+  Future<void> _onFileUploadButtonPressed(String filepath) async {
+    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    setState(() {
+      _isUploading = true;
+    });
+    try {
+      await firebaseStorage
+          .ref('upload-voice-firebase')
+          .child(filepath.substring(filepath.lastIndexOf('/'), filepath.length))
+          .putFile(File(filepath));
+      // ();
+      context
+          .read<CreateRecordBloc>()
+          .add(CreateRecordEvent.createRecordRequest());
+    } catch (error) {
+      print('Error occured while uploading to Firebase ${error.toString()}');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error occured while uploading'),
+        ),
+      );
+    } finally {
+      setState(() {
+        _isUploading = false;
+      });
+    }
   }
 }

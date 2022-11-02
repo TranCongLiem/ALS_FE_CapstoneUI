@@ -23,7 +23,7 @@ class RemoveRecordBloc extends Bloc<RemoveRecordEvent, RemoveRecordState> {
           isRemoved: true,
         ));
       } else {
-        emit(state.copyWith(errorMessage: "lielol"));
+        emit(state.copyWith(errorMessage: ""));
       }
     });
 

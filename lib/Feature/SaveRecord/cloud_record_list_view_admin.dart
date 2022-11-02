@@ -14,20 +14,20 @@ import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dar
 import 'catalog.dart';
 import 'home_view.dart';
 
-class CloudRecordListView extends StatefulWidget {
+class CloudRecordListViewAdmin extends StatefulWidget {
   //final List<Reference> references;
   final List<RecordById> references;
-  const CloudRecordListView({
+  const CloudRecordListViewAdmin({
     Key? key,
     required this.references,
   }) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CloudRecordListViewState createState() => _CloudRecordListViewState();
+  _CloudRecordListViewAdminState createState() => _CloudRecordListViewAdminState();
 }
 
-class _CloudRecordListViewState extends State<CloudRecordListView> {
+class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
   var list_tes = [
     '/upload-voice-firebase/1663767506989.acc',
     '/upload-voice-firebase/1663767506989.acc',
@@ -45,7 +45,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
   }
-
+  
   @override
   void dispose() {
     // TODO: implement dispose
@@ -70,7 +70,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       parent: animation,
                       curve: Curves.bounceIn,
                     ),
-                  ),
+                  ), 
                   child: child,
                 );
               },
@@ -120,19 +120,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                         bottomLeft: Radius.circular(30),
                                         bottomRight: Radius.circular(30),
                                         topRight: Radius.circular(30))),
-                                child: IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent.getRecordId(widget
-                                            .references[index].recordId
-                                            .toString()));
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent
-                                            .removeRecordRequest());
-                                  },
-                                  color: Colors.white,
-                                ),
+                                
                               ),
                             ],
                           ),
@@ -184,32 +172,25 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
     );
   }
 
+
   Future<void> _onListTileButtonPressed(
       RecordById recordById, int index) async {
-    if (selectedIndex == index) {
+    // await audioPlayer.stop();
+    setState(() {
+      selectedIndex = index;
+      isPlaying = true;
+    });
+    Reference pathReference = FirebaseStorage.instance
+        .ref()
+        .child('upload-voice-firebase')
+        .child(recordById.linkAudio ?? '');
+    audioPlayer.stop();   
+    audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
+    audioPlayer.onPlayerCompletion.listen((duration) {
       setState(() {
-        audioPlayer.stop();
         isPlaying = false;
         selectedIndex = -1;
       });
-    } else {
-      setState(() {
-        selectedIndex = index;
-        isPlaying = true;
-        audioPlayer.stop();
-      });
-      Reference pathReference = FirebaseStorage.instance
-          .ref()
-          .child('upload-voice-firebase')
-          .child(recordById.linkAudio ?? '');
-      audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
-      audioPlayer.onPlayerCompletion.listen((duration) {
-        setState(() {
-          isPlaying = false;
-          selectedIndex = -1;
-        });
-      });
-    }
-    // await audioPlayer.stop();
+    });
   }
 }

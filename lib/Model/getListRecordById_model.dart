@@ -1,4 +1,14 @@
+class RecordByIdReQuestModel {
+  String userId;
 
+  RecordByIdReQuestModel({required this.userId});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'userId': userId,
+    };
+    return map;
+  }
+}
 
 class RecordById {
   String? recordId;

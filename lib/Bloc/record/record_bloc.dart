@@ -15,25 +15,16 @@ class RecordBlocBloc extends Bloc<RecordBlocEvent, RecordBlocState> {
   RecordBlocBloc(this._recordService) : super(RecordBlocInitial()) {
     on<LoadRecordEvent>((event, emit) async {
       // TODO: implement event handler
-
+      // RecordByIdReQuestModel recordByIdReQuestModel = RecordByIdReQuestModel(userId: userId)
       final list= await _recordService.getRecordById();
       emit(RecordLoadedState(list));
-      
     });
-
-    // on<LoadRecordEvent>((event, emit) async {
-    //   CreateRecordQuestModel reqModel = CreateRecordQuestModel(recordId: state.
-    //       recordName: state., linkAudio: state.);
-    //   final result = await _recordService.createRecord(reqModel);
-    //       success: result.success,
-    //       message: result.message ?? '',
-    //       isAuthenticated: true,
-    //     ));
+    // on<LoadRecordEventByAdmin>((event, emit) async {
+    //   // TODO: implement event handler
+    //   // RecordByIdReQuestModel recordByIdReQuestModel = RecordByIdReQuestModel(userId: userId)
+    //   final list= await _recordService.getRecordByIdAdmin();
+    //   emit(RecordLoadedState(list));
     // });
-
-  //   on<_PhoneNumberChanged>((event, emit) {
-  //     emit(state.copyWith(: event.phoneNumber));
-  //   });
-  // }
-  }
+    
+}
 }

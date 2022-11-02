@@ -4,6 +4,9 @@ import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
+import 'package:capstone_ui/Bloc/record/record_bloc.dart';
+import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
+import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Constant/constant.dart';
@@ -20,7 +23,9 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
+import 'Bloc/user_detail/user_detail_bloc.dart';
 import 'firebase_options.dart';
+import 'services/api_User.dart';
 // import 'Login/login_screen.dart';
 
 void main() async {
@@ -47,6 +52,9 @@ class MyApp extends StatelessWidget {
           create: (context) => UserService(),
         ),
         RepositoryProvider(
+          create: (context) => UserPatientService(),
+        ),
+        RepositoryProvider(
           create: (context) => ExerciseService(),
         ),
         RepositoryProvider(
@@ -58,6 +66,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(
           create: (context) => ListKnowledgeService(),
         )
+        
       ],
       child: MultiBlocProvider(
         providers: [
@@ -69,6 +78,13 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
           ),
+
+          BlocProvider(
+              create: (context) => UserBloc(
+                  RepositoryProvider.of<UserPatientService>(context))),
+          BlocProvider(
+              create: (context) => GetDetailBloc(
+                  RepositoryProvider.of<UserPatientService>(context))),
           BlocProvider(
               create: (context) => ListKnowledgeBlocBloc(
                   RepositoryProvider.of<ListKnowledgeService>(context))),
@@ -79,6 +95,14 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 RemoveRecordBloc(RepositoryProvider.of<RecordService>(context)),
+          ),
+          BlocProvider(
+            create: (context) =>
+                RecordAdminBloc(RepositoryProvider.of<RecordService>(context)),
+          ),
+          BlocProvider(
+            create: (context) =>
+                RecordBlocBloc(RepositoryProvider.of<RecordService>(context)),
           ),
           BlocProvider(
               create: (context) => ExerciseBlocBloc(

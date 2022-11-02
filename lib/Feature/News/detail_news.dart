@@ -1,11 +1,16 @@
-import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../Model/getListKnowledge_model.dart';
 
-class DetailNewsScreen extends StatelessWidget {
-  const DetailNewsScreen({Key? key, required this.article}) : super(key: key);
+class DetailKnowledgeCustom extends StatefulWidget {
+  const DetailKnowledgeCustom({Key? key, required this.listKnowledge})
+      : super(key: key);
+  final ListKnowledge listKnowledge;
+  @override
+  State<DetailKnowledgeCustom> createState() => _DetailKnowledgeCustomState();
+}
 
-  final Article article;
-
+class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,15 +19,15 @@ class DetailNewsScreen extends StatelessWidget {
         // backgroundColor: Colors.green,
         backgroundColor: Color(0xffffff),
         elevation: 0,
-
       ),
       body: Padding(
         padding: const EdgeInsets.all(0.0),
         child: Stack(
           children: <Widget>[
-            Image.network(article.urlToImage ?? "",
+            Image.network(
+              widget.listKnowledge.image ?? "",
               fit: BoxFit.cover,
-              height: MediaQuery.of(context).size.height*0.5,
+              height: MediaQuery.of(context).size.height * 0.5,
               width: MediaQuery.of(context).size.width,
             ),
             SingleChildScrollView(
@@ -39,18 +44,17 @@ class DetailNewsScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                           child: Text(
-                            article.title ?? "",
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontFamily: 'GothamB'
-                              //
-                            ),
+                            widget.listKnowledge.title ?? "",
+                            style:
+                                TextStyle(fontSize: 30.0, fontFamily: 'GothamB'
+                                    //
+                                    ),
                           ),
                         ),
                         Padding(
                           padding: EdgeInsets.all(20.0),
                           child: Text(
-                            article.description ?? "",
+                            widget.listKnowledge.description ?? "",
                             style: TextStyle(
                               fontSize: 20.0,
                             ),

@@ -9,11 +9,11 @@ import '../../Feature/News/detail_news.dart';
 Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
   return InkWell(
     onTap: () {
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         // builder: ((context) => ArticleScreen(article: article))));
-      //         builder: ((context) => DetailNewsScreen(article: article))));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) =>
+                  DetailKnowledgeCustom(listKnowledge: listKnowledge))));
     },
     child: Container(
       margin: EdgeInsets.all(15.0),
