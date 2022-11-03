@@ -90,7 +90,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                     controller: tabController,
                                     isScrollable: true,
                                     labelPadding:
-                                        EdgeInsets.symmetric(horizontal: 30),
+                                        EdgeInsets.symmetric(horizontal: 45),
                                     tabs: [
                                       Padding(
                                         padding: const EdgeInsets.all(2.0),
@@ -121,7 +121,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                 child: TabBarView(
                                     controller: tabController,
                                     children: [
-                                      BlocBuilder<RecordAdminBloc,
+                                  BlocBuilder<RecordAdminBloc,
                                           RecordAdminBlocState>(
                                       builder: (context, state) {
                                     if (state is RecordLoadedAdminState) {
@@ -144,7 +144,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                       child: CircularProgressIndicator(),
                                     );
                                   })
-                                  
+
                                   // CloudRecordListViewAdmin(
                                   //   references: state.list,
                                   // ),
@@ -232,7 +232,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
     print(
         firebaseStorage.ref().child('upload-voice-firebase').list().toString());
 
-        print(listResult);
+    print(listResult);
 
     setState(() {
       references = listResult.items;
