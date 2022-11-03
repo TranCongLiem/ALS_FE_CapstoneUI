@@ -13,6 +13,7 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
+import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
 import 'package:capstone_ui/services/api_login.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
+import 'Bloc/post/post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
 import 'firebase_options.dart';
@@ -65,8 +67,10 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => ListKnowledgeService(),
+        ),
+        RepositoryProvider(
+          create: (context) => PostService(),
         )
-        
       ],
       child: MultiBlocProvider(
         providers: [
@@ -78,16 +82,18 @@ class MyApp extends StatelessWidget {
             create: (context) =>
                 AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
           ),
-
           BlocProvider(
-              create: (context) => UserBloc(
-                  RepositoryProvider.of<UserPatientService>(context))),
+              create: (context) =>
+                  UserBloc(RepositoryProvider.of<UserPatientService>(context))),
           BlocProvider(
               create: (context) => GetDetailBloc(
                   RepositoryProvider.of<UserPatientService>(context))),
           BlocProvider(
               create: (context) => ListKnowledgeBlocBloc(
                   RepositoryProvider.of<ListKnowledgeService>(context))),
+          BlocProvider(
+              create: (context) =>
+                  PostBlocBloc(RepositoryProvider.of<PostService>(context))),
           BlocProvider(
             create: (context) =>
                 CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),
@@ -107,8 +113,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => ExerciseBlocBloc(
                   RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadExerciseEvent())
-              ),
+                ..add(LoadExerciseEvent())),
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))),

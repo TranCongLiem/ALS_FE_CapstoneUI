@@ -29,11 +29,11 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-          BlocProvider(
-              create: (context) => ListKnowledgeBlocBloc(
-                  RepositoryProvider.of<ListKnowledgeService>(context))
-                ..add(LoadListKnowledgeEvent())),
-        ],
+        BlocProvider(
+            create: (context) => ListKnowledgeBlocBloc(
+                RepositoryProvider.of<ListKnowledgeService>(context))
+              ..add(LoadListKnowledgeEvent())),
+      ],
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -49,7 +49,7 @@ class _NewsScreenState extends State<NewsScreen> {
         //   builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
         //     if (snapshot.hasData) {
         //       List<Article>? articles = snapshot.data;
-    
+
         //       return ListView.builder(
         //         itemCount: articles!.length,
         //         itemBuilder: (context, index) {
@@ -63,24 +63,23 @@ class _NewsScreenState extends State<NewsScreen> {
         //   },
         // ),
         body: Container(
-                  child: BlocBuilder<ListKnowledgeBlocBloc, ListKnowledgeBlocState>(
-                      builder: (context, state) {
-                    if (state is ListKnowledgeLoadedState) {
-                      print('Print ExState');
-    
-                      return ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: state.list.length,
-                        itemBuilder: (context, index) {
-                          return customTitleList(state.list[index], context);
-                        },
-                      );
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }),
-                ),
+          child: BlocBuilder<ListKnowledgeBlocBloc, ListKnowledgeBlocState>(
+              builder: (context, state) {
+            if (state is ListKnowledgeLoadedState) {
+              print('Print ExState');
+              return ListView.builder(
+                scrollDirection: Axis.vertical,
+                itemCount: state.list.length,
+                itemBuilder: (context, index) {
+                  return customTitleList(state.list[index], context);
+                },
+              );
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }),
+        ),
         bottomNavigationBar: MyBottomNavBar(
             // index: this.index,
             ),
