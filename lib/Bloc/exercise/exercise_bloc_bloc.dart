@@ -32,10 +32,18 @@ class ExerciseBlocBloc extends Bloc<ExerciseBlocEvent, ExerciseBlocState> {
  
  
   ExerciseBlocBloc(this._exerciseService) : super(ExerciseBlocInitial()) {
-    on<LoadExerciseEvent>((event, emit) async {
+    on<LoadExerciseByCateEvent>((event, emit) async {
       // TODO: implement event handler
+      final categoryId= event.categoryId;
+      final list= await _exerciseService.getListExerciseByCateId(categoryId);
+      emit(ExerciseLoadedState(list));
+      
+    });
 
-      final list= await _exerciseService.getListExercise();
+    on<LoadAllExerciseEvent>((event, emit) async {
+      // TODO: implement event handler
+      //final categoryId= event.categoryId;
+      final list= await _exerciseService.getAllExercise();
       emit(ExerciseLoadedState(list));
       
     });
