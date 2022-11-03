@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -9,24 +8,24 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'newfeeds.dart';
-
-class CreatePostNewFeed extends StatefulWidget {
-  const CreatePostNewFeed({super.key});
-
-  @override
-  State<CreatePostNewFeed> createState() => _CreatePostNewFeedState();
+enum MediaType {
+  image,
+  video;
 }
 
-class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
-  File? imageselect;
-  final imagePicker = ImagePicker();
+class Create extends StatefulWidget {
+  const Create({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Stack(
+  State<Create> createState() => _CreateState();
+}
+
+class _CreateState extends State<Create> {
+  String? imagePath;
+  MediaType _mediaType = MediaType.image;
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    body: Stack(
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
@@ -121,27 +120,37 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                             ),
                           ),
                         ),
-                        imageselect != null
-                            ? Card(
-                                margin: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Container(
-                                  height: 300.0,
-                                  child: Image.file(
-                                    imageselect!,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://www.als.org/sites/default/files/styles/hero_image/public/2020-06/Hero-New-Site_08.jpg?h=be2185f4&itok=qkJVB6S9"),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
+                        // image != null
+                        //     // ? Card(
+                        //     //     margin: EdgeInsets.symmetric(horizontal: 8.0),
+                        //     //     child: Container(
+                        //     //       height: 300.0,
+                        //     //       child: Image.file(
+                        //     //         imageselect!,
+                        //     //         width: double.infinity,
+                        //     //         fit: BoxFit.cover,
+                        //     //       ),
+                        //     //     ),
+                        //     //   )
+                        //     ? Image.file(image!, 
+                        //     width: double.infinity,
+                        //             fit: BoxFit.cover,)
+                        //     : Container(
+                        //         decoration: BoxDecoration(
+                        //           image: DecorationImage(
+                        //             image: NetworkImage(
+                        //                 "https://www.als.org/sites/default/files/styles/hero_image/public/2020-06/Hero-New-Site_08.jpg?h=be2185f4&itok=qkJVB6S9"),
+                        //             fit: BoxFit.cover,
+                        //           ),
+                        //         ),
+                        //       )
+                        (imagePath != null)
+                    ? Image.file(File(imagePath!))
+                    : Container(
+                        width: 300,
+                        height: 300,
+                        color: Colors.grey[300]!,
+                      ),
                       ],
                     ),
                   ),
@@ -149,7 +158,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                     // margin: EdgeInsets.only(bottom: 15.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        selectGallery();
+                        pickMedia(ImageSource.gallery);
                       },
                       child: Text(
                         'Tải ảnh',
@@ -184,30 +193,22 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
             )
           ],
         ),
-        // bottomNavigationBar: Container(
-        //   height: 60.0,
-        //   child: Row(
-        //     children: <Widget>[
-        //       IconButton(onPressed: () {}, icon: Icon(Icons.camera_enhance))
-        //     ],
-        //   ),
-        // ),
-      ),
-    );
-  }
+  );
+   void pickMedia(ImageSource source) async {
+    XFile? file;
+    if (_mediaType == MediaType.image) {
+      file = await ImagePicker().pickImage(source: source);
+    } else {
+      file = await ImagePicker().pickVideo(source: source);
+    }
+    if (file != null) {
+      imagePath = "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg";
 
-  Future selectGallery() async {
-    try {
-      final image = await imagePicker.pickImage(source: ImageSource.gallery);
-      if (image == null) {
-        return;
-      }
-      final imageselect2 = File(image.path);
-      setState(() {
-        this.imageselect = imageselect2;
-      });
-    } on PlatformException catch (e) {
-      print('Fail : $e');
+      setState(() {});
     }
   }
-}
+     
+  }
+
+  
+

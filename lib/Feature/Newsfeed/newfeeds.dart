@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Newsfeed/create.dart';
 import 'package:capstone_ui/Feature/Newsfeed/customPostList.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _NewFeedState extends State<NewFeed> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CreatePostNewFeed()));
+                                                Create()));
                                   },
                                   child: Text(
                                     'Bạn đang nghĩ gì',

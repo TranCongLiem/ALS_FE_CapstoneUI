@@ -29,7 +29,7 @@ Widget customePostList(ListPost listPost, BuildContext context) {
                         radius: 17.0,
                         backgroundColor: Colors.grey[200],
                         backgroundImage: CachedNetworkImageProvider(
-                            listPost.imageUser ?? ''),
+                            "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
                       ),
                     ),
                     const SizedBox(width: 8.0),
