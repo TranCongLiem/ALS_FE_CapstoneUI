@@ -1,11 +1,13 @@
 class LoginResponeModel {
+  String? userId;
   String? phoneNumber;
   String? role;
   //String? message;
-  LoginResponeModel({this.phoneNumber, this.role});
+  LoginResponeModel({this.userId,this.phoneNumber, this.role});
 
   factory LoginResponeModel.fromJson(Map<String, dynamic> json) {
     return LoginResponeModel(
+      userId: json["userId"],
       role: json["role"],
       phoneNumber: json["phoneNumber"],
     );

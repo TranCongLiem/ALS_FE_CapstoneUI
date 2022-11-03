@@ -5,7 +5,10 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../../Bloc/create_record/create_record_bloc.dart';
 
 class FeatureButtonsView extends StatefulWidget {
   final Function onUploadComplete;
@@ -41,112 +44,93 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: _isRecorded
-          ? _isUploading
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: LinearProgressIndicator()),
-                    Text('Đang lưu trữ...'),
-                  ],
-                )
-              : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ToggleButtons(
-                      fillColor: Colors.grey,
-                      borderWidth: 1,
-                      selectedBorderColor: greenALS,
-                      selectedColor: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                      borderColor: Colors.white,
-                      children: <Widget>[
+    return BlocConsumer<CreateRecordBloc, CreateRecordState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Center(
+          child: _isRecorded
+              ? _isUploading
+                  ? Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.replay,
-                              size: 35.0,
-                              color: Colors.white,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: LinearProgressIndicator()),
+                        Text('Đang lưu trữ...'),
+                      ],
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ToggleButtons(
+                          fillColor: Colors.grey,
+                          borderWidth: 1,
+                          selectedBorderColor: greenALS,
+                          selectedColor: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                          borderColor: Colors.white,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.replay,
+                                  size: 35.0,
+                                  color: Colors.white,
+                                ),
+                                onPressed: _onRecordAgainButtonPressed,
+                              ),
                             ),
-                            onPressed: _onRecordAgainButtonPressed,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: IconButton(
-                            icon: Icon(
-                                _isPlaying ? Icons.pause : Icons.play_arrow,
-                                size: 35.0,
-                                color: Colors.white),
-                            onPressed: _onPlayButtonPressed,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: IconButton(
-                            icon: Icon(Icons.save_alt,
-                                size: 35.0, color: Colors.white),
-                            onPressed: _onFileUploadButtonPressed,
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: IconButton(
+                                icon: Icon(
+                                    _isPlaying ? Icons.pause : Icons.play_arrow,
+                                    size: 35.0,
+                                    color: Colors.white),
+                                onPressed: _onPlayButtonPressed,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: IconButton(
+                                icon: Icon(Icons.save_alt,
+                                    size: 35.0, color: Colors.white),
+                                onPressed: _onFileUploadButtonPressed,
+                              ),
+                            ),
+                          ],
+                          onPressed: (int newindex) {
+                            setState(() {
+                              for (int i = 0; i < isSelected.length; i++) {
+                                if (i == newindex)
+                                  isSelected[i] = !isSelected[i];
+                                else {
+                                  isSelected[i] = false;
+                                }
+                              }
+                            });
+                          },
+                          isSelected: isSelected,
                         ),
                       ],
-                      onPressed: (int newindex) {
-                        setState(() {
-                          for (int i = 0; i < isSelected.length; i++) {
-                            if (i == newindex)
-                              isSelected[i] = !isSelected[i];
-                            else {
-                              isSelected[i] = false;
-                            }
-                          }
-                        });
-                      },
-                      isSelected: isSelected,
-                    ),
-                  ],
-                  // children: [
-                  //   Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: IconButton(
-                  //       icon: Icon(Icons.replay, size: 35.0),
-                  //       onPressed: _onRecordAgainButtonPressed,
-                  //     ),
-                  //   ),
-                  //   Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: IconButton(
-                  //       icon: Icon(_isPlaying ? Icons.pause : Icons.play_arrow,
-                  //           size: 35.0),
-                  //       onPressed: _onPlayButtonPressed,
-                  //     ),
-                  //   ),
-                  //   Padding(
-                  //     padding: const EdgeInsets.all(8.0),
-                  //     child: IconButton(
-                  //       icon: Icon(Icons.save_alt, size: 35.0),
-                  //       onPressed: _onFileUploadButtonPressed,
-                  //     ),
-                  //   ),
-                  // ],
-                )
-          : IconButton(
-              icon: _isRecording
-                  ? Icon(
-                      Icons.pause,
-                      size: 35.0,
                     )
-                  : Icon(
-                      Icons.fiber_manual_record,
-                      size: 35.0,
-                    ),
-              onPressed: _onRecordButtonPressed,
-            ),
+              : IconButton(
+                  icon: _isRecording
+                      ? Icon(
+                          Icons.pause,
+                          size: 35.0,
+                        )
+                      : Icon(
+                          Icons.fiber_manual_record,
+                          size: 35.0,
+                        ),
+                  onPressed: _onRecordButtonPressed,
+                ),
+        );
+      },
     );
   }
 
@@ -162,6 +146,9 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
               _filePath.substring(_filePath.lastIndexOf('/'), _filePath.length))
           .putFile(File(_filePath));
       widget.onUploadComplete();
+      context
+          .read<CreateRecordBloc>()
+          .add(CreateRecordEvent.createRecordRequest());
     } catch (error) {
       print('Error occured while uploading to Firebase ${error.toString()}');
       ScaffoldMessenger.of(context).showSnackBar(
@@ -219,15 +206,18 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
 
     if (hasRecordingPermission ?? false) {
       Directory directory = await getApplicationDocumentsDirectory();
-      String filepath = directory.path +
-          '/' +
-          DateTime.now().millisecondsSinceEpoch.toString() +
-          '.aac';
+      String filepath = 
+          DateTime.now().millisecondsSinceEpoch.toString();
+      String filepath2 =directory.path +
+          '/' + filepath + '.aac';
       _audioRecorder =
-          FlutterAudioRecorder2(filepath, audioFormat: AudioFormat.AAC);
+          FlutterAudioRecorder2(filepath2, audioFormat: AudioFormat.AAC);
       await _audioRecorder.initialized;
       _audioRecorder.start();
-      _filePath = filepath;
+      _filePath = filepath2;
+      context
+          .read<CreateRecordBloc>()
+          .add(CreateRecordEvent.linkAudioChanged(filepath));
       setState(() {});
     } else {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

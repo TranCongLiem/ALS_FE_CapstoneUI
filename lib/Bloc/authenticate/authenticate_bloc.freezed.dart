@@ -776,6 +776,7 @@ abstract class _AuthCheckRequested implements AuthenticateEvent {
 
 /// @nodoc
 mixin _$AuthenticateState {
+  String get userId => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
@@ -793,7 +794,8 @@ abstract class $AuthenticateStateCopyWith<$Res> {
           AuthenticateState value, $Res Function(AuthenticateState) then) =
       _$AuthenticateStateCopyWithImpl<$Res>;
   $Res call(
-      {String phoneNumber,
+      {String userId,
+      String phoneNumber,
       String password,
       bool isAuthenticated,
       String? role,
@@ -811,6 +813,7 @@ class _$AuthenticateStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? userId = freezed,
     Object? phoneNumber = freezed,
     Object? password = freezed,
     Object? isAuthenticated = freezed,
@@ -818,6 +821,10 @@ class _$AuthenticateStateCopyWithImpl<$Res>
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -850,7 +857,8 @@ abstract class _$$_AuthenticateStateCopyWith<$Res>
       __$$_AuthenticateStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String phoneNumber,
+      {String userId,
+      String phoneNumber,
       String password,
       bool isAuthenticated,
       String? role,
@@ -870,6 +878,7 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? userId = freezed,
     Object? phoneNumber = freezed,
     Object? password = freezed,
     Object? isAuthenticated = freezed,
@@ -877,6 +886,10 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
     Object? errorMessage = freezed,
   }) {
     return _then(_$_AuthenticateState(
+      userId: userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -905,12 +918,15 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
 
 class _$_AuthenticateState implements _AuthenticateState {
   const _$_AuthenticateState(
-      {required this.phoneNumber,
+      {required this.userId,
+      required this.phoneNumber,
       required this.password,
       required this.isAuthenticated,
       this.role,
       this.errorMessage});
 
+  @override
+  final String userId;
   @override
   final String phoneNumber;
   @override
@@ -924,7 +940,7 @@ class _$_AuthenticateState implements _AuthenticateState {
 
   @override
   String toString() {
-    return 'AuthenticateState(phoneNumber: $phoneNumber, password: $password, isAuthenticated: $isAuthenticated, role: $role, errorMessage: $errorMessage)';
+    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, isAuthenticated: $isAuthenticated, role: $role, errorMessage: $errorMessage)';
   }
 
   @override
@@ -932,6 +948,7 @@ class _$_AuthenticateState implements _AuthenticateState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AuthenticateState &&
+            const DeepCollectionEquality().equals(other.userId, userId) &&
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.password, password) &&
@@ -945,6 +962,7 @@ class _$_AuthenticateState implements _AuthenticateState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(isAuthenticated),
@@ -960,12 +978,15 @@ class _$_AuthenticateState implements _AuthenticateState {
 
 abstract class _AuthenticateState implements AuthenticateState {
   const factory _AuthenticateState(
-      {required final String phoneNumber,
+      {required final String userId,
+      required final String phoneNumber,
       required final String password,
       required final bool isAuthenticated,
       final String? role,
       final String? errorMessage}) = _$_AuthenticateState;
 
+  @override
+  String get userId;
   @override
   String get phoneNumber;
   @override

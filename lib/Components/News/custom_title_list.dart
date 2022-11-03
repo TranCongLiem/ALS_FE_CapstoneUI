@@ -1,18 +1,19 @@
 
 import 'package:capstone_ui/Feature/News/article_screen.dart';
 import 'package:capstone_ui/Feature/News/model/article_model.dart';
+import 'package:capstone_ui/Model/getListKnowledge_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../Feature/News/detail_news.dart';
 
-Widget customTitleList(Article article, BuildContext context) {
+Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
   return InkWell(
     onTap: () {
       Navigator.push(
           context,
           MaterialPageRoute(
-              // builder: ((context) => ArticleScreen(article: article))));
-              builder: ((context) => DetailNewsScreen(article: article))));
+              builder: ((context) =>
+                  DetailKnowledgeCustom(listKnowledge: listKnowledge))));
     },
     child: Container(
       margin: EdgeInsets.all(15.0),
@@ -36,7 +37,7 @@ Widget customTitleList(Article article, BuildContext context) {
             width: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: NetworkImage(article.urlToImage ?? ""),
+                image: NetworkImage(listKnowledge.image ?? ''),
                 fit: BoxFit.cover,
               ),
               borderRadius: BorderRadius.circular(12.0),
@@ -52,7 +53,7 @@ Widget customTitleList(Article article, BuildContext context) {
               borderRadius: BorderRadius.circular(10.0),
             ),
             child: Text(
-              article.source?.name ?? "",
+              listKnowledge.title ?? '',
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -60,7 +61,7 @@ Widget customTitleList(Article article, BuildContext context) {
             height: 8.0,
           ),
           Text(
-            article.title ?? "",
+            listKnowledge.title ?? "",
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
         ],
