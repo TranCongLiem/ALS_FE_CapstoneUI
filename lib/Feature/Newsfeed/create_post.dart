@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'newfeeds.dart';
 
@@ -18,11 +16,25 @@ class CreatePostNewFeed extends StatefulWidget {
 }
 
 class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
-  File? imageselect;
-  final imagePicker = ImagePicker();
+  PlatformFile? pickedFile;
 
   @override
   Widget build(BuildContext context) {
+    Future selectGallery() async {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['jpg', 'png'],
+      );
+      if (result != null) {
+        File file = File(result.files.single.path.toString());
+      } else {
+        return;
+      }
+      setState(() {
+        pickedFile = result.files.first;
+      });
+    }
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -121,36 +133,30 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                             ),
                           ),
                         ),
-                        imageselect != null
-                            ? Card(
-                                margin: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Container(
-                                  height: 300.0,
-                                  child: Image.file(
-                                    imageselect!,
-                                    width: double.infinity,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        "https://www.als.org/sites/default/files/styles/hero_image/public/2020-06/Hero-New-Site_08.jpg?h=be2185f4&itok=qkJVB6S9"),
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              )
+                        if (pickedFile != null)
+                          Card(
+                            margin: EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Container(
+                              height: 300.0,
+                              child: Image.file(
+                                File(pickedFile!.path!),
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                              // decoration: BoxDecoration(
+                              //     image: DecorationImage(
+                              //         image: NetworkImage(
+                              //             "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
+                              //         fit: BoxFit.cover)),
+                            ),
+                          )
                       ],
                     ),
                   ),
                   Container(
                     // margin: EdgeInsets.only(bottom: 15.0),
                     child: ElevatedButton(
-                      onPressed: () {
-                        selectGallery();
-                      },
+                      onPressed: selectGallery,
                       child: Text(
                         'Tải ảnh',
                         style: TextStyle(fontSize: 24.0),
@@ -194,20 +200,5 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
         // ),
       ),
     );
-  }
-
-  Future selectGallery() async {
-    try {
-      final image = await imagePicker.pickImage(source: ImageSource.gallery);
-      if (image == null) {
-        return;
-      }
-      final imageselect2 = File(image.path);
-      setState(() {
-        this.imageselect = imageselect2;
-      });
-    } on PlatformException catch (e) {
-      print('Fail : $e');
-    }
   }
 }
