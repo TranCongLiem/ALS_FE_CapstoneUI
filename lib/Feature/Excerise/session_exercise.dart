@@ -24,19 +24,8 @@ class SessionExercise extends StatefulWidget {
 class _SessionExerciseState extends State<SessionExercise> {
   bool isChecked = false;
   String category_in_Session = '';
-  // late CategoryExercise categoryExercise;
   Future LoadExBycate(String cate) async {
     category_in_Session = cate;
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // LoadExBycate(widget.listCategorysOfExercise.elementAt(1).categoryId.toString());
-    //LoadExBycate('3FA85F64-5717-4562-B3FC-2C963F66AFA5');
-    //  categoryExercise= CategoryExercise(
-    //       categoryId: '', categoryImage: '', categoryName: 'Tất cả');
   }
 
   @override
@@ -54,17 +43,15 @@ class _SessionExerciseState extends State<SessionExercise> {
                 RepositoryProvider.of<ExerciseService>(context))
               ..add(LoadAllExerciseEvent())),
       ],
-      child: SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
+          leading: BackButton(color: Colors.white),
+          backgroundColor: greenALS,
           title: Text(
             'Tạo buổi tập',
             style: TextStyle(
-                color: Colors.black54,
-                fontSize: 26.0,
+                color: Colors.white,
+                fontSize: 24.0,
                 fontWeight: FontWeight.w500),
           ),
         ),
@@ -72,15 +59,11 @@ class _SessionExerciseState extends State<SessionExercise> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              height: 50,
+              height: MediaQuery.of(context).size.height * 0.05,
               child: Expanded(
-                //oke
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
                   if (state is CategoryExerciseLoadedState) {
-                   
-                    
-
                     return ListView(
                       physics: ClampingScrollPhysics(),
                       children: [
@@ -91,7 +74,6 @@ class _SessionExerciseState extends State<SessionExercise> {
                               padding: EdgeInsets.only(left: 16),
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, index) {
-                                // return CustomCategoryListInSession(state.list[index], context);
                                 bool select = true;
                                 return Container(
                                   margin: EdgeInsets.only(right: 16),
@@ -104,7 +86,6 @@ class _SessionExerciseState extends State<SessionExercise> {
                                           category_in_Session =
                                               state.list[index].categoryId ??
                                                   '';
-
                                           BlocProvider.of<ExerciseBlocBloc>(
                                                   context)
                                               .add(LoadExerciseByCateEvent(
@@ -122,7 +103,7 @@ class _SessionExerciseState extends State<SessionExercise> {
                                         textAlign: TextAlign.center,
                                         //category_in_Session = state.list[index].categoryName,
                                         style: TextStyle(
-                                            fontSize: 26,
+                                            fontSize: 23,
                                             fontWeight: FontWeight.w500,
                                             color: (select == false)
                                                 ? Colors.white
@@ -138,7 +119,6 @@ class _SessionExerciseState extends State<SessionExercise> {
                     child: CircularProgressIndicator(),
                   );
                 }),
-                //--//oke
               ),
             ),
             SizedBox(
@@ -148,7 +128,7 @@ class _SessionExerciseState extends State<SessionExercise> {
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                primary: greenALS,
+                backgroundColor: greenALS,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
@@ -164,7 +144,7 @@ class _SessionExerciseState extends State<SessionExercise> {
             ),
           ],
         ),
-      )),
+      ),
     );
   }
 }
@@ -175,10 +155,7 @@ Widget ListExceriseByCateInSession(BuildContext context) {
       children: [
         Expanded(child: BlocBuilder<ExerciseBlocBloc, ExerciseBlocState>(
             builder: (context, state) {
-          print('abc' + state.toString());
           if (state is ExerciseLoadedState) {
-            print('Print ExState');
-
             return ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.list.length,

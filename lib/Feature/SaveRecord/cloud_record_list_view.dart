@@ -123,13 +123,104 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                 child: IconButton(
                                   icon: Icon(Icons.delete),
                                   onPressed: () {
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent.getRecordId(widget
-                                            .references[index].recordId
-                                            .toString()));
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent
-                                            .removeRecordRequest());
+                                    // context.read<RemoveRecordBloc>().add(
+                                    //     RemoveRecordEvent.getRecordId(widget
+                                    //         .references[index].recordId
+                                    //         .toString()));
+                                    // context.read<RemoveRecordBloc>().add(
+                                    //     RemoveRecordEvent
+                                    //         .removeRecordRequest());
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Scaffold(
+                                          backgroundColor: Colors.transparent,
+                                          body: AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                            ),
+                                            buttonPadding: EdgeInsets.all(10.0),
+                                            contentPadding:
+                                                EdgeInsets.all(30.0),
+                                            title: Text(
+                                              'Xác nhận',
+                                              style: TextStyle(
+                                                  fontSize: 21.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            content: Text(
+                                              'Bạn có muốn xóa bản ghi này?',
+                                              style: TextStyle(fontSize: 19.0),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('HỦY'),
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.red),
+                                                onPressed: () {
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .getRecordId(widget
+                                                              .references[index]
+                                                              .recordId
+                                                              .toString()));
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .removeRecordRequest());
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'XÓA',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+                                    // AnimatedButton(
+                                    //   text:
+                                    //       'Warning Dialog With Custom BTN Style',
+                                    //   pressEvent: () {
+                                    // AwesomeDialog(
+                                    //   context: context,
+                                    //   dialogType: DialogType.warning,
+                                    //   headerAnimationLoop: false,
+                                    //   animType: AnimType.bottomSlide,
+                                    //   title: 'Xác nhận',
+                                    //   desc: 'Bạn có muốn xóa bản ghi này?',
+                                    //   buttonsTextStyle:
+                                    //       const TextStyle(color: Colors.black),
+                                    //   showCloseIcon: false,
+                                    //   btnCancelOnPress: () {
+                                    //     Navigator.of(context).pop();
+                                    //   },
+                                    //   btnOkOnPress: () {
+                                    //     context.read<RemoveRecordBloc>().add(
+                                    //         RemoveRecordEvent.getRecordId(widget
+                                    //             .references[index].recordId
+                                    //             .toString()));
+                                    //     context.read<RemoveRecordBloc>().add(
+                                    //         RemoveRecordEvent
+                                    //             .removeRecordRequest());
+                                    //     Navigator.pop(context);
+                                    //   },
+                                    // ).show();
+                                    //   },
+                                    // );
                                   },
                                   color: Colors.white,
                                 ),

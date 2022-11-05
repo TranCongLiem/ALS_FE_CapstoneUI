@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../../Model/getListPost_model.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 Widget customePostList(ListPost listPost, BuildContext context) {
+  DateTime time = DateTime.parse(listPost.createDate ?? '');
+  timeago.setLocaleMessages('vi', timeago.ViMessages());
   return Card(
     margin: EdgeInsets.symmetric(
       vertical: 5.0,
@@ -43,7 +44,9 @@ Widget customePostList(ListPost listPost, BuildContext context) {
                                 fontWeight: FontWeight.w500, fontSize: 20.0),
                           ),
                           Text(
-                            listPost.createDate ?? '',
+                            // listPost.createDate ?? '',
+
+                            timeago.format(time, locale: 'vi'),
                             style: TextStyle(
                               color: Colors.grey[600],
                               fontSize: 12.0,
@@ -119,11 +122,21 @@ Widget customePostList(ListPost listPost, BuildContext context) {
                               children: [
                                 Icon(
                                   Icons.favorite,
-                                  color: Colors.grey[600],
-                                  size: 20.0,
+                                  color: (listPost.checkReact == true)
+                                      ? Colors.redAccent
+                                      : Colors.grey[600],
+                                  size: 28.0,
                                 ),
                                 const SizedBox(width: 4.0),
-                                Text('Thích'),
+                                Text(
+                                  'Thích',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w500,
+                                      color: (listPost.checkReact == true)
+                                          ? Colors.redAccent
+                                          : Colors.grey[600]),
+                                ),
                               ],
                             ),
                           ),
