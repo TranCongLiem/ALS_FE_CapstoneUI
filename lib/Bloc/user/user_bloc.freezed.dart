@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -28,7 +28,7 @@ mixin _$UserEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -38,7 +38,7 @@ mixin _$UserEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -110,6 +110,7 @@ abstract class _$$_UpdateProfilePatientRequestCopyWith<$Res> {
           _$_UpdateProfilePatientRequest value,
           $Res Function(_$_UpdateProfilePatientRequest) then) =
       __$$_UpdateProfilePatientRequestCopyWithImpl<$Res>;
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -124,58 +125,81 @@ class __$$_UpdateProfilePatientRequestCopyWithImpl<$Res>
   @override
   _$_UpdateProfilePatientRequest get _value =>
       super._value as _$_UpdateProfilePatientRequest;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_UpdateProfilePatientRequest(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
-  const _$_UpdateProfilePatientRequest();
+  const _$_UpdateProfilePatientRequest(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'UserEvent.updateProfilePatientRequest()';
+    return 'UserEvent.updateProfilePatientRequest(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateProfilePatientRequest);
+            other is _$_UpdateProfilePatientRequest &&
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateProfilePatientRequestCopyWith<_$_UpdateProfilePatientRequest>
+      get copyWith => __$$_UpdateProfilePatientRequestCopyWithImpl<
+          _$_UpdateProfilePatientRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function() updateProfilePatientCheckRequested,
     required TResult Function() setStateFlase,
   }) {
-    return updateProfilePatientRequest();
+    return updateProfilePatientRequest(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function()? updateProfilePatientCheckRequested,
     TResult Function()? setStateFlase,
   }) {
-    return updateProfilePatientRequest?.call();
+    return updateProfilePatientRequest?.call(userId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -184,7 +208,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     required TResult orElse(),
   }) {
     if (updateProfilePatientRequest != null) {
-      return updateProfilePatientRequest();
+      return updateProfilePatientRequest(userId);
     }
     return orElse();
   }
@@ -243,7 +267,13 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
 }
 
 abstract class _UpdateProfilePatientRequest implements UserEvent {
-  const factory _UpdateProfilePatientRequest() = _$_UpdateProfilePatientRequest;
+  const factory _UpdateProfilePatientRequest(final String userId) =
+      _$_UpdateProfilePatientRequest;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_UpdateProfilePatientRequestCopyWith<_$_UpdateProfilePatientRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -291,7 +321,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -304,7 +334,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -317,7 +347,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -452,7 +482,7 @@ class _$_GetFullName implements _GetFullName {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -465,7 +495,7 @@ class _$_GetFullName implements _GetFullName {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -478,7 +508,7 @@ class _$_GetFullName implements _GetFullName {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -618,7 +648,7 @@ class _$_GetAddress implements _GetAddress {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -631,7 +661,7 @@ class _$_GetAddress implements _GetAddress {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -644,7 +674,7 @@ class _$_GetAddress implements _GetAddress {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -766,7 +796,7 @@ class _$_UpdateProfilePatientCheckRequested
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -779,7 +809,7 @@ class _$_UpdateProfilePatientCheckRequested
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -792,7 +822,7 @@ class _$_UpdateProfilePatientCheckRequested
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -904,7 +934,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -917,7 +947,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -930,7 +960,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function()? getProfileUserByIdRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,

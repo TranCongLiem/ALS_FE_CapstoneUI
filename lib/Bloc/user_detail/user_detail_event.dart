@@ -5,6 +5,9 @@ abstract class GetDeatailBlocEvent {
 }
 
 class LoadDetailUserEvent extends GetDeatailBlocEvent {
+  final String userId;
+
+LoadDetailUserEvent({required this.userId});
   @override
   // TODO: implement props
   String get props => '';

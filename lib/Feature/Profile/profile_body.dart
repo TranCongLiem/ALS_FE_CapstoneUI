@@ -84,7 +84,7 @@ import '../../services/api_User.dart';
 //     );
 //   }
 // }
-Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel, BuildContext context ){
+Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel, BuildContext context){
   return SizedBox(
     height: 240,
                 child: Stack(

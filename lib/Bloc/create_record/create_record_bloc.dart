@@ -16,7 +16,7 @@ class CreateRecordBloc extends Bloc<CreateRecordEvent, CreateRecordState> {
   CreateRecordBloc(this._recordService) : super(CreateRecordState.initial()) {
     on<_CreateRecordRequest>((event, emit) async {
       CreateRecordReQuestModel reqModel = CreateRecordReQuestModel(
-          userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',
+          userId: event.userId,
           recordName: state.recordName,
           linkAudio: state.linkAudio);
       final result = await _recordService.createRecord(reqModel);

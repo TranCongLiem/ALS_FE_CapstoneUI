@@ -15,11 +15,12 @@ import 'catalog.dart';
 import 'home_view.dart';
 
 class CloudRecordListView extends StatefulWidget {
-  //final List<Reference> references;
+  
   final List<RecordById> references;
+  final String userId;
   const CloudRecordListView({
     Key? key,
-    required this.references,
+    required this.references,required this.userId
   }) : super(key: key);
 
   @override
@@ -123,13 +124,67 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                 child: IconButton(
                                   icon: Icon(Icons.delete),
                                   onPressed: () {
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent.getRecordId(widget
-                                            .references[index].recordId
-                                            .toString()));
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent
-                                            .removeRecordRequest());
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Scaffold(
+                                          backgroundColor: Colors.transparent,
+                                          body: AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                            ),
+                                            buttonPadding: EdgeInsets.all(10.0),
+                                            contentPadding:
+                                                EdgeInsets.all(30.0),
+                                            title: Text(
+                                              'Xác nhận',
+                                              style: TextStyle(
+                                                  fontSize: 21.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            content: Text(
+                                              'Bạn có muốn xóa bản ghi này?',
+                                              style: TextStyle(fontSize: 19.0),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text('HỦY'),
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.red),
+                                                onPressed: () {
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .getRecordId(widget
+                                                              .references[index]
+                                                              .recordId
+                                                              .toString()));
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .removeRecordRequest());
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'XÓA',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
                                   },
                                   color: Colors.white,
                                 ),
@@ -151,7 +206,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index);
+                                        widget.references[index], index,widget.userId);
                                   },
                                   icon: selectedIndex == index
                                       ? Icon(Icons.pause, size: 80.0)
@@ -185,7 +240,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   }
 
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index) async {
+      RecordById recordById, int index,String userId) async {
     if (selectedIndex == index) {
       setState(() {
         audioPlayer.stop();
@@ -201,6 +256,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       Reference pathReference = FirebaseStorage.instance
           .ref()
           .child('upload-voice-firebase')
+          .child(userId)
           .child(recordById.linkAudio ?? '');
       audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
       audioPlayer.onPlayerCompletion.listen((duration) {

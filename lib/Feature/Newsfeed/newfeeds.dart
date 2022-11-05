@@ -13,7 +13,7 @@ import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import '../../services/api_Post.dart';
 
 class NewFeed extends StatefulWidget {
-  const NewFeed({super.key});
+  const NewFeed({Key? key}) : super(key: key);
 
   @override
   State<NewFeed> createState() => _NewFeedState();

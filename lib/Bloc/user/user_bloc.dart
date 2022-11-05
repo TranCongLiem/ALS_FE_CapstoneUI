@@ -13,7 +13,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc(this._userService) : super(UserState.initial()) {
     on<_UpdateProfilePatientRequest>((event, emit) async {
       UpdateProfilePatientRequestModel reqModel = UpdateProfilePatientRequestModel(
-        userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',address: state.address,fullName: state.fullName);
+        userId: event.userId,address: state.address,fullName: state.fullName);
       final result = await _userService.updateProfilePatient(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(

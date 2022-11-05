@@ -12,7 +12,7 @@ class RecordAdminBlocInitial extends RecordAdminBlocState {
 class RecordLoadedAdminState extends RecordAdminBlocState {
 
   List<RecordById> list;
-  
+  // String userId;
   RecordLoadedAdminState(this.list);
   @override
   // TODO: implement props

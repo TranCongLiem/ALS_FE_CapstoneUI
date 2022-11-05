@@ -1,10 +1,13 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/SaveRecord/feature_buttons_view_text.dart';
 import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -52,39 +55,41 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<CreateRecordBloc, CreateRecordState>(
-        listener: (context, state) {
-      if (state.isCreated) {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return ScaleTransition(
-                alignment: Alignment.center,
-                scale: Tween<double>(begin: 0.1, end: 1).animate(
-                  CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.bounceIn,
-                  ),
-                ),
-                child: child,
-              );
-            },
-            transitionDuration: Duration(seconds: 1),
-            pageBuilder: (BuildContext context, Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              context
-                  .read<CreateRecordBloc>()
-                  .add(CreateRecordEvent.setStateFlase());
-              return HomeViewRecord();
-            },
-          ),
-        );
-      }
-    }, builder: (context, state) {
-      return Center(
-          child: Scaffold(
+    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
+      builder: (context, state2) {
+        return BlocConsumer<CreateRecordBloc, CreateRecordState>(
+            listener: (context, state) {
+          if (state.isCreated) {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return ScaleTransition(
+                    alignment: Alignment.center,
+                    scale: Tween<double>(begin: 0.1, end: 1).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.bounceIn,
+                      ),
+                    ),
+                    child: child,
+                  );
+                },
+                transitionDuration: Duration(seconds: 1),
+                pageBuilder: (BuildContext context, Animation<double> animation,
+                    Animation<double> secondaryAnimation) {
+                  context
+                      .read<CreateRecordBloc>()
+                      .add(CreateRecordEvent.setStateFlase());
+                  return HomeViewRecord();
+                },
+              ),
+            );
+          }
+        }, builder: (context, state) {
+          return Center(
+              child: Scaffold(
             appBar: AppBar(
               elevation: 0.0,
               centerTitle: true,
@@ -101,8 +106,8 @@ class _SaveRecordingState extends State<SaveRecording> {
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
                       'Bạn sẽ tạo bản ghi bằng:',
-                      style:
-                          TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          fontSize: 25.0, fontWeight: FontWeight.w500),
                     ),
                   ),
                   Padding(
@@ -139,13 +144,16 @@ class _SaveRecordingState extends State<SaveRecording> {
                       isSelected: isSelected,
                     ),
                   ),
-                  if (isSelected[0]) getGraphWidget(), //văn bản
+                  if (isSelected[0]) getGraphWidget(state2.userId.toString()),
+                  //văn bản
                   if (isSelected[1]) getGraphWidget2(), //giọng nói
                 ],
               ),
             ),
           ));
-    });
+        });
+      },
+    );
   }
 
   Future<void> _onUploadComplete() async {
@@ -157,7 +165,7 @@ class _SaveRecordingState extends State<SaveRecording> {
     });
   }
 
-  Widget getGraphWidget() {
+  Widget getGraphWidget(String userId) {
     return BlocConsumer<CreateRecordBloc, CreateRecordState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -170,19 +178,19 @@ class _SaveRecordingState extends State<SaveRecording> {
               Padding(
                 padding: EdgeInsets.all(10),
                 child: TextField(
-                    decoration: InputDecoration(
-                        labelText: outputText,
-                        suffixIcon: Icon(Icons.type_specimen),
-                        border: myinputborder(),
-                        enabledBorder: myinputborder(),
-                        focusedBorder: myfocusborder(),
-                        labelStyle: TextStyle(fontSize: 20.0)),
-                        onChanged: (value) {
+                  decoration: InputDecoration(
+                      labelText: outputText,
+                      suffixIcon: Icon(Icons.type_specimen),
+                      border: myinputborder(),
+                      enabledBorder: myinputborder(),
+                      focusedBorder: myfocusborder(),
+                      labelStyle: TextStyle(fontSize: 20.0)),
+                  onChanged: (value) {
                     context
                         .read<CreateRecordBloc>()
                         .add(CreateRecordEvent.recordNameChanged(value));
                   },
-                        ),
+                ),
               ),
               Padding(
                 padding: EdgeInsets.all(10),
@@ -198,38 +206,30 @@ class _SaveRecordingState extends State<SaveRecording> {
                 ),
               ),
               Center(
-                child: _isUploading 
-                ? Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: LinearProgressIndicator()),
-                        Text('Đang lưu trữ...'),
-                      ],
-                    )
-                : Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                    child: Text("Lưu trữ"),
-                    onPressed: () {
-                      speak(textEditingController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                child: 
+                  Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            //  speak(textEditingController.text, userId);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            padding: EdgeInsets.only(
+                                top: 20, bottom: 20, left: 30, right: 30),
+                            primary: greenALS,
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w300),
+                          ),
+                          child: FeatureButtonsViewTextFunction(
+                              onUploadComplete: _onUploadComplete,speakText: textEditingController.text.toString(),
+              ),
+                        ),
                       ),
-                      padding: EdgeInsets.only(
-                          top: 20, bottom: 20, left: 30, right: 30),
-                      primary: greenALS,
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
@@ -238,19 +238,18 @@ class _SaveRecordingState extends State<SaveRecording> {
     );
   }
 
-  speak(String text) async {
+  speak(String text, String userId) async {
     String filepath = DateTime.now().millisecondsSinceEpoch.toString();
-    String filepath2 = filepath + '.acc';
+    String filepath2 = filepath + '.aac';
     await flutterTts.setLanguage("vi-VN");
     await flutterTts.speak(text);
-    await flutterTts.synthesizeToFile(text, filepath2);
-    String filepath3 =
-        '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
-            filepath2;
-    _onFileUploadButtonPressed(filepath3);
+    setState(() {
+      flutterTts.synthesizeToFile(text, filepath2);
+    });
+    await _onFileUploadButtonPressed(filepath2, userId);
     context
-          .read<CreateRecordBloc>()
-          .add(CreateRecordEvent.linkAudioChanged(filepath));
+        .read<CreateRecordBloc>()
+        .add(CreateRecordEvent.linkAudioChanged(filepath));
   }
 
   Widget getGraphWidget2() {
@@ -384,20 +383,24 @@ class _SaveRecordingState extends State<SaveRecording> {
     });
   }
 
-  Future<void> _onFileUploadButtonPressed(String filepath) async {
+  Future<void> _onFileUploadButtonPressed(
+      String filepath, String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     setState(() {
       _isUploading = true;
     });
     try {
+      print('TNT' + filepath.trim());
+      String filepath3 = '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' + '1667639447029.aac';
       await firebaseStorage
-          .ref('upload-voice-firebase')
-          .child(filepath.substring(filepath.lastIndexOf('/'), filepath.length))
-          .putFile(File(filepath));
-      // ();
+          .ref()
+          .child('upload-voice-firebase')
+          .child(userId)
+          .child(filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
+          .putFile(File(filepath3));
       context
           .read<CreateRecordBloc>()
-          .add(CreateRecordEvent.createRecordRequest());
+          .add(CreateRecordEvent.createRecordRequest(userId));
     } catch (error) {
       print('Error occured while uploading to Firebase ${error.toString()}');
       ScaffoldMessenger.of(context).showSnackBar(

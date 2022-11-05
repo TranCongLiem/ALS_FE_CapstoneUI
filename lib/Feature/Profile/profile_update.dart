@@ -11,7 +11,8 @@ import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 
 class ProfileUpdate extends StatefulWidget {
-  ProfileUpdate({Key? key, required this.getProfileUserByIdResponeModel }) : super(key: key);
+  final String userId;
+  ProfileUpdate({Key? key, required this.getProfileUserByIdResponeModel ,required this.userId}) : super(key: key);
   final GetProfileUserByIdResponeModel getProfileUserByIdResponeModel;
   @override
   State<ProfileUpdate> createState() => _ProfileUpdateState();
@@ -74,7 +75,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     onPressed: () {
                       context
                       .read<UserBloc>()
-                      .add(UserEvent.updateProfilePatientRequest());
+                      .add(UserEvent.updateProfilePatientRequest(widget.userId));
                     },
                     child: Text(
                       'Lưu',
