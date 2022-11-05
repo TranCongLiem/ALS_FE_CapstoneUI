@@ -268,9 +268,5 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       });
     }
     // await audioPlayer.stop();
-
-    })
-    ;
-
   }
 }

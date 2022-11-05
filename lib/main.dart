@@ -114,7 +114,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => ExerciseBlocBloc(
                   RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadExerciseEvent())),
+                ..add(LoadAllExerciseEvent())),
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))),
