@@ -247,6 +247,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
         isPlaying = false;
         selectedIndex = -1;
       });
+
     } else {
       setState(() {
         selectedIndex = index;
@@ -267,5 +268,9 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       });
     }
     // await audioPlayer.stop();
+
+    })
+    ;
+
   }
 }

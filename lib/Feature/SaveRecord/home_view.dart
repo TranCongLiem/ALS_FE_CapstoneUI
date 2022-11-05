@@ -224,6 +224,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     ListResult listResult =
         await firebaseStorage.ref().child('upload-voice-firebase').list();
+
     //upload-voice-firebase/sdasda.acc
     //Reference (Reference(app: [DEFAULT], fullPath: upload-voice-firebase/1663767506989.aac))
     //List (4 items)
@@ -233,6 +234,9 @@ class _HomeViewRecordState extends State<HomeViewRecord>
 
     print(
         firebaseStorage.ref().child('upload-voice-firebase').list().toString());
+
+        print(listResult);
+
     setState(() {
       references = listResult.items;
     });
