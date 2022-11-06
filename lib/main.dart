@@ -22,6 +22,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
@@ -118,6 +119,11 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))),
+          //---SUPORTER---
+          BlocProvider(
+            create: (context) => BottomNavBarSupporterBloc()
+              ..add(BottomNavBarSupporterItemSelected(0)),
+          ),
         ],
         child: MaterialApp(
           theme: ThemeData(
