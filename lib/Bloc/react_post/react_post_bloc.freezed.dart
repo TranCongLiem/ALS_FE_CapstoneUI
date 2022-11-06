@@ -16,52 +16,47 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ReactPostEvent {
+  String get userId => throw _privateConstructorUsedError;
+  String get postId => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) createReactPostRequest,
-    required TResult Function(String userId, bool status)
-        updateReactPostRequest,
-    required TResult Function() checkExistReact,
+    required TResult Function(String userId, String postId, bool status)
+        reactPostRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
+    TResult Function(String userId, String postId, bool status)?
+        reactPostRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
+    TResult Function(String userId, String postId, bool status)?
+        reactPostRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateReactPostRequest value)
-        createReactPostRequest,
-    required TResult Function(_UpdateReactPostRequest value)
-        updateReactPostRequest,
-    required TResult Function(_CheckExistReact value) checkExistReact,
+    required TResult Function(_ReactPostRequest value) reactPostRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
+    TResult Function(_ReactPostRequest value)? reactPostRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
+    TResult Function(_ReactPostRequest value)? reactPostRequest,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ReactPostEventCopyWith<ReactPostEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -70,6 +65,7 @@ abstract class $ReactPostEventCopyWith<$Res> {
   factory $ReactPostEventCopyWith(
           ReactPostEvent value, $Res Function(ReactPostEvent) then) =
       _$ReactPostEventCopyWithImpl<$Res>;
+  $Res call({String userId, String postId, bool status});
 }
 
 /// @nodoc
@@ -80,183 +76,65 @@ class _$ReactPostEventCopyWithImpl<$Res>
   final ReactPostEvent _value;
   // ignore: unused_field
   final $Res Function(ReactPostEvent) _then;
-}
-
-/// @nodoc
-abstract class _$$_CreateReactPostRequestCopyWith<$Res> {
-  factory _$$_CreateReactPostRequestCopyWith(_$_CreateReactPostRequest value,
-          $Res Function(_$_CreateReactPostRequest) then) =
-      __$$_CreateReactPostRequestCopyWithImpl<$Res>;
-  $Res call({String userId});
-}
-
-/// @nodoc
-class __$$_CreateReactPostRequestCopyWithImpl<$Res>
-    extends _$ReactPostEventCopyWithImpl<$Res>
-    implements _$$_CreateReactPostRequestCopyWith<$Res> {
-  __$$_CreateReactPostRequestCopyWithImpl(_$_CreateReactPostRequest _value,
-      $Res Function(_$_CreateReactPostRequest) _then)
-      : super(_value, (v) => _then(v as _$_CreateReactPostRequest));
-
-  @override
-  _$_CreateReactPostRequest get _value =>
-      super._value as _$_CreateReactPostRequest;
 
   @override
   $Res call({
     Object? userId = freezed,
+    Object? postId = freezed,
+    Object? status = freezed,
   }) {
-    return _then(_$_CreateReactPostRequest(
-      userId == freezed
+    return _then(_value.copyWith(
+      userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String,
+      postId: postId == freezed
+          ? _value.postId
+          : postId // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
-
-class _$_CreateReactPostRequest implements _CreateReactPostRequest {
-  const _$_CreateReactPostRequest(this.userId);
-
+abstract class _$$_ReactPostRequestCopyWith<$Res>
+    implements $ReactPostEventCopyWith<$Res> {
+  factory _$$_ReactPostRequestCopyWith(
+          _$_ReactPostRequest value, $Res Function(_$_ReactPostRequest) then) =
+      __$$_ReactPostRequestCopyWithImpl<$Res>;
   @override
-  final String userId;
-
-  @override
-  String toString() {
-    return 'ReactPostEvent.createReactPostRequest(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CreateReactPostRequest &&
-            const DeepCollectionEquality().equals(other.userId, userId));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_CreateReactPostRequestCopyWith<_$_CreateReactPostRequest> get copyWith =>
-      __$$_CreateReactPostRequestCopyWithImpl<_$_CreateReactPostRequest>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String userId) createReactPostRequest,
-    required TResult Function(String userId, bool status)
-        updateReactPostRequest,
-    required TResult Function() checkExistReact,
-  }) {
-    return createReactPostRequest(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
-  }) {
-    return createReactPostRequest?.call(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
-    required TResult orElse(),
-  }) {
-    if (createReactPostRequest != null) {
-      return createReactPostRequest(userId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CreateReactPostRequest value)
-        createReactPostRequest,
-    required TResult Function(_UpdateReactPostRequest value)
-        updateReactPostRequest,
-    required TResult Function(_CheckExistReact value) checkExistReact,
-  }) {
-    return createReactPostRequest(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
-  }) {
-    return createReactPostRequest?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
-    required TResult orElse(),
-  }) {
-    if (createReactPostRequest != null) {
-      return createReactPostRequest(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateReactPostRequest implements ReactPostEvent {
-  const factory _CreateReactPostRequest(final String userId) =
-      _$_CreateReactPostRequest;
-
-  String get userId;
-  @JsonKey(ignore: true)
-  _$$_CreateReactPostRequestCopyWith<_$_CreateReactPostRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $Res call({String userId, String postId, bool status});
 }
 
 /// @nodoc
-abstract class _$$_UpdateReactPostRequestCopyWith<$Res> {
-  factory _$$_UpdateReactPostRequestCopyWith(_$_UpdateReactPostRequest value,
-          $Res Function(_$_UpdateReactPostRequest) then) =
-      __$$_UpdateReactPostRequestCopyWithImpl<$Res>;
-  $Res call({String userId, bool status});
-}
-
-/// @nodoc
-class __$$_UpdateReactPostRequestCopyWithImpl<$Res>
+class __$$_ReactPostRequestCopyWithImpl<$Res>
     extends _$ReactPostEventCopyWithImpl<$Res>
-    implements _$$_UpdateReactPostRequestCopyWith<$Res> {
-  __$$_UpdateReactPostRequestCopyWithImpl(_$_UpdateReactPostRequest _value,
-      $Res Function(_$_UpdateReactPostRequest) _then)
-      : super(_value, (v) => _then(v as _$_UpdateReactPostRequest));
+    implements _$$_ReactPostRequestCopyWith<$Res> {
+  __$$_ReactPostRequestCopyWithImpl(
+      _$_ReactPostRequest _value, $Res Function(_$_ReactPostRequest) _then)
+      : super(_value, (v) => _then(v as _$_ReactPostRequest));
 
   @override
-  _$_UpdateReactPostRequest get _value =>
-      super._value as _$_UpdateReactPostRequest;
+  _$_ReactPostRequest get _value => super._value as _$_ReactPostRequest;
 
   @override
   $Res call({
     Object? userId = freezed,
+    Object? postId = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$_UpdateReactPostRequest(
+    return _then(_$_ReactPostRequest(
       userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+      postId == freezed
+          ? _value.postId
+          : postId // ignore: cast_nullable_to_non_nullable
               as String,
       status == freezed
           ? _value.status
@@ -268,25 +146,28 @@ class __$$_UpdateReactPostRequestCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UpdateReactPostRequest implements _UpdateReactPostRequest {
-  const _$_UpdateReactPostRequest(this.userId, this.status);
+class _$_ReactPostRequest implements _ReactPostRequest {
+  const _$_ReactPostRequest(this.userId, this.postId, this.status);
 
   @override
   final String userId;
+  @override
+  final String postId;
   @override
   final bool status;
 
   @override
   String toString() {
-    return 'ReactPostEvent.updateReactPostRequest(userId: $userId, status: $status)';
+    return 'ReactPostEvent.reactPostRequest(userId: $userId, postId: $postId, status: $status)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UpdateReactPostRequest &&
+            other is _$_ReactPostRequest &&
             const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality().equals(other.postId, postId) &&
             const DeepCollectionEquality().equals(other.status, status));
   }
 
@@ -294,45 +175,41 @@ class _$_UpdateReactPostRequest implements _UpdateReactPostRequest {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(postId),
       const DeepCollectionEquality().hash(status));
 
   @JsonKey(ignore: true)
   @override
-  _$$_UpdateReactPostRequestCopyWith<_$_UpdateReactPostRequest> get copyWith =>
-      __$$_UpdateReactPostRequestCopyWithImpl<_$_UpdateReactPostRequest>(
-          this, _$identity);
+  _$$_ReactPostRequestCopyWith<_$_ReactPostRequest> get copyWith =>
+      __$$_ReactPostRequestCopyWithImpl<_$_ReactPostRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String userId) createReactPostRequest,
-    required TResult Function(String userId, bool status)
-        updateReactPostRequest,
-    required TResult Function() checkExistReact,
+    required TResult Function(String userId, String postId, bool status)
+        reactPostRequest,
   }) {
-    return updateReactPostRequest(userId, status);
+    return reactPostRequest(userId, postId, status);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
+    TResult Function(String userId, String postId, bool status)?
+        reactPostRequest,
   }) {
-    return updateReactPostRequest?.call(userId, status);
+    return reactPostRequest?.call(userId, postId, status);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
+    TResult Function(String userId, String postId, bool status)?
+        reactPostRequest,
     required TResult orElse(),
   }) {
-    if (updateReactPostRequest != null) {
-      return updateReactPostRequest(userId, status);
+    if (reactPostRequest != null) {
+      return reactPostRequest(userId, postId, status);
     }
     return orElse();
   }
@@ -340,163 +217,47 @@ class _$_UpdateReactPostRequest implements _UpdateReactPostRequest {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateReactPostRequest value)
-        createReactPostRequest,
-    required TResult Function(_UpdateReactPostRequest value)
-        updateReactPostRequest,
-    required TResult Function(_CheckExistReact value) checkExistReact,
+    required TResult Function(_ReactPostRequest value) reactPostRequest,
   }) {
-    return updateReactPostRequest(this);
+    return reactPostRequest(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
+    TResult Function(_ReactPostRequest value)? reactPostRequest,
   }) {
-    return updateReactPostRequest?.call(this);
+    return reactPostRequest?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
+    TResult Function(_ReactPostRequest value)? reactPostRequest,
     required TResult orElse(),
   }) {
-    if (updateReactPostRequest != null) {
-      return updateReactPostRequest(this);
+    if (reactPostRequest != null) {
+      return reactPostRequest(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateReactPostRequest implements ReactPostEvent {
-  const factory _UpdateReactPostRequest(
-      final String userId, final bool status) = _$_UpdateReactPostRequest;
+abstract class _ReactPostRequest implements ReactPostEvent {
+  const factory _ReactPostRequest(
+          final String userId, final String postId, final bool status) =
+      _$_ReactPostRequest;
 
+  @override
   String get userId;
+  @override
+  String get postId;
+  @override
   bool get status;
+  @override
   @JsonKey(ignore: true)
-  _$$_UpdateReactPostRequestCopyWith<_$_UpdateReactPostRequest> get copyWith =>
+  _$$_ReactPostRequestCopyWith<_$_ReactPostRequest> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_CheckExistReactCopyWith<$Res> {
-  factory _$$_CheckExistReactCopyWith(
-          _$_CheckExistReact value, $Res Function(_$_CheckExistReact) then) =
-      __$$_CheckExistReactCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_CheckExistReactCopyWithImpl<$Res>
-    extends _$ReactPostEventCopyWithImpl<$Res>
-    implements _$$_CheckExistReactCopyWith<$Res> {
-  __$$_CheckExistReactCopyWithImpl(
-      _$_CheckExistReact _value, $Res Function(_$_CheckExistReact) _then)
-      : super(_value, (v) => _then(v as _$_CheckExistReact));
-
-  @override
-  _$_CheckExistReact get _value => super._value as _$_CheckExistReact;
-}
-
-/// @nodoc
-
-class _$_CheckExistReact implements _CheckExistReact {
-  const _$_CheckExistReact();
-
-  @override
-  String toString() {
-    return 'ReactPostEvent.checkExistReact()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CheckExistReact);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String userId) createReactPostRequest,
-    required TResult Function(String userId, bool status)
-        updateReactPostRequest,
-    required TResult Function() checkExistReact,
-  }) {
-    return checkExistReact();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
-  }) {
-    return checkExistReact?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String userId)? createReactPostRequest,
-    TResult Function(String userId, bool status)? updateReactPostRequest,
-    TResult Function()? checkExistReact,
-    required TResult orElse(),
-  }) {
-    if (checkExistReact != null) {
-      return checkExistReact();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_CreateReactPostRequest value)
-        createReactPostRequest,
-    required TResult Function(_UpdateReactPostRequest value)
-        updateReactPostRequest,
-    required TResult Function(_CheckExistReact value) checkExistReact,
-  }) {
-    return checkExistReact(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
-  }) {
-    return checkExistReact?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateReactPostRequest value)? createReactPostRequest,
-    TResult Function(_UpdateReactPostRequest value)? updateReactPostRequest,
-    TResult Function(_CheckExistReact value)? checkExistReact,
-    required TResult orElse(),
-  }) {
-    if (checkExistReact != null) {
-      return checkExistReact(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CheckExistReact implements ReactPostEvent {
-  const factory _CheckExistReact() = _$_CheckExistReact;
 }
 
 /// @nodoc

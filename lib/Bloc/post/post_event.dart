@@ -5,11 +5,8 @@ abstract class PostBlocEvent {
 }
 
 class LoadPostEvent extends PostBlocEvent{
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-
-}class LoadPostEventByAdmin extends PostBlocEvent{
+  final String userId;
+  const LoadPostEvent({required this.userId});
   @override
   // TODO: implement props
   List<Object?> get props => [];

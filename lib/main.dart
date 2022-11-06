@@ -24,9 +24,11 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
+import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
 import 'firebase_options.dart';
+import 'services/api_ReactPost.dart';
 import 'services/api_User.dart';
 // import 'Login/login_screen.dart';
 
@@ -71,6 +73,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => PostService(),
+        ),
+        RepositoryProvider(
+          create: (context) => ReactPostService(),
         )
       ],
       child: MultiBlocProvider(
@@ -95,6 +100,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   PostBlocBloc(RepositoryProvider.of<PostService>(context))),
+          BlocProvider(
+              create: (context) =>
+                  ReactPostBloc(RepositoryProvider.of<ReactPostService>(context))),
           BlocProvider(
             create: (context) =>
                 CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),

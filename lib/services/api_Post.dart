@@ -10,8 +10,8 @@ class PostService {
       "https://als.cosplane.asia/api/post/";
   static bool isCreatedPost = false;
 
-  Future<List<ListPost>> getAllPost() async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetAllPostMobile?userId=B9C5D58B-45A4-4E71-800B-ECE47CEED913"));
+  Future<List<ListPost>> getAllPost(String userId) async {
+    final response = await http.get(Uri.parse(endPointUrl + "GetAllPostMobile?userId=" + userId));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 
