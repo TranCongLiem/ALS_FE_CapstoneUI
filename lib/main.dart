@@ -22,6 +22,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'Bloc/create_post/create_post_bloc.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
@@ -103,6 +104,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) =>
                   ReactPostBloc(RepositoryProvider.of<ReactPostService>(context))),
+          BlocProvider(
+              create: (context) =>
+                  CreatePostBloc(RepositoryProvider.of<PostService>(context))),
           BlocProvider(
             create: (context) =>
                 CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),

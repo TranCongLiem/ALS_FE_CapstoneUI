@@ -77,7 +77,7 @@ class _NewFeedState extends State<NewFeed> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Create()));
+                                                    CreatePostNewFeed()));
                                       },
                                       child: Text(
                                         'Bạn đang nghĩ gì',

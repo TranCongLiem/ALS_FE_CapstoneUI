@@ -11,7 +11,6 @@ import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:request_permission/request_permission.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -34,7 +33,6 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   List<bool> isSelected = [false, true];
   List<Reference> references = [];
-  RequestPermission requestPermission = RequestPermission.instace;
 
   //voice-to-text
   String outputText = 'Mô tả';
@@ -278,8 +276,8 @@ class _SaveRecordingState extends State<SaveRecording> {
             padding: const EdgeInsets.all(20.0),
             child: ElevatedButton(
               onPressed: () {
-                requestPermission.requestAndroidPermission(
-                    "android.permission.RECORD_AUDIO");
+                // requestPermission.requestAndroidPermission(
+                //     "android.permission.RECORD_AUDIO");
               },
               style: ElevatedButton.styleFrom(
                   // backgroundColor: greenALS,

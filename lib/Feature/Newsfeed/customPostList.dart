@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/react_post/react_post_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,8 +23,8 @@ class _CustomPostListState extends State<CustomPostList> {
   @override
   void initState() {
     super.initState();
-    checkReact = widget.listPost.checkReact; 
-    countReact = widget.listPost.countReact ?? 0; 
+    checkReact = widget.listPost.checkReact;
+    countReact = widget.listPost.countReact ?? 0;
   }
 
   @override
@@ -158,26 +159,29 @@ class _CustomPostListState extends State<CustomPostList> {
                                                                 diableReactPost(
                                                                     state2
                                                                         .userId,
-                                                                    widget.listPost.postId.toString());
+                                                                    widget
+                                                                        .listPost
+                                                                        .postId
+                                                                        .toString());
                                                               });
                                                             },
                                                             icon: Icon(
                                                               Icons.favorite,
-                                                              color: Colors.redAccent,
+                                                              color: Colors
+                                                                  .redAccent,
                                                               size: 28.0,
                                                             )),
                                                         const SizedBox(
                                                             width: 4.0),
-                                                        Text(
-                                                          'Thích',
-                                                          style: TextStyle(
+                                                        Text('Thích',
+                                                            style: TextStyle(
                                                               fontSize: 20.0,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                              color: Colors.redAccent,
-                                                          )
-                                                        ),
+                                                              color: Colors
+                                                                  .redAccent,
+                                                            )),
                                                       ],
                                                     )
                                                   : Row(
@@ -188,12 +192,16 @@ class _CustomPostListState extends State<CustomPostList> {
                                                                 enableReactPost(
                                                                     state2
                                                                         .userId,
-                                                                    widget.listPost.postId.toString());
+                                                                    widget
+                                                                        .listPost
+                                                                        .postId
+                                                                        .toString());
                                                               });
                                                             },
                                                             icon: Icon(
                                                               Icons.favorite,
-                                                              color: Colors.grey[600],
+                                                              color: Colors
+                                                                  .grey[600],
                                                               size: 28.0,
                                                             )),
                                                         const SizedBox(
@@ -205,7 +213,8 @@ class _CustomPostListState extends State<CustomPostList> {
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500,
-                                                              color: Colors.grey[600]),
+                                                              color: Colors
+                                                                  .grey[600]),
                                                         ),
                                                       ],
                                                     )),
@@ -231,23 +240,22 @@ class _CustomPostListState extends State<CustomPostList> {
   }
 
   Future<void> enableReactPost(String userId, String postId) async {
-      context
-          .read<ReactPostBloc>()
-          .add(ReactPostEvent.reactPostRequest(userId, postId, true));
-      setState(() {
-        checkReact = true;
-        countReact++;
-      });
+    context
+        .read<ReactPostBloc>()
+        .add(ReactPostEvent.reactPostRequest(userId, postId, true));
+    setState(() {
+      checkReact = true;
+      countReact++;
+    });
   }
 
   Future<void> diableReactPost(String userId, String postId) async {
-       context
-          .read<ReactPostBloc>()
-          .add(ReactPostEvent.reactPostRequest(userId, postId, false));
-      setState(() {
-        checkReact = false;
-        countReact--;
-      });
+    context
+        .read<ReactPostBloc>()
+        .add(ReactPostEvent.reactPostRequest(userId, postId, false));
+    setState(() {
+      checkReact = false;
+      countReact--;
+    });
   }
-
 }
