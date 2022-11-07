@@ -1,11 +1,9 @@
-import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-
 import '../../Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
+import 'NavItem_supporter.dart';
 
 class MyBottomNavBarSupporter extends StatelessWidget {
   const MyBottomNavBarSupporter({Key? key, this.index}) : super(key: key);
@@ -25,13 +23,14 @@ class MyBottomNavBarSupporter extends StatelessWidget {
           selectedFontSize: 15,
           iconSize: 30.0,
           onTap: (index) {
-            if (NavItems().items[index].destinationChecker()) {
+            if (NavItemsSupporter().items[index].destinationChecker()) {
               BlocProvider.of<BottomNavBarSupporterBloc>(context)
                   .add(BottomNavBarSupporterItemSelected(index));
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NavItems().items[index].destination!,
+                  builder: (context) =>
+                      NavItemsSupporter().items[index].destination!,
                 ),
               );
             }

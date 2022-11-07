@@ -1,25 +1,16 @@
 import 'dart:math';
-
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
-import 'package:capstone_ui/Components/Feature/Excerise/Excerise/category_ex.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
-import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
-import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Feature/Excerise/session_exercise.dart';
-import 'package:capstone_ui/Bloc/exercise/exercise_bloc_bloc.dart';
-import 'package:capstone_ui/Feature/TextToSpeech/TextToSpeech.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
-import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
-import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -163,10 +154,7 @@ class _ListExceriseState extends State<ListExcerise> {
               Expanded(
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
-                  print('abc' + state.toString());
                   if (state is CategoryExerciseLoadedState) {
-                    print('Print ExState');
-
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: state.list.length,

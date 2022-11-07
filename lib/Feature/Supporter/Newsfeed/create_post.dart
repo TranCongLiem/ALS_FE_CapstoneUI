@@ -1,21 +1,20 @@
 import 'dart:io';
-
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'newfeeds.dart';
 
-class CreatePostNewFeed extends StatefulWidget {
-  const CreatePostNewFeed({super.key});
+class CreatePostNewFeedSupporter extends StatefulWidget {
+  const CreatePostNewFeedSupporter({super.key});
 
   @override
-  State<CreatePostNewFeed> createState() => _CreatePostNewFeedState();
+  State<CreatePostNewFeedSupporter> createState() =>
+      _CreatePostNewFeedSupporterState();
 }
 
-class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
+class _CreatePostNewFeedSupporterState
+    extends State<CreatePostNewFeedSupporter> {
   PlatformFile? pickedFile;
 
   @override
@@ -59,7 +58,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => NewFeed()));
+                                    builder: (context) => NewFeedSupporter()));
                           },
                           icon: Icon(
                             Icons.close,
@@ -143,11 +142,6 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                 width: double.infinity,
                                 fit: BoxFit.cover,
                               ),
-                              // decoration: BoxDecoration(
-                              //     image: DecorationImage(
-                              //         image: NetworkImage(
-                              //             "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
-                              //         fit: BoxFit.cover)),
                             ),
                           )
                       ],
@@ -190,14 +184,6 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
             )
           ],
         ),
-        // bottomNavigationBar: Container(
-        //   height: 60.0,
-        //   child: Row(
-        //     children: <Widget>[
-        //       IconButton(onPressed: () {}, icon: Icon(Icons.camera_enhance))
-        //     ],
-        //   ),
-        // ),
       ),
     );
   }

@@ -12,8 +12,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserPatientService _userService;
   UserBloc(this._userService) : super(UserState.initial()) {
     on<_UpdateProfilePatientRequest>((event, emit) async {
-      UpdateProfilePatientRequestModel reqModel = UpdateProfilePatientRequestModel(
-        userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',address: state.address,fullName: state.fullName);
+      UpdateProfilePatientRequestModel reqModel =
+          UpdateProfilePatientRequestModel(
+              userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',
+              address: state.address,
+              fullName: state.fullName);
       final result = await _userService.updateProfilePatient(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -28,7 +31,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<_GetProfileUserByIdRequest>((event, emit) async {
       GetProfileUserByIdRequestModel reqModel = GetProfileUserByIdRequestModel(
-        userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715');
+          userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715');
       final result = await _userService.getProfileUserById(reqModel);
       if (result != null) {
         emit(state.copyWith(
@@ -49,14 +52,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
 
     on<_UpdateProfilePatientCheckRequested>((event, emit) {
-      emit(state.copyWith(isUpdatedProfilePatient: _userService.isUpdatedProfilePatient()));
+      emit(state.copyWith(
+          isUpdatedProfilePatient: _userService.isUpdatedProfilePatient()));
     });
 
     on<_SetStateFlase>((event, emit) {
-        emit(state.copyWith(
-          isUpdatedProfilePatient: false,
-        ));
+      emit(state.copyWith(
+        isUpdatedProfilePatient: false,
+      ));
     });
-
   }
 }

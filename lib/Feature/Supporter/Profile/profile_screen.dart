@@ -1,19 +1,12 @@
+import 'package:capstone_ui/Components/BottomNavBar_Supporter/bottom_nav_bar_supporter.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Profile/profileInfo.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
-import 'package:capstone_ui/Model/getProfileUser_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../Bloc/user_detail/user_detail_bloc.dart';
-import '../../services/api_User.dart';
-// import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
+import '../../../Bloc/user_detail/user_detail_bloc.dart';
+import '../../../services/api_User.dart';
 
 class ProfileSupporter extends StatefulWidget {
   const ProfileSupporter({Key? key}) : super(key: key);
@@ -23,7 +16,6 @@ class ProfileSupporter extends StatefulWidget {
 }
 
 class _ProfileSupporterState extends State<ProfileSupporter> {
-  // int index = 4;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -89,32 +81,10 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                 ],
               ),
             ),
-            bottomNavigationBar: MyBottomNavBar(
-                // index: this.index,
-                ),
+            bottomNavigationBar: MyBottomNavBarSupporter(),
           );
         },
       ),
     );
   }
 }
-
-// class MyBottomNavBar extends StatelessWidget {
-//   MyBottomNavBar({required this.index, required this.callback});
-//   final int index;
-//   final Function(int) callback;
-//   @override
-//   Widget build(BuildContext context) {
-//     /// BottomNavigationBar is automatically set to type 'fixed'
-//     /// when there are three of less items
-//     return BottomNavigationBar(
-//       currentIndex: index,
-//       onTap: callback,
-//       items: <BottomNavigationBarItem>[
-//         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Trang chủ'),
-//         BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Tin tức'),
-//         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tài khoản'),
-//       ],
-//     );
-//   }
-// }

@@ -1,14 +1,8 @@
-import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
-import 'package:capstone_ui/Feature/News/news_screen.dart';
-import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Feature/Profile/profile_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../Feature/Supporter/News/news_screen.dart';
-import '../../Feature/Supporter/Newsfeed/newfeeds.dart';
-import '../../Feature/Supporter/Notification/notify_screen.dart';
-import '../../Feature/Supporter/Profile/profile_screen.dart';
-import '../../Home/home.dart';
+import '../../Feature/supporter/News/news_screen.dart';
+import '../../Feature/supporter/Newsfeed/newfeeds.dart';
+import '../../Feature/supporter/Profile/profile_screen.dart';
+import '../../Feature/supporter/notify/notify_screen.dart';
 
 class NavItemSupporter {
   final int id;
@@ -28,22 +22,15 @@ class NavItemSupporter {
 class NavItemsSupporter extends ChangeNotifier {
   int selectedIndex = 0;
 
-  // void changeNavIndex({int? index}) {
-  //   selectedIndex = index!;
-  //   notifyListeners();
-  // }
-
   List<NavItemSupporter> items = [
     NavItemSupporter(
       id: 1,
       icon: "assets/images/home-svgrepo-com.svg",
-      // destination: HomeScreen(),
       destination: NewFeedSupporter(),
     ),
     NavItemSupporter(
       id: 2,
       icon: "assets/images/home-svgrepo-com.svg",
-      // destination: HomeScreen(),
       destination: Notify(),
     ),
     NavItemSupporter(

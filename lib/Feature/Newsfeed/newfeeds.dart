@@ -1,13 +1,8 @@
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/create.dart';
 import 'package:capstone_ui/Feature/Newsfeed/customPostList.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
-
 import '../../Bloc/post/post_bloc.dart';
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import '../../services/api_Post.dart';
@@ -39,10 +34,7 @@ class _NewFeedState extends State<NewFeed> {
               title: Text('Tin tức'),
               centerTitle: true,
             ),
-            bottomNavigationBar: MyBottomNavBar(
-                // ignore: unnecessary_this
-                // index: this.index,
-                ),
+            bottomNavigationBar: MyBottomNavBar(),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
@@ -73,8 +65,7 @@ class _NewFeedState extends State<NewFeed> {
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                Create()));
+                                            builder: (context) => Create()));
                                   },
                                   child: Text(
                                     'Bạn đang nghĩ gì',

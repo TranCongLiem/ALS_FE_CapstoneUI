@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Model/getListKnowledge_model.dart';
+import '../../../Model/getListKnowledge_model.dart';
 
-class DetailKnowledgeCustom extends StatefulWidget {
-  const DetailKnowledgeCustom({Key? key, required this.listKnowledge})
+class DetailKnowledgeCustomSupporter extends StatefulWidget {
+  const DetailKnowledgeCustomSupporter({Key? key, required this.listKnowledge})
       : super(key: key);
   final ListKnowledge listKnowledge;
   @override
-  State<DetailKnowledgeCustom> createState() => _DetailKnowledgeCustomState();
+  State<DetailKnowledgeCustomSupporter> createState() =>
+      _DetailKnowledgeCustomSupporterState();
 }
 
-class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
+class _DetailKnowledgeCustomSupporterState
+    extends State<DetailKnowledgeCustomSupporter> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

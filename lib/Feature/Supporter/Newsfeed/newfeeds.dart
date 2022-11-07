@@ -8,6 +8,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
 
+import '../../../Bloc/post/post_bloc.dart';
+import '../../../Components/BottomNavBar_Supporter/bottom_nav_bar_supporter.dart';
+import '../../../services/api_Post.dart';
+
+// import '../../Bloc/post/post_bloc.dart';
+// import '../../Components/BottomNavBar/bottom_nav_bar.dart';
+// import '../../services/api_Post.dart';
+
 class NewFeedSupporter extends StatefulWidget {
   const NewFeedSupporter({super.key});
 
@@ -35,10 +43,7 @@ class _NewFeedSupporterState extends State<NewFeedSupporter> {
               title: Text('Tin tức'),
               centerTitle: true,
             ),
-            bottomNavigationBar: MyBottomNavBar(
-                // ignore: unnecessary_this
-                // index: this.index,
-                ),
+            bottomNavigationBar: MyBottomNavBarSupporter(),
             body: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(

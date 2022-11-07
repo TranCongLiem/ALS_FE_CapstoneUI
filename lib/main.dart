@@ -81,6 +81,10 @@ class MyApp extends StatelessWidget {
                 BottomNavBarBloc()..add(BottomNavBarItemSelected(0)),
           ),
           BlocProvider(
+            create: (context) => BottomNavBarSupporterBloc()
+              ..add(BottomNavBarSupporterItemSelected(0)),
+          ),
+          BlocProvider(
             create: (context) =>
                 AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
           ),
