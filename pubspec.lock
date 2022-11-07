@@ -912,13 +912,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
-  request_permission:
-    dependency: "direct main"
-    description:
-      name: request_permission
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.4"
   rxdart:
     dependency: transitive
     description:

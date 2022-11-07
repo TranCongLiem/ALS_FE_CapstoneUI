@@ -71,21 +71,6 @@ class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({Key? key, this.index}) : super(key: key);
   final int? index;
 
-  // void onTapped(int index){
-  //   if(NavItems().items[index].destinationChecker()) {
-  //     Navigator.push(context, )
-  //   }
-  //   navItems.changeNavIndex(index: index);
-  //                       if (navItems.items[index].destinationChecker())
-  //                         Navigator.push(
-  //                           (context),
-  //                           MaterialPageRoute(
-  //                             builder: (context) =>
-  //                                 navItems.items[index].destination!,
-  //                           ),
-  //                         );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BottomNavBarBloc, BottomNavBarState>(

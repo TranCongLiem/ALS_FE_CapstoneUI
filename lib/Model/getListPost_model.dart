@@ -1,5 +1,3 @@
-
-
 class ListPost {
   String? postId;
   String? createDate;
@@ -15,7 +13,15 @@ class ListPost {
   //   this.categoryName,
   //   this.categoryImage
   // );
-  ListPost({this.postId, this.createDate, this.image, this.caption, this.fullNameUser, this.imageUser, this.countReact, this.checkReact});
+  ListPost(
+      {this.postId,
+      this.createDate,
+      this.image,
+      this.caption,
+      this.fullNameUser,
+      this.imageUser,
+      this.countReact,
+      this.checkReact});
 
   factory ListPost.fromJson(Map<String, dynamic> json) {
     return ListPost(

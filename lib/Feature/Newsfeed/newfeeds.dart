@@ -31,7 +31,7 @@ class _NewFeedState extends State<NewFeed> {
             BlocProvider(
                 create: (context) =>
                     PostBlocBloc(RepositoryProvider.of<PostService>(context))
-                      ..add(LoadPostEvent(userId : state.userId))),
+                      ..add(LoadPostEvent(userId: state.userId))),
           ],
           child: MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -77,7 +77,7 @@ class _NewFeedState extends State<NewFeed> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    Create()));
+                                                    CreatePostNewFeed()));
                                       },
                                       child: Text(
                                         'Bạn đang nghĩ gì',

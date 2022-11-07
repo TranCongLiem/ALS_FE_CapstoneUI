@@ -11,7 +11,6 @@ import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:request_permission/request_permission.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -34,7 +33,6 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   List<bool> isSelected = [false, true];
   List<Reference> references = [];
-  RequestPermission requestPermission = RequestPermission.instace;
 
   //voice-to-text
   String outputText = 'Mô tả';
@@ -206,30 +204,30 @@ class _SaveRecordingState extends State<SaveRecording> {
                 ),
               ),
               Center(
-                child: 
-                  Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            //  speak(textEditingController.text, userId);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: EdgeInsets.only(
-                                top: 20, bottom: 20, left: 30, right: 30),
-                            primary: greenALS,
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          child: FeatureButtonsViewTextFunction(
-                              onUploadComplete: _onUploadComplete,speakText: textEditingController.text.toString(),
-              ),
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //  speak(textEditingController.text, userId);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
+                      padding: EdgeInsets.only(
+                          top: 20, bottom: 20, left: 30, right: 30),
+                      primary: greenALS,
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    child: FeatureButtonsViewTextFunction(
+                      onUploadComplete: _onUploadComplete,
+                      speakText: textEditingController.text.toString(),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -277,10 +275,7 @@ class _SaveRecordingState extends State<SaveRecording> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: ElevatedButton(
-              onPressed: () {
-                requestPermission.requestAndroidPermission(
-                    "android.permission.RECORD_AUDIO");
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                   // backgroundColor: greenALS,
                   padding: EdgeInsets.all(8.0),
@@ -391,12 +386,15 @@ class _SaveRecordingState extends State<SaveRecording> {
     });
     try {
       print('TNT' + filepath.trim());
-      String filepath3 = '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' + '1667639447029.aac';
+      String filepath3 =
+          '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
+              '1667639447029.aac';
       await firebaseStorage
           .ref()
           .child('upload-voice-firebase')
           .child(userId)
-          .child(filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
+          .child(
+              filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
           .putFile(File(filepath3));
       context
           .read<CreateRecordBloc>()

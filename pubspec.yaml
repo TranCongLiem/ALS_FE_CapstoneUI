@@ -62,7 +62,6 @@ dependencies:
   firebase_storage: ^11.0.4
   flutter_audio_recorder2: ^0.0.2
   audioplayers: ^0.19.1
-  request_permission: ^2.1.4
   toggle_switch: ^2.0.1
   font_awesome_flutter: ^10.2.1
   getwidget: ^3.0.1
@@ -70,7 +69,6 @@ dependencies:
   freezed: ^2.1.1
   build_runner: ^2.3.0
   freezed_annotation: ^2.1.0
-
   confirm_dialog: ^1.0.1
   cached_network_image: ^3.2.2
   file_picker: ^5.0.0
