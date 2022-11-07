@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Bloc/user_detail/user_detail_bloc.dart';
 import '../../services/api_User.dart';
+import 'profile_listnewsfeed.dart';
 // import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
 
 class Profile extends StatefulWidget {
@@ -90,6 +91,49 @@ class _ProfiletState extends State<Profile> {
                         title: "Đăng xuất",
                         press: () {},
                       ),
+                      SizedBox(
+                    height: 20,
+                  ),
+                  // ProfileMenuItem(
+                  //   iconSrc: "assets/images/logout-svgrepo-com.svg",
+                  //   title: "Lịch sử bài đăng",
+                  //   press: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => ListNewsFeed()));
+                  //   },
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ListNewsFeed()));
+                    },
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      child: Row(
+                        children: [
+                          Icon(Icons.view_agenda),
+                          SizedBox(width: 20),
+                          Text(
+                            'Lịc sử bài đăng',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                     ],
                   ),
                 ),

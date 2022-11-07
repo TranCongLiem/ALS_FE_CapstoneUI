@@ -12,3 +12,11 @@ class LoadPostEvent extends PostBlocEvent{
   List<Object?> get props => [];
 
 }
+class LoadPostByUserIdEvent extends PostBlocEvent{
+  final String userId;
+  const LoadPostByUserIdEvent({required this.userId});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+
+}

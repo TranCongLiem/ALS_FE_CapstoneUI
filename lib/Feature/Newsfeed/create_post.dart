@@ -87,52 +87,55 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                         Color(0xffd2fbd2).withOpacity(0.7),
                       ], begin: Alignment.topCenter)),
                     ),
-                    SafeArea(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => NewFeed()));
-                                  },
-                                  icon: Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                  )),
-                              Text(
-                                'Tạo bài viết',
-                                style: TextStyle(
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                    SingleChildScrollView(
+                      child: SafeArea(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 15.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  IconButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => NewFeed()));
+                                      },
+                                      icon: Icon(
+                                        Icons.close,
+                                        color: Colors.white,
+                                      )),
+                                  Text(
+                                    'Tạo bài viết',
+                                    style: TextStyle(
+                                        fontSize: 22.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      width: 30.0,
+                                      height: 30.0,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                  "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
+                                              fit: BoxFit.cover)),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  width: 30.0,
-                                  height: 30.0,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: NetworkImage(
-                                              "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
-                                          fit: BoxFit.cover)),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Expanded(
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Card(
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom:10.0),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Card(
                                     child: Container(
                                       height:
                                           MediaQuery.of(context).size.height *
@@ -171,15 +174,9 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: <Widget>[
-                                                Text(
-                                                  'Tạo mới',
-                                                  style: TextStyle(
-                                                      color: Colors.grey),
-                                                ),
-                                                Icon(
-                                                  Icons.note_add,
-                                                  color: Colors.grey,
-                                                ),
+                                                Icon(Icons.favorite, color: greenALS,),
+                                                Icon(Icons.favorite, color: greenALS,),
+                                                
                                               ],
                                             ),
                                           )
@@ -187,69 +184,73 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                       ),
                                     ),
                                   ),
-                                ),
-                                imagePath != null
-                                    ? Card(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Container(
-                                          height: 300.0,
-                                          child: Image.file(
-                                            File(imagePath!),
-                                            width: double.infinity,
-                                            fit: BoxFit.cover,
+                                  if(imagePath != null)
+                                      Card(
+                                          child: Container(
+                                            height: MediaQuery.of(context).size.height * 0.3,
+                                            child: Image.file(
+                                              File(imagePath!),
+                                              width: double.infinity,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                        ),
-                                      )
-                                    : Container(
-                                        decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(
-                                                "https://www.als.org/sites/default/files/styles/hero_image/public/2020-06/Hero-New-Site_08.jpg?h=be2185f4&itok=qkJVB6S9"),
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      )
+                                        )
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                 Container(
+                                  color: Colors.grey[400],
+                             padding: EdgeInsets.all(8.0),
+                              child: IconButton(
+                                onPressed: () {
+                                  pickMedia(ImageSource.gallery);
+                                },
+                                icon: Icon(Icons.photo_library_outlined, color: Colors.white, size: 32.0,),
+                              ),
+                            ),
+                            SizedBox(width: 10.0,),
+                            Container(
+                              color: Colors.grey[400],
+                             padding: EdgeInsets.all(8.0),
+                              child: IconButton(
+                                onPressed: () {
+                                  pickMedia(ImageSource.camera);
+                                },
+                                icon: Icon(Icons.camera_alt_rounded, color: Colors.white, size: 32.0,)
+                              ),
+                            ),
                               ],
                             ),
-                          ),
-                          Container(
-                            // margin: EdgeInsets.only(bottom: 15.0),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                pickMedia(ImageSource.gallery);
-                              },
-                              child: Text(
-                                'Tải ảnh',
-                                style: TextStyle(fontSize: 24.0),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(bottom: 10.0),
-                            margin: EdgeInsets.only(top: 20.0),
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                uploadImage();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                primary: greenALS,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(25),
+                           
+                            Container(
+                              padding: EdgeInsets.only(bottom: 10.0),
+                              margin: EdgeInsets.only(top: 20.0),
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  uploadImage();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: greenALS,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  elevation: 15.0,
                                 ),
-                                elevation: 15.0,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(15.0),
-                                child: Text(
-                                  'ĐĂNG BÀI',
-                                  style: TextStyle(fontSize: 20),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text(
+                                    'ĐĂNG BÀI',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     )
                   ],
@@ -279,7 +280,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
       await firebaseStorage
           .ref('upload-image-firebase')
           .child(_imagePath.substring(
-              _imagePath.lastIndexOf('/'), _imagePath.length))
+              _imagePath.lastIndexOf('image_picker'), _imagePath.length))
           .putFile(File(_imagePath));
       context.read<CreatePostBloc>().add(CreatePostEvent.imageChanged(imageDatabase));
       context.read<CreatePostBloc>().add(CreatePostEvent.createPostRequest());
@@ -296,7 +297,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
   void pickMedia(ImageSource source) async {
     XFile? file;
     if (_mediaType == MediaType.image) {
-      file = await ImagePicker().pickImage(source: source);
+      file = await ImagePicker().pickImage(source: source, maxHeight: 480, maxWidth: 640);
     } else {
       file = await ImagePicker().pickVideo(source: source);
     }

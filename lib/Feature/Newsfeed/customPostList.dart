@@ -141,85 +141,80 @@ class _CustomPostListState extends State<CustomPostList> {
                                   color: Colors.white,
                                   child: InkWell(
                                     onTap: () {},
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12.0),
-                                      height: 25.0,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Center(
-                                              child: checkReact ?? false
-                                                  ? Row(
-                                                      children: [
-                                                        IconButton(
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                diableReactPost(
-                                                                    state2
-                                                                        .userId,
-                                                                    widget
-                                                                        .listPost
-                                                                        .postId
-                                                                        .toString());
-                                                              });
-                                                            },
-                                                            icon: Icon(
-                                                              Icons.favorite,
-                                                              color: Colors
-                                                                  .redAccent,
-                                                              size: 28.0,
-                                                            )),
-                                                        const SizedBox(
-                                                            width: 4.0),
-                                                        Text('Thích',
-                                                            style: TextStyle(
-                                                              fontSize: 20.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color: Colors
-                                                                  .redAccent,
-                                                            )),
-                                                      ],
-                                                    )
-                                                  : Row(
-                                                      children: [
-                                                        IconButton(
-                                                            onPressed: () {
-                                                              setState(() {
-                                                                enableReactPost(
-                                                                    state2
-                                                                        .userId,
-                                                                    widget
-                                                                        .listPost
-                                                                        .postId
-                                                                        .toString());
-                                                              });
-                                                            },
-                                                            icon: Icon(
-                                                              Icons.favorite,
-                                                              color: Colors
-                                                                  .grey[600],
-                                                              size: 28.0,
-                                                            )),
-                                                        const SizedBox(
-                                                            width: 4.0),
-                                                        Text(
-                                                          'Thích',
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Center(
+                                            child: checkReact ?? false
+                                                ? Row(
+                                                    children: [
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              diableReactPost(
+                                                                  state2
+                                                                      .userId,
+                                                                  widget
+                                                                      .listPost
+                                                                      .postId
+                                                                      .toString());
+                                                            });
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.favorite,
+                                                            color: Colors
+                                                                .redAccent,
+                                                            size: 28.0,
+                                                          )),
+                                                      const SizedBox(
+                                                          width: 4.0),
+                                                      Text('Thích',
                                                           style: TextStyle(
-                                                              fontSize: 20.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color: Colors
-                                                                  .grey[600]),
-                                                        ),
-                                                      ],
-                                                    )),
-                                        ],
-                                      ),
+                                                            fontSize: 20.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500,
+                                                            color: Colors
+                                                                .redAccent,
+                                                          )),
+                                                    ],
+                                                  )
+                                                : Row(
+                                                    children: [
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              enableReactPost(
+                                                                  state2
+                                                                      .userId,
+                                                                  widget
+                                                                      .listPost
+                                                                      .postId
+                                                                      .toString());
+                                                            });
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.favorite,
+                                                            color: Colors
+                                                                .grey[600],
+                                                            size: 28.0,
+                                                          )),
+                                                      const SizedBox(
+                                                          width: 4.0),
+                                                      Text(
+                                                        'Thích',
+                                                        style: TextStyle(
+                                                            fontSize: 20.0,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w500,
+                                                            color: Colors
+                                                                .grey[600]),
+                                                      ),
+                                                    ],
+                                                  )),
+                                      ],
                                     ),
                                   ),
                                 ),
