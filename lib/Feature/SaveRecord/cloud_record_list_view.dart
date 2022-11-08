@@ -1,27 +1,18 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/remove_record/remove_record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Feature/SaveRecord/Category_List_Record/custom_record_list.exercise.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
-import 'package:capstone_ui/services/api_Record.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
-import 'catalog.dart';
 import 'home_view.dart';
 
 class CloudRecordListView extends StatefulWidget {
-  
   final List<RecordById> references;
   final String userId;
-  const CloudRecordListView({
-    Key? key,
-    required this.references,required this.userId
-  }) : super(key: key);
+  const CloudRecordListView(
+      {Key? key, required this.references, required this.userId})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -206,7 +197,9 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index,widget.userId);
+                                        widget.references[index],
+                                        index,
+                                        widget.userId);
                                   },
                                   icon: selectedIndex == index
                                       ? Icon(Icons.pause, size: 80.0)
@@ -240,14 +233,13 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   }
 
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index,String userId) async {
+      RecordById recordById, int index, String userId) async {
     if (selectedIndex == index) {
       setState(() {
         audioPlayer.stop();
         isPlaying = false;
         selectedIndex = -1;
       });
-
     } else {
       setState(() {
         selectedIndex = index;

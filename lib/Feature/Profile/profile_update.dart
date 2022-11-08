@@ -1,18 +1,18 @@
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Bloc/user/user_bloc.dart';
-import '../../Constant/textfield_widget.dart';
 import '../../Constant/profile_widget.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 
 class ProfileUpdate extends StatefulWidget {
   final String userId;
-  ProfileUpdate({Key? key, required this.getProfileUserByIdResponeModel ,required this.userId}) : super(key: key);
+  ProfileUpdate(
+      {Key? key,
+      required this.getProfileUserByIdResponeModel,
+      required this.userId})
+      : super(key: key);
   final GetProfileUserByIdResponeModel getProfileUserByIdResponeModel;
   @override
   State<ProfileUpdate> createState() => _ProfileUpdateState();
@@ -27,43 +27,45 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    fullNameController.text= widget.getProfileUserByIdResponeModel.fullName.toString();
-    addressController.text= widget.getProfileUserByIdResponeModel.address.toString();
-    fullName= widget.getProfileUserByIdResponeModel.address.toString();
-    address= widget.getProfileUserByIdResponeModel.address.toString();
+    fullNameController.text =
+        widget.getProfileUserByIdResponeModel.fullName.toString();
+    addressController.text =
+        widget.getProfileUserByIdResponeModel.address.toString();
+    fullName = widget.getProfileUserByIdResponeModel.address.toString();
+    address = widget.getProfileUserByIdResponeModel.address.toString();
   }
+
   @override
   Widget build(BuildContext context) => Builder(
         builder: (context) => BlocConsumer<UserBloc, UserState>(
           listener: (context, state) {
             if (state.isUpdatedProfilePatient) {
-        Navigator.push(
-          context,
-          PageRouteBuilder(
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              return ScaleTransition(
-                alignment: Alignment.center,
-                scale: Tween<double>(begin: 0.1, end: 1).animate(
-                  CurvedAnimation(
-                    parent: animation,
-                    curve: Curves.bounceIn,
-                  ),
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.1, end: 1).animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.bounceIn,
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                  transitionDuration: Duration(seconds: 1),
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    context.read<UserBloc>().add(UserEvent.setStateFlase());
+                    return Profile();
+                  },
                 ),
-                child: child,
               );
-            },
-            transitionDuration: Duration(seconds: 1),
-            pageBuilder: (BuildContext context, Animation<double> animation,
-                Animation<double> secondaryAnimation) {
-              context
-                  .read<UserBloc>()
-                  .add(UserEvent.setStateFlase());
-              return Profile();
-            },
-          ),
-        );
-      }
+            }
           },
           builder: (context, state) {
             return Scaffold(
@@ -73,9 +75,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      context
-                      .read<UserBloc>()
-                      .add(UserEvent.updateProfilePatientRequest(widget.userId));
+                      context.read<UserBloc>().add(
+                          UserEvent.updateProfilePatientRequest(widget.userId));
                     },
                     child: Text(
                       'Lưu',
@@ -96,56 +97,57 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   ),
                   const SizedBox(height: 24),
                   Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Họ ten',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      controller: fullNameController,
-                      decoration: InputDecoration(
-                      
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Họ ten',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                      maxLines: 1,
-                      style: TextStyle(fontSize: 26),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: fullNameController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 26),
                         onChanged: (fullName) {
-                    context
-                        .read<UserBloc>()
-                        .add(UserEvent.getFullName(fullName));
-                  },
-                    ),
-                  ],
-                ),
-                  Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Dia chi',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
-                      controller: addressController,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
+                          context
+                              .read<UserBloc>()
+                              .add(UserEvent.getFullName(fullName));
+                        },
                       ),
-                      maxLines: 1,
-                      style: TextStyle(fontSize: 26),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Dia chi',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: addressController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 26),
                         onChanged: (address) {
-                    context
-                        .read<UserBloc>()
-                        .add(UserEvent.getAddress(address));
-                  },
-                    ),
-                  ],
-                ),
+                          context
+                              .read<UserBloc>()
+                              .add(UserEvent.getAddress(address));
+                        },
+                      ),
+                    ],
+                  ),
                   //   context
                   //       .read<UserBloc>()
                   //       .add(UserEvent.getAddress(value));

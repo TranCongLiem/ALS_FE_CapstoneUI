@@ -27,6 +27,7 @@ import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
+import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
 import 'firebase_options.dart';
 import 'services/api_ReactPost.dart';
@@ -102,11 +103,14 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   PostBlocBloc(RepositoryProvider.of<PostService>(context))),
           BlocProvider(
-              create: (context) =>
-                  ReactPostBloc(RepositoryProvider.of<ReactPostService>(context))),
+              create: (context) => ReactPostBloc(
+                  RepositoryProvider.of<ReactPostService>(context))),
           BlocProvider(
               create: (context) =>
                   CreatePostBloc(RepositoryProvider.of<PostService>(context))),
+          BlocProvider(
+              create: (context) => UpdateIsPublicPostBloc(
+                  RepositoryProvider.of<PostService>(context))),
           BlocProvider(
             create: (context) =>
                 CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),

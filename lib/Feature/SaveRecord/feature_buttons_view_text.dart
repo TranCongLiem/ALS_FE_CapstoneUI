@@ -17,7 +17,8 @@ class FeatureButtonsViewTextFunction extends StatefulWidget {
   final String speakText;
   const FeatureButtonsViewTextFunction({
     Key? key,
-    required this.onUploadComplete,required this.speakText,
+    required this.onUploadComplete,
+    required this.speakText,
   }) : super(key: key);
   @override
   _FeatureButtonsViewTextFunctionState createState() =>
@@ -82,17 +83,15 @@ class _FeatureButtonsViewTextFunctionState
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: IconButton(
-                                      icon: Icon(
-                                          _isPlaying
-                                              ? Icons.pause
-                                              : Icons.play_arrow,
-                                          size: 35.0,
-                                          color: Colors.white),
-                                      onPressed:(){
-                                         speak(widget.speakText);
-                                      }
-                                         
-                                    ),
+                                        icon: Icon(
+                                            _isPlaying
+                                                ? Icons.pause
+                                                : Icons.play_arrow,
+                                            size: 35.0,
+                                            color: Colors.white),
+                                        onPressed: () {
+                                          speak(widget.speakText);
+                                        }),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -171,12 +170,13 @@ class _FeatureButtonsViewTextFunctionState
       _isUploading = true;
     });
     try {
-      String filepath = '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' + _filePath;
+      String filepath =
+          '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
+              _filePath;
       await firebaseStorage
           .ref('upload-voice-firebase')
           .child(userId)
-          .child(
-              filepath.substring(filepath.lastIndexOf('/'), filepath.length))
+          .child(filepath.substring(filepath.lastIndexOf('/'), filepath.length))
           .putFile(File(filepath));
       widget.onUploadComplete();
       context

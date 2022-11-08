@@ -1,22 +1,18 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/SaveRecord/feature_buttons_view_text.dart';
 import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../Bloc/create_record/create_record_bloc.dart';
-import '../Newsfeed/newfeeds.dart';
-import 'cloud_record_list_view.dart';
 import 'feature_buttons_view.dart';
 
 class SaveRecording extends StatefulWidget {
@@ -29,26 +25,71 @@ class SaveRecording extends StatefulWidget {
 class _SaveRecordingState extends State<SaveRecording> {
   late bool _isUploading;
   TextEditingController textEditingController = TextEditingController();
+  TextEditingController titleController = TextEditingController();
   final FlutterTts flutterTts = FlutterTts();
 
   List<bool> isSelected = [false, true];
   List<Reference> references = [];
 
+  late stt.SpeechToText _speech;
+  bool _isListening = false;
+  String _textSpeech = '';
+
+  void onListen() async {
+    bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'));
+
+    if (!_isListening) {
+      if (available) {
+        setState(() {
+          _isListening = false;
+          _speech.listen(
+            onResult: (val) => setState(() {
+              _textSpeech = val.recognizedWords;
+              titleController.text = val.recognizedWords;
+            }),
+          );
+        });
+      }
+    } else {
+      setState(() {
+        _isListening = false;
+        _speech.stop();
+        print("Stop Lítening");
+      });
+    }
+  }
+
+  void stopListen() {
+    _speech.stop();
+    setState(() {});
+  }
+
   //voice-to-text
-  String outputText = 'Mô tả';
-  final SpeechToText speech = SpeechToText();
-  bool _hasSpeech = false;
-  String _currentLocaleId = 'vi_VN';
-  double minSoundLevel = 50000;
-  double maxSoundLevel = -50000;
-  double level = 0.0;
+  // String outputText = 'Mô tả';
+  // final SpeechToText speech = SpeechToText();
+  // bool _hasSpeech = false;
+  // String _currentLocaleId = 'vi_VN';
+  // double minSoundLevel = 50000;
+  // double maxSoundLevel = -50000;
+  // double level = 0.0;
   @override
   void initState() {
     super.initState();
     isSelected = [false, true];
     _onUploadComplete();
-    initSpeechState();
     _isUploading = false;
+    _speech = stt.SpeechToText();
+    titleController.text = '';
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _speech.cancel();
+    titleController.dispose();
   }
 
   @override
@@ -177,7 +218,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                 padding: EdgeInsets.all(10),
                 child: TextField(
                   decoration: InputDecoration(
-                      labelText: outputText,
+                      labelText: _textSpeech,
                       suffixIcon: Icon(Icons.type_specimen),
                       border: myinputborder(),
                       enabledBorder: myinputborder(),
@@ -204,30 +245,30 @@ class _SaveRecordingState extends State<SaveRecording> {
                 ),
               ),
               Center(
-                child: 
-                  Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            //  speak(textEditingController.text, userId);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: EdgeInsets.only(
-                                top: 20, bottom: 20, left: 30, right: 30),
-                            primary: greenALS,
-                            textStyle: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w300),
-                          ),
-                          child: FeatureButtonsViewTextFunction(
-                              onUploadComplete: _onUploadComplete,speakText: textEditingController.text.toString(),
-              ),
-                        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      //  speak(textEditingController.text, userId);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
                       ),
+                      padding: EdgeInsets.only(
+                          top: 20, bottom: 20, left: 30, right: 30),
+                      primary: greenALS,
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                          fontWeight: FontWeight.w300),
+                    ),
+                    child: FeatureButtonsViewTextFunction(
+                      onUploadComplete: _onUploadComplete,
+                      speakText: textEditingController.text.toString(),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
@@ -258,17 +299,23 @@ class _SaveRecordingState extends State<SaveRecording> {
           Padding(
             padding: EdgeInsets.all(10),
             child: TextFormField(
+              controller: titleController,
               decoration: InputDecoration(
-                  labelText: outputText,
-                  suffixIcon: voice(),
+                  suffixIcon: IconButton(
+                    onPressed: (() {
+                      onListen();
+                    }),
+                    icon: Icon(Icons.mic),
+                  ),
                   border: myinputborder(),
                   enabledBorder: myinputborder(),
                   focusedBorder: myfocusborder(),
                   labelStyle: TextStyle(fontSize: 20.0)),
               onChanged: (value) {
-                context
-                    .read<CreateRecordBloc>()
-                    .add(CreateRecordEvent.recordNameChanged(value));
+                _textSpeech = value;
+                // context
+                //     .read<CreateRecordBloc>()
+                //     .add(CreateRecordEvent.recordNameChanged(value));
               },
             ),
           ),
@@ -287,6 +334,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                   )),
               child: FeatureButtonsView(
                 onUploadComplete: _onUploadComplete,
+                titleText: _textSpeech,
               ),
             ),
           ),
@@ -295,21 +343,21 @@ class _SaveRecordingState extends State<SaveRecording> {
     );
   }
 
-  Widget voice() {
-    return ElevatedButton(
-      onPressed: () {
-        !_hasSpeech || speech.isListening ? null : startListening();
-      },
-      // ignore: sort_child_properties_last
-      child: Icon(Icons.mic,
-          color: speech.isListening ? Colors.red : Colors.white, size: 25),
-      style: ElevatedButton.styleFrom(
-        shape: CircleBorder(),
-        padding: EdgeInsets.all(7.0),
-        primary: greenALS, // <-- Button color
-      ),
-    );
-  }
+  // Widget voice() {
+  //   return ElevatedButton(
+  //     onPressed: () {
+  //       !_hasSpeech || speech.isListening ? null : startListening();
+  //     },
+  //     // ignore: sort_child_properties_last
+  //     child: Icon(Icons.mic,
+  //         color: speech.isListening ? Colors.red : Colors.white, size: 25),
+  //     style: ElevatedButton.styleFrom(
+  //       shape: CircleBorder(),
+  //       padding: EdgeInsets.all(7.0),
+  //       primary: greenALS, // <-- Button color
+  //     ),
+  //   );
+  // }
 
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
@@ -331,55 +379,56 @@ class _SaveRecordingState extends State<SaveRecording> {
         ));
   }
 
-  Future<void> initSpeechState() async {
-    bool hasSpeech = await speech.initialize(
-        onError: errorListener, onStatus: statusListener);
-    if (!mounted) return;
-    setState(() {
-      _hasSpeech = hasSpeech;
-    });
-  }
+  // Future<void> initSpeechState() async {
+  //   bool hasSpeech = await speech.initialize(
+  //       onError: errorListener, onStatus: statusListener);
+  //   if (!mounted) return;
+  //   setState(() {
+  //     _hasSpeech = hasSpeech;
+  //   });
+  // }
 
-  void statusListener(String status) {
-    print(status);
-  }
+  // void statusListener(String status) {
+  //   print(status);
+  // }
 
-  void errorListener(SpeechRecognitionError errorNotification) {}
+  // void errorListener(SpeechRecognitionError errorNotification) {}
 
-  startListening() async {
-    PermissionStatus microStatus = await Permission.microphone.request();
-    if (microStatus == PermissionStatus.granted) {}
-    if (microStatus == PermissionStatus.denied) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
-    }
-    if (microStatus == PermissionStatus.permanentlyDenied) {
-      openAppSettings();
-    }
-    speech.listen(
-        onResult: resultListener,
-        listenFor: Duration(seconds: 4),
-        partialResults: true,
-        localeId: _currentLocaleId,
-        onSoundLevelChange: soundLevelListener,
-        cancelOnError: true,
-        listenMode: ListenMode.confirmation);
-  }
+  // startListening() async {
+  //   PermissionStatus microStatus = await Permission.microphone.request();
+  //   if (microStatus == PermissionStatus.granted) {}
+  //   if (microStatus == PermissionStatus.denied) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
+  //   }
+  //   if (microStatus == PermissionStatus.permanentlyDenied) {
+  //     openAppSettings();
+  //   }
+  //   speech.listen(
+  //       onResult: resultListener,
+  //       listenFor: Duration(seconds: 4),
+  //       partialResults: true,
+  //       localeId: _currentLocaleId,
+  //       onSoundLevelChange: soundLevelListener,
+  //       cancelOnError: true,
+  //       listenMode: ListenMode.confirmation);
+  // }
 
-  void resultListener(SpeechRecognitionResult result) {
-    if (result.finalResult)
-      setState(() {
-        outputText = result.recognizedWords;
-      });
-  }
+  // void resultListener(SpeechRecognitionResult result) {
+  //   if (result.finalResult)
+  //     setState(() {
+  //       outputText = result.recognizedWords;
+  //       titleController.text = result.recognizedWords;
+  //     });
+  // }
 
-  soundLevelListener(double level) {
-    minSoundLevel = min(minSoundLevel, level);
-    maxSoundLevel = max(maxSoundLevel, level);
-    setState(() {
-      this.level = level;
-    });
-  }
+  // soundLevelListener(double level) {
+  //   minSoundLevel = min(minSoundLevel, level);
+  //   maxSoundLevel = max(maxSoundLevel, level);
+  //   setState(() {
+  //     this.level = level;
+  //   });
+  // }
 
   Future<void> _onFileUploadButtonPressed(
       String filepath, String userId) async {
@@ -389,12 +438,15 @@ class _SaveRecordingState extends State<SaveRecording> {
     });
     try {
       print('TNT' + filepath.trim());
-      String filepath3 = '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' + '1667639447029.aac';
+      String filepath3 =
+          '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
+              '1667639447029.aac';
       await firebaseStorage
           .ref()
           .child('upload-voice-firebase')
           .child(userId)
-          .child(filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
+          .child(
+              filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
           .putFile(File(filepath3));
       context
           .read<CreateRecordBloc>()

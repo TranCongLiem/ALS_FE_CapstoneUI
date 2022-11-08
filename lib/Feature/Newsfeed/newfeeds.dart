@@ -1,11 +1,7 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Newsfeed/create.dart';
 import 'package:capstone_ui/Feature/Newsfeed/customPostList.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
 
@@ -31,7 +27,7 @@ class _NewFeedState extends State<NewFeed> {
             BlocProvider(
                 create: (context) =>
                     PostBlocBloc(RepositoryProvider.of<PostService>(context))
-                      ..add(LoadPostEvent(userId : state.userId))),
+                      ..add(LoadPostEvent(userId: state.userId))),
           ],
           child: MaterialApp(
               debugShowCheckedModeBanner: false,

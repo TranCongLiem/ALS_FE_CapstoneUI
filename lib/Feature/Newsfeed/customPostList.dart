@@ -2,10 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/react_post/react_post_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:like_button/like_button.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../Model/getListPost_model.dart';
 
@@ -102,7 +101,30 @@ class _CustomPostListState extends State<CustomPostList> {
                         ? Padding(
                             padding: const EdgeInsets.symmetric(vertical: 8.0),
                             child: CachedNetworkImage(
-                                imageUrl: widget.listPost.image ?? ''),
+                              imageUrl: widget.listPost.image ?? '',
+                              errorWidget: ((context, url, error) => Container(
+                                    alignment: Alignment.center,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.3,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    color: Colors.grey[300],
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.error_outline_outlined),
+                                        SizedBox(
+                                          width: 5.0,
+                                        ),
+                                        Text(
+                                          'Có lỗi khi tải ảnh',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                            ),
                           )
                         : const SizedBox.shrink(),
                     Padding(
@@ -153,8 +175,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                           onPressed: () {
                                                             setState(() {
                                                               diableReactPost(
-                                                                  state2
-                                                                      .userId,
+                                                                  state2.userId,
                                                                   widget
                                                                       .listPost
                                                                       .postId
@@ -173,8 +194,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                           style: TextStyle(
                                                             fontSize: 20.0,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w500,
+                                                                FontWeight.w500,
                                                             color: Colors
                                                                 .redAccent,
                                                           )),
@@ -186,8 +206,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                           onPressed: () {
                                                             setState(() {
                                                               enableReactPost(
-                                                                  state2
-                                                                      .userId,
+                                                                  state2.userId,
                                                                   widget
                                                                       .listPost
                                                                       .postId
@@ -207,8 +226,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                         style: TextStyle(
                                                             fontSize: 20.0,
                                                             fontWeight:
-                                                                FontWeight
-                                                                    .w500,
+                                                                FontWeight.w500,
                                                             color: Colors
                                                                 .grey[600]),
                                                       ),

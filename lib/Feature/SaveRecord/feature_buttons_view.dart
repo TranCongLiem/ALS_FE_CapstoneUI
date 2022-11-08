@@ -13,9 +13,11 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 
 class FeatureButtonsView extends StatefulWidget {
   final Function onUploadComplete;
+  final String titleText;
   const FeatureButtonsView({
     Key? key,
     required this.onUploadComplete,
+    required this.titleText,
   }) : super(key: key);
   @override
   _FeatureButtonsViewState createState() => _FeatureButtonsViewState();
@@ -105,7 +107,8 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                   child: IconButton(
                                     icon: Icon(Icons.save_alt,
                                         size: 35.0, color: Colors.white),
-                                    onPressed: () => _onFileUploadButtonPressed(state2.userId),
+                                    onPressed: () => _onFileUploadButtonPressed(
+                                        state2.userId),
                                   ),
                                 ),
                               ],
@@ -156,6 +159,9 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
               _filePath.substring(_filePath.lastIndexOf('/'), _filePath.length))
           .putFile(File(_filePath));
       widget.onUploadComplete();
+      context
+          .read<CreateRecordBloc>()
+          .add(CreateRecordEvent.recordNameChanged(widget.titleText));
       context
           .read<CreateRecordBloc>()
           .add(CreateRecordEvent.createRecordRequest(userId));

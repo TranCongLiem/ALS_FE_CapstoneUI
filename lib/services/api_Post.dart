@@ -7,17 +7,17 @@ import '../Model/getListPost_model.dart';
 import 'package:http/http.dart' as http;
 
 class PostService {
-  final endPointUrl =
-      "https://als.cosplane.asia/api/post/";
+  final endPointUrl = "https://als.cosplane.asia/api/post/";
   static bool isCreatedPost = false;
 
   Future<List<ListPost>> getAllPost(String userId) async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetAllPostMobile?userId=" + userId));
+    final response = await http
+        .get(Uri.parse(endPointUrl + "GetAllPostMobile?userId=" + userId));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 
     if (response.statusCode == 200) {
-      final List<dynamic> result= jsonDecode(response.body);
+      final List<dynamic> result = jsonDecode(response.body);
       print("result: + ${result.map((e) => ListPost.fromJson(e)).toList()}");
       return result.map((e) => ListPost.fromJson(e)).toList();
     } else {
@@ -26,12 +26,13 @@ class PostService {
   }
 
   Future<List<ListPost>> getPostByUserId(String userId) async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetAllByUserIdPostMobile?userId=" + userId));
+    final response = await http.get(
+        Uri.parse(endPointUrl + "GetAllByUserIdPostMobile?userId=" + userId));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 
     if (response.statusCode == 200) {
-      final List<dynamic> result= jsonDecode(response.body);
+      final List<dynamic> result = jsonDecode(response.body);
       print("result: + ${result.map((e) => ListPost.fromJson(e)).toList()}");
       return result.map((e) => ListPost.fromJson(e)).toList();
     } else {
@@ -39,9 +40,9 @@ class PostService {
     }
   }
 
-
-  Future<CreatePostResponeModel> createPost(CreatePostReQuestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/post/CreatePost";
+  Future<CreatePostResponeModel> createPost(
+      CreatePostReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/post/CreatePost";
     final response = await http.post(
       Uri.parse(url),
       headers: {
@@ -56,12 +57,12 @@ class PostService {
       PostService.isCreatedPost = false;
       throw Exception('Lỗi dữ liệu');
     }
-    
   }
 
-  Future<UpdatePostResponeModel> updateIsPublicPost(UpdatePostReQuestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/post/UpdateIsPublicPost";
-    final response = await http.post(
+  Future<UpdatePostResponeModel> updateIsPublicPost(
+      UpdatePostReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/post/UpdateIsPublicPost";
+    final response = await http.put(
       Uri.parse(url),
       headers: {
         'Content-Type': 'application/json',
@@ -75,15 +76,9 @@ class PostService {
       PostService.isCreatedPost = false;
       throw Exception('Lỗi dữ liệu');
     }
-    
   }
-
 
   bool isCreated() {
     return isCreatedPost;
   }
-
-
-
-
 }

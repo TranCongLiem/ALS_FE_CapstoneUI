@@ -20,7 +20,7 @@ class UpdatePostReQuestModel {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'postId': postId,
-      'isPublic': isPublic,
+      'status': isPublic,
     };
     return map;
   }
