@@ -23,12 +23,15 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
           style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: 5,
-        itemBuilder: (context, index) {
-          return CustomListPost();
-        },
+      // body: ListView.builder(
+      //   scrollDirection: Axis.vertical,
+      //   itemCount: 5,
+      //   itemBuilder: (context, index) {
+      //     return CustomListPost();
+      //   },
+      // ),
+      body: Center(
+        child: Text('Hi'),
       ),
     );
   }
