@@ -1,8 +1,8 @@
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 // ignore: unused_import
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Chat/chat_screen.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
-import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
 import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:capstone_ui/Feature/SpeechToText/voice_to_text.dart';
 import 'package:flutter/material.dart';
@@ -122,17 +122,17 @@ class _HomeState extends State<Home> {
                                                     HomeViewRecord()));
                                       },
                                     ),
-                                    // CategoryCard(
-                                    //   title: "Bài tập",
-                                    //   svgSrc: "assets/icons/ex1.svg",
-                                    //   press: () {
-                                    //     Navigator.push(
-                                    //         context,
-                                    //         MaterialPageRoute(
-                                    //             builder: (context) =>
-                                    //                 ListExcerise()));
-                                    //   },
-                                    // ),
+                                    CategoryCard(
+                                      title: "Trò chuyện",
+                                      svgSrc: "assets/icons/ex1.svg",
+                                      press: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ChatScreen()));
+                                      },
+                                    ),
                                   ],
                                 ),
                               ),
