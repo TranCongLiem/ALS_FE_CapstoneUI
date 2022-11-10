@@ -202,23 +202,26 @@ class _CustomPostListState extends State<CustomPostList> {
                                                   )
                                                 : Row(
                                                     children: [
-                                                      IconButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              enableReactPost(
-                                                                  state2.userId,
-                                                                  widget
-                                                                      .listPost
-                                                                      .postId
-                                                                      .toString());
-                                                            });
-                                                          },
-                                                          icon: Icon(
-                                                            Icons.favorite,
-                                                            color: Colors
-                                                                .grey[600],
-                                                            size: 28.0,
-                                                          )),
+                                                      // IconButton(
+                                                      //     onPressed: () {
+                                                      //       setState(() {
+                                                      //         enableReactPost(
+                                                      //             state2.userId,
+                                                      //             widget
+                                                      //                 .listPost
+                                                      //                 .postId
+                                                      //                 .toString());
+                                                      //       });
+                                                      //     },
+                                                      //     icon: Icon(
+                                                      //       Icons.favorite,
+                                                      //       color: Colors
+                                                      //           .grey[600],
+                                                      //       size: 28.0,
+                                                      //     )),
+                                                      LikeButton(
+                                                          //này m lên mạng tìm like_button có code mẫu nhe
+                                                          ),
                                                       const SizedBox(
                                                           width: 4.0),
                                                       Text(
