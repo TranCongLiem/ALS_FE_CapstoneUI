@@ -106,49 +106,50 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '',
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(95, 177, 23, 23),
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(30),
-                                        bottomLeft: Radius.circular(30),
-                                        bottomRight: Radius.circular(30),
-                                        topRight: Radius.circular(30))),
-                                child: IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent.getRecordId(widget
-                                            .references[index].recordId
-                                            .toString()));
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent
-                                            .removeRecordRequest());
-                                  },
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Ink.image(
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                  child: InkWell(
-                                    onTap: () {},
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 3.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  child: Text(
+                                    'GỬI TRỢ GIÚP',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  image: NetworkImage(
-                                      'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
-                              ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          greenALS.withOpacity(0.5)),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(95, 177, 23, 23),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(30),
+                                          topRight: Radius.circular(30))),
+                                  child: IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      context.read<RemoveRecordBloc>().add(
+                                          RemoveRecordEvent.getRecordId(widget
+                                              .references[index].recordId
+                                              .toString()));
+                                      context.read<RemoveRecordBloc>().add(
+                                          RemoveRecordEvent
+                                              .removeRecordRequest());
+                                    },
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
                                         widget.references[index], index);
@@ -164,8 +165,9 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.only(left: 7),
                                     backgroundColor: greenALS,
-                                  ))
-                            ],
+                                  ))),
+                          SizedBox(
+                            height: 8.0,
                           ),
                           Text(
                             widget.references[index].recordName ?? '',

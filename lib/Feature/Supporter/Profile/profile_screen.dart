@@ -3,6 +3,7 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
+import 'package:capstone_ui/Feature/Supporter/Profile/connect_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../Bloc/user_detail/user_detail_bloc.dart';
@@ -59,6 +60,23 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                 ),
               ],
             ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ConnectPatient()));
+              },
+              elevation: 10.0,
+              backgroundColor: greenALS,
+              label: Row(children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  child: Icon(Icons.connect_without_contact_outlined),
+                ),
+                Text("Kết nối bệnh nhân")
+              ]),
+            ),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
             body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
