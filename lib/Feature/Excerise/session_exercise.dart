@@ -78,9 +78,6 @@ class _SessionExerciseState extends State<SessionExercise> {
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
                   if (state is CategoryExerciseLoadedState) {
-                   
-                    
-
                     return ListView(
                       physics: ClampingScrollPhysics(),
                       children: [

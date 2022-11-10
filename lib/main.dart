@@ -1,4 +1,5 @@
 // import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:audioplayers/notifications.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
@@ -15,9 +16,11 @@ import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
+import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:capstone_ui/services/api_login.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -47,6 +50,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+      FirebaseMessaging.instance.getToken().then((value) => print("TokenOfDevice:${value}" ));
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
@@ -72,6 +77,8 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => PostService(),
+        ),RepositoryProvider(
+          create: (context) => ShortCutNotificationService(),
         )
       ],
       child: MultiBlocProvider(
