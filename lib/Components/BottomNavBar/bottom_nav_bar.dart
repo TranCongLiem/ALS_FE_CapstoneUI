@@ -21,6 +21,10 @@ class MyBottomNavBar extends StatelessWidget {
           unselectedFontSize: 15,
           selectedFontSize: 15,
           iconSize: 30.0,
+          unselectedLabelStyle:
+              TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
+          selectedLabelStyle:
+              TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
           onTap: (index) {
             if (NavItems().items[index].destinationChecker()) {
               BlocProvider.of<BottomNavBarBloc>(context)

@@ -62,7 +62,8 @@ class ListExerciseByCategory extends StatelessWidget {
                     child: CircularProgressIndicator(),
                     // child: Text('a'),
                   );
-                })),
+                })
+                ),
               ],
             ),
           ),

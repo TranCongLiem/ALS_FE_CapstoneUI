@@ -26,7 +26,7 @@ Widget CustomCategoryList(
               alignment: Alignment.center,
               children: [
                 Ink.image(
-                    height: 180,
+                    height: 150,
                     fit: BoxFit.cover,
                     child: InkWell(
                       onTap: () {

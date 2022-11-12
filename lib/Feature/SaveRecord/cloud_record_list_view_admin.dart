@@ -1,31 +1,24 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/remove_record/remove_record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Feature/SaveRecord/Category_List_Record/custom_record_list.exercise.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
-import 'package:capstone_ui/services/api_Record.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
-import 'catalog.dart';
 import 'home_view.dart';
 
 class CloudRecordListViewAdmin extends StatefulWidget {
   //final List<Reference> references;
   final List<RecordById> references;
   final String userId;
-  const CloudRecordListViewAdmin({
-    Key? key,
-    required this.references,required this.userId
-  }) : super(key: key);
+  const CloudRecordListViewAdmin(
+      {Key? key, required this.references, required this.userId})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CloudRecordListViewAdminState createState() => _CloudRecordListViewAdminState();
+  _CloudRecordListViewAdminState createState() =>
+      _CloudRecordListViewAdminState();
 }
 
 class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
@@ -46,7 +39,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
   }
-  
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -71,7 +64,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                       parent: animation,
                       curve: Curves.bounceIn,
                     ),
-                  ), 
+                  ),
                   child: child,
                 );
               },
@@ -121,32 +114,24 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                                         bottomLeft: Radius.circular(30),
                                         bottomRight: Radius.circular(30),
                                         topRight: Radius.circular(30))),
-                                
                               ),
                             ],
                           ),
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              Ink.image(
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                  child: InkWell(
-                                    onTap: () {},
-                                  ),
-                                  image: NetworkImage(
-                                      'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index,widget.userId);
+                                        widget.references[index],
+                                        index,
+                                        widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 80.0)
+                                      ? Icon(Icons.pause, size: 90.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 80.0,
+                                          size: 90.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
@@ -161,7 +146,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 18.0,
+                              fontSize: 22.0,
                             ),
                           )
                         ],
@@ -173,9 +158,8 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
     );
   }
 
-
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index,String userId) async {
+      RecordById recordById, int index, String userId) async {
     // await audioPlayer.stop();
     setState(() {
       selectedIndex = index;
@@ -185,7 +169,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
         .ref()
         .child('upload-voice-firebase')
         .child(recordById.linkAudio ?? '');
-    audioPlayer.stop();   
+    audioPlayer.stop();
     audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
     audioPlayer.onPlayerCompletion.listen((duration) {
       setState(() {

@@ -54,7 +54,11 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                     height: 20.5.h,
                     child: Scaffold(
                         appBar: AppBar(
-                            title: Text('Hỗ trợ ghi âm'),
+                            title: Text(
+                              'Hỗ trợ ghi âm',
+                              style: TextStyle(
+                                  fontSize: 28.0, fontWeight: FontWeight.bold),
+                            ),
                             backgroundColor: greenALS,
                             centerTitle: true,
                             shape: RoundedRectangleBorder(
@@ -90,7 +94,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                         controller: tabController,
                                         isScrollable: true,
                                         labelPadding: EdgeInsets.symmetric(
-                                            horizontal: 30),
+                                            horizontal: 50),
                                         tabs: [
                                           Padding(
                                             padding: const EdgeInsets.all(2.0),
@@ -126,7 +130,8 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                           builder: (context, state) {
                                         if (state is RecordLoadedAdminState) {
                                           return CloudRecordListViewAdmin(
-                                            references: state.list,userId : state2.userId,
+                                            references: state.list,
+                                            userId: state2.userId,
                                           );
                                         }
                                         return Center(
@@ -138,7 +143,8 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                           builder: (context, state) {
                                         if (state is RecordLoadedState) {
                                           return CloudRecordListView(
-                                            references: state.list,userId : state2.userId,
+                                            references: state.list,
+                                            userId: state2.userId,
                                           );
                                         }
                                         return Center(
@@ -235,7 +241,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
     print(
         firebaseStorage.ref().child('upload-voice-firebase').list().toString());
 
-        print(listResult);
+    print(listResult);
 
     setState(() {
       references = listResult.items;

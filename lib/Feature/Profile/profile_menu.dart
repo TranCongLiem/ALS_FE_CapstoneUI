@@ -80,7 +80,7 @@ class ProfileMenuItem extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 24.0,
                 color: Colors.black,
               ),
             ),

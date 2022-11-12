@@ -6,12 +6,14 @@ import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
+import 'package:capstone_ui/Bloc/textToSpeech/text_to_spech_bloc.dart';
 import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
+import 'package:capstone_ui/services/api_FPTAI.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
@@ -78,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => ReactPostService(),
+        ),
+        RepositoryProvider(
+          create: (context) => FPTAIService(),
         )
       ],
       child: MultiBlocProvider(
@@ -134,6 +139,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))),
+          BlocProvider(
+              create: (context) => TextToSpechBloc(
+                  RepositoryProvider.of<FPTAIService>(context))),
         ],
         child: MaterialApp(
           theme: ThemeData(

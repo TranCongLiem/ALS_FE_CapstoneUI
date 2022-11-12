@@ -80,7 +80,10 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     },
                     child: Text(
                       'Lưu',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold),
                     ),
                   )
                 ],
@@ -90,8 +93,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 physics: BouncingScrollPhysics(),
                 children: [
                   ProfileWidget(
-                    imagePath:
-                        "https://sg.cdnki.com/anh-dai-dien-dep-cho-nam-ngau---aHR0cHM6Ly90aGllcG5oYW5haS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjEvMDUvaGluaC1hbmgtZGFpLWRpZW4tZGVwLTEuanBn.webp",
+                    imagePath: "assets/images/logo_Avatar.jpg",
                     isEdit: true,
                     onClicked: () {},
                   ),
@@ -100,9 +102,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Họ ten',
+                        'Họ tên',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                            fontWeight: FontWeight.bold, fontSize: 22),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -122,13 +124,16 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dia chi',
+                        'Địa chỉ',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                            fontWeight: FontWeight.bold, fontSize: 22),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(

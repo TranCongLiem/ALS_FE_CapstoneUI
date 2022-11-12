@@ -143,7 +143,14 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                child: Text('HỦY'),
+                                                child: Text(
+                                                  'HỦY',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0,
+                                                      color: Colors.black87),
+                                                ),
                                               ),
                                               ElevatedButton(
                                                 style: ElevatedButton.styleFrom(
@@ -185,15 +192,6 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              Ink.image(
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                  child: InkWell(
-                                    onTap: () {},
-                                  ),
-                                  image: NetworkImage(
-                                      'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
@@ -202,10 +200,10 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                         widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 80.0)
+                                      ? Icon(Icons.pause, size: 70.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 80.0,
+                                          size: 70.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
@@ -220,7 +218,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 18.0,
+                              fontSize: 22.0,
                             ),
                           )
                         ],

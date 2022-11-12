@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/material.dart';
@@ -37,8 +38,8 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                         child: CircleAvatar(
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.green,
-                          backgroundImage: NetworkImage(
-                              "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
+                          backgroundImage:
+                              NetworkImage("https://d2f8l4t0zpiyim.cloudfront.net/000_clients/61768/page/617689vc83rMf.gif"),
                         ),
                       ),
                       SizedBox(
