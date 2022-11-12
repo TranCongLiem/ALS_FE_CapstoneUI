@@ -1,18 +1,11 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-
-import 'package:capstone_ui/Login/verify_phone.dart';
-import 'package:capstone_ui/Register/register_screen.dart';
-import 'package:capstone_ui/Register/role_screen.dart';
+import 'package:capstone_ui/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:sizer/sizer.dart';
-import '';
-
-import '../Home/home.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -32,31 +25,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-        //  print('test state '+ state.toString());
+          //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
             Navigator.push(
-              context,
-              PageRouteBuilder(
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.1, end: 1).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.bounceIn,
-                      ),
-                    ),
-                    child: child,
-                  );
-                },
-                transitionDuration: Duration(seconds: 1),
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
-                  return NewFeed();
-                },
-              ),
-            );
+                context, MaterialPageRoute(builder: (context) => Home()));
           }
         },
         builder: (context, state) {
@@ -165,20 +137,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               }),
                             ),
                           ),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => VerifyScreen()));
-                              },
-                              child: Text(
-                                'Quên mật khẩu',
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontStyle: FontStyle.italic,
-                                    color: Colors.black),
-                              )),
                           TextButton(
                             onPressed: () {
                               // Navigator.push(

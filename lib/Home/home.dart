@@ -33,15 +33,7 @@ class _HomeState extends State<Home> {
               width: 100.w,
               height: 20.5.h,
               child: Scaffold(
-                bottomNavigationBar: MyBottomNavBar(
-                    // ignore: unnecessary_this
-                    // index: this.index,
-                    ),
-                floatingActionButton: FloatingActionButton(
-                  // ignore: prefer_const_constructors
-                  child: Icon(Icons.notifications_active),
-                  onPressed: () {},
-                ),
+                bottomNavigationBar: MyBottomNavBar(),
                 body: Stack(
                   children: <Widget>[
                     Container(
@@ -120,17 +112,6 @@ class _HomeState extends State<Home> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     HomeViewRecord()));
-                                      },
-                                    ),
-                                    CategoryCard(
-                                      title: "Trò chuyện",
-                                      svgSrc: "assets/icons/ex1.svg",
-                                      press: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ChatScreen()));
                                       },
                                     ),
                                   ],

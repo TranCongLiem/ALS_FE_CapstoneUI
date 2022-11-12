@@ -1,25 +1,16 @@
 import 'dart:math';
-
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
-import 'package:capstone_ui/Components/Feature/Excerise/Excerise/category_ex.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
-import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
-import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Feature/Excerise/session_exercise.dart';
-import 'package:capstone_ui/Bloc/exercise/exercise_bloc_bloc.dart';
-import 'package:capstone_ui/Feature/TextToSpeech/TextToSpeech.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
-import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
-import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -68,122 +59,99 @@ class _ListExceriseState extends State<ListExcerise> {
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
             ),
           ),
-          body: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              //search bar
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
-              ),
-              SizedBox(
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Container(
-                      height: size.height / 15,
-                      decoration: BoxDecoration(
-                          color: Colors.black12,
-                          borderRadius: BorderRadius.circular(22)),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 24),
-                          ),
-                          Expanded(
-                              child: TextField(
-                            decoration: InputDecoration(
-                                hintText: outputText,
-                                border: InputBorder.none,
-                                suffixIcon: Icon(Icons.search),
-                                hintStyle: TextStyle(
-                                    fontSize: 22.0,
-                                    fontWeight: FontWeight.w500)),
-                          )),
-                          Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                      blurRadius: .26,
-                                      spreadRadius: level * 1.5,
-                                      color: greenALS.withOpacity(.1))
-                                ],
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(100))),
-                            child: ElevatedButton(
-                              onPressed: () {
-                                !_hasSpeech || speech.isListening
-                                    ? null
-                                    : startListening();
-                              },
-                              // ignore: sort_child_properties_last
-                              child: Icon(Icons.mic,
-                                  color: speech.isListening
-                                      ? Colors.red
-                                      : Colors.white,
-                                  size: 25),
-                              style: ElevatedButton.styleFrom(
-                                shape: CircleBorder(),
-                                padding: EdgeInsets.all(7.0),
-                                primary: greenALS, // <-- Button color
+          body: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                //search bar
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
+                ),
+                SizedBox(
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Container(
+                        height: size.height / 15,
+                        decoration: BoxDecoration(
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.circular(22)),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 24),
+                            ),
+                            Expanded(
+                                child: TextField(
+                              decoration: InputDecoration(
+                                  hintText: outputText,
+                                  border: InputBorder.none,
+                                  suffixIcon: Icon(Icons.search),
+                                  hintStyle: TextStyle(
+                                      fontSize: 22.0,
+                                      fontWeight: FontWeight.w500)),
+                            )),
+                            Container(
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                        blurRadius: .26,
+                                        spreadRadius: level * 1.5,
+                                        color: greenALS.withOpacity(.1))
+                                  ],
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(100))),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  !_hasSpeech || speech.isListening
+                                      ? null
+                                      : startListening();
+                                },
+                                // ignore: sort_child_properties_last
+                                child: Icon(Icons.mic,
+                                    color: speech.isListening
+                                        ? Colors.red
+                                        : Colors.white,
+                                    size: 25),
+                                style: ElevatedButton.styleFrom(
+                                  shape: CircleBorder(),
+                                  padding: EdgeInsets.all(7.0),
+                                  primary: greenALS, // <-- Button color
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )),
-                  ],
-                ),
-              ),
-              ButtonCreateEx(),
-
-              WidgetEx1(),
-              Container(
-                  padding: const EdgeInsets.only(top: 15),
-                  height: size.height / 4,
-                  width: size.width / 1,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
+                          ],
+                        ),
+                      )),
                     ],
-                  )),
-              WidgetEx2(), //Phan Loai/Xem tat ca
+                  ),
+                ),
 
-              Expanded(
-                child: BlocBuilder<CategoryExerciseBlocBloc,
-                    CategoryExerciseBlocState>(builder: (context, state) {
-                  print('abc' + state.toString());
-                  if (state is CategoryExerciseLoadedState) {
-                    print('Print ExState');
+                WidgetEx2(), //Phan Loai/Xem tat ca
 
-                    return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.list.length,
-                      itemBuilder: (context, index) {
-                        // setState(() {
-                        //   categoriesOfExercise=state.list;
-                        // });
-                        return CustomCategoryList(state.list[index], context);
-                      },
+                Expanded(
+                  child: BlocBuilder<CategoryExerciseBlocBloc,
+                      CategoryExerciseBlocState>(builder: (context, state) {
+                    if (state is CategoryExerciseLoadedState) {
+                      return GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2),
+                          scrollDirection: Axis.vertical,
+                          itemCount: state.list.length,
+                          itemBuilder: (context, index) {
+                            return CustomCategoryList(
+                                state.list[index], context);
+                          });
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
                     );
-                  }
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }),
-              ),
-            ],
+                  }),
+                ),
+              ],
+            ),
           ),
         ));
 
@@ -249,7 +217,7 @@ class WidgetEx2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -257,139 +225,16 @@ class WidgetEx2 extends StatelessWidget {
           Text(
             'Phân loại',
             style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
+              fontSize: 28,
+              fontWeight: FontWeight.w800,
             ),
           ),
           Text(
             'Xem tất cả',
             style: TextStyle(
-              color: Colors.blueAccent,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class WidgetEx1 extends StatelessWidget {
-  const WidgetEx1({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 15),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Lịch sử luyện tập',
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          Text(
-            'Xem tất cả',
-            style: TextStyle(
-              color: Colors.blueAccent,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ButtonCreateEx extends StatelessWidget {
-  const ButtonCreateEx({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        child: ElevatedButton.icon(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SessionExercise()));
-          },
-          label: Text(
-            'Tạo buổi tập',
-            style: TextStyle(
-              fontSize: 20.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          icon: Icon(Icons.add),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            elevation: MaterialStateProperty.resolveWith<double>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed) ||
-                  (states.contains(MaterialState.disabled))) {
-                return 0;
-              }
-              return 5;
-            }),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget buildCardRecommend() => Expanded(
-        child: Container(
-      height: 100,
-      width: 200,
-      decoration: BoxDecoration(
-        color: Colors.green[50],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            'assets/images/logo_ALS.png',
-            width: 200,
-          ),
-        ],
-      ),
-    ));
-
-class SpeechStatusWidget extends StatelessWidget {
-  const SpeechStatusWidget({
-    Key? key,
-    required this.speech,
-  }) : super(key: key);
-  final SpeechToText speech;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 20),
-      color: Theme.of(context).backgroundColor,
-      child: Column(
-        children: [
-          Center(
-            child: speech.isListening
-                ? Text(
-                    "Đang nghe...",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        backgroundColor: Colors.white),
-                  )
-                : Text(
-                    '',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                color: Colors.blueAccent,
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
           ),
         ],
       ),

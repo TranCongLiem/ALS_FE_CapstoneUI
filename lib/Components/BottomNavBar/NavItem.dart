@@ -24,36 +24,25 @@ class NavItem {
 class NavItems extends ChangeNotifier {
   int selectedIndex = 0;
 
-  // void changeNavIndex({int? index}) {
-  //   selectedIndex = index!;
-  //   notifyListeners();
-  // }
-
   List<NavItem> items = [
     NavItem(
       id: 1,
       icon: "assets/images/home-svgrepo-com.svg",
       // destination: HomeScreen(),
-      destination: NewFeed(),
-    ),
-    NavItem(
-      id: 2,
-      icon: "assets/images/home-svgrepo-com.svg",
-      // destination: HomeScreen(),
       destination: Home(),
     ),
     NavItem(
-      id: 3,
+      id: 2,
       icon: "assets/images/newspaper-svgrepo-com.svg",
       destination: NewsScreen(),
     ),
     NavItem(
-      id: 4,
+      id: 3,
       icon: "assets/images/newspaper-svgrepo-com.svg",
       destination: ListExcerise(),
     ),
     NavItem(
-      id: 5,
+      id: 4,
       icon: "assets/images/person-svgrepo-com.svg",
       destination: Profile(),
     ),
