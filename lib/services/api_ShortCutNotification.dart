@@ -3,6 +3,7 @@ import 'dart:convert' as convert;
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:capstone_ui/Model/CreatePushNotiToSupporter_model.dart';
 import 'package:http/http.dart';
 import 'package:capstone_ui/Model/getNotification_model.dart';
 
@@ -24,6 +25,23 @@ class ShortCutNotificationService {
     } else {
       throw Exception("Failed to load ShortCut Notification");
     }
+  }
+
+   Future<CreatePushNotificationResponeModel> createPost(CreatePushNotificationRequestModel requestModel) async {
+    String url="https://als.cosplane.asia/api/post/CreatePost";
+    final response = await post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {      
+      return CreatePushNotificationResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+    
   }
 
   
