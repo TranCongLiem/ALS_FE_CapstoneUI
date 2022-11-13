@@ -11,6 +11,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Components/Home/category_card.dart';
+import '../Feature/Chat/pages/home_page.dart';
 import '../Feature/SpeechToText/SpeechToText.dart';
 import '../Feature/TextToSpeech/TextToSpeech.dart';
 
@@ -130,7 +131,7 @@ class _HomeState extends State<Home> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ChatScreen()));
+                                                    HomePage()));
                                       },
                                     ),
                                   ],

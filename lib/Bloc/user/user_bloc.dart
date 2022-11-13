@@ -26,6 +26,21 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+     on<_UpdateInformationPatientRequest>((event, emit) async {
+      UpdateInformationPatientRequestModel reqModel = UpdateInformationPatientRequestModel(
+        userId: event.userId,address: state.address,fullName: state.fullName,imageUser: "String",cause: "String",condition: state.condition,dateOfBirth: state.dateOfBirth);
+      final result = await _userService.updateInformationPatient(reqModel);
+      if (result.message != null && result.success != null) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+          isUpdatedInformationPatient: true,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: ""));
+      }
+    });
+
     on<_GetProfileUserByIdRequest>((event, emit) async {
       GetProfileUserByIdRequestModel reqModel = GetProfileUserByIdRequestModel(
         userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715');
@@ -55,6 +70,28 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<_SetStateFlase>((event, emit) {
         emit(state.copyWith(
           isUpdatedProfilePatient: false,
+        ));
+    });
+
+    on<_GetImageUser>((event, emit) {
+      emit(state.copyWith(imageUser: event.imageUser));
+    });
+
+    on<_Getcondition>((event, emit) {
+      emit(state.copyWith(condition: event.condition));
+    });
+
+     on<_GetdateOfBirth>((event, emit) {
+      emit(state.copyWith(dateOfBirth: event.dateOfBirth));
+    });
+
+    on<_UpdateInformationPatientCheckRequested>((event, emit) {
+      emit(state.copyWith(isUpdatedInformationPatient: _userService.isUpdatedInformationPatient()));
+    });
+
+    on<_SetStateFlaseInformationPatient>((event, emit) {
+        emit(state.copyWith(
+          isUpdatedInformationPatient: false,
         ));
     });
 

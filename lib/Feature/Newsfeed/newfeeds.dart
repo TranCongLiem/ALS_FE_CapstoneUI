@@ -7,6 +7,7 @@ import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
 
 import '../../Bloc/post/post_bloc.dart';
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
+import '../../Model/getListPost_model.dart';
 import '../../services/api_Post.dart';
 
 class NewFeed extends StatefulWidget {
@@ -17,11 +18,20 @@ class NewFeed extends StatefulWidget {
 }
 
 class _NewFeedState extends State<NewFeed> {
+  late ScrollController controller;
+  late String userId;
+  late List<ListPost> listPostt = [];
+  @override
+  void initState() {
+    super.initState();
+  }
+
   // int index = 0;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
+        userId = state.userId;
         return MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -90,25 +100,28 @@ class _NewFeedState extends State<NewFeed> {
                           ),
                         ),
                       ),
-                      BlocBuilder<PostBlocBloc, PostBlocState>(
+                      BlocBuilder<AuthenticateBloc, AuthenticateState>(
                         builder: (context, state) {
-                          if (state is PostLoadedState) {
-                            return Expanded(
-                              child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                itemCount: state.list.length,
-                                itemBuilder: (context, index) {
-                                  // return customePostList(
-                                  //     state.list[index], context);
-                                  return CustomPostList(
-                                    listPost: state.list[index],
-                                  );
-                                },
-                              ),
-                            );
-                          }
-                          return Center(
-                            child: CircularProgressIndicator(),
+                          return BlocBuilder<PostBlocBloc, PostBlocState>(
+                            builder: (context, state) {
+                              if (state is PostLoadedState) {
+                                return Expanded(
+                                  child: ListView.builder(
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: state.list.length,
+                                    itemBuilder: (context, index) {
+                                      listPostt.addAll(state.list);
+                                      return CustomPostList(
+                                        listPost: listPostt, indexx: index,
+                                      );
+                                    },
+                                  ),
+                                );
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
                           );
                         },
                       ),

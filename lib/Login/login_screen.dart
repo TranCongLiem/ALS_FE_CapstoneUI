@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
+import 'package:capstone_ui/Login/update_info.dart';
 
 import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Register/register_screen.dart';
@@ -32,31 +33,59 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-        //  print('test state '+ state.toString());
+          //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.1, end: 1).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.bounceIn,
+            if (state.fullName != '') {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.1, end: 1).animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.bounceIn,
+                        ),
                       ),
-                    ),
-                    child: child,
-                  );
-                },
-                transitionDuration: Duration(seconds: 1),
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
-                  return NewFeed();
-                },
-              ),
-            );
+                      child: child,
+                    );
+                  },
+                  transitionDuration: Duration(seconds: 1),
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    return NewFeed();
+                  },
+                ),
+              );
+            } else{
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.1, end: 1).animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.bounceIn,
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                  transitionDuration: Duration(seconds: 1),
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    return RegisterInfo();
+                  },
+                ),
+              );
+            }
           }
         },
         builder: (context, state) {
