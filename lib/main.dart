@@ -1,4 +1,5 @@
 // import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:audioplayers/notifications.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
@@ -15,19 +16,34 @@ import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
+import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:capstone_ui/services/api_login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Bloc/create_post/create_post_bloc.dart';
+
+import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
+
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
+import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
+import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
+import 'Feature/Chat/providers/chat_provider.dart';
+import 'Feature/Chat/providers/home_provider.dart';
 import 'firebase_options.dart';
+import 'services/api_ReactPost.dart';
 import 'services/api_User.dart';
 // import 'Login/login_screen.dart';
 
@@ -40,95 +56,155 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(
+    prefs: prefs,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+  final SharedPreferences prefs;
+  MyApp({Key? key, required this.prefs}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     FirebaseMessaging.instance.getToken().then((value) => print("TokenOfDevice:${value}" ));
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
-    return MultiRepositoryProvider(
+    return MultiProvider(
       providers: [
-        RepositoryProvider(
-          create: (context) => UserService(),
+        Provider<HomeProvider>(
+          create: (_) => HomeProvider(
+            firebaseFirestore: this.firebaseFirestore,
+          ),
         ),
-        RepositoryProvider(
-          create: (context) => UserPatientService(),
-        ),
-        RepositoryProvider(
-          create: (context) => ExerciseService(),
-        ),
-        RepositoryProvider(
-          create: (context) => CategoryExerciseService(),
-        ),
-        RepositoryProvider(
-          create: (context) => RecordService(),
-        ),
-        RepositoryProvider(
-          create: (context) => ListKnowledgeService(),
+        Provider<ChatProvider>(
+          create: (_) => ChatProvider(
+            prefs: this.prefs,
+            firebaseFirestore: this.firebaseFirestore,
+            firebaseStorage: this.firebaseStorage,
+          ),
         ),
         RepositoryProvider(
           create: (context) => PostService(),
+        ),
+        RepositoryProvider(
+          create: (context) => ShortCutNotificationService(),
         )
       ],
-      child: MultiBlocProvider(
+      child: MultiRepositoryProvider(
         providers: [
-          BlocProvider(
-            create: (context) =>
-                BottomNavBarBloc()..add(BottomNavBarItemSelected(0)),
+          RepositoryProvider(
+            create: (context) => UserService(),
           ),
-          BlocProvider(
-            create: (context) =>
-                AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+          RepositoryProvider(
+            create: (context) => UserPatientService(),
           ),
-          BlocProvider(
-              create: (context) =>
-                  UserBloc(RepositoryProvider.of<UserPatientService>(context))),
-          BlocProvider(
-              create: (context) => GetDetailBloc(
-                  RepositoryProvider.of<UserPatientService>(context))),
-          BlocProvider(
-              create: (context) => ListKnowledgeBlocBloc(
-                  RepositoryProvider.of<ListKnowledgeService>(context))),
-          BlocProvider(
-              create: (context) =>
-                  PostBlocBloc(RepositoryProvider.of<PostService>(context))),
-          BlocProvider(
-            create: (context) =>
-                CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),
+          RepositoryProvider(
+            create: (context) => ExerciseService(),
           ),
-          BlocProvider(
-            create: (context) =>
-                RemoveRecordBloc(RepositoryProvider.of<RecordService>(context)),
+          RepositoryProvider(
+            create: (context) => CategoryExerciseService(),
           ),
-          BlocProvider(
-            create: (context) =>
-                RecordAdminBloc(RepositoryProvider.of<RecordService>(context)),
+          RepositoryProvider(
+            create: (context) => RecordService(),
           ),
-          BlocProvider(
-            create: (context) =>
-                RecordBlocBloc(RepositoryProvider.of<RecordService>(context)),
+          RepositoryProvider(
+            create: (context) => ListKnowledgeService(),
           ),
-          BlocProvider(
-              create: (context) => ExerciseBlocBloc(
-                  RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadAllExerciseEvent())),
-          BlocProvider(
-              create: (context) => CategoryExerciseBlocBloc(
-                  RepositoryProvider.of<CategoryExerciseService>(context))),
+          RepositoryProvider(
+            create: (context) => PostService(),
+          ),
+          RepositoryProvider(
+            create: (context) => ReactPostService(),
+          ),
         ],
-        child: MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.green,
-            fontFamily: 'San',
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  BottomNavBarBloc()..add(BottomNavBarItemSelected(0)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+            ),
+            BlocProvider(
+                create: (context) => UserBloc(
+                    RepositoryProvider.of<UserPatientService>(context))),
+            BlocProvider(
+                create: (context) => GetDetailBloc(
+                    RepositoryProvider.of<UserPatientService>(context))),
+            BlocProvider(
+                create: (context) => ListKnowledgeBlocBloc(
+                    RepositoryProvider.of<ListKnowledgeService>(context))),
+            BlocProvider(
+                create: (context) =>
+                    PostBlocBloc(RepositoryProvider.of<PostService>(context))),
+            BlocProvider(
+                create: (context) => ReactPostBloc(
+                    RepositoryProvider.of<ReactPostService>(context))),
+            BlocProvider(
+                create: (context) => CreatePostBloc(
+                    RepositoryProvider.of<PostService>(context))),
+            BlocProvider(
+                create: (context) => UpdateIsPublicPostBloc(
+                    RepositoryProvider.of<PostService>(context))),
+            BlocProvider(
+              create: (context) => CreateRecordBloc(
+                  RepositoryProvider.of<RecordService>(context)),
+            ),
+            BlocProvider(
+              create: (context) => RemoveRecordBloc(
+                  RepositoryProvider.of<RecordService>(context)),
+            ),
+            BlocProvider(
+              create: (context) => RecordAdminBloc(
+                  RepositoryProvider.of<RecordService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  RecordBlocBloc(RepositoryProvider.of<RecordService>(context)),
+            ),
+            BlocProvider(
+                create: (context) => ExerciseBlocBloc(
+                    RepositoryProvider.of<ExerciseService>(context))
+                  ..add(LoadAllExerciseEvent())),
+            BlocProvider(
+                create: (context) => CategoryExerciseBlocBloc(
+                    RepositoryProvider.of<CategoryExerciseService>(context))),
+            BlocProvider(
+                create: (context) => ExerciseBlocBloc(
+                    RepositoryProvider.of<ExerciseService>(context))
+                  ..add(LoadAllExerciseEvent())),
+            BlocProvider(
+                create: (context) => CategoryExerciseBlocBloc(
+                    RepositoryProvider.of<CategoryExerciseService>(context))),
+            //---SUPORTER---
+            BlocProvider(
+              create: (context) => BottomNavBarSupporterBloc()
+                ..add(BottomNavBarSupporterItemSelected(0)),
+            ),
+            BlocProvider(
+              create: (context) => BottomNavBarSupporterBloc()
+                ..add(BottomNavBarSupporterItemSelected(0)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+            ),
+          ],
+          child: MaterialApp(
+            theme: ThemeData(
+              primarySwatch: Colors.green,
+              fontFamily: 'San',
+            ),
+            debugShowCheckedModeBanner: false,
+            initialRoute: '/login',
+            onGenerateRoute: RouteGenerator.generateRoute,
           ),
-          debugShowCheckedModeBanner: false,
-          initialRoute: '/login',
-          onGenerateRoute: RouteGenerator.generateRoute,
         ),
       ),
     );

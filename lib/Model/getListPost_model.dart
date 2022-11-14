@@ -5,6 +5,7 @@ class ListPost {
   String? createDate;
   String? image;
   String? caption;
+  bool? isPublic;
   String? fullNameUser;
   String? imageUser;
   int? countReact;
@@ -15,7 +16,7 @@ class ListPost {
   //   this.categoryName,
   //   this.categoryImage
   // );
-  ListPost({this.postId, this.createDate, this.image, this.caption, this.fullNameUser, this.imageUser, this.countReact, this.checkReact});
+  ListPost({this.postId, this.createDate, this.image, this.caption,this.isPublic, this.fullNameUser, this.imageUser, this.countReact, this.checkReact});
 
   factory ListPost.fromJson(Map<String, dynamic> json) {
     return ListPost(
@@ -23,6 +24,7 @@ class ListPost {
       createDate: json['createDate'] ?? '' as String,
       image: json['image'] ?? '' as String,
       caption: json['caption'] ?? '' as String,
+      isPublic: json['isPublic'] ?? '' as bool,
       fullNameUser: json['fullNameUser'] ?? '' as String,
       imageUser: json['imageUser'] ?? '' as String,
       countReact: json['countReact'] ?? 0 as int,

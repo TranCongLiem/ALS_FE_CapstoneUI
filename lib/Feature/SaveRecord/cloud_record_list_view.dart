@@ -1,26 +1,18 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/remove_record/remove_record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Feature/SaveRecord/Category_List_Record/custom_record_list.exercise.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
-import 'package:capstone_ui/services/api_Record.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
-import 'catalog.dart';
 import 'home_view.dart';
 
 class CloudRecordListView extends StatefulWidget {
-  //final List<Reference> references;
   final List<RecordById> references;
-  const CloudRecordListView({
-    Key? key,
-    required this.references,
-  }) : super(key: key);
+  final String userId;
+  const CloudRecordListView(
+      {Key? key, required this.references, required this.userId})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -38,6 +30,9 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   late bool isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
+  TextEditingController _textFieldController = TextEditingController();
+  String valueText = '';
+  String codeDialog = '';
   @override
   void initState() {
     super.initState();
@@ -107,65 +102,214 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       child: Column(
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '',
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(95, 177, 23, 23),
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(30),
-                                        bottomLeft: Radius.circular(30),
-                                        bottomRight: Radius.circular(30),
-                                        topRight: Radius.circular(30))),
-                                child: IconButton(
-                                  icon: Icon(Icons.delete),
-                                  onPressed: () {
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent.getRecordId(widget
-                                            .references[index].recordId
-                                            .toString()));
-                                    context.read<RemoveRecordBloc>().add(
-                                        RemoveRecordEvent
-                                            .removeRecordRequest());
-                                  },
-                                  color: Colors.white,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '',
                                 ),
-                              ),
-                            ],
-                          ),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Ink.image(
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                  child: InkWell(
-                                    onTap: () {},
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Color.fromARGB(95, 177, 23, 23),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(30),
+                                          topRight: Radius.circular(30))),
+                                  child: IconButton(
+                                    icon: Icon(Icons.delete),
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return Scaffold(
+                                            backgroundColor: Colors.transparent,
+                                            body: AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                              ),
+                                              buttonPadding:
+                                                  EdgeInsets.all(10.0),
+                                              contentPadding:
+                                                  EdgeInsets.all(30.0),
+                                              title: Text(
+                                                'Xác nhận',
+                                                style: TextStyle(
+                                                    fontSize: 21.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              content: Text(
+                                                'Bạn có muốn xóa bản ghi này?',
+                                                style:
+                                                    TextStyle(fontSize: 19.0),
+                                              ),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text('HỦY'),
+                                                ),
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.red),
+                                                  onPressed: () {
+                                                    context
+                                                        .read<
+                                                            RemoveRecordBloc>()
+                                                        .add(RemoveRecordEvent
+                                                            .getRecordId(widget
+                                                                .references[
+                                                                    index]
+                                                                .recordId
+                                                                .toString()));
+                                                    context
+                                                        .read<
+                                                            RemoveRecordBloc>()
+                                                        .add(RemoveRecordEvent
+                                                            .removeRecordRequest());
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Text(
+                                                    'XÓA',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20.0),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    color: Colors.white,
                                   ),
-                                  image: NetworkImage(
-                                      'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
-                              ElevatedButton.icon(
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 3.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[300]!
+                                                .withOpacity(0.5),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30),
+                                                bottomLeft: Radius.circular(30),
+                                                bottomRight:
+                                                    Radius.circular(30),
+                                                topRight: Radius.circular(30))),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return AlertDialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              15.0),
+                                                    ),
+                                                    buttonPadding:
+                                                        EdgeInsets.all(10.0),
+                                                    contentPadding:
+                                                        EdgeInsets.all(30.0),
+                                                    title: Text(
+                                                        'Mô tả thông tin trợ giúp'),
+                                                    content: TextField(
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          valueText = value;
+                                                        });
+                                                      },
+                                                      controller:
+                                                          TextEditingController(
+                                                              text: widget
+                                                                      .references[
+                                                                          index]
+                                                                      .recordName ??
+                                                                  ''),
+                                                      decoration:
+                                                          InputDecoration(
+                                                              hintText:
+                                                                  "Nhập mô tả"),
+                                                    ),
+                                                    actions: <Widget>[
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    Colors.red),
+                                                        child: Text('HỦY'),
+                                                        onPressed: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        },
+                                                      ),
+                                                      ElevatedButton(
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    Colors.green
+                                                                        .withOpacity(
+                                                                            0.7)),
+                                                        child: Text('GỬI'),
+                                                        onPressed: () {
+                                                          setState(() {
+                                                            codeDialog =
+                                                                valueText;
+                                                            Navigator.pop(
+                                                                context);
+                                                          });
+                                                        },
+                                                      ),
+                                                    ],
+                                                  );
+                                                });
+                                          },
+                                          icon: Icon(
+                                            Icons.notifications,
+                                            color: Colors.amber[800]!
+                                                .withOpacity(0.6),
+                                            size: 30.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ]),
+                          Container(
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index);
+                                        widget.references[index],
+                                        index,
+                                        widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 80.0)
+                                      ? Icon(Icons.pause, size: 60.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 80.0,
+                                          size: 60.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.only(left: 7),
                                     backgroundColor: greenALS,
-                                  ))
-                            ],
+                                  ))),
+                          SizedBox(
+                            height: 8.0,
                           ),
                           Text(
                             widget.references[index].recordName ?? '',
@@ -185,7 +329,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   }
 
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index) async {
+      RecordById recordById, int index, String userId) async {
     if (selectedIndex == index) {
       setState(() {
         audioPlayer.stop();
@@ -201,6 +345,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       Reference pathReference = FirebaseStorage.instance
           .ref()
           .child('upload-voice-firebase')
+          .child(userId)
           .child(recordById.linkAudio ?? '');
       audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
       audioPlayer.onPlayerCompletion.listen((duration) {

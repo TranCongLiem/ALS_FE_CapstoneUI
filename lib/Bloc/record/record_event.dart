@@ -5,11 +5,9 @@ abstract class RecordBlocEvent {
 }
 
 class LoadRecordEvent extends RecordBlocEvent{
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
+  final String userId;
+  const LoadRecordEvent({required this.userId});
 
-}class LoadRecordEventByAdmin extends RecordBlocEvent{
   @override
   // TODO: implement props
   List<Object?> get props => [];

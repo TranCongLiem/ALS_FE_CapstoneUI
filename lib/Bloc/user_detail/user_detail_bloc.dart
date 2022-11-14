@@ -14,7 +14,7 @@ class GetDetailBloc extends Bloc<GetDeatailBlocEvent, GetDeatailBlocState> {
  
   GetDetailBloc(this._userPatientService) : super(GetDetailBlocInitial()) {
     on<LoadDetailUserEvent>((event, emit) async {
-       GetProfileUserByIdRequestModel getProfileUserByIdRequestModel = GetProfileUserByIdRequestModel(userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715');
+       GetProfileUserByIdRequestModel getProfileUserByIdRequestModel = GetProfileUserByIdRequestModel(userId: event.userId);
       GetProfileUserByIdResponeModel getProfileUserByIdResponeModel = await _userPatientService.getProfileUserById(getProfileUserByIdRequestModel);
       emit(GetDetailLoadedState(getProfileUserByIdResponeModel));
     });

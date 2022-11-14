@@ -5,7 +5,6 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:url_launcher/url_launcher.dart';
-
 import 'utils.dart';
 
 class SpeechToText extends StatefulWidget {
@@ -16,14 +15,13 @@ class SpeechToText extends StatefulWidget {
 }
 
 class _SpeechToTextState extends State<SpeechToText> {
-
   final Map<String, HighlightedWord> _highlights = {
     'gọi': HighlightedWord(
-      onTap: () async{
+      onTap: () async {
         const uri = 'tel:+1 222 060 888';
         if (await canLaunch(uri)) {
           await launch(uri);
-        } else{
+        } else {
           throw 'Could not launch $uri';
         }
       },
@@ -50,24 +48,21 @@ class _SpeechToTextState extends State<SpeechToText> {
     return Scaffold(
       appBar: AppBar(
         title:
-        // Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
-        Text('Chuyển giọng nói thành văn bản'),
-            centerTitle: true,
-            actions: [
-              Builder(
-                builder: (context) {
-                  return IconButton(
-                      onPressed: () async {
-                        await FlutterClipboard.copy(_text);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Đã sao chép")),
-                        );
-                      },
-                      icon: Icon(Icons.content_copy)
+            // Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+            Text('Chuyển giọng nói thành văn bản'),
+        centerTitle: true,
+        actions: [
+          Builder(builder: (context) {
+            return IconButton(
+                onPressed: () async {
+                  await FlutterClipboard.copy(_text);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Đã sao chép")),
                   );
-                }
-              )
-            ],
+                },
+                icon: Icon(Icons.content_copy));
+          })
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: AvatarGlow(
@@ -96,23 +91,22 @@ class _SpeechToTextState extends State<SpeechToText> {
             child: TextHighlight(
               text: _text,
               words: _highlights,
-              textStyle: const TextStyle(
-                fontSize: 32.0,
-                color: Colors.black
-              ),
+              textStyle: const TextStyle(fontSize: 32.0, color: Colors.black),
             ),
           ),
         ),
       ),
     );
   }
+
   void _listen() async {
-    PermissionStatus microStatus= await Permission.microphone.request();
-    if(microStatus == PermissionStatus.granted){}
-    if(microStatus == PermissionStatus.denied){
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
+    PermissionStatus microStatus = await Permission.microphone.request();
+    if (microStatus == PermissionStatus.granted) {}
+    if (microStatus == PermissionStatus.denied) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
     }
-    if(microStatus == PermissionStatus.permanentlyDenied){
+    if (microStatus == PermissionStatus.permanentlyDenied) {
       openAppSettings();
     }
     if (!_isListening) {
@@ -134,7 +128,6 @@ class _SpeechToTextState extends State<SpeechToText> {
           }),
         );
       }
-
     } else {
       setState(() => _isListening = false);
       _speech.stop();

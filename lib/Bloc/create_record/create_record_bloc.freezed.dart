@@ -20,7 +20,7 @@ mixin _$CreateRecordEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) =>
@@ -29,7 +29,7 @@ mixin _$CreateRecordEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) =>
@@ -38,7 +38,7 @@ mixin _$CreateRecordEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -160,7 +160,7 @@ class _$_RecordNameChanged implements _RecordNameChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -172,7 +172,7 @@ class _$_RecordNameChanged implements _RecordNameChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -184,7 +184,7 @@ class _$_RecordNameChanged implements _RecordNameChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -313,7 +313,7 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -325,7 +325,7 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -337,7 +337,7 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -403,6 +403,7 @@ abstract class _$$_CreateRecordRequestCopyWith<$Res> {
   factory _$$_CreateRecordRequestCopyWith(_$_CreateRecordRequest value,
           $Res Function(_$_CreateRecordRequest) then) =
       __$$_CreateRecordRequestCopyWithImpl<$Res>;
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -415,37 +416,61 @@ class __$$_CreateRecordRequestCopyWithImpl<$Res>
 
   @override
   _$_CreateRecordRequest get _value => super._value as _$_CreateRecordRequest;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_CreateRecordRequest(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_CreateRecordRequest implements _CreateRecordRequest {
-  const _$_CreateRecordRequest();
+  const _$_CreateRecordRequest(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'CreateRecordEvent.createRecordRequest()';
+    return 'CreateRecordEvent.createRecordRequest(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CreateRecordRequest);
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateRecordRequest &&
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CreateRecordRequestCopyWith<_$_CreateRecordRequest> get copyWith =>
+      __$$_CreateRecordRequestCopyWithImpl<_$_CreateRecordRequest>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
-    return createRecordRequest();
+    return createRecordRequest(userId);
   }
 
   @override
@@ -453,11 +478,11 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
-    return createRecordRequest?.call();
+    return createRecordRequest?.call(userId);
   }
 
   @override
@@ -465,13 +490,13 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
   }) {
     if (createRecordRequest != null) {
-      return createRecordRequest();
+      return createRecordRequest(userId);
     }
     return orElse();
   }
@@ -518,7 +543,13 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
 }
 
 abstract class _CreateRecordRequest implements CreateRecordEvent {
-  const factory _CreateRecordRequest() = _$_CreateRecordRequest;
+  const factory _CreateRecordRequest(final String userId) =
+      _$_CreateRecordRequest;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_CreateRecordRequestCopyWith<_$_CreateRecordRequest> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -564,7 +595,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -576,7 +607,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -588,7 +619,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -687,7 +718,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult when<TResult extends Object?>({
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
-    required TResult Function() createRecordRequest,
+    required TResult Function(String userId) createRecordRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -699,7 +730,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -711,7 +742,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
-    TResult Function()? createRecordRequest,
+    TResult Function(String userId)? createRecordRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),

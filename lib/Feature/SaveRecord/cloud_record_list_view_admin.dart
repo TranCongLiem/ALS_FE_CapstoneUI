@@ -17,9 +17,10 @@ import 'home_view.dart';
 class CloudRecordListViewAdmin extends StatefulWidget {
   //final List<Reference> references;
   final List<RecordById> references;
+  final String userId;
   const CloudRecordListViewAdmin({
     Key? key,
-    required this.references,
+    required this.references,required this.userId
   }) : super(key: key);
 
   @override
@@ -139,7 +140,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index);
+                                        widget.references[index], index,widget.userId);
                                   },
                                   icon: selectedIndex == index
                                       ? Icon(Icons.pause, size: 80.0)
@@ -174,7 +175,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
 
 
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index) async {
+      RecordById recordById, int index,String userId) async {
     // await audioPlayer.stop();
     setState(() {
       selectedIndex = index;
