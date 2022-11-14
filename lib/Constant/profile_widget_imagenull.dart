@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class ProfileWidget extends StatelessWidget {
+class ProfileWidgetImageNull extends StatelessWidget {
   final String imagePath;
   final bool isEdit;
   final VoidCallback onClicked;
 
-  const ProfileWidget({
+  const ProfileWidgetImageNull({
     Key? key,
     required this.imagePath,
     this.isEdit = false,
@@ -33,13 +33,13 @@ class ProfileWidget extends StatelessWidget {
   }
 
   Widget buildImage() {
-    final image = Image.file(File(imagePath));
+    final image = AssetImage(imagePath);
 
     return ClipOval(
       child: Material(
         color: Colors.transparent,
         child: Ink.image(
-          image: image as ImageProvider,
+          image: image,
           fit: BoxFit.cover,
           width: 128,
           height: 128,

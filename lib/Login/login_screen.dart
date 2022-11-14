@@ -35,57 +35,29 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
-            if (state.fullName != '') {
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
-                        ),
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return ScaleTransition(
+                    alignment: Alignment.center,
+                    scale: Tween<double>(begin: 0.1, end: 1).animate(
+                      CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.bounceIn,
                       ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    return NewFeed();
-                  },
-                ),
-              );
-            } else{
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
-                        ),
-                      ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    return RegisterInfo();
-                  },
-                ),
-              );
-            }
+                    ),
+                    child: child,
+                  );
+                },
+                transitionDuration: Duration(seconds: 1),
+                pageBuilder: (BuildContext context, Animation<double> animation,
+                    Animation<double> secondaryAnimation) {
+                  return NewFeed();
+                },
+              ),
+            );
           }
         },
         builder: (context, state) {
