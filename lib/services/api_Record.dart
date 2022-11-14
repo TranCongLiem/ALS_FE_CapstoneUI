@@ -29,8 +29,8 @@ class RecordService {
     }
   }
 
-  Future<List<RecordById>> getRecordById() async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetRecordByUserId?id=43b6fcf9-b69b-40b0-93ab-87092eb25715"));
+  Future<List<RecordById>> getRecordById(String userId) async {
+    final response = await http.get(Uri.parse(endPointUrl + "GetRecordByUserId?id=" + userId));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 

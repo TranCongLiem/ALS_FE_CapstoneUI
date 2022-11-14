@@ -15,7 +15,6 @@ class RemoveRecordBloc extends Bloc<RemoveRecordEvent, RemoveRecordState> {
       RemoveRecordByIdRequestModel reqModel = RemoveRecordByIdRequestModel(
         recordId: state.recordId);
       final result = await _recordService.deleteRecord(reqModel);
-      print('Tan18' + reqModel.recordId );
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
           message: result.message ?? '',

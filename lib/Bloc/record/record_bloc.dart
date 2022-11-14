@@ -16,15 +16,9 @@ class RecordBlocBloc extends Bloc<RecordBlocEvent, RecordBlocState> {
     on<LoadRecordEvent>((event, emit) async {
       // TODO: implement event handler
       // RecordByIdReQuestModel recordByIdReQuestModel = RecordByIdReQuestModel(userId: userId)
-      final list= await _recordService.getRecordById();
+      final list= await _recordService.getRecordById(event.userId);
       emit(RecordLoadedState(list));
     });
-    // on<LoadRecordEventByAdmin>((event, emit) async {
-    //   // TODO: implement event handler
-    //   // RecordByIdReQuestModel recordByIdReQuestModel = RecordByIdReQuestModel(userId: userId)
-    //   final list= await _recordService.getRecordByIdAdmin();
-    //   emit(RecordLoadedState(list));
-    // });
     
 }
 }

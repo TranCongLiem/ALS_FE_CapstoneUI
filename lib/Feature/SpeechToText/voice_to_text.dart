@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'dart:math';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:clipboard/clipboard.dart';

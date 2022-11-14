@@ -1,17 +1,19 @@
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Bloc/user/user_bloc.dart';
-import '../../Constant/textfield_widget.dart';
 import '../../Constant/profile_widget.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 
 class ProfileUpdate extends StatefulWidget {
-  ProfileUpdate({Key? key, required this.getProfileUserByIdResponeModel})
+
+  final String userId;
+  ProfileUpdate(
+      {Key? key,
+      required this.getProfileUserByIdResponeModel,
+      required this.userId})
+
       : super(key: key);
   final GetProfileUserByIdResponeModel getProfileUserByIdResponeModel;
   @override
@@ -75,9 +77,10 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      context
-                          .read<UserBloc>()
-                          .add(UserEvent.updateProfilePatientRequest());
+
+                      context.read<UserBloc>().add(
+                          UserEvent.updateProfilePatientRequest(widget.userId));
+
                     },
                     child: Text(
                       'Lưu',
@@ -86,81 +89,77 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   )
                 ],
               ),
-              body: Padding(
-                padding: const EdgeInsets.only(top: 35.0),
-                child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 32),
-                  physics: BouncingScrollPhysics(),
-                  children: [
-                    ProfileWidget(
-                      imagePath:
-                          "https://img.freepik.com/free-photo/handsome-confident-smiling-man-with-hands-crossed-chest_176420-18743.jpg?w=2000",
-                      isEdit: true,
-                      onClicked: () {},
-                    ),
-                    const SizedBox(height: 24),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Họ tên',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 22),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: fullNameController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+
+              body: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 32),
+                physics: BouncingScrollPhysics(),
+                children: [
+                  ProfileWidget(
+                    imagePath:
+                        "https://sg.cdnki.com/anh-dai-dien-dep-cho-nam-ngau---aHR0cHM6Ly90aGllcG5oYW5haS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjEvMDUvaGluaC1hbmgtZGFpLWRpZW4tZGVwLTEuanBn.webp",
+                    isEdit: true,
+                    onClicked: () {},
+                  ),
+                  const SizedBox(height: 24),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Họ ten',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: fullNameController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 26, color: Colors.black54),
-                          onChanged: (fullName) {
-                            context
-                                .read<UserBloc>()
-                                .add(UserEvent.getFullName(fullName));
-                          },
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 26.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Địa chỉ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 22),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: addressController,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 26),
+                        onChanged: (fullName) {
+                          context
+                              .read<UserBloc>()
+                              .add(UserEvent.getFullName(fullName));
+                        },
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Dia chi',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                      const SizedBox(height: 8),
+                      TextFormField(
+                        controller: addressController,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          maxLines: 1,
-                          style: TextStyle(fontSize: 26, color: Colors.black54),
-                          onChanged: (address) {
-                            context
-                                .read<UserBloc>()
-                                .add(UserEvent.getAddress(address));
-                          },
                         ),
-                      ],
-                    ),
-                    //   context
-                    //       .read<UserBloc>()
-                    //       .add(UserEvent.getAddress(value));
-                    // },
-                    // ),
-                  ],
-                ),
+                        maxLines: 1,
+                        style: TextStyle(fontSize: 26),
+                        onChanged: (address) {
+                          context
+                              .read<UserBloc>()
+                              .add(UserEvent.getAddress(address));
+                        },
+                      ),
+                    ],
+                  ),
+                  //   context
+                  //       .read<UserBloc>()
+                  //       .add(UserEvent.getAddress(value));
+                  // },
+                  // ),
+                ],
+
               ),
             );
           },

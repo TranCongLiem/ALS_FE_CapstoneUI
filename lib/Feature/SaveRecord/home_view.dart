@@ -1,3 +1,4 @@
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
 import 'package:capstone_ui/Components/Feature/Excerise/SaveRecord/category_list_savevoice.dart';
@@ -21,7 +22,7 @@ class HomeViewRecord extends StatefulWidget {
 class _HomeViewRecordState extends State<HomeViewRecord>
     with TickerProviderStateMixin {
   List<Reference> references = [];
-
+  late String userId;
   @override
   void initState() {
     super.initState();
@@ -32,188 +33,194 @@ class _HomeViewRecordState extends State<HomeViewRecord>
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 2, vsync: this);
     var size = MediaQuery.of(context).size;
-    return MultiBlocProvider(
-      providers: [
-        // BlocProvider(
-        //     create: (context) =>
-        //         RecordTestBloc(RepositoryProvider.of<RecordService>(context))
-        //             //.read<RecordTestBloc>().add(RecordTestEvent.LoadedRecord())))),
-        //             ..add((RecordTestEvent()))),
-        BlocProvider(
-            create: (context) =>
-                RecordBlocBloc(RepositoryProvider.of<RecordService>(context))
-                  ..add(LoadRecordEvent())),
-        BlocProvider(
-            create: (context) =>
-                RecordAdminBloc(RepositoryProvider.of<RecordService>(context))
+    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
+      builder: (context, state2) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+                create: (context) => RecordBlocBloc(
+                    RepositoryProvider.of<RecordService>(context))
+                  ..add(LoadRecordEvent(userId: state2.userId))),
+            BlocProvider(
+                create: (context) => RecordAdminBloc(
+                    RepositoryProvider.of<RecordService>(context))
                   ..add(LoadRecordAdminEvent())),
-      ],
-      child: Sizer(builder: (context, orientation, deviceType) {
-        return SizerUtil.deviceType == DeviceType.mobile
-            // ignore: sized_box_for_whitespace
-            ? Container(
-                width: 100.w,
-                height: 20.5.h,
-                child: Scaffold(
-                    appBar: AppBar(
-                        title: Text('Hỗ trợ ghi âm'),
-                        backgroundColor: greenALS,
-                        centerTitle: true,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20.0),
-                                bottomRight: Radius.circular(20.0)))),
-                    body: SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            ButtonCreateRecord(),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 18.0),
-                              child: Card(
-                                margin: EdgeInsets.only(left: 40.0),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12)),
-                                elevation: 5,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.1),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: TabBar(
-                                    indicator: BoxDecoration(
+          ],
+          child: Sizer(builder: (context, orientation, deviceType) {
+            return SizerUtil.deviceType == DeviceType.mobile
+                // ignore: sized_box_for_whitespace
+                ? Container(
+                    width: 100.w,
+                    height: 20.5.h,
+                    child: Scaffold(
+                        appBar: AppBar(
+                            title: Text('Hỗ trợ ghi âm'),
+                            backgroundColor: greenALS,
+                            centerTitle: true,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0)))),
+                        body: SafeArea(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ButtonCreateRecord(),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 18.0),
+                                  child: Card(
+                                    margin: EdgeInsets.only(left: 40.0),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
+                                    elevation: 5,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12),
-                                        color: greenALS),
-                                    controller: tabController,
-                                    isScrollable: true,
-                                    labelPadding:
-                                        EdgeInsets.symmetric(horizontal: 45),
-                                    tabs: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(2.0),
-                                        child: Tab(
-                                          child: Text(
-                                            "Mẫu",
-                                            style: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 69, 57, 57),
-                                                fontSize: 26.0),
-                                          ),
-                                        ),
+
                                       ),
-                                      Tab(
-                                        child: Text(
-                                          "Thêm",
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 26.0),
-                                        ),
-                                      )
-                                    ],
+                                      child: TabBar(
+                                        indicator: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            color: greenALS),
+                                        controller: tabController,
+                                        isScrollable: true,
+                                        labelPadding: EdgeInsets.symmetric(
+                                            horizontal: 30),
+                                        tabs: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(2.0),
+                                            child: Tab(
+                                              child: Text(
+                                                "Mẫu",
+                                                style: TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 69, 57, 57),
+                                                    fontSize: 26.0),
+                                              ),
+                                            ),
+
+                                          ),
+                                          Tab(
+                                            child: Text(
+                                              "Thêm",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 26.0),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Expanded(
-                                child: TabBarView(
-                                    controller: tabController,
-                                    children: [
-                                  BlocBuilder<RecordAdminBloc,
-                                          RecordAdminBlocState>(
-                                      builder: (context, state) {
-                                    if (state is RecordLoadedAdminState) {
-                                      return CloudRecordListViewAdmin(
-                                        references: state.list,
-                                      );
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  }),
-                                  BlocBuilder<RecordBlocBloc, RecordBlocState>(
-                                      builder: (context, state) {
-                                    if (state is RecordLoadedState) {
-                                      return CloudRecordListView(
-                                        references: state.list,
-                                      );
-                                    }
-                                    return Center(
-                                      child: CircularProgressIndicator(),
-                                    );
-                                  })
 
-                                  // CloudRecordListViewAdmin(
-                                  //   references: state.list,
-                                  // ),
-                                  // state.list.isEmpty
-                                  //     ? Center(
-                                  //         child: Text(
-                                  //             'Chưa có bản ghi âm nào'),
-                                  //       )
-                                  //     : CloudRecordListView(
-                                  //         references: state.list,
-                                  //       ),
-                                ])),
-                          ],
-                        ),
-                      ),
-                    )))
-            : Container(
-                width: 100.w,
-                height: 12.5.h,
-                child: Scaffold(
-                    body: Stack(
-                  children: <Widget>[
-                    SafeArea(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: GridView.count(
-                                crossAxisCount: 2,
-                                childAspectRatio: .85,
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20,
-                                children: <Widget>[
-                                  CategoryListSaveRecord(
-                                    name: "Tập thể dục",
-                                    svgSrc:
-                                        'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                                    press: () {},
-                                  ),
-                                  CategoryListSaveRecord(
-                                    name: "Tập thể dục",
-                                    svgSrc:
-                                        'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                                    press: () {},
-                                  ),
-                                  CategoryListSaveRecord(
-                                    name: "Tập thể dục",
-                                    svgSrc:
-                                        'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                                    press: () {},
-                                  ),
-                                  CategoryListSaveRecord(
-                                    name: "Tập thể dục",
-                                    svgSrc:
-                                        'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
-                                    press: () {},
-                                  ),
-                                ],
-                              ),
+                                Expanded(
+                                    child: TabBarView(
+                                        controller: tabController,
+                                        children: [
+                                      BlocBuilder<RecordAdminBloc,
+                                              RecordAdminBlocState>(
+                                          builder: (context, state) {
+                                        if (state is RecordLoadedAdminState) {
+                                          return CloudRecordListViewAdmin(
+                                            references: state.list,userId : state2.userId,
+                                          );
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }),
+                                      BlocBuilder<RecordBlocBloc,
+                                              RecordBlocState>(
+                                          builder: (context, state) {
+                                        if (state is RecordLoadedState) {
+                                          return CloudRecordListView(
+                                            references: state.list,userId : state2.userId,
+                                          );
+                                        }
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      })
+
+                                      // CloudRecordListViewAdmin(
+                                      //   references: state.list,
+                                      // ),
+                                      // state.list.isEmpty
+                                      //     ? Center(
+                                      //         child: Text(
+                                      //             'Chưa có bản ghi âm nào'),
+                                      //       )
+                                      //     : CloudRecordListView(
+                                      //         references: state.list,
+                                      //       ),
+                                    ])),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                )));
-      }),
+                          ),
+                        )))
+                : Container(
+                    width: 100.w,
+                    height: 12.5.h,
+                    child: Scaffold(
+                        body: Stack(
+                      children: <Widget>[
+                        SafeArea(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Expanded(
+                                  child: GridView.count(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: .85,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 20,
+                                    children: <Widget>[
+                                      CategoryListSaveRecord(
+                                        name: "Tập thể dục",
+                                        svgSrc:
+                                            'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
+                                        press: () {},
+                                      ),
+                                      CategoryListSaveRecord(
+                                        name: "Tập thể dục",
+                                        svgSrc:
+                                            'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
+                                        press: () {},
+                                      ),
+                                      CategoryListSaveRecord(
+                                        name: "Tập thể dục",
+                                        svgSrc:
+                                            'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
+                                        press: () {},
+                                      ),
+                                      CategoryListSaveRecord(
+                                        name: "Tập thể dục",
+                                        svgSrc:
+                                            'https://media.istockphoto.com/photos/asian-mother-and-daughters-picture-id1356124817?s=612x612',
+                                        press: () {},
+                                      ),
+                                    ],
+
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    )));
+          }),
+        );
+      },
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
+import 'package:capstone_ui/Login/update_info.dart';
 
 import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Register/register_screen.dart';
@@ -16,7 +17,7 @@ import '../Feature/supporter/Newsfeed/newfeeds.dart';
 import '../Home/home.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -33,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
+
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
               Navigator.push(
