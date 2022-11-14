@@ -3,8 +3,6 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/customPostList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:capstone_ui/Feature/Newsfeed/create_post.dart';
-
 import '../../Bloc/post/post_bloc.dart';
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
 import '../../Model/getListPost_model.dart';
@@ -29,6 +27,7 @@ class _NewFeedState extends State<NewFeed> {
   // int index = 0;
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         userId = state.userId;
@@ -99,6 +98,7 @@ class _NewFeedState extends State<NewFeed> {
                             ],
                           ),
                         ),
+
                       ),
                       BlocBuilder<AuthenticateBloc, AuthenticateState>(
                         builder: (context, state) {

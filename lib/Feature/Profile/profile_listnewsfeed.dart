@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Bloc/authenticate/authenticate_bloc.dart';
 import '../../Bloc/post/post_bloc.dart';
 import '../../Constant/constant.dart';
 import '../../services/api_Post.dart';
 import 'customlistpost.dart';
+
 
 class ListNewsFeed extends StatefulWidget {
   const ListNewsFeed({super.key});
@@ -16,6 +18,7 @@ class ListNewsFeed extends StatefulWidget {
 class _ListNewsFeedState extends State<ListNewsFeed> {
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         return MultiBlocProvider(
@@ -55,6 +58,7 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
           ),
         );
       },
+
     );
   }
 }

@@ -81,6 +81,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                       decoration: BoxDecoration(
                                         color: Colors.black.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12),
+
                                       ),
                                       child: TabBar(
                                         indicator: BoxDecoration(
@@ -103,6 +104,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                                     fontSize: 26.0),
                                               ),
                                             ),
+
                                           ),
                                           Tab(
                                             child: Text(
@@ -117,6 +119,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                     ),
                                   ),
                                 ),
+
                                 Expanded(
                                     child: TabBarView(
                                         controller: tabController,
@@ -206,6 +209,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                         press: () {},
                                       ),
                                     ],
+
                                   ),
                                 ),
                               ],
@@ -235,7 +239,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
     print(
         firebaseStorage.ref().child('upload-voice-firebase').list().toString());
 
-        print(listResult);
+    print(listResult);
 
     setState(() {
       references = listResult.items;

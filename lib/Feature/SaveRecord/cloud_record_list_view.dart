@@ -30,6 +30,9 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   late bool isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
+  TextEditingController _textFieldController = TextEditingController();
+  String valueText = '';
+  String codeDialog = '';
   @override
   void initState() {
     super.initState();
@@ -98,6 +101,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
+
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -178,23 +182,104 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                     );
                                   },
                                   color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Ink.image(
-                                  height: 80,
-                                  width: 80,
-                                  fit: BoxFit.cover,
-                                  child: InkWell(
-                                    onTap: () {},
+                          Container(
+                            margin: EdgeInsets.symmetric(vertical: 3.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: Colors.grey[300]!.withOpacity(0.5),
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30),
+                                          bottomLeft: Radius.circular(30),
+                                          bottomRight: Radius.circular(30),
+                                          topRight: Radius.circular(30))),
+                                  child: IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                              ),
+                                              buttonPadding:
+                                                  EdgeInsets.all(10.0),
+                                              contentPadding:
+                                                  EdgeInsets.all(30.0),
+                                              title: Text(
+                                                  'Mô tả thông tin trợ giúp'),
+                                              content: TextField(
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    valueText = value;
+                                                  });
+                                                },
+                                                controller:
+                            
+                                                    TextEditingController(text: widget.references[index].recordName ?? ''),
+                                                decoration: InputDecoration(
+                                                    hintText: "Nhập mô tả"),
+                                              ),
+                                              actions: <Widget>[
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.red),
+                                                  child: Text('HỦY'),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              Colors.green
+                                                                  .withOpacity(
+                                                                      0.7)),
+                                                  child: Text('GỬI'),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      codeDialog = valueText;
+                                                      Navigator.pop(context);
+                                                    });
+                                                  },
+                                                ),
+                                              ],
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.notifications,
+                                      color:
+                                          Colors.amber[800]!.withOpacity(0.6),
+                                      size: 30.0,
+                                    ),
                                   ),
-                                  image: NetworkImage(
-                                      'https://cdn1.iconfinder.com/data/icons/video-production-butterscotch-vol-2/256/Microphone-512.png')),
-                              ElevatedButton.icon(
+
+                                ),
+                                // ElevatedButton( doi t xiu nhe
+                                //   onPressed: () {},
+                                //   child: Text(
+                                //     'HỖ TRỢ',utto
+                                //     style:
+                                //         TextStyle(fontWeight: FontWeight.bold),
+                                //   ),
+                                //   style: ElevatedButton.styleFrom(
+                                //       backgroundColor:
+                                //           greenALS.withOpacity(0.5)),
+                                // ),
+                                
+                              ],
+                            ),
+                          ),
+                          Container(
+                              alignment: Alignment.center,
+                              child: ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
                                         widget.references[index],
@@ -202,18 +287,19 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                         widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 80.0)
+                                      ? Icon(Icons.pause, size: 60.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 80.0,
+                                          size: 60.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.only(left: 7),
                                     backgroundColor: greenALS,
-                                  ))
-                            ],
+                                  ))),
+                          SizedBox(
+                            height: 8.0,
                           ),
                           Text(
                             widget.references[index].recordName ?? '',

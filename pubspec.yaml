@@ -60,6 +60,9 @@ dependencies:
   pinput: ^2.2.12
   flutterfire_cli: ^0.2.6
   firebase_storage: ^11.0.4
+
+  firebase_messaging: ^14.0.4
+
   flutter_audio_recorder2: ^0.0.2
   audioplayers: ^0.19.1
   toggle_switch: ^2.0.1

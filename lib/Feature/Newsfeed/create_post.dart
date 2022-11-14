@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../Bloc/authenticate/authenticate_bloc.dart';
 import '../../Bloc/create_post/create_post_bloc.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
+
 import 'newfeeds.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
@@ -96,6 +99,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                         CurvedAnimation(
                           parent: animation,
                           curve: Curves.bounceIn,
+
                         ),
                       ),
                       child: child,
@@ -314,6 +318,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                               ),
                             ),
                           ],
+
                         ),
                       ),
                     )
@@ -374,4 +379,5 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
       setState(() {});
     }
   }
+
 }

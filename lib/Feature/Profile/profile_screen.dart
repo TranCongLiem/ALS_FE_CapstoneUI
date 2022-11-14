@@ -1,17 +1,12 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Profile/profileInfo.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Profile/profile_listnewsfeed.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
-import 'package:capstone_ui/Model/getProfileUser_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Bloc/user_detail/user_detail_bloc.dart';
 import '../../services/api_User.dart';
 import 'profile_listnewsfeed.dart';
@@ -28,6 +23,7 @@ class _ProfiletState extends State<Profile> {
   // int index = 4;
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state2) {
         return MultiBlocProvider(
@@ -69,9 +65,11 @@ class _ProfiletState extends State<Profile> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
+
                     ),
                   ],
                 ),
+
                 body: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
@@ -92,6 +90,7 @@ class _ProfiletState extends State<Profile> {
                         press: () {},
                       ),
                       SizedBox(
+
                     height: 20,
                   ),
                   // ProfileMenuItem(
@@ -136,6 +135,7 @@ class _ProfiletState extends State<Profile> {
                   )
                     ],
                   ),
+
                 ),
                 bottomNavigationBar: MyBottomNavBar(
                     // index: this.index,

@@ -7,11 +7,13 @@ import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 
 class ProfileUpdate extends StatefulWidget {
+
   final String userId;
   ProfileUpdate(
       {Key? key,
       required this.getProfileUserByIdResponeModel,
       required this.userId})
+
       : super(key: key);
   final GetProfileUserByIdResponeModel getProfileUserByIdResponeModel;
   @override
@@ -75,8 +77,10 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
+
                       context.read<UserBloc>().add(
                           UserEvent.updateProfilePatientRequest(widget.userId));
+
                     },
                     child: Text(
                       'Lưu',
@@ -85,6 +89,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   )
                 ],
               ),
+
               body: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 physics: BouncingScrollPhysics(),
@@ -154,6 +159,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   // },
                   // ),
                 ],
+
               ),
             );
           },
