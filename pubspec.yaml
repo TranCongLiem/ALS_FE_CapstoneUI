@@ -55,11 +55,12 @@ dependencies:
   # audioplayers: ^1.0.1
   path_provider: ^2.0.11
   sizer: ^2.0.15
-  firebase_auth: ^3.8.0
-  firebase_core: ^1.22.0
+  firebase_auth: ^4.1.1
+  firebase_core: ^2.1.1
   pinput: ^2.2.12
   flutterfire_cli: ^0.2.6
-  firebase_storage: ^10.3.8
+  firebase_storage: ^11.0.4
+  firebase_messaging: ^14.0.4
   flutter_audio_recorder2: ^0.0.2
   audioplayers: ^0.19.1
   request_permission: ^2.1.4
