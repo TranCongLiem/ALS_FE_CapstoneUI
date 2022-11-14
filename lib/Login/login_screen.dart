@@ -1,20 +1,13 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Login/update_info.dart';
-
 import 'package:capstone_ui/Login/verify_phone.dart';
-import 'package:capstone_ui/Register/register_screen.dart';
-import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
 import 'package:sizer/sizer.dart';
-import '';
 
-import '../Feature/supporter/Newsfeed/newfeeds.dart';
-import '../Home/home.dart';
+import '../Feature/Supporter/Newsfeed/newfeeds.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -34,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
               Navigator.push(

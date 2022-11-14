@@ -13,7 +13,8 @@ import '../../services/api_Post.dart';
 class CustomPostList extends StatefulWidget {
   final List<ListPost> listPost;
   final int indexx;
-  const CustomPostList({Key? key, required this.listPost,required this.indexx}) : super(key: key);
+  const CustomPostList({Key? key, required this.listPost, required this.indexx})
+      : super(key: key);
 
   @override
   _CustomPostListState createState() => _CustomPostListState();
@@ -33,7 +34,8 @@ class _CustomPostListState extends State<CustomPostList> {
 
   @override
   Widget build(BuildContext context) {
-    DateTime time = DateTime.parse(widget.listPost[widget.indexx].createDate ?? '');
+    DateTime time =
+        DateTime.parse(widget.listPost[widget.indexx].createDate ?? '');
     timeago.setLocaleMessages('vi', timeago.ViMessages());
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context2, state2) {
@@ -74,7 +76,9 @@ class _CustomPostListState extends State<CustomPostList> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    widget.listPost[widget.indexx].fullNameUser ?? '',
+                                    widget.listPost[widget.indexx]
+                                            .fullNameUser ??
+                                        '',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20.0),
@@ -109,7 +113,8 @@ class _CustomPostListState extends State<CustomPostList> {
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: CachedNetworkImage(
-                            imageUrl: widget.listPost[widget.indexx].image ?? '',
+                            imageUrl:
+                                widget.listPost[widget.indexx].image ?? '',
                             errorWidget: ((context, url, error) => Container(
                                   alignment: Alignment.center,
                                   height:
@@ -182,7 +187,9 @@ class _CustomPostListState extends State<CustomPostList> {
                                                       onTap: (isLiked) =>
                                                           diableReactPost(
                                                               state2.userId,
-                                                              widget.listPost[widget.indexx]
+                                                              widget
+                                                                  .listPost[widget
+                                                                      .indexx]
                                                                   .postId
                                                                   .toString()),
                                                       likeBuilder:
@@ -214,7 +221,9 @@ class _CustomPostListState extends State<CustomPostList> {
                                                       onTap: (isLiked) =>
                                                           enableReactPost(
                                                               state2.userId,
-                                                              widget.listPost[widget.indexx]
+                                                              widget
+                                                                  .listPost[widget
+                                                                      .indexx]
                                                                   .postId
                                                                   .toString()),
                                                       likeBuilder:
@@ -336,7 +345,7 @@ class _CustomPostListState extends State<CustomPostList> {
       checkReact = true;
       countReact++;
       widget.listPost[widget.indexx].checkReact = true;
-      widget.listPost[widget.indexx].countReact = countReact; 
+      widget.listPost[widget.indexx].countReact = countReact;
     });
 
     return checkReact!;
@@ -355,7 +364,7 @@ class _CustomPostListState extends State<CustomPostList> {
       checkReact = false;
       countReact--;
       widget.listPost[widget.indexx].checkReact = false;
-      widget.listPost[widget.indexx].countReact = countReact; 
+      widget.listPost[widget.indexx].countReact = countReact;
     });
 
     return checkReact!;

@@ -24,7 +24,7 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
         BlocProvider(
             create: (context) => GetDetailBloc(
                 RepositoryProvider.of<UserPatientService>(context))
-              ..add(LoadDetailUserEvent())),
+              ..add(LoadDetailUserEvent(userId: ''))),
       ],
       child: BlocBuilder<GetDetailBloc, GetDeatailBlocState>(
         builder: (context, state) {
@@ -45,8 +45,10 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                           context,
                           MaterialPageRoute(
                               builder: ((context) => ProfileUpdate(
-                                  getProfileUserByIdResponeModel:
-                                      state.getProfileUserByIdResponeModel))));
+                                    getProfileUserByIdResponeModel:
+                                        state.getProfileUserByIdResponeModel,
+                                    userId: '',
+                                  ))));
                     }
                   },
                   child: Text(

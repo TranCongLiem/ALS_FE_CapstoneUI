@@ -14,9 +14,7 @@ packages:
       name: _flutterfire_internals
       url: "https://pub.dartlang.org"
     source: hosted
-
-    version: "1.0.7"
-
+    version: "1.0.8"
   analyzer:
     dependency: transitive
     description:
@@ -206,7 +204,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.1"
-
   cloud_firestore:
     dependency: "direct main"
     description:
@@ -214,25 +211,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.5"
-
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "5.8.5"
-
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "3.0.5"
-
   code_builder:
     dependency: transitive
     description:
@@ -365,9 +357,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "2.2.0"
-
   firebase_core_platform_interface:
     dependency: transitive
     description:
@@ -388,27 +378,21 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "14.1.0"
-
   firebase_messaging_platform_interface:
     dependency: transitive
     description:
       name: firebase_messaging_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "4.2.6"
-
   firebase_messaging_web:
     dependency: transitive
     description:
       name: firebase_messaging_web
       url: "https://pub.dartlang.org"
     source: hosted
-
     version: "3.2.6"
-
   firebase_storage:
     dependency: "direct main"
     description:
@@ -470,7 +454,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
-
   flutter_datetime_picker:
     dependency: "direct main"
     description:
@@ -478,7 +461,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
-
   flutter_inappwebview:
     dependency: "direct main"
     description:

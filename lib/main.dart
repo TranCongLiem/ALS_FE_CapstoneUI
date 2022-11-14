@@ -58,18 +58,22 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-   SharedPreferences prefs = await SharedPreferences.getInstance();
-  runApp(MyApp(prefs: prefs,));
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(
+    prefs: prefs,
+  ));
 }
 
 class MyApp extends StatelessWidget {
   final FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final SharedPreferences prefs;
-   MyApp({Key? key, required this.prefs}) : super(key: key);
+  MyApp({Key? key, required this.prefs}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-      FirebaseMessaging.instance.getToken().then((value) => print("TokenOfDevice:${value}" ));
+    FirebaseMessaging.instance
+        .getToken()
+        .then((value) => print("TokenOfDevice:${value}"));
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -88,31 +92,20 @@ class MyApp extends StatelessWidget {
             firebaseStorage: this.firebaseStorage,
           ),
         ),
-
         RepositoryProvider(
           create: (context) => PostService(),
-        ),RepositoryProvider(
+        ),
+        RepositoryProvider(
           create: (context) => ShortCutNotificationService(),
         )
-
       ],
       child: MultiRepositoryProvider(
         providers: [
           RepositoryProvider(
             create: (context) => UserService(),
           ),
-
           RepositoryProvider(
             create: (context) => UserPatientService(),
-
-          BlocProvider(
-            create: (context) => BottomNavBarSupporterBloc()
-              ..add(BottomNavBarSupporterItemSelected(0)),
-          ),
-          BlocProvider(
-            create: (context) =>
-                AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
-
           ),
           RepositoryProvider(
             create: (context) => ExerciseService(),
@@ -126,28 +119,12 @@ class MyApp extends StatelessWidget {
           RepositoryProvider(
             create: (context) => ListKnowledgeService(),
           ),
-
           RepositoryProvider(
             create: (context) => PostService(),
           ),
           RepositoryProvider(
             create: (context) => ReactPostService(),
           ),
-         
-
-          BlocProvider(
-              create: (context) => ExerciseBlocBloc(
-                  RepositoryProvider.of<ExerciseService>(context))
-                ..add(LoadAllExerciseEvent())),
-          BlocProvider(
-              create: (context) => CategoryExerciseBlocBloc(
-                  RepositoryProvider.of<CategoryExerciseService>(context))),
-          //---SUPORTER---
-          BlocProvider(
-            create: (context) => BottomNavBarSupporterBloc()
-              ..add(BottomNavBarSupporterItemSelected(0)),
-          ),
-
         ],
         child: MultiBlocProvider(
           providers: [
@@ -160,8 +137,8 @@ class MyApp extends StatelessWidget {
                   AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
             ),
             BlocProvider(
-                create: (context) =>
-                    UserBloc(RepositoryProvider.of<UserPatientService>(context))),
+                create: (context) => UserBloc(
+                    RepositoryProvider.of<UserPatientService>(context))),
             BlocProvider(
                 create: (context) => GetDetailBloc(
                     RepositoryProvider.of<UserPatientService>(context))),
@@ -175,22 +152,22 @@ class MyApp extends StatelessWidget {
                 create: (context) => ReactPostBloc(
                     RepositoryProvider.of<ReactPostService>(context))),
             BlocProvider(
-                create: (context) =>
-                    CreatePostBloc(RepositoryProvider.of<PostService>(context))),
+                create: (context) => CreatePostBloc(
+                    RepositoryProvider.of<PostService>(context))),
             BlocProvider(
                 create: (context) => UpdateIsPublicPostBloc(
                     RepositoryProvider.of<PostService>(context))),
             BlocProvider(
-              create: (context) =>
-                  CreateRecordBloc(RepositoryProvider.of<RecordService>(context)),
+              create: (context) => CreateRecordBloc(
+                  RepositoryProvider.of<RecordService>(context)),
             ),
             BlocProvider(
-              create: (context) =>
-                  RemoveRecordBloc(RepositoryProvider.of<RecordService>(context)),
+              create: (context) => RemoveRecordBloc(
+                  RepositoryProvider.of<RecordService>(context)),
             ),
             BlocProvider(
-              create: (context) =>
-                  RecordAdminBloc(RepositoryProvider.of<RecordService>(context)),
+              create: (context) => RecordAdminBloc(
+                  RepositoryProvider.of<RecordService>(context)),
             ),
             BlocProvider(
               create: (context) =>
@@ -203,6 +180,26 @@ class MyApp extends StatelessWidget {
             BlocProvider(
                 create: (context) => CategoryExerciseBlocBloc(
                     RepositoryProvider.of<CategoryExerciseService>(context))),
+            BlocProvider(
+                create: (context) => ExerciseBlocBloc(
+                    RepositoryProvider.of<ExerciseService>(context))
+                  ..add(LoadAllExerciseEvent())),
+            BlocProvider(
+                create: (context) => CategoryExerciseBlocBloc(
+                    RepositoryProvider.of<CategoryExerciseService>(context))),
+            //---SUPORTER---
+            BlocProvider(
+              create: (context) => BottomNavBarSupporterBloc()
+                ..add(BottomNavBarSupporterItemSelected(0)),
+            ),
+            BlocProvider(
+              create: (context) => BottomNavBarSupporterBloc()
+                ..add(BottomNavBarSupporterItemSelected(0)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+            ),
           ],
           child: MaterialApp(
             theme: ThemeData(

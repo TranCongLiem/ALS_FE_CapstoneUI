@@ -22,59 +22,61 @@ class ProfileInfo extends StatelessWidget {
         BlocProvider(
             create: (context) => GetDetailBloc(
                 RepositoryProvider.of<UserPatientService>(context))
-              ..add(LoadDetailUserEvent())),
+              ..add(LoadDetailUserEvent(userId: ''))),
       ],
       child: BlocBuilder<GetDetailBloc, GetDeatailBlocState>(
         builder: (context, state) {
-          if(state is GetDetailLoadedState){
+          if (state is GetDetailLoadedState) {
             return SizedBox(
-            height: 240,
-            child: Stack(
-              children: [
-                ClipPath(
-                  clipper: CustomeShape(),
-                  child: Container(
-                    height: 150,
-                    color: greenALS,
+              height: 240,
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: CustomeShape(),
+                    child: Container(
+                      height: 150,
+                      color: greenALS,
+                    ),
                   ),
-                ),
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10),
-                        height: 140,
-                        width: 140,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white,
-                            width: 8,
-                          ),
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage("assets/images/logo_Avatar.jpg"),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.only(bottom: 10),
+                          height: 140,
+                          width: 140,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 8,
+                            ),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image:
+                                  AssetImage("assets/images/logo_Avatar.jpg"),
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        state.getProfileUserByIdResponeModel.fullName.toString(),
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.black,
+                        Text(
+                          state.getProfileUserByIdResponeModel.fullName
+                              .toString(),
+                          style: TextStyle(
+                            fontSize: 22,
+                            color: Colors.black,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
           }
           return Center(
-                      child: CircularProgressIndicator(),
-                    );
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );

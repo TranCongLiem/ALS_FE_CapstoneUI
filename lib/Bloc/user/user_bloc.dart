@@ -14,11 +14,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<_UpdateProfilePatientRequest>((event, emit) async {
       UpdateProfilePatientRequestModel reqModel =
           UpdateProfilePatientRequestModel(
-
               userId: event.userId,
-
-              userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',
-
               address: state.address,
               fullName: state.fullName);
       final result = await _userService.updateProfilePatient(reqModel);
@@ -110,8 +106,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.copyWith(
         isUpdatedInformationPatient: false,
       ));
-    });
-
     });
   }
 }
