@@ -1,16 +1,11 @@
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Profile/profileInfo.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Profile/profile_listnewsfeed.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
-import 'package:capstone_ui/Model/getProfileUser_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../Bloc/user_detail/user_detail_bloc.dart';
 import '../../services/api_User.dart';
 // import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
@@ -47,13 +42,13 @@ class _ProfiletState extends State<Profile> {
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
-                    if(state is GetDetailLoadedState){
-                          Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => ProfileUpdate(
-                                getProfileUserByIdResponeModel:
-                                    state.getProfileUserByIdResponeModel))));
+                    if (state is GetDetailLoadedState) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => ProfileUpdate(
+                                  getProfileUserByIdResponeModel:
+                                      state.getProfileUserByIdResponeModel))));
                     }
                   },
                   child: Text(
@@ -67,21 +62,17 @@ class _ProfiletState extends State<Profile> {
                 ),
               ],
             ),
-            
             body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   BlocBuilder<GetDetailBloc, GetDeatailBlocState>(
-                    builder: (context, state) {
-                      if (state is GetDetailLoadedState) {
+                      builder: (context, state) {
+                    if (state is GetDetailLoadedState) {
                       return ProfileBody(
                           state.getProfileUserByIdResponeModel, context);
                     }
-                    return Center(child: CircularProgressIndicator()
-                    );
-                    }
-                    
-                    ),
+                    return Center(child: CircularProgressIndicator());
+                  }),
                   SizedBox(
                     height: 20,
                   ),
@@ -90,6 +81,49 @@ class _ProfiletState extends State<Profile> {
                     title: "Đăng xuất",
                     press: () {},
                   ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  // ProfileMenuItem(
+                  //   iconSrc: "assets/images/logout-svgrepo-com.svg",
+                  //   title: "Lịch sử bài đăng",
+                  //   press: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => ListNewsFeed()));
+                  //   },
+                  // ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ListNewsFeed()));
+                    },
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                      child: Row(
+                        children: [
+                          Icon(Icons.view_agenda),
+                          SizedBox(width: 20),
+                          Text(
+                            'Lịc sử bài đăng',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
