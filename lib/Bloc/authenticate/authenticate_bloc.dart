@@ -23,6 +23,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           userId: result.userId ?? '',
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
+          fullName: result.fullName ?? '',
           isAuthenticated: true,
         ));
       } else {

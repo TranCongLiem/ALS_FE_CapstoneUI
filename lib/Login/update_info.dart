@@ -288,9 +288,8 @@ class _RegisterInfoState extends State<RegisterInfo> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: ElevatedButton(
                           onPressed: () {
-                            uploadImage();
-                            uploadToFirebase(
-                                state2.userId, state.fullName, state.imageUser);
+                            uploadToFirebase(state2.userId, state.fullName,
+                                state.imageUser, state2.phoneNumber);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: greenALS,
@@ -350,16 +349,19 @@ class _RegisterInfoState extends State<RegisterInfo> {
     );
   }
 
-  Future<void> uploadImage() async {
+  Future<void> uploadImage(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     String _imagePath = imagePath ?? '';
     String imageDatabase =
-        'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-firebase%2F' +
+        'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-user%2F' +
+            userId +
+            '%2F' +
             _imagePath.substring(
                 _imagePath.lastIndexOf('image_picker'), _imagePath.length) +
             '?alt=media';
     await firebaseStorage
         .ref('upload-image-user')
+        .child(userId)
         .child(_imagePath.substring(
             _imagePath.lastIndexOf('image_picker'), _imagePath.length))
         .putFile(File(_imagePath));
@@ -367,16 +369,18 @@ class _RegisterInfoState extends State<RegisterInfo> {
   }
 
   Future<void> uploadToFirebase(
-      String userId, String fullName, String imageUser) async {
+      String userId, String fullName, String imageUser, String phone) async {
     CollectionReference users = await FirebaseFirestore.instance
         .collection(FirestoreConstants.pathUserCollection);
     users.doc(userId).set({
       FirestoreConstants.nickname: fullName,
       FirestoreConstants.photoUrl: imageUser,
       FirestoreConstants.id: userId,
+      FirestoreConstants.phone: phone,
       'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
       FirestoreConstants.chattingWith: null
     });
+    await uploadImage(userId);
     context
         .read<UserBloc>()
         .add(UserEvent.updateInformationPatientRequest(userId));

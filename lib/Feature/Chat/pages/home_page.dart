@@ -16,7 +16,8 @@ import '../widgets/widgets.dart';
 import 'pages.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  final String userId;
+  HomePage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State createState() => HomePageState();
@@ -33,13 +34,11 @@ class HomePageState extends State<HomePage> {
   String _textSearch = "";
   bool isLoading = false;
 
-  late String currentUserId = "43b6fcf9-b69b-40b0-93ab-87092eb25715" ;
+  late String currentUserId = widget.userId;
   late HomeProvider homeProvider;
   Debouncer searchDebouncer = Debouncer(milliseconds: 300);
   StreamController<bool> btnClearController = StreamController<bool>();
   TextEditingController searchBarTec = TextEditingController();
-
- 
 
   @override
   void initState() {
@@ -60,14 +59,15 @@ class HomePageState extends State<HomePage> {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('onMessage: $message');
-    
+
       return;
     });
 
     firebaseMessaging.getToken().then((token) {
       print('push token: $token');
       if (token != null) {
-        homeProvider.updateDataFirestore(FirestoreConstants.pathUserCollection, currentUserId, {'pushToken': token});
+        homeProvider.updateDataFirestore(FirestoreConstants.pathUserCollection,
+            currentUserId, {'pushToken': token});
       }
     }).catchError((err) {
       Fluttertoast.showToast(msg: err.message.toString());
@@ -75,14 +75,14 @@ class HomePageState extends State<HomePage> {
   }
 
   void scrollListener() {
-    if (listScrollController.offset >= listScrollController.position.maxScrollExtent &&
+    if (listScrollController.offset >=
+            listScrollController.position.maxScrollExtent &&
         !listScrollController.position.outOfRange) {
       setState(() {
         _limit += _limitIncrement;
       });
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -93,12 +93,10 @@ class HomePageState extends State<HomePage> {
           style: TextStyle(color: ColorConstants.primaryColor),
         ),
         centerTitle: true,
-        
       ),
       body: SafeArea(
         child: WillPopScope(
-     
-          onWillPop: () async  {  
+          onWillPop: () async {
             return true;
           },
           child: Stack(
@@ -109,29 +107,154 @@ class HomePageState extends State<HomePage> {
                   buildSearchBar(),
                   Expanded(
                     child: StreamBuilder<QuerySnapshot>(
-                      stream: homeProvider.getStreamFireStore(FirestoreConstants.pathUserCollection, _limit, _textSearch),
-                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasData) {
-                          if ((snapshot.data?.docs.length ?? 0) > 0) {
-                            return ListView.builder(
-                              padding: EdgeInsets.all(10),
-                              itemBuilder: (context, index) => buildItem(context, snapshot.data?.docs[index]),
-                              itemCount: snapshot.data?.docs.length,
-                              controller: listScrollController,
-                            );
-                          } else {
-                            return Center(
-                              child: Text("No users"),
-                            );
-                          }
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: ColorConstants.themeColor,
-                            ),
-                          );
-                        }
+                      stream: FirebaseFirestore.instance
+                          .collection(FirestoreConstants.pathUserCollection)
+                          .limit(_limit)
+                          .snapshots(),
+                      builder: (context, snapshots) {
+                        return (snapshots.connectionState ==
+                                ConnectionState.waiting)
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : ListView.builder(
+                                itemCount: snapshots.data!.docs.length,
+                                itemBuilder: (context, index) {
+                                  var data = snapshots.data!.docs[index].data()
+                                      as Map<String, dynamic>;
+                                  if (_textSearch.isEmpty) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (Utilities.isKeyboardShowing()) {
+                                          Utilities.closeKeyboard(context);
+                                        }
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ChatPage(
+                                              arguments: ChatPageArguments(
+                                                peerId: data['id'],
+                                                peerAvatar: data['photoUrl'],
+                                                peerNickname: data['nickname'],
+                                              ),
+                                              userId: currentUserId,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: ListTile(
+                                        title: Text(
+                                          data['nickname'],
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        leading: CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(data['photoUrl']),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  if (data['nickname']
+                                      .toString()
+                                      .toLowerCase()
+                                      .startsWith(_textSearch)) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (Utilities.isKeyboardShowing()) {
+                                          Utilities.closeKeyboard(context);
+                                        }
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => ChatPage(
+                                              arguments: ChatPageArguments(
+                                                peerId: data['id'],
+                                                peerAvatar: data['photoUrl'],
+                                                peerNickname: data['nickname'],
+                                              ),
+                                              userId: currentUserId,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: ListTile(
+                                        title: Text(
+                                          data['nickname'],
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              color: Colors.black54,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        leading: CircleAvatar(
+                                          backgroundImage:
+                                              NetworkImage(data['photoUrl']),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Container();
+                                }
+                                // controller: listScrollController,
+                                );
                       },
+                      // stream: homeProvider.getStreamFireStore(
+                      //     FirestoreConstants.pathUserCollection,
+                      //     _limit,
+                      //     _textSearch),
+                      // builder: (BuildContext context,
+                      //     AsyncSnapshot<QuerySnapshot> snapshot) {
+                      //   if (snapshot.hasData) {
+                      //     if ((snapshot.data?.docs.length ?? 0) > 0) {
+                      //       return ListView.builder(
+                      //         padding: EdgeInsets.all(10),
+                      //         itemBuilder: (context, index) => buildItem(
+                      //             context, snapshot.data?.docs[index]),
+                      //         itemCount: snapshot.data?.docs.length,
+                      //         controller: listScrollController,
+                      //       );
+                      //     } else {
+                      //       return Center(
+                      //         child: Text("No users"),
+                      //       );
+                      //       // return Expanded(
+                      //       //     child: StreamBuilder<QuerySnapshot>(
+                      //       //   stream: homeProvider.getStreamFireStore2(
+                      //       //       FirestoreConstants.pathUserCollection,
+                      //       //       _limit,
+                      //       //       _textSearch),
+                      //       //   builder: (BuildContext context,
+                      //       //       AsyncSnapshot<QuerySnapshot> snapshot2) {
+                      //       //     if ((snapshot2.data?.docs.length ?? 0) > 0) {
+                      //       //       return ListView.builder(
+                      //       //         padding: EdgeInsets.all(10),
+                      //       //         itemBuilder: (context, index) => buildItem(
+                      //       //             context, snapshot2.data?.docs[index]),
+                      //       //         itemCount: snapshot2.data?.docs.length,
+                      //       //         controller: listScrollController,
+                      //       //       );
+                      //       //     } else {
+                      //       //       return Center(
+                      //       //         child: Text("No users"),
+                      //       //       );
+                      //       //     }
+                      //       //   },
+                      //       // ));
+                      //     }
+                      //   } else {
+                      //     return Center(
+                      //       child: CircularProgressIndicator(
+                      //         color: ColorConstants.themeColor,
+                      //       ),
+                      //     );
+                      //   }
+                      // },
                     ),
                   ),
                 ],
@@ -143,7 +266,6 @@ class HomePageState extends State<HomePage> {
               )
             ],
           ),
-       
         ),
       ),
     );
@@ -178,7 +300,8 @@ class HomePageState extends State<HomePage> {
               },
               decoration: InputDecoration.collapsed(
                 hintText: 'Search nickname (you have to type exactly string)',
-                hintStyle: TextStyle(fontSize: 13, color: ColorConstants.greyColor),
+                hintStyle:
+                    TextStyle(fontSize: 13, color: ColorConstants.greyColor),
               ),
               style: TextStyle(fontSize: 13),
             ),
@@ -195,7 +318,8 @@ class HomePageState extends State<HomePage> {
                             _textSearch = "";
                           });
                         },
-                        child: Icon(Icons.clear_rounded, color: ColorConstants.greyColor, size: 20))
+                        child: Icon(Icons.clear_rounded,
+                            color: ColorConstants.greyColor, size: 20))
                     : SizedBox.shrink();
               }),
         ],
@@ -226,7 +350,8 @@ class HomePageState extends State<HomePage> {
                           fit: BoxFit.cover,
                           width: 50,
                           height: 50,
-                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
                             if (loadingProgress == null) return child;
                             return Container(
                               width: 50,
@@ -234,8 +359,10 @@ class HomePageState extends State<HomePage> {
                               child: Center(
                                 child: CircularProgressIndicator(
                                   color: ColorConstants.themeColor,
-                                  value: loadingProgress.expectedTotalBytes != null
-                                      ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
                                       : null,
                                 ),
                               ),
@@ -265,7 +392,8 @@ class HomePageState extends State<HomePage> {
                           child: Text(
                             'Nickname: ${userChat.nickname}',
                             maxLines: 1,
-                            style: TextStyle(color: ColorConstants.primaryColor),
+                            style:
+                                TextStyle(color: ColorConstants.primaryColor),
                           ),
                           alignment: Alignment.centerLeft,
                           margin: EdgeInsets.fromLTRB(10, 0, 0, 5),
@@ -290,12 +418,14 @@ class HomePageState extends State<HomePage> {
                       peerAvatar: userChat.photoUrl,
                       peerNickname: userChat.nickname,
                     ),
+                    userId: currentUserId,
                   ),
                 ),
               );
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(ColorConstants.greyColor2),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(ColorConstants.greyColor2),
               shape: MaterialStateProperty.all<OutlinedBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10)),

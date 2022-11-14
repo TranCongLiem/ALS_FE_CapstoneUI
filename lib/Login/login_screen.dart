@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
+import 'package:capstone_ui/Login/update_info.dart';
 import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -29,7 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
-              Navigator.push(
+              if(state.fullName.toString() != ''){
+                Navigator.push(
                 context,
                 PageRouteBuilder(
                   transitionsBuilder:
@@ -53,6 +55,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
               );
+              } else{
+                Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.1, end: 1).animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.bounceIn,
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                  transitionDuration: Duration(seconds: 1),
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    return RegisterInfo();
+                  },
+                ),
+                );
+              }
+              
             } else if (state.role == 'Supporter') {
               Navigator.push(
                 context,

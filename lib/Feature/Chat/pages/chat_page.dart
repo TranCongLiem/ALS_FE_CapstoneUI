@@ -17,7 +17,8 @@ import '../widgets/widgets.dart';
 import 'pages.dart';
 
 class ChatPage extends StatefulWidget {
-  ChatPage({Key? key, required this.arguments}) : super(key: key);
+  final String userId;
+  ChatPage({Key? key, required this.arguments, required this.userId}) : super(key: key);
 
   final ChatPageArguments arguments;
 
@@ -25,8 +26,11 @@ class ChatPage extends StatefulWidget {
   ChatPageState createState() => ChatPageState();
 }
 
+class Final {
+}
+
 class ChatPageState extends State<ChatPage> {
-  late String currentUserId ="43b6fcf9-b69b-40b0-93ab-87092eb25715";
+  late String currentUserId = widget.userId;
 
   List<QueryDocumentSnapshot> listMessage = [];
   int _limit = 20;
@@ -78,7 +82,7 @@ class ChatPageState extends State<ChatPage> {
 
   void readLocal() {
    
-    String peerId = '1';
+    String peerId = widget.arguments.peerId;
     if (currentUserId.compareTo(peerId) > 0) {
       groupChatId = '$currentUserId-$peerId';
     } else {
