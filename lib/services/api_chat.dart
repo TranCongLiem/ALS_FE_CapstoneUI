@@ -44,4 +44,37 @@ class ChatService {
       }
     }
   }
+  Future<UpdateHasSeenResponeModel> updateHasSeen(
+      UpdateHasSeenReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/userchat/UpdateHasSeen";
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return UpdateHasSeenResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+   Future<UpdateUserChatResponeModel> updateUserChat(
+      UpdateUserChatReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/userchat/UpdateUserChat";
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return UpdateUserChatResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 }

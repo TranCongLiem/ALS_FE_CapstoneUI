@@ -4,6 +4,9 @@ import 'package:capstone_ui/services/api_chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../utils/utilities.dart';
+import 'chat_page.dart';
+
 class SearchUser extends SearchDelegate {
   ChatService _userList = ChatService();
 
@@ -33,7 +36,7 @@ class SearchUser extends SearchDelegate {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         return FutureBuilder<List<ListChat>>(
-            future: _userList.getAllChat(state.userId,query :query),
+            future: _userList.getAllChat(state.userId, query: query),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return Center(
@@ -44,48 +47,52 @@ class SearchUser extends SearchDelegate {
               return ListView.builder(
                   itemCount: data?.length,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Row(
-                        children: [
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: Colors.deepPurpleAccent,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '${data?[index].fullName}',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                                overflow: TextOverflow.clip,
+                    return InkWell(
+                      onTap: () {
+                        if (Utilities.isKeyboardShowing()) {
+                          Utilities.closeKeyboard(context);
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChatPage(
+                              arguments: ChatPageArguments(
+                                peerId: data?[index].userId ?? '',
+                                peerAvatar: data?[index].imageUser ?? '',
+                                peerNickname: data?[index].fullName ?? '',
                               ),
+                              userId: state.userId,
                             ),
                           ),
-                          SizedBox(width: 20),
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${data?[index].updateAt}',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600),
+                        );
+                      },
+                      child: ListTile(
+                        title: Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage('${data?[index].imageUser}'),
+                              maxRadius: 30,
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                              child: Container(
+                                color: Colors.transparent,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                      '${data?[index].fullName}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 10),
-                                Text(
-                                  '${data?[index].userId}',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ])
-                        ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   });
