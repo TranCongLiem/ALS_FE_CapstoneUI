@@ -288,7 +288,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: ElevatedButton(
                           onPressed: () {
-                            uploadToFirebase(state2.userId, state.fullName,
+                            uploadImage(state2.userId, state.fullName,
                                 state.imageUser, state2.phoneNumber);
                           },
                           style: ElevatedButton.styleFrom(
@@ -349,7 +349,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
     );
   }
 
-  Future<void> uploadImage(String userId) async {
+  Future<void> uploadImage(String userId, String fullName, String imageUser, String phone) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     String _imagePath = imagePath ?? '';
     String imageDatabase =
@@ -366,6 +366,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
             _imagePath.lastIndexOf('image_picker'), _imagePath.length))
         .putFile(File(_imagePath));
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+        await uploadToFirebase(userId,fullName,imageUser,phone);
   }
 
   Future<void> uploadToFirebase(
@@ -380,7 +381,6 @@ class _RegisterInfoState extends State<RegisterInfo> {
       'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
       FirestoreConstants.chattingWith: null
     });
-    await uploadImage(userId);
     context
         .read<UserBloc>()
         .add(UserEvent.updateInformationPatientRequest(userId));

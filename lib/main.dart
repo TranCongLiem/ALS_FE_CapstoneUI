@@ -3,6 +3,7 @@ import 'package:audioplayers/notifications.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
+import 'package:capstone_ui/Bloc/chat/chat_bloc.dart';
 import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
@@ -17,6 +18,7 @@ import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
 import 'package:capstone_ui/services/api_ShortCutNotification.dart';
+import 'package:capstone_ui/services/api_chat.dart';
 import 'package:capstone_ui/services/api_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
@@ -125,6 +127,9 @@ class MyApp extends StatelessWidget {
           RepositoryProvider(
             create: (context) => ReactPostService(),
           ),
+          RepositoryProvider(
+            create: (context) => ChatService(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -199,6 +204,10 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  ChatBloc(RepositoryProvider.of<ChatService>(context)),
             ),
           ],
           child: MaterialApp(

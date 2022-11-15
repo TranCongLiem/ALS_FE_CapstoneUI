@@ -17,14 +17,22 @@ class ListChat {
       this.updateAt,
       this.seen,
      });
+  ListChat.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    imageUser = json['imageUser'];
+    fullName = json['fullName'];
+    updateAt = json['updateAt'];
+    seen = json['seen'];
+  }
 
-  factory ListChat.fromJson(Map<String, dynamic> json) {
-    return ListChat(
-      userId: json['userId'] ?? '' as String,
-      imageUser: json['imageUser'] ?? '' as String,
-      fullName: json['fullName'] ?? '' as String,
-      updateAt: json['updateAt'] ?? '' as String,
-      seen: json['seen'] ?? '' as bool,
-    );
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['imageUser'] = this.imageUser;
+    data['fullName'] = this.fullName;
+    data['updateAt'] = this.updateAt;
+    data['seen'] = this.seen;
+    return data;
   }
 }
