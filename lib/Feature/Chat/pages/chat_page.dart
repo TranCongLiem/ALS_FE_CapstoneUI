@@ -128,7 +128,7 @@ class ChatPageState extends State<ChatPage> {
       imageUrl = await snapshot.ref.getDownloadURL();
       setState(() {
         isLoading = false;
-        onSendMessage(imageUrl, TypeMessage.image, userIdFrom, userIdTo);
+        onSendMessage(imageUrl,'Hình ảnh', TypeMessage.image, userIdFrom, userIdTo);
       });
     } on FirebaseException catch (e) {
       setState(() {
@@ -138,8 +138,8 @@ class ChatPageState extends State<ChatPage> {
     }
   }
 
-  void onSendMessage(
-      String content, int type, String userIdFrom, String userIdTo) {
+  void onSendMessage(String content, String message, int type,
+      String userIdFrom, String userIdTo) {
     if (content.trim().isNotEmpty) {
       textEditingController.clear();
       chatProvider.sendMessage(
@@ -148,8 +148,13 @@ class ChatPageState extends State<ChatPage> {
         listScrollController.animateTo(0,
             duration: Duration(milliseconds: 300), curve: Curves.easeOut);
       }
-      context.read<UserChatBloc>().add(UserChatEvent.UpdateUserChatRequest(
-          userIdFrom, userIdTo, content.toString()));
+      if (message.isEmpty) {
+        context.read<UserChatBloc>().add(UserChatEvent.UpdateUserChatRequest(
+            userIdFrom, userIdTo, content.toString()));
+      }else{
+        context.read<UserChatBloc>().add(UserChatEvent.UpdateUserChatRequest(
+            userIdFrom, userIdTo, message.toString()));
+      }
     } else {
       Fluttertoast.showToast(
           msg: 'Vui lòng soạn tin nhắn',
@@ -217,7 +222,7 @@ class ChatPageState extends State<ChatPage> {
                               errorBuilder: (context, object, stackTrace) {
                                 return Material(
                                   child: Image.asset(
-                                    'images/img_not_available.jpeg',
+                                    'assets/images/img_not_available.jpeg',
                                     width: 200,
                                     height: 200,
                                     fit: BoxFit.cover,
@@ -256,7 +261,7 @@ class ChatPageState extends State<ChatPage> {
                     // Sticker
                     : Container(
                         child: Image.asset(
-                          'images/${messageChat.content}.gif',
+                          'assets/images/${messageChat.content}.gif',
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
@@ -361,7 +366,7 @@ class ChatPageState extends State<ChatPage> {
                                         (context, object, stackTrace) =>
                                             Material(
                                       child: Image.asset(
-                                        'images/img_not_available.jpeg',
+                                        'assets/images/img_not_available.jpeg',
                                         width: 200,
                                         height: 200,
                                         fit: BoxFit.cover,
@@ -397,7 +402,7 @@ class ChatPageState extends State<ChatPage> {
                             )
                           : Container(
                               child: Image.asset(
-                                'images/${messageChat.content}.gif',
+                                'assets/images/${messageChat.content}.gif',
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,
@@ -538,30 +543,30 @@ class ChatPageState extends State<ChatPage> {
             Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: () => onSendMessage('mimi1', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi1','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi1.gif',
+                    'assets/images/mimi1.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi2', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi2','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi2.gif',
+                    'assets/images/mimi2.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi3', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi3','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi3.gif',
+                    'assets/images/mimi3.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
@@ -573,30 +578,30 @@ class ChatPageState extends State<ChatPage> {
             Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: () => onSendMessage('mimi4', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi4','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi4.gif',
+                    'assets/images/mimi4.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi5', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi5','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi5.gif',
+                    'assets/images/mimi5.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi6', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi6','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi6.gif',
+                    'assets/images/mimi6.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
@@ -608,30 +613,30 @@ class ChatPageState extends State<ChatPage> {
             Row(
               children: <Widget>[
                 TextButton(
-                  onPressed: () => onSendMessage('mimi7', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi7','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi7.gif',
+                    'assets/images/mimi7.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi8', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi8','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi8.gif',
+                    'assets/images/mimi8.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
                   ),
                 ),
                 TextButton(
-                  onPressed: () => onSendMessage('mimi9', TypeMessage.sticker,
+                  onPressed: () => onSendMessage('mimi9','Nhãn dán', TypeMessage.sticker,
                       widget.userId, widget.arguments.peerId),
                   child: Image.asset(
-                    'images/mimi9.gif',
+                    'assets/images/mimi9.gif',
                     width: 50,
                     height: 50,
                     fit: BoxFit.cover,
@@ -693,7 +698,7 @@ class ChatPageState extends State<ChatPage> {
             child: Container(
               child: TextField(
                 onSubmitted: (value) {
-                  onSendMessage(textEditingController.text, TypeMessage.text,
+                  onSendMessage(textEditingController.text,'', TypeMessage.text,
                       widget.userId, widget.arguments.peerId);
                 },
                 style:
@@ -718,7 +723,7 @@ class ChatPageState extends State<ChatPage> {
                   Icons.send,
                   color: greenALS,
                 ),
-                onPressed: () => onSendMessage(textEditingController.text,
+                onPressed: () => onSendMessage(textEditingController.text,'',
                     TypeMessage.text, widget.userId, widget.arguments.peerId),
                 color: ColorConstants.primaryColor,
               ),

@@ -7,7 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../utils/utilities.dart';
 import 'chat_page.dart';
 
-class SearchUser extends SearchDelegate {
+class SearchUser extends SearchDelegate<String> {
+  final String? hintText;
+  SearchUser({this.hintText});
+  
+  @override
+  String? get searchFieldLabel => hintText;
+  
+  // Other overrides...
   ChatService _userList = ChatService();
 
   @override
