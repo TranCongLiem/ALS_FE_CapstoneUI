@@ -12,9 +12,9 @@ class ChatService {
   var data = [];
   List<ListChat> results = [];
   Future<List<ListChat>> getAllChat(String userId, {String? query}) async {
-    if ( query != '' && query.toString().trim().contains(RegExp("^[0-9]*\$"))) {
-      final response2 = await http.get(
-          Uri.parse(endPointUrl + "GetPhoneChattingMobile?phone=" + query.toString()));
+    if (query != '' && query.toString().trim().contains(RegExp("^[0-9]*\$"))) {
+      final response2 = await http.get(Uri.parse(
+          endPointUrl + "GetPhoneChattingMobile?phone=" + query.toString()));
       if (response2.statusCode == 200) {
         data = json.decode(response2.body);
         results = data.map((e) => ListChat.fromJson(e)).toList();
@@ -44,6 +44,7 @@ class ChatService {
       }
     }
   }
+
   Future<UpdateHasSeenResponeModel> updateHasSeen(
       UpdateHasSeenReQuestModel requestModel) async {
     String url = "https://als.cosplane.asia/api/userchat/UpdateHasSeen";
@@ -61,7 +62,7 @@ class ChatService {
     }
   }
 
-   Future<UpdateUserChatResponeModel> updateUserChat(
+  Future<UpdateUserChatResponeModel> updateUserChat(
       UpdateUserChatReQuestModel requestModel) async {
     String url = "https://als.cosplane.asia/api/userchat/UpdateUserChat";
     final response = await http.put(

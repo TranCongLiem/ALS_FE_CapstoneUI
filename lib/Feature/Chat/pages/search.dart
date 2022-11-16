@@ -66,32 +66,36 @@ class SearchUser extends SearchDelegate {
                           ),
                         );
                       },
-                      child: ListTile(
-                        title: Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage('${data?[index].imageUser}'),
-                              maxRadius: 30,
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Expanded(
-                              child: Container(
-                                color: Colors.transparent,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text(
-                                      '${data?[index].fullName}',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ],
+                      child: Container(
+                        margin: EdgeInsets.all(10.0),
+                        child: ListTile(
+                          title: Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundImage:
+                                    NetworkImage('${data?[index].imageUser}'),
+                                maxRadius: 25,
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Expanded(
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        '${data?[index].fullName}',
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -104,7 +108,7 @@ class SearchUser extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return Center(
-      child: Text('Search User'),
+      child: Text(''),
     );
   }
 }

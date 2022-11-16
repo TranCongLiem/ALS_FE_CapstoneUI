@@ -11,13 +11,13 @@ class ListChat {
   //   this.categoryName,
   //   this.categoryImage
   // );
-  ListChat(
-      {this.userId,
-      this.imageUser,
-      this.fullName,
-      this.updateAt,
-      this.hasSeen,
-     });
+  ListChat({
+    this.userId,
+    this.imageUser,
+    this.fullName,
+    this.updateAt,
+    this.hasSeen,
+  });
   ListChat.fromJson(Map<String, dynamic> json) {
     userId = json['userId'];
     imageUser = json['imageUser'];
@@ -26,7 +26,6 @@ class ListChat {
     updateAt = json['updateAt'];
     hasSeen = json['hasSeen'];
   }
-
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -39,6 +38,7 @@ class ListChat {
     return data;
   }
 }
+
 class UpdateHasSeenResponeModel {
   bool? success;
   String? message;
@@ -54,10 +54,8 @@ class UpdateHasSeenResponeModel {
 }
 
 class UpdateHasSeenReQuestModel {
-    String? userIdFrom;
-    String? userIdTo;
-
-
+  String? userIdFrom;
+  String? userIdTo;
 
   UpdateHasSeenReQuestModel({required this.userIdFrom, required this.userIdTo});
   Map<String, dynamic> toJson() {
@@ -84,13 +82,14 @@ class UpdateUserChatResponeModel {
 }
 
 class UpdateUserChatReQuestModel {
-    String? userIdFrom;
-    String? userIdTo;
-    String? lastMessage;
+  String? userIdFrom;
+  String? userIdTo;
+  String? lastMessage;
 
-
-
-  UpdateUserChatReQuestModel({required this.userIdFrom, required this.userIdTo,required this.lastMessage});
+  UpdateUserChatReQuestModel(
+      {required this.userIdFrom,
+      required this.userIdTo,
+      required this.lastMessage});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'userIdFrom': userIdFrom,

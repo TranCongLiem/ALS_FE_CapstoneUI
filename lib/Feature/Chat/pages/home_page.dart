@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Chat/pages/search.dart';
 import 'package:capstone_ui/services/api_chat.dart';
 
@@ -82,57 +83,84 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
-        return SafeArea(
-          child: Scaffold(
-            appBar: AppBar(
-              title: Text('UserList'),
-              actions: [
-                IconButton(
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+            shape: ShapeBorder.lerp(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
+              ),
+              null,
+              0,
+            ),
+            backgroundColor: greenALS,
+            title: Text(
+              'Trò chuyện',
+              style: TextStyle(),
+            ),
+            actions: [
+              Container(
+                margin: EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: IconButton(
                   onPressed: () {
                     showSearch(context: context, delegate: SearchUser());
                   },
-                  icon: Icon(Icons.search_sharp),
-                )
-              ],
-            ),
-            body: Container(
-              padding: EdgeInsets.all(20),
-              child: FutureBuilder<List<ListChat>>(
-                  future: _userList.getAllChat(state.userId, query: null),
-                  builder: (context, snapshot) {
-                    var data = snapshot.data;
-                    if (snapshot.hasData) {
-                      return ListView.builder(
-                          itemCount: data?.length,
-                          itemBuilder: (context, index) {
-                            DateTime time = DateTime.parse(data?[index].updateAt ?? '');
-                            timeago.setLocaleMessages(
-                                'vi', timeago.ViMessages());
-                            if (!snapshot.hasData) {
-                              return Center(child: CircularProgressIndicator());
-                            }
-                            return InkWell(
+                  icon: Icon(
+                    Icons.search_sharp,
+                    color: Colors.black,
+                  ),
+                ),
+              )
+            ],
+          ),
+          body: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: FutureBuilder<List<ListChat>>(
+                    future: _userList.getAllChat(state.userId, query: null),
+                    builder: (context, snapshot) {
+                      var data = snapshot.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: data?.length,
+                            itemBuilder: (context, index) {
+                              DateTime time =
+                                  DateTime.parse(data?[index].updateAt ?? '');
+                              timeago.setLocaleMessages(
+                                  'vi', timeago.ViMessages());
+                              if (!snapshot.hasData) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
+                              return InkWell(
                                 onTap: () {
-                        if (Utilities.isKeyboardShowing()) {
-                          Utilities.closeKeyboard(context);
-                        }
-                        UpdateHasSeen(state.userId,data?[index].userId ?? '');
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ChatPage(
-                              arguments: ChatPageArguments(
-                                peerId: data?[index].userId ?? '',
-                                peerAvatar: data?[index].imageUser ?? '',
-                                peerNickname: data?[index].fullName ?? '',
-                              ),
-                              userId: state.userId,
-                            ),
-                          ),
-                        );
-                      },
-                              child: Card(
-                                
+                                  if (Utilities.isKeyboardShowing()) {
+                                    Utilities.closeKeyboard(context);
+                                  }
+                                  UpdateHasSeen(
+                                      state.userId, data?[index].userId ?? '');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ChatPage(
+                                        arguments: ChatPageArguments(
+                                          peerId: data?[index].userId ?? '',
+                                          peerAvatar:
+                                              data?[index].imageUser ?? '',
+                                          peerNickname:
+                                              data?[index].fullName ?? '',
+                                        ),
+                                        userId: state.userId,
+                                      ),
+                                    ),
+                                  );
+                                },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: ListTile(
@@ -141,7 +169,7 @@ class HomePageState extends State<HomePage> {
                                         CircleAvatar(
                                           backgroundImage: NetworkImage(
                                               '${data?[index].imageUser}'),
-                                          maxRadius: 20,
+                                          maxRadius: 25,
                                         ),
                                         SizedBox(
                                           width: 16,
@@ -155,21 +183,27 @@ class HomePageState extends State<HomePage> {
                                               children: <Widget>[
                                                 Text(
                                                   '${data?[index].fullName}',
-                                                  style: TextStyle(fontSize: 16,
-                                                   fontWeight:  data?[index].hasSeen == true
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight: data?[index]
+                                                                  .hasSeen ==
+                                                              true
                                                           ? FontWeight.normal
-                                                          : FontWeight.bold
-                                                  ),
+                                                          : FontWeight.bold),
                                                 ),
                                                 SizedBox(
                                                   height: 6,
                                                 ),
                                                 Text(
-                                                  data?[index].lastMessage ?? '',
-                                                  overflow: TextOverflow.ellipsis,
+                                                  data?[index].lastMessage ??
+                                                      '',
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   style: TextStyle(
                                                       fontSize: 13,
-                                                      fontWeight:  data?[index].hasSeen == true
+                                                      fontWeight: data?[index]
+                                                                  .hasSeen ==
+                                                              true
                                                           ? FontWeight.normal
                                                           : FontWeight.bold),
                                                 ),
@@ -181,35 +215,35 @@ class HomePageState extends State<HomePage> {
                                           timeago.format(time, locale: 'vi'),
                                           style: TextStyle(
                                               fontSize: 12,
-                                             
-                                              fontWeight: data?[index].hasSeen == true
-                                                  ? FontWeight.normal
-                                                  : FontWeight.bold),
-                                              
+                                              fontWeight:
+                                                  data?[index].hasSeen == true
+                                                      ? FontWeight.normal
+                                                      : FontWeight.bold),
                                         ),
                                       ],
                                     ),
                                     // trailing: Text('More Info'),
                                   ),
                                 ),
-                              ),
-                            );
-                          });
-                    } else {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: ColorConstants.themeColor,
-                        ),
-                      );
-                    }
-                  }),
-            ),
+                              );
+                            });
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: greenALS,
+                          ),
+                        );
+                      }
+                    }),
+              ),
+            ],
           ),
         );
       },
     );
   }
-  Future<void> UpdateHasSeen(String userIdFrom,String userIdTo) async {
+
+  Future<void> UpdateHasSeen(String userIdFrom, String userIdTo) async {
     context
         .read<UserChatBloc>()
         .add(UserChatEvent.UpdateHasSeenRequest(userIdFrom, userIdTo));
