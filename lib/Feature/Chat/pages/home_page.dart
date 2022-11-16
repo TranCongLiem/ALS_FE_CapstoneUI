@@ -23,6 +23,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../utils/utilities.dart';
 import 'chat_page.dart';
+import 'package:capstone_ui/Feature/Chat/pages/groupchat_page.dart';
 
 class HomePage extends StatefulWidget {
   final String userId;
@@ -41,9 +42,7 @@ class HomePageState extends State<HomePage> {
   late HomeProvider homeProvider;
   late List<ListChat> list;
   late bool? hasSeen;
-  Debouncer searchDebouncer = Debouncer(milliseconds: 300);
   StreamController<bool> btnClearController = StreamController<bool>();
-  TextEditingController searchBarTec = TextEditingController();
 
   @override
   void initState() {
@@ -108,10 +107,27 @@ class HomePageState extends State<HomePage> {
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: IconButton(
                   onPressed: () {
-                    showSearch(context: context, delegate: SearchUser());
+                    showSearch(context: context, delegate: SearchUser(hintText: 'Tìm kiếm'));
                   },
                   icon: Icon(
                     Icons.search_sharp,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GroupChatPage(userId: state.userId)));
+                  },
+                  icon: Icon(
+                    Icons.group,
                     color: Colors.black,
                   ),
                 ),

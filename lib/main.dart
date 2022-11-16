@@ -39,6 +39,7 @@ import 'Bloc/create_post/create_post_bloc.dart';
 import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
+import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
@@ -50,6 +51,7 @@ import 'Feature/Chat/providers/home_provider.dart';
 import 'firebase_options.dart';
 import 'services/api_ReactPost.dart';
 import 'services/api_User.dart';
+import 'services/api_groupchat.dart';
 // import 'Login/login_screen.dart';
 
 void main() async {
@@ -130,6 +132,9 @@ class MyApp extends StatelessWidget {
           ),
           RepositoryProvider(
             create: (context) => ChatService(),
+          ),
+          RepositoryProvider(
+            create: (context) => GroupChatService(),
           ),
         ],
         child: MultiBlocProvider(
@@ -213,6 +218,10 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   UserChatBloc(RepositoryProvider.of<ChatService>(context)),
+            ),
+             BlocProvider(
+              create: (context) =>
+                  ListGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
             ),
           ],
           child: MaterialApp(
