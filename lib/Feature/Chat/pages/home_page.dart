@@ -1,22 +1,31 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Chat/pages/search.dart';
+import 'package:capstone_ui/services/api_chat.dart';
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:provider/provider.dart';
-import '../constants/app_constants.dart';
+import '../../../Bloc/user_chat/user_chat_bloc.dart';
+import '../../../Model/getListChat_model.dart';
 import '../constants/color_constants.dart';
 import '../constants/firestore_constants.dart';
-import '../models/models.dart';
+
 import '../providers/home_provider.dart';
 import '../utils/debouncer.dart';
+
+import 'package:timeago/timeago.dart' as timeago;
+
 import '../utils/utilities.dart';
-import '../widgets/widgets.dart';
-import 'pages.dart';
+import 'chat_page.dart';
+import 'groupchat_page.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  final String userId;
+  HomePage({Key? key, required this.userId}) : super(key: key);
 
   @override
   State createState() => HomePageState();
@@ -24,29 +33,23 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   HomePageState({Key? key});
-
+  late ChatService _userList = ChatService();
   final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
-  final ScrollController listScrollController = ScrollController();
 
-  int _limit = 20;
-  int _limitIncrement = 20;
-  String _textSearch = "";
-  bool isLoading = false;
-
-  late String currentUserId = "43b6fcf9-b69b-40b0-93ab-87092eb25715" ;
+  late String currentUserId = widget.userId;
   late HomeProvider homeProvider;
+  late List<ListChat> list;
+  late bool? hasSeen;
   Debouncer searchDebouncer = Debouncer(milliseconds: 300);
   StreamController<bool> btnClearController = StreamController<bool>();
   TextEditingController searchBarTec = TextEditingController();
-
- 
 
   @override
   void initState() {
     super.initState();
     homeProvider = context.read<HomeProvider>();
     registerNotification();
-    listScrollController.addListener(scrollListener);
+    hasSeen = true;
   }
 
   @override
@@ -60,254 +63,202 @@ class HomePageState extends State<HomePage> {
 
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('onMessage: $message');
-    
+
       return;
     });
 
     firebaseMessaging.getToken().then((token) {
       print('push token: $token');
       if (token != null) {
-        homeProvider.updateDataFirestore(FirestoreConstants.pathUserCollection, currentUserId, {'pushToken': token});
+        homeProvider.updateDataFirestore(FirestoreConstants.pathUserCollection,
+            currentUserId, {'pushToken': token});
       }
     }).catchError((err) {
       Fluttertoast.showToast(msg: err.message.toString());
     });
   }
 
-  void scrollListener() {
-    if (listScrollController.offset >= listScrollController.position.maxScrollExtent &&
-        !listScrollController.position.outOfRange) {
-      setState(() {
-        _limit += _limitIncrement;
-      });
-    }
-  }
-
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          AppConstants.homeTitle,
-          style: TextStyle(color: ColorConstants.primaryColor),
-        ),
-        centerTitle: true,
-        
-      ),
-      body: SafeArea(
-        child: WillPopScope(
-     
-          onWillPop: () async  {  
-            return true;
-          },
-          child: Stack(
-            children: <Widget>[
-              // List
-              Column(
-                children: [
-                  buildSearchBar(),
-                  Expanded(
-                    child: StreamBuilder<QuerySnapshot>(
-                      stream: homeProvider.getStreamFireStore(FirestoreConstants.pathUserCollection, _limit, _textSearch),
-                      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (snapshot.hasData) {
-                          if ((snapshot.data?.docs.length ?? 0) > 0) {
-                            return ListView.builder(
-                              padding: EdgeInsets.all(10),
-                              itemBuilder: (context, index) => buildItem(context, snapshot.data?.docs[index]),
-                              itemCount: snapshot.data?.docs.length,
-                              controller: listScrollController,
-                            );
-                          } else {
-                            return Center(
-                              child: Text("No users"),
-                            );
-                          }
-                        } else {
-                          return Center(
-                            child: CircularProgressIndicator(
-                              color: ColorConstants.themeColor,
-                            ),
-                          );
-                        }
-                      },
-                    ),
-                  ),
-                ],
+    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+            shape: ShapeBorder.lerp(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20.0),
+                    bottomRight: Radius.circular(20.0)),
               ),
-
-              // Loading
-              Positioned(
-                child: isLoading ? LoadingView() : SizedBox.shrink(),
+              null,
+              0,
+            ),
+            backgroundColor: greenALS,
+            title: Text(
+              'Trò chuyện',
+              style: TextStyle(),
+            ),
+            actions: [
+              Container(
+                margin: EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: IconButton(
+                  onPressed: () {
+                    showSearch(context: context, delegate: SearchUser());
+                  },
+                  icon: Icon(
+                    Icons.search_sharp,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: IconButton(
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => GroupChatPage(userId: state.userId,fullName: state.fullName,)));
+                  },
+                  icon: Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
+                ),
               )
             ],
           ),
-       
-        ),
-      ),
-    );
-  }
-
-  Widget buildSearchBar() {
-    return Container(
-      height: 40,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.search, color: ColorConstants.greyColor, size: 20),
-          SizedBox(width: 5),
-          Expanded(
-            child: TextFormField(
-              textInputAction: TextInputAction.search,
-              controller: searchBarTec,
-              onChanged: (value) {
-                searchDebouncer.run(() {
-                  if (value.isNotEmpty) {
-                    btnClearController.add(true);
-                    setState(() {
-                      _textSearch = value;
-                    });
-                  } else {
-                    btnClearController.add(false);
-                    setState(() {
-                      _textSearch = "";
-                    });
-                  }
-                });
-              },
-              decoration: InputDecoration.collapsed(
-                hintText: 'Search nickname (you have to type exactly string)',
-                hintStyle: TextStyle(fontSize: 13, color: ColorConstants.greyColor),
-              ),
-              style: TextStyle(fontSize: 13),
-            ),
-          ),
-          StreamBuilder<bool>(
-              stream: btnClearController.stream,
-              builder: (context, snapshot) {
-                return snapshot.data == true
-                    ? GestureDetector(
-                        onTap: () {
-                          searchBarTec.clear();
-                          btnClearController.add(false);
-                          setState(() {
-                            _textSearch = "";
-                          });
-                        },
-                        child: Icon(Icons.clear_rounded, color: ColorConstants.greyColor, size: 20))
-                    : SizedBox.shrink();
-              }),
-        ],
-      ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: ColorConstants.greyColor2,
-      ),
-      padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-      margin: EdgeInsets.fromLTRB(16, 8, 16, 8),
-    );
-  }
-
-  Widget buildItem(BuildContext context, DocumentSnapshot? document) {
-    if (document != null) {
-      UserChat userChat = UserChat.fromDocument(document);
-      if (userChat.id == currentUserId) {
-        return SizedBox.shrink();
-      } else {
-        return Container(
-          child: TextButton(
-            child: Row(
-              children: <Widget>[
-                Material(
-                  child: userChat.photoUrl.isNotEmpty
-                      ? Image.network(
-                          userChat.photoUrl,
-                          fit: BoxFit.cover,
-                          width: 50,
-                          height: 50,
-                          loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Container(
-                              width: 50,
-                              height: 50,
-                              child: Center(
-                                child: CircularProgressIndicator(
-                                  color: ColorConstants.themeColor,
-                                  value: loadingProgress.expectedTotalBytes != null
-                                      ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                      : null,
+          body: Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: FutureBuilder<List<ListChat>>(
+                    future: _userList.getAllChat(state.userId, query: null),
+                    builder: (context, snapshot) {
+                      var data = snapshot.data;
+                      if (snapshot.hasData) {
+                        return ListView.builder(
+                            itemCount: data?.length,
+                            itemBuilder: (context, index) {
+                              DateTime time =
+                                  DateTime.parse(data?[index].updateAt ?? '');
+                              timeago.setLocaleMessages(
+                                  'vi', timeago.ViMessages());
+                              if (!snapshot.hasData) {
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }
+                              return InkWell(
+                                onTap: () {
+                                  if (Utilities.isKeyboardShowing()) {
+                                    Utilities.closeKeyboard(context);
+                                  }
+                                  UpdateHasSeen(
+                                      state.userId, data?[index].userId ?? '');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ChatPage(
+                                        arguments: ChatPageArguments(
+                                          peerId: data?[index].userId ?? '',
+                                          peerAvatar:
+                                              data?[index].imageUser ?? '',
+                                          peerNickname:
+                                              data?[index].fullName ?? '',
+                                        ),
+                                        userId: state.userId,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ListTile(
+                                    title: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              '${data?[index].imageUser}'),
+                                          maxRadius: 25,
+                                        ),
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                  '${data?[index].fullName}',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight: data?[index]
+                                                                  .hasSeen ==
+                                                              true
+                                                          ? FontWeight.normal
+                                                          : FontWeight.bold),
+                                                ),
+                                                SizedBox(
+                                                  height: 6,
+                                                ),
+                                                Text(
+                                                  data?[index].lastMessage ??
+                                                      '',
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight: data?[index]
+                                                                  .hasSeen ==
+                                                              true
+                                                          ? FontWeight.normal
+                                                          : FontWeight.bold),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          timeago.format(time, locale: 'vi'),
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight:
+                                                  data?[index].hasSeen == true
+                                                      ? FontWeight.normal
+                                                      : FontWeight.bold),
+                                        ),
+                                      ],
+                                    ),
+                                    // trailing: Text('More Info'),
+                                  ),
                                 ),
-                              ),
-                            );
-                          },
-                          errorBuilder: (context, object, stackTrace) {
-                            return Icon(
-                              Icons.account_circle,
-                              size: 50,
-                              color: ColorConstants.greyColor,
-                            );
-                          },
-                        )
-                      : Icon(
-                          Icons.account_circle,
-                          size: 50,
-                          color: ColorConstants.greyColor,
-                        ),
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
-                  clipBehavior: Clip.hardEdge,
-                ),
-                Flexible(
-                  child: Container(
-                    child: Column(
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            'Nickname: ${userChat.nickname}',
-                            maxLines: 1,
-                            style: TextStyle(color: ColorConstants.primaryColor),
+                              );
+                            });
+                      } else {
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: greenALS,
                           ),
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.fromLTRB(10, 0, 0, 5),
-                        ),
-                      ],
-                    ),
-                    margin: EdgeInsets.only(left: 20),
-                  ),
-                ),
-              ],
-            ),
-            onPressed: () {
-              if (Utilities.isKeyboardShowing()) {
-                Utilities.closeKeyboard(context);
-              }
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChatPage(
-                    arguments: ChatPageArguments(
-                      peerId: userChat.id,
-                      peerAvatar: userChat.photoUrl,
-                      peerNickname: userChat.nickname,
-                    ),
-                  ),
-                ),
-              );
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(ColorConstants.greyColor2),
-              shape: MaterialStateProperty.all<OutlinedBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                ),
+                        );
+                      }
+                    }),
               ),
-            ),
+            ],
           ),
-          margin: EdgeInsets.only(bottom: 10, left: 5, right: 5),
         );
-      }
-    } else {
-      return SizedBox.shrink();
-    }
+      },
+    );
+  }
+
+  Future<void> UpdateHasSeen(String userIdFrom, String userIdTo) async {
+    context
+        .read<UserChatBloc>()
+        .add(UserChatEvent.UpdateHasSeenRequest(userIdFrom, userIdTo));
   }
 }

@@ -3,7 +3,9 @@ import 'package:audioplayers/notifications.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
+import 'package:capstone_ui/Bloc/chat/chat_bloc.dart';
 import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
+import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
@@ -17,6 +19,7 @@ import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
 import 'package:capstone_ui/services/api_ShortCutNotification.dart';
+import 'package:capstone_ui/services/api_chat.dart';
 import 'package:capstone_ui/services/api_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
@@ -36,17 +39,21 @@ import 'Bloc/create_post/create_post_bloc.dart';
 import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
+import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
+import 'Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
+import 'Bloc/user_chat/user_chat_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
 import 'Feature/Chat/providers/chat_provider.dart';
 import 'Feature/Chat/providers/home_provider.dart';
 import 'firebase_options.dart';
 import 'services/api_ReactPost.dart';
 import 'services/api_User.dart';
+import 'services/api_groupchat.dart';
 // import 'Login/login_screen.dart';
 
 void main() async {
@@ -121,6 +128,12 @@ class MyApp extends StatelessWidget {
           ),
           RepositoryProvider(
             create: (context) => ReactPostService(),
+          ),
+          RepositoryProvider(
+            create: (context) => ChatService(),
+          ),
+          RepositoryProvider(
+            create: (context) => GroupChatService(),
           ),
         ],
         child: MultiBlocProvider(
@@ -197,6 +210,27 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
             ),
+
+            BlocProvider(
+              create: (context) =>
+                  ChatBloc(RepositoryProvider.of<ChatService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  UserChatBloc(RepositoryProvider.of<ChatService>(context)),
+            ),
+             BlocProvider(
+              create: (context) =>
+                  ListGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  ListGroupChatHasJoinBloc(RepositoryProvider.of<GroupChatService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  GroupchatBloc(RepositoryProvider.of<GroupChatService>(context)),
+
              BlocProvider(
               create: (context) =>
                   PushNotiToSupporterBloc(RepositoryProvider.of<ShortCutNotificationService>(context)),                 
@@ -205,6 +239,7 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
                   
+
             ),
           ],
           child: MaterialApp(

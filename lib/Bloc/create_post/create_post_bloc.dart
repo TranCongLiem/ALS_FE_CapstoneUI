@@ -14,7 +14,7 @@ class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
   CreatePostBloc(this._PostService) : super(CreatePostState.initial()) {
     on<_CreatePostRequest>((event, emit) async {
       CreatePostReQuestModel reqModel = CreatePostReQuestModel(
-          userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715',
+          userId: event.userId,
           image: state.image,
           caption: state.caption);
       final result = await _PostService.createPost(reqModel);

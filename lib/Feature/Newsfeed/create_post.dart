@@ -299,7 +299,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                               width: MediaQuery.of(context).size.width * 0.6,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  uploadImage();
+                                  uploadImage(state2.userId);
                                 },
                                 style: ElevatedButton.styleFrom(
                                   primary: greenALS,
@@ -332,7 +332,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
     );
   }
 
-  Future<void> uploadImage() async {
+  Future<void> uploadImage(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     try {
       String _imagePath = imagePath ?? '';
@@ -352,7 +352,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
       context
           .read<CreatePostBloc>()
           .add(CreatePostEvent.captionChanged(_textSpeech));
-      context.read<CreatePostBloc>().add(CreatePostEvent.createPostRequest());
+      context.read<CreatePostBloc>().add(CreatePostEvent.createPostRequest(userId));
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Tạo bài viết thành công')));
