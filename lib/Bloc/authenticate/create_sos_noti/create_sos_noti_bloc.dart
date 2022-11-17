@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
-import '../../../Model/CreatePushNotiToSupporter_model.dart';
 import '../../../Model/getProfileUser_model.dart';
 import '../../../services/api_User.dart';
 

@@ -3,7 +3,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:capstone_ui/Model/login_model.dart';
 import 'package:capstone_ui/services/api_login.dart';
-import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'authenticate_event.dart';

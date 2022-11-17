@@ -1,12 +1,11 @@
-
-import 'package:capstone_ui/Feature/News/article_screen.dart';
-import 'package:capstone_ui/Feature/News/model/article_model.dart';
 import 'package:capstone_ui/Model/getListKnowledge_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:timeago/timeago.dart' as timeago;
 import '../../Feature/News/detail_news.dart';
 
 Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
+  DateTime time = DateTime.parse(listKnowledge.createDate ?? '');
+  timeago.setLocaleMessages('vi', timeago.ViMessages());
   return InkWell(
     onTap: () {
       Navigator.push(
@@ -17,7 +16,7 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
     },
     child: Container(
       margin: EdgeInsets.all(15.0),
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.0),
@@ -54,14 +53,25 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
             ),
             child: Text(
               listKnowledge.title ?? '',
-              style: TextStyle(color: Colors.white),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: Colors.white, fontSize: 16.0),
+            ),
+          ),
+          Text(
+            timeago.format(time, locale: 'vi'),
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 12.0,
             ),
           ),
           SizedBox(
             height: 8.0,
           ),
           Text(
-            listKnowledge.title ?? "",
+            listKnowledge.description ?? "",
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
         ],
