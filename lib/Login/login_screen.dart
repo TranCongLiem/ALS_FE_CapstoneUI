@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-        //  print('test state '+ state.toString());
+          //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
             Navigator.push(
               context,
@@ -60,6 +60,9 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
         builder: (context, state) {
+          context
+              .read<AuthenticateBloc>()
+              .add(AuthenticateEvent.authCheckRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,

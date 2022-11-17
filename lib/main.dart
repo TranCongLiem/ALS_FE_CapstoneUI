@@ -6,6 +6,7 @@ import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
+import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
@@ -15,6 +16,7 @@ import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
+import 'package:capstone_ui/services/api_Session.dart';
 import 'package:capstone_ui/services/api_login.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -71,7 +73,10 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => PostService(),
-        )
+        ),
+        RepositoryProvider(
+          create: (context) => SessionService(),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -118,6 +123,9 @@ class MyApp extends StatelessWidget {
           BlocProvider(
               create: (context) => CategoryExerciseBlocBloc(
                   RepositoryProvider.of<CategoryExerciseService>(context))),
+          BlocProvider(
+              create: (context) =>
+                  SessionBloc(RepositoryProvider.of<SessionService>(context))),
         ],
         child: MaterialApp(
           theme: ThemeData(

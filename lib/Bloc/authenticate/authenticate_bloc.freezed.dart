@@ -776,7 +776,7 @@ abstract class _AuthCheckRequested implements AuthenticateEvent {
 
 /// @nodoc
 mixin _$AuthenticateState {
-  String get userId => throw _privateConstructorUsedError;
+  String? get userId => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
@@ -794,7 +794,7 @@ abstract class $AuthenticateStateCopyWith<$Res> {
           AuthenticateState value, $Res Function(AuthenticateState) then) =
       _$AuthenticateStateCopyWithImpl<$Res>;
   $Res call(
-      {String userId,
+      {String? userId,
       String phoneNumber,
       String password,
       bool isAuthenticated,
@@ -824,7 +824,7 @@ class _$AuthenticateStateCopyWithImpl<$Res>
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -857,7 +857,7 @@ abstract class _$$_AuthenticateStateCopyWith<$Res>
       __$$_AuthenticateStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String userId,
+      {String? userId,
       String phoneNumber,
       String password,
       bool isAuthenticated,
@@ -889,7 +889,7 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
       userId: userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       phoneNumber: phoneNumber == freezed
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
@@ -926,7 +926,7 @@ class _$_AuthenticateState implements _AuthenticateState {
       this.errorMessage});
 
   @override
-  final String userId;
+  final String? userId;
   @override
   final String phoneNumber;
   @override
@@ -978,7 +978,7 @@ class _$_AuthenticateState implements _AuthenticateState {
 
 abstract class _AuthenticateState implements AuthenticateState {
   const factory _AuthenticateState(
-      {required final String userId,
+      {required final String? userId,
       required final String phoneNumber,
       required final String password,
       required final bool isAuthenticated,
@@ -986,7 +986,7 @@ abstract class _AuthenticateState implements AuthenticateState {
       final String? errorMessage}) = _$_AuthenticateState;
 
   @override
-  String get userId;
+  String? get userId;
   @override
   String get phoneNumber;
   @override

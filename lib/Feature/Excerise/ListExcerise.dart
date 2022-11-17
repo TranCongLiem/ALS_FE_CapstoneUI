@@ -1,16 +1,20 @@
 import 'dart:math';
 
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
+import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Components/Feature/Excerise/Excerise/category_ex.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
 import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
-import 'package:capstone_ui/Feature/Excerise/session_exercise.dart';
+import 'package:capstone_ui/Feature/Session/session_exercise.dart';
 import 'package:capstone_ui/Bloc/exercise/exercise_bloc_bloc.dart';
+import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
 import 'package:capstone_ui/Feature/TextToSpeech/TextToSpeech.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
+import 'package:capstone_ui/services/api_Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -134,7 +138,16 @@ class _ListExceriseState extends State<ListExcerise> {
                   ],
                 ),
               ),
-              ButtonCreateEx(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ButtonCreateEx(),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  GetSessionsButton(),
+                ],
+              ),
 
               WidgetEx1(),
               Container(
@@ -342,6 +355,117 @@ class ButtonCreateEx extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// class ButtonGetSession extends StatelessWidget {
+//   const ButtonGetSession({
+//     Key? key,
+//   }) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return BlocBuilder<SessionBloc, SessionState>(
+//       builder: (context, state) {
+//         return Padding(
+//           padding: const EdgeInsets.all(8.0),
+//           child: BlocBuilder<AuthenticateBloc, AuthenticateState>(
+//             builder: (context, state) {
+//               return Container(
+//                 child: ElevatedButton(
+//                   onPressed: () {
+//                     context
+//                         .read<SessionBloc>()
+//                         .add(SessionEvent.getSessionsByUserId(state.userId));
+//                     Navigator.push(
+//                         context,
+//                         MaterialPageRoute(
+//                             builder: (context) => SessionExercise()));
+//                   },
+//                   child: Text(
+//                     'Buổi tập của bạn',
+//                     style: TextStyle(
+//                       fontSize: 20.0,
+//                       fontWeight: FontWeight.bold,
+//                     ),
+//                   ),
+//                   //icon: Icon(Icons.add),
+//                   style: ButtonStyle(
+//                     foregroundColor:
+//                         MaterialStateProperty.all<Color>(Colors.white),
+//                     backgroundColor: MaterialStateProperty.all<Color>(
+//                         Color.fromARGB(255, 14, 106, 211)),
+//                     elevation: MaterialStateProperty.resolveWith<double>(
+//                         (Set<MaterialState> states) {
+//                       if (states.contains(MaterialState.pressed) ||
+//                           (states.contains(MaterialState.disabled))) {
+//                         return 0;
+//                       }
+//                       return 5;
+//                     }),
+//                   ),
+//                 ),
+//               );
+//             },
+//           ),
+//         );
+//       },
+//     );
+//   }
+// }
+
+class GetSessionsButton extends StatelessWidget {
+  const GetSessionsButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SessionBloc, SessionState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: BlocBuilder<AuthenticateBloc, AuthenticateState>(
+            builder: (context, state) {
+              return Container(
+                child: ElevatedButton(
+                  child: Text(
+                    "Buổi tập của bạn",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.white),
+                    backgroundColor: MaterialStateProperty.all(
+                      Color.fromARGB(255, 14, 106, 211),
+                    ),
+                    elevation: MaterialStateProperty.resolveWith<double>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.pressed) ||
+                            states.contains(MaterialState.disabled)) {
+                          return 0;
+                        }
+                        return 5;
+                      },
+                    ),
+                  ),
+                  onPressed: () {
+                    context
+                        .read<SessionBloc>()
+                        .add(SessionEvent.getSessionsByUserId(state.userId));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SessionsScreen()));
+                  },
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

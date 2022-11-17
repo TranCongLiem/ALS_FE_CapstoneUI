@@ -3,6 +3,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:capstone_ui/Model/login_model.dart';
 import 'package:capstone_ui/services/api_login.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -20,13 +21,14 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       final result = await _userService.login(reqModel);
       if (result.role != null && result.phoneNumber != null) {
         emit(state.copyWith(
-          userId: state.userId,
+          userId: result.userId,
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
           isAuthenticated: true,
         ));
       } else {
         emit(state.copyWith(errorMessage: "Invalid Phone Number or Password"));
+        debugPrint(state.phoneNumber);
       }
     });
 
