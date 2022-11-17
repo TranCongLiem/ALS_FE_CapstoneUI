@@ -229,7 +229,7 @@ class MyApp extends StatelessWidget {
             ),
             BlocProvider(
               create: (context) =>
-                  GroupchatBloc(RepositoryProvider.of<GroupChatService>(context)),
+                  GroupchatBloc(RepositoryProvider.of<GroupChatService>(context))),
 
              BlocProvider(
               create: (context) =>
