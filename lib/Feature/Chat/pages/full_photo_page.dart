@@ -12,10 +12,12 @@ class FullPhotoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text(
-          AppConstants.fullPhotoTitle,
-          style: TextStyle(color: ColorConstants.primaryColor),
+          'Ảnh',
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),

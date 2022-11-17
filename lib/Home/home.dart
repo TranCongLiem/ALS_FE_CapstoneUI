@@ -139,7 +139,9 @@ class _HomeState extends State<Home> {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        HomePage(userId: state.userId)));
+                                                        HomePage(
+                                                            userId:
+                                                                state.userId)));
                                           },
                                         ),
                                       ],
