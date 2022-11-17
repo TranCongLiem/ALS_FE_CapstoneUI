@@ -99,6 +99,44 @@ class UserPatientService {
     }
   }
 
+  Future<GetRelatinshipWithUserByIdResponeModel> getRelatinshipWithUserById(
+      GetRelatinshipWithUserByIdRequestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/user/GetDetailUserByID?id=" +
+        requestModel.userId;
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GetRelatinshipWithUserByIdResponeModel.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+   Future<GetPhoneByIdResponeModel> getPhoneNumberById(GetPhoneByIdRequestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/user/GetDetailUserByID?id=" +
+        requestModel.userId;
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GetPhoneByIdResponeModel.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
   bool isUpdatedProfilePatient() {
     return isUpdateProfilePatient;
   }

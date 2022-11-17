@@ -5,9 +5,11 @@ import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
+import '../Splash/SharePreKey.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -27,8 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-          if (state.isAuthenticated) {
+          if (state.isAuthenticated) {           
             if (state.role == 'Patient') {
+              SetUserInfo(state.phoneNumber, state.password, state.userId);
               Navigator.push(
                 context,
                 PageRouteBuilder(
@@ -399,4 +402,14 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     });
   }
+  void SetUserInfo(String phone, String Password,String userId) async {
+    //final prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, true);
+    await prefs.setString(SharedPreferencesKey.SHARED_PHONE,phone);
+    await prefs.setString(SharedPreferencesKey.SHARED_PASSWORD, Password);
+    await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
+  }
 }
+
+

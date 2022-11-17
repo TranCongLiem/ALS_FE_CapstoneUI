@@ -25,17 +25,16 @@ class PushNotiToSupporterBloc
       // TODO: implement event handler
       final request = event.createPushNotificationRequestModel;
       CreatePushNotificationResponeModel createPushNotificationResponeModel;
-      if (request.receiverId.isEmpty || request.receiverId == null) {
-        createPushNotificationResponeModel = CreatePushNotificationResponeModel(
-            success: false, message: "Doesn't link any Supporter");
-        emit(PushNotiToSupporterErrorState(
-            createPushNotificationResponeModel));
-      } else {
         createPushNotificationResponeModel =
             await shortcutNotiService.SentNotiToSupporter(request);
-        emit(PushNotiToSupporterSuccessState(
-            createPushNotificationResponeModel));
-      }
+        if (createPushNotificationResponeModel.success == false) {
+          emit(PushNotiToSupporterErrorState(
+              createPushNotificationResponeModel));
+        } else {
+          emit(PushNotiToSupporterSuccessState(
+              createPushNotificationResponeModel));
+        }
+      
     });
   }
 }
