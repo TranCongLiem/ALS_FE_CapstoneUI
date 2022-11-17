@@ -24,10 +24,8 @@ import 'package:capstone_ui/services/api_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-
-import 'package:firebase_storage/firebase_storage.dart';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +33,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Bloc/authenticate/create_sos_noti/create_sos_noti_bloc.dart';
 import 'Bloc/create_post/create_post_bloc.dart';
 
 import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
@@ -43,6 +42,7 @@ import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
 import 'Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
+import 'Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
@@ -78,10 +78,7 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key, required this.prefs}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    FirebaseMessaging.instance
-        .getToken()
-        .then((value) => print("TokenOfDevice:${value}"));
-
+    FirebaseMessaging.instance.getToken().then((value) => print("TokenOfDevice:${value}" ));
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
@@ -213,6 +210,7 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
             ),
+
             BlocProvider(
               create: (context) =>
                   ChatBloc(RepositoryProvider.of<ChatService>(context)),
@@ -232,6 +230,16 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   GroupchatBloc(RepositoryProvider.of<GroupChatService>(context)),
+
+             BlocProvider(
+              create: (context) =>
+                  PushNotiToSupporterBloc(RepositoryProvider.of<ShortCutNotificationService>(context)),                 
+            ),
+             BlocProvider(
+              create: (context) =>
+                  CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
+                  
+
             ),
           ],
           child: MaterialApp(

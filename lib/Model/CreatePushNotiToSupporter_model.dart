@@ -14,14 +14,12 @@ class CreatePushNotificationResponeModel {
 
 class CreatePushNotificationRequestModel {
   String senderId;
-  String receiverId;
   String title;
 
-  CreatePushNotificationRequestModel({required this.senderId, required this.receiverId, required this.title});
+  CreatePushNotificationRequestModel({required this.senderId, required this.title});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'senderId': senderId,
-      'receiverId': receiverId,
+      'senderId': senderId,   
       'title': title,
     };
     return map;

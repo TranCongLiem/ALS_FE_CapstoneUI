@@ -60,6 +60,7 @@ dependencies:
   pinput: ^2.2.12
   flutterfire_cli: ^0.2.6
   firebase_storage: ^11.0.4
+  firebase_messaging: ^14.0.4
   flutter_audio_recorder2: ^0.0.2
   audioplayers: ^0.19.1
   toggle_switch: ^2.0.1
@@ -78,7 +79,6 @@ dependencies:
   flutter_inappwebview: ^5.5.0+4
   like_button: ^2.0.5
   cloud_firestore: ^4.0.5
-  firebase_messaging: ^14.1.0
   fluttertoast: ^8.1.1
   photo_view: ^0.14.0
   flutter_datetime_picker: ^1.5.1
