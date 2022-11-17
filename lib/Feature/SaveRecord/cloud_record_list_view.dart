@@ -2,9 +2,12 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:capstone_ui/Bloc/remove_record/remove_record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
+import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
+import '../../Model/CreatePushNotiToSupporter_model.dart';
 import 'home_view.dart';
 
 class CloudRecordListView extends StatefulWidget {
@@ -39,6 +42,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
     isPlaying = false;
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
+    _textFieldController.text = '';
   }
 
   @override
@@ -104,6 +108,186 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 3.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[300]!
+                                                .withOpacity(0.5),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(30),
+                                                bottomLeft: Radius.circular(30),
+                                                bottomRight:
+                                                    Radius.circular(30),
+                                                topRight: Radius.circular(30))),
+                                        child: IconButton(
+                                          onPressed: () {
+                                            _textFieldController.text = widget
+                                                    .references[index]
+                                                    .recordName ??
+                                                '';
+                                            showDialog(
+                                                context: context,
+                                                builder: (context) {
+                                                  return BlocProvider(
+                                                    create: (BuildContext
+                                                            context) =>
+                                                        PushNotiToSupporterBloc(
+                                                            RepositoryProvider
+                                                                .of<ShortCutNotificationService>(
+                                                                    context)),
+                                                    child: AlertDialog(
+                                                      scrollable: true,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15.0),
+                                                      ),
+                                                      buttonPadding:
+                                                          EdgeInsets.all(10.0),
+                                                      contentPadding:
+                                                          EdgeInsets.all(30.0),
+                                                      title: Text(
+                                                          'Mô tả thông tin trợ giúp'),
+                                                      content: TextField(
+                                                        onChanged: (value) {
+                                                          _textFieldController
+                                                              .text = value;
+                                                          // setState(() {
+
+                                                          // });
+                                                        },
+                                                        // controller: TextEditingController(
+                                                        //     text: widget
+                                                        //             .references[
+                                                        //                 index]
+                                                        //             .recordName ??
+                                                        //         ''),
+                                                        controller:
+                                                            _textFieldController,
+                                                        decoration:
+                                                            InputDecoration(
+                                                                hintText:
+                                                                    "Nhập mô tả"),
+                                                      ),
+                                                      actions: <Widget>[
+                                                        ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .red),
+                                                          child: Text('HỦY'),
+                                                          onPressed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                        ),
+                                                        BlocBuilder<
+                                                            PushNotiToSupporterBloc,
+                                                            PushNotiToSupporterState>(
+                                                          builder:
+                                                              (context, state) {
+                                                            // if (state
+                                                            //     is PushNotiToSupporterBlocInitial) {
+                                                            return ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                  backgroundColor: Colors
+                                                                      .green
+                                                                      .withOpacity(
+                                                                          0.7)),
+                                                              child:
+                                                                  Text('GỬI'),
+                                                              onPressed: () {
+                                                                BlocProvider.of<PushNotiToSupporterBloc>(context).add(PushNotiToSupporterByRequestEvent(
+                                                                    createPushNotificationRequestModel: CreatePushNotificationRequestModel(
+                                                                        senderId: widget.userId,
+                                                                        // receiverId:
+                                                                        //     "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
+                                                                        // receiverId: "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
+                                                                        title: _textFieldController.text)));
+                                                                // if (state
+                                                                //     is PushNotiToSupporterErrorState) {
+                                                                //   ScaffoldMessenger.of(
+                                                                //           context)
+                                                                //       .showSnackBar(
+                                                                //           SnackBar(
+                                                                //     content: Text(state
+                                                                //             .createPushNotificationResponeModel
+                                                                //             .message ??
+                                                                //         'Gửi thông báo cho supporter thất bại'),
+                                                                //   ));
+                                                                // }
+
+                                                                Navigator.pop(
+                                                                    context);
+
+                                                                // if (mounted) {
+                                                                //   setState(
+                                                                //       () {});
+                                                                // }
+                                                              },
+                                                            );
+                                                            if (state
+                                                                is PushNotiToSupporterErrorState) {
+                                                              // showDialog(
+                                                              //   context:
+                                                              //       context,
+                                                              //   builder:
+                                                              //       (context) {
+                                                              //     return AlertDialog(
+                                                              //       // Retrieve the text the that user has entered by using the
+                                                              //       // TextEditingController.
+                                                              //       content: Text(
+                                                              //           "Cann't send notification for Supporter"),
+                                                              //     );
+                                                              //   },
+                                                              // );
+
+                                                              //   ShowDialogError(
+                                                              //       context,
+                                                              //       state.createPushNotificationResponeModel
+                                                              //               .message ??
+                                                              //           'Can not send notification for Supporter');
+                                                              // }
+                                                              ScaffoldMessenger
+                                                                      .of(
+                                                                          context)
+                                                                  .showSnackBar(
+                                                                      SnackBar(
+                                                                content: Text(state
+                                                                        .createPushNotificationResponeModel
+                                                                        .message ??
+                                                                    'Gửi thông báo cho supporter thất bại'),
+                                                              ));
+                                                            }
+                                                            return Center(
+                                                              child:
+                                                                  CircularProgressIndicator(),
+                                                            );
+                                                          },
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                });
+                                          },
+                                          icon: Icon(
+                                            Icons.notifications,
+                                            color: Colors.amber[800]!
+                                                .withOpacity(0.6),
+                                            size: 30.0,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 Text(
                                   '',
                                 ),
@@ -190,102 +374,6 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.symmetric(vertical: 3.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[300]!
-                                                .withOpacity(0.5),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(30),
-                                                bottomLeft: Radius.circular(30),
-                                                bottomRight:
-                                                    Radius.circular(30),
-                                                topRight: Radius.circular(30))),
-                                        child: IconButton(
-                                          onPressed: () {
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return AlertDialog(
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15.0),
-                                                    ),
-                                                    buttonPadding:
-                                                        EdgeInsets.all(10.0),
-                                                    contentPadding:
-                                                        EdgeInsets.all(30.0),
-                                                    title: Text(
-                                                        'Mô tả thông tin trợ giúp'),
-                                                    content: TextField(
-                                                      onChanged: (value) {
-                                                        setState(() {
-                                                          valueText = value;
-                                                        });
-                                                      },
-                                                      controller:
-                                                          TextEditingController(
-                                                              text: widget
-                                                                      .references[
-                                                                          index]
-                                                                      .recordName ??
-                                                                  ''),
-                                                      decoration:
-                                                          InputDecoration(
-                                                              hintText:
-                                                                  "Nhập mô tả"),
-                                                    ),
-                                                    actions: <Widget>[
-                                                      ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                backgroundColor:
-                                                                    Colors.red),
-                                                        child: Text('HỦY'),
-                                                        onPressed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        },
-                                                      ),
-                                                      ElevatedButton(
-                                                        style: ElevatedButton
-                                                            .styleFrom(
-                                                                backgroundColor:
-                                                                    Colors.green
-                                                                        .withOpacity(
-                                                                            0.7)),
-                                                        child: Text('GỬI'),
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            codeDialog =
-                                                                valueText;
-                                                            Navigator.pop(
-                                                                context);
-                                                          });
-                                                        },
-                                                      ),
-                                                    ],
-                                                  );
-                                                });
-                                          },
-                                          icon: Icon(
-                                            Icons.notifications,
-                                            color: Colors.amber[800]!
-                                                .withOpacity(0.6),
-                                            size: 30.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
                               ]),
                           Container(
                               alignment: Alignment.center,
@@ -356,5 +444,26 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       });
     }
     // await audioPlayer.stop();
+  }
+
+  void ShowDialogError(BuildContext context, String errorText) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          // Retrieve the text the that user has entered by using the
+          // TextEditingController.
+          content: Text(errorText),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('HỦY'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

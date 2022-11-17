@@ -29,6 +29,11 @@ class ShortCutNotificationService {
 
    Future<CreatePushNotificationResponeModel> SentNotiToSupporter(CreatePushNotificationRequestModel requestModel) async {
     String url="https://als.cosplane.asia/api/ShortCutNotification/PushNotificationToSupporterAndSave";
+    // try{
+
+    // }catch(Exception){
+
+    // }
     final response = await post(
       Uri.parse(url),
       headers: {

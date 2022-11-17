@@ -30,12 +30,14 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
+import 'Bloc/authenticate/create_sos_noti/create_sos_noti_bloc.dart';
 import 'Bloc/create_post/create_post_bloc.dart';
 
 import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
+import 'Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
@@ -194,6 +196,15 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) =>
                   AuthenticateBloc(RepositoryProvider.of<UserService>(context)),
+            ),
+             BlocProvider(
+              create: (context) =>
+                  PushNotiToSupporterBloc(RepositoryProvider.of<ShortCutNotificationService>(context)),                 
+            ),
+             BlocProvider(
+              create: (context) =>
+                  CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
+                  
             ),
           ],
           child: MaterialApp(
