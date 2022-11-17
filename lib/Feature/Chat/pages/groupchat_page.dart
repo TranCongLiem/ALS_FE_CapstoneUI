@@ -1,18 +1,26 @@
+import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
+import 'package:capstone_ui/Feature/Chat/pages/custom_listAllGroupChatHasJoin.dart';
+import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:uuid/uuid.dart';
 import '../../../Bloc/list_group_chat/list_group_chat_bloc.dart';
+import '../../../Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import '../../../Constant/constant.dart';
+import '../../../Model/groupChat_model.dart';
 import '../../../services/api_groupchat.dart';
+import '../providers/database_service.dart';
 import '../utils/utilities.dart';
 import 'chat_page.dart';
 import 'custom_listAllGroupChat.dart';
 
 class GroupChatPage extends StatefulWidget {
   final String userId;
-  const GroupChatPage({super.key, required this.userId});
+  final String fullName;
+  const GroupChatPage(
+      {super.key, required this.userId, required this.fullName});
 
   @override
   State<GroupChatPage> createState() => _GroupChatPageState();
@@ -20,6 +28,9 @@ class GroupChatPage extends StatefulWidget {
 
 class _GroupChatPageState extends State<GroupChatPage>
     with TickerProviderStateMixin {
+  String groupName = "";
+  List<ListAllGroupChat> listAllGroupChat = [];
+  bool _isLoading = false;
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 2, vsync: this);
@@ -30,9 +41,9 @@ class _GroupChatPageState extends State<GroupChatPage>
                 RepositoryProvider.of<GroupChatService>(context))
               ..add(LoadListGroupChatEvent(userId: widget.userId))),
         BlocProvider(
-            create: (context) => ListGroupChatBloc(
-                RepositoryProvider.of<GroupChatService>(context))
-              ..add(LoadListGroupChatByUserIdEvent(userId: widget.userId))),
+            create: (context2) => ListGroupChatHasJoinBloc(
+                RepositoryProvider.of<GroupChatService>(context2))
+              ..add(LoadListGroupChatByUserIdEvent(userId: widget.userId)))
       ],
       child: DefaultTabController(
         length: 2,
@@ -69,27 +80,59 @@ class _GroupChatPageState extends State<GroupChatPage>
               ],
               bottom: TabBar(tabs: [
                 Tab(
+                  text: 'Nhóm của bạn',
+                  icon: Icon(Icons.group_add),
+                ),
+                Tab(
                   text: 'Nhóm',
                   icon: Icon(Icons.person),
                 ),
-                Tab(
-                  text: 'Đã tham gia',
-                  icon: Icon(Icons.group_add),
-                )
               ]),
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                popUpDialog(context);
+              },
+              elevation: 0,
+              backgroundColor: Theme.of(context).primaryColor,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 30,
+              ),
             ),
             body: TabBarView(
               children: [
-                //nhom chưa tham gia
-                BlocBuilder<ListGroupChatBloc, ListGroupChatState>(
+                BlocBuilder<ListGroupChatHasJoinBloc,
+                    ListGroupChatHasJoinState>(
                   builder: (context, state) {
-                    if (state is GroupChatLoadedState) {
-                      print('LiemOtis');
+                    if (state is GroupChatHasJoinLoadedState) {
                       return ListView.builder(
-                          itemCount: state.list2.length,
+                          itemCount: state.list1.length,
                           itemBuilder: (context, index) {
+                            return CustomListAllGroupChatUserJoin(
+                              listAllGroupChatUserJoin: state.list1[index],
+                              fullName: widget.fullName,
+                              userId: widget.userId,
+                            );
+                          });
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
+                BlocBuilder<ListGroupChatBloc, ListGroupChatState>(
+                  builder: (context2, state2) {
+                    if (state2 is GroupChatLoadedState) {
+                      return ListView.builder(
+                          itemCount: state2.list2.length,
+                          itemBuilder: (context2, index) {
+                            listAllGroupChat.addAll(state2.list2);
                             return CustomListAllGroupChat(
-                                state.list2[index], context);
+                              listAllGroupChat: listAllGroupChat,
+                              index: index,
+                            );
                           });
                     }
                     return Center(
@@ -99,88 +142,98 @@ class _GroupChatPageState extends State<GroupChatPage>
                 ),
 
                 //Nhom đã tham gia
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.all(10),
-                          child: ListView.builder(
-                              itemCount: 10,
-                              itemBuilder: (context, index) {
-                                return InkWell(
-                                  onTap: () {
-                                    if (Utilities.isKeyboardShowing()) {
-                                      Utilities.closeKeyboard(context);
-                                    }
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) => ChatPage(
-                                    //       arguments: ChatPageArguments(
-                                    //         peerId: data?[index].userId ?? '',
-                                    //         peerAvatar:
-                                    //             data?[index].imageUser ?? '',
-                                    //         peerNickname:
-                                    //             data?[index].fullName ?? '',
-                                    //       ),
-
-                                    //     ),
-                                    //   ),
-                                    // );
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: ListTile(
-                                      title: Row(
-                                        children: [
-                                          CircleAvatar(
-                                            backgroundImage: NetworkImage(''),
-                                            maxRadius: 25,
-                                          ),
-                                          SizedBox(
-                                            width: 16,
-                                          ),
-                                          Expanded(
-                                            child: Container(
-                                              color: Colors.transparent,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Text(
-                                                    'Liêm',
-                                                    style: TextStyle(
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 6,
-                                                  ),
-                                                  Text(
-                                                    'Hello',
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                      fontSize: 13,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      // trailing: Text('More Info'),
-                                    ),
-                                  ),
-                                );
-                              })),
-                    ],
-                  ),
-                ),
               ],
             )),
       ),
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return AlertDialog(
+              title: const Text(
+                "Tạo nhóm",
+                textAlign: TextAlign.left,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _isLoading == true
+                      ? Center(
+                          child: CircularProgressIndicator(
+                              color: Theme.of(context).primaryColor),
+                        )
+                      : TextField(
+                          onChanged: (val) {
+                            setState(() {
+                              groupName = val;
+                            });
+                          },
+                          style: const TextStyle(color: Colors.black),
+                          decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor),
+                                  borderRadius: BorderRadius.circular(20)),
+                              errorBorder: OutlineInputBorder(
+                                  borderSide:
+                                      const BorderSide(color: Colors.red),
+                                  borderRadius: BorderRadius.circular(20)),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Theme.of(context).primaryColor),
+                                  borderRadius: BorderRadius.circular(20))),
+                        ),
+                ],
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor),
+                  child: const Text("Hủy"),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    if (groupName != "") {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      var uuid = Uuid();
+                      var groupId = uuid.v1().toString();
+                      DatabaseService(uid: widget.userId)
+                          .createGroup(
+                              groupId ,widget.fullName, widget.userId, groupName)
+                          .whenComplete(() {
+                        _isLoading = false;
+                      });
+                      createdGroupChatRequest(groupId,widget.userId, groupName,
+                          'https://media.istockphoto.com/id/1313777915/vector/als-awareness-month-vector-banner-for-social-media-card-poster-illustration-with-text-als.jpg?s=612x612&w=0&k=20&c=VBng-6ApRQNU7Vn-pL6Uu4K0Tz7vIvB7nmRS_CezhNI=');
+
+                      Navigator.of(context).pop();
+                      showSnackbar(
+                          context, Colors.green, "Tạo nhóm thành công.");
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Theme.of(context).primaryColor),
+                  child: const Text("Tạo"),
+                )
+              ],
+            );
+          }));
+        });
+  }
+
+  void createdGroupChatRequest(
+      String groupId, String userId, String groupChatName, String groupChatImage) {
+    context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
+        groupId,userId, groupChatName, groupChatImage));
   }
 }

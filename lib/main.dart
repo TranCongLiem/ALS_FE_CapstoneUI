@@ -5,6 +5,7 @@ import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Bloc/chat/chat_bloc.dart';
 import 'package:capstone_ui/Bloc/create_record/create_record_bloc.dart';
+import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
@@ -40,6 +41,7 @@ import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
+import 'Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
@@ -222,6 +224,14 @@ class MyApp extends StatelessWidget {
              BlocProvider(
               create: (context) =>
                   ListGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  ListGroupChatHasJoinBloc(RepositoryProvider.of<GroupChatService>(context)),
+            ),
+            BlocProvider(
+              create: (context) =>
+                  GroupchatBloc(RepositoryProvider.of<GroupChatService>(context)),
             ),
           ],
           child: MaterialApp(

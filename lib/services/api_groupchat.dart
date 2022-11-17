@@ -39,4 +39,55 @@ class GroupChatService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+
+  Future<GroupChatResponeModel> createGroupChat(
+      CreateGroupChatRequest requestModel) async {
+    String url = "https://als.cosplane.asia/api/groupchat/CreateGroupChat";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GroupChatResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+  Future<GroupChatResponeModel> updateLastMessageGroupChat(
+      UpdateLastMessageGroupChatRequest requestModel) async {
+    String url = "https://als.cosplane.asia/api/groupchat/UpdateLastMessageGroupChat";
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GroupChatResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+  Future<GroupChatResponeModel> addMemberGroupChat(
+      AddMemberGroupChatRequest requestModel) async {
+    String url = "https://als.cosplane.asia/api/groupchat/AddMemberGroupChat";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GroupChatResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 }

@@ -12,11 +12,3 @@ class LoadListGroupChatEvent extends ListGroupChatEvent{
   List<Object?> get props => [];
 
 }
-class LoadListGroupChatByUserIdEvent extends ListGroupChatEvent{
-  final String userId;
-  const LoadListGroupChatByUserIdEvent({required this.userId});
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-
-}

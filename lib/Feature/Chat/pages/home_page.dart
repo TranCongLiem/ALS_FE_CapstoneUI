@@ -21,6 +21,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import '../utils/utilities.dart';
 import 'chat_page.dart';
+import 'groupchat_page.dart';
 
 class HomePage extends StatefulWidget {
   final String userId;
@@ -110,6 +111,20 @@ class HomePageState extends State<HomePage> {
                   },
                   icon: Icon(
                     Icons.search_sharp,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(15.0),
+                decoration:
+                    BoxDecoration(shape: BoxShape.circle, color: Colors.white),
+                child: IconButton(
+                  onPressed: () {
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => GroupChatPage(userId: state.userId,fullName: state.fullName,)));
+                  },
+                  icon: Icon(
+                    Icons.person,
                     color: Colors.black,
                   ),
                 ),

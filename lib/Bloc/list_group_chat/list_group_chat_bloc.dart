@@ -13,18 +13,11 @@ class ListGroupChatBloc extends Bloc<ListGroupChatEvent, ListGroupChatState> {
  
  
   ListGroupChatBloc(this._GroupChatService) : super(GroupChatBlocInitial()) {
+   
     on<LoadListGroupChatEvent>((event, emit) async {
-      // TODO: implement event handler
-      // PostByIdReQuestModel PostByIdReQuestModel = PostByIdReQuestModel(userId: userId)
       final list2= await _GroupChatService.getAllGroupChat(event.userId);
       emit(GroupChatLoadedState(list2));
     });
-    on<LoadListGroupChatByUserIdEvent>((event, emit) async {
-      // TODO: implement event handler
-      // PostByIdReQuestModel PostByIdReQuestModel = PostByIdReQuestModel(userId: userId)
-      final list1= await _GroupChatService.getAllGroupChatUserJoin(event.userId);
-      emit(GroupChatHasJoinLoadedState(list1));
-    });
-    
+
 }
 }

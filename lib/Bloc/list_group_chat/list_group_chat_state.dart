@@ -8,17 +8,6 @@ class GroupChatBlocInitial extends ListGroupChatState {
   @override
   // TODO: implement props
   List<Object> get props => [];
-  
-}
-class GroupChatHasJoinLoadedState extends ListGroupChatState {
-
-  List<ListAllGroupChatUserJoin> list1;
-  
-  GroupChatHasJoinLoadedState(this.list1);
-  @override
-  // TODO: implement props
-  List<Object?> get props => [list1];
-
 }
 
 class GroupChatLoadedState extends ListGroupChatState {
