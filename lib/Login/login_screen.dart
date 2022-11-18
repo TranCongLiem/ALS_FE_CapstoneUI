@@ -30,116 +30,67 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-          if (state.isAuthenticated) {           
+          if (state.isAuthenticated) {
             if (state.role == 'Patient') {
-
-              if(state.fullName.toString() != ''){
+              if (state.fullName.toString() != '') {
                 Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
                         ),
-                      ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    return NewFeed();
-                  },
-                ),
-              );
-              } else{
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return NewFeed();
+                    },
+                  ),
+                );
+              } else {
                 Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
                         ),
-                      ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    return RegisterInfo();
-                  },
-                ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return RegisterInfo();
+                    },
+                  ),
                 );
               }
-              
 
               SetUserInfo(state.phoneNumber, state.password, state.userId);
-              // Navigator.push(
-              //   context,
-              //   PageRouteBuilder(
-              //     transitionsBuilder:
-              //         (context, animation, secondaryAnimation, child) {
-              //       return ScaleTransition(
-              //         alignment: Alignment.center,
-              //         scale: Tween<double>(begin: 0.1, end: 1).animate(
-              //           CurvedAnimation(
-              //             parent: animation,
-              //             curve: Curves.bounceIn,
-              //           ),
-              //         ),
-              //         child: child,
-              //       );
-              //     },
-              //     transitionDuration: Duration(seconds: 1),
-              //     pageBuilder: (BuildContext context,
-              //         Animation<double> animation,
-              //         Animation<double> secondaryAnimation) {
-              //       return NewFeed();
-              //     },
-              //   ),
-              // );
-               Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
+
+              //  Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
 
             } else if (state.role == 'Supporter') {
-              // Navigator.push(
-              //   context,
-              //   PageRouteBuilder(
-              //     transitionsBuilder:
-              //         (context, animation, secondaryAnimation, child) {
-              //       return ScaleTransition(
-              //         alignment: Alignment.center,
-              //         scale: Tween<double>(begin: 0.1, end: 1).animate(
-              //           CurvedAnimation(
-              //             parent: animation,
-              //             curve: Curves.bounceIn,
-              //           ),
-              //         ),
-              //         child: child,
-              //       );
-              //     },
-              //     transitionDuration: Duration(seconds: 1),
-              //     pageBuilder: (BuildContext context,
-              //         Animation<double> animation,
-              //         Animation<double> secondaryAnimation) {
-              //       return NewFeedSupporter();
-              //     },
-              //   ),
-              // );
-               Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeedSupporter()));
-
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NewFeedSupporter()));
             }
           }
         },
@@ -461,14 +412,13 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     });
   }
-  void SetUserInfo(String phone, String Password,String userId) async {
+
+  void SetUserInfo(String phone, String Password, String userId) async {
     //final prefs = await SharedPreferences.getInstance();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, true);
-    await prefs.setString(SharedPreferencesKey.SHARED_PHONE,phone);
+    await prefs.setString(SharedPreferencesKey.SHARED_PHONE, phone);
     await prefs.setString(SharedPreferencesKey.SHARED_PASSWORD, Password);
     await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
   }
 }
-
-
