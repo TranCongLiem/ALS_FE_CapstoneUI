@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class DatabaseService {
   final String? uid;
@@ -151,4 +154,11 @@ class DatabaseService {
       "recentMessageTime": chatMessageData['time'].toString(),
     });
   }
+
+}
+
+class TypeMessage {
+  static const text = 0;
+  static const image = 1;
+  static const sticker = 2;
 }
