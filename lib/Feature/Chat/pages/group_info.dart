@@ -1,6 +1,8 @@
-
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../providers/database_service.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId;
@@ -49,7 +51,7 @@ class _GroupInfoState extends State<GroupInfo> {
       appBar: AppBar(
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: greenALS,
         title: const Text("Thông tin"),
         actions: [
           IconButton(
@@ -60,8 +62,7 @@ class _GroupInfoState extends State<GroupInfo> {
                     builder: (context) {
                       return AlertDialog(
                         title: const Text("Thoát"),
-                        content:
-                            const Text("Bạn có muốn rời khỏi nhóm? "),
+                        content: const Text("Bạn có muốn rời khỏi nhóm? "),
                         actions: [
                           IconButton(
                             onPressed: () {
@@ -105,8 +106,8 @@ class _GroupInfoState extends State<GroupInfo> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  color: Theme.of(context).primaryColor.withOpacity(0.2)),
-              child: Row(
+                  color: greenALS.withOpacity(0.1)),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CircleAvatar(
@@ -122,11 +123,12 @@ class _GroupInfoState extends State<GroupInfo> {
                     width: 20,
                   ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Nhóm: ${widget.groupName}",
-                        style: const TextStyle(fontWeight: FontWeight.w500),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 22.0),
                       ),
                       const SizedBox(
                         height: 5,
@@ -136,6 +138,15 @@ class _GroupInfoState extends State<GroupInfo> {
                   )
                 ],
               ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Divider(
+              height: 5,
+              indent: 20,
+              endIndent: 20,
+              thickness: 3,
             ),
             memberList(),
           ],

@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
+import 'package:capstone_ui/Feature/Chat/pages/create_groupchat.dart';
 import 'package:capstone_ui/Feature/Chat/pages/custom_listAllGroupChatHasJoin.dart';
 import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ import '../providers/database_service.dart';
 import '../utils/utilities.dart';
 import 'chat_page.dart';
 import 'custom_listAllGroupChat.dart';
+import 'search.dart';
 
 class GroupChatPage extends StatefulWidget {
   final String userId;
@@ -31,7 +33,7 @@ class _GroupChatPageState extends State<GroupChatPage>
   String groupName = "";
   List<ListAllGroupChat> listAllGroupChat = [];
   bool _isLoading = false;
- 
+
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 2, vsync: this);
@@ -71,7 +73,9 @@ class _GroupChatPageState extends State<GroupChatPage>
                   decoration: BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showSearch(context: context, delegate: SearchUser());
+                    },
                     icon: Icon(
                       Icons.search_sharp,
                       color: Colors.black,
@@ -92,7 +96,14 @@ class _GroupChatPageState extends State<GroupChatPage>
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
-                popUpDialog(context);
+                // popUpDialog(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateGroupChat(
+                              userId: widget.userId,
+                              fullName: widget.fullName,
+                            )));
               },
               elevation: 0,
               backgroundColor: Theme.of(context).primaryColor,
@@ -196,8 +207,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColor),
+                  style: ElevatedButton.styleFrom(backgroundColor: greenALS),
                   child: const Text("Hủy"),
                 ),
                 ElevatedButton(
@@ -209,12 +219,12 @@ class _GroupChatPageState extends State<GroupChatPage>
                       var uuid = Uuid();
                       var groupId = uuid.v1().toString();
                       DatabaseService(uid: widget.userId)
-                          .createGroup(
-                              groupId ,widget.fullName, widget.userId, groupName)
+                          .createGroup(groupId, widget.fullName, widget.userId,
+                              groupName)
                           .whenComplete(() {
                         _isLoading = false;
                       });
-                      createdGroupChatRequest(groupId,widget.userId, groupName,
+                      createdGroupChatRequest(groupId, widget.userId, groupName,
                           'https://media.istockphoto.com/id/1313777915/vector/als-awareness-month-vector-banner-for-social-media-card-poster-illustration-with-text-als.jpg?s=612x612&w=0&k=20&c=VBng-6ApRQNU7Vn-pL6Uu4K0Tz7vIvB7nmRS_CezhNI=');
 
                       Navigator.of(context).pop();
@@ -222,8 +232,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                           context, Colors.green, "Tạo nhóm thành công.");
                     }
                   },
-                  style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).primaryColor),
+                  style: ElevatedButton.styleFrom(backgroundColor: greenALS),
                   child: const Text("Tạo"),
                 )
               ],
@@ -232,11 +241,9 @@ class _GroupChatPageState extends State<GroupChatPage>
         });
   }
 
-  void createdGroupChatRequest(
-      String groupId, String userId, String groupChatName, String groupChatImage) {
+  void createdGroupChatRequest(String groupId, String userId,
+      String groupChatName, String groupChatImage) {
     context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
-        groupId,userId, groupChatName, groupChatImage));
+        groupId, userId, groupChatName, groupChatImage));
   }
-
-  
 }

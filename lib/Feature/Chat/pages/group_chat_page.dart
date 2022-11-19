@@ -4,17 +4,16 @@ import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../Constant/constant.dart';
 import '../constants/color_constants.dart';
-import '../providers/chat_provider.dart';
 import '../providers/database_service.dart';
-import '../providers/group_chat_provider.dart';
+import '../widgets/loading_view.dart';
 import 'group_info.dart';
 import 'message_tile.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+
 class GroupChatPage extends StatefulWidget {
   final String groupId;
   final String groupName;
@@ -24,7 +23,8 @@ class GroupChatPage extends StatefulWidget {
       {Key? key,
       required this.groupId,
       required this.groupName,
-      required this.userName,required this.userId})
+      required this.userName,
+      required this.userId})
       : super(key: key);
 
   @override
@@ -33,9 +33,10 @@ class GroupChatPage extends StatefulWidget {
 
 class _GroupChatPageState extends State<GroupChatPage> {
   Stream<QuerySnapshot>? chats;
+  List<QueryDocumentSnapshot> listMessage = [];
   TextEditingController messageController = TextEditingController();
   String admin = "43b6fcf9-b69b-40b0-93ab-87092eb25715";
-   late stt.SpeechToText _speech;
+  late stt.SpeechToText _speech;
   bool _isListening = false;
   String _textSpeech = '';
   File? imageFile;
@@ -43,12 +44,29 @@ class _GroupChatPageState extends State<GroupChatPage> {
   final FocusNode focusNode = FocusNode();
   String imageUrl = "";
   bool isShowSticker = false;
-  late GroupChatProvider groupchatProvider;
+  final ScrollController listScrollController = ScrollController();
+  int _limit = 20;
+  int _limitIncrement = 20;
+
   @override
   void initState() {
     getChatandAdmin();
     super.initState();
-     _speech = stt.SpeechToText();
+    _speech = stt.SpeechToText();
+    messageController.text = '';
+    listScrollController.addListener(_scrollListener);
+  }
+
+  _scrollListener() {
+    if (!listScrollController.hasClients) return;
+    if (listScrollController.offset >=
+            listScrollController.position.maxScrollExtent &&
+        !listScrollController.position.outOfRange &&
+        _limit <= listMessage.length) {
+      setState(() {
+        _limit += _limitIncrement;
+      });
+    }
   }
 
   getChatandAdmin() {
@@ -71,7 +89,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
         centerTitle: true,
         elevation: 0,
         title: Text(widget.groupName),
-        backgroundColor: greenALS.withOpacity(0.6),
+        backgroundColor: greenALS.withOpacity(0.8),
         actions: [
           IconButton(
               onPressed: () {
@@ -90,55 +108,12 @@ class _GroupChatPageState extends State<GroupChatPage> {
         children: <Widget>[
           Column(
             children: [
-                chatMessages(),
-                 buildInput()
+              chatMessages(),
+              isShowSticker ? buildSticker() : SizedBox.shrink(),
+              buildInput()
             ],
-          )
-          // chat messages here
-        
-          // Container(
-          //   alignment: Alignment.bottomCenter,
-          //   width: MediaQuery.of(context).size.width,
-          //   child: Container(
-          //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          //     width: MediaQuery.of(context).size.width,
-          //     color: Colors.grey[700],
-          //     child: Row(children: [
-          //       Expanded(
-          //           child: TextFormField(
-          //         controller: messageController,
-          //         style: const TextStyle(color: Colors.white),
-          //         decoration: const InputDecoration(
-          //           hintText: "Send a message...",
-          //           hintStyle: TextStyle(color: Colors.white, fontSize: 16),
-          //           border: InputBorder.none,
-          //         ),
-          //       )),
-          //       const SizedBox(
-          //         width: 12,
-          //       ),
-          //       GestureDetector(
-          //         onTap: () {
-          //           sendMessage();
-          //         },
-          //         child: Container(
-          //           height: 50,
-          //           width: 50,
-          //           decoration: BoxDecoration(
-          //             color: Theme.of(context).primaryColor,
-          //             borderRadius: BorderRadius.circular(30),
-          //           ),
-          //           child: const Center(
-          //               child: Icon(
-          //             Icons.send,
-          //             color: Colors.white,
-          //           )),
-          //         ),
-          //       )
-          //     ]),
-          //   ),
-          // )
-         
+          ),
+          buildLoading()
         ],
       ),
     );
@@ -154,12 +129,12 @@ class _GroupChatPageState extends State<GroupChatPage> {
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     return MessageTile(
-                        message: snapshot.data.docs[index]['message'],
-                        sender: snapshot.data.docs[index]['sender'],
-                        sentByMe: widget.userName ==
-                            snapshot.data.docs[index]['sender'],
-                        type: snapshot.data.docs[index]['type'],
-                            );
+                      message: snapshot.data.docs[index]['message'],
+                      sender: snapshot.data.docs[index]['sender'],
+                      sentByMe: widget.userName ==
+                          snapshot.data.docs[index]['sender'],
+                      type: snapshot.data.docs[index]['type'],
+                    );
                   },
                 )
               : Container();
@@ -177,18 +152,19 @@ class _GroupChatPageState extends State<GroupChatPage> {
         "type": type,
       };
 
-      DatabaseService(uid: widget.userId).sendMessage(widget.groupId, chatMessageMap);
+      DatabaseService(uid: widget.userId)
+          .sendMessage(widget.groupId, chatMessageMap);
       setState(() {
         messageController.clear();
       });
-    } else{
-       Fluttertoast.showToast(
+    } else {
+      Fluttertoast.showToast(
           msg: 'Vui lòng soạn tin nhắn',
           backgroundColor: ColorConstants.greyColor);
     }
   }
 
-   Widget buildInput() {
+  Widget buildInput() {
     return Container(
       child: Row(
         children: <Widget>[
@@ -198,9 +174,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
                 icon: Icon(Icons.image),
-                onPressed: () =>
-                    getImage(widget.userId, widget.userId),
-                
+                onPressed: () => getImage(),
                 color: greenALS,
               ),
             ),
@@ -211,7 +185,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
                 icon: Icon(Icons.face),
-                onPressed: (){},
+                onPressed: getSticker,
                 color: greenALS,
               ),
             ),
@@ -225,7 +199,6 @@ class _GroupChatPageState extends State<GroupChatPage> {
                 onSubmitted: (value) {
                   // onSendMessage(textEditingController.text, '',
                   //     TypeMessage.text, widget.userId, widget.arguments.peerId);
-                 
                 },
                 style:
                     TextStyle(color: ColorConstants.primaryColor, fontSize: 18),
@@ -235,9 +208,9 @@ class _GroupChatPageState extends State<GroupChatPage> {
                   hintText: 'Soạn tin nhắn...',
                   hintStyle: TextStyle(color: ColorConstants.greyColor),
                   suffixIcon: IconButton(
-                    onPressed: (() {
-                      // onListen();
-                    }),
+                    onPressed: () {
+                      onListen();
+                    },
                     icon: Icon(
                       _speech.isListening ? Icons.mic : Icons.mic_none,
                       color: _speech.isListening ? greenALS : Colors.grey,
@@ -245,9 +218,8 @@ class _GroupChatPageState extends State<GroupChatPage> {
                   ),
                 ),
                 onChanged: (value) {
-                  // _textSpeech = value;
+                  _textSpeech = value;
                 },
-                
                 autofocus: true,
               ),
             ),
@@ -265,7 +237,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                 // onPressed: () => onSendMessage(textEditingController.text, '',
                 //     TypeMessage.text, widget.userId, widget.arguments.peerId),
                 onPressed: (() {
-                   sendMessage(messageController.text, 0);
+                  sendMessage(messageController.text, 0);
                 }),
                 color: ColorConstants.primaryColor,
               ),
@@ -282,38 +254,39 @@ class _GroupChatPageState extends State<GroupChatPage> {
           color: Colors.white),
     );
   }
-  // void onListen() async {
-  //   bool available = await _speech.initialize(
-  //       onStatus: (val) => print('onStatus: $val'),
-  //       onError: (val) => print('onError: $val'));
 
-  //   if (!_isListening) {
-  //     if (available) {
-  //       setState(() {
-  //         _isListening = false;
-  //         _speech.listen(
-  //           onResult: (val) => setState(() {
-  //             _textSpeech = val.recognizedWords;
-  //             messageController.text = val.recognizedWords;
-  //           }),
-  //         );
-  //       });
-  //     }
-  //   } else {
-  //     setState(() {
-  //       _isListening = false;
-  //       _speech.stop();
-  //       print("Stop Listening");
-  //     });
-  //   }
-  // }
+  void onListen() async {
+    bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'));
 
-  // void stopListen() {
-  //   _speech.stop();
-  //   setState(() {});
-  // }
+    if (!_isListening) {
+      if (available) {
+        setState(() {
+          _isListening = false;
+          _speech.listen(
+            onResult: (val) => setState(() {
+              _textSpeech = val.recognizedWords;
+              messageController.text = val.recognizedWords;
+            }),
+          );
+        });
+      }
+    } else {
+      setState(() {
+        _isListening = false;
+        _speech.stop();
+        print("Stop Listening");
+      });
+    }
+  }
 
-   Future getImage(String userIdFrom, String userIdTo) async {
+  void stopListen() {
+    _speech.stop();
+    setState(() {});
+  }
+
+  Future getImage() async {
     ImagePicker imagePicker = ImagePicker();
     PickedFile? pickedFile;
 
@@ -328,6 +301,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
       }
     }
   }
+
   void getSticker() {
     // Hide keyboard when sticker appear
     focusNode.unfocus();
@@ -335,10 +309,12 @@ class _GroupChatPageState extends State<GroupChatPage> {
       isShowSticker = !isShowSticker;
     });
   }
+
   Future uploadFile() async {
     String fileName = DateTime.now().millisecondsSinceEpoch.toString();
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    Reference reference = firebaseStorage.ref('upload-image-groupchat').child(fileName);
+    Reference reference =
+        firebaseStorage.ref('upload-image-groupchat').child(fileName);
     UploadTask uploadTask = reference.putFile(imageFile!);
     try {
       TaskSnapshot snapshot = await uploadTask;
@@ -354,5 +330,160 @@ class _GroupChatPageState extends State<GroupChatPage> {
       Fluttertoast.showToast(msg: e.message ?? e.toString());
     }
   }
- 
+
+  void onFocusChange() {
+    if (focusNode.hasFocus) {
+      // Hide sticker when keyboard appear
+      setState(() {
+        isShowSticker = false;
+      });
+    }
+  }
+
+  Widget buildSticker() {
+    return Expanded(
+      child: Container(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi1',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi1.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'gif1',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/gif1.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi3',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi3.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            ),
+            Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi4',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi4.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi5',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi5.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi6',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi6.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            ),
+            Row(
+              children: <Widget>[
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi7',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi7.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi8',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi8.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => sendMessage(
+                    'mimi9',
+                    2,
+                  ),
+                  child: Image.asset(
+                    'assets/images/mimi9.gif',
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            )
+          ],
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        ),
+        decoration: BoxDecoration(
+            border: Border(
+                top: BorderSide(color: ColorConstants.greyColor2, width: 0.5)),
+            color: Colors.white),
+        padding: EdgeInsets.all(5),
+        height: 180,
+      ),
+    );
+  }
+
+  Widget buildLoading() {
+    return Positioned(
+      child: isLoading ? LoadingView() : SizedBox.shrink(),
+    );
+  }
 }

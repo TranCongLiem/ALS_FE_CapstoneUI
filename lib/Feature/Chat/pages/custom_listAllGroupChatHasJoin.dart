@@ -11,7 +11,10 @@ class CustomListAllGroupChatUserJoin extends StatefulWidget {
   final String fullName;
   final String userId;
   const CustomListAllGroupChatUserJoin(
-      {super.key, required this.listAllGroupChatUserJoin,required this.fullName,required this.userId });
+      {super.key,
+      required this.listAllGroupChatUserJoin,
+      required this.fullName,
+      required this.userId});
 
   @override
   State<CustomListAllGroupChatUserJoin> createState() =>
@@ -32,10 +35,10 @@ class _CustomListAllGroupChatUserJoinState
     // if(widget.listAllGroupChatUserJoin.updateAt != ''){
     //   time =
     //     DateTime.parse(widget.listAllGroupChatUserJoin.updateAt ?? '');
-   
-    // } 
-     timeago.setLocaleMessages('vi', timeago.ViMessages());
-   
+
+    // }
+    timeago.setLocaleMessages('vi', timeago.ViMessages());
+
     return InkWell(
       onTap: () {
         if (Utilities.isKeyboardShowing()) {
@@ -45,11 +48,11 @@ class _CustomListAllGroupChatUserJoinState
           context,
           MaterialPageRoute(
             builder: (context) => GroupChatPage(
-                groupId: widget.listAllGroupChatUserJoin.groupChatId.toString(),
-                userName :widget.fullName,
-                groupName:widget.listAllGroupChatUserJoin.groupChatName.toString(),
-                userId: widget.userId,
-      
+              groupId: widget.listAllGroupChatUserJoin.groupChatId.toString(),
+              userName: widget.fullName,
+              groupName:
+                  widget.listAllGroupChatUserJoin.groupChatName.toString(),
+              userId: widget.userId,
             ),
           ),
         );
@@ -94,12 +97,11 @@ class _CustomListAllGroupChatUserJoinState
                 ),
               ),
               Text(
-
                 // timeago.format(time!, locale: 'vi') ?? '',
-                time == null 
-                ? ''
-                // :  timeago.format(time, locale: 'vi'),
-                : DateFormat().add_yMd().format(time),
+                time == null
+                    ? ''
+                    // :  timeago.format(time, locale: 'vi'),
+                    : DateFormat().add_yMd().format(time),
                 style: TextStyle(
                   fontSize: 12,
                 ),
