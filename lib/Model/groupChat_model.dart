@@ -2,6 +2,7 @@ class ListAllGroupChatUserJoin {
   String? groupChatId;
   String? groupChatName;
   String? groupImage;
+  String? adminId;
   String? lastMessageGroup;
   String? lastMessageSender;
   String? updateAt;
@@ -10,6 +11,7 @@ class ListAllGroupChatUserJoin {
       {this.groupChatId,
       this.groupChatName,
       this.groupImage,
+      this.adminId,
       this.lastMessageGroup,
       this.lastMessageSender,
       this.updateAt});
@@ -18,6 +20,7 @@ class ListAllGroupChatUserJoin {
       groupChatId: json['groupChatId'] ?? '' as String,
       groupChatName: json['groupChatName'] ?? '' as String,
       groupImage: json['groupImage'] ?? '' as String,
+      adminId: json['adminId'] ?? '' as String,
       lastMessageGroup: json['lastMessageGroup'] ?? '' as String,
       lastMessageSender: json['lastMessageSender'] ?? '' as String,
       updateAt: json['updateAt'] ?? '' as String,

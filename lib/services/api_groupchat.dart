@@ -7,6 +7,8 @@ class GroupChatService {
   final endPointUrl = "https://als.cosplane.asia/api/groupchat/";
   static bool isCreatedPost = false;
 
+  var data = [];
+  List<ListAllGroupChat> results = [];
   Future<List<ListAllGroupChat>> getAllGroupChat(String userId) async {
     final response = await http
         .get(Uri.parse(endPointUrl + "GetAllGroupChat?userId=" + userId));
@@ -59,7 +61,8 @@ class GroupChatService {
 
   Future<GroupChatResponeModel> updateLastMessageGroupChat(
       UpdateLastMessageGroupChatRequest requestModel) async {
-    String url = "https://als.cosplane.asia/api/groupchat/UpdateLastMessageGroupChat";
+    String url =
+        "https://als.cosplane.asia/api/groupchat/UpdateLastMessageGroupChat";
     final response = await http.put(
       Uri.parse(url),
       headers: {
@@ -89,5 +92,35 @@ class GroupChatService {
     } else {
       throw Exception('Lỗi dữ liệu');
     }
+  }
+
+  Future<List<ListAllGroupChat>> getAllGroupChatSearch(String userId,
+      {String? query}) async {
+    final response = await http
+        .get(Uri.parse(endPointUrl + "GetAllGroupChat?userId=" + userId));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+
+    // if (response.statusCode == 200) {
+    //   final List<dynamic> result = jsonDecode(response.body);
+    //   print(
+    //       "result: + ${result.map((e) => ListAllGroupChat.fromJson(e)).toList()}");
+    //   return result.map((e) => ListAllGroupChat.fromJson(e)).toList();
+    // }
+    if (response.statusCode == 200) {
+      data = json.decode(response.body);
+      results = data.map((e) => ListAllGroupChat.fromJson(e)).toList();
+      if (query != null) {
+        results = results
+            .where((element) => element.groupChatName!
+                .toLowerCase()
+                .contains((query.toString().toLowerCase())))
+            .toList();
+      }
+      return results;
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+    
   }
 }

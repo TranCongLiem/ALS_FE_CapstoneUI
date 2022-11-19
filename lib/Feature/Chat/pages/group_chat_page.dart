@@ -19,12 +19,13 @@ class GroupChatPage extends StatefulWidget {
   final String groupName;
   final String userName;
   final String userId;
+  final String adminId;
   const GroupChatPage(
       {Key? key,
       required this.groupId,
       required this.groupName,
       required this.userName,
-      required this.userId})
+      required this.userId, required this.adminId})
       : super(key: key);
 
   @override
@@ -35,7 +36,6 @@ class _GroupChatPageState extends State<GroupChatPage> {
   Stream<QuerySnapshot>? chats;
   List<QueryDocumentSnapshot> listMessage = [];
   TextEditingController messageController = TextEditingController();
-  String admin = "43b6fcf9-b69b-40b0-93ab-87092eb25715";
   late stt.SpeechToText _speech;
   bool _isListening = false;
   String _textSpeech = '';
@@ -98,7 +98,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                     GroupInfo(
                       groupId: widget.groupId,
                       groupName: widget.groupName,
-                      adminName: admin,
+                      adminName: widget.adminId,
                     ));
               },
               icon: const Icon(Icons.info))

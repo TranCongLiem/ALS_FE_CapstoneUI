@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../providers/database_service.dart';
+import 'group_chat_page.dart';
+import 'widgets.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId;
@@ -28,13 +30,13 @@ class _GroupInfoState extends State<GroupInfo> {
   }
 
   getMembers() async {
-    // DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-    //     .getGroupMembers(widget.groupId)
-    //     .then((val) {
-    //   setState(() {
-    //     members = val;
-    //   });
-    // });
+    DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
+        .getGroupMembers(widget.groupId)
+        .then((val) {
+      setState(() {
+        members = val;
+      });
+    });
   }
 
   String getName(String r) {
@@ -53,50 +55,7 @@ class _GroupInfoState extends State<GroupInfo> {
         elevation: 0,
         backgroundColor: greenALS,
         title: const Text("Thông tin"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text("Thoát"),
-                        content: const Text("Bạn có muốn rời khỏi nhóm? "),
-                        actions: [
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.cancel,
-                              color: Colors.red,
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () async {
-                              // DatabaseService(
-                              //         uid: FirebaseAuth
-                              //             .instance.currentUser!.uid)
-                              //     .toggleGroupJoin(
-                              //         widget.groupId,
-                              //         getName(widget.adminName),
-                              //         widget.groupName)
-                              //     .whenComplete(() {
-                              //   nextScreenReplace(context, const HomePage());
-                              // });
-                            },
-                            icon: const Icon(
-                              Icons.done,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ],
-                      );
-                    });
-              },
-              icon: const Icon(Icons.exit_to_app))
-        ],
+        
       ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),

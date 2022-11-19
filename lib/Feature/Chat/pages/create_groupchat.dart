@@ -1,3 +1,5 @@
+
+import 'package:capstone_ui/Feature/Chat/pages/groupchat_page.dart';
 import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -28,14 +30,14 @@ class CreateGroupChat extends StatefulWidget {
 
 class _CreateGroupChatState extends State<CreateGroupChat> {
   String groupName = "";
-  bool _isLoading = false;
-  late String? imagePath;
+  // bool _isLoading = false;
+  String groupChatImage = '';
+  File? imageFile;
   MediaType _mediaType = MediaType.image;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    imagePath = null;
   }
 
   @override
@@ -44,6 +46,15 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
       appBar: AppBar(
         title: Text('Tạo nhóm trò chuyện'),
         backgroundColor: greenALS,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () =>  Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                GroupChatPage(userId: widget.userId, fullName: widget.fullName)),
+          )
+        )
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -55,10 +66,10 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                 children: [
                   CircleAvatar(
                     radius: 80,
-                    backgroundImage: imagePath == null
+                    backgroundImage: imageFile == null
                         ? NetworkImage("assets/images/logo_ALS.png")
                             as ImageProvider
-                        : FileImage(File(imagePath!)),
+                        : FileImage(imageFile!),
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -75,92 +86,89 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
             ),
-            _isLoading == true
-                ? Center(
-                    child: CircularProgressIndicator(
-                        color: Theme.of(context).primaryColor),
-                  )
-                : Column(
-                    children: [
-                      TextField(
-                        onChanged: (val) {
-                          setState(() {
-                            groupName = val;
-                          });
-                        },
-                        style: const TextStyle(color: Colors.black),
-                        decoration: InputDecoration(
-                            hintText: 'Tên nhóm',
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor),
-                                borderRadius: BorderRadius.circular(20)),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.circular(20)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor),
-                                borderRadius: BorderRadius.circular(20))),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 20.0),
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            if (groupName != "") {
-                              setState(() {
-                                _isLoading = true;
-                              });
-                              var uuid = Uuid();
-                              var groupId = uuid.v1().toString();
-                              DatabaseService(uid: widget.userId)
-                                  .createGroup(groupId, widget.fullName,
-                                      widget.userId, groupName)
-                                  .whenComplete(() {
-                                _isLoading = false;
-                              });
-                              createdGroupChatRequest(
-                                  groupId,
-                                  widget.userId,
-                                  groupName,
-                                  'https://media.istockphoto.com/id/1313777915/vector/als-awareness-month-vector-banner-for-social-media-card-poster-illustration-with-text-als.jpg?s=612x612&w=0&k=20&c=VBng-6ApRQNU7Vn-pL6Uu4K0Tz7vIvB7nmRS_CezhNI=');
+            // _isLoading == true
+            // ? Center(
+            //     child: CircularProgressIndicator(
+            //         color: Theme.of(context).primaryColor),
+            //   )
+            Column(
+              children: [
+                TextField(
+                  onChanged: (val) {
+                    setState(() {
+                      groupName = val;
+                    });
+                  },
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                      hintText: 'Tên nhóm',
+                      enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
+                          borderRadius: BorderRadius.circular(20)),
+                      errorBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(color: Colors.red),
+                          borderRadius: BorderRadius.circular(20)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Theme.of(context).primaryColor),
+                          borderRadius: BorderRadius.circular(20))),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  width: MediaQuery.of(context).size.width * 0.6,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (groupName != "") {
+                        var uuid = Uuid();
+                        var groupId = uuid.v1().toString();
+                        DatabaseService(uid: widget.userId)
+                            .createGroup(groupId, widget.fullName,
+                                widget.userId, groupName)
+                            .whenComplete(() {});
+                        createdGroupChatRequest(
+                          groupId,
+                          widget.userId,
+                          groupName,
+                        );
 
-                              Navigator.of(context).pop();
-                              showSnackbar(context, Colors.green,
-                                  "Tạo nhóm thành công.");
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: greenALS,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            elevation: 10.0,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              'Tạo nhóm',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
+                        showSnackbar(
+                            context, Colors.green, "Tạo nhóm thành công.");
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: greenALS,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
                       ),
-                    ],
+                      elevation: 10.0,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Text(
+                        'Tạo nhóm',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ),
                   ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
 
-  void createdGroupChatRequest(String groupId, String userId,
-      String groupChatName, String groupChatImage) {
+  void createdGroupChatRequest(
+      String groupId, String userId, String groupChatName) async {
     String fileName = DateTime.now().millisecondsSinceEpoch.toString();
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     Reference reference =
         firebaseStorage.ref('upload-image-groupchat').child(fileName);
+    UploadTask uploadTask = reference.putFile(imageFile!);
+    TaskSnapshot snapshot = await uploadTask;
+    groupChatImage = await snapshot.ref.getDownloadURL();
     context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
         groupId, userId, groupChatName, groupChatImage));
   }
@@ -174,7 +182,7 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
       file = await ImagePicker().pickVideo(source: source);
     }
     if (file != null) {
-      imagePath = file.path;
+      imageFile = File(file.path);
       setState(() {});
     }
   }

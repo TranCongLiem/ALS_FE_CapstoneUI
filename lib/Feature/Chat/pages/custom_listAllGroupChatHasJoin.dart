@@ -10,6 +10,7 @@ class CustomListAllGroupChatUserJoin extends StatefulWidget {
   final ListAllGroupChatUserJoin listAllGroupChatUserJoin;
   final String fullName;
   final String userId;
+
   const CustomListAllGroupChatUserJoin(
       {super.key,
       required this.listAllGroupChatUserJoin,
@@ -53,6 +54,7 @@ class _CustomListAllGroupChatUserJoinState
               groupName:
                   widget.listAllGroupChatUserJoin.groupChatName.toString(),
               userId: widget.userId,
+              adminId: widget.listAllGroupChatUserJoin.adminId.toString(),
             ),
           ),
         );

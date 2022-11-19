@@ -1,6 +1,8 @@
 import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Feature/Chat/pages/create_groupchat.dart';
 import 'package:capstone_ui/Feature/Chat/pages/custom_listAllGroupChatHasJoin.dart';
+import 'package:capstone_ui/Feature/Chat/pages/home_page.dart';
+import 'package:capstone_ui/Feature/Chat/pages/search_groupchat.dart';
 import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -74,7 +76,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                       shape: BoxShape.circle, color: Colors.white),
                   child: IconButton(
                     onPressed: () {
-                      showSearch(context: context, delegate: SearchUser());
+                      showSearch(context: context, delegate: SearchGroup(hintText: 'Tìm kiếm'));
                     },
                     icon: Icon(
                       Icons.search_sharp,
@@ -93,6 +95,15 @@ class _GroupChatPageState extends State<GroupChatPage>
                   icon: Icon(Icons.person),
                 ),
               ]),
+                leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () =>  Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                HomePage(userId: widget.userId,)),
+          )
+        )
             ),
             floatingActionButton: FloatingActionButton(
               onPressed: () {
@@ -115,42 +126,52 @@ class _GroupChatPageState extends State<GroupChatPage>
             ),
             body: TabBarView(
               children: [
-                BlocBuilder<ListGroupChatHasJoinBloc,
-                    ListGroupChatHasJoinState>(
-                  builder: (context, state) {
-                    if (state is GroupChatHasJoinLoadedState) {
-                      return ListView.builder(
-                          itemCount: state.list1.length,
-                          itemBuilder: (context, index) {
-                            return CustomListAllGroupChatUserJoin(
-                              listAllGroupChatUserJoin: state.list1[index],
-                              fullName: widget.fullName,
-                              userId: widget.userId,
-                            );
-                          });
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
+                BlocProvider(
+                  create: (context) => ListGroupChatBloc(
+                      RepositoryProvider.of<GroupChatService>(context))
+                    ..add(LoadListGroupChatEvent(userId: widget.userId)),
+                  child: BlocBuilder<ListGroupChatHasJoinBloc,
+                      ListGroupChatHasJoinState>(
+                    builder: (context, state) {
+                      if (state is GroupChatHasJoinLoadedState) {
+                        return ListView.builder(
+                            itemCount: state.list1.length,
+                            itemBuilder: (context, index) {
+                              return CustomListAllGroupChatUserJoin(
+                                listAllGroupChatUserJoin: state.list1[index],
+                                fullName: widget.fullName,
+                                userId: widget.userId,
+                              );
+                            });
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  ),
                 ),
-                BlocBuilder<ListGroupChatBloc, ListGroupChatState>(
-                  builder: (context2, state2) {
-                    if (state2 is GroupChatLoadedState) {
-                      return ListView.builder(
-                          itemCount: state2.list2.length,
-                          itemBuilder: (context2, index) {
-                            listAllGroupChat.addAll(state2.list2);
-                            return CustomListAllGroupChat(
-                              listAllGroupChat: listAllGroupChat,
-                              index: index,
-                            );
-                          });
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  },
+                BlocProvider(
+                  create: (context2) => ListGroupChatHasJoinBloc(
+                RepositoryProvider.of<GroupChatService>(context2))
+              ..add(LoadListGroupChatByUserIdEvent(userId: widget.userId)),
+                  child: BlocBuilder<ListGroupChatBloc, ListGroupChatState>(
+                    builder: (context2, state2) {
+                      if (state2 is GroupChatLoadedState) {
+                        return ListView.builder(
+                            itemCount: state2.list2.length,
+                            itemBuilder: (context2, index) {
+                              listAllGroupChat.addAll(state2.list2);
+                              return CustomListAllGroupChat(
+                                listAllGroupChat: listAllGroupChat,
+                                index: index,
+                              );
+                            });
+                      }
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    },
+                  ),
                 ),
 
                 //Nhom đã tham gia
