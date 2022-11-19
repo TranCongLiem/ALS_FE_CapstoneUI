@@ -1,11 +1,16 @@
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../Bloc/user/user_bloc.dart';
 import '../../Constant/profile_widget.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 
+enum MediaType {
+  image,
+  video;
+}
 class ProfileUpdate extends StatefulWidget {
 
   final String userId;
@@ -25,6 +30,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   TextEditingController addressController = TextEditingController();
   String? fullName;
   String? address;
+  late String? imagePath;
+  MediaType _mediaType = MediaType.image;
   @override
   void initState() {
     // TODO: implement initState
@@ -35,6 +42,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
         widget.getProfileUserByIdResponeModel.address.toString();
     fullName = widget.getProfileUserByIdResponeModel.address.toString();
     address = widget.getProfileUserByIdResponeModel.address.toString();
+    imagePath= null;
   }
 
   @override
@@ -96,7 +104,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   ProfileWidget(
                     imagePath: widget.getProfileUserByIdResponeModel.imageUser.toString(),
                     isEdit: true,
-                    onClicked: () {},
+                    onClicked: () {
+                      pickMedia(ImageSource.gallery);
+                    },
                   ),
                   const SizedBox(height: 24),
                   Column(
@@ -163,4 +173,17 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
           },
         ),
       );
+      void pickMedia(ImageSource source) async {
+    XFile? file;
+    if (_mediaType == MediaType.image) {
+      file = await ImagePicker()
+          .pickImage(source: source, maxHeight: 480, maxWidth: 640);
+    } else {
+      file = await ImagePicker().pickVideo(source: source);
+    }
+    if (file != null) {
+      imagePath = file.path;
+      setState(() {});
+    }
+  }
 }
