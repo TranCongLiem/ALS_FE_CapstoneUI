@@ -9,6 +9,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../Bloc/post/post_bloc.dart';
 import '../../Model/getListPost_model.dart';
 import '../../services/api_Post.dart';
+import 'package:readmore/readmore.dart';
 
 class CustomPostList extends StatefulWidget {
   final List<ListPost> listPost;
@@ -98,8 +99,13 @@ class _CustomPostListState extends State<CustomPostList> {
                         const SizedBox(height: 4.0),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
+                          child: ReadMoreText(
                             widget.listPost[widget.indexx].caption ?? '',
+                            trimLines: 2,
+                            colorClickableText: greenALS.withOpacity(0.8),
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Xem thêm',
+                            trimExpandedText: 'Thu gọn',
                             style: TextStyle(fontSize: 20.0),
                           ),
                         ),

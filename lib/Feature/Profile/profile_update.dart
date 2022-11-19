@@ -80,7 +80,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
 
                       context.read<UserBloc>().add(
                           UserEvent.updateProfilePatientRequest(widget.userId));
-
                     },
                     child: Text(
                       'Lưu',
@@ -95,8 +94,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 physics: BouncingScrollPhysics(),
                 children: [
                   ProfileWidget(
-                    imagePath:
-                        "https://sg.cdnki.com/anh-dai-dien-dep-cho-nam-ngau---aHR0cHM6Ly90aGllcG5oYW5haS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMjEvMDUvaGluaC1hbmgtZGFpLWRpZW4tZGVwLTEuanBn.webp",
+                    imagePath: widget.getProfileUserByIdResponeModel.imageUser.toString(),
                     isEdit: true,
                     onClicked: () {},
                   ),
@@ -105,7 +103,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Họ ten',
+                        'Họ tên',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),
@@ -131,7 +129,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Dia chi',
+                        'Địa chỉ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18),
                       ),

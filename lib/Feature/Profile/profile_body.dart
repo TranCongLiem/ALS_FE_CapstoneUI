@@ -112,8 +112,8 @@ Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel
                               ),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage(
-                                    "assets/images/logo_Avatar.jpg"),
+                                image: 
+                                NetworkImage(getProfileUserByIdResponeModel.imageUser.toString()),
                               ),
                             ),
                           ),

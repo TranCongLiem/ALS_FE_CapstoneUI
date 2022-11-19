@@ -23,7 +23,7 @@ mixin _$GroupchatEvent {
         CreatedGroupChatRequest,
     required TResult Function(String groupChatName) groupChatNameChanged,
     required TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)
+            String groupChatId, String lastMessageGroup, String fullName)
         UpdatedLastMessageGroupChatRequest,
     required TResult Function(String memberId, String groupChatId)
         AddedMemberGroupChatRequest,
@@ -36,7 +36,7 @@ mixin _$GroupchatEvent {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -49,7 +49,7 @@ mixin _$GroupchatEvent {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -216,7 +216,7 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         CreatedGroupChatRequest,
     required TResult Function(String groupChatName) groupChatNameChanged,
     required TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)
+            String groupChatId, String lastMessageGroup, String fullName)
         UpdatedLastMessageGroupChatRequest,
     required TResult Function(String memberId, String groupChatId)
         AddedMemberGroupChatRequest,
@@ -233,7 +233,7 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -250,7 +250,7 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -396,7 +396,7 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         CreatedGroupChatRequest,
     required TResult Function(String groupChatName) groupChatNameChanged,
     required TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)
+            String groupChatId, String lastMessageGroup, String fullName)
         UpdatedLastMessageGroupChatRequest,
     required TResult Function(String memberId, String groupChatId)
         AddedMemberGroupChatRequest,
@@ -412,7 +412,7 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -428,7 +428,7 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -501,7 +501,7 @@ abstract class _$$_UpdatedLastMessageGroupChatRequestCopyWith<$Res> {
           _$_UpdatedLastMessageGroupChatRequest value,
           $Res Function(_$_UpdatedLastMessageGroupChatRequest) then) =
       __$$_UpdatedLastMessageGroupChatRequestCopyWithImpl<$Res>;
-  $Res call({String groupChatId, String lastMessageGroup, String userId});
+  $Res call({String groupChatId, String lastMessageGroup, String fullName});
 }
 
 /// @nodoc
@@ -521,7 +521,7 @@ class __$$_UpdatedLastMessageGroupChatRequestCopyWithImpl<$Res>
   $Res call({
     Object? groupChatId = freezed,
     Object? lastMessageGroup = freezed,
-    Object? userId = freezed,
+    Object? fullName = freezed,
   }) {
     return _then(_$_UpdatedLastMessageGroupChatRequest(
       groupChatId == freezed
@@ -532,9 +532,9 @@ class __$$_UpdatedLastMessageGroupChatRequestCopyWithImpl<$Res>
           ? _value.lastMessageGroup
           : lastMessageGroup // ignore: cast_nullable_to_non_nullable
               as String,
-      userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
+      fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -545,18 +545,18 @@ class __$$_UpdatedLastMessageGroupChatRequestCopyWithImpl<$Res>
 class _$_UpdatedLastMessageGroupChatRequest
     implements _UpdatedLastMessageGroupChatRequest {
   const _$_UpdatedLastMessageGroupChatRequest(
-      this.groupChatId, this.lastMessageGroup, this.userId);
+      this.groupChatId, this.lastMessageGroup, this.fullName);
 
   @override
   final String groupChatId;
   @override
   final String lastMessageGroup;
   @override
-  final String userId;
+  final String fullName;
 
   @override
   String toString() {
-    return 'GroupchatEvent.UpdatedLastMessageGroupChatRequest(groupChatId: $groupChatId, lastMessageGroup: $lastMessageGroup, userId: $userId)';
+    return 'GroupchatEvent.UpdatedLastMessageGroupChatRequest(groupChatId: $groupChatId, lastMessageGroup: $lastMessageGroup, fullName: $fullName)';
   }
 
   @override
@@ -568,7 +568,7 @@ class _$_UpdatedLastMessageGroupChatRequest
                 .equals(other.groupChatId, groupChatId) &&
             const DeepCollectionEquality()
                 .equals(other.lastMessageGroup, lastMessageGroup) &&
-            const DeepCollectionEquality().equals(other.userId, userId));
+            const DeepCollectionEquality().equals(other.fullName, fullName));
   }
 
   @override
@@ -576,7 +576,7 @@ class _$_UpdatedLastMessageGroupChatRequest
       runtimeType,
       const DeepCollectionEquality().hash(groupChatId),
       const DeepCollectionEquality().hash(lastMessageGroup),
-      const DeepCollectionEquality().hash(userId));
+      const DeepCollectionEquality().hash(fullName));
 
   @JsonKey(ignore: true)
   @override
@@ -593,13 +593,13 @@ class _$_UpdatedLastMessageGroupChatRequest
         CreatedGroupChatRequest,
     required TResult Function(String groupChatName) groupChatNameChanged,
     required TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)
+            String groupChatId, String lastMessageGroup, String fullName)
         UpdatedLastMessageGroupChatRequest,
     required TResult Function(String memberId, String groupChatId)
         AddedMemberGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest(
-        groupChatId, lastMessageGroup, userId);
+        groupChatId, lastMessageGroup, fullName);
   }
 
   @override
@@ -610,13 +610,13 @@ class _$_UpdatedLastMessageGroupChatRequest
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest?.call(
-        groupChatId, lastMessageGroup, userId);
+        groupChatId, lastMessageGroup, fullName);
   }
 
   @override
@@ -627,7 +627,7 @@ class _$_UpdatedLastMessageGroupChatRequest
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -635,7 +635,7 @@ class _$_UpdatedLastMessageGroupChatRequest
   }) {
     if (UpdatedLastMessageGroupChatRequest != null) {
       return UpdatedLastMessageGroupChatRequest(
-          groupChatId, lastMessageGroup, userId);
+          groupChatId, lastMessageGroup, fullName);
     }
     return orElse();
   }
@@ -689,11 +689,11 @@ abstract class _UpdatedLastMessageGroupChatRequest implements GroupchatEvent {
   const factory _UpdatedLastMessageGroupChatRequest(
       final String groupChatId,
       final String lastMessageGroup,
-      final String userId) = _$_UpdatedLastMessageGroupChatRequest;
+      final String fullName) = _$_UpdatedLastMessageGroupChatRequest;
 
   String get groupChatId;
   String get lastMessageGroup;
-  String get userId;
+  String get fullName;
   @JsonKey(ignore: true)
   _$$_UpdatedLastMessageGroupChatRequestCopyWith<
           _$_UpdatedLastMessageGroupChatRequest>
@@ -785,7 +785,7 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         CreatedGroupChatRequest,
     required TResult Function(String groupChatName) groupChatNameChanged,
     required TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)
+            String groupChatId, String lastMessageGroup, String fullName)
         UpdatedLastMessageGroupChatRequest,
     required TResult Function(String memberId, String groupChatId)
         AddedMemberGroupChatRequest,
@@ -801,7 +801,7 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,
@@ -817,7 +817,7 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         CreatedGroupChatRequest,
     TResult Function(String groupChatName)? groupChatNameChanged,
     TResult Function(
-            String groupChatId, String lastMessageGroup, String userId)?
+            String groupChatId, String lastMessageGroup, String fullName)?
         UpdatedLastMessageGroupChatRequest,
     TResult Function(String memberId, String groupChatId)?
         AddedMemberGroupChatRequest,

@@ -14,12 +14,14 @@ class GetProfileUserByIdRequestModel {
 class GetProfileUserByIdResponeModel {
   String? fullName;
   String? address;
-  GetProfileUserByIdResponeModel({this.fullName, this.address});
+  String? imageUser;
+  GetProfileUserByIdResponeModel({this.fullName, this.address, this.imageUser});
 
   factory GetProfileUserByIdResponeModel.fromJson(Map<String, dynamic> json) {
     return GetProfileUserByIdResponeModel(
       fullName: json["fullName"],
       address: json["address"],
+      imageUser: json["imageUser"]
     );
   }
 }

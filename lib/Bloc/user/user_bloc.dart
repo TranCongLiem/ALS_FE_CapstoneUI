@@ -53,12 +53,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<_GetProfileUserByIdRequest>((event, emit) async {
       GetProfileUserByIdRequestModel reqModel = GetProfileUserByIdRequestModel(
-          userId: '43b6fcf9-b69b-40b0-93ab-87092eb25715');
+          userId: event.userId);
       final result = await _userService.getProfileUserById(reqModel);
       if (result != null) {
         emit(state.copyWith(
           fullName: result.fullName ?? '',
           address: result.address ?? '',
+          imageUser: result.imageUser ?? ''
         ));
       } else {
         emit(state.copyWith(errorMessage: ""));

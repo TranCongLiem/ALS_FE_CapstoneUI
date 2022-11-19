@@ -32,7 +32,7 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
       UpdateLastMessageGroupChatRequest reqModel = UpdateLastMessageGroupChatRequest(
           groupChatId: event.groupChatId,
           lastMessageGroup: event.lastMessageGroup,
-          lastMessageSender: event.userId);
+          lastMessageSender: event.fullName);
       final result = await _groupChatService.updateLastMessageGroupChat(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(

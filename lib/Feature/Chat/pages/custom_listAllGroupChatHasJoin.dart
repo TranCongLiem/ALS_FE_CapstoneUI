@@ -33,11 +33,10 @@ class _CustomListAllGroupChatUserJoinState
   @override
   Widget build(BuildContext context) {
     DateTime? time;
-    // if(widget.listAllGroupChatUserJoin.updateAt != ''){
-    //   time =
-    //     DateTime.parse(widget.listAllGroupChatUserJoin.updateAt ?? '');
-
-    // }
+    if(widget.listAllGroupChatUserJoin.updateAt != ''){
+      time =
+        DateTime.parse(widget.listAllGroupChatUserJoin.updateAt ?? '');
+    }
     timeago.setLocaleMessages('vi', timeago.ViMessages());
 
     return InkWell(
@@ -103,7 +102,7 @@ class _CustomListAllGroupChatUserJoinState
                 time == null
                     ? ''
                     // :  timeago.format(time, locale: 'vi'),
-                    : DateFormat().add_yMd().format(time),
+                    : timeago.format(time, locale: 'vi'),
                 style: TextStyle(
                   fontSize: 12,
                 ),

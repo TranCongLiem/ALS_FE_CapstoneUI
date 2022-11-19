@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../Constant/constant.dart';
@@ -25,7 +27,8 @@ class GroupChatPage extends StatefulWidget {
       required this.groupId,
       required this.groupName,
       required this.userName,
-      required this.userId, required this.adminId})
+      required this.userId,
+      required this.adminId})
       : super(key: key);
 
   @override
@@ -151,6 +154,20 @@ class _GroupChatPageState extends State<GroupChatPage> {
         "time": DateTime.now().millisecondsSinceEpoch,
         "type": type,
       };
+      if (type == 0) {
+        context.read<GroupchatBloc>().add(
+            GroupchatEvent.UpdatedLastMessageGroupChatRequest(
+                widget.groupId, message, widget.userName));
+      }
+      else if (type == 1) {
+        context.read<GroupchatBloc>().add(
+            GroupchatEvent.UpdatedLastMessageGroupChatRequest(
+                widget.groupId, 'Hình ảnh', widget.userName));
+      } else if(type == 2){
+         context.read<GroupchatBloc>().add(
+            GroupchatEvent.UpdatedLastMessageGroupChatRequest(
+                widget.groupId, 'Nhãn dán', widget.userName));
+      }
 
       DatabaseService(uid: widget.userId)
           .sendMessage(widget.groupId, chatMessageMap);
