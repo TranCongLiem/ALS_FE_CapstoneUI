@@ -6,19 +6,19 @@ import '../../Bloc/user/user_bloc.dart';
 import '../../Constant/profile_widget.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
+import 'dart:io';
 
 enum MediaType {
   image,
   video;
 }
-class ProfileUpdate extends StatefulWidget {
 
+class ProfileUpdate extends StatefulWidget {
   final String userId;
   ProfileUpdate(
       {Key? key,
       required this.getProfileUserByIdResponeModel,
       required this.userId})
-
       : super(key: key);
   final GetProfileUserByIdResponeModel getProfileUserByIdResponeModel;
   @override
@@ -42,7 +42,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
         widget.getProfileUserByIdResponeModel.address.toString();
     fullName = widget.getProfileUserByIdResponeModel.address.toString();
     address = widget.getProfileUserByIdResponeModel.address.toString();
-    imagePath= null;
+    imagePath = null;
   }
 
   @override
@@ -85,7 +85,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-
                       context.read<UserBloc>().add(
                           UserEvent.updateProfilePatientRequest(widget.userId));
                     },
@@ -96,17 +95,36 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   )
                 ],
               ),
-
               body: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 physics: BouncingScrollPhysics(),
                 children: [
-                  ProfileWidget(
-                    imagePath: widget.getProfileUserByIdResponeModel.imageUser.toString(),
-                    isEdit: true,
-                    onClicked: () {
-                      pickMedia(ImageSource.gallery);
-                    },
+                  Center(
+                    child: Stack(
+                      children: [
+                        CircleAvatar(
+                          radius: 80,
+                          backgroundImage: imagePath == null
+                              ? NetworkImage(widget
+                                  .getProfileUserByIdResponeModel
+                                  .imageUser!) as ImageProvider
+                              : FileImage(File(imagePath!)),
+                        ),
+                        Positioned(
+                            bottom: 20.0,
+                            right: 20.0,
+                            child: ElevatedButton.icon(
+                                onPressed: () {
+                                  // showBottomSheet(
+                                  //     context: context,
+                                  //     builder: ((builder) =>
+                                  //         bottomSheet()));
+                                  pickMedia(ImageSource.gallery);
+                                },
+                                icon: Icon(Icons.camera_alt),
+                                label: Text('Edit')))
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 24),
                   Column(
@@ -167,13 +185,12 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   // },
                   // ),
                 ],
-
               ),
             );
           },
         ),
       );
-      void pickMedia(ImageSource source) async {
+  void pickMedia(ImageSource source) async {
     XFile? file;
     if (_mediaType == MediaType.image) {
       file = await ImagePicker()

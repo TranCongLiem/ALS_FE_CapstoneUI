@@ -25,12 +25,14 @@ class _CustomPostListState extends State<CustomPostList> {
   late bool? checkReact;
   late int countReact;
   late String userId;
+  late String? imageUser;
   @override
   void initState() {
     super.initState();
     onLikeButtonTapped();
     checkReact = widget.listPost[widget.indexx].checkReact;
     countReact = widget.listPost[widget.indexx].countReact ?? 0;
+    imageUser = widget.listPost[widget.indexx].imageUser;
   }
 
   @override
@@ -67,8 +69,14 @@ class _CustomPostListState extends State<CustomPostList> {
                               child: CircleAvatar(
                                 radius: 17.0,
                                 backgroundColor: Colors.grey[200],
-                                backgroundImage: CachedNetworkImageProvider(
-                                    "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
+                                backgroundImage:
+                                    widget.listPost[widget.indexx].imageUser !=
+                                            ''
+                                        ? NetworkImage(widget
+                                            .listPost[widget.indexx]
+                                            .imageUser!) as ImageProvider
+                                        : AssetImage(
+                                            'assets/images/logo_Avatar.jpg'),
                               ),
                             ),
                             const SizedBox(width: 8.0),
@@ -115,7 +123,7 @@ class _CustomPostListState extends State<CustomPostList> {
                       ],
                     ),
                   ),
-                  widget.listPost[widget.indexx].image != null
+                  widget.listPost[widget.indexx].image != ''
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: CachedNetworkImage(

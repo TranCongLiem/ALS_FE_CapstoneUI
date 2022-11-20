@@ -16,7 +16,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           UpdateProfilePatientRequestModel(
               userId: event.userId,
               address: state.address,
-              fullName: state.fullName);
+              fullName: state.fullName,
+              imageUser: state.imageUser);
       final result = await _userService.updateProfilePatient(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -52,15 +53,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
 
     on<_GetProfileUserByIdRequest>((event, emit) async {
-      GetProfileUserByIdRequestModel reqModel = GetProfileUserByIdRequestModel(
-          userId: event.userId);
+      GetProfileUserByIdRequestModel reqModel =
+          GetProfileUserByIdRequestModel(userId: event.userId);
       final result = await _userService.getProfileUserById(reqModel);
       if (result != null) {
         emit(state.copyWith(
-          fullName: result.fullName ?? '',
-          address: result.address ?? '',
-          imageUser: result.imageUser ?? ''
-        ));
+            fullName: result.fullName ?? '',
+            address: result.address ?? '',
+            imageUser: result.imageUser ?? ''));
       } else {
         emit(state.copyWith(errorMessage: ""));
       }

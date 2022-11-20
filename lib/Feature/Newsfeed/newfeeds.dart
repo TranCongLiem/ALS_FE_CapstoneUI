@@ -58,45 +58,35 @@ class _NewFeedState extends State<NewFeed> {
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
                         child: SizedBox(
-                          child: Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://www.als.org/sites/default/files/styles/image_callout/public/2021-06/navigating-ALS_02-smaller.jpg?itok=hQ1BFFn0"),
-                              ),
-                              Padding(padding: EdgeInsets.only(left: 10)),
-                              Expanded(
-                                  child: Container(
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(31, 165, 159, 159),
-                                    borderRadius: BorderRadius.circular(22)),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 30),
-                                    ),
-                                    Expanded(
-                                        child: TextButton(
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    CreatePostNewFeed()));
-                                      },
-                                      child: Text(
-                                        'Bạn đang nghĩ gì',
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                            color: Colors.black38,
-                                            fontSize: 24.0),
-                                      ),
-                                    )),
-                                  ],
+                          child: Expanded(
+                              child: Container(
+                            decoration: BoxDecoration(
+                                color: Color.fromARGB(31, 165, 159, 159),
+                                borderRadius: BorderRadius.circular(22)),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 30),
                                 ),
-                              )),
-                            ],
-                          ),
+                                Expanded(
+                                    child: TextButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                CreatePostNewFeed()));
+                                  },
+                                  child: Text(
+                                    'Bạn đang nghĩ gì',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black38, fontSize: 24.0),
+                                  ),
+                                )),
+                              ],
+                            ),
+                          )),
                         ),
                       ),
                       BlocBuilder<AuthenticateBloc, AuthenticateState>(
