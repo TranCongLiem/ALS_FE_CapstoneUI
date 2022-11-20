@@ -6,4 +6,5 @@ const factory GroupchatEvent.CreatedGroupChatRequest(String groupChatId,String u
 const factory GroupchatEvent.groupChatNameChanged(String groupChatName) =
       _GroupChatNameChanged;
   const factory GroupchatEvent.UpdatedLastMessageGroupChatRequest(String groupChatId,String lastMessageGroup,String fullName) = _UpdatedLastMessageGroupChatRequest;
-  const factory GroupchatEvent.AddedMemberGroupChatRequest(String memberId,String groupChatId) = _AddedMemberGroupChatRequest;}
+  const factory GroupchatEvent.AddedMemberGroupChatRequest(String memberId,String groupChatId) = _AddedMemberGroupChatRequest;
+  const factory GroupchatEvent.RemovedMemberInGroupChatRequest(String groupId,String userId) = _RemovedMemberInGroupChatRequest;}

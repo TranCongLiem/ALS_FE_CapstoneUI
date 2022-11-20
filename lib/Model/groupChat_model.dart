@@ -114,3 +114,50 @@ class GroupChatResponeModel {
     );
   }
 }
+
+class ListGetAllUserInGroupChat {
+  String? fullName;
+  String? imageUser;
+  String? joinTime;
+
+
+  ListGetAllUserInGroupChat(
+      {this.fullName,
+      this.imageUser,
+      this.joinTime,});
+  factory ListGetAllUserInGroupChat.fromJson(Map<String, dynamic> json) {
+    return ListGetAllUserInGroupChat(
+      fullName: json['fullName'] ?? '' as String,
+      imageUser: json['imageUser'] ?? '' as String,
+      joinTime: json['joinTime'] ?? '' as String,
+
+    );
+  }
+  
+}
+class RemoveMemberInGroupResponeModel {
+  bool? success;
+  String? message;
+  RemoveMemberInGroupResponeModel({this.success, this.message});
+
+  factory RemoveMemberInGroupResponeModel.fromJson(Map<String, dynamic> json) {
+    return RemoveMemberInGroupResponeModel(
+      success: json["success"],
+      message: json["message"],
+    );
+    //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
+  }
+}
+class RemoveMemberInGroupRequestModel {
+  String groupId;
+  String userId;
+
+  RemoveMemberInGroupRequestModel({required this.groupId, required this.userId});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'groupId':groupId.trim(),
+      'userId':userId.trim(),
+    };
+    return map;
+  }
+}

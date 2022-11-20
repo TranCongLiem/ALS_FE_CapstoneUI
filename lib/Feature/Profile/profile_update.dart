@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -85,8 +86,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {
-                      context.read<UserBloc>().add(
-                          UserEvent.updateProfilePatientRequest(widget.userId));
+                      uploadInfo(widget.userId);
+                      
                     },
                     child: Text(
                       'Lưu',
@@ -115,10 +116,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                             right: 20.0,
                             child: ElevatedButton.icon(
                                 onPressed: () {
-                                  // showBottomSheet(
-                                  //     context: context,
-                                  //     builder: ((builder) =>
-                                  //         bottomSheet()));
                                   pickMedia(ImageSource.gallery);
                                 },
                                 icon: Icon(Icons.camera_alt),
@@ -202,5 +199,25 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
       imagePath = file.path;
       setState(() {});
     }
+  }
+  Future<void> uploadInfo(String userId) async {
+    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    String _imagePath = imagePath ?? '';
+    String imageDatabase =
+        'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-user%2F' +
+            userId +
+            '%2F' +
+            _imagePath.substring(
+                _imagePath.lastIndexOf('image_picker'), _imagePath.length) +
+            '?alt=media';
+    await firebaseStorage
+        .ref('upload-image-user')
+        .child(userId)
+        .child(_imagePath.substring(
+            _imagePath.lastIndexOf('image_picker'), _imagePath.length))
+        .putFile(File(_imagePath));
+    context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+    context.read<UserBloc>().add(
+                          UserEvent.updateProfilePatientRequest(widget.userId));
   }
 }

@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 class GroupChatService {
   final endPointUrl = "https://als.cosplane.asia/api/groupchat/";
   static bool isCreatedPost = false;
+  static bool isRemovedMember = false;
 
   var data = [];
   List<ListAllGroupChat> results = [];
@@ -37,6 +38,23 @@ class GroupChatService {
       print(
           "result: + ${result.map((e) => ListAllGroupChatUserJoin.fromJson(e)).toList()}");
       return result.map((e) => ListAllGroupChatUserJoin.fromJson(e)).toList();
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+  Future<List<ListGetAllUserInGroupChat>> getAllUserInGroupChat(
+      String groupId) async {
+    final response = await http.get(
+        Uri.parse(endPointUrl + "GetAllUserInGroupChat?groupId=" + groupId));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      final List<dynamic> result = jsonDecode(response.body);
+      print(
+          "result: + ${result.map((e) => ListGetAllUserInGroupChat.fromJson(e)).toList()}");
+      return result.map((e) => ListGetAllUserInGroupChat.fromJson(e)).toList();
     } else {
       throw Exception('Lỗi dữ liệu');
     }
@@ -122,5 +140,23 @@ class GroupChatService {
       throw Exception('Lỗi dữ liệu');
     }
     
+  }
+   Future<RemoveMemberInGroupResponeModel> removeMember(RemoveMemberInGroupRequestModel requestModel) async {
+    String url="https://als.cosplane.asia/api/groupchat/RemoveMemberInGroup?groupId=" + requestModel.groupId + "&userId=" + requestModel.userId;
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',      
+      },
+      
+    //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      GroupChatService.isRemovedMember = true;
+      return RemoveMemberInGroupResponeModel.fromJson(json.decode(response.body));
+    } else {
+      GroupChatService.isRemovedMember = false;
+      throw Exception('Lỗi dữ liệu');
+    }
   }
 }

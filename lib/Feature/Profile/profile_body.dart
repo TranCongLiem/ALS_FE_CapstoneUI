@@ -112,8 +112,7 @@ Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel
                               ),
                               image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: 
-                                NetworkImage(getProfileUserByIdResponeModel.imageUser.toString()),
+                                image:  NetworkImage(getProfileUserByIdResponeModel.imageUser.toString()),
                               ),
                             ),
                           ),

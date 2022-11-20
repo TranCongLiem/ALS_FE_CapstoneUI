@@ -59,6 +59,21 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
       }
     });
 
+    on<_RemovedMemberInGroupChatRequest>((event, emit) async {
+      RemoveMemberInGroupRequestModel reqModel = RemoveMemberInGroupRequestModel(
+          groupId: event.groupId,
+          userId: event.userId);
+      final result = await _groupChatService.removeMember(reqModel);
+      if (result.message != null && result.success != null) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: "  "));
+      }
+    });
+
     // on<_GroupChatNameChanged>((event, emit) {
     //   emit(state.copyWith(groupChatName: event.groupChatName));
     // });
