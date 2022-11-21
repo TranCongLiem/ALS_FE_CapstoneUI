@@ -6,16 +6,6 @@ import '../../services/api_CategoryExercise.dart';
 
 part 'category_exercise_event.dart';
 part 'category_exercise_state.dart';
-// part 'category_exercise_bloc.freezed.dart';
-
-// class CategoryExerciseBloc extends Bloc<CategoryExerciseEvent, CategoryExerciseState> {
-//   CategoryExerciseBloc() : super(_Initial()) {
-//     on<CategoryExerciseEvent>((event, emit) {
-//       // TODO: implement event handler
-//     });
-//   }
-// }
-
 class CategoryExerciseBlocBloc extends Bloc<CategoryExerciseBlocEvent, CategoryExerciseBlocState> {
  final CategoryExerciseService _exerciseService;
  

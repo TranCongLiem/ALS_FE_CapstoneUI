@@ -13,7 +13,7 @@ class RecordBlocInitial extends RecordBlocState {
 class RecordLoadedState extends RecordBlocState {
 
   List<RecordById> list;
-  
+
   RecordLoadedState(this.list);
   @override
   // TODO: implement props

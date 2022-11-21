@@ -1,18 +1,12 @@
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Components/News/custom_title_list.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/News/article_screen.dart';
-import 'package:capstone_ui/Feature/News/model/article_model.dart';
-import 'package:capstone_ui/services/api_services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Bloc/knowledge/knowledge_bloc.dart';
 import '../../services/api_ListKnowledge.dart';
+import 'skeleton.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
@@ -23,8 +17,19 @@ class NewsScreen extends StatefulWidget {
 
 class _NewsScreenState extends State<NewsScreen> {
   // int index = 2;
+  late bool _isLoading;
 
-  ApiService client = ApiService();
+  @override
+  void initState() {
+    _isLoading = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -44,39 +49,36 @@ class _NewsScreenState extends State<NewsScreen> {
           ),
           automaticallyImplyLeading: false,
         ),
-        // body: FutureBuilder(
-        //   future: client.getArticle(),
-        //   builder: (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
-        //     if (snapshot.hasData) {
-        //       List<Article>? articles = snapshot.data;
-
-        //       return ListView.builder(
-        //         itemCount: articles!.length,
-        //         itemBuilder: (context, index) {
-        //           return customTitleList(articles[index], context);
-        //         },
-        //       );
-        //     }
-        //     return Center(
-        //       child: CircularProgressIndicator(),
-        //     );
-        //   },
-        // ),
         body: Container(
           child: BlocBuilder<ListKnowledgeBlocBloc, ListKnowledgeBlocState>(
               builder: (context, state) {
             if (state is ListKnowledgeLoadedState) {
-              print('Print ExState');
-              return ListView.builder(
-                scrollDirection: Axis.vertical,
-                itemCount: state.list.length,
-                itemBuilder: (context, index) {
-                  return customTitleList(state.list[index], context);
-                },
-              );
+              return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: _isLoading
+                      ? ListView.separated(
+                          itemBuilder: (context, index) =>
+                              const NewsCardSkelton(),
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: defaultPadding),
+                          itemCount: 5)
+                      : ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: defaultPadding),
+                          scrollDirection: Axis.vertical,
+                          itemCount: state.list.length,
+                          itemBuilder: (context, index) {
+                            return customTitleList(state.list[index], context);
+                          },
+                        ));
             }
-            return Center(
-              child: CircularProgressIndicator(),
+            return Padding(
+              padding: EdgeInsets.all(10.0),
+              child: ListView.separated(
+                  itemBuilder: (context, index) => const NewsCardSkelton(),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: defaultPadding),
+                  itemCount: 5),
             );
           }),
         ),
@@ -84,6 +86,46 @@ class _NewsScreenState extends State<NewsScreen> {
             // index: this.index,
             ),
       ),
+    );
+  }
+}
+
+class NewsCardSkelton extends StatelessWidget {
+  const NewsCardSkelton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Skeleton(height: 120, width: 120),
+        const SizedBox(width: defaultPadding),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Skeleton(width: 80),
+              const SizedBox(height: defaultPadding / 2),
+              const Skeleton(),
+              const SizedBox(height: defaultPadding / 2),
+              const Skeleton(),
+              const SizedBox(height: defaultPadding / 2),
+              Row(
+                children: const [
+                  Expanded(
+                    child: Skeleton(),
+                  ),
+                  SizedBox(width: defaultPadding),
+                  Expanded(
+                    child: Skeleton(),
+                  ),
+                ],
+              )
+            ],
+          ),
+        )
+      ],
     );
   }
 }

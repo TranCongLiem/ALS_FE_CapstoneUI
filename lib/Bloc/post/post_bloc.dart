@@ -16,15 +16,15 @@ class PostBlocBloc extends Bloc<PostBlocEvent, PostBlocState> {
     on<LoadPostEvent>((event, emit) async {
       // TODO: implement event handler
       // PostByIdReQuestModel PostByIdReQuestModel = PostByIdReQuestModel(userId: userId)
-      final list= await _PostService.getAllPost();
+      final list= await _PostService.getAllPost(event.userId);
       emit(PostLoadedState(list));
     });
-    // on<LoadPostEventByAdmin>((event, emit) async {
-    //   // TODO: implement event handler
-    //   // PostByIdReQuestModel PostByIdReQuestModel = PostByIdReQuestModel(userId: userId)
-    //   final list= await _PostService.getPostByIdAdmin();
-    //   emit(PostLoadedState(list));
-    // });
+    on<LoadPostByUserIdEvent>((event, emit) async {
+      // TODO: implement event handler
+      // PostByIdReQuestModel PostByIdReQuestModel = PostByIdReQuestModel(userId: userId)
+      final list= await _PostService.getPostByUserId(event.userId);
+      emit(PostLoadedState(list));
+    });
     
 }
 }

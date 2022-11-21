@@ -7,6 +7,7 @@ class AuthenticateState with _$AuthenticateState {
     required String? userId,
     required String phoneNumber,
     required String password,
+    required String fullName,
     required bool isAuthenticated,
     String? role,
     String? errorMessage,
@@ -16,6 +17,7 @@ class AuthenticateState with _$AuthenticateState {
         userId: '',
         phoneNumber: '',
         password: '',
+        fullName: '',
         isAuthenticated: false,
       );
 }

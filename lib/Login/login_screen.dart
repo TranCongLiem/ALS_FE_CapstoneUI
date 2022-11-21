@@ -1,21 +1,19 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-
+import 'package:capstone_ui/Login/update_info.dart';
 import 'package:capstone_ui/Login/verify_phone.dart';
-import 'package:capstone_ui/Register/register_screen.dart';
-import 'package:capstone_ui/Register/role_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import '';
 
-import '../Home/home.dart';
+import '../Feature/Supporter/Newsfeed/newfeeds.dart';
+import '../Splash/SharePreKey.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -32,31 +30,68 @@ class _LoginScreenState extends State<LoginScreen> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
-          //  print('test state '+ state.toString());
           if (state.isAuthenticated) {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.1, end: 1).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.bounceIn,
-                      ),
-                    ),
-                    child: child,
-                  );
-                },
-                transitionDuration: Duration(seconds: 1),
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
-                  return NewFeed();
-                },
-              ),
-            );
+            if (state.role == 'Patient') {
+              if (state.fullName.toString() != '') {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return NewFeed();
+                    },
+                  ),
+                );
+              } else {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return RegisterInfo();
+                    },
+                  ),
+                );
+              }
+
+              SetUserInfo(state.phoneNumber, state.password, state.userId);
+
+              //  Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
+
+            } else if (state.role == 'Supporter') {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NewFeedSupporter()));
+            }
           }
         },
         builder: (context, state) {
@@ -379,5 +414,14 @@ class _LoginScreenState extends State<LoginScreen> {
         },
       );
     });
+  }
+
+  void SetUserInfo(String phone, String Password, String userId) async {
+    //final prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, true);
+    await prefs.setString(SharedPreferencesKey.SHARED_PHONE, phone);
+    await prefs.setString(SharedPreferencesKey.SHARED_PASSWORD, Password);
+    await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
   }
 }

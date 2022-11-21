@@ -24,9 +24,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
-
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
-import 'DetailExcerise.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -55,7 +53,7 @@ class _ListExceriseState extends State<ListExcerise> {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     context.read<SessionBloc>().add(SessionEvent.getSessionHistory(
-        context.read<AuthenticateBloc>().state.userId!));
+        context.read<AuthenticateBloc>().state.userId));
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -204,10 +202,7 @@ class _ListExceriseState extends State<ListExcerise> {
               Expanded(
                 child: BlocBuilder<CategoryExerciseBlocBloc,
                     CategoryExerciseBlocState>(builder: (context, state) {
-                  print('abc' + state.toString());
                   if (state is CategoryExerciseLoadedState) {
-                    print('Print ExState');
-
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: state.list.length,

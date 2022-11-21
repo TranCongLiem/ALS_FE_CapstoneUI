@@ -779,6 +779,7 @@ mixin _$AuthenticateState {
   String? get userId => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  String get fullName => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
@@ -797,6 +798,7 @@ abstract class $AuthenticateStateCopyWith<$Res> {
       {String? userId,
       String phoneNumber,
       String password,
+      String fullName,
       bool isAuthenticated,
       String? role,
       String? errorMessage});
@@ -816,6 +818,7 @@ class _$AuthenticateStateCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? phoneNumber = freezed,
     Object? password = freezed,
+    Object? fullName = freezed,
     Object? isAuthenticated = freezed,
     Object? role = freezed,
     Object? errorMessage = freezed,
@@ -832,6 +835,10 @@ class _$AuthenticateStateCopyWithImpl<$Res>
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       isAuthenticated: isAuthenticated == freezed
           ? _value.isAuthenticated
@@ -860,6 +867,7 @@ abstract class _$$_AuthenticateStateCopyWith<$Res>
       {String? userId,
       String phoneNumber,
       String password,
+      String fullName,
       bool isAuthenticated,
       String? role,
       String? errorMessage});
@@ -881,6 +889,7 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? phoneNumber = freezed,
     Object? password = freezed,
+    Object? fullName = freezed,
     Object? isAuthenticated = freezed,
     Object? role = freezed,
     Object? errorMessage = freezed,
@@ -897,6 +906,10 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      fullName: fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
       isAuthenticated: isAuthenticated == freezed
           ? _value.isAuthenticated
@@ -921,6 +934,7 @@ class _$_AuthenticateState implements _AuthenticateState {
       {required this.userId,
       required this.phoneNumber,
       required this.password,
+      required this.fullName,
       required this.isAuthenticated,
       this.role,
       this.errorMessage});
@@ -932,6 +946,8 @@ class _$_AuthenticateState implements _AuthenticateState {
   @override
   final String password;
   @override
+  final String fullName;
+  @override
   final bool isAuthenticated;
   @override
   final String? role;
@@ -940,7 +956,7 @@ class _$_AuthenticateState implements _AuthenticateState {
 
   @override
   String toString() {
-    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, isAuthenticated: $isAuthenticated, role: $role, errorMessage: $errorMessage)';
+    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, fullName: $fullName, isAuthenticated: $isAuthenticated, role: $role, errorMessage: $errorMessage)';
   }
 
   @override
@@ -952,6 +968,7 @@ class _$_AuthenticateState implements _AuthenticateState {
             const DeepCollectionEquality()
                 .equals(other.phoneNumber, phoneNumber) &&
             const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality()
                 .equals(other.isAuthenticated, isAuthenticated) &&
             const DeepCollectionEquality().equals(other.role, role) &&
@@ -965,6 +982,7 @@ class _$_AuthenticateState implements _AuthenticateState {
       const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(phoneNumber),
       const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(isAuthenticated),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(errorMessage));
@@ -981,6 +999,7 @@ abstract class _AuthenticateState implements AuthenticateState {
       {required final String? userId,
       required final String phoneNumber,
       required final String password,
+      required final String fullName,
       required final bool isAuthenticated,
       final String? role,
       final String? errorMessage}) = _$_AuthenticateState;
@@ -991,6 +1010,8 @@ abstract class _AuthenticateState implements AuthenticateState {
   String get phoneNumber;
   @override
   String get password;
+  @override
+  String get fullName;
   @override
   bool get isAuthenticated;
   @override

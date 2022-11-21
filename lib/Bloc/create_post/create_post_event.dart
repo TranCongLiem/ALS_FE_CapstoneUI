@@ -6,7 +6,7 @@ class CreatePostEvent with _$CreatePostEvent {
       _ImageChanged;
   const factory CreatePostEvent.captionChanged(String caption) =
       _CaptionChanged;
-  const factory CreatePostEvent.createPostRequest() = _CreatePostRequest;
+  const factory CreatePostEvent.createPostRequest(String userId) = _CreatePostRequest;
   const factory CreatePostEvent.createCheckRequested() = _CreateCheckRequested;
   const factory CreatePostEvent.setStateFlase() = _SetStateFlase;
 }
