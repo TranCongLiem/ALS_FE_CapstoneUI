@@ -1,18 +1,13 @@
-
-
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Chat/pages/custom_listusergroupchat.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Bloc/groupchat/groupchat_bloc.dart';
 import '../../../Bloc/list_user_group_chat/list_user_group_chat_bloc.dart';
-import '../../../Model/groupChat_model.dart';
 import '../../../services/api_groupchat.dart';
-import '../providers/database_service.dart';
-import 'group_chat_page.dart';
-import 'widgets.dart';
+import 'groupchat_page.dart';
 
 class GroupInfo extends StatefulWidget {
   final String groupId;
@@ -23,7 +18,8 @@ class GroupInfo extends StatefulWidget {
     Key? key,
     required this.adminName,
     required this.groupName,
-    required this.groupId, required this.userId,
+    required this.groupId,
+    required this.userId,
   }) : super(key: key);
 
   @override
@@ -34,19 +30,8 @@ class _GroupInfoState extends State<GroupInfo> {
   Stream? members;
   @override
   void initState() {
-    // getMembers();
     super.initState();
   }
-
-  // getMembers() async {
-  //   DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
-  //       .getGroupMembers(widget.groupId)
-  //       .then((val) {
-  //     setState(() {
-  //       members = val;
-  //     });
-  //   });
-  // }
 
   String getName(String r) {
     return r.substring(r.indexOf("_") + 1);
@@ -60,11 +45,10 @@ class _GroupInfoState extends State<GroupInfo> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-         BlocProvider(
+        BlocProvider(
             create: (context) => ListUserGroupChatBloc(
                 RepositoryProvider.of<GroupChatService>(context))
               ..add(LoadListUserGroupChatEvent(groupId: widget.groupId))),
-       
       ],
       child: Scaffold(
         appBar: AppBar(
@@ -101,7 +85,6 @@ class _GroupInfoState extends State<GroupInfo> {
                             actions: [
                               TextButton(
                                 onPressed: () {
-                                  
                                   Navigator.pop(context);
                                 },
                                 child: Text('HỦY'),
@@ -110,18 +93,17 @@ class _GroupInfoState extends State<GroupInfo> {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.red),
                                 onPressed: () {
-                                  // context.read<RemoveRecordBloc>().add(
-                                  //     RemoveRecordEvent.getRecordId(widget
-                                  //         .references[index].recordId
-                                  //         .toString()));
-                                  // context.read<RemoveRecordBloc>().add(
-                                  //     RemoveRecordEvent.removeRecordRequest());
-                                   removeMember(widget.groupId, widget.userId);
-                                 
-                                  Navigator.pop(context);
+                                  removeMember(widget.groupId, widget.userId);
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => GroupChatPage(
+                                                fullName: widget.groupName,
+                                                userId: widget.userId,
+                                              )));
                                 },
                                 child: Text(
-                                  'XÓA',
+                                  'Rời',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.0),
@@ -212,7 +194,10 @@ class _GroupInfoState extends State<GroupInfo> {
       ),
     );
   }
-  void removeMember(String groupId, String userId){
-     context.read<GroupchatBloc>().add(GroupchatEvent.RemovedMemberInGroupChatRequest(widget.groupId, widget.userId));
+
+  void removeMember(String groupId, String userId) {
+    context.read<GroupchatBloc>().add(
+        GroupchatEvent.RemovedMemberInGroupChatRequest(
+            widget.groupId, widget.userId));
   }
 }

@@ -139,23 +139,29 @@ class GroupChatService {
     } else {
       throw Exception('Lỗi dữ liệu');
     }
-    
   }
-   Future<RemoveMemberInGroupResponeModel> removeMember(RemoveMemberInGroupRequestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/groupchat/RemoveMemberInGroup?groupId=" + requestModel.groupId + "&userId=" + requestModel.userId;
-    final response = await http.put(
+
+  Future<RemoveMemberInGroupResponeModel> removeMember(
+      RemoveMemberInGroupRequestModel requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/groupchat/RemoveMemberInGroup?groupId=" +
+            requestModel.groupId +
+            "&userId=" +
+            requestModel.userId;
+    final response = await http.delete(
       Uri.parse(url),
       headers: {
-        'Content-Type': 'application/json',      
+        'Content-Type': 'application/json',
       },
-      
-    //  body: jsonEncode(requestModel.toJson()),
+
+      //  body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == 200) {
-      GroupChatService.isRemovedMember = true;
-      return RemoveMemberInGroupResponeModel.fromJson(json.decode(response.body));
+      // GroupChatService.isRemovedMember = true;
+      return RemoveMemberInGroupResponeModel.fromJson(
+          json.decode(response.body));
     } else {
-      GroupChatService.isRemovedMember = false;
+      // GroupChatService.isRemovedMember = false;
       throw Exception('Lỗi dữ liệu');
     }
   }

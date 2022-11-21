@@ -259,26 +259,9 @@ class _SaveRecordingState extends State<SaveRecording> {
                 Center(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        validate();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        padding: EdgeInsets.only(
-                            top: 20, bottom: 20, left: 30, right: 30),
-                        primary: greenALS,
-                        textStyle: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.w300),
-                      ),
-                      child: FeatureButtonsViewTextFunction(
-                        onUploadComplete: _onUploadComplete,
-                        speakText: textEditingController.text.toString(),
-                      ),
+                    child: FeatureButtonsViewTextFunction(
+                      onUploadComplete: _onUploadComplete,
+                      speakText: textEditingController.text.toString(),
                     ),
                   ),
                 ),
@@ -334,21 +317,9 @@ class _SaveRecordingState extends State<SaveRecording> {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // requestPermission.requestAndroidPermission(
-                //     "android.permission.RECORD_AUDIO");
-              },
-              style: ElevatedButton.styleFrom(
-                  // backgroundColor: greenALS,
-                  padding: EdgeInsets.all(8.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  )),
-              child: FeatureButtonsView(
-                onUploadComplete: _onUploadComplete,
-                titleText: _textSpeech,
-              ),
+            child: FeatureButtonsView(
+              onUploadComplete: _onUploadComplete,
+              titleText: _textSpeech,
             ),
           ),
         ],

@@ -22,7 +22,7 @@ class SearchGroup extends SearchDelegate<String> {
 
   // Other overrides...
   GroupChatService _groupList = GroupChatService();
-  
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [
@@ -61,7 +61,10 @@ class SearchGroup extends SearchDelegate<String> {
               return ListView.builder(
                   itemCount: data?.length,
                   itemBuilder: (context, index) {
-                    return CustomSearchGroup(listAllGroupChat: data![index], userId: state.userId,);
+                    return CustomSearchGroup(
+                      listAllGroupChat: data![index],
+                      userId: state.userId,
+                    );
                   });
             });
       },
@@ -74,6 +77,4 @@ class SearchGroup extends SearchDelegate<String> {
       child: Text(''),
     );
   }
-
-   
 }

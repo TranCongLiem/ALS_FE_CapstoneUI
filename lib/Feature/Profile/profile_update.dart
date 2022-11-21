@@ -2,6 +2,7 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../Bloc/user/user_bloc.dart';
 import '../../Constant/profile_widget.dart';
@@ -87,7 +88,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   TextButton(
                     onPressed: () {
                       uploadInfo(widget.userId);
-                      
                     },
                     child: Text(
                       'Lưu',
@@ -142,10 +142,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                         ),
                         maxLines: 1,
                         style: TextStyle(fontSize: 26),
-                        onChanged: (fullName) {
-                          context
-                              .read<UserBloc>()
-                              .add(UserEvent.getFullName(fullName));
+                        onChanged: (value) {
+                          fullName = value;
                         },
                       ),
                     ],
@@ -168,10 +166,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                         ),
                         maxLines: 1,
                         style: TextStyle(fontSize: 26),
-                        onChanged: (address) {
-                          context
-                              .read<UserBloc>()
-                              .add(UserEvent.getAddress(address));
+                        onChanged: (value) {
+                          address = value;
                         },
                       ),
                     ],
@@ -200,6 +196,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
       setState(() {});
     }
   }
+
   Future<void> uploadInfo(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     String _imagePath = imagePath ?? '';
@@ -217,7 +214,10 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
             _imagePath.lastIndexOf('image_picker'), _imagePath.length))
         .putFile(File(_imagePath));
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
-    context.read<UserBloc>().add(
-                          UserEvent.updateProfilePatientRequest(widget.userId));
+    context.read<UserBloc>().add(UserEvent.getFullName(fullName!));
+    context.read<UserBloc>().add(UserEvent.getAddress(address!));
+    context
+        .read<UserBloc>()
+        .add(UserEvent.updateProfilePatientRequest(widget.userId));
   }
 }
