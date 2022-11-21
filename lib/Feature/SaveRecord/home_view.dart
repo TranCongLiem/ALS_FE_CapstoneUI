@@ -81,7 +81,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                       decoration: BoxDecoration(
                                         color: Colors.black.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(12),
-
                                       ),
                                       child: TabBar(
                                         indicator: BoxDecoration(
@@ -104,7 +103,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                                     fontSize: 26.0),
                                               ),
                                             ),
-
                                           ),
                                           Tab(
                                             child: Text(
@@ -119,7 +117,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                     ),
                                   ),
                                 ),
-
                                 Expanded(
                                     child: TabBarView(
                                         controller: tabController,
@@ -129,7 +126,8 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                           builder: (context, state) {
                                         if (state is RecordLoadedAdminState) {
                                           return CloudRecordListViewAdmin(
-                                            references: state.list,userId : state2.userId,
+                                            references: state.list,
+                                            userId: state2.userId,
                                           );
                                         }
                                         return Center(
@@ -141,7 +139,8 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                           builder: (context, state) {
                                         if (state is RecordLoadedState) {
                                           return CloudRecordListView(
-                                            references: state.list,userId : state2.userId,
+                                            references: state.list,
+                                            userId: state2.userId,
                                           );
                                         }
                                         return Center(
@@ -209,7 +208,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                         press: () {},
                                       ),
                                     ],
-
                                   ),
                                 ),
                               ],

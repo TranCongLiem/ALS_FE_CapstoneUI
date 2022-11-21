@@ -9,6 +9,7 @@ import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Bloc/knowledge/knowledge_bloc.dart';
 import 'package:capstone_ui/Bloc/record/record_bloc.dart';
 import 'package:capstone_ui/Bloc/record_admin/record_list_admin_bloc.dart';
+import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
@@ -20,6 +21,7 @@ import 'package:capstone_ui/services/api_Post.dart';
 import 'package:capstone_ui/services/api_Record.dart';
 import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:capstone_ui/services/api_chat.dart';
+import 'package:capstone_ui/services/api_Session.dart';
 import 'package:capstone_ui/services/api_login.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
@@ -78,7 +80,9 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key, required this.prefs}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    FirebaseMessaging.instance.getToken().then((value) => print("TokenOfDevice:${value}" ));
+    FirebaseMessaging.instance
+        .getToken()
+        .then((value) => print("TokenOfDevice:${value}"));
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         systemNavigationBarColor: Color.fromARGB(0, 255, 255, 255)));
@@ -101,7 +105,10 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => ShortCutNotificationService(),
-        )
+        ),
+        RepositoryProvider(
+          create: (context) => SessionService(),
+        ),
       ],
       child: MultiRepositoryProvider(
         providers: [
@@ -219,28 +226,29 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   UserChatBloc(RepositoryProvider.of<ChatService>(context)),
             ),
-             BlocProvider(
-              create: (context) =>
-                  ListGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
+            BlocProvider(
+              create: (context) => ListGroupChatBloc(
+                  RepositoryProvider.of<GroupChatService>(context)),
             ),
             BlocProvider(
-              create: (context) =>
-                  ListGroupChatHasJoinBloc(RepositoryProvider.of<GroupChatService>(context)),
+              create: (context) => ListGroupChatHasJoinBloc(
+                  RepositoryProvider.of<GroupChatService>(context)),
             ),
             BlocProvider(
-              create: (context) =>
-                  GroupchatBloc(RepositoryProvider.of<GroupChatService>(context))),
+                create: (context) => GroupchatBloc(
+                    RepositoryProvider.of<GroupChatService>(context))),
 
-             BlocProvider(
-              create: (context) =>
-                  PushNotiToSupporterBloc(RepositoryProvider.of<ShortCutNotificationService>(context)),                 
+            BlocProvider(
+              create: (context) => PushNotiToSupporterBloc(
+                  RepositoryProvider.of<ShortCutNotificationService>(context)),
             ),
-             BlocProvider(
-              create: (context) =>
-                  CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
-                  
-
+            BlocProvider(
+              create: (context) => CreateSosNotiBloc(
+                  RepositoryProvider.of<UserPatientService>(context)),
             ),
+            BlocProvider(
+                create: (context) => SessionBloc(
+                    RepositoryProvider.of<SessionService>(context))),
           ],
           child: MaterialApp(
             theme: ThemeData(

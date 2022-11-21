@@ -1,0 +1,9 @@
+diff a/lib/Model/getListExerciseByCate_model.dart b/lib/Model/getListExerciseByCate_model.dart	(rejected hunks)
+@@ -9,7 +9,6 @@
+   String? VideoLink;
+   bool? status;
+   String? CategoryID;
+-  Exericse({this.ExericseID,
+   YoutubePlayerController? controller;
+ 
+   Exericse({

@@ -95,6 +95,9 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
         builder: (context, state) {
+          context
+              .read<AuthenticateBloc>()
+              .add(AuthenticateEvent.authCheckRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,

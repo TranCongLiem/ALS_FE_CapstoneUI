@@ -8,7 +8,7 @@ class UserService {
 
   Future<LoginResponeModel> login(LoginRequestModel requestModel) async {
     //String url = "https://reqres.in/api/login";
-    String url="https://als.cosplane.asia/api/user/LoginUserMobile";
+    String url = "https://als.cosplane.asia/api/user/LoginUserMobile/";
 
     // final response= await http.post(Uri.parse(url), body: requestModel.toJson());
     // if(response.statusCode == 200 || response.statusCode == 400){
