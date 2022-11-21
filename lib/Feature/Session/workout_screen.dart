@@ -61,7 +61,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   onPressed: () {
                     context.read<SessionBloc>().add(SessionEvent.endSession(
                           widget.details.first.sessionId!,
-                          context.read<AuthenticateBloc>().state.userId!,
+                          context.read<AuthenticateBloc>().state.userId,
                         ));
                     Navigator.push(
                         context,
