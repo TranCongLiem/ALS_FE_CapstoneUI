@@ -8,15 +8,18 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
 import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
+import 'package:capstone_ui/Feature/Session/session_detail_screen.dart';
 import 'package:capstone_ui/Feature/Session/session_exercise.dart';
 import 'package:capstone_ui/Bloc/exercise/exercise_bloc_bloc.dart';
 import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
 import 'package:capstone_ui/Feature/TextToSpeech/TextToSpeech.dart';
+import 'package:capstone_ui/Model/session_model.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
@@ -51,6 +54,8 @@ class _ListExceriseState extends State<ListExcerise> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+    context.read<SessionBloc>().add(SessionEvent.getSessionHistory(
+        context.read<AuthenticateBloc>().state.userId!));
     return MultiBlocProvider(
         providers: [
           BlocProvider(
@@ -150,27 +155,50 @@ class _ListExceriseState extends State<ListExcerise> {
               ),
 
               WidgetEx1(),
-              Container(
-                  padding: const EdgeInsets.only(top: 15),
-                  height: size.height / 4,
-                  width: size.width / 1,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                      buildCardRecommend(),
-                      SizedBox(
-                        width: 12,
-                      ),
-                    ],
-                  )),
+              // Container(
+              //     padding: const EdgeInsets.only(top: 15),
+              //     height: size.height / 4,
+              //     width: size.width / 1,
+              //     child: ListView(
+              //       scrollDirection: Axis.horizontal,
+              //       children: [
+              //         buildCardRecommend(),
+              //         SizedBox(
+              //           width: 12,
+              //         ),
+              //         buildCardRecommend(),
+              //         SizedBox(
+              //           width: 12,
+              //         ),
+              //         buildCardRecommend(),
+              //         SizedBox(
+              //           width: 12,
+              //         ),
+              //       ],
+              //     )),
+              Expanded(
+                child: BlocBuilder<SessionBloc, SessionState>(
+                    builder: (context, state) {
+                  print('abc' + state.toString());
+                  if (state.history != null) {
+                    print('Print ExState');
+
+                    return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: state.history!.length,
+                      itemBuilder: (context, index) {
+                        // setState(() {
+                        //   categoriesOfExercise=state.list;
+                        // });
+                        return buildCardHistory(state.history![index], context);
+                      },
+                    );
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }),
+              ),
               WidgetEx2(), //Phan Loai/Xem tat ca
 
               Expanded(
@@ -306,12 +334,12 @@ class WidgetEx1 extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text(
-            'Xem tất cả',
-            style: TextStyle(
-              color: Colors.blueAccent,
-            ),
-          ),
+          // Text(
+          //   'Xem tất cả',
+          //   style: TextStyle(
+          //     color: Colors.blueAccent,
+          //   ),
+          // ),
         ],
       ),
     );
@@ -470,23 +498,173 @@ class GetSessionsButton extends StatelessWidget {
   }
 }
 
-Widget buildCardRecommend() => Expanded(
+// Widget buildCardHistory(
+//   GetSessionHistoryResponseModel history,
+//   BuildContext context,
+// ) =>
+//     Expanded(
+//         child: Container(
+//       padding: new EdgeInsets.only(
+//         left: 12,
+//         right: 12,
+//       ),
+//       height: 100,
+//       width: 200,
+//       decoration: BoxDecoration(
+//         color: Colors.green[50],
+//         borderRadius: BorderRadius.circular(10),
+//       ),
+//       child: Column(
+//         children: [
+//           Text("Tên buổi tập"),
+//         ],
+//       ),
+//     ));
+Widget buildCardHistory(
+  GetSessionHistoryResponseModel history,
+  BuildContext context,
+) =>
+    Expanded(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10.0,
+          //vertical: 20 / 2,
+        ),
         child: Container(
-      height: 100,
-      width: 200,
-      decoration: BoxDecoration(
-        color: Colors.green[50],
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            'assets/images/logo_ALS.png',
-            width: 200,
+          height: MediaQuery.of(context).size.height * 0.15,
+          decoration: BoxDecoration(color: Color.fromARGB(255, 199, 247, 201),
+              //borderRadius: BorderRadius.circular(10.0),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 10.0,
+                    offset: Offset(5, 10))
+              ]),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: InkWell(
+              onTap: () {
+                // // context.read<SessionBloc>().add(
+                // //     SessionEvent.getSessionDetailRequested(
+                // //         state.sessions[index].sessionId));
+                // var details =
+                //     state.detailsList![state.sessions[index].sessionId];
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            SessionDetail(details: history.sessionDetail!)));
+              },
+              child: Row(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20 / 2, top: 5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Tên Buổi Tập",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                            maxLines: 2,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.access_time_outlined,
+                                color: Colors.black45,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.01,
+                              ),
+                              Text(
+                                //state.details!.length.toString() + ' exercises',
+                                history.sessionDetail!.length.toString() +
+                                    " Bài tập",
+                                style: TextStyle(
+                                  color: Colors.black45,
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Text(
+                            "Kết thúc vào ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            DateFormat.yMd()
+                                .format(history.endTime!.toLocal())
+                                .toString(),
+                          ),
+                          Text(
+                            DateFormat.jm()
+                                .format(history.endTime!.toLocal())
+                                .toString(),
+                          ),
+                          // Text(
+                          //   DateFormat.jm()
+                          //       .format(history.startTime!.toLocal())
+                          //       .toString(),
+                          // ),
+                          // Text(
+                          //   DateFormat.jm()
+                          //       .parse(DateFormat.jm().format(history.endTime!))
+                          //       .difference(DateFormat.jm().parse(
+                          //           DateFormat.jm().format(history.startTime!)))
+                          //       .toString(),
+                          // ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          Text(
+                            "Thời lượng ",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            history.endTime!
+                                    .difference(history.startTime!)
+                                    .inHours
+                                    .toString()
+                                    .padLeft(2, "0") +
+                                ":" +
+                                history.endTime!
+                                    .difference(history.startTime!)
+                                    .inMinutes
+                                    .remainder(60)
+                                    .toString()
+                                    .padLeft(2, "0") +
+                                ":" +
+                                history.endTime!
+                                    .difference(history.startTime!)
+                                    .inSeconds
+                                    .remainder(60)
+                                    .toString()
+                                    .padLeft(2, "0"),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
-        ],
+        ),
       ),
-    ));
+    );
 
 class SpeechStatusWidget extends StatelessWidget {
   const SpeechStatusWidget({

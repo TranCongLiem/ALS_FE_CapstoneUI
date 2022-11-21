@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/sessions_screen_.dart';
+import 'package:capstone_ui/Feature/Session/workout_screen.dart';
 import 'package:capstone_ui/Model/session_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -42,75 +43,119 @@ class _SessionDetailState extends State<SessionDetail> {
         builder: (context, state) {
           if (widget.details != null || widget.details != []) {
             return Container(
-              decoration: _playArea == false
-                  ? BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          greenALS,
-                          Colors.green.shade500.withOpacity(0.9),
-                        ],
-                        begin: const FractionalOffset(0.0, 0.4),
-                        end: Alignment.topRight,
-                      ),
-                    )
-                  : BoxDecoration(
-                      color: Colors.green.shade500.withOpacity(0.9),
-                    ),
+              // decoration: _playArea == false
+              //     ?
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    greenALS,
+                    Colors.green.shade500.withOpacity(0.9),
+                  ],
+                  begin: const FractionalOffset(0.0, 0.4),
+                  end: Alignment.topRight,
+                ),
+              ),
+              // : BoxDecoration(
+              //     color: Colors.green.shade500.withOpacity(0.9),
+              //   ),
               child: Column(
                 children: [
-                  _playArea == false
-                      ? Container(
-                          padding: const EdgeInsets.only(
-                              top: 40, left: 30, right: 30),
-                          width: MediaQuery.of(context).size.width,
-                          height: 180,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Tên Buổi Tập",
+                  // _playArea == false
+                  //     ?
+                  Container(
+                    padding:
+                        const EdgeInsets.only(top: 40, left: 30, right: 30),
+                    width: MediaQuery.of(context).size.width,
+                    height: 180,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Tên Buổi Tập",
+                              style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Container(
+                              alignment: Alignment.center,
+                              width: 95,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Colors.green.shade400,
+                                    Colors.green.shade200,
+                                  ],
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                ),
+                              ),
+                              child: Text(
+                                widget.details.length.toString() + " Bài tập",
                                 style: TextStyle(
-                                  fontSize: 28,
+                                  fontSize: 17,
                                   color: Colors.white,
                                 ),
                               ),
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 95,
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      Colors.green.shade400,
-                                      Colors.green.shade200,
-                                    ],
-                                    begin: Alignment.bottomLeft,
-                                    end: Alignment.topRight,
-                                  ),
-                                ),
-                                child: Text(
-                                  widget.details.length.toString() + " Bài tập",
-                                  style: TextStyle(
-                                    fontSize: 17,
-                                    color: Colors.white,
-                                  ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          width: 90,
+                        ),
+                        GestureDetector(
+                          onTap: (() {
+                            context
+                                .read<SessionBloc>()
+                                .add(SessionEvent.startSession());
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WorkoutScreen(
+                                  details: widget.details,
                                 ),
                               ),
-                            ],
-                          ),
-                        )
-                      : Container(
-                          child: Column(
-                            children: [
-                              _playView(context),
-                              _controlView(context),
-                            ],
+                            );
+                          }),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: Color.fromARGB(255, 53, 127, 238),
+                                  blurRadius: 8,
+                                  offset: Offset(2, 2),
+                                ),
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 40,
+                              backgroundColor:
+                                  Color.fromARGB(255, 53, 127, 238),
+                              child: Icon(Icons.play_arrow,
+                                  size: 50, color: Colors.white),
+                            ),
                           ),
                         ),
+                      ],
+                    ),
+                  ),
+                  // : Container(
+                  //     child: Column(
+                  //       children: [
+                  //         _playView(context),
+                  //         _controlView(context),
+                  //       ],
+                  //     ),
+                  //   ),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -261,6 +306,40 @@ class _SessionDetailState extends State<SessionDetail> {
                             // ),
                             child: _listView(),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  context
+                                      .read<SessionBloc>()
+                                      .add(SessionEvent.startSession());
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutScreen(
+                                        details: widget.details,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  primary: Color.fromARGB(255, 53, 127, 238),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                  elevation: 15.0,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20.0),
+                                  child: Text(
+                                    'Bắt đầu tập',
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -287,12 +366,12 @@ class _SessionDetailState extends State<SessionDetail> {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            _onTapVideo(index);
-            setState(() {
-              if (_playArea == false) {
-                _playArea = true;
-              }
-            });
+            // _onTapVideo(index);
+            // setState(() {
+            //   if (_playArea == false) {
+            //     _playArea = true;
+            //   }
+            // });
           },
           //   child: Container(
           //     height: 135,

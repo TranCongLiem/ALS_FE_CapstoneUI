@@ -159,28 +159,28 @@ class _SessionExerciseState extends State<SessionExercise> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            context.read<SessionBloc>().add(
-                                SessionEvent.createSessionRequested(
-                                    state.userId));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: greenALS,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            elevation: 15.0,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Tạo buổi tập',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //     context.read<SessionBloc>().add(
+                        //         SessionEvent.createSessionRequested(
+                        //             state.userId));
+                        //   },
+                        //   style: ElevatedButton.styleFrom(
+                        //     primary: greenALS,
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(25),
+                        //     ),
+                        //     elevation: 15.0,
+                        //   ),
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.all(20.0),
+                        //     child: Text(
+                        //       'Tạo buổi tập',
+                        //       style: TextStyle(fontSize: 20),
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(width: 10),
                         ElevatedButton(
                           onPressed: () {
                             Navigator.push(

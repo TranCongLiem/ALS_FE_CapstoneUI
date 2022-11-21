@@ -15,6 +15,12 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
   Map<String?, List<GetSessionDetailResponseModel>>? detailsList = {};
   Map<String?, int>? exercisesCount = {};
   //int? temp;
+  // final List<GetSessionsResponseModel> list = [
+  //   GetSessionsResponseModel(
+  //     sessionId: "733fbb6d-318b-45a5-876f-523ba18be6d7",
+  //     userId: "dbadb347-79c4-40cf-9f6d-a68a5a050fc9",
+  //   ),
+  // ];
 
   SessionBloc(this._sessionService) : super(SessionState.initial()) {
     on<_AddToSession>((event, emit) {
@@ -88,6 +94,55 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
 
     on<_ShowSessionDetailRequested>(
       (event, emit) {},
+    );
+
+    on<_RemoveFromCreatingSession>(
+      (event, emit) {
+        tmpExercises = state.exercises;
+        tmpExercises!.removeAt(event.index);
+        emit(state.copyWith(
+          exercises: tmpExercises,
+        ));
+      },
+    );
+
+    on<_StartSession>((event, emit) {
+      final startTime = DateTime.now();
+      emit(state.copyWith(
+        startTime: startTime,
+      ));
+    });
+
+    on<_EndSession>((event, emit) async {
+      final endTime = DateTime.now();
+      CreateSessionHistoryRequestModel requestModel =
+          CreateSessionHistoryRequestModel(
+        userId: event.userId,
+        startTime: state.startTime!,
+        endTime: endTime,
+        sessionId: event.sessionId,
+      );
+      final result = await _sessionService.createSessionHistory(requestModel);
+      if (result.isSuccess) {
+        emit(state.copyWith(
+          message: result.message,
+        ));
+      } else {
+        emit(state.copyWith(
+          message: "Create Session History Failed",
+        ));
+      }
+    });
+
+    on<_GetSessionHistory>(
+      ((event, emit) async {
+        final list = await _sessionService.getSessionHistory(event.userId);
+        emit(
+          state.copyWith(
+            history: list,
+          ),
+        );
+      }),
     );
   }
 }

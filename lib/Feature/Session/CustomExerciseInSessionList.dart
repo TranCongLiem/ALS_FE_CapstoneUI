@@ -8,7 +8,12 @@ import '../../Components/Feature/Excerise/Excerise/category_ex.dart';
 import '../News/detail_news.dart';
 import '../News/model/article_model.dart';
 
-Widget CustomExerciseInSessionList(Exericse? exericse, BuildContext context) {
+Widget CustomExerciseInSessionList(
+  Exericse? exericse,
+  VoidCallback refresh,
+  int index,
+  BuildContext context,
+) {
   final Size size = MediaQuery.of(context).size;
 
   return Container(
@@ -105,26 +110,26 @@ Widget CustomExerciseInSessionList(Exericse? exericse, BuildContext context) {
                 ),
               ),
             ),
-            // Container(
-            //   alignment: Alignment.center,
-            //   padding:
-            //       EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-            //   child: ElevatedButton(
-            //       onPressed: () {
-            //         context
-            //             .read<SessionBloc>()
-            //             .add(SessionEvent.addToSession(exericse!));
-            //       },
-            //       child: Text(
-            //         "Thêm vào phiên tập của bạn",
-            //         style: TextStyle(color: Colors.white, fontSize: 20.0),
-            //       ),
-            //       style: ElevatedButton.styleFrom(
-            //           //backgroundColor: greenALS,
-            //           padding: EdgeInsets.all(15.0),
-            //           shape: RoundedRectangleBorder(
-            //               borderRadius: BorderRadius.circular(15.0)))),
-            // )
+            Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+              child: ElevatedButton(
+                  onPressed: () {
+                    context
+                        .read<SessionBloc>()
+                        .add(SessionEvent.removeFromCreatingSession(index));
+                    refresh();
+                  },
+                  child: Text(
+                    "Xóa khỏi phiên tập của bạn",
+                    style: TextStyle(color: Colors.white, fontSize: 20.0),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.shade400,
+                      padding: EdgeInsets.all(15.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0)))),
+            )
           ],
         ),
       ),

@@ -10,6 +10,9 @@ class SessionState with _$SessionState {
     Map<String?, List<GetSessionDetailResponseModel>>? detailsList,
     Map<String?, int>? exercisesCount,
     String? sessionId,
+    DateTime? startTime,
+    DateTime? endTime,
+    List<GetSessionHistoryResponseModel>? history,
   }) = _SessionState;
 
   factory SessionState.initial() => SessionState(

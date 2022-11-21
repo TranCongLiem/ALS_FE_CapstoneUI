@@ -24,6 +24,10 @@ mixin _$SessionEvent {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,6 +38,10 @@ mixin _$SessionEvent {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +52,10 @@ mixin _$SessionEvent {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,6 +71,11 @@ mixin _$SessionEvent {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -72,6 +89,11 @@ mixin _$SessionEvent {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +107,11 @@ mixin _$SessionEvent {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -177,6 +204,10 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return addToSession(exericse);
   }
@@ -190,6 +221,10 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return addToSession?.call(exericse);
   }
@@ -203,6 +238,10 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (addToSession != null) {
@@ -224,6 +263,11 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return addToSession(this);
   }
@@ -240,6 +284,11 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return addToSession?.call(this);
   }
@@ -256,6 +305,11 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (addToSession != null) {
@@ -347,6 +401,10 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return createSessionRequested(userId);
   }
@@ -360,6 +418,10 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return createSessionRequested?.call(userId);
   }
@@ -373,6 +435,10 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (createSessionRequested != null) {
@@ -394,6 +460,11 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return createSessionRequested(this);
   }
@@ -410,6 +481,11 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return createSessionRequested?.call(this);
   }
@@ -426,6 +502,11 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (createSessionRequested != null) {
@@ -496,6 +577,10 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return showCreatingSessionRequested();
   }
@@ -509,6 +594,10 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return showCreatingSessionRequested?.call();
   }
@@ -522,6 +611,10 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (showCreatingSessionRequested != null) {
@@ -543,6 +636,11 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return showCreatingSessionRequested(this);
   }
@@ -559,6 +657,11 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return showCreatingSessionRequested?.call(this);
   }
@@ -575,6 +678,11 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (showCreatingSessionRequested != null) {
@@ -640,6 +748,10 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return showSessionDetailRequested();
   }
@@ -653,6 +765,10 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return showSessionDetailRequested?.call();
   }
@@ -666,6 +782,10 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (showSessionDetailRequested != null) {
@@ -687,6 +807,11 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return showSessionDetailRequested(this);
   }
@@ -703,6 +828,11 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return showSessionDetailRequested?.call(this);
   }
@@ -719,6 +849,11 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (showSessionDetailRequested != null) {
@@ -807,6 +942,10 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return getSessionDetailRequested(sessionID);
   }
@@ -820,6 +959,10 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return getSessionDetailRequested?.call(sessionID);
   }
@@ -833,6 +976,10 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (getSessionDetailRequested != null) {
@@ -854,6 +1001,11 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return getSessionDetailRequested(this);
   }
@@ -870,6 +1022,11 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return getSessionDetailRequested?.call(this);
   }
@@ -886,6 +1043,11 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (getSessionDetailRequested != null) {
@@ -977,6 +1139,10 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
   }) {
     return getSessionsByUserId(userId);
   }
@@ -990,6 +1156,10 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
   }) {
     return getSessionsByUserId?.call(userId);
   }
@@ -1003,6 +1173,10 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (getSessionsByUserId != null) {
@@ -1024,6 +1198,11 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
   }) {
     return getSessionsByUserId(this);
   }
@@ -1040,6 +1219,11 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
   }) {
     return getSessionsByUserId?.call(this);
   }
@@ -1056,6 +1240,11 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
     required TResult orElse(),
   }) {
     if (getSessionsByUserId != null) {
@@ -1076,6 +1265,774 @@ abstract class _GetSessionsByUserId implements SessionEvent {
 }
 
 /// @nodoc
+abstract class _$$_RemoveFromCreatingSessionCopyWith<$Res> {
+  factory _$$_RemoveFromCreatingSessionCopyWith(
+          _$_RemoveFromCreatingSession value,
+          $Res Function(_$_RemoveFromCreatingSession) then) =
+      __$$_RemoveFromCreatingSessionCopyWithImpl<$Res>;
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$_RemoveFromCreatingSessionCopyWithImpl<$Res>
+    extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_RemoveFromCreatingSessionCopyWith<$Res> {
+  __$$_RemoveFromCreatingSessionCopyWithImpl(
+      _$_RemoveFromCreatingSession _value,
+      $Res Function(_$_RemoveFromCreatingSession) _then)
+      : super(_value, (v) => _then(v as _$_RemoveFromCreatingSession));
+
+  @override
+  _$_RemoveFromCreatingSession get _value =>
+      super._value as _$_RemoveFromCreatingSession;
+
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_$_RemoveFromCreatingSession(
+      index == freezed
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
+  const _$_RemoveFromCreatingSession(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'SessionEvent.removeFromCreatingSession(index: $index)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RemoveFromCreatingSession &&
+            const DeepCollectionEquality().equals(other.index, index));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(index));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_RemoveFromCreatingSessionCopyWith<_$_RemoveFromCreatingSession>
+      get copyWith => __$$_RemoveFromCreatingSessionCopyWithImpl<
+          _$_RemoveFromCreatingSession>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
+  }) {
+    return removeFromCreatingSession(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+  }) {
+    return removeFromCreatingSession?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (removeFromCreatingSession != null) {
+      return removeFromCreatingSession(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+  }) {
+    return removeFromCreatingSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+  }) {
+    return removeFromCreatingSession?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (removeFromCreatingSession != null) {
+      return removeFromCreatingSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RemoveFromCreatingSession implements SessionEvent {
+  const factory _RemoveFromCreatingSession(final int index) =
+      _$_RemoveFromCreatingSession;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$_RemoveFromCreatingSessionCopyWith<_$_RemoveFromCreatingSession>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_StartSessionCopyWith<$Res> {
+  factory _$$_StartSessionCopyWith(
+          _$_StartSession value, $Res Function(_$_StartSession) then) =
+      __$$_StartSessionCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_StartSessionCopyWithImpl<$Res>
+    extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_StartSessionCopyWith<$Res> {
+  __$$_StartSessionCopyWithImpl(
+      _$_StartSession _value, $Res Function(_$_StartSession) _then)
+      : super(_value, (v) => _then(v as _$_StartSession));
+
+  @override
+  _$_StartSession get _value => super._value as _$_StartSession;
+}
+
+/// @nodoc
+
+class _$_StartSession implements _StartSession {
+  const _$_StartSession();
+
+  @override
+  String toString() {
+    return 'SessionEvent.startSession()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_StartSession);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
+  }) {
+    return startSession();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+  }) {
+    return startSession?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (startSession != null) {
+      return startSession();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+  }) {
+    return startSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+  }) {
+    return startSession?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (startSession != null) {
+      return startSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartSession implements SessionEvent {
+  const factory _StartSession() = _$_StartSession;
+}
+
+/// @nodoc
+abstract class _$$_EndSessionCopyWith<$Res> {
+  factory _$$_EndSessionCopyWith(
+          _$_EndSession value, $Res Function(_$_EndSession) then) =
+      __$$_EndSessionCopyWithImpl<$Res>;
+  $Res call({String sessionId, String userId});
+}
+
+/// @nodoc
+class __$$_EndSessionCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_EndSessionCopyWith<$Res> {
+  __$$_EndSessionCopyWithImpl(
+      _$_EndSession _value, $Res Function(_$_EndSession) _then)
+      : super(_value, (v) => _then(v as _$_EndSession));
+
+  @override
+  _$_EndSession get _value => super._value as _$_EndSession;
+
+  @override
+  $Res call({
+    Object? sessionId = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_$_EndSession(
+      sessionId == freezed
+          ? _value.sessionId
+          : sessionId // ignore: cast_nullable_to_non_nullable
+              as String,
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EndSession implements _EndSession {
+  const _$_EndSession(this.sessionId, this.userId);
+
+  @override
+  final String sessionId;
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'SessionEvent.endSession(sessionId: $sessionId, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EndSession &&
+            const DeepCollectionEquality().equals(other.sessionId, sessionId) &&
+            const DeepCollectionEquality().equals(other.userId, userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(sessionId),
+      const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_EndSessionCopyWith<_$_EndSession> get copyWith =>
+      __$$_EndSessionCopyWithImpl<_$_EndSession>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
+  }) {
+    return endSession(sessionId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+  }) {
+    return endSession?.call(sessionId, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (endSession != null) {
+      return endSession(sessionId, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+  }) {
+    return endSession(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+  }) {
+    return endSession?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (endSession != null) {
+      return endSession(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EndSession implements SessionEvent {
+  const factory _EndSession(final String sessionId, final String userId) =
+      _$_EndSession;
+
+  String get sessionId;
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_EndSessionCopyWith<_$_EndSession> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetSessionHistoryCopyWith<$Res> {
+  factory _$$_GetSessionHistoryCopyWith(_$_GetSessionHistory value,
+          $Res Function(_$_GetSessionHistory) then) =
+      __$$_GetSessionHistoryCopyWithImpl<$Res>;
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$$_GetSessionHistoryCopyWithImpl<$Res>
+    extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_GetSessionHistoryCopyWith<$Res> {
+  __$$_GetSessionHistoryCopyWithImpl(
+      _$_GetSessionHistory _value, $Res Function(_$_GetSessionHistory) _then)
+      : super(_value, (v) => _then(v as _$_GetSessionHistory));
+
+  @override
+  _$_GetSessionHistory get _value => super._value as _$_GetSessionHistory;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_GetSessionHistory(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_GetSessionHistory implements _GetSessionHistory {
+  const _$_GetSessionHistory(this.userId);
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'SessionEvent.getSessionHistory(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GetSessionHistory &&
+            const DeepCollectionEquality().equals(other.userId, userId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GetSessionHistoryCopyWith<_$_GetSessionHistory> get copyWith =>
+      __$$_GetSessionHistoryCopyWithImpl<_$_GetSessionHistory>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
+  }) {
+    return getSessionHistory(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+  }) {
+    return getSessionHistory?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId)? createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (getSessionHistory != null) {
+      return getSessionHistory(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+  }) {
+    return getSessionHistory(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+  }) {
+    return getSessionHistory?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    required TResult orElse(),
+  }) {
+    if (getSessionHistory != null) {
+      return getSessionHistory(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSessionHistory implements SessionEvent {
+  const factory _GetSessionHistory(final String userId) = _$_GetSessionHistory;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_GetSessionHistoryCopyWith<_$_GetSessionHistory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$SessionState {
   List<GetSessionsResponseModel> get sessions =>
       throw _privateConstructorUsedError;
@@ -1087,6 +2044,10 @@ mixin _$SessionState {
       throw _privateConstructorUsedError;
   Map<String?, int>? get exercisesCount => throw _privateConstructorUsedError;
   String? get sessionId => throw _privateConstructorUsedError;
+  DateTime? get startTime => throw _privateConstructorUsedError;
+  DateTime? get endTime => throw _privateConstructorUsedError;
+  List<GetSessionHistoryResponseModel>? get history =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SessionStateCopyWith<SessionState> get copyWith =>
@@ -1105,7 +2066,10 @@ abstract class $SessionStateCopyWith<$Res> {
       String? message,
       Map<String?, List<GetSessionDetailResponseModel>>? detailsList,
       Map<String?, int>? exercisesCount,
-      String? sessionId});
+      String? sessionId,
+      DateTime? startTime,
+      DateTime? endTime,
+      List<GetSessionHistoryResponseModel>? history});
 }
 
 /// @nodoc
@@ -1125,6 +2089,9 @@ class _$SessionStateCopyWithImpl<$Res> implements $SessionStateCopyWith<$Res> {
     Object? detailsList = freezed,
     Object? exercisesCount = freezed,
     Object? sessionId = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_value.copyWith(
       sessions: sessions == freezed
@@ -1155,6 +2122,18 @@ class _$SessionStateCopyWithImpl<$Res> implements $SessionStateCopyWith<$Res> {
           ? _value.sessionId
           : sessionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      startTime: startTime == freezed
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: endTime == freezed
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      history: history == freezed
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<GetSessionHistoryResponseModel>?,
     ));
   }
 }
@@ -1173,7 +2152,10 @@ abstract class _$$_SessionStateCopyWith<$Res>
       String? message,
       Map<String?, List<GetSessionDetailResponseModel>>? detailsList,
       Map<String?, int>? exercisesCount,
-      String? sessionId});
+      String? sessionId,
+      DateTime? startTime,
+      DateTime? endTime,
+      List<GetSessionHistoryResponseModel>? history});
 }
 
 /// @nodoc
@@ -1196,6 +2178,9 @@ class __$$_SessionStateCopyWithImpl<$Res>
     Object? detailsList = freezed,
     Object? exercisesCount = freezed,
     Object? sessionId = freezed,
+    Object? startTime = freezed,
+    Object? endTime = freezed,
+    Object? history = freezed,
   }) {
     return _then(_$_SessionState(
       sessions: sessions == freezed
@@ -1226,6 +2211,18 @@ class __$$_SessionStateCopyWithImpl<$Res>
           ? _value.sessionId
           : sessionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      startTime: startTime == freezed
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      endTime: endTime == freezed
+          ? _value.endTime
+          : endTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      history: history == freezed
+          ? _value.history
+          : history // ignore: cast_nullable_to_non_nullable
+              as List<GetSessionHistoryResponseModel>?,
     ));
   }
 }
@@ -1240,7 +2237,10 @@ class _$_SessionState implements _SessionState {
       this.message,
       this.detailsList,
       this.exercisesCount,
-      this.sessionId});
+      this.sessionId,
+      this.startTime,
+      this.endTime,
+      this.history});
 
   @override
   final List<GetSessionsResponseModel> sessions;
@@ -1256,10 +2256,16 @@ class _$_SessionState implements _SessionState {
   final Map<String?, int>? exercisesCount;
   @override
   final String? sessionId;
+  @override
+  final DateTime? startTime;
+  @override
+  final DateTime? endTime;
+  @override
+  final List<GetSessionHistoryResponseModel>? history;
 
   @override
   String toString() {
-    return 'SessionState(sessions: $sessions, exercises: $exercises, details: $details, message: $message, detailsList: $detailsList, exercisesCount: $exercisesCount, sessionId: $sessionId)';
+    return 'SessionState(sessions: $sessions, exercises: $exercises, details: $details, message: $message, detailsList: $detailsList, exercisesCount: $exercisesCount, sessionId: $sessionId, startTime: $startTime, endTime: $endTime, history: $history)';
   }
 
   @override
@@ -1275,7 +2281,10 @@ class _$_SessionState implements _SessionState {
                 .equals(other.detailsList, detailsList) &&
             const DeepCollectionEquality()
                 .equals(other.exercisesCount, exercisesCount) &&
-            const DeepCollectionEquality().equals(other.sessionId, sessionId));
+            const DeepCollectionEquality().equals(other.sessionId, sessionId) &&
+            const DeepCollectionEquality().equals(other.startTime, startTime) &&
+            const DeepCollectionEquality().equals(other.endTime, endTime) &&
+            const DeepCollectionEquality().equals(other.history, history));
   }
 
   @override
@@ -1287,7 +2296,10 @@ class _$_SessionState implements _SessionState {
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(detailsList),
       const DeepCollectionEquality().hash(exercisesCount),
-      const DeepCollectionEquality().hash(sessionId));
+      const DeepCollectionEquality().hash(sessionId),
+      const DeepCollectionEquality().hash(startTime),
+      const DeepCollectionEquality().hash(endTime),
+      const DeepCollectionEquality().hash(history));
 
   @JsonKey(ignore: true)
   @override
@@ -1303,7 +2315,10 @@ abstract class _SessionState implements SessionState {
       final String? message,
       final Map<String?, List<GetSessionDetailResponseModel>>? detailsList,
       final Map<String?, int>? exercisesCount,
-      final String? sessionId}) = _$_SessionState;
+      final String? sessionId,
+      final DateTime? startTime,
+      final DateTime? endTime,
+      final List<GetSessionHistoryResponseModel>? history}) = _$_SessionState;
 
   @override
   List<GetSessionsResponseModel> get sessions;
@@ -1319,6 +2334,12 @@ abstract class _SessionState implements SessionState {
   Map<String?, int>? get exercisesCount;
   @override
   String? get sessionId;
+  @override
+  DateTime? get startTime;
+  @override
+  DateTime? get endTime;
+  @override
+  List<GetSessionHistoryResponseModel>? get history;
   @override
   @JsonKey(ignore: true)
   _$$_SessionStateCopyWith<_$_SessionState> get copyWith =>

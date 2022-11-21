@@ -57,4 +57,42 @@ class SessionService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+
+  Future<CreateSessionHistoryResponseModel> createSessionHistory(
+      CreateSessionHistoryRequestModel requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/sessionHistory/CreateNewSessionHistory/";
+    //var body = jsonEncode(requestModel.toJson());
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return CreateSessionHistoryResponseModel.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+  Future<List<GetSessionHistoryResponseModel>> getSessionHistory(
+      String? userId) async {
+    String url =
+        "http://als.cosplane.asia/api/sessionHistory/GetSessionHistoryByUserId?userId=";
+    final response = await http.get(Uri.parse(url + userId!));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> result = jsonDecode(response.body);
+      print(
+          "result: + ${result.map((e) => GetSessionHistoryResponseModel.fromJson(e)).toList()}");
+      return result
+          .map((e) => GetSessionHistoryResponseModel.fromJson(e))
+          .toList();
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 }

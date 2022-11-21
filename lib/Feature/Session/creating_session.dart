@@ -33,6 +33,8 @@ class _CurrentSessionState extends State<CurrentSession> {
     category_in_Session = cate;
   }
 
+  List<Exericse>? exercises;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -41,6 +43,11 @@ class _CurrentSessionState extends State<CurrentSession> {
     //LoadExBycate('3FA85F64-5717-4562-B3FC-2C963F66AFA5');
     //  categoryExercise= CategoryExercise(
     //       categoryId: '', categoryImage: '', categoryName: 'Tất cả');
+    exercises = context.read<SessionBloc>().state.exercises;
+  }
+
+  void refresh() {
+    setState(() {});
   }
 
   @override
@@ -142,15 +149,31 @@ class _CurrentSessionState extends State<CurrentSession> {
                   // SizedBox(
                   //   height: height * 0.05,
                   // ),
-                  Expanded(child: ListExceriseInSession(context)),
+                  Expanded(child: ListExceriseInSession(context, refresh)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          context.read<SessionBloc>().add(
-                              SessionEvent.createSessionRequested(
-                                  state.userId));
+                          if (exercises != null && exercises!.isNotEmpty) {
+                            context.read<SessionBloc>().add(
+                                SessionEvent.createSessionRequested(
+                                    state.userId));
+                          } else {
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: Text(
+                                          "Bạn vẫn chưa có bài tập nào trong buổi tập"),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: Text('OK'),
+                                        )
+                                      ],
+                                    ));
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: greenALS,
@@ -201,7 +224,10 @@ class _CurrentSessionState extends State<CurrentSession> {
   }
 }
 
-Widget ListExceriseInSession(BuildContext context) {
+Widget ListExceriseInSession(
+  BuildContext context,
+  VoidCallback refresh,
+) {
   return Container(
     child: Column(
       children: [
@@ -217,7 +243,11 @@ Widget ListExceriseInSession(BuildContext context) {
               itemCount: state.exercises?.length ?? 0,
               itemBuilder: (context, index) {
                 return CustomExerciseInSessionList(
-                    state.exercises?[index], context);
+                  state.exercises?[index],
+                  refresh,
+                  index,
+                  context,
+                );
               },
             );
             //}

@@ -13,4 +13,11 @@ class SessionEvent with _$SessionEvent {
       _GetSessionDetailRequested;
   const factory SessionEvent.getSessionsByUserId(String? userId) =
       _GetSessionsByUserId;
+  const factory SessionEvent.removeFromCreatingSession(int index) =
+      _RemoveFromCreatingSession;
+  const factory SessionEvent.startSession() = _StartSession;
+  const factory SessionEvent.endSession(String sessionId, String userId) =
+      _EndSession;
+  const factory SessionEvent.getSessionHistory(String userId) =
+      _GetSessionHistory;
 }
