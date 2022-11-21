@@ -23,6 +23,7 @@ import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:capstone_ui/services/api_chat.dart';
 import 'package:capstone_ui/services/api_Session.dart';
 import 'package:capstone_ui/services/api_login.dart';
+import 'package:capstone_ui/services/api_register.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

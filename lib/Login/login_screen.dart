@@ -10,6 +10,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
+import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -239,11 +240,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 TextButton(
                                     onPressed: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             RoleScreen()));
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RoleScreen()));
                                     },
                                     child: Text('Đăng ký',
                                         style: TextStyle(
