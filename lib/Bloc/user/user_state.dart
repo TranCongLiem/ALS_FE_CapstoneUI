@@ -13,6 +13,7 @@ class UserState with _$UserState {
     required String dateOfBirth,
     required bool isUpdatedProfilePatient,
     required bool isUpdatedInformationPatient,
+    required bool isUpdatedInformationSupporter,
     String? errorMessage,
     bool? success,
     String? message,
@@ -28,5 +29,6 @@ class UserState with _$UserState {
         dateOfBirth: '',
         isUpdatedProfilePatient: false,
         isUpdatedInformationPatient: false,
+        isUpdatedInformationSupporter: false,
       );
 }
