@@ -289,40 +289,53 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   Widget getGraphWidget2() {
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextFormField(
-              controller: titleController,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: (() {
-                      onListen();
-                    }),
-                    icon: Icon(Icons.mic),
-                  ),
-                  border: myinputborder(),
-                  enabledBorder: myinputborder(),
-                  focusedBorder: myfocusborder(),
-                  labelStyle: TextStyle(fontSize: 20.0)),
-              onChanged: (value) {
-                _textSpeech = value;
-                // context
-                //     .read<CreateRecordBloc>()
-                //     .add(CreateRecordEvent.recordNameChanged(value));
-              },
+      child: Form(
+        autovalidateMode: AutovalidateMode.always,
+        key: formkey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: (() {
+                        onListen();
+                      }),
+                      icon: Icon(Icons.mic),
+                    ),
+                    border: myinputborder(),
+                    enabledBorder: myinputborder(),
+                    focusedBorder: myfocusborder(),
+                    labelStyle: TextStyle(fontSize: 20.0)),
+                onChanged: (value) {
+                  _textSpeech = value;
+                  // context
+                  //     .read<CreateRecordBloc>()
+                  //     .add(CreateRecordEvent.recordNameChanged(value));
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Vui lòng nhập mô tả';
+                  } else if (value.length > 10) {
+                    return 'Chỉ nhập 10 số';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: FeatureButtonsView(
-              onUploadComplete: _onUploadComplete,
-              titleText: _textSpeech,
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: FeatureButtonsView(
+                onUploadComplete: _onUploadComplete,
+                titleText: _textSpeech,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
