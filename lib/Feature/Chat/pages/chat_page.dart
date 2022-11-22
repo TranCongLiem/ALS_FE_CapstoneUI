@@ -157,8 +157,12 @@ class ChatPageState extends State<ChatPage> {
       if (message.isEmpty) {
         context.read<UserChatBloc>().add(UserChatEvent.UpdateUserChatRequest(
             userIdFrom, userIdTo, content.toString()));
+        context.read<UserChatBloc>().add(UserChatEvent.NotificationChatRequest(
+            userIdFrom, userIdTo, content.toString()));
       } else {
         context.read<UserChatBloc>().add(UserChatEvent.UpdateUserChatRequest(
+            userIdFrom, userIdTo, message.toString()));
+        context.read<UserChatBloc>().add(UserChatEvent.NotificationChatRequest(
             userIdFrom, userIdTo, message.toString()));
       }
     } else {
