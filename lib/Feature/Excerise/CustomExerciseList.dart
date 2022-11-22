@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Components/Feature/Excerise/Excerise/category_ex.dart';
+import '../../Constant/constant.dart';
 import '../../Feature/News/detail_news.dart';
 import '../../Feature/News/model/article_model.dart';
 
@@ -242,7 +243,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
           child: Card(
             elevation: 3.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(0.0),
+              borderRadius: BorderRadius.circular(20.0),
             ),
             child: Column(
               children: [
@@ -281,7 +282,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                   maxLines: 5,
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 24.0,
+                                      fontSize: 23.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -298,7 +299,9 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                       onPressed: () {},
                                       child: Text(
                                         'Khó',
-                                        style: TextStyle(fontSize: 20.0),
+                                        style: TextStyle(
+                                            fontSize: 18.0,
+                                            color: Colors.white),
                                       )),
                                 ],
                               ),
@@ -318,7 +321,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                       exericse.Description ?? '',
                       maxLines: 5,
                       style: TextStyle(
-                        fontSize: 24.0,
+                        fontSize: 22.0,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -335,11 +338,11 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                             .add(SessionEvent.addToSession(exericse));
                       },
                       child: Text(
-                        "Thêm vào phiên tập của bạn",
+                        "Thêm vào phiên tập",
                         style: TextStyle(color: Colors.white, fontSize: 20.0),
                       ),
                       style: ElevatedButton.styleFrom(
-                          //backgroundColor: greenALS,
+                          backgroundColor: greenALS,
                           padding: EdgeInsets.all(15.0),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15.0)))),

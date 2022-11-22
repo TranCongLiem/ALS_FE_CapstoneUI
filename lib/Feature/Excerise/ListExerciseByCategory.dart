@@ -39,13 +39,13 @@ class ListExerciseByCategory extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(30.0),
+                  padding: EdgeInsets.all(10.0),
                   child: Text(
                     'Danh sách bài tập về ${categoryExericse.categoryName}',
                     style: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.grey),
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.black),
                   ),
                 ),
                 Expanded(child:
