@@ -1,16 +1,11 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
-import 'package:capstone_ui/Login/update_info.dart';
-import 'package:capstone_ui/Login/verify_phone.dart';
+import 'package:capstone_ui/Login/update_info_supporter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-
-import '../Feature/Supporter/Newsfeed/newfeeds.dart';
-import '../Splash/SharePreKey.dart';
 
 class RegisterScreenSupporter extends StatefulWidget {
   const RegisterScreenSupporter({Key? key}) : super(key: key);
@@ -32,8 +27,10 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
           if (state.isRegisterSupporter) {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => RegisterInfo()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => RegisterInfoSupporter()));
           }
         },
         builder: (context, state) {
