@@ -25,6 +25,7 @@ import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import '../../Components/BottomNavBar/bottom_nav_bar.dart';
+import 'view_all_exercise.dart';
 
 class ListExcerise extends StatefulWidget {
   const ListExcerise({Key? key}) : super(key: key);
@@ -297,10 +298,17 @@ class WidgetEx2 extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          Text(
-            'Xem tất cả',
-            style: TextStyle(
-              color: Colors.blueAccent,
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ViewAll()));
+            },
+            child: Text(
+              'Xem tất cả',
+              style: TextStyle(
+                  color: Colors.blueAccent,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
             ),
           ),
         ],
