@@ -10,4 +10,6 @@ class AuthenticateEvent with _$AuthenticateEvent {
   const factory AuthenticateEvent.registrationRequested() =
       _RegistrationRequested;
   const factory AuthenticateEvent.authCheckRequested() = _AuthCheckRequested;
+  const factory AuthenticateEvent.Logout() = _LogoutRequested;
+
 }

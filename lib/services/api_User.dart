@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:capstone_ui/Model/AddRelationshipWithPatient_model.dart';
 import 'package:capstone_ui/Model/getProfileUser_model.dart';
 import 'package:capstone_ui/Model/updateProfilePatient_model.dart';
 import 'package:http/http.dart' as http;
@@ -79,6 +80,25 @@ class UserPatientService {
     }
   }
 
+  Future<AddRelationwithPatientResponse> AddRelationWithPatient(AddRelationwithPatientRequest requestModel) async {
+    String url ="https://als.cosplane.asia/api/user/AddRelationShipWithPatient";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+    
+      return AddRelationwithPatientResponse.fromJson(
+          json.decode(response.body));
+    } else {
+  
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
   Future<GetProfileUserByIdResponeModel> getProfileUserById(
       GetProfileUserByIdRequestModel requestModel) async {
     String url = "https://als.cosplane.asia/api/user/GetDetailUserByID?id=" +
@@ -118,7 +138,9 @@ class UserPatientService {
       throw Exception('Lỗi dữ liệu');
     }
   }
-   Future<GetPhoneByIdResponeModel> getPhoneNumberById(GetPhoneByIdRequestModel requestModel) async {
+
+  Future<GetPhoneByIdResponeModel> getPhoneNumberById(
+      GetPhoneByIdRequestModel requestModel) async {
     String url = "https://als.cosplane.asia/api/user/GetDetailUserByID?id=" +
         requestModel.userId;
     final response = await http.get(
@@ -130,8 +152,7 @@ class UserPatientService {
       //  body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == 200) {
-      return GetPhoneByIdResponeModel.fromJson(
-          json.decode(response.body));
+      return GetPhoneByIdResponeModel.fromJson(json.decode(response.body));
     } else {
       throw Exception('Lỗi dữ liệu');
     }

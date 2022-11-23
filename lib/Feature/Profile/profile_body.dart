@@ -118,7 +118,8 @@ Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel
                             ),
                           ),
                           Text(
-                            getProfileUserByIdResponeModel.fullName.toString(),
+                            //getProfileUserByIdResponeModel.fullName.toString(),
+                            getProfileUserByIdResponeModel.fullName??'',
                             style: TextStyle(
                               fontSize: 22,
                               color: Colors.black,

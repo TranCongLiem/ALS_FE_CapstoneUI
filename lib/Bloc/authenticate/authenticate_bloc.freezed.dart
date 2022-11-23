@@ -23,6 +23,7 @@ mixin _$AuthenticateEvent {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$AuthenticateEvent {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$AuthenticateEvent {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,7 @@ mixin _$AuthenticateEvent {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +65,7 @@ mixin _$AuthenticateEvent {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +75,7 @@ mixin _$AuthenticateEvent {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -164,6 +170,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) {
     return phoneNumberChanged(phoneNumber);
   }
@@ -176,6 +183,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) {
     return phoneNumberChanged?.call(phoneNumber);
   }
@@ -188,6 +196,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -205,6 +214,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) {
     return phoneNumberChanged(this);
   }
@@ -217,6 +227,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -229,6 +240,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -318,6 +330,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) {
     return passwordChanged(password);
   }
@@ -330,6 +343,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) {
     return passwordChanged?.call(password);
   }
@@ -342,6 +356,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -359,6 +374,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) {
     return passwordChanged(this);
   }
@@ -371,6 +387,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) {
     return passwordChanged?.call(this);
   }
@@ -383,6 +400,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -447,6 +465,7 @@ class _$_LoginRequested implements _LoginRequested {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) {
     return loginRequested();
   }
@@ -459,6 +478,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) {
     return loginRequested?.call();
   }
@@ -471,6 +491,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -488,6 +509,7 @@ class _$_LoginRequested implements _LoginRequested {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) {
     return loginRequested(this);
   }
@@ -500,6 +522,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) {
     return loginRequested?.call(this);
   }
@@ -512,6 +535,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -572,6 +596,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) {
     return registrationRequested();
   }
@@ -584,6 +609,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) {
     return registrationRequested?.call();
   }
@@ -596,6 +622,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) {
     if (registrationRequested != null) {
@@ -613,6 +640,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) {
     return registrationRequested(this);
   }
@@ -625,6 +653,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) {
     return registrationRequested?.call(this);
   }
@@ -637,6 +666,7 @@ class _$_RegistrationRequested implements _RegistrationRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) {
     if (registrationRequested != null) {
@@ -696,6 +726,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     required TResult Function() loginRequested,
     required TResult Function() registrationRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
   }) {
     return authCheckRequested();
   }
@@ -708,6 +739,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
   }) {
     return authCheckRequested?.call();
   }
@@ -720,6 +752,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function()? loginRequested,
     TResult Function()? registrationRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     required TResult orElse(),
   }) {
     if (authCheckRequested != null) {
@@ -737,6 +770,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     required TResult Function(_RegistrationRequested value)
         registrationRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
   }) {
     return authCheckRequested(this);
   }
@@ -749,6 +783,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
   }) {
     return authCheckRequested?.call(this);
   }
@@ -761,6 +796,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationRequested value)? registrationRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     required TResult orElse(),
   }) {
     if (authCheckRequested != null) {
@@ -775,12 +811,143 @@ abstract class _AuthCheckRequested implements AuthenticateEvent {
 }
 
 /// @nodoc
+abstract class _$$_LogoutRequestedCopyWith<$Res> {
+  factory _$$_LogoutRequestedCopyWith(
+          _$_LogoutRequested value, $Res Function(_$_LogoutRequested) then) =
+      __$$_LogoutRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutRequestedCopyWithImpl<$Res>
+    extends _$AuthenticateEventCopyWithImpl<$Res>
+    implements _$$_LogoutRequestedCopyWith<$Res> {
+  __$$_LogoutRequestedCopyWithImpl(
+      _$_LogoutRequested _value, $Res Function(_$_LogoutRequested) _then)
+      : super(_value, (v) => _then(v as _$_LogoutRequested));
+
+  @override
+  _$_LogoutRequested get _value => super._value as _$_LogoutRequested;
+}
+
+/// @nodoc
+
+class _$_LogoutRequested implements _LogoutRequested {
+  const _$_LogoutRequested();
+
+  @override
+  String toString() {
+    return 'AuthenticateEvent.Logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LogoutRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() loginRequested,
+    required TResult Function() registrationRequested,
+    required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
+  }) {
+    return Logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? loginRequested,
+    TResult Function()? registrationRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+  }) {
+    return Logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? loginRequested,
+    TResult Function()? registrationRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    required TResult orElse(),
+  }) {
+    if (Logout != null) {
+      return Logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_LoginRequested value) loginRequested,
+    required TResult Function(_RegistrationRequested value)
+        registrationRequested,
+    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
+  }) {
+    return Logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationRequested value)? registrationRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+  }) {
+    return Logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationRequested value)? registrationRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    required TResult orElse(),
+  }) {
+    if (Logout != null) {
+      return Logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogoutRequested implements AuthenticateEvent {
+  const factory _LogoutRequested() = _$_LogoutRequested;
+}
+
+/// @nodoc
 mixin _$AuthenticateState {
   String get userId => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
+  String get relationshipWith => throw _privateConstructorUsedError;
   String? get role => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -800,6 +967,7 @@ abstract class $AuthenticateStateCopyWith<$Res> {
       String password,
       String fullName,
       bool isAuthenticated,
+      String relationshipWith,
       String? role,
       String? errorMessage});
 }
@@ -820,6 +988,7 @@ class _$AuthenticateStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? fullName = freezed,
     Object? isAuthenticated = freezed,
+    Object? relationshipWith = freezed,
     Object? role = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -844,6 +1013,10 @@ class _$AuthenticateStateCopyWithImpl<$Res>
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
+      relationshipWith: relationshipWith == freezed
+          ? _value.relationshipWith
+          : relationshipWith // ignore: cast_nullable_to_non_nullable
+              as String,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -869,6 +1042,7 @@ abstract class _$$_AuthenticateStateCopyWith<$Res>
       String password,
       String fullName,
       bool isAuthenticated,
+      String relationshipWith,
       String? role,
       String? errorMessage});
 }
@@ -891,6 +1065,7 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? fullName = freezed,
     Object? isAuthenticated = freezed,
+    Object? relationshipWith = freezed,
     Object? role = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -915,6 +1090,10 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
+      relationshipWith: relationshipWith == freezed
+          ? _value.relationshipWith
+          : relationshipWith // ignore: cast_nullable_to_non_nullable
+              as String,
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -936,6 +1115,7 @@ class _$_AuthenticateState implements _AuthenticateState {
       required this.password,
       required this.fullName,
       required this.isAuthenticated,
+      required this.relationshipWith,
       this.role,
       this.errorMessage});
 
@@ -950,13 +1130,15 @@ class _$_AuthenticateState implements _AuthenticateState {
   @override
   final bool isAuthenticated;
   @override
+  final String relationshipWith;
+  @override
   final String? role;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, fullName: $fullName, isAuthenticated: $isAuthenticated, role: $role, errorMessage: $errorMessage)';
+    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, fullName: $fullName, isAuthenticated: $isAuthenticated, relationshipWith: $relationshipWith, role: $role, errorMessage: $errorMessage)';
   }
 
   @override
@@ -971,6 +1153,8 @@ class _$_AuthenticateState implements _AuthenticateState {
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality()
                 .equals(other.isAuthenticated, isAuthenticated) &&
+            const DeepCollectionEquality()
+                .equals(other.relationshipWith, relationshipWith) &&
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
@@ -984,6 +1168,7 @@ class _$_AuthenticateState implements _AuthenticateState {
       const DeepCollectionEquality().hash(password),
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(isAuthenticated),
+      const DeepCollectionEquality().hash(relationshipWith),
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(errorMessage));
 
@@ -1001,6 +1186,7 @@ abstract class _AuthenticateState implements AuthenticateState {
       required final String password,
       required final String fullName,
       required final bool isAuthenticated,
+      required final String relationshipWith,
       final String? role,
       final String? errorMessage}) = _$_AuthenticateState;
 
@@ -1014,6 +1200,8 @@ abstract class _AuthenticateState implements AuthenticateState {
   String get fullName;
   @override
   bool get isAuthenticated;
+  @override
+  String get relationshipWith;
   @override
   String? get role;
   @override

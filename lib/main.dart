@@ -13,6 +13,7 @@ import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:capstone_ui/Components/PageRoute/route_generator.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Splash/splash_screen.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:capstone_ui/services/api_Exercise.dart';
 import 'package:capstone_ui/services/api_ListKnowledge.dart';
@@ -33,11 +34,11 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Bloc/authenticate/create_sos_noti/create_sos_noti_bloc.dart';
 import 'Bloc/create_post/create_post_bloc.dart';
 
 import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 
+import 'Bloc/create_sos_noti/create_sos_noti_bloc.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
 import 'Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
@@ -248,8 +249,9 @@ class MyApp extends StatelessWidget {
               fontFamily: 'San',
             ),
             debugShowCheckedModeBanner: false,
-            initialRoute: '/login',
-            onGenerateRoute: RouteGenerator.generateRoute,
+            // initialRoute: '/login',
+            // onGenerateRoute: RouteGenerator.generateRoute,
+            home:  SplashScreen(),
           ),
         ),
       ),
