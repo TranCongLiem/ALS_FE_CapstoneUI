@@ -5,8 +5,7 @@ import 'package:http/http.dart' as http;
 
 import '../Model/register_model.dart';
 
-class UserService {
-  static bool authenticated = false;
+class RegisterService {
   static bool registerPatient = false;
   static bool registerSupporter = false;
 
@@ -21,10 +20,10 @@ class UserService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == HttpStatus.ok) {
-      UserService.registerPatient = true;
+      RegisterService.registerPatient = true;
       return RegisterResponseModel.fromJson(json.decode(response.body));
     } else {
-      UserService.registerPatient = false;
+      RegisterService.registerPatient = false;
       throw Exception('Lỗi dữ liệu');
     }
   }
@@ -40,10 +39,10 @@ class UserService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == HttpStatus.ok) {
-      UserService.registerSupporter = true;
+      RegisterService.registerSupporter = true;
       return RegisterResponseModel.fromJson(json.decode(response.body));
     } else {
-      UserService.registerSupporter = false;
+      RegisterService.registerSupporter = false;
       throw Exception('Lỗi dữ liệu');
     }
   }
@@ -54,36 +53,5 @@ class UserService {
 
   bool isRegisterSupporter() {
     return registerSupporter;
-  }
-
-  Future<LoginResponeModel> login(LoginRequestModel requestModel) async {
-    //String url = "https://reqres.in/api/login";
-    String url = "https://als.cosplane.asia/api/user/LoginUserMobile/";
-
-    // final response= await http.post(Uri.parse(url), body: requestModel.toJson());
-    // if(response.statusCode == 200 || response.statusCode == 400){
-    //   return LoginResponeModel.fromJson(json.decode(response.body));
-    // }else{
-    //   throw Exception('Lỗi dữ liệu');
-    // }
-
-    final response = await http.post(
-      Uri.parse(url),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: jsonEncode(requestModel.toJson()),
-    );
-    if (response.statusCode == HttpStatus.ok) {
-      UserService.authenticated = true;
-      return LoginResponeModel.fromJson(json.decode(response.body));
-    } else {
-      UserService.authenticated = false;
-      throw Exception('Lỗi dữ liệu');
-    }
-  }
-
-  bool isUserAuthenticated() {
-    return authenticated;
   }
 }

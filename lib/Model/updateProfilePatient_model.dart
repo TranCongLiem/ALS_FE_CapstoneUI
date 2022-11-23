@@ -49,6 +49,28 @@ class UpdateInformationPatientRequestModel {
   }
 }
 
+class UpdateInformationSupporterRequestModel {
+  String userId;
+  String fullName;
+  String imageUser;
+  String address;
+
+  UpdateInformationSupporterRequestModel({
+    required this.userId,
+    required this.fullName,
+    required this.address,
+    required this.imageUser,
+  });
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'fullName': fullName,
+      'address': address,
+      'imageUser': imageUser,
+    };
+    return map;
+  }
+}
+
 class UpdateProfilePatientResponeModel {
   bool? success;
   String? message;

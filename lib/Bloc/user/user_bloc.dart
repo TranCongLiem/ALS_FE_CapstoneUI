@@ -52,6 +52,26 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    on<_UpdateInformationSupporterRequest>((event, emit) async {
+      UpdateInformationSupporterRequestModel reqModel =
+          UpdateInformationSupporterRequestModel(
+        userId: event.userId,
+        fullName: state.fullName,
+        address: state.address,
+        imageUser: state.imageUser,
+      );
+      final result = await _userService.updateInformationSupporter(reqModel);
+      if (result.message != null && result.success != null) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+          isUpdatedInformationSupporter: true,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: ""));
+      }
+    });
+
     on<_GetProfileUserByIdRequest>((event, emit) async {
       GetProfileUserByIdRequestModel reqModel =
           GetProfileUserByIdRequestModel(userId: event.userId);

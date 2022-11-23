@@ -4,12 +4,11 @@ class GetProfileUserByIdRequestModel {
   GetProfileUserByIdRequestModel({required this.userId});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'userId':userId.trim(),
+      'userId': userId.trim(),
     };
     return map;
   }
 }
-
 
 class GetProfileUserByIdResponeModel {
   String? fullName;
@@ -19,13 +18,14 @@ class GetProfileUserByIdResponeModel {
 
   factory GetProfileUserByIdResponeModel.fromJson(Map<String, dynamic> json) {
     return GetProfileUserByIdResponeModel(
+
       fullName: json["fullName"],
       address: json["address"],
       imageUser: json["imageUser"]
     );
+
   }
 }
-
 
 class GetRelatinshipWithUserByIdRequestModel {
   String userId;
@@ -33,7 +33,7 @@ class GetRelatinshipWithUserByIdRequestModel {
   GetRelatinshipWithUserByIdRequestModel({required this.userId});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'userId':userId.trim(),
+      'userId': userId.trim(),
     };
     return map;
   }
@@ -41,13 +41,13 @@ class GetRelatinshipWithUserByIdRequestModel {
 
 class GetRelatinshipWithUserByIdResponeModel {
   String? RelationshipWith;
-  
+
   GetRelatinshipWithUserByIdResponeModel({this.RelationshipWith});
 
-  factory GetRelatinshipWithUserByIdResponeModel.fromJson(Map<String, dynamic> json) {
+  factory GetRelatinshipWithUserByIdResponeModel.fromJson(
+      Map<String, dynamic> json) {
     return GetRelatinshipWithUserByIdResponeModel(
       RelationshipWith: json["relationshipWith"],
-     
     );
   }
 }
@@ -58,7 +58,7 @@ class GetPhoneByIdRequestModel {
   GetPhoneByIdRequestModel({required this.userId});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
-      'userId':userId.trim(),
+      'userId': userId.trim(),
     };
     return map;
   }
@@ -66,16 +66,12 @@ class GetPhoneByIdRequestModel {
 
 class GetPhoneByIdResponeModel {
   String? phoneNumber;
-  
+
   GetPhoneByIdResponeModel({this.phoneNumber});
 
   factory GetPhoneByIdResponeModel.fromJson(Map<String, dynamic> json) {
     return GetPhoneByIdResponeModel(
       phoneNumber: json["phoneNumber"],
-     
     );
   }
 }
-
-
-
