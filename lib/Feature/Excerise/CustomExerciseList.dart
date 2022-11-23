@@ -117,7 +117,10 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                         context
                             .read<SessionBloc>()
                             .add(SessionEvent.addToSession(exericse));
-                        Fluttertoast.showToast(msg: 'Đã thêm vào phiên tập');
+                        Fluttertoast.showToast(
+                            msg: 'Đã thêm vào phiên tập',
+                            backgroundColor: greenALS,
+                            fontSize: 18.0);
                       },
                       child: Text(
                         "Thêm vào phiên tập",

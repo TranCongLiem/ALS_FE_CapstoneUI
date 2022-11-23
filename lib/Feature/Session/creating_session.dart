@@ -80,7 +80,10 @@ class _CurrentSessionState extends State<CurrentSession> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ListExcerise()));
-                            Fluttertoast.showToast(msg: 'Tạo thành công');
+                            Fluttertoast.showToast(
+                              msg: 'Tạo thành công',
+                              backgroundColor: greenALS.withOpacity(0.7),
+                            );
                           } else {
                             showDialog(
                                 context: context,

@@ -2,10 +2,10 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../Bloc/user/user_bloc.dart';
-import '../../Constant/profile_widget.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
 import 'dart:io';
@@ -88,6 +88,9 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                   TextButton(
                     onPressed: () {
                       uploadInfo(widget.userId);
+                      Fluttertoast.showToast(
+                          msg: 'Cập nhật tài khoản thành công',
+                          backgroundColor: greenALS.withOpacity(0.7));
                     },
                     child: Text(
                       'Lưu',
