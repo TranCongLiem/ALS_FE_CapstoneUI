@@ -57,8 +57,8 @@ class ProfileInfo extends StatelessWidget {
                                 ),
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      "assets/images/logo_Avatar.jpg"),
+                                  image: 
+                                  NetworkImage(state.getProfileUserByIdResponeModel.imageUser.toString())
                                 ),
                               ),
                             ),
@@ -67,7 +67,7 @@ class ProfileInfo extends StatelessWidget {
                                   .toString(),
                               style: TextStyle(
                                 fontSize: 22,
-                                color: Colors.black,
+                                color: Colors.green,
                               ),
                             ),
                           ],

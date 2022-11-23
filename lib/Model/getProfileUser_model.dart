@@ -18,9 +18,12 @@ class GetProfileUserByIdResponeModel {
 
   factory GetProfileUserByIdResponeModel.fromJson(Map<String, dynamic> json) {
     return GetProfileUserByIdResponeModel(
-        fullName: json["fullName"],
-        address: json["address"],
-        imageUser: json["imageUser"]);
+
+      fullName: json["fullName"],
+      address: json["address"],
+      imageUser: json["imageUser"]
+    );
+
   }
 }
 

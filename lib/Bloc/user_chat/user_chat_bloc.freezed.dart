@@ -25,6 +25,9 @@ mixin _$UserChatEvent {
     required TResult Function(
             String userIdFrom, String userIdTo, String lastMessage)
         UpdateUserChatRequest,
+    required TResult Function(
+            String userIdFrom, String userIdTo, String lastMessage)
+        NotificationChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +35,8 @@ mixin _$UserChatEvent {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +44,8 @@ mixin _$UserChatEvent {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,18 +54,22 @@ mixin _$UserChatEvent {
     required TResult Function(_UpdateHasSeenRequest value) UpdateHasSeenRequest,
     required TResult Function(_UpdateUserChatRequest value)
         UpdateUserChatRequest,
+    required TResult Function(_NotificationChatRequest value)
+        NotificationChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -187,6 +198,9 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
     required TResult Function(
             String userIdFrom, String userIdTo, String lastMessage)
         UpdateUserChatRequest,
+    required TResult Function(
+            String userIdFrom, String userIdTo, String lastMessage)
+        NotificationChatRequest,
   }) {
     return UpdateHasSeenRequest(userIdFrom, userIdTo);
   }
@@ -197,6 +211,8 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
   }) {
     return UpdateHasSeenRequest?.call(userIdFrom, userIdTo);
   }
@@ -207,6 +223,8 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
     required TResult orElse(),
   }) {
     if (UpdateHasSeenRequest != null) {
@@ -221,6 +239,8 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
     required TResult Function(_UpdateHasSeenRequest value) UpdateHasSeenRequest,
     required TResult Function(_UpdateUserChatRequest value)
         UpdateUserChatRequest,
+    required TResult Function(_NotificationChatRequest value)
+        NotificationChatRequest,
   }) {
     return UpdateHasSeenRequest(this);
   }
@@ -230,6 +250,7 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
   }) {
     return UpdateHasSeenRequest?.call(this);
   }
@@ -239,6 +260,7 @@ class _$_UpdateHasSeenRequest implements _UpdateHasSeenRequest {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
     required TResult orElse(),
   }) {
     if (UpdateHasSeenRequest != null) {
@@ -358,6 +380,9 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
     required TResult Function(
             String userIdFrom, String userIdTo, String lastMessage)
         UpdateUserChatRequest,
+    required TResult Function(
+            String userIdFrom, String userIdTo, String lastMessage)
+        NotificationChatRequest,
   }) {
     return UpdateUserChatRequest(userIdFrom, userIdTo, lastMessage);
   }
@@ -368,6 +393,8 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
   }) {
     return UpdateUserChatRequest?.call(userIdFrom, userIdTo, lastMessage);
   }
@@ -378,6 +405,8 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
     TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
     TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
         UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
     required TResult orElse(),
   }) {
     if (UpdateUserChatRequest != null) {
@@ -392,6 +421,8 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
     required TResult Function(_UpdateHasSeenRequest value) UpdateHasSeenRequest,
     required TResult Function(_UpdateUserChatRequest value)
         UpdateUserChatRequest,
+    required TResult Function(_NotificationChatRequest value)
+        NotificationChatRequest,
   }) {
     return UpdateUserChatRequest(this);
   }
@@ -401,6 +432,7 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
   }) {
     return UpdateUserChatRequest?.call(this);
   }
@@ -410,6 +442,7 @@ class _$_UpdateUserChatRequest implements _UpdateUserChatRequest {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
     TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
     required TResult orElse(),
   }) {
     if (UpdateUserChatRequest != null) {
@@ -434,6 +467,192 @@ abstract class _UpdateUserChatRequest implements UserChatEvent {
   @JsonKey(ignore: true)
   _$$_UpdateUserChatRequestCopyWith<_$_UpdateUserChatRequest> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_NotificationChatRequestCopyWith<$Res>
+    implements $UserChatEventCopyWith<$Res> {
+  factory _$$_NotificationChatRequestCopyWith(_$_NotificationChatRequest value,
+          $Res Function(_$_NotificationChatRequest) then) =
+      __$$_NotificationChatRequestCopyWithImpl<$Res>;
+  @override
+  $Res call({String userIdFrom, String userIdTo, String lastMessage});
+}
+
+/// @nodoc
+class __$$_NotificationChatRequestCopyWithImpl<$Res>
+    extends _$UserChatEventCopyWithImpl<$Res>
+    implements _$$_NotificationChatRequestCopyWith<$Res> {
+  __$$_NotificationChatRequestCopyWithImpl(_$_NotificationChatRequest _value,
+      $Res Function(_$_NotificationChatRequest) _then)
+      : super(_value, (v) => _then(v as _$_NotificationChatRequest));
+
+  @override
+  _$_NotificationChatRequest get _value =>
+      super._value as _$_NotificationChatRequest;
+
+  @override
+  $Res call({
+    Object? userIdFrom = freezed,
+    Object? userIdTo = freezed,
+    Object? lastMessage = freezed,
+  }) {
+    return _then(_$_NotificationChatRequest(
+      userIdFrom == freezed
+          ? _value.userIdFrom
+          : userIdFrom // ignore: cast_nullable_to_non_nullable
+              as String,
+      userIdTo == freezed
+          ? _value.userIdTo
+          : userIdTo // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastMessage == freezed
+          ? _value.lastMessage
+          : lastMessage // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_NotificationChatRequest implements _NotificationChatRequest {
+  const _$_NotificationChatRequest(
+      this.userIdFrom, this.userIdTo, this.lastMessage);
+
+  @override
+  final String userIdFrom;
+  @override
+  final String userIdTo;
+  @override
+  final String lastMessage;
+
+  @override
+  String toString() {
+    return 'UserChatEvent.NotificationChatRequest(userIdFrom: $userIdFrom, userIdTo: $userIdTo, lastMessage: $lastMessage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_NotificationChatRequest &&
+            const DeepCollectionEquality()
+                .equals(other.userIdFrom, userIdFrom) &&
+            const DeepCollectionEquality().equals(other.userIdTo, userIdTo) &&
+            const DeepCollectionEquality()
+                .equals(other.lastMessage, lastMessage));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userIdFrom),
+      const DeepCollectionEquality().hash(userIdTo),
+      const DeepCollectionEquality().hash(lastMessage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_NotificationChatRequestCopyWith<_$_NotificationChatRequest>
+      get copyWith =>
+          __$$_NotificationChatRequestCopyWithImpl<_$_NotificationChatRequest>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userIdFrom, String userIdTo)
+        UpdateHasSeenRequest,
+    required TResult Function(
+            String userIdFrom, String userIdTo, String lastMessage)
+        UpdateUserChatRequest,
+    required TResult Function(
+            String userIdFrom, String userIdTo, String lastMessage)
+        NotificationChatRequest,
+  }) {
+    return NotificationChatRequest(userIdFrom, userIdTo, lastMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
+  }) {
+    return NotificationChatRequest?.call(userIdFrom, userIdTo, lastMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userIdFrom, String userIdTo)? UpdateHasSeenRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        UpdateUserChatRequest,
+    TResult Function(String userIdFrom, String userIdTo, String lastMessage)?
+        NotificationChatRequest,
+    required TResult orElse(),
+  }) {
+    if (NotificationChatRequest != null) {
+      return NotificationChatRequest(userIdFrom, userIdTo, lastMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateHasSeenRequest value) UpdateHasSeenRequest,
+    required TResult Function(_UpdateUserChatRequest value)
+        UpdateUserChatRequest,
+    required TResult Function(_NotificationChatRequest value)
+        NotificationChatRequest,
+  }) {
+    return NotificationChatRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
+    TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
+  }) {
+    return NotificationChatRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateHasSeenRequest value)? UpdateHasSeenRequest,
+    TResult Function(_UpdateUserChatRequest value)? UpdateUserChatRequest,
+    TResult Function(_NotificationChatRequest value)? NotificationChatRequest,
+    required TResult orElse(),
+  }) {
+    if (NotificationChatRequest != null) {
+      return NotificationChatRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NotificationChatRequest implements UserChatEvent {
+  const factory _NotificationChatRequest(
+      final String userIdFrom,
+      final String userIdTo,
+      final String lastMessage) = _$_NotificationChatRequest;
+
+  @override
+  String get userIdFrom;
+  @override
+  String get userIdTo;
+  String get lastMessage;
+  @override
+  @JsonKey(ignore: true)
+  _$$_NotificationChatRequestCopyWith<_$_NotificationChatRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc

@@ -11,6 +11,7 @@ import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
+import '../../Home/home.dart';
 import 'cloud_record_list_view.dart';
 
 class HomeViewRecord extends StatefulWidget {
@@ -60,7 +61,15 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0)))),
+                                    bottomRight: Radius.circular(20.0))),
+                            leading: IconButton(
+                                icon:
+                                    Icon(Icons.arrow_back, color: Colors.white),
+                                onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Home()),
+                                    ))),
                         body: SafeArea(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),

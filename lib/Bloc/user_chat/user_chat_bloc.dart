@@ -12,7 +12,7 @@ class UserChatBloc extends Bloc<UserChatEvent, UserChatState> {
   UserChatBloc(this._chatService) : super(UserChatState.initial()) {
     on<_UpdateHasSeenRequest>((event, emit) async {
       UpdateHasSeenReQuestModel reqModel = UpdateHasSeenReQuestModel(
-          userIdFrom: event.userIdFrom, userIdTo : event.userIdTo);
+          userIdFrom: event.userIdFrom, userIdTo: event.userIdTo);
       final result = await _chatService.updateHasSeen(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -21,11 +21,13 @@ class UserChatBloc extends Bloc<UserChatEvent, UserChatState> {
         ));
       } else {
         emit(state.copyWith(errorMessage: "  "));
-      }    
-      });    
+      }
+    });
     on<_UpdateUserChatRequest>((event, emit) async {
       UpdateUserChatReQuestModel reqModel = UpdateUserChatReQuestModel(
-          userIdFrom: event.userIdFrom, userIdTo : event.userIdTo,lastMessage: event.lastMessage);
+          userIdFrom: event.userIdFrom,
+          userIdTo: event.userIdTo,
+          lastMessage: event.lastMessage);
       final result = await _chatService.updateUserChat(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -34,8 +36,19 @@ class UserChatBloc extends Bloc<UserChatEvent, UserChatState> {
         ));
       } else {
         emit(state.copyWith(errorMessage: "  "));
-      }    
-      });  
+      }
+    });
+    on<_NotificationChatRequest>((event, emit) async {
+      PushNotificationChatReQuestModel reqModel = PushNotificationChatReQuestModel(
+          userIdFrom: event.userIdFrom,
+          userIdTo: event.userIdTo,
+          lastMessage: event.lastMessage);
+      final result = await _chatService.pushNotificationChatting(reqModel);
+      if (result == true) {
+        
+      } else {
+        emit(state.copyWith(errorMessage: "  "));
+      }
+    });
   }
 }
-

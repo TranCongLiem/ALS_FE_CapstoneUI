@@ -3,12 +3,14 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../Bloc/authenticate/authenticate_bloc.dart';
 import '../../Bloc/create_post/create_post_bloc.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
+import '../Chat/constants/color_constants.dart';
 import 'newfeeds.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
@@ -99,7 +101,6 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                         CurvedAnimation(
                           parent: animation,
                           curve: Curves.bounceIn,
-
                         ),
                       ),
                       child: child,
@@ -203,10 +204,41 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                       'Bạn đang nghĩ gì...',
                                                   border: InputBorder.none,
                                                   suffixIcon: IconButton(
-                                                    onPressed: (() {
+                                                    onPressed: () async {
+                                                      PermissionStatus
+                                                          microStatus =
+                                                          await Permission
+                                                              .microphone
+                                                              .request();
+                                                      if (microStatus ==
+                                                          PermissionStatus
+                                                              .granted) {}
+                                                      if (microStatus ==
+                                                          PermissionStatus
+                                                              .denied) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                const SnackBar(
+                                                                    content: Text(
+                                                                        'Yêu cầu cấp quyền truy cập vào micro')));
+                                                      }
+                                                      if (microStatus ==
+                                                          PermissionStatus
+                                                              .permanentlyDenied) {
+                                                        openAppSettings();
+                                                      }
+
                                                       onListen();
-                                                    }),
-                                                    icon: Icon(Icons.mic),
+                                                    },
+                                                    icon: Icon(
+                                                      _speech.isListening
+                                                          ? Icons.mic
+                                                          : Icons.mic_none,
+                                                      color: _speech.isListening
+                                                          ? greenALS
+                                                          : Colors.grey,
+                                                    ),
                                                   )),
                                               style: TextStyle(
                                                   color: Colors.black87,
@@ -318,7 +350,6 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                               ),
                             ),
                           ],
-
                         ),
                       ),
                     )
@@ -352,7 +383,9 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
       context
           .read<CreatePostBloc>()
           .add(CreatePostEvent.captionChanged(_textSpeech));
-      context.read<CreatePostBloc>().add(CreatePostEvent.createPostRequest(userId));
+      context
+          .read<CreatePostBloc>()
+          .add(CreatePostEvent.createPostRequest(userId));
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Tạo bài viết thành công')));
@@ -379,5 +412,4 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
       setState(() {});
     }
   }
-
 }

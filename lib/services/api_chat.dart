@@ -78,4 +78,21 @@ class ChatService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+
+  Future<bool> pushNotificationChatting(
+      PushNotificationChatReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/userchat/PushChattingNotificationToUser";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 }

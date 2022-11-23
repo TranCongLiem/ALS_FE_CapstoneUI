@@ -118,7 +118,7 @@ class _ProfiletState extends State<Profile> {
                           Icon(Icons.view_agenda),
                           SizedBox(width: 20),
                           Text(
-                            'Lịc sử bài đăng',
+                            'Lịch sử bài đăng',
                             style: TextStyle(
                               fontSize: 16,
                               color: Colors.black,

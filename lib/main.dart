@@ -44,6 +44,7 @@ import 'Bloc/bottom_nav_bar_supporter/bottom_nav_bar_supporter_bloc.dart';
 import 'Bloc/exercise/exercise_bloc_bloc.dart';
 import 'Bloc/list_group_chat/list_group_chat_bloc.dart';
 import 'Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
+import 'Bloc/list_user_group_chat/list_user_group_chat_bloc.dart';
 import 'Bloc/post/post_bloc.dart';
 import 'Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
 import 'Bloc/react_post/react_post_bloc.dart';
@@ -243,9 +244,15 @@ class MyApp extends StatelessWidget {
               create: (context) => PushNotiToSupporterBloc(
                   RepositoryProvider.of<ShortCutNotificationService>(context)),
             ),
+
+             BlocProvider(
+              create: (context) =>
+                  CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
+            ),
             BlocProvider(
-              create: (context) => CreateSosNotiBloc(
-                  RepositoryProvider.of<UserPatientService>(context)),
+              create: (context) =>
+                  ListUserGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
+
             ),
             BlocProvider(
                 create: (context) => SessionBloc(

@@ -20,8 +20,12 @@ mixin _$UserEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -40,8 +44,12 @@ mixin _$UserEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -60,8 +68,12 @@ mixin _$UserEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -253,8 +265,12 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -276,8 +292,12 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -299,8 +319,12 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -505,8 +529,12 @@ class _$_UpdateInformationPatientRequest
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -528,8 +556,12 @@ class _$_UpdateInformationPatientRequest
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -551,8 +583,12 @@ class _$_UpdateInformationPatientRequest
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -944,6 +980,7 @@ abstract class _$$_GetProfileUserByIdRequestCopyWith<$Res> {
           _$_GetProfileUserByIdRequest value,
           $Res Function(_$_GetProfileUserByIdRequest) then) =
       __$$_GetProfileUserByIdRequestCopyWithImpl<$Res>;
+  $Res call({String userId});
 }
 
 /// @nodoc
@@ -958,35 +995,62 @@ class __$$_GetProfileUserByIdRequestCopyWithImpl<$Res>
   @override
   _$_GetProfileUserByIdRequest get _value =>
       super._value as _$_GetProfileUserByIdRequest;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_GetProfileUserByIdRequest(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
-  const _$_GetProfileUserByIdRequest();
+  const _$_GetProfileUserByIdRequest(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'UserEvent.getProfileUserByIdRequest()';
+    return 'UserEvent.getProfileUserByIdRequest(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetProfileUserByIdRequest);
+            other is _$_GetProfileUserByIdRequest &&
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GetProfileUserByIdRequestCopyWith<_$_GetProfileUserByIdRequest>
+      get copyWith => __$$_GetProfileUserByIdRequestCopyWithImpl<
+          _$_GetProfileUserByIdRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -1000,7 +1064,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
-    return getProfileUserByIdRequest();
+    return getProfileUserByIdRequest(userId);
   }
 
   @override
@@ -1008,8 +1072,12 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1023,7 +1091,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
-    return getProfileUserByIdRequest?.call();
+    return getProfileUserByIdRequest?.call(userId);
   }
 
   @override
@@ -1031,8 +1099,12 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1048,7 +1120,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult orElse(),
   }) {
     if (getProfileUserByIdRequest != null) {
-      return getProfileUserByIdRequest();
+      return getProfileUserByIdRequest(userId);
     }
     return orElse();
   }
@@ -1155,7 +1227,13 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
 }
 
 abstract class _GetProfileUserByIdRequest implements UserEvent {
-  const factory _GetProfileUserByIdRequest() = _$_GetProfileUserByIdRequest;
+  const factory _GetProfileUserByIdRequest(final String userId) =
+      _$_GetProfileUserByIdRequest;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_GetProfileUserByIdRequestCopyWith<_$_GetProfileUserByIdRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1224,8 +1302,12 @@ class _$_GetFullName implements _GetFullName {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -1247,8 +1329,12 @@ class _$_GetFullName implements _GetFullName {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1270,8 +1356,12 @@ class _$_GetFullName implements _GetFullName {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1468,8 +1558,12 @@ class _$_GetAddress implements _GetAddress {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -1491,8 +1585,12 @@ class _$_GetAddress implements _GetAddress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1514,8 +1612,12 @@ class _$_GetAddress implements _GetAddress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1712,8 +1814,12 @@ class _$_GetImageUser implements _GetImageUser {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -1735,8 +1841,12 @@ class _$_GetImageUser implements _GetImageUser {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1758,8 +1868,12 @@ class _$_GetImageUser implements _GetImageUser {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -1956,8 +2070,12 @@ class _$_Getcondition implements _Getcondition {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -1979,8 +2097,12 @@ class _$_Getcondition implements _Getcondition {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2002,8 +2124,12 @@ class _$_Getcondition implements _Getcondition {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2200,6 +2326,9 @@ class _$_Getcause implements _Getcause {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
     required TResult Function(String fullName) getFullName,
@@ -2223,8 +2352,12 @@ class _$_Getcause implements _Getcause {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2246,8 +2379,12 @@ class _$_Getcause implements _Getcause {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2446,8 +2583,12 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -2469,8 +2610,12 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2492,8 +2637,12 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2672,8 +2821,12 @@ class _$_UpdateProfilePatientCheckRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -2695,8 +2848,12 @@ class _$_UpdateProfilePatientCheckRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2718,8 +2875,12 @@ class _$_UpdateProfilePatientCheckRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2895,8 +3056,12 @@ class _$_UpdateInformationPatientCheckRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -2918,8 +3083,12 @@ class _$_UpdateInformationPatientCheckRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -2941,8 +3110,12 @@ class _$_UpdateInformationPatientCheckRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -3118,8 +3291,12 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -3141,8 +3318,12 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -3164,8 +3345,12 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -3334,8 +3519,12 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
+
+    required TResult Function(String userId) getProfileUserByIdRequest,
+
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function() getProfileUserByIdRequest,
+
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
     required TResult Function(String imageUser) getImageUser,
@@ -3357,8 +3546,12 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
@@ -3380,8 +3573,12 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
+
+    TResult Function(String userId)? getProfileUserByIdRequest,
+
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function()? getProfileUserByIdRequest,
+
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
     TResult Function(String imageUser)? getImageUser,
