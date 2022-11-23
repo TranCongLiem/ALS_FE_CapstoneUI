@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
 import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
@@ -241,23 +240,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 child: Text(
                                   'Quên mật khẩu',
                                   style: TextStyle(
-
                                       fontSize: 18.sp,
                                       fontStyle: FontStyle.italic,
                                       color: Colors.black),
                                 )),
                             TextButton(
-                              onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => RoleScreen()));
-                              },
-                              // child: Text('Chưa có tài khoản? Đăng ký'),
-                              // style: ButtonStyle(
-                              //   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                              //
-                              // ),
+                              onPressed: () {},
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -267,26 +255,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                         color: Colors.black, fontSize: 18.sp),
                                   ),
                                   TextButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RoleScreen()));
-                                    },
-                                    child: Text('Đăng ký',
-                                        style: TextStyle(
-                                            color: greenALS,
-                                            fontSize: 18.sp,
-                                            fontFamily: 'GothamB'))),
-                                
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    RoleScreen()));
+                                      },
+                                      child: Text('Đăng ký',
+                                          style: TextStyle(
+                                              color: greenALS,
+                                              fontSize: 18.sp,
+                                              fontFamily: 'GothamB'))),
+                                ],
                               ),
-
-                                      color: Colors.black, fontSize: 18.sp),
-                                ),
-                                
-                              ],
-
                             ),
                           ],
                         ),
