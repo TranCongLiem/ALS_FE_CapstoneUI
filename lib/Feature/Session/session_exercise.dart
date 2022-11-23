@@ -3,18 +3,10 @@ import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
 import 'package:capstone_ui/Feature/Session/creating_session.dart';
-import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
-import 'package:capstone_ui/services/api_Session.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getwidget/getwidget.dart';
-
 import '../../Bloc/categoryExercise/category_exercise_bloc.dart';
 import '../../Bloc/exercise/exercise_bloc_bloc.dart';
-import '../../Model/getListCategory_model.dart';
 import '../../services/api_CategoryExercise.dart';
 import '../../services/api_Exercise.dart';
 
@@ -60,16 +52,15 @@ class _SessionExerciseState extends State<SessionExercise> {
       ],
       child: BlocBuilder<SessionBloc, SessionState>(
         builder: (context, state) {
-          return SafeArea(
-              child: Scaffold(
+          return Scaffold(
             appBar: AppBar(
-              leading: BackButton(color: Colors.black),
-              backgroundColor: Colors.transparent,
+              leading: BackButton(color: Colors.white),
+              backgroundColor: greenALS,
               elevation: 0,
               title: Text(
                 'Tạo buổi tập',
                 style: TextStyle(
-                    color: Colors.black54,
+                    color: Colors.white,
                     fontSize: 26.0,
                     fontWeight: FontWeight.w500),
               ),
@@ -80,9 +71,9 @@ class _SessionExerciseState extends State<SessionExercise> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                      height: 50,
+                      padding: EdgeInsets.only(top: 20.0),
+                      height: MediaQuery.of(context).size.height * 0.08,
                       child: Expanded(
-                        //oke
                         child: BlocBuilder<CategoryExerciseBlocBloc,
                                 CategoryExerciseBlocState>(
                             builder: (context, state) {
@@ -101,7 +92,10 @@ class _SessionExerciseState extends State<SessionExercise> {
                                         bool select = true;
                                         return Container(
                                           margin: EdgeInsets.only(right: 16),
-                                          width: 100,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.2,
                                           child: TextButton(
                                               onPressed: () {
                                                 setState(() {
@@ -121,11 +115,8 @@ class _SessionExerciseState extends State<SessionExercise> {
                                                 });
                                               },
                                               style: TextButton.styleFrom(
-                                                  backgroundColor: (select ==
-                                                          false)
-                                                      ? greenALS
-                                                      : Color.fromARGB(
-                                                          137, 83, 180, 87)),
+                                                  backgroundColor: greenALS
+                                                      .withOpacity(0.7)),
                                               child: Text(
                                                 state.list[index]
                                                         .categoryName ??
@@ -134,10 +125,8 @@ class _SessionExerciseState extends State<SessionExercise> {
                                                 //category_in_Session = state.list[index].categoryName,
                                                 style: TextStyle(
                                                     fontSize: 26,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: (select == false)
-                                                        ? Colors.white
-                                                        : Colors.black),
+                                                    fontWeight: FontWeight.w800,
+                                                    color: Colors.white),
                                               )),
                                         );
                                       }),
@@ -153,63 +142,36 @@ class _SessionExerciseState extends State<SessionExercise> {
                       ),
                     ),
                     SizedBox(
-                      height: height * 0.05,
+                      height: height * 0.02,
                     ),
                     Expanded(child: ListExceriseByCateInSession(context)),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //     context.read<SessionBloc>().add(
-                        //         SessionEvent.createSessionRequested(
-                        //             state.userId));
-                        //   },
-                        //   style: ElevatedButton.styleFrom(
-                        //     primary: greenALS,
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(25),
-                        //     ),
-                        //     elevation: 15.0,
-                        //   ),
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.all(20.0),
-                        //     child: Text(
-                        //       'Tạo buổi tập',
-                        //       style: TextStyle(fontSize: 20),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(width: 10),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CurrentSession()));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue[300],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
-                            elevation: 15.0,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Text(
-                              'Buổi tập hiện tại',
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CurrentSession()));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue[300],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                      ],
+                        elevation: 15.0,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          'Buổi tập hiện tại',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
                     ),
                   ],
                 );
               },
             ),
-          ));
+          );
         },
       ),
     );
@@ -222,10 +184,7 @@ Widget ListExceriseByCateInSession(BuildContext context) {
       children: [
         Expanded(child: BlocBuilder<ExerciseBlocBloc, ExerciseBlocState>(
             builder: (context, state) {
-          print('abc' + state.toString());
           if (state is ExerciseLoadedState) {
-            print('Print ExState');
-
             return ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.list.length,

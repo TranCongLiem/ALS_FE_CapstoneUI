@@ -2,21 +2,13 @@ import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Session/CustomExerciseInSessionList.dart';
-import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
+import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
-import 'package:capstone_ui/services/api_Session.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:getwidget/getwidget.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../Bloc/categoryExercise/category_exercise_bloc.dart';
-import '../../Bloc/exercise/exercise_bloc_bloc.dart';
-import '../../Model/getListCategory_model.dart';
-import '../../services/api_CategoryExercise.dart';
-import '../../services/api_Exercise.dart';
+import '../Excerise/ListExcerise.dart';
 
 class CurrentSession extends StatefulWidget {
   const CurrentSession({super.key});
@@ -56,18 +48,17 @@ class _CurrentSessionState extends State<CurrentSession> {
     final double width = MediaQuery.of(context).size.height;
     return BlocBuilder<SessionBloc, SessionState>(
       builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
+        return Scaffold(
           appBar: AppBar(
-            leading: BackButton(color: Colors.black),
-            backgroundColor: Colors.transparent,
+            leading: BackButton(color: Colors.white),
+            backgroundColor: greenALS,
             elevation: 0,
             title: Text(
               'Tạo buổi tập',
               style: TextStyle(
-                  color: Colors.black54,
+                  color: Colors.white,
                   fontSize: 26.0,
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.w700),
             ),
           ),
           body: BlocBuilder<AuthenticateBloc, AuthenticateState>(
@@ -75,80 +66,6 @@ class _CurrentSessionState extends State<CurrentSession> {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  // Container(
-                  //   height: 50,
-                  //   child: Expanded(
-                  //     //oke
-                  //     child: BlocBuilder<CategoryExerciseBlocBloc,
-                  //         CategoryExerciseBlocState>(builder: (context, state) {
-                  //       if (state is CategoryExerciseLoadedState) {
-                  //         return ListView(
-                  //           physics: ClampingScrollPhysics(),
-                  //           children: [
-                  //             Container(
-                  //               height: 50,
-                  //               child: ListView.builder(
-                  //                   itemCount: state.list.length,
-                  //                   padding: EdgeInsets.only(left: 16),
-                  //                   scrollDirection: Axis.horizontal,
-                  //                   itemBuilder: (context, index) {
-                  //                     // return CustomCategoryListInSession(state.list[index], context);
-                  //                     bool select = true;
-                  //                     return Container(
-                  //                       margin: EdgeInsets.only(right: 16),
-                  //                       width: 100,
-                  //                       child: TextButton(
-                  //                           onPressed: () {
-                  //                             setState(() {
-                  //                               print(
-                  //                                   'cateID:  $state.list[index].categoryId');
-                  //                               category_in_Session = state
-                  //                                       .list[index]
-                  //                                       .categoryId ??
-                  //                                   '';
-
-                  //                               BlocProvider.of<
-                  //                                           ExerciseBlocBloc>(
-                  //                                       context)
-                  //                                   .add(LoadExerciseByCateEvent(
-                  //                                       categoryId:
-                  //                                           category_in_Session));
-                  //                             });
-                  //                           },
-                  //                           style: TextButton.styleFrom(
-                  //                               backgroundColor:
-                  //                                   (select == false)
-                  //                                       ? greenALS
-                  //                                       : Color.fromARGB(
-                  //                                           137, 83, 180, 87)),
-                  //                           child: Text(
-                  //                             state.list[index].categoryName ??
-                  //                                 '',
-                  //                             textAlign: TextAlign.center,
-                  //                             //category_in_Session = state.list[index].categoryName,
-                  //                             style: TextStyle(
-                  //                                 fontSize: 26,
-                  //                                 fontWeight: FontWeight.w500,
-                  //                                 color: (select == false)
-                  //                                     ? Colors.white
-                  //                                     : Colors.black),
-                  //                           )),
-                  //                     );
-                  //                   }),
-                  //             ),
-                  //           ],
-                  //         );
-                  //       }
-                  //       return Center(
-                  //         child: CircularProgressIndicator(),
-                  //       );
-                  //     }),
-                  //     //--//oke
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: height * 0.05,
-                  // ),
                   Expanded(child: ListExceriseInSession(context, refresh)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -159,6 +76,11 @@ class _CurrentSessionState extends State<CurrentSession> {
                             context.read<SessionBloc>().add(
                                 SessionEvent.createSessionRequested(
                                     state.userId));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ListExcerise()));
+                            Fluttertoast.showToast(msg: 'Tạo thành công');
                           } else {
                             showDialog(
                                 context: context,
@@ -190,35 +112,13 @@ class _CurrentSessionState extends State<CurrentSession> {
                           ),
                         ),
                       ),
-                      // SizedBox(width: 10),
-                      // ElevatedButton(
-                      //   onPressed: () {
-                      //     context.read<SessionBloc>().add(
-                      //         SessionEvent.createSessionRequested(
-                      //             state.userId));
-                      //   },
-                      //   style: ElevatedButton.styleFrom(
-                      //     primary: Colors.blue[300],
-                      //     shape: RoundedRectangleBorder(
-                      //       borderRadius: BorderRadius.circular(25),
-                      //     ),
-                      //     elevation: 15.0,
-                      //   ),
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.all(20.0),
-                      //     child: Text(
-                      //       'Buổi tập hiện tại',
-                      //       style: TextStyle(fontSize: 20),
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ],
               );
             },
           ),
-        ));
+        );
       },
     );
   }
@@ -234,10 +134,6 @@ Widget ListExceriseInSession(
         Expanded(
           child:
               BlocBuilder<SessionBloc, SessionState>(builder: (context, state) {
-            //print('abc' + state.toString());
-            // if (state is ExerciseLoadedState) {
-            //   print('Print ExState');
-
             return ListView.builder(
               scrollDirection: Axis.vertical,
               itemCount: state.exercises?.length ?? 0,

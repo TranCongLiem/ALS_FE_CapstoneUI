@@ -316,15 +316,15 @@ class _SaveRecordingState extends State<SaveRecording> {
                   //     .read<CreateRecordBloc>()
                   //     .add(CreateRecordEvent.recordNameChanged(value));
                 },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Vui lòng nhập mô tả';
-                  } else if (value.length > 10) {
-                    return 'Chỉ nhập 10 số';
-                  } else {
-                    return null;
-                  }
-                },
+                // validator: (value) {
+                //   if (value!.isEmpty) {
+                //     return 'Vui lòng nhập mô tả';
+                //   } else if (value.length > 10) {
+                //     return 'Chỉ nhập 10 số';
+                //   } else {
+                //     return null;
+                //   }
+                // },
               ),
             ),
             Padding(

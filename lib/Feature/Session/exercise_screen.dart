@@ -1,8 +1,6 @@
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class ExerciseVideoScreen extends StatefulWidget {

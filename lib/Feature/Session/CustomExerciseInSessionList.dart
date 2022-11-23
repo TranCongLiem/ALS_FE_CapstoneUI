@@ -1,12 +1,8 @@
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Components/Feature/Excerise/Excerise/category_ex.dart';
-import '../News/detail_news.dart';
-import '../News/model/article_model.dart';
 
 Widget CustomExerciseInSessionList(
   Exericse? exericse,
@@ -29,7 +25,7 @@ Widget CustomExerciseInSessionList(
       child: Card(
         elevation: 3.0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0.0),
+          borderRadius: BorderRadius.circular(20.0),
         ),
         child: Column(
           children: [
@@ -67,8 +63,8 @@ Widget CustomExerciseInSessionList(
                               maxLines: 5,
                               style: TextStyle(
                                   color: Colors.black,
-                                  fontSize: 24.0,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.w900),
                             ),
                           ),
                           SizedBox(
@@ -78,13 +74,12 @@ Widget CustomExerciseInSessionList(
                             children: [
                               TextButton(
                                   style: TextButton.styleFrom(
-                                      // foregroundColor:
-                                      //Colors.white,
                                       backgroundColor: Colors.red[400]),
                                   onPressed: () {},
                                   child: Text(
                                     'Khó',
-                                    style: TextStyle(fontSize: 20.0),
+                                    style: TextStyle(
+                                        fontSize: 18.0, color: Colors.white),
                                   )),
                             ],
                           ),
@@ -104,7 +99,7 @@ Widget CustomExerciseInSessionList(
                   exericse?.Description ?? '',
                   maxLines: 5,
                   style: TextStyle(
-                    fontSize: 24.0,
+                    fontSize: 20.0,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
@@ -121,7 +116,7 @@ Widget CustomExerciseInSessionList(
                     refresh();
                   },
                   child: Text(
-                    "Xóa khỏi phiên tập của bạn",
+                    "Xóa khỏi phiên tập",
                     style: TextStyle(color: Colors.white, fontSize: 20.0),
                   ),
                   style: ElevatedButton.styleFrom(

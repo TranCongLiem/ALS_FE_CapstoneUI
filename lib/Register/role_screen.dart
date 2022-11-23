@@ -2,6 +2,9 @@ import 'package:capstone_ui/Register/register_screen.dart';
 import 'package:capstone_ui/Register/register_supporter_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../Constant/constant.dart';
+import '../Login/login_screen.dart';
+
 class RoleScreen extends StatefulWidget {
   const RoleScreen({Key? key}) : super(key: key);
 
@@ -26,110 +29,143 @@ class _RoleScreenState extends State<RoleScreen> {
           backgroundColor: const Color(0xffffffff),
         ),
       ),
-      // appBar: AppBar(
-      //
-      //   title: Image.asset('assets/images/logo_als2.png', width: 100,),
-      //   centerTitle: true,
-      //   backgroundColor: const Color(0xffffffff),
-      // ),
-
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Text(
                 'Đăng ký với vai trò',
-                style: TextStyle(fontSize: 35),
+                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Material(
-                elevation: 8,
-                borderRadius: BorderRadius.circular(20),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                color: Colors.green,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    InkWell(
-                      splashColor: Colors.white70,
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => RegisterScreenPatient()));
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Ink.image(
-                            image: const AssetImage(
-                                'assets/images/role_patient.png'),
-                            height: 150,
-                            width: 300,
-                            fit: BoxFit.cover,
-                          ),
-                          SizedBox(
-                            height: 6,
-                          ),
-                          Text(
-                            'Bệnh nhân',
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 28,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Material(
-              elevation: 8,
-              borderRadius: BorderRadius.circular(20),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              color: Colors.green,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  InkWell(
-                    splashColor: Colors.black26,
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => RegisterScreenSupporter()));
-                    },
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
+            Column(
+              children: [
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Expanded(
+                    child: Stack(
+                      alignment: Alignment.center,
                       children: [
                         Ink.image(
-                          image: const AssetImage(
-                              'assets/images/role_supporter.png'),
-                          height: 150,
-                          width: 300,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(
-                          height: 6,
-                        ),
+                            height: MediaQuery.of(context).size.height * 0.27,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            fit: BoxFit.cover,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RegisterScreenPatient()));
+                              },
+                            ),
+                            image: AssetImage('assets/images/role_patient.png'),
+                            colorFilter: ColorFilter.mode(
+                              Colors.grey.withOpacity(0.85),
+                              BlendMode.modulate,
+                            )),
                         Text(
-                          'Người hỗ trợ',
+                          'BỆNH NHÂN',
                           style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 251, 252, 251),
+                            fontSize: 28.0,
                           ),
                         )
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  width: 12,
+                )
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.02,
+            ),
+            Column(
+              children: [
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  child: Expanded(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Ink.image(
+                            height: MediaQuery.of(context).size.height * 0.27,
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            fit: BoxFit.cover,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RegisterScreenSupporter()));
+                              },
+                            ),
+                            image:
+                                AssetImage('assets/images/role_supporter.png'),
+                            colorFilter: ColorFilter.mode(
+                              Colors.grey.withOpacity(0.85),
+                              BlendMode.modulate,
+                            )),
+                        Text(
+                          'NGƯỜI HỖ TRỢ',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 251, 252, 251),
+                              fontSize: 28.0),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 12,
+                )
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.1,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Đã có tài khoản?',
+                  style: TextStyle(color: Colors.black, fontSize: 22),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                    },
+                    style: ButtonStyle(
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18.0),
+                    ))),
+                    child: Text('Đăng nhập',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w600))),
+              ],
             ),
           ],
         ),

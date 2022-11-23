@@ -1,15 +1,10 @@
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Feature/Excerise/sessions_screen_.dart';
 import 'package:capstone_ui/Feature/Session/workout_screen.dart';
 import 'package:capstone_ui/Model/session_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
-
-import '../Excerise/VideoScreen.dart';
 
 class SessionDetail extends StatefulWidget {
   const SessionDetail({super.key, required this.details});
@@ -29,22 +24,20 @@ class _SessionDetailState extends State<SessionDetail> {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(color: Colors.black),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         title: Text(
           'Buổi tập',
           style: TextStyle(
               color: Colors.black54,
               fontSize: 26.0,
-              fontWeight: FontWeight.w500),
+              fontWeight: FontWeight.w800),
         ),
       ),
       body: BlocBuilder<SessionBloc, SessionState>(
         builder: (context, state) {
           if (widget.details != null || widget.details != []) {
             return Container(
-              // decoration: _playArea == false
-              //     ?
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -55,13 +48,8 @@ class _SessionDetailState extends State<SessionDetail> {
                   end: Alignment.topRight,
                 ),
               ),
-              // : BoxDecoration(
-              //     color: Colors.green.shade500.withOpacity(0.9),
-              //   ),
               child: Column(
                 children: [
-                  // _playArea == false
-                  //     ?
                   Container(
                     padding:
                         const EdgeInsets.only(top: 40, left: 30, right: 30),
@@ -130,32 +118,23 @@ class _SessionDetailState extends State<SessionDetail> {
                               shape: BoxShape.circle,
                               boxShadow: <BoxShadow>[
                                 BoxShadow(
-                                  color: Color.fromARGB(255, 53, 127, 238),
-                                  blurRadius: 8,
+                                  color: Colors.white,
+                                  blurRadius: 3,
                                   offset: Offset(2, 2),
                                 ),
                               ],
                             ),
                             child: CircleAvatar(
                               radius: 40,
-                              backgroundColor:
-                                  Color.fromARGB(255, 53, 127, 238),
+                              backgroundColor: Colors.white,
                               child: Icon(Icons.play_arrow,
-                                  size: 50, color: Colors.white),
+                                  size: 50, color: greenALS),
                             ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  // : Container(
-                  //     child: Column(
-                  //       children: [
-                  //         _playView(context),
-                  //         _controlView(context),
-                  //       ],
-                  //     ),
-                  //   ),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -170,140 +149,6 @@ class _SessionDetailState extends State<SessionDetail> {
                             height: 40,
                           ),
                           Expanded(
-                            //   child: ListView.builder(
-                            //     padding: EdgeInsets.symmetric(
-                            //       horizontal: 30,
-                            //       vertical: 8,
-                            //     ),
-                            //     itemCount: widget.details.length,
-                            //     itemBuilder: (context, index) {
-                            //       return GestureDetector(
-                            //         onTap: () {
-                            //           // Navigator.push(
-                            //           //     context,
-                            //           //     MaterialPageRoute(
-                            //           //         builder: (context) => Video(
-                            //           //             exericse: state
-                            //           //                 .details![index].exercise!)));
-                            //         },
-                            //         //   child: Container(
-                            //         //     height: 135,
-                            //         //     child: Column(
-                            //         //       children: [
-                            //         //         Row(
-                            //         //           children: [
-                            //         //             Container(
-                            //         //               height: 80,
-                            //         //               width: 80,
-                            //         //               decoration: BoxDecoration(
-                            //         //                 borderRadius:
-                            //         //                     BorderRadius.circular(10),
-                            //         //                 image: DecorationImage(
-                            //         //                   image: NetworkImage(
-                            //         //                       "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
-                            //         //                   fit: BoxFit.cover,
-                            //         //                 ),
-                            //         //               ),
-                            //         //             ),
-                            //         //             SizedBox(
-                            //         //               width: 10,
-                            //         //             ),
-                            //         //             Column(
-                            //         //               mainAxisAlignment:
-                            //         //                   MainAxisAlignment.center,
-                            //         //               crossAxisAlignment:
-                            //         //                   CrossAxisAlignment.start,
-                            //         //               children: [
-                            //         //                 Text(
-                            //         //                   widget.details[index]
-                            //         //                       .exercise!.ExerciseName
-                            //         //                       .toString(),
-                            //         //                   style: TextStyle(
-                            //         //                     fontSize: 19,
-                            //         //                     fontWeight: FontWeight.bold,
-                            //         //                   ),
-                            //         //                 ),
-                            //         //                 SizedBox(
-                            //         //                   height: 10,
-                            //         //                 ),
-                            //         //                 Padding(
-                            //         //                   padding:
-                            //         //                       EdgeInsets.only(top: 3),
-                            //         //                   child: Text(
-                            //         //                     "1 phút",
-                            //         //                     style: TextStyle(
-                            //         //                         color: Colors.grey[500],
-                            //         //                         fontSize: 15),
-                            //         //                   ),
-                            //         //                 ),
-                            //         //               ],
-                            //         //             ),
-                            //         //           ],
-                            //         //         ),
-                            //         //         SizedBox(
-                            //         //           height: 18,
-                            //         //         ),
-                            //         //         Row(
-                            //         //           children: [
-                            //         //             Container(
-                            //         //               width: 80,
-                            //         //               height: 20,
-                            //         //               decoration: BoxDecoration(
-                            //         //                 color: Color(0xFFeaeefc),
-                            //         //                 borderRadius:
-                            //         //                     BorderRadius.circular(5),
-                            //         //               ),
-                            //         //               child: Center(
-                            //         //                 child: Text(
-                            //         //                   "Nghỉ 15 giây",
-                            //         //                   style: TextStyle(
-                            //         //                     color: Color(0xFF839fed),
-                            //         //                   ),
-                            //         //                 ),
-                            //         //               ),
-                            //         //             ),
-                            //         //             Row(
-                            //         //               children: [
-                            //         //                 for (int i = 0; i < 50; i++)
-                            //         //                   i.isEven
-                            //         //                       ? Container(
-                            //         //                           width: 4,
-                            //         //                           height: 1,
-                            //         //                           decoration:
-                            //         //                               BoxDecoration(
-                            //         //                             color: Color(
-                            //         //                                 0xFF8e9fed),
-                            //         //                             borderRadius:
-                            //         //                                 BorderRadius
-                            //         //                                     .circular(
-                            //         //                                         2),
-                            //         //                           ),
-                            //         //                         )
-                            //         //                       : Container(
-                            //         //                           width: 4,
-                            //         //                           height: 1,
-                            //         //                           decoration:
-                            //         //                               BoxDecoration(
-                            //         //                             color: Colors.white,
-                            //         //                             borderRadius:
-                            //         //                                 BorderRadius
-                            //         //                                     .circular(
-                            //         //                                         2),
-                            //         //                           ),
-                            //         //                         )
-                            //         //               ],
-                            //         //             ),
-                            //         //           ],
-                            //         //         ),
-                            //         //       ],
-                            //         //     ),
-                            //         //   ),
-                            //         // );
-                            //         child: _buildCard(index),
-                            //       );
-                            //     },
-                            //   ),
-                            // ),
                             child: _listView(),
                           ),
                           Row(
@@ -324,7 +169,7 @@ class _SessionDetailState extends State<SessionDetail> {
                                   );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  primary: Color.fromARGB(255, 53, 127, 238),
+                                  backgroundColor: greenALS,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25),
                                   ),
@@ -365,127 +210,7 @@ class _SessionDetailState extends State<SessionDetail> {
       itemCount: widget.details.length,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () {
-            // _onTapVideo(index);
-            // setState(() {
-            //   if (_playArea == false) {
-            //     _playArea = true;
-            //   }
-            // });
-          },
-          //   child: Container(
-          //     height: 135,
-          //     child: Column(
-          //       children: [
-          //         Row(
-          //           children: [
-          //             Container(
-          //               height: 80,
-          //               width: 80,
-          //               decoration: BoxDecoration(
-          //                 borderRadius:
-          //                     BorderRadius.circular(10),
-          //                 image: DecorationImage(
-          //                   image: NetworkImage(
-          //                       "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
-          //                   fit: BoxFit.cover,
-          //                 ),
-          //               ),
-          //             ),
-          //             SizedBox(
-          //               width: 10,
-          //             ),
-          //             Column(
-          //               mainAxisAlignment:
-          //                   MainAxisAlignment.center,
-          //               crossAxisAlignment:
-          //                   CrossAxisAlignment.start,
-          //               children: [
-          //                 Text(
-          //                   widget.details[index]
-          //                       .exercise!.ExerciseName
-          //                       .toString(),
-          //                   style: TextStyle(
-          //                     fontSize: 19,
-          //                     fontWeight: FontWeight.bold,
-          //                   ),
-          //                 ),
-          //                 SizedBox(
-          //                   height: 10,
-          //                 ),
-          //                 Padding(
-          //                   padding:
-          //                       EdgeInsets.only(top: 3),
-          //                   child: Text(
-          //                     "1 phút",
-          //                     style: TextStyle(
-          //                         color: Colors.grey[500],
-          //                         fontSize: 15),
-          //                   ),
-          //                 ),
-          //               ],
-          //             ),
-          //           ],
-          //         ),
-          //         SizedBox(
-          //           height: 18,
-          //         ),
-          //         Row(
-          //           children: [
-          //             Container(
-          //               width: 80,
-          //               height: 20,
-          //               decoration: BoxDecoration(
-          //                 color: Color(0xFFeaeefc),
-          //                 borderRadius:
-          //                     BorderRadius.circular(5),
-          //               ),
-          //               child: Center(
-          //                 child: Text(
-          //                   "Nghỉ 15 giây",
-          //                   style: TextStyle(
-          //                     color: Color(0xFF839fed),
-          //                   ),
-          //                 ),
-          //               ),
-          //             ),
-          //             Row(
-          //               children: [
-          //                 for (int i = 0; i < 50; i++)
-          //                   i.isEven
-          //                       ? Container(
-          //                           width: 4,
-          //                           height: 1,
-          //                           decoration:
-          //                               BoxDecoration(
-          //                             color: Color(
-          //                                 0xFF8e9fed),
-          //                             borderRadius:
-          //                                 BorderRadius
-          //                                     .circular(
-          //                                         2),
-          //                           ),
-          //                         )
-          //                       : Container(
-          //                           width: 4,
-          //                           height: 1,
-          //                           decoration:
-          //                               BoxDecoration(
-          //                             color: Colors.white,
-          //                             borderRadius:
-          //                                 BorderRadius
-          //                                     .circular(
-          //                                         2),
-          //                           ),
-          //                         )
-          //               ],
-          //             ),
-          //           ],
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // );
+          onTap: () {},
           child: _buildCard(index),
         );
       },
@@ -520,6 +245,8 @@ class _SessionDetailState extends State<SessionDetail> {
                 children: [
                   Text(
                     widget.details[index].exercise!.ExerciseName.toString(),
+                    overflow: TextOverflow.fade,
+                    maxLines: 2,
                     style: TextStyle(
                       fontSize: 19,
                       fontWeight: FontWeight.bold,

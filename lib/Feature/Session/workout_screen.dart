@@ -6,10 +6,7 @@ import 'package:capstone_ui/Feature/Session/exercise_screen.dart';
 import 'package:capstone_ui/Feature/Session/video_controls_widget.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:capstone_ui/Model/session_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WorkoutScreen extends StatefulWidget {
@@ -40,12 +37,6 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   title: Text(currentExercise!.ExerciseName!),
-      //   centerTitle: true,
-      //   elevation: 0,
-      // ),
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
