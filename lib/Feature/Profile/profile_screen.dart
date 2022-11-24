@@ -130,65 +130,9 @@ class _ProfiletState extends State<Profile> {
                           ),
                         ),
                       ),
-                      // ProfileMenuItem(
-                      //   iconSrc: "assets/images/logout-svgrepo-com.svg",
-                      //   title: "Đăng xuất",
-                      //   press: () {},
-                      // ),
                       SizedBox(
-
-
-                    height: 20,
-                  ),
-                  // ProfileMenuItem(
-                  //   iconSrc: "assets/images/logout-svgrepo-com.svg",
-                  //   title: "Lịch sử bài đăng",
-                  //   press: () {
-                  //     Navigator.push(
-                  //         context,
-                  //         MaterialPageRoute(
-                  //             builder: (context) => ListNewsFeed()));
-                  //   },
-                  // ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ListNewsFeed()));
-                    },
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                      child: Row(
-                        children: [
-                          Icon(Icons.view_agenda),
-                          SizedBox(width: 20),
-                          Text(
-                            'Lịch sử bài đăng',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Spacer(),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            size: 16,
-                          )
-                        ],
-
+                        height: 20,
                       ),
-                      // ProfileMenuItem(
-                      //   iconSrc: "assets/images/logout-svgrepo-com.svg",
-                      //   title: "Lịch sử bài đăng",
-                      //   press: () {
-                      //     Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //             builder: (context) => ListNewsFeed()));
-                      //   },
-                      // ),
                       InkWell(
                         onTap: () {
                           Navigator.push(
@@ -204,7 +148,7 @@ class _ProfiletState extends State<Profile> {
                               Icon(Icons.view_agenda),
                               SizedBox(width: 20),
                               Text(
-                                'Lịc sử bài đăng',
+                                'Lịch sử bài đăng',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -217,6 +161,8 @@ class _ProfiletState extends State<Profile> {
                               )
                             ],
                           ),
+
+                          
                         ),
                       )
                     ],
@@ -243,32 +189,8 @@ class _ProfiletState extends State<Profile> {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
 
-    // Navigator.pushAndRemoveUntil(
-    //   context,
-    //   RouteGenerator.withName("/SplashScreen"),
-    //  ModalRoute.withName("/Home")
-    // );
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()));
   }
 }
 
-// class MyBottomNavBar extends StatelessWidget {
-//   MyBottomNavBar({required this.index, required this.callback});
-//   final int index;
-//   final Function(int) callback;
-//   @override
-//   Widget build(BuildContext context) {
-//     /// BottomNavigationBar is automatically set to type 'fixed'
-//     /// when there are three of less items
-//     return BottomNavigationBar(
-//       currentIndex: index,
-//       onTap: callback,
-//       items: <BottomNavigationBarItem>[
-//         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Trang chủ'),
-//         BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Tin tức'),
-//         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tài khoản'),
-//       ],
-//     );
-//   }
-// }

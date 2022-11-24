@@ -26,16 +26,13 @@ mixin _$AuthenticateEvent {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -48,16 +45,13 @@ mixin _$AuthenticateEvent {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,16 +64,13 @@ mixin _$AuthenticateEvent {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -93,9 +84,7 @@ mixin _$AuthenticateEvent {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -108,7 +97,6 @@ mixin _$AuthenticateEvent {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -121,9 +109,7 @@ mixin _$AuthenticateEvent {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -134,7 +120,6 @@ mixin _$AuthenticateEvent {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -147,9 +132,7 @@ mixin _$AuthenticateEvent {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -160,7 +143,6 @@ mixin _$AuthenticateEvent {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -258,16 +240,13 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) {
     return phoneNumberChanged(phoneNumber);
   }
@@ -283,16 +262,13 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) {
     return phoneNumberChanged?.call(phoneNumber);
   }
@@ -308,16 +284,13 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -337,9 +310,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -352,7 +323,6 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) {
     return phoneNumberChanged(this);
   }
@@ -368,9 +338,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -381,7 +349,6 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -397,9 +364,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -410,7 +375,6 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -503,16 +467,13 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) {
     return passwordChanged(password);
   }
@@ -528,16 +489,13 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) {
     return passwordChanged?.call(password);
   }
@@ -553,16 +511,13 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -582,9 +537,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -597,7 +550,6 @@ class _$_PasswordChanged implements _PasswordChanged {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) {
     return passwordChanged(this);
   }
@@ -613,9 +565,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -626,7 +576,6 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) {
     return passwordChanged?.call(this);
   }
@@ -642,9 +591,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -655,7 +602,6 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -723,16 +669,13 @@ class _$_LoginRequested implements _LoginRequested {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) {
     return loginRequested();
   }
@@ -748,16 +691,13 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) {
     return loginRequested?.call();
   }
@@ -773,16 +713,13 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -802,9 +739,7 @@ class _$_LoginRequested implements _LoginRequested {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -817,7 +752,6 @@ class _$_LoginRequested implements _LoginRequested {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) {
     return loginRequested(this);
   }
@@ -833,9 +767,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -846,7 +778,6 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) {
     return loginRequested?.call(this);
   }
@@ -862,9 +793,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -875,7 +804,6 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (loginRequested != null) {
@@ -977,6 +905,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -998,6 +927,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1019,6 +949,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1044,6 +975,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -1071,6 +1003,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1096,6 +1029,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1216,6 +1150,7 @@ class _$_RegistrationSupporterRequested
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -1237,6 +1172,7 @@ class _$_RegistrationSupporterRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1258,6 +1194,7 @@ class _$_RegistrationSupporterRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1283,6 +1220,7 @@ class _$_RegistrationSupporterRequested
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -1310,6 +1248,7 @@ class _$_RegistrationSupporterRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1335,6 +1274,7 @@ class _$_RegistrationSupporterRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1415,6 +1355,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -1436,6 +1377,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1457,6 +1399,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1482,6 +1425,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -1509,6 +1453,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1534,6 +1479,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1555,6 +1501,203 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
 
 abstract class _AuthCheckRequested implements AuthenticateEvent {
   const factory _AuthCheckRequested() = _$_AuthCheckRequested;
+}
+
+/// @nodoc
+abstract class _$$_LogoutRequestedCopyWith<$Res> {
+  factory _$$_LogoutRequestedCopyWith(
+          _$_LogoutRequested value, $Res Function(_$_LogoutRequested) then) =
+      __$$_LogoutRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LogoutRequestedCopyWithImpl<$Res>
+    extends _$AuthenticateEventCopyWithImpl<$Res>
+    implements _$$_LogoutRequestedCopyWith<$Res> {
+  __$$_LogoutRequestedCopyWithImpl(
+      _$_LogoutRequested _value, $Res Function(_$_LogoutRequested) _then)
+      : super(_value, (v) => _then(v as _$_LogoutRequested));
+
+  @override
+  _$_LogoutRequested get _value => super._value as _$_LogoutRequested;
+}
+
+/// @nodoc
+
+class _$_LogoutRequested implements _LogoutRequested {
+  const _$_LogoutRequested();
+
+  @override
+  String toString() {
+    return 'AuthenticateEvent.Logout()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LogoutRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() loginRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationPatientRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationSupporterRequested,
+    required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
+    required TResult Function() checkRegisterPatientRequested,
+    required TResult Function() checkRegisterSupporterRequested,
+    required TResult Function(String phoneNumber) phoneNumberChangedPatient,
+    required TResult Function(String password) passwordChangedPatient,
+    required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
+    required TResult Function(String password) passwordChangedSupporter,
+  }) {
+    return Logout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+  }) {
+    return Logout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (Logout != null) {
+      return Logout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_LoginRequested value) loginRequested,
+    required TResult Function(_RegistrationPatientRequested value)
+        registrationPatientRequested,
+    required TResult Function(_RegistrationSupporterRequested value)
+        registrationSupporterRequested,
+    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
+    required TResult Function(_checkRegisterPatientRequested value)
+        checkRegisterPatientRequested,
+    required TResult Function(_checkRegisterSupporterRequested value)
+        checkRegisterSupporterRequested,
+    required TResult Function(_PhoneNumberChangedPatient value)
+        phoneNumberChangedPatient,
+    required TResult Function(_PasswordChangedPatient value)
+        passwordChangedPatient,
+    required TResult Function(_PhoneNumberChangedSupporter value)
+        phoneNumberChangedSupporter,
+    required TResult Function(_PasswordChangedSupporter value)
+        passwordChangedSupporter,
+  }) {
+    return Logout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+  }) {
+    return Logout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (Logout != null) {
+      return Logout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LogoutRequested implements AuthenticateEvent {
+  const factory _LogoutRequested() = _$_LogoutRequested;
 }
 
 /// @nodoc
@@ -1611,6 +1754,7 @@ class _$_checkRegisterPatientRequested
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -1632,6 +1776,7 @@ class _$_checkRegisterPatientRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1653,6 +1798,7 @@ class _$_checkRegisterPatientRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1678,6 +1824,7 @@ class _$_checkRegisterPatientRequested
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -1705,6 +1852,7 @@ class _$_checkRegisterPatientRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1730,6 +1878,7 @@ class _$_checkRegisterPatientRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1808,6 +1957,7 @@ class _$_checkRegisterSupporterRequested
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -1829,6 +1979,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1850,6 +2001,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -1875,6 +2027,7 @@ class _$_checkRegisterSupporterRequested
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -1902,6 +2055,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -1927,6 +2081,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2029,6 +2184,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -2050,6 +2206,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -2071,6 +2228,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -2096,6 +2254,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -2123,6 +2282,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2148,6 +2308,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2252,16 +2413,13 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) {
     return passwordChangedPatient(password);
   }
@@ -2277,16 +2435,13 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) {
     return passwordChangedPatient?.call(password);
   }
@@ -2302,16 +2457,13 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (passwordChangedPatient != null) {
@@ -2331,9 +2483,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -2346,7 +2496,6 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) {
     return passwordChangedPatient(this);
   }
@@ -2362,9 +2511,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2375,7 +2522,6 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) {
     return passwordChangedPatient?.call(this);
   }
@@ -2391,9 +2537,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2404,7 +2548,6 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (passwordChangedPatient != null) {
@@ -2502,16 +2645,13 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
-
     required TResult Function() Logout,
-
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
     required TResult Function(String password) passwordChangedSupporter,
-
   }) {
     return phoneNumberChangedSupporter(phoneNumber);
   }
@@ -2527,16 +2667,13 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
   }) {
     return phoneNumberChangedSupporter?.call(phoneNumber);
   }
@@ -2552,16 +2689,13 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
-
     TResult Function()? Logout,
-
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
     TResult Function(String password)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (phoneNumberChangedSupporter != null) {
@@ -2581,9 +2715,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
-
     required TResult Function(_LogoutRequested value) Logout,
-
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -2596,7 +2728,6 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
         phoneNumberChangedSupporter,
     required TResult Function(_PasswordChangedSupporter value)
         passwordChangedSupporter,
-
   }) {
     return phoneNumberChangedSupporter(this);
   }
@@ -2612,9 +2743,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2625,7 +2754,6 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
   }) {
     return phoneNumberChangedSupporter?.call(this);
   }
@@ -2641,9 +2769,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
-
     TResult Function(_LogoutRequested value)? Logout,
-
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2654,7 +2780,6 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function(_PhoneNumberChangedSupporter value)?
         phoneNumberChangedSupporter,
     TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
-
     required TResult orElse(),
   }) {
     if (phoneNumberChangedSupporter != null) {
@@ -2750,6 +2875,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     required TResult Function(String phoneNumber, String password)
         registrationSupporterRequested,
     required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
     required TResult Function() checkRegisterPatientRequested,
     required TResult Function() checkRegisterSupporterRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
@@ -2771,6 +2897,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -2792,6 +2919,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function(String phoneNumber, String password)?
         registrationSupporterRequested,
     TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
     TResult Function()? checkRegisterPatientRequested,
     TResult Function()? checkRegisterSupporterRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
@@ -2817,6 +2945,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     required TResult Function(_RegistrationSupporterRequested value)
         registrationSupporterRequested,
     required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
     required TResult Function(_checkRegisterPatientRequested value)
         checkRegisterPatientRequested,
     required TResult Function(_checkRegisterSupporterRequested value)
@@ -2844,6 +2973,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2869,6 +2999,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function(_RegistrationSupporterRequested value)?
         registrationSupporterRequested,
     TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
     TResult Function(_checkRegisterPatientRequested value)?
         checkRegisterPatientRequested,
     TResult Function(_checkRegisterSupporterRequested value)?
@@ -2899,136 +3030,6 @@ abstract class _PasswordChangedSupporter implements AuthenticateEvent {
 }
 
 /// @nodoc
-abstract class _$$_LogoutRequestedCopyWith<$Res> {
-  factory _$$_LogoutRequestedCopyWith(
-          _$_LogoutRequested value, $Res Function(_$_LogoutRequested) then) =
-      __$$_LogoutRequestedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_LogoutRequestedCopyWithImpl<$Res>
-    extends _$AuthenticateEventCopyWithImpl<$Res>
-    implements _$$_LogoutRequestedCopyWith<$Res> {
-  __$$_LogoutRequestedCopyWithImpl(
-      _$_LogoutRequested _value, $Res Function(_$_LogoutRequested) _then)
-      : super(_value, (v) => _then(v as _$_LogoutRequested));
-
-  @override
-  _$_LogoutRequested get _value => super._value as _$_LogoutRequested;
-}
-
-/// @nodoc
-
-class _$_LogoutRequested implements _LogoutRequested {
-  const _$_LogoutRequested();
-
-  @override
-  String toString() {
-    return 'AuthenticateEvent.Logout()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_LogoutRequested);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String phoneNumber) phoneNumberChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function() loginRequested,
-    required TResult Function() registrationRequested,
-    required TResult Function() authCheckRequested,
-    required TResult Function() Logout,
-  }) {
-    return Logout();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function()? loginRequested,
-    TResult Function()? registrationRequested,
-    TResult Function()? authCheckRequested,
-    TResult Function()? Logout,
-  }) {
-    return Logout?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String phoneNumber)? phoneNumberChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function()? loginRequested,
-    TResult Function()? registrationRequested,
-    TResult Function()? authCheckRequested,
-    TResult Function()? Logout,
-    required TResult orElse(),
-  }) {
-    if (Logout != null) {
-      return Logout();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_LoginRequested value) loginRequested,
-    required TResult Function(_RegistrationRequested value)
-        registrationRequested,
-    required TResult Function(_AuthCheckRequested value) authCheckRequested,
-    required TResult Function(_LogoutRequested value) Logout,
-  }) {
-    return Logout(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_LoginRequested value)? loginRequested,
-    TResult Function(_RegistrationRequested value)? registrationRequested,
-    TResult Function(_AuthCheckRequested value)? authCheckRequested,
-    TResult Function(_LogoutRequested value)? Logout,
-  }) {
-    return Logout?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_LoginRequested value)? loginRequested,
-    TResult Function(_RegistrationRequested value)? registrationRequested,
-    TResult Function(_AuthCheckRequested value)? authCheckRequested,
-    TResult Function(_LogoutRequested value)? Logout,
-    required TResult orElse(),
-  }) {
-    if (Logout != null) {
-      return Logout(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LogoutRequested implements AuthenticateEvent {
-  const factory _LogoutRequested() = _$_LogoutRequested;
-}
-
-/// @nodoc
 mixin _$AuthenticateState {
   String get userId => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
@@ -3039,12 +3040,9 @@ mixin _$AuthenticateState {
   String get passwordSupporter => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
   bool get isAuthenticated => throw _privateConstructorUsedError;
-
   String get relationshipWith => throw _privateConstructorUsedError;
-
   bool get isRegisterPatient => throw _privateConstructorUsedError;
   bool get isRegisterSupporter => throw _privateConstructorUsedError;
-
   String? get role => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -3068,12 +3066,9 @@ abstract class $AuthenticateStateCopyWith<$Res> {
       String passwordSupporter,
       String fullName,
       bool isAuthenticated,
-
       String relationshipWith,
-
       bool isRegisterPatient,
       bool isRegisterSupporter,
-
       String? role,
       String? errorMessage});
 }
@@ -3098,12 +3093,9 @@ class _$AuthenticateStateCopyWithImpl<$Res>
     Object? passwordSupporter = freezed,
     Object? fullName = freezed,
     Object? isAuthenticated = freezed,
-
     Object? relationshipWith = freezed,
-
     Object? isRegisterPatient = freezed,
     Object? isRegisterSupporter = freezed,
-
     Object? role = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -3144,12 +3136,10 @@ class _$AuthenticateStateCopyWithImpl<$Res>
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
-
       relationshipWith: relationshipWith == freezed
           ? _value.relationshipWith
           : relationshipWith // ignore: cast_nullable_to_non_nullable
               as String,
-
       isRegisterPatient: isRegisterPatient == freezed
           ? _value.isRegisterPatient
           : isRegisterPatient // ignore: cast_nullable_to_non_nullable
@@ -3158,7 +3148,6 @@ class _$AuthenticateStateCopyWithImpl<$Res>
           ? _value.isRegisterSupporter
           : isRegisterSupporter // ignore: cast_nullable_to_non_nullable
               as bool,
-
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -3188,12 +3177,9 @@ abstract class _$$_AuthenticateStateCopyWith<$Res>
       String passwordSupporter,
       String fullName,
       bool isAuthenticated,
-
       String relationshipWith,
-
       bool isRegisterPatient,
       bool isRegisterSupporter,
-
       String? role,
       String? errorMessage});
 }
@@ -3220,12 +3206,9 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
     Object? passwordSupporter = freezed,
     Object? fullName = freezed,
     Object? isAuthenticated = freezed,
-
     Object? relationshipWith = freezed,
-
     Object? isRegisterPatient = freezed,
     Object? isRegisterSupporter = freezed,
-
     Object? role = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -3266,12 +3249,10 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
           ? _value.isAuthenticated
           : isAuthenticated // ignore: cast_nullable_to_non_nullable
               as bool,
-
       relationshipWith: relationshipWith == freezed
           ? _value.relationshipWith
           : relationshipWith // ignore: cast_nullable_to_non_nullable
               as String,
-
       isRegisterPatient: isRegisterPatient == freezed
           ? _value.isRegisterPatient
           : isRegisterPatient // ignore: cast_nullable_to_non_nullable
@@ -3280,7 +3261,6 @@ class __$$_AuthenticateStateCopyWithImpl<$Res>
           ? _value.isRegisterSupporter
           : isRegisterSupporter // ignore: cast_nullable_to_non_nullable
               as bool,
-
       role: role == freezed
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
@@ -3306,12 +3286,9 @@ class _$_AuthenticateState implements _AuthenticateState {
       required this.passwordSupporter,
       required this.fullName,
       required this.isAuthenticated,
-
       required this.relationshipWith,
-
       required this.isRegisterPatient,
       required this.isRegisterSupporter,
-
       this.role,
       this.errorMessage});
 
@@ -3334,13 +3311,11 @@ class _$_AuthenticateState implements _AuthenticateState {
   @override
   final bool isAuthenticated;
   @override
-
   final String relationshipWith;
-
+  @override
   final bool isRegisterPatient;
   @override
   final bool isRegisterSupporter;
-
   @override
   final String? role;
   @override
@@ -3348,11 +3323,7 @@ class _$_AuthenticateState implements _AuthenticateState {
 
   @override
   String toString() {
-
-    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, fullName: $fullName, isAuthenticated: $isAuthenticated, relationshipWith: $relationshipWith, role: $role, errorMessage: $errorMessage)';
-
-    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, phoneNumberPatient: $phoneNumberPatient, passwordPatient: $passwordPatient, phoneNumberSupporter: $phoneNumberSupporter, passwordSupporter: $passwordSupporter, fullName: $fullName, isAuthenticated: $isAuthenticated, isRegisterPatient: $isRegisterPatient, isRegisterSupporter: $isRegisterSupporter, role: $role, errorMessage: $errorMessage)';
-
+    return 'AuthenticateState(userId: $userId, phoneNumber: $phoneNumber, password: $password, phoneNumberPatient: $phoneNumberPatient, passwordPatient: $passwordPatient, phoneNumberSupporter: $phoneNumberSupporter, passwordSupporter: $passwordSupporter, fullName: $fullName, isAuthenticated: $isAuthenticated, relationshipWith: $relationshipWith, isRegisterPatient: $isRegisterPatient, isRegisterSupporter: $isRegisterSupporter, role: $role, errorMessage: $errorMessage)';
   }
 
   @override
@@ -3376,13 +3347,11 @@ class _$_AuthenticateState implements _AuthenticateState {
             const DeepCollectionEquality()
                 .equals(other.isAuthenticated, isAuthenticated) &&
             const DeepCollectionEquality()
-
                 .equals(other.relationshipWith, relationshipWith) &&
-
+            const DeepCollectionEquality()
                 .equals(other.isRegisterPatient, isRegisterPatient) &&
             const DeepCollectionEquality()
                 .equals(other.isRegisterSupporter, isRegisterSupporter) &&
-
             const DeepCollectionEquality().equals(other.role, role) &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
@@ -3400,12 +3369,9 @@ class _$_AuthenticateState implements _AuthenticateState {
       const DeepCollectionEquality().hash(passwordSupporter),
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(isAuthenticated),
-
       const DeepCollectionEquality().hash(relationshipWith),
-
       const DeepCollectionEquality().hash(isRegisterPatient),
       const DeepCollectionEquality().hash(isRegisterSupporter),
-
       const DeepCollectionEquality().hash(role),
       const DeepCollectionEquality().hash(errorMessage));
 
@@ -3427,12 +3393,9 @@ abstract class _AuthenticateState implements AuthenticateState {
       required final String passwordSupporter,
       required final String fullName,
       required final bool isAuthenticated,
-
       required final String relationshipWith,
-
       required final bool isRegisterPatient,
       required final bool isRegisterSupporter,
-
       final String? role,
       final String? errorMessage}) = _$_AuthenticateState;
 
@@ -3455,13 +3418,11 @@ abstract class _AuthenticateState implements AuthenticateState {
   @override
   bool get isAuthenticated;
   @override
-
   String get relationshipWith;
-
+  @override
   bool get isRegisterPatient;
   @override
   bool get isRegisterSupporter;
-
   @override
   String? get role;
   @override

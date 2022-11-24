@@ -106,6 +106,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
 
     on<_LogoutRequested>((event, emit) {
       emit(state.copyWith(isAuthenticated: _userService.Logout()));
+    });
 
     on<_checkRegisterPatientRequested>((event, emit) {
       emit(state.copyWith(isRegisterPatient: _userService.isRegisterPatient()));
@@ -115,5 +116,6 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           isRegisterSupporter: _userService.isRegisterSupporter()));
 
     });
-  }
+  
 }
+  }

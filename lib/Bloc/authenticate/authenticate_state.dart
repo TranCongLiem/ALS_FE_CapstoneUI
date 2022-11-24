@@ -28,8 +28,13 @@ class AuthenticateState with _$AuthenticateState {
         phoneNumber: '',
         password: '',
         fullName: '',
+        isRegisterPatient: false,
+        isRegisterSupporter: false,
+        phoneNumberPatient: '',
+        passwordPatient: '',
+        phoneNumberSupporter: '',
+        passwordSupporter: '',
         isAuthenticated: false,
-
         relationshipWith: '',
       );
 
@@ -39,15 +44,14 @@ class AuthenticateState with _$AuthenticateState {
         phoneNumber: '',
         password: '',
         fullName: '',
-        isAuthenticated: false,
-        relationshipWith: '',
-
         isRegisterPatient: false,
         isRegisterSupporter: false,
         phoneNumberPatient: '',
         passwordPatient: '',
         phoneNumberSupporter: '',
         passwordSupporter: '',
+        isAuthenticated: false,
+        relationshipWith: '',
 
       );
 }

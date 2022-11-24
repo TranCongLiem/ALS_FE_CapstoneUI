@@ -91,13 +91,7 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                       SizedBox(
                         height: 20,
                       ),
-                      // ProfileMenuItem(
-                      //   iconSrc: "assets/images/logout-svgrepo-com.svg",
-                      //   title: "Đăng xuất",
-                      //   press: () {
-                      //     MoveToLoginAndUpdateToken(UpdateDevicetokenMobileRequest(userId: state1.userId));
-                      //   },
-                      // ),
+                     
                       InkWell(
                         onTap: () {
                           
@@ -119,7 +113,7 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                               Icon(Icons.view_agenda),
                               SizedBox(width: 20),
                               Text(
-                                'Lịc sử bài đăng',
+                                'Logout',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -163,8 +157,9 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
     //   RouteGenerator.withName("/SplashScreen"),
     //  ModalRoute.withName("/Home")
     // );
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()));
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()),
+        (Route<dynamic> route) => false);
   }
 }
 
