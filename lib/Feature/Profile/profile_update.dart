@@ -104,7 +104,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 physics: BouncingScrollPhysics(),
                 children: [
                   Center(
-                    child: Stack(
+                    child: Column(
                       children: [
                         CircleAvatar(
                           radius: 80,
@@ -114,15 +114,11 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                   .imageUser!) as ImageProvider
                               : FileImage(File(imagePath!)),
                         ),
-                        Positioned(
-                            bottom: 20.0,
-                            right: 20.0,
-                            child: ElevatedButton.icon(
-                                onPressed: () {
-                                  pickMedia(ImageSource.gallery);
-                                },
-                                icon: Icon(Icons.camera_alt),
-                                label: Text('Edit')))
+                        ElevatedButton(
+                            onPressed: () {
+                              pickMedia(ImageSource.gallery);
+                            },
+                            child: Text('Chọn ảnh'))
                       ],
                     ),
                   ),

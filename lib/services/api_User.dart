@@ -102,8 +102,10 @@ class UserPatientService {
     }
   }
 
-  Future<AddRelationwithPatientResponse> AddRelationWithPatient(AddRelationwithPatientRequest requestModel) async {
-    String url ="https://als.cosplane.asia/api/user/AddRelationShipWithPatient";
+  Future<AddRelationwithPatientResponse> AddRelationWithPatient(
+      AddRelationwithPatientRequest requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/user/AddRelationShipWithPatient";
     final response = await http.post(
       Uri.parse(url),
       headers: {
@@ -112,11 +114,9 @@ class UserPatientService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == 200) {
-    
       return AddRelationwithPatientResponse.fromJson(
           json.decode(response.body));
     } else {
-  
       throw Exception('Lỗi dữ liệu');
     }
   }

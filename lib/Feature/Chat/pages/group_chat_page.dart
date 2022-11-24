@@ -22,13 +22,15 @@ class GroupChatPage extends StatefulWidget {
   final String userName;
   final String userId;
   final String adminId;
+  final String groupImage;
   const GroupChatPage(
       {Key? key,
       required this.groupId,
       required this.groupName,
       required this.userName,
       required this.userId,
-      required this.adminId})
+      required this.adminId,
+      required this.groupImage})
       : super(key: key);
 
   @override
@@ -99,11 +101,11 @@ class _GroupChatPageState extends State<GroupChatPage> {
                 nextScreen(
                     context,
                     GroupInfo(
-                      groupId: widget.groupId,
-                      groupName: widget.groupName,
-                      adminName: widget.adminId,
-                      userId: widget.userId,
-                    ));
+                        groupId: widget.groupId,
+                        groupName: widget.groupName,
+                        adminName: widget.adminId,
+                        userId: widget.userId,
+                        groupImage: widget.groupImage));
               },
               icon: const Icon(Icons.info))
         ],
@@ -159,13 +161,12 @@ class _GroupChatPageState extends State<GroupChatPage> {
         context.read<GroupchatBloc>().add(
             GroupchatEvent.UpdatedLastMessageGroupChatRequest(
                 widget.groupId, message, widget.userName));
-      }
-      else if (type == 1) {
+      } else if (type == 1) {
         context.read<GroupchatBloc>().add(
             GroupchatEvent.UpdatedLastMessageGroupChatRequest(
                 widget.groupId, 'Hình ảnh', widget.userName));
-      } else if(type == 2){
-         context.read<GroupchatBloc>().add(
+      } else if (type == 2) {
+        context.read<GroupchatBloc>().add(
             GroupchatEvent.UpdatedLastMessageGroupChatRequest(
                 widget.groupId, 'Nhãn dán', widget.userName));
       }

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Bloc/authenticate/authenticate_bloc.dart';
-import '../../Bloc/post/post_bloc.dart';
-import '../../Constant/constant.dart';
-import '../../services/api_Post.dart';
-import 'customlistpost.dart';
 
-class ListNewsFeed extends StatefulWidget {
-  const ListNewsFeed({super.key});
+import '../../../Bloc/authenticate/authenticate_bloc.dart';
+import '../../../Bloc/post/post_bloc.dart';
+import '../../../Constant/constant.dart';
+import '../../../services/api_Post.dart';
+import 'customlistpost_supporter.dart';
+
+class ListNewsFeedSupporter extends StatefulWidget {
+  const ListNewsFeedSupporter({super.key});
 
   @override
-  State<ListNewsFeed> createState() => _ListNewsFeedState();
+  State<ListNewsFeedSupporter> createState() => _ListNewsFeedSupporterState();
 }
 
-class _ListNewsFeedState extends State<ListNewsFeed> {
+class _ListNewsFeedSupporterState extends State<ListNewsFeedSupporter> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
@@ -42,7 +43,7 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
                     scrollDirection: Axis.vertical,
                     itemCount: state.list.length,
                     itemBuilder: (context, index) {
-                      return CustomPostListByUserID(
+                      return CustomPostListSupporterByUserID(
                         listPost: state.list[index],
                       );
                     },

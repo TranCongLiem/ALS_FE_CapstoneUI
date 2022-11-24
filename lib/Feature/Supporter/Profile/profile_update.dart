@@ -51,7 +51,7 @@ class _ProfileUpdateSupporterState extends State<ProfileUpdateSupporter> {
   Widget build(BuildContext context) => Builder(
         builder: (context) => BlocConsumer<UserBloc, UserState>(
           listener: (context, state) {
-            if (state.isUpdatedProfilePatient) {
+            if (state.isUpdatedProfileSupporter) {
               Navigator.push(
                 context,
                 PageRouteBuilder(
@@ -72,7 +72,9 @@ class _ProfileUpdateSupporterState extends State<ProfileUpdateSupporter> {
                   pageBuilder: (BuildContext context,
                       Animation<double> animation,
                       Animation<double> secondaryAnimation) {
-                    context.read<UserBloc>().add(UserEvent.setStateFlase());
+                    context
+                        .read<UserBloc>()
+                        .add(UserEvent.setStateFlaseSupporter());
                     return ProfileSupporter();
                   },
                 ),
@@ -101,7 +103,7 @@ class _ProfileUpdateSupporterState extends State<ProfileUpdateSupporter> {
                 physics: BouncingScrollPhysics(),
                 children: [
                   Center(
-                    child: Stack(
+                    child: Column(
                       children: [
                         CircleAvatar(
                           radius: 80,
@@ -111,15 +113,11 @@ class _ProfileUpdateSupporterState extends State<ProfileUpdateSupporter> {
                                   .imageUser!) as ImageProvider
                               : FileImage(File(imagePath!)),
                         ),
-                        Positioned(
-                            bottom: 20.0,
-                            right: 20.0,
-                            child: ElevatedButton.icon(
-                                onPressed: () {
-                                  pickMedia(ImageSource.gallery);
-                                },
-                                icon: Icon(Icons.camera_alt),
-                                label: Text('Edit')))
+                        ElevatedButton(
+                            onPressed: () {
+                              pickMedia(ImageSource.gallery);
+                            },
+                            child: Text('Chọn ảnh'))
                       ],
                     ),
                   ),
@@ -218,6 +216,6 @@ class _ProfileUpdateSupporterState extends State<ProfileUpdateSupporter> {
     context.read<UserBloc>().add(UserEvent.getAddress(address!));
     context
         .read<UserBloc>()
-        .add(UserEvent.updateProfilePatientRequest(widget.userId));
+        .add(UserEvent.updateProfileSupporterRequest(widget.userId));
   }
 }

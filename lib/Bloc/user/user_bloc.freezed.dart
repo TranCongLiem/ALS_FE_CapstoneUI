@@ -19,6 +19,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -29,9 +30,11 @@ mixin _$UserEvent {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) =>
@@ -39,6 +42,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -49,9 +53,11 @@ mixin _$UserEvent {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) =>
@@ -59,6 +65,7 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -69,9 +76,11 @@ mixin _$UserEvent {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -81,6 +90,8 @@ mixin _$UserEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -95,11 +106,15 @@ mixin _$UserEvent {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -110,6 +125,8 @@ mixin _$UserEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -124,11 +141,14 @@ mixin _$UserEvent {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -139,6 +159,8 @@ mixin _$UserEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -153,11 +175,14 @@ mixin _$UserEvent {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -252,6 +277,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -262,9 +288,11 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -275,6 +303,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -285,9 +314,11 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -298,6 +329,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -308,9 +340,11 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -326,6 +360,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -340,11 +376,15 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -358,6 +398,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -372,11 +414,14 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -390,6 +435,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -404,11 +451,14 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -429,6 +479,282 @@ abstract class _UpdateProfilePatientRequest implements UserEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$_UpdateProfilePatientRequestCopyWith<_$_UpdateProfilePatientRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UpdateProfileSupporterRequestCopyWith<$Res> {
+  factory _$$_UpdateProfileSupporterRequestCopyWith(
+          _$_UpdateProfileSupporterRequest value,
+          $Res Function(_$_UpdateProfileSupporterRequest) then) =
+      __$$_UpdateProfileSupporterRequestCopyWithImpl<$Res>;
+  $Res call({String userId});
+}
+
+/// @nodoc
+class __$$_UpdateProfileSupporterRequestCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_UpdateProfileSupporterRequestCopyWith<$Res> {
+  __$$_UpdateProfileSupporterRequestCopyWithImpl(
+      _$_UpdateProfileSupporterRequest _value,
+      $Res Function(_$_UpdateProfileSupporterRequest) _then)
+      : super(_value, (v) => _then(v as _$_UpdateProfileSupporterRequest));
+
+  @override
+  _$_UpdateProfileSupporterRequest get _value =>
+      super._value as _$_UpdateProfileSupporterRequest;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_UpdateProfileSupporterRequest(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateProfileSupporterRequest
+    implements _UpdateProfileSupporterRequest {
+  const _$_UpdateProfileSupporterRequest(this.userId);
+
+  @override
+  final String userId;
+
+  @override
+  String toString() {
+    return 'UserEvent.updateProfileSupporterRequest(userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateProfileSupporterRequest &&
+            const DeepCollectionEquality().equals(other.userId, userId));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_UpdateProfileSupporterRequestCopyWith<_$_UpdateProfileSupporterRequest>
+      get copyWith => __$$_UpdateProfileSupporterRequestCopyWithImpl<
+          _$_UpdateProfileSupporterRequest>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
+    required TResult Function() updateInformationPatientCheckRequested,
+    required TResult Function() updateInformationSupporterCheckRequested,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterRequest(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterRequest?.call(userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (updateProfileSupporterRequest != null) {
+      return updateProfileSupporterRequest(userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_UpdateProfilePatientCheckRequested value)
+        updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
+    required TResult Function(_UpdateInformationPatientCheckRequested value)
+        updateInformationPatientCheckRequested,
+    required TResult Function(_UpdateInformationSupporterCheckRequested value)
+        updateInformationSupporterCheckRequested,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (updateProfileSupporterRequest != null) {
+      return updateProfileSupporterRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateProfileSupporterRequest implements UserEvent {
+  const factory _UpdateProfileSupporterRequest(final String userId) =
+      _$_UpdateProfileSupporterRequest;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_UpdateProfileSupporterRequestCopyWith<_$_UpdateProfileSupporterRequest>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -504,6 +830,7 @@ class _$_UpdateInformationPatientRequest
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -514,9 +841,11 @@ class _$_UpdateInformationPatientRequest
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -527,6 +856,7 @@ class _$_UpdateInformationPatientRequest
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -537,9 +867,11 @@ class _$_UpdateInformationPatientRequest
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -550,6 +882,7 @@ class _$_UpdateInformationPatientRequest
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -560,9 +893,11 @@ class _$_UpdateInformationPatientRequest
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -578,6 +913,8 @@ class _$_UpdateInformationPatientRequest
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -592,11 +929,15 @@ class _$_UpdateInformationPatientRequest
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -610,6 +951,8 @@ class _$_UpdateInformationPatientRequest
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -624,11 +967,14 @@ class _$_UpdateInformationPatientRequest
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -642,6 +988,8 @@ class _$_UpdateInformationPatientRequest
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -656,11 +1004,14 @@ class _$_UpdateInformationPatientRequest
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -755,6 +1106,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -765,9 +1117,11 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -778,6 +1132,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -788,9 +1143,11 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -801,6 +1158,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -811,9 +1169,11 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -829,6 +1189,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -843,11 +1205,15 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -861,6 +1227,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -875,11 +1243,14 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -893,6 +1264,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -907,11 +1280,14 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1007,6 +1383,7 @@ class _$_UpdateInformationSupporterRequest
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -1017,9 +1394,11 @@ class _$_UpdateInformationSupporterRequest
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -1030,6 +1409,7 @@ class _$_UpdateInformationSupporterRequest
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1040,9 +1420,11 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -1053,6 +1435,7 @@ class _$_UpdateInformationSupporterRequest
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1063,9 +1446,11 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -1081,6 +1466,8 @@ class _$_UpdateInformationSupporterRequest
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -1095,11 +1482,15 @@ class _$_UpdateInformationSupporterRequest
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -1113,6 +1504,8 @@ class _$_UpdateInformationSupporterRequest
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1127,11 +1520,14 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1145,6 +1541,8 @@ class _$_UpdateInformationSupporterRequest
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1159,11 +1557,14 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1253,6 +1654,7 @@ class _$_GetFullName implements _GetFullName {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -1263,9 +1665,11 @@ class _$_GetFullName implements _GetFullName {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -1276,6 +1680,7 @@ class _$_GetFullName implements _GetFullName {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1286,9 +1691,11 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -1299,6 +1706,7 @@ class _$_GetFullName implements _GetFullName {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1309,9 +1717,11 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -1327,6 +1737,8 @@ class _$_GetFullName implements _GetFullName {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -1341,11 +1753,15 @@ class _$_GetFullName implements _GetFullName {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -1359,6 +1775,8 @@ class _$_GetFullName implements _GetFullName {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1373,11 +1791,14 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1391,6 +1812,8 @@ class _$_GetFullName implements _GetFullName {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1405,11 +1828,14 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1497,6 +1923,7 @@ class _$_GetAddress implements _GetAddress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -1507,9 +1934,11 @@ class _$_GetAddress implements _GetAddress {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -1520,6 +1949,7 @@ class _$_GetAddress implements _GetAddress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1530,9 +1960,11 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -1543,6 +1975,7 @@ class _$_GetAddress implements _GetAddress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1553,9 +1986,11 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -1571,6 +2006,8 @@ class _$_GetAddress implements _GetAddress {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -1585,11 +2022,15 @@ class _$_GetAddress implements _GetAddress {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -1603,6 +2044,8 @@ class _$_GetAddress implements _GetAddress {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1617,11 +2060,14 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1635,6 +2081,8 @@ class _$_GetAddress implements _GetAddress {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1649,11 +2097,14 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1741,6 +2192,7 @@ class _$_GetImageUser implements _GetImageUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -1751,9 +2203,11 @@ class _$_GetImageUser implements _GetImageUser {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -1764,6 +2218,7 @@ class _$_GetImageUser implements _GetImageUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1774,9 +2229,11 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -1787,6 +2244,7 @@ class _$_GetImageUser implements _GetImageUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -1797,9 +2255,11 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -1815,6 +2275,8 @@ class _$_GetImageUser implements _GetImageUser {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -1829,11 +2291,15 @@ class _$_GetImageUser implements _GetImageUser {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -1847,6 +2313,8 @@ class _$_GetImageUser implements _GetImageUser {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1861,11 +2329,14 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1879,6 +2350,8 @@ class _$_GetImageUser implements _GetImageUser {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -1893,11 +2366,14 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -1985,6 +2461,7 @@ class _$_Getcondition implements _Getcondition {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -1995,9 +2472,11 @@ class _$_Getcondition implements _Getcondition {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -2008,6 +2487,7 @@ class _$_Getcondition implements _Getcondition {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2018,9 +2498,11 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -2031,6 +2513,7 @@ class _$_Getcondition implements _Getcondition {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2041,9 +2524,11 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -2059,6 +2544,8 @@ class _$_Getcondition implements _Getcondition {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -2073,11 +2560,15 @@ class _$_Getcondition implements _Getcondition {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -2091,6 +2582,8 @@ class _$_Getcondition implements _Getcondition {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2105,11 +2598,14 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2123,6 +2619,8 @@ class _$_Getcondition implements _Getcondition {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2137,11 +2635,14 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2229,6 +2730,7 @@ class _$_Getcause implements _Getcause {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -2239,9 +2741,11 @@ class _$_Getcause implements _Getcause {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -2252,6 +2756,7 @@ class _$_Getcause implements _Getcause {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2262,9 +2767,11 @@ class _$_Getcause implements _Getcause {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -2275,6 +2782,7 @@ class _$_Getcause implements _Getcause {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2285,9 +2793,11 @@ class _$_Getcause implements _Getcause {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -2303,6 +2813,8 @@ class _$_Getcause implements _Getcause {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -2317,11 +2829,15 @@ class _$_Getcause implements _Getcause {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -2335,6 +2851,8 @@ class _$_Getcause implements _Getcause {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2349,11 +2867,14 @@ class _$_Getcause implements _Getcause {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2367,6 +2888,8 @@ class _$_Getcause implements _Getcause {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2381,11 +2904,14 @@ class _$_Getcause implements _Getcause {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2475,6 +3001,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -2485,9 +3012,11 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -2498,6 +3027,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2508,9 +3038,11 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -2521,6 +3053,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2531,9 +3064,11 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -2549,6 +3084,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -2563,11 +3100,15 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -2581,6 +3122,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2595,11 +3138,14 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2613,6 +3159,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2627,11 +3175,14 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2701,6 +3252,7 @@ class _$_UpdateProfilePatientCheckRequested
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -2711,9 +3263,11 @@ class _$_UpdateProfilePatientCheckRequested
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -2724,6 +3278,7 @@ class _$_UpdateProfilePatientCheckRequested
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2734,9 +3289,11 @@ class _$_UpdateProfilePatientCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -2747,6 +3304,7 @@ class _$_UpdateProfilePatientCheckRequested
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2757,9 +3315,11 @@ class _$_UpdateProfilePatientCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -2775,6 +3335,8 @@ class _$_UpdateProfilePatientCheckRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -2789,11 +3351,15 @@ class _$_UpdateProfilePatientCheckRequested
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -2807,6 +3373,8 @@ class _$_UpdateProfilePatientCheckRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2821,11 +3389,14 @@ class _$_UpdateProfilePatientCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2839,6 +3410,8 @@ class _$_UpdateProfilePatientCheckRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -2853,11 +3426,14 @@ class _$_UpdateProfilePatientCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -2874,6 +3450,254 @@ class _$_UpdateProfilePatientCheckRequested
 abstract class _UpdateProfilePatientCheckRequested implements UserEvent {
   const factory _UpdateProfilePatientCheckRequested() =
       _$_UpdateProfilePatientCheckRequested;
+}
+
+/// @nodoc
+abstract class _$$_UpdateProfileSupporterCheckRequestedCopyWith<$Res> {
+  factory _$$_UpdateProfileSupporterCheckRequestedCopyWith(
+          _$_UpdateProfileSupporterCheckRequested value,
+          $Res Function(_$_UpdateProfileSupporterCheckRequested) then) =
+      __$$_UpdateProfileSupporterCheckRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UpdateProfileSupporterCheckRequestedCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_UpdateProfileSupporterCheckRequestedCopyWith<$Res> {
+  __$$_UpdateProfileSupporterCheckRequestedCopyWithImpl(
+      _$_UpdateProfileSupporterCheckRequested _value,
+      $Res Function(_$_UpdateProfileSupporterCheckRequested) _then)
+      : super(
+            _value, (v) => _then(v as _$_UpdateProfileSupporterCheckRequested));
+
+  @override
+  _$_UpdateProfileSupporterCheckRequested get _value =>
+      super._value as _$_UpdateProfileSupporterCheckRequested;
+}
+
+/// @nodoc
+
+class _$_UpdateProfileSupporterCheckRequested
+    implements _UpdateProfileSupporterCheckRequested {
+  const _$_UpdateProfileSupporterCheckRequested();
+
+  @override
+  String toString() {
+    return 'UserEvent.updateProfileSupporterCheckRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UpdateProfileSupporterCheckRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
+    required TResult Function() updateInformationPatientCheckRequested,
+    required TResult Function() updateInformationSupporterCheckRequested,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterCheckRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterCheckRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (updateProfileSupporterCheckRequested != null) {
+      return updateProfileSupporterCheckRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_UpdateProfilePatientCheckRequested value)
+        updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
+    required TResult Function(_UpdateInformationPatientCheckRequested value)
+        updateInformationPatientCheckRequested,
+    required TResult Function(_UpdateInformationSupporterCheckRequested value)
+        updateInformationSupporterCheckRequested,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterCheckRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+  }) {
+    return updateProfileSupporterCheckRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (updateProfileSupporterCheckRequested != null) {
+      return updateProfileSupporterCheckRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateProfileSupporterCheckRequested implements UserEvent {
+  const factory _UpdateProfileSupporterCheckRequested() =
+      _$_UpdateProfileSupporterCheckRequested;
 }
 
 /// @nodoc
@@ -2924,6 +3748,7 @@ class _$_UpdateInformationPatientCheckRequested
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -2934,9 +3759,11 @@ class _$_UpdateInformationPatientCheckRequested
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -2947,6 +3774,7 @@ class _$_UpdateInformationPatientCheckRequested
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2957,9 +3785,11 @@ class _$_UpdateInformationPatientCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -2970,6 +3800,7 @@ class _$_UpdateInformationPatientCheckRequested
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -2980,9 +3811,11 @@ class _$_UpdateInformationPatientCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -2998,6 +3831,8 @@ class _$_UpdateInformationPatientCheckRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -3012,11 +3847,15 @@ class _$_UpdateInformationPatientCheckRequested
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -3030,6 +3869,8 @@ class _$_UpdateInformationPatientCheckRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3044,11 +3885,14 @@ class _$_UpdateInformationPatientCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3062,6 +3906,8 @@ class _$_UpdateInformationPatientCheckRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3076,11 +3922,14 @@ class _$_UpdateInformationPatientCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3147,6 +3996,7 @@ class _$_UpdateInformationSupporterCheckRequested
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -3157,9 +4007,11 @@ class _$_UpdateInformationSupporterCheckRequested
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -3170,6 +4022,7 @@ class _$_UpdateInformationSupporterCheckRequested
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3180,9 +4033,11 @@ class _$_UpdateInformationSupporterCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -3193,6 +4048,7 @@ class _$_UpdateInformationSupporterCheckRequested
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3203,9 +4059,11 @@ class _$_UpdateInformationSupporterCheckRequested
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -3221,6 +4079,8 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -3235,11 +4095,15 @@ class _$_UpdateInformationSupporterCheckRequested
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -3253,6 +4117,8 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3267,11 +4133,14 @@ class _$_UpdateInformationSupporterCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3285,6 +4154,8 @@ class _$_UpdateInformationSupporterCheckRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3299,11 +4170,14 @@ class _$_UpdateInformationSupporterCheckRequested
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3363,6 +4237,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -3373,9 +4248,11 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -3386,6 +4263,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3396,9 +4274,11 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -3409,6 +4289,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3419,9 +4300,11 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -3437,6 +4320,8 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -3451,11 +4336,15 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -3469,6 +4358,8 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3483,11 +4374,14 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3501,6 +4395,8 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3515,11 +4411,14 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3535,6 +4434,249 @@ class _$_SetStateFlase implements _SetStateFlase {
 
 abstract class _SetStateFlase implements UserEvent {
   const factory _SetStateFlase() = _$_SetStateFlase;
+}
+
+/// @nodoc
+abstract class _$$_SetStateFlaseSupporterCopyWith<$Res> {
+  factory _$$_SetStateFlaseSupporterCopyWith(_$_SetStateFlaseSupporter value,
+          $Res Function(_$_SetStateFlaseSupporter) then) =
+      __$$_SetStateFlaseSupporterCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetStateFlaseSupporterCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_SetStateFlaseSupporterCopyWith<$Res> {
+  __$$_SetStateFlaseSupporterCopyWithImpl(_$_SetStateFlaseSupporter _value,
+      $Res Function(_$_SetStateFlaseSupporter) _then)
+      : super(_value, (v) => _then(v as _$_SetStateFlaseSupporter));
+
+  @override
+  _$_SetStateFlaseSupporter get _value =>
+      super._value as _$_SetStateFlaseSupporter;
+}
+
+/// @nodoc
+
+class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
+  const _$_SetStateFlaseSupporter();
+
+  @override
+  String toString() {
+    return 'UserEvent.setStateFlaseSupporter()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetStateFlaseSupporter);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
+    required TResult Function() updateInformationPatientCheckRequested,
+    required TResult Function() updateInformationSupporterCheckRequested,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+  }) {
+    return setStateFlaseSupporter();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+  }) {
+    return setStateFlaseSupporter?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
+    TResult Function()? updateInformationPatientCheckRequested,
+    TResult Function()? updateInformationSupporterCheckRequested,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseSupporter != null) {
+      return setStateFlaseSupporter();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_UpdateProfilePatientCheckRequested value)
+        updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
+    required TResult Function(_UpdateInformationPatientCheckRequested value)
+        updateInformationPatientCheckRequested,
+    required TResult Function(_UpdateInformationSupporterCheckRequested value)
+        updateInformationSupporterCheckRequested,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+  }) {
+    return setStateFlaseSupporter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+  }) {
+    return setStateFlaseSupporter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_UpdateProfilePatientCheckRequested value)?
+        updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
+    TResult Function(_UpdateInformationPatientCheckRequested value)?
+        updateInformationPatientCheckRequested,
+    TResult Function(_UpdateInformationSupporterCheckRequested value)?
+        updateInformationSupporterCheckRequested,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseSupporter != null) {
+      return setStateFlaseSupporter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetStateFlaseSupporter implements UserEvent {
+  const factory _SetStateFlaseSupporter() = _$_SetStateFlaseSupporter;
 }
 
 /// @nodoc
@@ -3584,6 +4726,7 @@ class _$_SetStateFlaseInformationPatient
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -3594,9 +4737,11 @@ class _$_SetStateFlaseInformationPatient
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -3607,6 +4752,7 @@ class _$_SetStateFlaseInformationPatient
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3617,9 +4763,11 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -3630,6 +4778,7 @@ class _$_SetStateFlaseInformationPatient
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3640,9 +4789,11 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -3658,6 +4809,8 @@ class _$_SetStateFlaseInformationPatient
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -3672,11 +4825,15 @@ class _$_SetStateFlaseInformationPatient
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -3690,6 +4847,8 @@ class _$_SetStateFlaseInformationPatient
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3704,11 +4863,14 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3722,6 +4884,8 @@ class _$_SetStateFlaseInformationPatient
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3736,11 +4900,14 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3806,6 +4973,7 @@ class _$_SetStateFlaseInformationSupporter
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
     required TResult Function(String userId) updateInformationSupporterRequest,
@@ -3816,9 +4984,11 @@ class _$_SetStateFlaseInformationSupporter
     required TResult Function(String cause) getcause,
     required TResult Function(String dateOfBirth) getdateOfBirth,
     required TResult Function() updateProfilePatientCheckRequested,
+    required TResult Function() updateProfileSupporterCheckRequested,
     required TResult Function() updateInformationPatientCheckRequested,
     required TResult Function() updateInformationSupporterCheckRequested,
     required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
   }) {
@@ -3829,6 +4999,7 @@ class _$_SetStateFlaseInformationSupporter
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3839,9 +5010,11 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
   }) {
@@ -3852,6 +5025,7 @@ class _$_SetStateFlaseInformationSupporter
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
     TResult Function(String userId)? updateInformationSupporterRequest,
@@ -3862,9 +5036,11 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(String cause)? getcause,
     TResult Function(String dateOfBirth)? getdateOfBirth,
     TResult Function()? updateProfilePatientCheckRequested,
+    TResult Function()? updateProfileSupporterCheckRequested,
     TResult Function()? updateInformationPatientCheckRequested,
     TResult Function()? updateInformationSupporterCheckRequested,
     TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
     required TResult orElse(),
@@ -3880,6 +5056,8 @@ class _$_SetStateFlaseInformationSupporter
   TResult map<TResult extends Object?>({
     required TResult Function(_UpdateProfilePatientRequest value)
         updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
     required TResult Function(_UpdateInformationPatientRequest value)
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
@@ -3894,11 +5072,15 @@ class _$_SetStateFlaseInformationSupporter
     required TResult Function(_GetdateOfBirth value) getdateOfBirth,
     required TResult Function(_UpdateProfilePatientCheckRequested value)
         updateProfilePatientCheckRequested,
+    required TResult Function(_UpdateProfileSupporterCheckRequested value)
+        updateProfileSupporterCheckRequested,
     required TResult Function(_UpdateInformationPatientCheckRequested value)
         updateInformationPatientCheckRequested,
     required TResult Function(_UpdateInformationSupporterCheckRequested value)
         updateInformationSupporterCheckRequested,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
     required TResult Function(_SetStateFlaseInformationPatient value)
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
@@ -3912,6 +5094,8 @@ class _$_SetStateFlaseInformationSupporter
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3926,11 +5110,14 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3944,6 +5131,8 @@ class _$_SetStateFlaseInformationSupporter
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_UpdateProfilePatientRequest value)?
         updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
     TResult Function(_UpdateInformationPatientRequest value)?
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
@@ -3958,11 +5147,14 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(_GetdateOfBirth value)? getdateOfBirth,
     TResult Function(_UpdateProfilePatientCheckRequested value)?
         updateProfilePatientCheckRequested,
+    TResult Function(_UpdateProfileSupporterCheckRequested value)?
+        updateProfileSupporterCheckRequested,
     TResult Function(_UpdateInformationPatientCheckRequested value)?
         updateInformationPatientCheckRequested,
     TResult Function(_UpdateInformationSupporterCheckRequested value)?
         updateInformationSupporterCheckRequested,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
     TResult Function(_SetStateFlaseInformationPatient value)?
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
@@ -3991,6 +5183,7 @@ mixin _$UserState {
   String get cause => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
   bool get isUpdatedProfilePatient => throw _privateConstructorUsedError;
+  bool get isUpdatedProfileSupporter => throw _privateConstructorUsedError;
   bool get isUpdatedInformationPatient => throw _privateConstructorUsedError;
   bool get isUpdatedInformationSupporter => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
@@ -4015,6 +5208,7 @@ abstract class $UserStateCopyWith<$Res> {
       String cause,
       String dateOfBirth,
       bool isUpdatedProfilePatient,
+      bool isUpdatedProfileSupporter,
       bool isUpdatedInformationPatient,
       bool isUpdatedInformationSupporter,
       String? errorMessage,
@@ -4040,6 +5234,7 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
     Object? cause = freezed,
     Object? dateOfBirth = freezed,
     Object? isUpdatedProfilePatient = freezed,
+    Object? isUpdatedProfileSupporter = freezed,
     Object? isUpdatedInformationPatient = freezed,
     Object? isUpdatedInformationSupporter = freezed,
     Object? errorMessage = freezed,
@@ -4078,6 +5273,10 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
       isUpdatedProfilePatient: isUpdatedProfilePatient == freezed
           ? _value.isUpdatedProfilePatient
           : isUpdatedProfilePatient // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isUpdatedProfileSupporter: isUpdatedProfileSupporter == freezed
+          ? _value.isUpdatedProfileSupporter
+          : isUpdatedProfileSupporter // ignore: cast_nullable_to_non_nullable
               as bool,
       isUpdatedInformationPatient: isUpdatedInformationPatient == freezed
           ? _value.isUpdatedInformationPatient
@@ -4118,6 +5317,7 @@ abstract class _$$_UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
       String cause,
       String dateOfBirth,
       bool isUpdatedProfilePatient,
+      bool isUpdatedProfileSupporter,
       bool isUpdatedInformationPatient,
       bool isUpdatedInformationSupporter,
       String? errorMessage,
@@ -4145,6 +5345,7 @@ class __$$_UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     Object? cause = freezed,
     Object? dateOfBirth = freezed,
     Object? isUpdatedProfilePatient = freezed,
+    Object? isUpdatedProfileSupporter = freezed,
     Object? isUpdatedInformationPatient = freezed,
     Object? isUpdatedInformationSupporter = freezed,
     Object? errorMessage = freezed,
@@ -4184,6 +5385,10 @@ class __$$_UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
           ? _value.isUpdatedProfilePatient
           : isUpdatedProfilePatient // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUpdatedProfileSupporter: isUpdatedProfileSupporter == freezed
+          ? _value.isUpdatedProfileSupporter
+          : isUpdatedProfileSupporter // ignore: cast_nullable_to_non_nullable
+              as bool,
       isUpdatedInformationPatient: isUpdatedInformationPatient == freezed
           ? _value.isUpdatedInformationPatient
           : isUpdatedInformationPatient // ignore: cast_nullable_to_non_nullable
@@ -4220,6 +5425,7 @@ class _$_UserState implements _UserState {
       required this.cause,
       required this.dateOfBirth,
       required this.isUpdatedProfilePatient,
+      required this.isUpdatedProfileSupporter,
       required this.isUpdatedInformationPatient,
       required this.isUpdatedInformationSupporter,
       this.errorMessage,
@@ -4243,6 +5449,8 @@ class _$_UserState implements _UserState {
   @override
   final bool isUpdatedProfilePatient;
   @override
+  final bool isUpdatedProfileSupporter;
+  @override
   final bool isUpdatedInformationPatient;
   @override
   final bool isUpdatedInformationSupporter;
@@ -4255,7 +5463,7 @@ class _$_UserState implements _UserState {
 
   @override
   String toString() {
-    return 'UserState(userId: $userId, fullName: $fullName, address: $address, imageUser: $imageUser, condition: $condition, cause: $cause, dateOfBirth: $dateOfBirth, isUpdatedProfilePatient: $isUpdatedProfilePatient, isUpdatedInformationPatient: $isUpdatedInformationPatient, isUpdatedInformationSupporter: $isUpdatedInformationSupporter, errorMessage: $errorMessage, success: $success, message: $message)';
+    return 'UserState(userId: $userId, fullName: $fullName, address: $address, imageUser: $imageUser, condition: $condition, cause: $cause, dateOfBirth: $dateOfBirth, isUpdatedProfilePatient: $isUpdatedProfilePatient, isUpdatedProfileSupporter: $isUpdatedProfileSupporter, isUpdatedInformationPatient: $isUpdatedInformationPatient, isUpdatedInformationSupporter: $isUpdatedInformationSupporter, errorMessage: $errorMessage, success: $success, message: $message)';
   }
 
   @override
@@ -4273,6 +5481,8 @@ class _$_UserState implements _UserState {
                 .equals(other.dateOfBirth, dateOfBirth) &&
             const DeepCollectionEquality().equals(
                 other.isUpdatedProfilePatient, isUpdatedProfilePatient) &&
+            const DeepCollectionEquality().equals(
+                other.isUpdatedProfileSupporter, isUpdatedProfileSupporter) &&
             const DeepCollectionEquality().equals(
                 other.isUpdatedInformationPatient,
                 isUpdatedInformationPatient) &&
@@ -4296,6 +5506,7 @@ class _$_UserState implements _UserState {
       const DeepCollectionEquality().hash(cause),
       const DeepCollectionEquality().hash(dateOfBirth),
       const DeepCollectionEquality().hash(isUpdatedProfilePatient),
+      const DeepCollectionEquality().hash(isUpdatedProfileSupporter),
       const DeepCollectionEquality().hash(isUpdatedInformationPatient),
       const DeepCollectionEquality().hash(isUpdatedInformationSupporter),
       const DeepCollectionEquality().hash(errorMessage),
@@ -4318,6 +5529,7 @@ abstract class _UserState implements UserState {
       required final String cause,
       required final String dateOfBirth,
       required final bool isUpdatedProfilePatient,
+      required final bool isUpdatedProfileSupporter,
       required final bool isUpdatedInformationPatient,
       required final bool isUpdatedInformationSupporter,
       final String? errorMessage,
@@ -4340,6 +5552,8 @@ abstract class _UserState implements UserState {
   String get dateOfBirth;
   @override
   bool get isUpdatedProfilePatient;
+  @override
+  bool get isUpdatedProfileSupporter;
   @override
   bool get isUpdatedInformationPatient;
   @override

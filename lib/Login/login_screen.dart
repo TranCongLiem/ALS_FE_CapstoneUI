@@ -40,7 +40,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
@@ -119,7 +118,8 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (BuildContext context) => new NewFeedSupporter()),
+                      builder: (BuildContext context) =>
+                          new NewFeedSupporter()),
                   (Route<dynamic> route) => false);
               SetUserInfo(state.phoneNumber, state.password, state.userId);
               UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
@@ -168,15 +168,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Số Điện Thoại',
                                   hintText: 'Nhập Số Điện Thoại',
                                 ),
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Vui lòng nhập số điện thoại';
-                                  } else if (value.length > 10) {
-                                    return 'Chỉ nhập 10 số';
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty) {
+                                //     return 'Vui lòng nhập số điện thoại';
+                                //   } else if (value.length > 10) {
+                                //     return 'Chỉ nhập 10 số';
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 style: TextStyle(fontSize: 25.sp),
                                 onChanged: (value) {
                                   context.read<AuthenticateBloc>().add(
@@ -213,15 +213,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Mật khẩu',
                                   hintText: 'Nhập mật khẩu',
                                 ),
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Vui lòng nhập mật khẩu';
-                                  } else if (value.length > 10) {
-                                    return 'Chỉ nhập 10 số';
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                // validator: (value) {
+                                //   if (value!.isEmpty) {
+                                //     return 'Vui lòng nhập mật khẩu';
+                                //   } else if (value.length > 10) {
+                                //     return 'Chỉ nhập 10 số';
+                                //   } else {
+                                //     return null;
+                                //   }
+                                // },
                                 style: TextStyle(fontSize: 25.sp),
                                 onChanged: (value) {
                                   context.read<AuthenticateBloc>().add(
@@ -231,7 +231,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             ElevatedButton.icon(
                               onPressed: () {
-                                validate();
+                                // validate();
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());
@@ -240,7 +240,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               label: Text(
                                 'Đăng nhập',
                                 style: TextStyle(
-                                    fontSize: 22.sp, fontFamily: 'GothamB'),
+                                    fontSize: 22.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                               style: ButtonStyle(
                                 foregroundColor:
@@ -261,21 +262,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }),
                               ),
                             ),
-                            TextButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              VerifyScreen()));
-                                },
-                                child: Text(
-                                  'Quên mật khẩu',
-                                  style: TextStyle(
-                                      fontSize: 18.sp,
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.black),
-                                )),
+                            // TextButton(
+                            //     onPressed: () {
+                            //       Navigator.push(
+                            //           context,
+                            //           MaterialPageRoute(
+                            //               builder: (context) =>
+                            //                   VerifyScreen()));
+                            //     },
+                            //     child: Text(
+                            //       'Quên mật khẩu',
+                            //       style: TextStyle(
+                            //           fontSize: 18.sp,
+                            //           fontStyle: FontStyle.italic,
+                            //           color: Colors.black),
+                            //     )),
                             TextButton(
                               onPressed: () {},
                               child: Row(
@@ -475,18 +476,17 @@ class _LoginScreenState extends State<LoginScreen> {
     await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
   }
 
-
   void UpdateDeviceMobileToken(
       UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
   }
+
   void validate() {
     if (formkey.currentState!.validate()) {
       print('Validated');
     } else {
       print('Not validated');
     }
-
   }
 }

@@ -5,19 +5,22 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
-import '../../Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
-import '../../Model/getListPost_model.dart';
 
-class CustomPostListByUserID extends StatefulWidget {
+import '../../../Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
+import '../../../Model/getListPost_model.dart';
+
+class CustomPostListSupporterByUserID extends StatefulWidget {
   final ListPost listPost;
-  const CustomPostListByUserID({Key? key, required this.listPost})
+  const CustomPostListSupporterByUserID({Key? key, required this.listPost})
       : super(key: key);
 
   @override
-  _CustomPostListByUserIDState createState() => _CustomPostListByUserIDState();
+  _CustomPostListSupporterByUserIDState createState() =>
+      _CustomPostListSupporterByUserIDState();
 }
 
-class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
+class _CustomPostListSupporterByUserIDState
+    extends State<CustomPostListSupporterByUserID> {
   late bool? checkReact;
   late int countReact;
   late bool? isPublic;

@@ -4,6 +4,8 @@ import 'package:capstone_ui/Model/updateProfilePatient_model.dart';
 import 'package:capstone_ui/services/api_User.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../Model/updateProfileSupporter_model.dart';
+
 part 'user_event.dart';
 part 'user_state.dart';
 part 'user_bloc.freezed.dart';
@@ -24,6 +26,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           message: result.message ?? '',
           success: result.success,
           isUpdatedProfilePatient: true,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: ""));
+      }
+    });
+
+    on<_UpdateProfileSupporterRequest>((event, emit) async {
+      UpdateProfileSupporterRequestModel reqModel =
+          UpdateProfileSupporterRequestModel(
+              userId: event.userId,
+              address: state.address,
+              fullName: state.fullName,
+              imageUser: state.imageUser);
+      final result = await _userService.updateProfileSupporter(reqModel);
+      if (result.message != null && result.success != null) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+          isUpdatedProfileSupporter: true,
         ));
       } else {
         emit(state.copyWith(errorMessage: ""));
@@ -98,10 +119,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.copyWith(
           isUpdatedProfilePatient: _userService.isUpdatedProfilePatient()));
     });
+    on<_UpdateProfileSupporterCheckRequested>((event, emit) {
+      emit(state.copyWith(
+          isUpdatedProfileSupporter: _userService.isUpdatedProfileSupporter()));
+    });
 
     on<_SetStateFlase>((event, emit) {
       emit(state.copyWith(
         isUpdatedProfilePatient: false,
+      ));
+    });
+    on<_SetStateFlaseSupporter>((event, emit) {
+      emit(state.copyWith(
+        isUpdatedProfileSupporter: false,
       ));
     });
 

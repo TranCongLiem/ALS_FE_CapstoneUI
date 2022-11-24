@@ -33,9 +33,8 @@ class _CustomListAllGroupChatUserJoinState
   @override
   Widget build(BuildContext context) {
     DateTime? time;
-    if(widget.listAllGroupChatUserJoin.updateAt != ''){
-      time =
-        DateTime.parse(widget.listAllGroupChatUserJoin.updateAt ?? '');
+    if (widget.listAllGroupChatUserJoin.updateAt != '') {
+      time = DateTime.parse(widget.listAllGroupChatUserJoin.updateAt ?? '');
     }
     timeago.setLocaleMessages('vi', timeago.ViMessages());
 
@@ -54,6 +53,7 @@ class _CustomListAllGroupChatUserJoinState
                   widget.listAllGroupChatUserJoin.groupChatName.toString(),
               userId: widget.userId,
               adminId: widget.listAllGroupChatUserJoin.adminId.toString(),
+              groupImage: widget.listAllGroupChatUserJoin.groupImage.toString(),
             ),
           ),
         );

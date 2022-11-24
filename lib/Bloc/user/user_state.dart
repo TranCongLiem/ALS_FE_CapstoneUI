@@ -12,6 +12,7 @@ class UserState with _$UserState {
     required String cause,
     required String dateOfBirth,
     required bool isUpdatedProfilePatient,
+    required bool isUpdatedProfileSupporter,
     required bool isUpdatedInformationPatient,
     required bool isUpdatedInformationSupporter,
     String? errorMessage,
@@ -30,5 +31,6 @@ class UserState with _$UserState {
         isUpdatedProfilePatient: false,
         isUpdatedInformationPatient: false,
         isUpdatedInformationSupporter: false,
+        isUpdatedProfileSupporter: false,
       );
 }

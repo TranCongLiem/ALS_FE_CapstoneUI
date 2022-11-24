@@ -14,12 +14,14 @@ class GroupInfo extends StatefulWidget {
   final String groupName;
   final String adminName;
   final String userId;
+  final String groupImage;
   const GroupInfo({
     Key? key,
     required this.adminName,
     required this.groupName,
     required this.groupId,
     required this.userId,
+    required this.groupImage,
   }) : super(key: key);
 
   @override
@@ -122,11 +124,14 @@ class _GroupInfoState extends State<GroupInfo> {
           ],
         ),
         body: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          // padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          margin: EdgeInsets.symmetric(horizontal: 5),
+          width: MediaQuery.of(context).size.width * 1,
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.all(20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 130, vertical: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: greenALS.withOpacity(0.1)),
@@ -134,30 +139,28 @@ class _GroupInfoState extends State<GroupInfo> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        widget.groupName.substring(0, 1).toUpperCase(),
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500, color: Colors.white),
-                      ),
+                      radius: 60,
+                      backgroundImage: NetworkImage(widget.groupImage),
+                      // child: Text(
+                      //   widget.groupName.substring(0, 1).toUpperCase(),
+                      //   style: const TextStyle(
+                      //       fontWeight: FontWeight.w500, color: Colors.white),
+                      // ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
-                    Column(
-                      children: [
-                        Text(
-                          "Nhóm: ${widget.groupName}",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 22.0),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Text("Chủ nhóm: ${getName(widget.adminName)}")
-                      ],
+                    Container(
+                      width: MediaQuery.of(context).size.width * 1,
+                      child: Text(
+                        "${widget.groupName}",
+                        maxLines: 2,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 22.0),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
                     )
                   ],
                 ),

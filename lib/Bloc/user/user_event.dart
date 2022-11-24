@@ -4,6 +4,8 @@ part of 'user_bloc.dart';
 class UserEvent with _$UserEvent {
   const factory UserEvent.updateProfilePatientRequest(String userId) =
       _UpdateProfilePatientRequest;
+  const factory UserEvent.updateProfileSupporterRequest(String userId) =
+      _UpdateProfileSupporterRequest;
   const factory UserEvent.updateInformationPatientRequest(String userId) =
       _UpdateInformationPatientRequest;
   const factory UserEvent.getProfileUserByIdRequest(String userId) =
@@ -22,11 +24,14 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.getdateOfBirth(String dateOfBirth) = _GetdateOfBirth;
   const factory UserEvent.updateProfilePatientCheckRequested() =
       _UpdateProfilePatientCheckRequested;
+  const factory UserEvent.updateProfileSupporterCheckRequested() =
+      _UpdateProfileSupporterCheckRequested;
   const factory UserEvent.updateInformationPatientCheckRequested() =
       _UpdateInformationPatientCheckRequested;
   const factory UserEvent.updateInformationSupporterCheckRequested() =
       _UpdateInformationSupporterCheckRequested;
   const factory UserEvent.setStateFlase() = _SetStateFlase;
+  const factory UserEvent.setStateFlaseSupporter() = _SetStateFlaseSupporter;
   const factory UserEvent.setStateFlaseInformationPatient() =
       _SetStateFlaseInformationPatient;
   const factory UserEvent.setStateFlaseInformationSupporter() =
