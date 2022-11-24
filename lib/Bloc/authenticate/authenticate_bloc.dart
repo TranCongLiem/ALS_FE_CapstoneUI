@@ -29,6 +29,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           role: result.role,
           fullName: result.fullName ?? '',
           isAuthenticated: true,
+          relationshipWith: result.relationshipWith??''
         ));
       } else {
         emit(state.copyWith(errorMessage: "Invalid Phone Number or Password"));
@@ -101,12 +102,18 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_AuthCheckRequested>((event, emit) {
       emit(state.copyWith(isAuthenticated: _userService.isUserAuthenticated()));
     });
+
+
+    on<_LogoutRequested>((event, emit) {
+      emit(state.copyWith(isAuthenticated: _userService.Logout()));
+
     on<_checkRegisterPatientRequested>((event, emit) {
       emit(state.copyWith(isRegisterPatient: _userService.isRegisterPatient()));
     });
     on<_checkRegisterSupporterRequested>((event, emit) {
       emit(state.copyWith(
           isRegisterSupporter: _userService.isRegisterSupporter()));
+
     });
   }
 }

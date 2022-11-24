@@ -12,6 +12,10 @@ class AuthenticateEvent with _$AuthenticateEvent {
   const factory AuthenticateEvent.registrationSupporterRequested(
       String phoneNumber, String password) = _RegistrationSupporterRequested;
   const factory AuthenticateEvent.authCheckRequested() = _AuthCheckRequested;
+
+  const factory AuthenticateEvent.Logout() = _LogoutRequested;
+
+
   const factory AuthenticateEvent.checkRegisterPatientRequested() =
       _checkRegisterPatientRequested;
   const factory AuthenticateEvent.checkRegisterSupporterRequested() =
@@ -24,4 +28,5 @@ class AuthenticateEvent with _$AuthenticateEvent {
       String phoneNumber) = _PhoneNumberChangedSupporter;
   const factory AuthenticateEvent.passwordChangedSupporter(String password) =
       _PasswordChangedSupporter;
+
 }

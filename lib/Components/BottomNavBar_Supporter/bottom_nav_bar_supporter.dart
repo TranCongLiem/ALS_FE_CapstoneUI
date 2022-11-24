@@ -33,6 +33,11 @@ class MyBottomNavBarSupporter extends StatelessWidget {
                       NavItemsSupporter().items[index].destination!,
                 ),
               );
+              // Navigator.pushAndRemoveUntil(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (BuildContext context) =>  NavItemsSupporter().items[index].destination!),
+              //     (Route<dynamic> route) => false);
             }
           },
           items: [

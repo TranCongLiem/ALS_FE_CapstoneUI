@@ -3,6 +3,9 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
 import 'package:capstone_ui/Login/update_info.dart';
 import 'package:capstone_ui/Login/verify_phone.dart';
+import 'package:capstone_ui/Model/UpdateDeviceTokenMobile.dart';
+import 'package:capstone_ui/services/api_login.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,43 +24,60 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool hidePassword = true;
-
+  UserService _UserService = UserService();
+  String mobileToken = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseMessaging.instance
+        .getToken()
+        .then((value) => mobileToken = value ?? '');
+  }
+
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
+          print("Authen or not: " + state.isAuthenticated.toString());
+
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
               if (state.fullName.toString() != '') {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return ScaleTransition(
-                        alignment: Alignment.center,
-                        scale: Tween<double>(begin: 0.1, end: 1).animate(
-                          CurvedAnimation(
-                            parent: animation,
-                            curve: Curves.bounceIn,
-                          ),
-                        ),
-                        child: child,
-                      );
-                    },
-                    transitionDuration: Duration(seconds: 1),
-                    pageBuilder: (BuildContext context,
-                        Animation<double> animation,
-                        Animation<double> secondaryAnimation) {
-                      return NewFeed();
-                    },
-                  ),
-                );
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    // PageRouteBuilder(
+                    //   transitionsBuilder:
+                    //       (context, animation, secondaryAnimation, child) {
+                    //     return ScaleTransition(
+                    //       alignment: Alignment.center,
+                    //       scale: Tween<double>(begin: 0.1, end: 1).animate(
+                    //         CurvedAnimation(
+                    //           parent: animation,
+                    //           curve: Curves.bounceIn,
+                    //         ),
+                    //       ),
+                    //       child: child,
+                    //     );
+                    //   },
+                    //   transitionDuration: Duration(seconds: 1),
+                    //   pageBuilder: (BuildContext context,
+                    //       Animation<double> animation,
+                    //       Animation<double> secondaryAnimation) {
+                    //     return NewFeed();
+                    //   },
+                    // ),
+
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => new NewFeed()),
+                    (Route<dynamic> route) => false);
               } else {
                 Navigator.push(
                   context,
@@ -86,12 +106,24 @@ class _LoginScreenState extends State<LoginScreen> {
               }
 
               SetUserInfo(state.phoneNumber, state.password, state.userId);
+              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                  userId: state.userId, mobileToken: mobileToken));
 
               //  Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
 
             } else if (state.role == 'Supporter') {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewFeedSupporter()));
+              // Navigator.pushAndRemoveUntil(context,
+              //     MaterialPageRoute(builder: (context) => NewFeedSupporter()),
+              //       (Route<dynamic> route) => false);
+              //       );
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => new NewFeedSupporter()),
+                  (Route<dynamic> route) => false);
+              SetUserInfo(state.phoneNumber, state.password, state.userId);
+              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                  userId: state.userId, mobileToken: mobileToken));
             }
           }
         },
@@ -443,11 +475,18 @@ class _LoginScreenState extends State<LoginScreen> {
     await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
   }
 
+
+  void UpdateDeviceMobileToken(
+      UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
+    var result =
+        _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
+  }
   void validate() {
     if (formkey.currentState!.validate()) {
       print('Validated');
     } else {
       print('Not validated');
     }
+
   }
 }

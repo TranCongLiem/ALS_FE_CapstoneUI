@@ -3,8 +3,9 @@ class LoginResponeModel {
   String? phoneNumber;
   String? role;
   String? fullName;
+  String? relationshipWith;
   //String? message;
-  LoginResponeModel({this.userId,this.phoneNumber, this.role, this.fullName});
+  LoginResponeModel({this.userId,this.phoneNumber, this.role, this.fullName,this.relationshipWith});
 
   factory LoginResponeModel.fromJson(Map<String, dynamic> json) {
     return LoginResponeModel(
@@ -12,6 +13,7 @@ class LoginResponeModel {
       role: json["role"],
       phoneNumber: json["phoneNumber"],
       fullName: json["fullName"],
+      relationshipWith: json["relationshipWith"],
     );
     //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
   }

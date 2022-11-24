@@ -1,5 +1,4 @@
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
-import 'package:capstone_ui/Bloc/authenticate/create_sos_noti/create_sos_noti_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 // ignore: unused_import
 import 'package:capstone_ui/Constant/constant.dart';
@@ -15,10 +14,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../Bloc/create_sos_noti/create_sos_noti_bloc.dart';
 import '../Components/Home/category_card.dart';
 import '../Feature/Chat/pages/home_page.dart';
 import '../Feature/SpeechToText/SpeechToText.dart';
 import '../Feature/TextToSpeech/TextToSpeech.dart';
+import '../Model/getProfileUser_model.dart';
 import '../Splash/SharePreKey.dart';
 
 class Home extends StatefulWidget {
@@ -48,189 +49,173 @@ class _HomeState extends State<Home> {
       userId = userId2;
     });
   }
+   Future<GetPhoneByIdResponeModel> getPhoneNumberById(GetPhoneByIdRequestModel requestModel){
+    var result= service.getPhoneNumberById(requestModel);
+    return result;
+    } 
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
-        return Sizer(builder: (context, orientation, deviceType) {
+        return Sizer(builder: (context, orientation, deviceType) {       
           return SizerUtil.deviceType == DeviceType.mobile
               // ignore: sized_box_for_whitespace
-              ? BlocListener<CreateSosNotiBloc, SendSOSBlocState>(
-                  listener: (context, state) {
-                    // TODO: implement listener
-                    if (state is SendSOSFailBlocState) {
-                      showDialog(
-                          context: context,
-                          builder: (_) => AlertDialog(
-                                title: Text('Lỗi'),
-                                content: Text(state
-                                        .getPhoneByIdResponeModel.phoneNumber ??
-                                    'Không thể thực hiện tính năng này'),
-                              ));
-                    } else if (state is SendSOSSuccessBlocState) {
-                      launch(
-                          "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
-                    } else {}
-                  },
-                  // builder: (context, state) {
-                  child: Container(
-                      width: 100.w,
-                      height: 20.5.h,
-                      child: Scaffold(
-                        bottomNavigationBar: MyBottomNavBar(
-                            // ignore: unnecessary_this
-                            // index: this.index,
+              ? Container(
+                  width: 100.w,
+                  height: 20.5.h,
+                  child: Scaffold(
+                    bottomNavigationBar: MyBottomNavBar(
+                        // ignore: unnecessary_this
+                        // index: this.index,
+                        ),
+                    floatingActionButton: FloatingActionButton(
+                      // ignore: prefer_const_constructors
+                      child: Icon(Icons.notifications_active),
+                      onPressed: () {
+                        // BlocProvider.of<CreateSosNotiBloc>(context)
+                        //     .add(SendSOSEvent(userId: userId));
+                        //   SOSBloc.add(SendSOSEvent(userId: userId));
+                        context
+                            .read<CreateSosNotiBloc>()
+                            .add(SendSOSEvent(userId: userId));
+                      },
+                    ),
+                    body: Stack(
+                      children: <Widget>[
+                        Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/anh_web.png"),
+                              fit: BoxFit.cover,
                             ),
-                        floatingActionButton: FloatingActionButton(
-                          // ignore: prefer_const_constructors
-                          child: Icon(Icons.notifications_active),
-                          onPressed: () {
-                            // BlocProvider.of<CreateSosNotiBloc>(context)
-                            //     .add(SendSOSEvent(userId: userId));
-                            //   SOSBloc.add(SendSOSEvent(userId: userId));
-                            context
-                                .read<CreateSosNotiBloc>()
-                                .add(SendSOSEvent(userId: userId));
-                          },
-                        ),
-                        body: Stack(
-                          children: <Widget>[
-                            Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/anh_web.png"),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              child: SafeArea(
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Align(
-                                        alignment: Alignment.topRight,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          height: 52,
-                                          width: 52,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            image: new DecorationImage(
-                                                image: ExactAssetImage(
-                                                    'assets/images/logo_Avatar.jpg')),
-                                          ),
-                                        ),
+                          ),
+                          child: SafeArea(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20),
+                              child: Column(
+                                crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      height: 52,
+                                      width: 52,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: new DecorationImage(
+                                            image: ExactAssetImage(
+                                                'assets/images/logo_Avatar.jpg')),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 30.0),
-                                        child: Text(
-                                          "Xin chào!\nHôm nay bạn cần gì?",
-                                          style: TextStyle(
-                                              fontSize: 35,
-                                              color: Colors.black,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: GridView.count(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: .85,
-                                          crossAxisSpacing: 20,
-                                          mainAxisSpacing: 20,
-                                          children: <Widget>[
-                                            CategoryCard(
-                                              title:
-                                                  "Chuyển văn bản thành giọng nói",
-                                              svgSrc: 'assets/icons/text.svg',
-                                              press: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            TextToSpeech()));
-                                              },
-                                            ),
-                                            CategoryCard(
-                                              title:
-                                                  "Chuyển giọng nói thành văn bản",
-                                              svgSrc:
-                                                  'assets/icons/microphone.svg',
-                                              press: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SpeechSampleApp()));
-                                              },
-                                            ),
-                                            CategoryCard(
-                                              title: "Lưu giọng nói",
-                                              svgSrc:
-                                                  "assets/icons/saverecord1.svg",
-                                              press: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HomeViewRecord()));
-                                              },
-                                            ),
-                                            CategoryCard(
-                                              title: "Trò chuyện",
-                                              svgSrc: "assets/icons/ex1.svg",
-                                              press: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            HomePage(
-                                                                userId: state
-                                                                    .userId)));
-                                              },
-                                            ),
-                                            BlocBuilder<CreateSosNotiBloc,
-                                                SendSOSBlocState>(
-                                              builder: (context, state) {
-                                                if (state
-                                                    is SendSOSFailBlocState) {
-                                                  showDialog(
-                                                      context: context,
-                                                      builder: (_) =>
-                                                          AlertDialog(
-                                                            title: Text('Lỗi'),
-                                                            content: Text(state
-                                                                    .getPhoneByIdResponeModel
-                                                                    .phoneNumber ??
-                                                                'Không thể thực hiện tính năng này'),
-                                                          ));
-                                                } else if (state
-                                                    is SendSOSSuccessBlocState) {
-                                                  launch(
-                                                      "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
-                                                } else {}
-                                                return Container();
-                                              },
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 30.0),
+                                    child: Text(
+                                      "Xin chào!\nHôm nay bạn cần gì?",
+                                      style: TextStyle(
+                                          fontSize: 35,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: GridView.count(
+                                      crossAxisCount: 2,
+                                      childAspectRatio: .85,
+                                      crossAxisSpacing: 20,
+                                      mainAxisSpacing: 20,
+                                      children: <Widget>[
+                                        CategoryCard(
+                                          title:
+                                              "Chuyển văn bản thành giọng nói",
+                                          svgSrc: 'assets/icons/text.svg',
+                                          press: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        TextToSpeech()));
+                                          },
+                                        ),
+                                        CategoryCard(
+                                          title:
+                                              "Chuyển giọng nói thành văn bản",
+                                          svgSrc:
+                                              'assets/icons/microphone.svg',
+                                          press: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        SpeechSampleApp()));
+                                          },
+                                        ),
+                                        CategoryCard(
+                                          title: "Lưu giọng nói",
+                                          svgSrc:
+                                              "assets/icons/saverecord1.svg",
+                                          press: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomeViewRecord()));
+                                          },
+                                        ),
+                                        CategoryCard(
+                                          title: "Trò chuyện",
+                                          svgSrc: "assets/icons/ex1.svg",
+                                          press: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        HomePage(
+                                                            userId: state
+                                                                .userId)));
+                                          },
+                                        ),
+                                        BlocBuilder<CreateSosNotiBloc,
+                                            SendSOSBlocState>(
+                                          builder: (context, state) {
+                                            if (state
+                                                is SendSOSFailBlocState) {
+                                              showDialog(
+                                                  context: context,
+                                                  builder: (_) =>
+                                                      AlertDialog(
+                                                        title: Text('Lỗi'),
+                                                        content: Text(state
+                                                                .getPhoneByIdResponeModel
+                                                                .phoneNumber ??
+                                                            'Không thể thực hiện tính năng này'),
+                                                      ));
+                                            } else if (state
+                                                is SendSOSSuccessBlocState) {
+                                              launch(
+                                                  "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
+                                            } else {}
+                                            return Container();
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
-                        ),
-                      ))
-                  //} ;
-                  )
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ))
               : Container(
                   width: 100.w,
                   height: 12.5.h,
