@@ -7,9 +7,18 @@ class AuthenticateState with _$AuthenticateState {
     required String userId,
     required String phoneNumber,
     required String password,
+    required String phoneNumberPatient,
+    required String passwordPatient,
+    required String phoneNumberSupporter,
+    required String passwordSupporter,
     required String fullName,
     required bool isAuthenticated,
+
     required String relationshipWith,
+
+    required bool isRegisterPatient,
+    required bool isRegisterSupporter,
+
     String? role,
     String? errorMessage,
   }) = _AuthenticateState;
@@ -20,6 +29,7 @@ class AuthenticateState with _$AuthenticateState {
         password: '',
         fullName: '',
         isAuthenticated: false,
+
         relationshipWith: '',
       );
 
@@ -31,6 +41,14 @@ class AuthenticateState with _$AuthenticateState {
         fullName: '',
         isAuthenticated: false,
         relationshipWith: '',
+
+        isRegisterPatient: false,
+        isRegisterSupporter: false,
+        phoneNumberPatient: '',
+        passwordPatient: '',
+        phoneNumberSupporter: '',
+        passwordSupporter: '',
+
       );
 }
 

@@ -11,8 +11,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
+import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String mobileToken = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,6 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
         .getToken()
         .then((value) => mobileToken = value ?? '');
   }
+
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +128,9 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
         builder: (context, state) {
+          context
+              .read<AuthenticateBloc>()
+              .add(AuthenticateEvent.authCheckRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,
@@ -132,154 +139,171 @@ class _LoginScreenState extends State<LoginScreen> {
                     body: Center(
                         child: Container(
                       color: Colors.white,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Flexible(
-                            flex: 1,
-                            child: Padding(
-                              padding: EdgeInsets.all(5),
-                              child: Image.asset('assets/images/logo_ALS.png',
-                                  width: 450),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: TextFormField(
-                              keyboardType: TextInputType.numberWithOptions(
-                                  decimal: false),
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              controller: emailController,
-                              decoration: InputDecoration(
-                                suffixIcon: Icon(Icons.person),
-                                border: OutlineInputBorder(),
-                                labelText: 'Số Điện Thoại',
-                                hintText: 'Nhập Số Điện Thoại',
+                      child: Form(
+                        autovalidateMode: AutovalidateMode.always,
+                        key: formkey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Flexible(
+                              flex: 1,
+                              child: Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Image.asset('assets/images/logo_ALS.png',
+                                    width: 450),
                               ),
-                              style: TextStyle(fontSize: 25.sp),
-                              onChanged: (value) {
-                                context.read<AuthenticateBloc>().add(
-                                    AuthenticateEvent.phoneNumberChanged(
-                                        value));
-                              },
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: TextFormField(
-                              keyboardType: TextInputType.numberWithOptions(
-                                  decimal: false),
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly
-                              ],
-                              controller: passwordController,
-                              obscureText: hidePassword,
-                              decoration: InputDecoration(
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    hidePassword
-                                        ? Icons.visibility_off
-                                        : Icons.visibility,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      hidePassword = !hidePassword;
-                                    });
-                                  },
-                                  color: Colors.green,
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: TextFormField(
+                                keyboardType: TextInputType.numberWithOptions(
+                                    decimal: false),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  suffixIcon: Icon(Icons.person),
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Số Điện Thoại',
+                                  hintText: 'Nhập Số Điện Thoại',
                                 ),
-                                border: OutlineInputBorder(),
-                                labelText: 'Mật khẩu',
-                                hintText: 'Nhập mật khẩu',
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Vui lòng nhập số điện thoại';
+                                  } else if (value.length > 10) {
+                                    return 'Chỉ nhập 10 số';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                style: TextStyle(fontSize: 25.sp),
+                                onChanged: (value) {
+                                  context.read<AuthenticateBloc>().add(
+                                      AuthenticateEvent.phoneNumberChanged(
+                                          value));
+                                },
                               ),
-                              style: TextStyle(fontSize: 25.sp),
-                              onChanged: (value) {
-                                context.read<AuthenticateBloc>().add(
-                                    AuthenticateEvent.passwordChanged(value));
-                              },
                             ),
-                          ),
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              context
-                                  .read<AuthenticateBloc>()
-                                  .add(AuthenticateEvent.loginRequested());
-                            },
-                            icon: Icon(Icons.login),
-                            label: Text(
-                              'Đăng nhập',
-                              style: TextStyle(
-                                  fontSize: 22.sp, fontFamily: 'GothamB'),
-                            ),
-                            style: ButtonStyle(
-                              foregroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.white),
-                              backgroundColor: MaterialStateProperty.all<Color>(
-                                  Colors.green),
-                              elevation:
-                                  MaterialStateProperty.resolveWith<double>(
-                                      (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed) ||
-                                    (states.contains(MaterialState.disabled))) {
-                                  return 0;
-                                }
-                                return 5;
-                              }),
-                            ),
-                          ),
-                          TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => VerifyScreen()));
-                              },
-                              child: Text(
-                                'Quên mật khẩu',
-                                style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontStyle: FontStyle.italic,
-                                    color: Colors.black),
-                              )),
-                          TextButton(
-                            onPressed: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => RoleScreen()));
-                            },
-                            // child: Text('Chưa có tài khoản? Đăng ký'),
-                            // style: ButtonStyle(
-                            //   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                            //
-                            // ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Chưa có tài khoản?',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 18.sp),
-                                ),
-                                TextButton(
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: TextFormField(
+                                keyboardType: TextInputType.numberWithOptions(
+                                    decimal: false),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
+                                controller: passwordController,
+                                obscureText: hidePassword,
+                                decoration: InputDecoration(
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      hidePassword
+                                          ? Icons.visibility_off
+                                          : Icons.visibility,
+                                    ),
                                     onPressed: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             RoleScreen()));
+                                      setState(() {
+                                        hidePassword = !hidePassword;
+                                      });
                                     },
-                                    child: Text('Đăng ký',
-                                        style: TextStyle(
-                                            color: greenALS,
-                                            fontSize: 18.sp,
-                                            fontFamily: 'GothamB'))),
-                              ],
+                                    color: Colors.green,
+                                  ),
+                                  border: OutlineInputBorder(),
+                                  labelText: 'Mật khẩu',
+                                  hintText: 'Nhập mật khẩu',
+                                ),
+                                validator: (value) {
+                                  if (value!.isEmpty) {
+                                    return 'Vui lòng nhập mật khẩu';
+                                  } else if (value.length > 10) {
+                                    return 'Chỉ nhập 10 số';
+                                  } else {
+                                    return null;
+                                  }
+                                },
+                                style: TextStyle(fontSize: 25.sp),
+                                onChanged: (value) {
+                                  context.read<AuthenticateBloc>().add(
+                                      AuthenticateEvent.passwordChanged(value));
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                validate();
+                                context
+                                    .read<AuthenticateBloc>()
+                                    .add(AuthenticateEvent.loginRequested());
+                              },
+                              icon: Icon(Icons.login),
+                              label: Text(
+                                'Đăng nhập',
+                                style: TextStyle(
+                                    fontSize: 22.sp, fontFamily: 'GothamB'),
+                              ),
+                              style: ButtonStyle(
+                                foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.green),
+                                elevation:
+                                    MaterialStateProperty.resolveWith<double>(
+                                        (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.pressed) ||
+                                      (states
+                                          .contains(MaterialState.disabled))) {
+                                    return 0;
+                                  }
+                                  return 5;
+                                }),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              VerifyScreen()));
+                                },
+                                child: Text(
+                                  'Quên mật khẩu',
+                                  style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors.black),
+                                )),
+                            TextButton(
+                              onPressed: () {},
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Chưa có tài khoản?',
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 18.sp),
+                                  ),
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    RoleScreen()));
+                                      },
+                                      child: Text('Đăng ký',
+                                          style: TextStyle(
+                                              color: greenALS,
+                                              fontSize: 18.sp,
+                                              fontFamily: 'GothamB'))),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     )),
                     // This trailing comma makes auto-formatting nicer for build methods.
@@ -451,9 +475,18 @@ class _LoginScreenState extends State<LoginScreen> {
     await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
   }
 
+
   void UpdateDeviceMobileToken(
       UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
+  }
+  void validate() {
+    if (formkey.currentState!.validate()) {
+      print('Validated');
+    } else {
+      print('Not validated');
+    }
+
   }
 }

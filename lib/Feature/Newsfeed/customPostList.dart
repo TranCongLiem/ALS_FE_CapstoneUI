@@ -9,6 +9,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../Bloc/post/post_bloc.dart';
 import '../../Model/getListPost_model.dart';
 import '../../services/api_Post.dart';
+import 'package:readmore/readmore.dart';
 
 class CustomPostList extends StatefulWidget {
   final List<ListPost> listPost;
@@ -24,12 +25,14 @@ class _CustomPostListState extends State<CustomPostList> {
   late bool? checkReact;
   late int countReact;
   late String userId;
+  late String? imageUser;
   @override
   void initState() {
     super.initState();
     onLikeButtonTapped();
     checkReact = widget.listPost[widget.indexx].checkReact;
     countReact = widget.listPost[widget.indexx].countReact ?? 0;
+    imageUser = widget.listPost[widget.indexx].imageUser;
   }
 
   @override
@@ -66,8 +69,14 @@ class _CustomPostListState extends State<CustomPostList> {
                               child: CircleAvatar(
                                 radius: 17.0,
                                 backgroundColor: Colors.grey[200],
-                                backgroundImage: CachedNetworkImageProvider(
-                                    "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
+                                backgroundImage:
+                                    widget.listPost[widget.indexx].imageUser !=
+                                            ''
+                                        ? NetworkImage(widget
+                                            .listPost[widget.indexx]
+                                            .imageUser!) as ImageProvider
+                                        : AssetImage(
+                                            'assets/images/logo_Avatar.jpg'),
                               ),
                             ),
                             const SizedBox(width: 8.0),
@@ -98,8 +107,13 @@ class _CustomPostListState extends State<CustomPostList> {
                         const SizedBox(height: 4.0),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.0),
-                          child: Text(
+                          child: ReadMoreText(
                             widget.listPost[widget.indexx].caption ?? '',
+                            trimLines: 2,
+                            colorClickableText: greenALS.withOpacity(0.8),
+                            trimMode: TrimMode.Line,
+                            trimCollapsedText: 'Xem thêm',
+                            trimExpandedText: 'Thu gọn',
                             style: TextStyle(fontSize: 20.0),
                           ),
                         ),
@@ -109,7 +123,7 @@ class _CustomPostListState extends State<CustomPostList> {
                       ],
                     ),
                   ),
-                  widget.listPost[widget.indexx].image != null
+                  widget.listPost[widget.indexx].image != ''
                       ? Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: CachedNetworkImage(

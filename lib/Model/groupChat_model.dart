@@ -2,6 +2,7 @@ class ListAllGroupChatUserJoin {
   String? groupChatId;
   String? groupChatName;
   String? groupImage;
+  String? adminId;
   String? lastMessageGroup;
   String? lastMessageSender;
   String? updateAt;
@@ -10,6 +11,7 @@ class ListAllGroupChatUserJoin {
       {this.groupChatId,
       this.groupChatName,
       this.groupImage,
+      this.adminId,
       this.lastMessageGroup,
       this.lastMessageSender,
       this.updateAt});
@@ -18,6 +20,7 @@ class ListAllGroupChatUserJoin {
       groupChatId: json['groupChatId'] ?? '' as String,
       groupChatName: json['groupChatName'] ?? '' as String,
       groupImage: json['groupImage'] ?? '' as String,
+      adminId: json['adminId'] ?? '' as String,
       lastMessageGroup: json['lastMessageGroup'] ?? '' as String,
       lastMessageSender: json['lastMessageSender'] ?? '' as String,
       updateAt: json['updateAt'] ?? '' as String,
@@ -109,5 +112,52 @@ class GroupChatResponeModel {
       success: json["success"],
       message: json["message"],
     );
+  }
+}
+
+class ListGetAllUserInGroupChat {
+  String? fullName;
+  String? imageUser;
+  String? joinTime;
+
+
+  ListGetAllUserInGroupChat(
+      {this.fullName,
+      this.imageUser,
+      this.joinTime,});
+  factory ListGetAllUserInGroupChat.fromJson(Map<String, dynamic> json) {
+    return ListGetAllUserInGroupChat(
+      fullName: json['fullName'] ?? '' as String,
+      imageUser: json['imageUser'] ?? '' as String,
+      joinTime: json['joinTime'] ?? '' as String,
+
+    );
+  }
+  
+}
+class RemoveMemberInGroupResponeModel {
+  bool? success;
+  String? message;
+  RemoveMemberInGroupResponeModel({this.success, this.message});
+
+  factory RemoveMemberInGroupResponeModel.fromJson(Map<String, dynamic> json) {
+    return RemoveMemberInGroupResponeModel(
+      success: json["success"],
+      message: json["message"],
+    );
+    //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
+  }
+}
+class RemoveMemberInGroupRequestModel {
+  String groupId;
+  String userId;
+
+  RemoveMemberInGroupRequestModel({required this.groupId, required this.userId});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'groupId':groupId.trim(),
+      'userId':userId.trim(),
+    };
+    return map;
   }
 }

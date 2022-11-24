@@ -53,90 +53,83 @@ class _FeatureButtonsViewTextFunctionState
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
           listener: (context, state) {},
           builder: (context, state) {
-            return Center(
-                child: _isRecorded
-                    ? _isUploading
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: LinearProgressIndicator()),
-                              Text('Đang lưu trữ...'),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ToggleButtons(
-                                fillColor: Colors.grey,
-                                borderWidth: 1,
-                                selectedBorderColor: greenALS,
-                                selectedColor: Colors.white,
-                                borderRadius: BorderRadius.circular(15.0),
-                                borderColor: Colors.white,
-                                // ignore: sort_child_properties_last
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: IconButton(
-                                        icon: Icon(
-                                            _isPlaying
-                                                ? Icons.pause
-                                                : Icons.play_arrow,
-                                            size: 35.0,
-                                            color: Colors.white),
-                                        onPressed: () {
-                                          speak(widget.speakText);
-                                        }),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: IconButton(
-                                      icon: Icon(Icons.save_alt,
-                                          size: 35.0, color: Colors.white),
-                                      onPressed: () =>
-                                          _onFileUploadButtonPressed(
-                                              state2.userId),
-                                    ),
-                                  ),
-                                ],
-                                onPressed: (int newindex) {
-                                  setState(() {
-                                    for (int i = 0;
-                                        i < isSelected.length;
-                                        i++) {
-                                      if (i == newindex)
-                                        isSelected[i] = !isSelected[i];
-                                      else {
-                                        isSelected[i] = false;
-                                      }
-                                    }
-                                  });
-                                },
-                                isSelected: isSelected,
+            return Column(children: [
+              _isRecorded
+                  ? _isUploading
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                child: LinearProgressIndicator()),
+                            Text('Đang lưu trữ...'),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: greenALS.withOpacity(0.9),
+                                padding: EdgeInsets.all(20.0),
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                ),
                               ),
-                            ],
-                          )
-                    : ElevatedButton(
-                        onPressed: () {
-                          _onRecordButtonPressed(widget.speakText);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),
-                          ),
-                          primary: greenALS,
-                          textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w300),
+                              icon: Icon(
+                                  _isPlaying ? Icons.pause : Icons.play_arrow,
+                                  size: 35.0,
+                                  color: Colors.white),
+                              onPressed: () {
+                                speak(widget.speakText);
+                              },
+                              label: Text(''),
+                            ),
+                            SizedBox(
+                              width: 20.0,
+                            ),
+                            ElevatedButton.icon(
+                              style: ElevatedButton.styleFrom(
+                                alignment: Alignment.center,
+                                elevation: 3.0,
+                                backgroundColor: greenALS.withOpacity(0.9),
+                                padding: EdgeInsets.all(20.0),
+                                shape: new RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(10.0),
+                                ),
+                              ),
+                              icon: Icon(Icons.save_alt,
+                                  size: 35.0, color: Colors.white),
+                              onPressed: () =>
+                                  _onFileUploadButtonPressed(state2.userId),
+                              label: Text(''),
+                            ),
+                          ],
+                        )
+                  : ElevatedButton(
+                      onPressed: () {
+                        _onRecordButtonPressed(widget.speakText);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        elevation: 5.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        child: Text('Phat'),
-                      ));
+                        padding: EdgeInsets.all(20.0),
+                        backgroundColor: greenALS.withOpacity(0.8),
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 25,
+                            fontWeight: FontWeight.w300),
+                      ),
+                      child: Text(
+                        'Phát',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+            ]);
           },
         );
       },

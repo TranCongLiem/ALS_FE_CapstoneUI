@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Chat/pages/search.dart';
+import 'package:capstone_ui/Home/home.dart';
 import 'package:capstone_ui/services/api_chat.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -130,6 +131,15 @@ class HomePageState extends State<HomePage> {
                 ),
               )
             ],
+            leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () =>  Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) =>
+                Home()),
+          )
+        )
           ),
           body: Stack(
             children: [

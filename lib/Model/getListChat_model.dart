@@ -101,3 +101,23 @@ class UpdateUserChatReQuestModel {
 }
 
 
+class PushNotificationChatReQuestModel {
+  String? userIdFrom;
+  String? userIdTo;
+  String? lastMessage;
+
+  PushNotificationChatReQuestModel(
+      {required this.userIdFrom,
+      required this.userIdTo,
+      required this.lastMessage});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'userIdFrom': userIdFrom,
+      'userIdTo': userIdTo,
+      'lastMessage': lastMessage,
+    };
+    return map;
+  }
+}
+
+

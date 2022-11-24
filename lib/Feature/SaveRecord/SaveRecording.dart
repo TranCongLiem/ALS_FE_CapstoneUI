@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:math';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/SaveRecord/feature_buttons_view_text.dart';
@@ -8,9 +7,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:speech_to_text/speech_recognition_error.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../Bloc/create_record/create_record_bloc.dart';
 import 'feature_buttons_view.dart';
@@ -27,14 +23,13 @@ class _SaveRecordingState extends State<SaveRecording> {
   TextEditingController textEditingController = TextEditingController();
   TextEditingController titleController = TextEditingController();
   final FlutterTts flutterTts = FlutterTts();
-
   List<bool> isSelected = [false, true];
   List<Reference> references = [];
-
   late stt.SpeechToText _speech;
   bool _isListening = false;
   String _textSpeech = '';
 
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   void onListen() async {
     bool available = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -211,66 +206,67 @@ class _SaveRecordingState extends State<SaveRecording> {
       },
       builder: (context, state) {
         return Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                      labelText: _textSpeech,
-                      suffixIcon: Icon(Icons.type_specimen),
-                      border: myinputborder(),
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder(),
-                      labelStyle: TextStyle(fontSize: 20.0)),
-                  onChanged: (value) {
-                    context
-                        .read<CreateRecordBloc>()
-                        .add(CreateRecordEvent.recordNameChanged(value));
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextFormField(
-                  controller: textEditingController,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                      labelText: "Nhập nội dung",
-                      border: myinputborder(),
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder(),
-                      labelStyle: TextStyle(fontSize: 20.0)),
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      //  speak(textEditingController.text, userId);
+          child: Form(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        labelText: _textSpeech,
+                        suffixIcon: Icon(Icons.type_specimen),
+                        border: myinputborder(),
+                        enabledBorder: myinputborder(),
+                        focusedBorder: myfocusborder(),
+                        labelStyle: TextStyle(fontSize: 20.0)),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Vui lòng không bỏ trống';
+                      } else if (value.length > 50) {
+                        return 'Vui lòng không nhập hơn 50 ký tự';
+                      } else {
+                        return null;
+                      }
                     },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      padding: EdgeInsets.only(
-                          top: 20, bottom: 20, left: 30, right: 30),
-                      primary: greenALS,
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w300),
-                    ),
+                    onChanged: (value) {
+                      context
+                          .read<CreateRecordBloc>()
+                          .add(CreateRecordEvent.recordNameChanged(value));
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: TextFormField(
+                    controller: textEditingController,
+                    maxLines: 2,
+                    decoration: InputDecoration(
+                        labelText: "Nhập nội dung",
+                        border: myinputborder(),
+                        enabledBorder: myinputborder(),
+                        focusedBorder: myfocusborder(),
+                        labelStyle: TextStyle(fontSize: 20.0)),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Vui lòng không bỏ trống';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+                ),
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
                     child: FeatureButtonsViewTextFunction(
                       onUploadComplete: _onUploadComplete,
                       speakText: textEditingController.text.toString(),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       },
@@ -293,71 +289,56 @@ class _SaveRecordingState extends State<SaveRecording> {
 
   Widget getGraphWidget2() {
     return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: TextFormField(
-              controller: titleController,
-              decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: (() {
-                      onListen();
-                    }),
-                    icon: Icon(Icons.mic),
-                  ),
-                  border: myinputborder(),
-                  enabledBorder: myinputborder(),
-                  focusedBorder: myfocusborder(),
-                  labelStyle: TextStyle(fontSize: 20.0)),
-              onChanged: (value) {
-                _textSpeech = value;
-                // context
-                //     .read<CreateRecordBloc>()
-                //     .add(CreateRecordEvent.recordNameChanged(value));
-              },
+      child: Form(
+        autovalidateMode: AutovalidateMode.always,
+        key: formkey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: TextFormField(
+                controller: titleController,
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: (() {
+                        onListen();
+                      }),
+                      icon: Icon(Icons.mic),
+                    ),
+                    border: myinputborder(),
+                    enabledBorder: myinputborder(),
+                    focusedBorder: myfocusborder(),
+                    labelStyle: TextStyle(fontSize: 20.0)),
+                onChanged: (value) {
+                  _textSpeech = value;
+                  // context
+                  //     .read<CreateRecordBloc>()
+                  //     .add(CreateRecordEvent.recordNameChanged(value));
+                },
+                // validator: (value) {
+                //   if (value!.isEmpty) {
+                //     return 'Vui lòng nhập mô tả';
+                //   } else if (value.length > 10) {
+                //     return 'Chỉ nhập 10 số';
+                //   } else {
+                //     return null;
+                //   }
+                // },
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // requestPermission.requestAndroidPermission(
-                //     "android.permission.RECORD_AUDIO");
-              },
-              style: ElevatedButton.styleFrom(
-                  // backgroundColor: greenALS,
-                  padding: EdgeInsets.all(8.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  )),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
               child: FeatureButtonsView(
                 onUploadComplete: _onUploadComplete,
                 titleText: _textSpeech,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-
-  // Widget voice() {
-  //   return ElevatedButton(
-  //     onPressed: () {
-  //       !_hasSpeech || speech.isListening ? null : startListening();
-  //     },
-  //     // ignore: sort_child_properties_last
-  //     child: Icon(Icons.mic,
-  //         color: speech.isListening ? Colors.red : Colors.white, size: 25),
-  //     style: ElevatedButton.styleFrom(
-  //       shape: CircleBorder(),
-  //       padding: EdgeInsets.all(7.0),
-  //       primary: greenALS, // <-- Button color
-  //     ),
-  //   );
-  // }
 
   OutlineInputBorder myinputborder() {
     //return type is OutlineInputBorder
@@ -378,57 +359,6 @@ class _SaveRecordingState extends State<SaveRecording> {
           width: 2,
         ));
   }
-
-  // Future<void> initSpeechState() async {
-  //   bool hasSpeech = await speech.initialize(
-  //       onError: errorListener, onStatus: statusListener);
-  //   if (!mounted) return;
-  //   setState(() {
-  //     _hasSpeech = hasSpeech;
-  //   });
-  // }
-
-  // void statusListener(String status) {
-  //   print(status);
-  // }
-
-  // void errorListener(SpeechRecognitionError errorNotification) {}
-
-  // startListening() async {
-  //   PermissionStatus microStatus = await Permission.microphone.request();
-  //   if (microStatus == PermissionStatus.granted) {}
-  //   if (microStatus == PermissionStatus.denied) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text('Cần có quyền truy cập vào micro')));
-  //   }
-  //   if (microStatus == PermissionStatus.permanentlyDenied) {
-  //     openAppSettings();
-  //   }
-  //   speech.listen(
-  //       onResult: resultListener,
-  //       listenFor: Duration(seconds: 4),
-  //       partialResults: true,
-  //       localeId: _currentLocaleId,
-  //       onSoundLevelChange: soundLevelListener,
-  //       cancelOnError: true,
-  //       listenMode: ListenMode.confirmation);
-  // }
-
-  // void resultListener(SpeechRecognitionResult result) {
-  //   if (result.finalResult)
-  //     setState(() {
-  //       outputText = result.recognizedWords;
-  //       titleController.text = result.recognizedWords;
-  //     });
-  // }
-
-  // soundLevelListener(double level) {
-  //   minSoundLevel = min(minSoundLevel, level);
-  //   maxSoundLevel = max(maxSoundLevel, level);
-  //   setState(() {
-  //     this.level = level;
-  //   });
-  // }
 
   Future<void> _onFileUploadButtonPressed(
       String filepath, String userId) async {
@@ -462,6 +392,14 @@ class _SaveRecordingState extends State<SaveRecording> {
       setState(() {
         _isUploading = false;
       });
+    }
+  }
+
+  void validate() {
+    if (formkey.currentState!.validate()) {
+      print('Validated');
+    } else {
+      print('Not validated');
     }
   }
 }

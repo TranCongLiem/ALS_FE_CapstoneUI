@@ -32,7 +32,7 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
       UpdateLastMessageGroupChatRequest reqModel = UpdateLastMessageGroupChatRequest(
           groupChatId: event.groupChatId,
           lastMessageGroup: event.lastMessageGroup,
-          lastMessageSender: event.userId);
+          lastMessageSender: event.fullName);
       final result = await _groupChatService.updateLastMessageGroupChat(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -49,6 +49,21 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
           memberId: event.memberId,
           groupChatId: event.groupChatId);
       final result = await _groupChatService.addMemberGroupChat(reqModel);
+      if (result.message != null && result.success != null) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: "  "));
+      }
+    });
+
+    on<_RemovedMemberInGroupChatRequest>((event, emit) async {
+      RemoveMemberInGroupRequestModel reqModel = RemoveMemberInGroupRequestModel(
+          groupId: event.groupId,
+          userId: event.userId);
+      final result = await _groupChatService.removeMember(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
           message: result.message ?? '',

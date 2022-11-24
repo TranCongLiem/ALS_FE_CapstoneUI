@@ -1,20 +1,24 @@
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Components/BottomNavBar_Supporter/bottom_nav_bar_supporter.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Profile/profile_listnewsfeed.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
-import 'package:capstone_ui/Feature/Supporter/Profile/connect_screen.dart';
-import 'package:capstone_ui/Login/login_screen.dart';
-import 'package:capstone_ui/Model/UpdateDeviceTokenMobile.dart';
-import 'package:capstone_ui/Splash/SharePreKey.dart';
+import 'package:capstone_ui/Feature/Supporter/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Supporter/Profile/profile_update.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../Bloc/authenticate/authenticate_bloc.dart';
+
 import '../../../Bloc/user_detail/user_detail_bloc.dart';
+import '../../../Login/login_screen.dart';
+import '../../../Model/UpdateDeviceTokenMobile.dart';
+import '../../../Splash/SharePreKey.dart';
 import '../../../services/api_User.dart';
 import '../../../services/api_login.dart';
+
+// import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
 
 class ProfileSupporter extends StatefulWidget {
   const ProfileSupporter({Key? key}) : super(key: key);
@@ -73,32 +77,13 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                     ),
                   ],
                 ),
-                floatingActionButton: FloatingActionButton.extended(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ConnectPatient()));
-                  },
-                  elevation: 10.0,
-                  backgroundColor: greenALS,
-                  label: Row(children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 4.0),
-                      child: Icon(Icons.connect_without_contact_outlined),
-                    ),
-                    Text("Kết nối bệnh nhân")
-                  ]),
-                ),
-                floatingActionButtonLocation:
-                    FloatingActionButtonLocation.centerFloat,
                 body: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
                       BlocBuilder<GetDetailBloc, GetDeatailBlocState>(
                           builder: (context, state) {
                         if (state is GetDetailLoadedState) {
-                          return ProfileBody(
+                          return ProfileBodySupporter(
                               state.getProfileUserByIdResponeModel, context);
                         }
                         return Center(child: CircularProgressIndicator());
@@ -131,14 +116,10 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                               horizontal: 20, vertical: 30),
                           child: Row(
                             children: [
-                              SvgPicture.asset(
-                                'assets/images/logout-svgrepo-com.svg',
-                                height: 16,
-                                width: 16,
-                              ),
+                              Icon(Icons.view_agenda),
                               SizedBox(width: 20),
                               Text(
-                                'Đăng Xuất',
+                                'Lịc sử bài đăng',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -152,11 +133,13 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                             ],
                           ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
-                bottomNavigationBar: MyBottomNavBarSupporter(),
+                bottomNavigationBar: MyBottomNavBarSupporter(
+                    // index: this.index,
+                    ),
               );
             },
           ),
@@ -184,3 +167,23 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
         MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()));
   }
 }
+
+// class MyBottomNavBar extends StatelessWidget {
+//   MyBottomNavBar({required this.index, required this.callback});
+//   final int index;
+//   final Function(int) callback;
+//   @override
+//   Widget build(BuildContext context) {
+//     /// BottomNavigationBar is automatically set to type 'fixed'
+//     /// when there are three of less items
+//     return BottomNavigationBar(
+//       currentIndex: index,
+//       onTap: callback,
+//       items: <BottomNavigationBarItem>[
+//         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Trang chủ'),
+//         BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Tin tức'),
+//         BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Tài khoản'),
+//       ],
+//     );
+//   }
+// }
