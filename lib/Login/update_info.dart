@@ -47,30 +47,11 @@ class _RegisterInfoState extends State<RegisterInfo> {
     return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {
         if (state.isUpdatedInformationPatient) {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return ScaleTransition(
-                  alignment: Alignment.center,
-                  scale: Tween<double>(begin: 0.1, end: 1).animate(
-                    CurvedAnimation(
-                      parent: animation,
-                      curve: Curves.bounceIn,
-                    ),
-                  ),
-                  child: child,
-                );
-              },
-              transitionDuration: Duration(seconds: 1),
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                context.read<UserBloc>().add(UserEvent.setStateFlase());
-                return NewFeed();
-              },
-            ),
-          );
+          Navigator.pushAndRemoveUntil(
+                    context,                 
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => new NewFeed()),
+                    (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {

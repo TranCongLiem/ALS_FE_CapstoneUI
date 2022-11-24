@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Feature/Chat/constants/firestore_constants.dart';
 import 'package:capstone_ui/Feature/Supporter/Newsfeed/newfeeds.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,30 +43,11 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
     return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {
         if (state.isUpdatedInformationSupporter) {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                return ScaleTransition(
-                  alignment: Alignment.center,
-                  scale: Tween<double>(begin: 0.1, end: 1).animate(
-                    CurvedAnimation(
-                      parent: animation,
-                      curve: Curves.bounceIn,
-                    ),
-                  ),
-                  child: child,
-                );
-              },
-              transitionDuration: Duration(seconds: 1),
-              pageBuilder: (BuildContext context, Animation<double> animation,
-                  Animation<double> secondaryAnimation) {
-                context.read<UserBloc>().add(UserEvent.setStateFlase());
-                return NewFeedSupporter();
-              },
-            ),
-          );
+          Navigator.pushAndRemoveUntil(
+                    context,                 
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => new NewFeedSupporter()),
+                    (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {
@@ -179,7 +162,8 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: ElevatedButton(
                           onPressed: () {
-                            uploadImage(state2.userId);
+                            uploadImage(state2.userId, state.fullName,
+                                state.imageUser);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: greenALS,
@@ -239,7 +223,7 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
     );
   }
 
-  Future<void> uploadImage(String userId) async {
+  Future<void> uploadImage(String userId, String fullName, String imageUser) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     String _imagePath = imagePath ?? '';
     String imageDatabase =
@@ -256,7 +240,21 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
             _imagePath.lastIndexOf('image_picker'), _imagePath.length))
         .putFile(File(_imagePath));
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
-    context
+        uploadToFirebase(userId,fullName,imageUser);
+  }
+
+  Future<void> uploadToFirebase(
+      String userId, String fullName, String imageUser) async {
+    CollectionReference users = await FirebaseFirestore.instance
+        .collection(FirestoreConstants.pathUserCollection);
+    users.doc(userId).set({
+      FirestoreConstants.nickname: fullName,
+      FirestoreConstants.photoUrl: imageUser,
+      FirestoreConstants.id: userId,
+      'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
+      FirestoreConstants.chattingWith: null
+    });
+        context
         .read<UserBloc>()
         .add(UserEvent.updateInformationSupporterRequest(userId));
   }

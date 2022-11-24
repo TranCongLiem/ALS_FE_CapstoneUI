@@ -21,6 +21,7 @@ import '../Feature/SpeechToText/SpeechToText.dart';
 import '../Feature/TextToSpeech/TextToSpeech.dart';
 import '../Model/getProfileUser_model.dart';
 import '../Splash/SharePreKey.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     getUserId();
-    SOSBloc = CreateSosNotiBloc(service);
+    // SOSBloc = CreateSosNotiBloc(service);
   }
 
   getUserId() async {
@@ -49,17 +50,13 @@ class _HomeState extends State<Home> {
       userId = userId2;
     });
   }
-   Future<GetPhoneByIdResponeModel> getPhoneNumberById(GetPhoneByIdRequestModel requestModel){
-    var result= service.getPhoneNumberById(requestModel);
-    return result;
-    } 
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
-        return Sizer(builder: (context, orientation, deviceType) {       
+        return Sizer(builder: (context, orientation, deviceType) {
           return SizerUtil.deviceType == DeviceType.mobile
               // ignore: sized_box_for_whitespace
               ? Container(
@@ -73,13 +70,26 @@ class _HomeState extends State<Home> {
                     floatingActionButton: FloatingActionButton(
                       // ignore: prefer_const_constructors
                       child: Icon(Icons.notifications_active),
-                      onPressed: () {
-                        // BlocProvider.of<CreateSosNotiBloc>(context)
-                        //     .add(SendSOSEvent(userId: userId));
-                        //   SOSBloc.add(SendSOSEvent(userId: userId));
-                        context
-                            .read<CreateSosNotiBloc>()
-                            .add(SendSOSEvent(userId: userId));
+                      onPressed: () async {
+                        
+                        if (state.relationshipWith == null || state.relationshipWith.isEmpty) {
+                          Fluttertoast.showToast(
+                              msg:
+                                  "Bạn chưa liên kết với bất kì người hỗ trợ nào",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.SNACKBAR,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: greenALS,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        } else {
+                          var result = await getPhoneNumberById(
+                              GetPhoneByIdRequestModel(
+                                  userId: state.relationshipWith));
+                          if (result != null) {
+                            launch("tel:${result.phoneNumber}");
+                          }
+                        }
                       },
                     ),
                     body: Stack(
@@ -87,18 +97,16 @@ class _HomeState extends State<Home> {
                         Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image:
-                                  AssetImage("assets/images/anh_web.png"),
+                              image: AssetImage("assets/images/anh_web.png"),
                               fit: BoxFit.cover,
                             ),
                           ),
                           child: SafeArea(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Column(
-                                crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Align(
                                     alignment: Alignment.topRight,
@@ -147,8 +155,7 @@ class _HomeState extends State<Home> {
                                         CategoryCard(
                                           title:
                                               "Chuyển giọng nói thành văn bản",
-                                          svgSrc:
-                                              'assets/icons/microphone.svg',
+                                          svgSrc: 'assets/icons/microphone.svg',
                                           press: () {
                                             Navigator.push(
                                                 context,
@@ -178,33 +185,33 @@ class _HomeState extends State<Home> {
                                                 MaterialPageRoute(
                                                     builder: (context) =>
                                                         HomePage(
-                                                            userId: state
-                                                                .userId)));
+                                                            userId:
+                                                                state.userId)));
                                           },
                                         ),
-                                        BlocBuilder<CreateSosNotiBloc,
-                                            SendSOSBlocState>(
-                                          builder: (context, state) {
-                                            if (state
-                                                is SendSOSFailBlocState) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: (_) =>
-                                                      AlertDialog(
-                                                        title: Text('Lỗi'),
-                                                        content: Text(state
-                                                                .getPhoneByIdResponeModel
-                                                                .phoneNumber ??
-                                                            'Không thể thực hiện tính năng này'),
-                                                      ));
-                                            } else if (state
-                                                is SendSOSSuccessBlocState) {
-                                              launch(
-                                                  "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
-                                            } else {}
-                                            return Container();
-                                          },
-                                        ),
+                                        // BlocBuilder<CreateSosNotiBloc,
+                                        //     SendSOSBlocState>(
+                                        //   builder: (context, state) {
+                                        //     if (state
+                                        //         is SendSOSFailBlocState) {
+                                        //       showDialog(
+                                        //           context: context,
+                                        //           builder: (_) =>
+                                        //               AlertDialog(
+                                        //                 title: Text('Lỗi'),
+                                        //                 content: Text(state
+                                        //                         .getPhoneByIdResponeModel
+                                        //                         .phoneNumber ??
+                                        //                     'Không thể thực hiện tính năng này'),
+                                        //               ));
+                                        //     } else if (state
+                                        //         is SendSOSSuccessBlocState) {
+                                        //       launch(
+                                        //           "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
+                                        //     } else {}
+                                        //     return Container();
+                                        //   },
+                                        // ),
                                       ],
                                     ),
                                   ),
@@ -333,5 +340,11 @@ class _HomeState extends State<Home> {
         });
       },
     );
+  }
+
+  Future<GetPhoneByIdResponeModel> getPhoneNumberById(
+      GetPhoneByIdRequestModel requestModel) {
+    var result = service.getPhoneNumberById(requestModel);
+    return result;
   }
 }

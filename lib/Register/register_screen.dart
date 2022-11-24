@@ -2,12 +2,17 @@ import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
 import 'package:capstone_ui/Login/update_info.dart';
+import 'package:capstone_ui/services/api_login.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../Login/login_screen.dart';
+import '../Model/UpdateDeviceTokenMobile.dart';
+import '../Splash/SharePreKey.dart';
 
 class RegisterScreenPatient extends StatefulWidget {
   const RegisterScreenPatient({Key? key}) : super(key: key);
@@ -21,6 +26,17 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  UserService _UserService = UserService();
+    String mobileToken = '';
+
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    FirebaseMessaging.instance
+        .getToken()
+        .then((value) => mobileToken = value ?? '');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +46,10 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
           if (state.isRegisterPatient) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => RegisterInfo()));
+                       SetUserInfo(state.phoneNumber, state.password, state.userId);
+              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                  userId: state.userId, mobileToken: mobileToken));
+                
           }
         },
         builder: (context, state) {
@@ -133,6 +153,7 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                           .registrationPatientRequested(
                                               state.phoneNumberPatient,
                                               state.passwordPatient));
+
                                 },
                                 child: Text(
                                   'Đăng ký',
@@ -344,5 +365,20 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
         },
       );
     });
+  }
+
+  void SetUserInfo(String phone, String Password, String userId) async {
+    //final prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, true);
+    await prefs.setString(SharedPreferencesKey.SHARED_PHONE, phone);
+    await prefs.setString(SharedPreferencesKey.SHARED_PASSWORD, Password);
+    await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
+  }
+
+  void UpdateDeviceMobileToken(
+      UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
+    var result =
+        _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
   }
 }

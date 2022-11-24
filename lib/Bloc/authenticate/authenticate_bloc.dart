@@ -116,6 +116,17 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           isRegisterSupporter: _userService.isRegisterSupporter()));
 
     });
+
+     on<_setCheckRegisterPatientFalseRequested>((event, emit) {
+      emit(state.copyWith(isRegisterPatient: false));
+    });
+    on<_setCheckRegisterSupporterFalseRequested>((event, emit) {
+      emit(state.copyWith(
+          isRegisterSupporter: false));
+
+    });
+
+    
   
 }
   }

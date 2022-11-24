@@ -2,6 +2,7 @@ import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
 import 'package:capstone_ui/Login/update_info.dart';
+import 'package:capstone_ui/Login/update_info_supporter.dart';
 import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Model/UpdateDeviceTokenMobile.dart';
 import 'package:capstone_ui/services/api_login.dart';
@@ -111,11 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
               //  Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
 
             } else if (state.role == 'Supporter') {
-              // Navigator.pushAndRemoveUntil(context,
-              //     MaterialPageRoute(builder: (context) => NewFeedSupporter()),
-              //       (Route<dynamic> route) => false);
-              //       );
-              Navigator.pushAndRemoveUntil(
+              if (state.fullName.toString() != '') {
+                Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
@@ -124,6 +122,18 @@ class _LoginScreenState extends State<LoginScreen> {
               SetUserInfo(state.phoneNumber, state.password, state.userId);
               UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
                   userId: state.userId, mobileToken: mobileToken));
+              }else{
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          new RegisterInfoSupporter()),
+                  (Route<dynamic> route) => false);
+              SetUserInfo(state.phoneNumber, state.password, state.userId);
+              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                  userId: state.userId, mobileToken: mobileToken));
+              }
+              
             }
           }
         },
