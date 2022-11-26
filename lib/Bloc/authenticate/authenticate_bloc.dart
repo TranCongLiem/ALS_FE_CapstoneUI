@@ -21,19 +21,20 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_LoginRequested>((event, emit) async {
       LoginRequestModel reqModel = LoginRequestModel(
           phoneNumber: state.phoneNumber, password: state.password);
-      final result = await _userService.login(reqModel);
-      if (result.role != null && result.phoneNumber != null) {
+      LoginResponeModel result = await _userService.login(reqModel);
+      if (result.phoneNumber != null && result.role != null){
         emit(state.copyWith(
           userId: result.userId ?? '',
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
           fullName: result.fullName ?? '',
           isAuthenticated: true,
-          relationshipWith: result.relationshipWith??''
+          relationshipWith: result.relationshipWith??'',
+          errorMessage: "",
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Invalid Phone Number or Password"));
-        debugPrint(state.phoneNumber);
+        emit(state.copyWith(errorMessage: "Số điện thoại hoặc mật khẩu không chính xác",isAuthenticated: false,));
+        
       }
     });
 

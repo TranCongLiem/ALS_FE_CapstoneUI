@@ -9,14 +9,15 @@ class LoginResponeModel {
 
   factory LoginResponeModel.fromJson(Map<String, dynamic> json) {
     return LoginResponeModel(
-      userId: json["userId"],
-      role: json["role"],
-      phoneNumber: json["phoneNumber"],
-      fullName: json["fullName"],
-      relationshipWith: json["relationshipWith"],
+      userId: json["userId"] ?? '',
+      role: json["role"] ?? '',
+      phoneNumber: json["phoneNumber"] ?? '',
+      fullName: json["fullName"] ?? '',
+      relationshipWith: json["relationshipWith"] ?? '',
     );
     //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
   }
+
 }
 
 class LoginRequestModel {

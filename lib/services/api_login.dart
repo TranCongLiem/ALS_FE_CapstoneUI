@@ -78,8 +78,13 @@ class UserService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == HttpStatus.ok) {
-      UserService.authenticated = true;
-      return LoginResponeModel.fromJson(json.decode(response.body));
+      LoginResponeModel a = new LoginResponeModel();
+      if(response.body == 'Invalid Phone or Password'){
+        return a;
+      }else{
+        UserService.authenticated = true;
+        return LoginResponeModel.fromJson(json.decode(response.body));
+      }
     } else {
       UserService.authenticated = false;
       throw Exception('Lỗi dữ liệu');
