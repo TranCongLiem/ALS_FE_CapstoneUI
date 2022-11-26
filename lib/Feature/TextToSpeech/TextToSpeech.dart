@@ -8,7 +8,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:capstone_ui/Splash/SharePreKey.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../Bloc/exercise/exercise_bloc_bloc.dart';
 import '../../Bloc/textToSpeech/text_to_spech_bloc.dart';
 
@@ -26,6 +26,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
   late AudioPlayer audioPlayer;
   String? gender;
   TextToSpeechRequestModel? textToSpeechRequestModel;
+  FPTAIService fptaiService = FPTAIService();
   @override
   void initState() {
     // TODO: implement initState
@@ -37,12 +38,12 @@ class _TextToSpeechState extends State<TextToSpeech> {
     //textToSpeechRequestModel = TextToSpeechRequestModel(text: "", voice: "");
     getOldText();
   }
+
   @override
   void dispose() {
     // TODO: implement initState
-    super.dispose();  
-    
-  } 
+    super.dispose();
+  }
 
   getOldText() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -113,13 +114,12 @@ class _TextToSpeechState extends State<TextToSpeech> {
                       padding: EdgeInsets.only(left: 5, right: 5),
                       child: TextFormField(
                         maxLines: 5,
-                  
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Nhập để nói',
                         ),
                         controller: textEditingController,
-                        style: TextStyle(fontSize: 32.0, color: Colors.black),                       
+                        style: TextStyle(fontSize: 32.0, color: Colors.black),
                       ),
                     ),
                   ),
@@ -186,88 +186,69 @@ class _TextToSpeechState extends State<TextToSpeech> {
                           },
                         ),
                         RadioListTile(
-                    title: Text("Nữ"),
-                    value: "linhsan",
-                    groupValue: gender,
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value.toString();
-                      });
-                    },
-                  ),
+                          title: Text("Nữ"),
+                          value: "linhsan",
+                          groupValue: gender,
+                          onChanged: (value) {
+                            setState(() {
+                              gender = value.toString();
+                            });
+                          },
+                        ),
                       ],
                     ),
                   ),
-                  
-              
-                  BlocBuilder<TextToSpechBloc, TextToSpeechBlocState>(
-                      builder: (context, state) {
-                    if (state is TextToSpeechBlocInitial) {
-                      return Container(
-                          child: ElevatedButton(
-                        child: Text("Nhấn để phát"),
-                        onPressed: () {
-                          // setState(() {
-                          //   textToSpeechRequestModel = TextToSpeechRequestModel(
-                          //       text: textEditingController.text,
-                          //       voice: gender.toString());
-                          // });
-                          BlocProvider.of<TextToSpechBloc>(context).add(
-                              TextToSpeechConvertEvent(
-                                  textToSpeechRequestModel:
-                                      TextToSpeechRequestModel(
-                                          text: textEditingController.text,
-                                          voice: gender.toString())));
-                          print("gender nha: " + gender.toString());
-                        },
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                            textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontStyle: FontStyle.normal,
-                            ),
-                            padding: EdgeInsets.only(
-                                left: 20, right: 20, top: 20, bottom: 20)),
-                      ));
-                    } else if (state is TextToSpeechConvertSuccessState) {
-                      // playAudio(state.textToSpeechResponeModel.message ?? '');
-                      audioPlayer
-                          .play(state.textToSpeechResponeModel.message ?? '');
-                          print("abcsdas");
-                      return Container(
-                          child: ElevatedButton(
-                        child: Text("Nhấn để phát"),
-                        onPressed: () {
-                          // setState(() {
-                          //   textToSpeechRequestModel = TextToSpeechRequestModel(
-                          //       text: textEditingController.text,
-                          //       voice: gender.toString());
-                          // });
-                          BlocProvider.of<TextToSpechBloc>(context).add(
-                              TextToSpeechConvertEvent(
-                                  textToSpeechRequestModel:
-                                      TextToSpeechRequestModel(
-                                          text: textEditingController.text,
-                                          voice: gender.toString())));
-                          print("gender nha: " + gender.toString());
-                        },
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                            textStyle: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontStyle: FontStyle.normal,
-                            ),
-                            padding: EdgeInsets.only(
-                                left: 20, right: 20, top: 20, bottom: 20)),
-                      ));
-                      //
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  })
+
+                 
+
+                  Container(
+                      child: ElevatedButton(
+                    child: Text("Nhấn để phát"),
+                    onPressed: () async {
+                      if(textEditingController.text.length <3 ||textEditingController.text.length == 0 || textEditingController.text.isEmpty ){
+                        Fluttertoast.showToast(
+                              msg: "Vui lòng nhập nhiều từ 3 kí tự trở lên.",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.SNACKBAR,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: greenALS,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                              
+                      }else{
+                        var result = await ConvertTextToSpeechFPTAI(
+                          TextToSpeechRequestModel(
+                              text: textEditingController.text,
+                              voice: gender.toString()));
+                      if (result != null) {
+                        playAudio(result.message ?? '');
+                        audioPlayer
+                            .play(result.message ?? '');
+                        print("abcsdas");
+                      }else{
+                          Fluttertoast.showToast(
+                              msg: "Đã có lỗi xảy ra.",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.SNACKBAR,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: greenALS,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                      }
+                      }
+                      
+                    },
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.green,
+                        textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontStyle: FontStyle.normal,
+                        ),
+                        padding: EdgeInsets.only(
+                            left: 20, right: 20, top: 20, bottom: 20)),
+                  )
+                  ),
                 ],
               )),
         ));
@@ -277,5 +258,11 @@ class _TextToSpeechState extends State<TextToSpeech> {
     //audioPlayer.play(await audioLink.getDownloadURL(), isLocal: false);
     await audioPlayer.setUrl(audioLink);
     audioPlayer.play(audioLink);
+  }
+
+  Future<TextToSpeechResponeModel> ConvertTextToSpeechFPTAI(
+      TextToSpeechRequestModel textToSpeechRequestModel) {
+    var result = fptaiService.convertTextToSpeech(textToSpeechRequestModel);
+    return result;
   }
 }
