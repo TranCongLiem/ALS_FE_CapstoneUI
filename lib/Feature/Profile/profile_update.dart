@@ -1,4 +1,7 @@
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Chat/constants/firestore_constants.dart';
+import 'package:capstone_ui/Feature/Chat/providers/chat_provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,11 +36,13 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   String? fullName;
   String? address;
   late String? imagePath;
+  late ChatProvider chatProvider;
   MediaType _mediaType = MediaType.image;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    chatProvider = context.read<ChatProvider>();
     fullNameController.text =
         widget.getProfileUserByIdResponeModel.fullName.toString();
     addressController.text =
@@ -199,24 +204,33 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   Future<void> uploadInfo(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     String _imagePath = imagePath ?? '';
-    String imageDatabase =
-        'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-user%2F' +
-            userId +
-            '%2F' +
-            _imagePath.substring(
-                _imagePath.lastIndexOf('image_picker'), _imagePath.length) +
-            '?alt=media';
-    await firebaseStorage
-        .ref('upload-image-user')
+    // await firebaseStorage
+    //     .ref('upload-image-user')
+    //     .child(userId)
+    //     .child(_imagePath.substring(
+    //         _imagePath.lastIndexOf('image_picker'), _imagePath.length))
+    //     .putFile(File(_imagePath));
+    Reference reference = 
+        firebaseStorage.ref('upload-image-user')
         .child(userId)
         .child(_imagePath.substring(
-            _imagePath.lastIndexOf('image_picker'), _imagePath.length))
-        .putFile(File(_imagePath));
+            _imagePath.lastIndexOf('image_picker'), _imagePath.length));
+    UploadTask uploadTask =  reference.putFile(File(imagePath!));
+    TaskSnapshot snapshot = await uploadTask;
+    String imageDatabase = await snapshot.ref.getDownloadURL();
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
     context.read<UserBloc>().add(UserEvent.getFullName(fullName!));
+    context.read<AuthenticateBloc>().add(
+                                      AuthenticateEvent.fullNameChanged(
+                                          fullName!));
     context.read<UserBloc>().add(UserEvent.getAddress(address!));
     context
         .read<UserBloc>()
-        .add(UserEvent.updateProfilePatientRequest(widget.userId));
+    .add(UserEvent.updateProfilePatientRequest(widget.userId));
+    chatProvider.updateDataFirestore(
+      FirestoreConstants.pathUserCollection,
+      userId,
+      {FirestoreConstants.nickname: fullName},
+    );
   }
 }

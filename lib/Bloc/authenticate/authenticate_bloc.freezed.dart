@@ -20,6 +20,7 @@ mixin _$AuthenticateEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -41,6 +42,7 @@ mixin _$AuthenticateEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -62,6 +64,7 @@ mixin _$AuthenticateEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -84,6 +87,7 @@ mixin _$AuthenticateEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -113,6 +117,7 @@ mixin _$AuthenticateEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -140,6 +145,7 @@ mixin _$AuthenticateEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -252,6 +258,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -276,6 +283,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -300,6 +308,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -328,6 +337,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -360,6 +370,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -390,6 +401,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -497,6 +509,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -521,6 +534,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -545,6 +559,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -573,6 +588,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -605,6 +621,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -635,6 +652,7 @@ class _$_PasswordChanged implements _PasswordChanged {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -671,6 +689,256 @@ abstract class _PasswordChanged implements AuthenticateEvent {
   String get password;
   @JsonKey(ignore: true)
   _$$_PasswordChangedCopyWith<_$_PasswordChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_fullNameChangedCopyWith<$Res> {
+  factory _$$_fullNameChangedCopyWith(
+          _$_fullNameChanged value, $Res Function(_$_fullNameChanged) then) =
+      __$$_fullNameChangedCopyWithImpl<$Res>;
+  $Res call({String fullName});
+}
+
+/// @nodoc
+class __$$_fullNameChangedCopyWithImpl<$Res>
+    extends _$AuthenticateEventCopyWithImpl<$Res>
+    implements _$$_fullNameChangedCopyWith<$Res> {
+  __$$_fullNameChangedCopyWithImpl(
+      _$_fullNameChanged _value, $Res Function(_$_fullNameChanged) _then)
+      : super(_value, (v) => _then(v as _$_fullNameChanged));
+
+  @override
+  _$_fullNameChanged get _value => super._value as _$_fullNameChanged;
+
+  @override
+  $Res call({
+    Object? fullName = freezed,
+  }) {
+    return _then(_$_fullNameChanged(
+      fullName == freezed
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_fullNameChanged implements _fullNameChanged {
+  const _$_fullNameChanged(this.fullName);
+
+  @override
+  final String fullName;
+
+  @override
+  String toString() {
+    return 'AuthenticateEvent.fullNameChanged(fullName: $fullName)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_fullNameChanged &&
+            const DeepCollectionEquality().equals(other.fullName, fullName));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(fullName));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_fullNameChangedCopyWith<_$_fullNameChanged> get copyWith =>
+      __$$_fullNameChangedCopyWithImpl<_$_fullNameChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
+    required TResult Function() loginRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationPatientRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationSupporterRequested,
+    required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
+    required TResult Function() checkRegisterPatientRequested,
+    required TResult Function() checkRegisterSupporterRequested,
+    required TResult Function() setCheckRegisterPatientFalseRequested,
+    required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function(String phoneNumber) phoneNumberChangedPatient,
+    required TResult Function(String password) passwordChangedPatient,
+    required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
+    required TResult Function(String password) passwordChangedSupporter,
+  }) {
+    return fullNameChanged(fullName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function()? setCheckRegisterPatientFalseRequested,
+    TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+  }) {
+    return fullNameChanged?.call(fullName);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function()? setCheckRegisterPatientFalseRequested,
+    TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (fullNameChanged != null) {
+      return fullNameChanged(fullName);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
+    required TResult Function(_LoginRequested value) loginRequested,
+    required TResult Function(_RegistrationPatientRequested value)
+        registrationPatientRequested,
+    required TResult Function(_RegistrationSupporterRequested value)
+        registrationSupporterRequested,
+    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
+    required TResult Function(_checkRegisterPatientRequested value)
+        checkRegisterPatientRequested,
+    required TResult Function(_checkRegisterSupporterRequested value)
+        checkRegisterSupporterRequested,
+    required TResult Function(_setCheckRegisterPatientFalseRequested value)
+        setCheckRegisterPatientFalseRequested,
+    required TResult Function(_setCheckRegisterSupporterFalseRequested value)
+        setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_PhoneNumberChangedPatient value)
+        phoneNumberChangedPatient,
+    required TResult Function(_PasswordChangedPatient value)
+        passwordChangedPatient,
+    required TResult Function(_PhoneNumberChangedSupporter value)
+        phoneNumberChangedSupporter,
+    required TResult Function(_PasswordChangedSupporter value)
+        passwordChangedSupporter,
+  }) {
+    return fullNameChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_setCheckRegisterPatientFalseRequested value)?
+        setCheckRegisterPatientFalseRequested,
+    TResult Function(_setCheckRegisterSupporterFalseRequested value)?
+        setCheckRegisterSupporterFalseRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+  }) {
+    return fullNameChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_setCheckRegisterPatientFalseRequested value)?
+        setCheckRegisterPatientFalseRequested,
+    TResult Function(_setCheckRegisterSupporterFalseRequested value)?
+        setCheckRegisterSupporterFalseRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (fullNameChanged != null) {
+      return fullNameChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _fullNameChanged implements AuthenticateEvent {
+  const factory _fullNameChanged(final String fullName) = _$_fullNameChanged;
+
+  String get fullName;
+  @JsonKey(ignore: true)
+  _$$_fullNameChangedCopyWith<_$_fullNameChanged> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -717,6 +985,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -741,6 +1010,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -765,6 +1035,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -793,6 +1064,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -825,6 +1097,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -855,6 +1128,7 @@ class _$_LoginRequested implements _LoginRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -971,6 +1245,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -995,6 +1270,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1019,6 +1295,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1047,6 +1324,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -1079,6 +1357,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1109,6 +1388,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1234,6 +1514,7 @@ class _$_RegistrationSupporterRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -1258,6 +1539,7 @@ class _$_RegistrationSupporterRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1282,6 +1564,7 @@ class _$_RegistrationSupporterRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1310,6 +1593,7 @@ class _$_RegistrationSupporterRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -1342,6 +1626,7 @@ class _$_RegistrationSupporterRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1372,6 +1657,7 @@ class _$_RegistrationSupporterRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1457,6 +1743,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -1481,6 +1768,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1505,6 +1793,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1533,6 +1822,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -1565,6 +1855,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1595,6 +1886,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1672,6 +1964,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -1696,6 +1989,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1720,6 +2014,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1748,6 +2043,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -1780,6 +2076,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1810,6 +2107,7 @@ class _$_LogoutRequested implements _LogoutRequested {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -1892,6 +2190,7 @@ class _$_checkRegisterPatientRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -1916,6 +2215,7 @@ class _$_checkRegisterPatientRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1940,6 +2240,7 @@ class _$_checkRegisterPatientRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -1968,6 +2269,7 @@ class _$_checkRegisterPatientRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -2000,6 +2302,7 @@ class _$_checkRegisterPatientRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2030,6 +2333,7 @@ class _$_checkRegisterPatientRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2113,6 +2417,7 @@ class _$_checkRegisterSupporterRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -2137,6 +2442,7 @@ class _$_checkRegisterSupporterRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2161,6 +2467,7 @@ class _$_checkRegisterSupporterRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2189,6 +2496,7 @@ class _$_checkRegisterSupporterRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -2221,6 +2529,7 @@ class _$_checkRegisterSupporterRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2251,6 +2560,7 @@ class _$_checkRegisterSupporterRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2335,6 +2645,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -2359,6 +2670,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2383,6 +2695,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2411,6 +2724,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -2443,6 +2757,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2473,6 +2788,7 @@ class _$_setCheckRegisterPatientFalseRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2558,6 +2874,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -2582,6 +2899,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2606,6 +2924,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2634,6 +2953,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -2666,6 +2986,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2696,6 +3017,7 @@ class _$_setCheckRegisterSupporterFalseRequested
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2804,6 +3126,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -2828,6 +3151,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2852,6 +3176,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -2880,6 +3205,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -2912,6 +3238,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -2942,6 +3269,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3051,6 +3379,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -3075,6 +3404,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3099,6 +3429,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3127,6 +3458,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -3159,6 +3491,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3189,6 +3522,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3301,6 +3635,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -3325,6 +3660,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3349,6 +3685,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3377,6 +3714,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -3409,6 +3747,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3439,6 +3778,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3549,6 +3889,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult when<TResult extends Object?>({
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
     required TResult Function() loginRequested,
     required TResult Function(String phoneNumber, String password)
         registrationPatientRequested,
@@ -3573,6 +3914,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3597,6 +3939,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
     TResult Function()? loginRequested,
     TResult Function(String phoneNumber, String password)?
         registrationPatientRequested,
@@ -3625,6 +3968,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult map<TResult extends Object?>({
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
     required TResult Function(_LoginRequested value) loginRequested,
     required TResult Function(_RegistrationPatientRequested value)
         registrationPatientRequested,
@@ -3657,6 +4001,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,
@@ -3687,6 +4032,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
     TResult Function(_LoginRequested value)? loginRequested,
     TResult Function(_RegistrationPatientRequested value)?
         registrationPatientRequested,

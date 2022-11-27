@@ -57,6 +57,10 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       }
     });
 
+    on<_fullNameChanged>((event, emit) {
+      emit(state.copyWith(fullName: event.fullName));
+    });
+
     on<_RegistrationSupporterRequested>((event, emit) async {
       RegisterRequestModel reqModel = RegisterRequestModel(
           phoneNumber: state.phoneNumberSupporter,

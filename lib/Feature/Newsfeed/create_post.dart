@@ -366,17 +366,14 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
   Future<void> uploadImage(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     try {
-      String _imagePath = imagePath ?? '';
-      String imageDatabase =
-          'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-firebase%2F' +
-              _imagePath.substring(
-                  _imagePath.lastIndexOf('image_picker'), _imagePath.length) +
-              '?alt=media';
-      await firebaseStorage
-          .ref('upload-image-firebase')
-          .child(_imagePath.substring(
-              _imagePath.lastIndexOf('image_picker'), _imagePath.length))
-          .putFile(File(_imagePath));
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    Reference reference = 
+        firebaseStorage.ref('upload-image-firebase')
+        .child(userId)
+        .child(fileName);
+    UploadTask uploadTask =  reference.putFile(File(imagePath!));
+    TaskSnapshot snapshot = await uploadTask;
+    String imageDatabase = await snapshot.ref.getDownloadURL();
       context
           .read<CreatePostBloc>()
           .add(CreatePostEvent.imageChanged(imageDatabase));

@@ -213,6 +213,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                 Padding(
                   padding: EdgeInsets.all(10),
                   child: TextFormField(
+                    maxLength: 50,
                     decoration: InputDecoration(
                         labelText: _textSpeech,
                         suffixIcon: Icon(Icons.type_specimen),

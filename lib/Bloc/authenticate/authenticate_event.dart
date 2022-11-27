@@ -6,6 +6,8 @@ class AuthenticateEvent with _$AuthenticateEvent {
       _PhoneNumberChanged;
   const factory AuthenticateEvent.passwordChanged(String password) =
       _PasswordChanged;
+  const factory AuthenticateEvent.fullNameChanged(String fullName) =
+      _fullNameChanged;
   const factory AuthenticateEvent.loginRequested() = _LoginRequested;
   const factory AuthenticateEvent.registrationPatientRequested(
       String phoneNumber, String password) = _RegistrationPatientRequested;
