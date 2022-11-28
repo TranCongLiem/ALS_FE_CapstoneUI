@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../../Bloc/user/user_bloc.dart';
 import '../../Model/getProfileUser_model.dart';
 import 'profile_screen.dart';
@@ -108,22 +109,130 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 physics: BouncingScrollPhysics(),
                 children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  Text(
+                    "Cập nhật tài khoản",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
                   Center(
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          radius: 80,
-                          backgroundImage: imagePath == null
-                              ? NetworkImage(widget
-                                  .getProfileUserByIdResponeModel
-                                  .imageUser!) as ImageProvider
-                              : FileImage(File(imagePath!)),
+                        Center(
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: 130,
+                                height: 130,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 4,
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          spreadRadius: 2,
+                                          blurRadius: 10,
+                                          color: Colors.black.withOpacity(0.1),
+                                          offset: Offset(0, 10))
+                                    ],
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: imagePath == null
+                                          ? NetworkImage(widget
+                                              .getProfileUserByIdResponeModel
+                                              .imageUser!) as ImageProvider
+                                          : FileImage(File(imagePath!)),
+                                    )),
+                              ),
+                              Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                        width: 4,
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                      ),
+                                      color: Colors.green,
+                                    ),
+                                    child: IconButton(
+                                      icon: Icon(Icons.edit),
+                                      onPressed: () {
+                                        showMaterialModalBottomSheet(
+                                          context: context,
+                                          builder: (context) => Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.15,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 20.0,
+                                                vertical: 20.0),
+                                            child: Column(
+                                              children: <Widget>[
+                                                Text(
+                                                  'Chọn ảnh từ',
+                                                  style:
+                                                      TextStyle(fontSize: 20.0),
+                                                ),
+                                                SizedBox(
+                                                  height: 20.0,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    ElevatedButton.icon(
+                                                        onPressed: () {
+                                                          pickMedia(ImageSource
+                                                              .gallery);
+                                                        },
+                                                        icon: Icon(Icons.image),
+                                                        label: Text('Thư viện'),
+                                                        style: ElevatedButton
+                                                            .styleFrom(
+                                                                backgroundColor:
+                                                                    greenALS)),
+                                                    ElevatedButton.icon(
+                                                      onPressed: () {
+                                                        pickMedia(
+                                                            ImageSource.camera);
+                                                      },
+                                                      icon: Icon(Icons.camera),
+                                                      label: Text('Máy ảnh'),
+                                                      style: ElevatedButton
+                                                          .styleFrom(
+                                                              backgroundColor:
+                                                                  greenALS),
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      color: Colors.white,
+                                    ),
+                                  )),
+                            ],
+                          ),
                         ),
-                        ElevatedButton(
-                            onPressed: () {
-                              pickMedia(ImageSource.gallery);
-                            },
-                            child: Text('Chọn ảnh'))
                       ],
                     ),
                   ),
@@ -133,43 +242,38 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     children: [
                       Text(
                         'Họ tên',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(fontSize: 18, color: Colors.black54),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
+                        textCapitalization: TextCapitalization.words,
                         controller: fullNameController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
                         maxLines: 1,
-                        style: TextStyle(fontSize: 26),
+                        style: TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.w500),
                         onChanged: (value) {
                           fullName = value;
                         },
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         'Địa chỉ',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(color: Colors.black54, fontSize: 18),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
+                        textCapitalization: TextCapitalization.words,
                         controller: addressController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
                         maxLines: 1,
-                        style: TextStyle(fontSize: 26),
+                        style: TextStyle(
+                            fontSize: 26, fontWeight: FontWeight.w500),
                         onChanged: (value) {
                           address = value;
                         },
@@ -203,30 +307,30 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
 
   Future<void> uploadInfo(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    String _imagePath = imagePath ?? '';
-    // await firebaseStorage
-    //     .ref('upload-image-user')
+    // String _imagePath = imagePath ?? '';
+    // Reference reference =
+    //     firebaseStorage.ref('upload-image-user')
     //     .child(userId)
     //     .child(_imagePath.substring(
-    //         _imagePath.lastIndexOf('image_picker'), _imagePath.length))
-    //     .putFile(File(_imagePath));
-    Reference reference = 
-        firebaseStorage.ref('upload-image-user')
-        .child(userId)
-        .child(_imagePath.substring(
-            _imagePath.lastIndexOf('image_picker'), _imagePath.length));
-    UploadTask uploadTask =  reference.putFile(File(imagePath!));
+    //         _imagePath.lastIndexOf('image_picker'), _imagePath.length));
+    // UploadTask uploadTask =  reference.putFile(File(imagePath!));
+    // TaskSnapshot snapshot = await uploadTask;
+    // String imageDatabase = await snapshot.ref.getDownloadURL();
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    Reference reference =
+        firebaseStorage.ref('upload-image-user').child(userId).child(fileName);
+    UploadTask uploadTask = reference.putFile(File(imagePath!));
     TaskSnapshot snapshot = await uploadTask;
     String imageDatabase = await snapshot.ref.getDownloadURL();
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
     context.read<UserBloc>().add(UserEvent.getFullName(fullName!));
-    context.read<AuthenticateBloc>().add(
-                                      AuthenticateEvent.fullNameChanged(
-                                          fullName!));
+    context
+        .read<AuthenticateBloc>()
+        .add(AuthenticateEvent.fullNameChanged(fullName!));
     context.read<UserBloc>().add(UserEvent.getAddress(address!));
     context
         .read<UserBloc>()
-    .add(UserEvent.updateProfilePatientRequest(widget.userId));
+        .add(UserEvent.updateProfilePatientRequest(widget.userId));
     chatProvider.updateDataFirestore(
       FirestoreConstants.pathUserCollection,
       userId,

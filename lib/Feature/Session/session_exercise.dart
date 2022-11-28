@@ -21,6 +21,10 @@ class _SessionExerciseState extends State<SessionExercise> {
   bool isChecked = false;
   String category_in_Session = '';
   // late CategoryExercise categoryExercise;
+  int? tappedIndex;
+
+  Color backgroundColor = Colors.white;
+
   Future LoadExBycate(String cate) async {
     category_in_Session = cate;
   }
@@ -33,6 +37,7 @@ class _SessionExerciseState extends State<SessionExercise> {
     //LoadExBycate('3FA85F64-5717-4562-B3FC-2C963F66AFA5');
     //  categoryExercise= CategoryExercise(
     //       categoryId: '', categoryImage: '', categoryName: 'Tất cả');
+    tappedIndex = -1;
   }
 
   @override
@@ -82,7 +87,7 @@ class _SessionExerciseState extends State<SessionExercise> {
                               physics: ClampingScrollPhysics(),
                               children: [
                                 Container(
-                                  height: 50,
+                                  height: 40,
                                   child: ListView.builder(
                                       itemCount: state.list.length,
                                       padding: EdgeInsets.only(left: 16),
@@ -95,10 +100,11 @@ class _SessionExerciseState extends State<SessionExercise> {
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width *
-                                              0.2,
-                                          child: TextButton(
+                                              0.35,
+                                          child: ElevatedButton(
                                               onPressed: () {
                                                 setState(() {
+                                                  tappedIndex = index;
                                                   print(
                                                       'cateID:  $state.list[index].categoryId');
                                                   category_in_Session = state
@@ -114,19 +120,35 @@ class _SessionExerciseState extends State<SessionExercise> {
                                                               category_in_Session));
                                                 });
                                               },
-                                              style: TextButton.styleFrom(
-                                                  backgroundColor: greenALS
-                                                      .withOpacity(0.7)),
+                                              style: ButtonStyle(
+                                                  padding: MaterialStateProperty.all(
+                                                      EdgeInsets.symmetric(
+                                                          vertical: 5.0,
+                                                          horizontal: 10.0)),
+                                                  backgroundColor: tappedIndex == index
+                                                      ? MaterialStateProperty.all<Color>(
+                                                          greenALS)
+                                                      : MaterialStateProperty.all<Color>(
+                                                          Colors.white),
+                                                  shape: MaterialStateProperty.all<
+                                                          RoundedRectangleBorder>(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.circular(18.0),
+                                                          side: BorderSide(color: greenALS)))),
                                               child: Text(
                                                 state.list[index]
                                                         .categoryName ??
                                                     '',
                                                 textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
                                                 //category_in_Session = state.list[index].categoryName,
                                                 style: TextStyle(
                                                     fontSize: 26,
-                                                    fontWeight: FontWeight.w800,
-                                                    color: Colors.white),
+                                                    fontWeight: FontWeight.w400,
+                                                    color: tappedIndex == index
+                                                        ? Colors.white
+                                                        : Colors.black),
                                               )),
                                         );
                                       }),

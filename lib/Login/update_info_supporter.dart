@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Bloc/user/user_bloc.dart';
 import '../Constant/constant.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 enum MediaType {
   image,
@@ -44,10 +45,10 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
       listener: (context, state) {
         if (state.isUpdatedInformationSupporter) {
           Navigator.pushAndRemoveUntil(
-                    context,                 
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => new NewFeedSupporter()),
-                    (Route<dynamic> route) => false);
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => new NewFeedSupporter()),
+              (Route<dynamic> route) => false);
         }
       },
       builder: (context, state) {
@@ -64,7 +65,6 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                     children: [
                       Container(
                         alignment: Alignment.center,
-                        // padding: EdgeInsets.only(left: 20.0, right: 20.0),
                         margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
                         child: Text(
                           'HÃY CHO CHÚNG TÔI BIẾT THÊM VỀ BẠN',
@@ -82,27 +82,117 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                               Center(
                                 child: Stack(
                                   children: [
-                                    CircleAvatar(
-                                      radius: 80,
-                                      backgroundImage: imagePath == null
-                                          ? AssetImage(
-                                                  "assets/images/logo_Avatar.jpg")
-                                              as ImageProvider
-                                          : FileImage(File(imagePath!)),
+                                    Container(
+                                      width: 130,
+                                      height: 130,
+                                      decoration: BoxDecoration(
+                                          border: Border.all(
+                                              width: 4,
+                                              color: Theme.of(context)
+                                                  .scaffoldBackgroundColor),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                spreadRadius: 2,
+                                                blurRadius: 10,
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                                offset: Offset(0, 10))
+                                          ],
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: imagePath == null
+                                                ? AssetImage(
+                                                        "assets/images/logo_Avatar.jpg")
+                                                    as ImageProvider
+                                                : FileImage(File(imagePath!)),
+                                          )),
                                     ),
                                     Positioned(
-                                        bottom: 20.0,
-                                        right: 20.0,
-                                        child: ElevatedButton.icon(
+                                        bottom: 0,
+                                        right: 0,
+                                        child: Container(
+                                          height: 40,
+                                          width: 40,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                              width: 4,
+                                              color: Theme.of(context)
+                                                  .scaffoldBackgroundColor,
+                                            ),
+                                            color: Colors.green,
+                                          ),
+                                          child: IconButton(
+                                            icon: Icon(Icons.edit),
                                             onPressed: () {
-                                              // showBottomSheet(
-                                              //     context: context,
-                                              //     builder: ((builder) =>
-                                              //         bottomSheet()));
-                                              pickMedia(ImageSource.gallery);
+                                              showMaterialModalBottomSheet(
+                                                context: context,
+                                                builder: (context) => Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.15,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  margin: EdgeInsets.symmetric(
+                                                      horizontal: 20.0,
+                                                      vertical: 20.0),
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Text(
+                                                        'Chọn ảnh từ',
+                                                        style: TextStyle(
+                                                            fontSize: 20.0),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 20.0,
+                                                      ),
+                                                      Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        children: [
+                                                          ElevatedButton.icon(
+                                                              onPressed: () {
+                                                                pickMedia(
+                                                                    ImageSource
+                                                                        .gallery);
+                                                              },
+                                                              icon: Icon(
+                                                                  Icons.image),
+                                                              label: Text(
+                                                                  'Thư viện'),
+                                                              style: ElevatedButton
+                                                                  .styleFrom(
+                                                                      backgroundColor:
+                                                                          greenALS)),
+                                                          ElevatedButton.icon(
+                                                            onPressed: () {
+                                                              pickMedia(
+                                                                  ImageSource
+                                                                      .camera);
+                                                            },
+                                                            icon: Icon(
+                                                                Icons.camera),
+                                                            label:
+                                                                Text('Máy ảnh'),
+                                                            style: ElevatedButton
+                                                                .styleFrom(
+                                                                    backgroundColor:
+                                                                        greenALS),
+                                                          )
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
                                             },
-                                            icon: Icon(Icons.camera_alt),
-                                            label: Text('Edit')))
+                                            color: Colors.white,
+                                          ),
+                                        )),
                                   ],
                                 ),
                               ),
@@ -162,8 +252,8 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: ElevatedButton(
                           onPressed: () {
-                            uploadImage(state2.userId, state.fullName,
-                                state.imageUser);
+                            uploadImage(
+                                state2.userId, state.fullName, state.imageUser);
                           },
                           style: ElevatedButton.styleFrom(
                             primary: greenALS,
@@ -192,55 +282,17 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
     );
   }
 
-  Widget bottomSheet() {
-    return Container(
-      height: 100.0,
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
-      child: Column(
-        children: <Widget>[
-          Text(
-            'Chọn ảnh',
-            style: TextStyle(fontSize: 20.0),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            children: [
-              ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.camera),
-                  label: Text('Máy ảnh')),
-              ElevatedButton.icon(
-                  onPressed: () {},
-                  icon: Icon(Icons.image),
-                  label: Text('Thư viện'))
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Future<void> uploadImage(String userId, String fullName, String imageUser) async {
+  Future<void> uploadImage(
+      String userId, String fullName, String imageUser) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    String _imagePath = imagePath ?? '';
-    String imageDatabase =
-        'https://firebasestorage.googleapis.com/v0/b/als-vietnam.appspot.com/o/upload-image-user%2F' +
-            userId +
-            '%2F' +
-            _imagePath.substring(
-                _imagePath.lastIndexOf('image_picker'), _imagePath.length) +
-            '?alt=media';
-    await firebaseStorage
-        .ref('upload-image-user')
-        .child(userId)
-        .child(_imagePath.substring(
-            _imagePath.lastIndexOf('image_picker'), _imagePath.length))
-        .putFile(File(_imagePath));
+    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    Reference reference =
+        firebaseStorage.ref('upload-image-user').child(userId).child(fileName);
+    UploadTask uploadTask = reference.putFile(File(imagePath!));
+    TaskSnapshot snapshot = await uploadTask;
+    String imageDatabase = await snapshot.ref.getDownloadURL();
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
-        uploadToFirebase(userId,fullName,imageUser);
+    uploadToFirebase(userId, fullName, imageUser);
   }
 
   Future<void> uploadToFirebase(
@@ -254,22 +306,10 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
       'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
       FirestoreConstants.chattingWith: null
     });
-        context
+    context
         .read<UserBloc>()
         .add(UserEvent.updateInformationSupporterRequest(userId));
   }
-
-  // Future<void> uploadToFirebase(
-  //     String userId, String fullName, String imageUser, String phone) async {
-  //   CollectionReference users = await FirebaseFirestore.instance
-  //       .collection(FirestoreConstants.pathUserCollection);
-  //   users.doc(userId).set({
-  //     FirestoreConstants.nickname: fullName,
-  //     FirestoreConstants.photoUrl: imageUser,
-  //     FirestoreConstants.id: userId,
-  //     FirestoreConstants.phone: phone,
-  //   });
-  // }
 
   void pickMedia(ImageSource source) async {
     XFile? file;

@@ -27,7 +27,7 @@ class _SaveRecordingState extends State<SaveRecording> {
   List<Reference> references = [];
   late stt.SpeechToText _speech;
   bool _isListening = false;
-  String _textSpeech = '';
+  String _textSpeech = 'Mô tả';
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   void onListen() async {
@@ -207,64 +207,71 @@ class _SaveRecordingState extends State<SaveRecording> {
       builder: (context, state) {
         return Expanded(
           child: Form(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+            child: ListView(
               children: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextFormField(
-                    maxLength: 50,
-                    decoration: InputDecoration(
-                        labelText: _textSpeech,
-                        suffixIcon: Icon(Icons.type_specimen),
-                        border: myinputborder(),
-                        enabledBorder: myinputborder(),
-                        focusedBorder: myfocusborder(),
-                        labelStyle: TextStyle(fontSize: 20.0)),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Vui lòng không bỏ trống';
-                      } else if (value.length > 50) {
-                        return 'Vui lòng không nhập hơn 50 ký tự';
-                      } else {
-                        return null;
-                      }
-                    },
-                    onChanged: (value) {
-                      context
-                          .read<CreateRecordBloc>()
-                          .add(CreateRecordEvent.recordNameChanged(value));
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextFormField(
-                    controller: textEditingController,
-                    maxLines: 2,
-                    decoration: InputDecoration(
-                        labelText: "Nhập nội dung",
-                        border: myinputborder(),
-                        enabledBorder: myinputborder(),
-                        focusedBorder: myfocusborder(),
-                        labelStyle: TextStyle(fontSize: 20.0)),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'Vui lòng không bỏ trống';
-                      } else {
-                        return null;
-                      }
-                    },
-                  ),
-                ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: FeatureButtonsViewTextFunction(
-                      onUploadComplete: _onUploadComplete,
-                      speakText: textEditingController.text.toString(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                        maxLength: 20,
+                        decoration: InputDecoration(
+                            labelText: _textSpeech,
+                            suffixIcon: Icon(
+                              Icons.description,
+                              color: greenALS,
+                            ),
+                            border: myinputborder(),
+                            enabledBorder: myinputborder(),
+                            focusedBorder: myfocusborder(),
+                            labelStyle: TextStyle(fontSize: 20.0)),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Vui lòng không bỏ trống';
+                          } else if (value.length > 50) {
+                            return 'Vui lòng không nhập hơn 50 ký tự';
+                          } else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          context
+                              .read<CreateRecordBloc>()
+                              .add(CreateRecordEvent.recordNameChanged(value));
+                        },
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.all(10),
+                      child: TextFormField(
+                        controller: textEditingController,
+                        maxLines: 2,
+                        decoration: InputDecoration(
+                            labelText: "Nhập nội dung",
+                            border: myinputborder(),
+                            enabledBorder: myinputborder(),
+                            focusedBorder: myfocusborder(),
+                            labelStyle: TextStyle(fontSize: 20.0)),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Vui lòng không bỏ trống';
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                    ),
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: FeatureButtonsViewTextFunction(
+                          onUploadComplete: _onUploadComplete,
+                          speakText: textEditingController.text.toString(),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -299,8 +306,11 @@ class _SaveRecordingState extends State<SaveRecording> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextFormField(
+                maxLength: 20,
+                textCapitalization: TextCapitalization.words,
                 controller: titleController,
                 decoration: InputDecoration(
+                    labelText: 'Mô tả',
                     suffixIcon: IconButton(
                       onPressed: (() {
                         onListen();
@@ -317,15 +327,15 @@ class _SaveRecordingState extends State<SaveRecording> {
                   //     .read<CreateRecordBloc>()
                   //     .add(CreateRecordEvent.recordNameChanged(value));
                 },
-                // validator: (value) {
-                //   if (value!.isEmpty) {
-                //     return 'Vui lòng nhập mô tả';
-                //   } else if (value.length > 10) {
-                //     return 'Chỉ nhập 10 số';
-                //   } else {
-                //     return null;
-                //   }
-                // },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Vui lòng nhập mô tả';
+                  } else if (value.length > 10) {
+                    return 'Chỉ nhập 10 số';
+                  } else {
+                    return null;
+                  }
+                },
               ),
             ),
             Padding(

@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:uuid/uuid.dart';
 import '../../../Bloc/groupchat/groupchat_bloc.dart';
 import '../../../Constant/constant.dart';
@@ -61,24 +62,99 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Center(
-                  child: Column(
+                  child: Stack(
                     children: [
-                      CircleAvatar(
-                        radius: 80,
-                        backgroundImage: imageFile == null
-                            ? NetworkImage("assets/images/logo_ALS.png")
-                                as ImageProvider
-                            : FileImage(imageFile!),
+                      Container(
+                        width: 130,
+                        height: 130,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor),
+                            boxShadow: [
+                              BoxShadow(
+                                  spreadRadius: 2,
+                                  blurRadius: 10,
+                                  color: Colors.black.withOpacity(0.1),
+                                  offset: Offset(0, 10))
+                            ],
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: imageFile == null
+                                  ? NetworkImage("assets/images/logo_ALS.png")
+                                      as ImageProvider
+                                  : FileImage(imageFile!),
+                            )),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          pickMedia(ImageSource.gallery);
-                        },
-                        child: Text(
-                          'Chọn ảnh',
-                          style: TextStyle(fontSize: 18.0),
-                        ),
-                      )
+                      Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 4,
+                                color:
+                                    Theme.of(context).scaffoldBackgroundColor,
+                              ),
+                              color: Colors.green,
+                            ),
+                            child: IconButton(
+                              icon: Icon(Icons.edit),
+                              onPressed: () {
+                                showMaterialModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.15,
+                                    width: MediaQuery.of(context).size.width,
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: 20.0, vertical: 20.0),
+                                    child: Column(
+                                      children: <Widget>[
+                                        Text(
+                                          'Chọn ảnh từ',
+                                          style: TextStyle(fontSize: 20.0),
+                                        ),
+                                        SizedBox(
+                                          height: 20.0,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            ElevatedButton.icon(
+                                                onPressed: () {
+                                                  pickMedia(
+                                                      ImageSource.gallery);
+                                                },
+                                                icon: Icon(Icons.image),
+                                                label: Text('Thư viện'),
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor: greenALS)),
+                                            ElevatedButton.icon(
+                                              onPressed: () {
+                                                pickMedia(ImageSource.camera);
+                                              },
+                                              icon: Icon(Icons.camera),
+                                              label: Text('Máy ảnh'),
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: greenALS),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                              color: Colors.white,
+                            ),
+                          )),
                     ],
                   ),
                 ),
