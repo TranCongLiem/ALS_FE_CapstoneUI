@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String mobileToken = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late bool validated;
+  late String validated;
   @override
   void initState() {
     // TODO: implement initState
@@ -250,10 +250,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             ElevatedButton.icon(
                               onPressed: () {
                                 // validate();
-
+                                
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());
+                                setState(() {
+                                  validated = state.errorMessage ?? '';
+                                });
+                                checkInvalidPassword(
+                                    validated);
                               },
                               icon: Icon(Icons.login),
                               label: Text(

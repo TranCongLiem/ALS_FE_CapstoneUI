@@ -28,6 +28,7 @@ class _SaveRecordingState extends State<SaveRecording> {
   List<Reference> references = [];
   late stt.SpeechToText _speech;
   bool _isListening = false;
+  String valueText = '';
   String _textSpeech = '';
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -85,100 +86,73 @@ class _SaveRecordingState extends State<SaveRecording> {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state2) {
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
-            listener: (context, state) {
-          if (state.isCreated) {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return ScaleTransition(
-                    alignment: Alignment.center,
-                    scale: Tween<double>(begin: 0.1, end: 1).animate(
-                      CurvedAnimation(
-                        parent: animation,
-                        curve: Curves.bounceIn,
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Center(
+                  child: Scaffold(
+                appBar: AppBar(
+                  elevation: 0.0,
+                  centerTitle: true,
+                  title: Text('Tạo bản ghi'),
+                  backgroundColor: greenALS,
+                  // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
+                ),
+                body: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Text(
+                          'Bạn sẽ tạo bản ghi bằng:',
+                          style: TextStyle(
+                              fontSize: 25.0, fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    child: child,
-                  );
-                },
-                transitionDuration: Duration(seconds: 1),
-                pageBuilder: (BuildContext context, Animation<double> animation,
-                    Animation<double> secondaryAnimation) {
-                  context
-                      .read<CreateRecordBloc>()
-                      .add(CreateRecordEvent.setStateFlase());
-                  return HomeViewRecord();
-                },
-              ),
-            );
-          }
-        }, builder: (context, state) {
-          return Center(
-              child: Scaffold(
-            appBar: AppBar(
-              elevation: 0.0,
-              centerTitle: true,
-              title: Text('Tạo bản ghi'),
-              backgroundColor: greenALS,
-              // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
-            ),
-            body: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      'Bạn sẽ tạo bản ghi bằng:',
-                      style: TextStyle(
-                          fontSize: 25.0, fontWeight: FontWeight.w500),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: ToggleButtons(
-                      fillColor: Colors.grey,
-                      borderWidth: 2,
-                      selectedBorderColor: greenALS,
-                      selectedColor: Colors.white,
-                      borderRadius: BorderRadius.circular(15.0),
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'Văn bản',
-                            style: TextStyle(fontSize: 22),
-                          ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15.0),
+                        child: ToggleButtons(
+                          fillColor: Colors.grey,
+                          borderWidth: 2,
+                          selectedBorderColor: greenALS,
+                          selectedColor: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(
+                                'Văn bản',
+                                style: TextStyle(fontSize: 22),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(
+                                'Giọng nói',
+                                style: TextStyle(fontSize: 22),
+                              ),
+                            ),
+                          ],
+                          onPressed: (int index) {
+                            setState(() {
+                              for (int i = 0; i < isSelected.length; i++) {
+                                isSelected[i] = i == index;
+                              }
+                            });
+                          },
+                          isSelected: isSelected,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: Text(
-                            'Giọng nói',
-                            style: TextStyle(fontSize: 22),
-                          ),
-                        ),
-                      ],
-                      onPressed: (int index) {
-                        setState(() {
-                          for (int i = 0; i < isSelected.length; i++) {
-                            isSelected[i] = i == index;
-                          }
-                        });
-                      },
-                      isSelected: isSelected,
-                    ),
+                      ),
+                      if (isSelected[0])
+                        getGraphWidget(state2.userId.toString()),
+                      //văn bản
+                      if (isSelected[1]) getGraphWidget2(), //giọng nói
+                    ],
                   ),
-                  if (isSelected[0]) getGraphWidget(state2.userId.toString()),
-                  //văn bản
-                  if (isSelected[1]) getGraphWidget2(), //giọng nói
-                ],
-              ),
-            ),
-          ));
-        });
+                ),
+              ));
+            });
       },
     );
   }
@@ -238,7 +212,6 @@ class _SaveRecordingState extends State<SaveRecording> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
-                        controller: textEditingController,
                         maxLines: 2,
                         decoration: InputDecoration(
                             labelText: "Nhập nội dung",
@@ -253,14 +226,18 @@ class _SaveRecordingState extends State<SaveRecording> {
                             return null;
                           }
                         },
+                        onChanged: (value) {
+                          setState(() {
+                            valueText = value;
+                          });
+                        },
                       ),
                     ),
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: FeatureButtonsViewTextFunction(
-                          onUploadComplete: _onUploadComplete,
-                          speakText: textEditingController.text.toString(),
+                          speakText: valueText,
                         ),
                       ),
                     ),
@@ -272,20 +249,6 @@ class _SaveRecordingState extends State<SaveRecording> {
         );
       },
     );
-  }
-
-  speak(String text, String userId) async {
-    String filepath = DateTime.now().millisecondsSinceEpoch.toString();
-    String filepath2 = filepath + '.aac';
-    await flutterTts.setLanguage("vi-VN");
-    await flutterTts.speak(text);
-    setState(() {
-      flutterTts.synthesizeToFile(text, filepath2);
-    });
-    await _onFileUploadButtonPressed(filepath2, userId);
-    context
-        .read<CreateRecordBloc>()
-        .add(CreateRecordEvent.linkAudioChanged(filepath));
   }
 
   Widget getGraphWidget2() {
@@ -315,7 +278,9 @@ class _SaveRecordingState extends State<SaveRecording> {
                       focusedBorder: myfocusborder(),
                       labelStyle: TextStyle(fontSize: 20.0)),
                   onChanged: (value) {
-                    _textSpeech = value;
+                    setState(() {
+                      _textSpeech = value;
+                    });
                     // context
                     //     .read<CreateRecordBloc>()
                     //     .add(CreateRecordEvent.recordNameChanged(value));

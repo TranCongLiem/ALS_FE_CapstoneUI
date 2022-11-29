@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_audio_recorder2/flutter_audio_recorder2.dart';
@@ -51,7 +52,90 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state2) {
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state.errorMessage != '' && state.errorMessage != null) {
+              context
+                  .read<CreateRecordBloc>()
+                  .add(CreateRecordEvent.setErrorMessageRequested());
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return Scaffold(
+                    backgroundColor: Colors.transparent,
+                    body: AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),
+                      buttonPadding: EdgeInsets.all(10.0),
+                      contentPadding: EdgeInsets.all(30.0),
+                      title: Text(
+                        'Xác nhận',
+                        style: TextStyle(
+                            fontSize: 21.0, fontWeight: FontWeight.bold),
+                      ),
+                      content: Text(
+                        'Tên ${state.recordName} đã tồn tại',
+                        style: TextStyle(fontSize: 19.0),
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('HỦY'),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red),
+                          onPressed: () {
+                            context.read<CreateRecordBloc>().add(
+                                CreateRecordEvent.createRecordConfirmedRequest(
+                                    state2.userId));
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            'TẠO',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20.0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            }
+            if (state.isCreated) {
+              _onFileUploadButtonPressed(state.userId);
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  transitionsBuilder:
+                      (context, animation, secondaryAnimation, child) {
+                    return ScaleTransition(
+                      alignment: Alignment.center,
+                      scale: Tween<double>(begin: 0.1, end: 1).animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.bounceIn,
+                        ),
+                      ),
+                      child: child,
+                    );
+                  },
+                  transitionDuration: Duration(seconds: 1),
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
+                    context
+                        .read<CreateRecordBloc>()
+                        .add(CreateRecordEvent.setStateFlase());
+                    return HomeViewRecord();
+                  },
+                ),
+              );
+            }
+          },
           builder: (context, state) {
             return Form(
               key: formkey,
@@ -125,7 +209,12 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                     //   if (value!.isEmpty)
                                     //     return 'Required field';
                                     // };
-                                    _onFileUploadButtonPressed(state2.userId);
+                                    context.read<CreateRecordBloc>().add(
+                                        CreateRecordEvent.recordNameChanged(
+                                            widget.titleText));
+                                    context.read<CreateRecordBloc>().add(
+                                        CreateRecordEvent.createRecordRequest(
+                                            state2.userId));
                                   },
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
@@ -183,12 +272,6 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
               _filePath.substring(_filePath.lastIndexOf('/'), _filePath.length))
           .putFile(File(_filePath));
       widget.onUploadComplete();
-      context
-          .read<CreateRecordBloc>()
-          .add(CreateRecordEvent.recordNameChanged(widget.titleText));
-      context
-          .read<CreateRecordBloc>()
-          .add(CreateRecordEvent.createRecordRequest(userId));
     } catch (error) {
       print('Error occured while uploading to Firebase ${error.toString()}');
       ScaffoldMessenger.of(context).showSnackBar(
