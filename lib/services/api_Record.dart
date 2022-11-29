@@ -8,20 +8,19 @@ import 'package:http/http.dart' as http;
 
 import '../Model/removeRecord_model.dart';
 
-
 class RecordService {
-  final endPointUrl =
-      "https://als.cosplane.asia/api/record/";
+  final endPointUrl = "https://als.cosplane.asia/api/record/";
   static bool isCreatedRecord = false;
   static bool isRemovedRecord = false;
 
   Future<List<RecordById>> getRecordByIdAdmin() async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetRecordByUserId?id=B9C5D58B-45A4-4E71-800B-ECE47CEED913"));
+    final response = await http.get(Uri.parse(endPointUrl +
+        "GetRecordByUserId?id=B9C5D58B-45A4-4E71-800B-ECE47CEED913"));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 
     if (response.statusCode == 200) {
-      final List<dynamic> result= jsonDecode(response.body);
+      final List<dynamic> result = jsonDecode(response.body);
       print("result: + ${result.map((e) => RecordById.fromJson(e)).toList()}");
       return result.map((e) => RecordById.fromJson(e)).toList();
     } else {
@@ -30,12 +29,13 @@ class RecordService {
   }
 
   Future<List<RecordById>> getRecordById(String userId) async {
-    final response = await http.get(Uri.parse(endPointUrl + "GetRecordByUserId?id=" + userId));
+    final response = await http
+        .get(Uri.parse(endPointUrl + "GetRecordByUserId?id=" + userId));
     print('Respone Status: ${response.statusCode}');
     print('Respone body: ${response.body}');
 
     if (response.statusCode == 200) {
-      final List<dynamic> result= jsonDecode(response.body);
+      final List<dynamic> result = jsonDecode(response.body);
       print("result: + ${result.map((e) => RecordById.fromJson(e)).toList()}");
       return result.map((e) => RecordById.fromJson(e)).toList();
     } else {
@@ -43,8 +43,9 @@ class RecordService {
     }
   }
 
-  Future<CreateRecordResponeModel> createRecord(CreateRecordReQuestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/record/CreateRecord";
+  Future<CreateRecordResponeModel> createRecord(
+      CreateRecordReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/record/CreateRecord";
     final response = await http.post(
       Uri.parse(url),
       headers: {
@@ -59,17 +60,39 @@ class RecordService {
       RecordService.isCreatedRecord = false;
       throw Exception('Lỗi dữ liệu');
     }
-    
   }
-  Future<RemoveRecordByIdResponeModel> deleteRecord(RemoveRecordByIdRequestModel requestModel) async {
-    String url="https://als.cosplane.asia/api/record/UpdateStatusRecord?recordId=" + requestModel.recordId;
+
+  Future<CreateRecordResponeModel> createRecordConfirmed(
+      CreateRecordReQuestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/record/CreateRecordConfirmed";
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      RecordService.isCreatedRecord = true;
+      return CreateRecordResponeModel.fromJson(json.decode(response.body));
+    } else {
+      RecordService.isCreatedRecord = false;
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
+  Future<RemoveRecordByIdResponeModel> deleteRecord(
+      RemoveRecordByIdRequestModel requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/record/UpdateStatusRecord?recordId=" +
+            requestModel.recordId;
     final response = await http.put(
       Uri.parse(url),
       headers: {
-        'Content-Type': 'application/json',      
+        'Content-Type': 'application/json',
       },
-      
-    //  body: jsonEncode(requestModel.toJson()),
+
+      //  body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == 200) {
       RecordService.isRemovedRecord = true;
@@ -80,14 +103,11 @@ class RecordService {
     }
   }
 
-
   bool isCreated() {
     return isCreatedRecord;
   }
+
   bool isRemoved() {
     return isRemovedRecord;
   }
-
-
-
 }

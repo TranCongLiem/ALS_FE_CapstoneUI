@@ -7,9 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Feature/Chat/constants/color_constants.dart';
 import '../Login/login_screen.dart';
 import '../Model/UpdateDeviceTokenMobile.dart';
 import '../Splash/SharePreKey.dart';
@@ -44,6 +46,14 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
+          if (state.errorMessage != '' && state.errorMessage != null) {
+            Fluttertoast.showToast(
+                msg: state.errorMessage.toString(),
+                backgroundColor: ColorConstants.greyColor);
+            context
+                .read<AuthenticateBloc>()
+                .add(AuthenticateEvent.setErrorMessageRequested());
+          }
           if (state.isRegisterPatient) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => RegisterInfo()));
@@ -159,14 +169,14 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                               .passwordChangedPatient(value));
                                     },
                                     validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return 'Vui lòng nhập mật khẩu';
-                                  } else if (value.length > 10) {
-                                    return 'Chỉ nhập 10 số';
-                                  } else {
-                                    return null;
-                                  }
-                                },
+                                      if (value!.isEmpty) {
+                                        return 'Vui lòng nhập mật khẩu';
+                                      } else if (value.length > 10) {
+                                        return 'Chỉ nhập 10 số';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
                                   ),
                                 ),
                                 ElevatedButton(
@@ -415,6 +425,7 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
   }
+
   void validate() {
     if (formkey.currentState!.validate()) {
       print('Validated');

@@ -23,8 +23,13 @@ class UserService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == HttpStatus.ok) {
-      UserService.registerPatient = true;
-      return RegisterResponseModel.fromJson(json.decode(response.body));
+      RegisterResponseModel a = new RegisterResponseModel();
+      if (response.body == 'Phone number already exists') {
+        return a;
+      } else {
+        UserService.registerPatient = true;
+        return RegisterResponseModel.fromJson(json.decode(response.body));
+      }
     } else {
       UserService.registerPatient = false;
       throw Exception('Lỗi dữ liệu');
@@ -42,8 +47,13 @@ class UserService {
       body: jsonEncode(requestModel.toJson()),
     );
     if (response.statusCode == HttpStatus.ok) {
-      UserService.registerSupporter = true;
-      return RegisterResponseModel.fromJson(json.decode(response.body));
+      RegisterResponseModel a = new RegisterResponseModel();
+      if (response.body == 'Phone number already exists') {
+        return a;
+      } else {
+        UserService.registerSupporter = true;
+        return RegisterResponseModel.fromJson(json.decode(response.body));
+      }
     } else {
       UserService.registerSupporter = false;
       throw Exception('Lỗi dữ liệu');
