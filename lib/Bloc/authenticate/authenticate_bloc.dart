@@ -22,19 +22,22 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       LoginRequestModel reqModel = LoginRequestModel(
           phoneNumber: state.phoneNumber, password: state.password);
       LoginResponeModel result = await _userService.login(reqModel);
-      if (result.phoneNumber != null && result.role != null){
+      if (result.phoneNumber != null && result.role != null) {
         emit(state.copyWith(
           userId: result.userId ?? '',
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
           fullName: result.fullName ?? '',
+          isCheckLogin: false,
           isAuthenticated: true,
-          relationshipWith: result.relationshipWith??'',
+          relationshipWith: result.relationshipWith ?? '',
           errorMessage: "",
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Số điện thoại hoặc mật khẩu không chính xác",isAuthenticated: false,));
-        
+        emit(state.copyWith(
+          errorMessage: "Số điện thoại hoặc mật khẩu không chính xác",
+          isCheckLogin: true,
+        ));
       }
     });
 
@@ -108,7 +111,6 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       emit(state.copyWith(isAuthenticated: _userService.isUserAuthenticated()));
     });
 
-
     on<_LogoutRequested>((event, emit) {
       emit(state.copyWith(isAuthenticated: _userService.Logout()));
     });
@@ -119,19 +121,20 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_checkRegisterSupporterRequested>((event, emit) {
       emit(state.copyWith(
           isRegisterSupporter: _userService.isRegisterSupporter()));
-
     });
 
-     on<_setCheckRegisterPatientFalseRequested>((event, emit) {
+    on<_CheckLoginRequested>((event, emit) {
+      emit(state.copyWith(isCheckLogin: _userService.isLogin()));
+    });
+
+    on<_CheckLoginFalseRequested>((event, emit) {
+      emit(state.copyWith(isCheckLogin: false));
+    });
+    on<_setCheckRegisterPatientFalseRequested>((event, emit) {
       emit(state.copyWith(isRegisterPatient: false));
     });
     on<_setCheckRegisterSupporterFalseRequested>((event, emit) {
-      emit(state.copyWith(
-          isRegisterSupporter: false));
-
+      emit(state.copyWith(isRegisterSupporter: false));
     });
-
-    
-  
-}
   }
+}

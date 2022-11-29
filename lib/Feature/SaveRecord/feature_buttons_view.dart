@@ -14,6 +14,7 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 class FeatureButtonsView extends StatefulWidget {
   final Function onUploadComplete;
   final String titleText;
+
   const FeatureButtonsView({
     Key? key,
     required this.onUploadComplete,
@@ -29,7 +30,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
   late bool _isUploading;
   late bool _isRecorded;
   late bool _isRecording;
-
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   late AudioPlayer _audioPlayer;
   late String _filePath;
 
@@ -52,105 +53,116 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
           listener: (context, state) {},
           builder: (context, state) {
-            return Center(
-              child: _isRecorded
-                  ? _isUploading
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                child: LinearProgressIndicator()),
-                            Text('Đang lưu trữ...'),
-                          ],
-                        )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton.icon(
-                                icon: Icon(
-                                  Icons.replay,
-                                  size: 35.0,
-                                  color: Colors.white,
-                                ),
-                                onPressed: _onRecordAgainButtonPressed,
-                                label: Text(''),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton.icon(
-                                icon: Icon(
-                                    _isPlaying ? Icons.pause : Icons.play_arrow,
+            return Form(
+              key: formkey,
+              child: Center(
+                child: _isRecorded
+                    ? _isUploading
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  child: LinearProgressIndicator()),
+                              Text('Đang lưu trữ...'),
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton.icon(
+                                  icon: Icon(
+                                    Icons.replay,
                                     size: 35.0,
-                                    color: Colors.white),
-                                onPressed: _onPlayButtonPressed,
-                                label: Text(''),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: _onRecordAgainButtonPressed,
+                                  label: Text(''),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: greenALS.withOpacity(0.9),
+                                    padding: EdgeInsets.all(20.0),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(10.0),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ElevatedButton.icon(
-                                icon: Icon(Icons.save_alt,
-                                    size: 35.0, color: Colors.white),
-                                onPressed: () =>
-                                    _onFileUploadButtonPressed(state2.userId),
-                                label: Text(''),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(10.0),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton.icon(
+                                  icon: Icon(
+                                      _isPlaying
+                                          ? Icons.pause
+                                          : Icons.play_arrow,
+                                      size: 35.0,
+                                      color: Colors.white),
+                                  onPressed: _onPlayButtonPressed,
+                                  label: Text(''),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: greenALS.withOpacity(0.9),
+                                    padding: EdgeInsets.all(20.0),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(10.0),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        )
-                  : ElevatedButton.icon(
-                      icon: _isRecording
-                          ? Icon(
-                              Icons.pause,
-                              size: 35.0,
-                              color: Colors.black,
-                            )
-                          : Icon(
-                              Icons.fiber_manual_record,
-                              size: 35.0,
-                              color: Colors.red,
-                            ),
-                      onPressed: _onRecordButtonPressed,
-                      label: Text(''),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white.withOpacity(0.9),
-                        padding: EdgeInsets.only(
-                            left: 25, top: 25, right: 25, bottom: 25),
-                        shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(100.0)),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ElevatedButton.icon(
+                                  icon: Icon(Icons.save_alt,
+                                      size: 35.0, color: Colors.white),
+                                  onPressed: () {
+                                    // validators:
+                                    // (String? value) {
+                                    //   if (value!.isEmpty)
+                                    //     return 'Required field';
+                                    // };
+                                    _onFileUploadButtonPressed(state2.userId);
+                                  },
+                                  label: Text(''),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: greenALS.withOpacity(0.9),
+                                    padding: EdgeInsets.all(20.0),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius:
+                                          new BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                    : ElevatedButton.icon(
+                        icon: _isRecording
+                            ? Icon(
+                                Icons.pause,
+                                size: 35.0,
+                                color: Colors.black,
+                              )
+                            : Icon(
+                                Icons.fiber_manual_record,
+                                size: 35.0,
+                                color: Colors.red,
+                              ),
+                        onPressed: _onRecordButtonPressed,
+                        label: Text(''),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white.withOpacity(0.9),
+                          padding: EdgeInsets.only(
+                              left: 25, top: 25, right: 25, bottom: 25),
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(100.0)),
+                        ),
                       ),
-                    ),
+              ),
             );
           },
         );

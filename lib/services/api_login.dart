@@ -10,6 +10,7 @@ class UserService {
   static bool authenticated = false;
   static bool registerPatient = false;
   static bool registerSupporter = false;
+  static bool checkLogin = false;
 
   Future<RegisterResponseModel> loginPatient(
       RegisterRequestModel requestModel) async {
@@ -57,11 +58,14 @@ class UserService {
     return registerSupporter;
   }
 
+  bool isLogin() {
+    return checkLogin;
+  }
+
   Future<LoginResponeModel> login(LoginRequestModel requestModel) async {
     //String url = "https://reqres.in/api/login";
 
     String url = "https://als.cosplane.asia/api/user/LoginUserMobile";
-
 
     // final response= await http.post(Uri.parse(url), body: requestModel.toJson());
     // if(response.statusCode == 200 || response.statusCode == 400){
@@ -79,9 +83,9 @@ class UserService {
     );
     if (response.statusCode == HttpStatus.ok) {
       LoginResponeModel a = new LoginResponeModel();
-      if(response.body == 'Invalid Phone or Password'){
+      if (response.body == 'Invalid Phone or Password') {
         return a;
-      }else{
+      } else {
         UserService.authenticated = true;
         return LoginResponeModel.fromJson(json.decode(response.body));
       }
@@ -110,10 +114,11 @@ class UserService {
     }
   }
 
-  bool Logout(){
-     authenticated=false;
+  bool Logout() {
+    authenticated = false;
     return authenticated;
   }
+
   bool isUserAuthenticated() {
     return authenticated;
   }

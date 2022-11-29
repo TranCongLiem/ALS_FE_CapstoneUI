@@ -12,7 +12,8 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 import 'feature_buttons_view.dart';
 
 class SaveRecording extends StatefulWidget {
-  const SaveRecording({Key? key}) : super(key: key);
+  final Function(String)? validators;
+  const SaveRecording({Key? key, this.validators}) : super(key: key);
 
   @override
   State<SaveRecording> createState() => _SaveRecordingState();
@@ -27,7 +28,7 @@ class _SaveRecordingState extends State<SaveRecording> {
   List<Reference> references = [];
   late stt.SpeechToText _speech;
   bool _isListening = false;
-  String _textSpeech = 'Mô tả';
+  String _textSpeech = '';
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   void onListen() async {
@@ -61,14 +62,6 @@ class _SaveRecordingState extends State<SaveRecording> {
     setState(() {});
   }
 
-  //voice-to-text
-  // String outputText = 'Mô tả';
-  // final SpeechToText speech = SpeechToText();
-  // bool _hasSpeech = false;
-  // String _currentLocaleId = 'vi_VN';
-  // double minSoundLevel = 50000;
-  // double maxSoundLevel = -50000;
-  // double level = 0.0;
   @override
   void initState() {
     super.initState();
@@ -298,7 +291,7 @@ class _SaveRecordingState extends State<SaveRecording> {
   Widget getGraphWidget2() {
     return Expanded(
       child: Form(
-        autovalidateMode: AutovalidateMode.always,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         key: formkey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -306,37 +299,28 @@ class _SaveRecordingState extends State<SaveRecording> {
             Padding(
               padding: EdgeInsets.all(10),
               child: TextFormField(
-                maxLength: 20,
-                textCapitalization: TextCapitalization.words,
-                controller: titleController,
-                decoration: InputDecoration(
-                    labelText: 'Mô tả',
-                    suffixIcon: IconButton(
-                      onPressed: (() {
-                        onListen();
-                      }),
-                      icon: Icon(Icons.mic),
-                    ),
-                    border: myinputborder(),
-                    enabledBorder: myinputborder(),
-                    focusedBorder: myfocusborder(),
-                    labelStyle: TextStyle(fontSize: 20.0)),
-                onChanged: (value) {
-                  _textSpeech = value;
-                  // context
-                  //     .read<CreateRecordBloc>()
-                  //     .add(CreateRecordEvent.recordNameChanged(value));
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Vui lòng nhập mô tả';
-                  } else if (value.length > 10) {
-                    return 'Chỉ nhập 10 số';
-                  } else {
-                    return null;
-                  }
-                },
-              ),
+                  maxLength: 20,
+                  textCapitalization: TextCapitalization.words,
+                  controller: titleController,
+                  decoration: InputDecoration(
+                      labelText: 'Mô tả',
+                      suffixIcon: IconButton(
+                        onPressed: (() {
+                          onListen();
+                        }),
+                        icon: Icon(Icons.mic),
+                      ),
+                      border: myinputborder(),
+                      enabledBorder: myinputborder(),
+                      focusedBorder: myfocusborder(),
+                      labelStyle: TextStyle(fontSize: 20.0)),
+                  onChanged: (value) {
+                    _textSpeech = value;
+                    // context
+                    //     .read<CreateRecordBloc>()
+                    //     .add(CreateRecordEvent.recordNameChanged(value));
+                  },
+                  validator: widget.validators as String? Function(String?)?),
             ),
             Padding(
               padding: const EdgeInsets.all(20.0),

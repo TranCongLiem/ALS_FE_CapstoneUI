@@ -39,6 +39,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   late String? imagePath;
   late ChatProvider chatProvider;
   MediaType _mediaType = MediaType.image;
+  var imageUser;
   @override
   void initState() {
     // TODO: implement initState
@@ -50,6 +51,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
         widget.getProfileUserByIdResponeModel.address.toString();
     fullName = widget.getProfileUserByIdResponeModel.address.toString();
     address = widget.getProfileUserByIdResponeModel.address.toString();
+    imageUser = widget.getProfileUserByIdResponeModel.imageUser.toString();
     imagePath = null;
   }
 
@@ -145,9 +147,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                     image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: imagePath == null
-                                          ? NetworkImage(widget
-                                              .getProfileUserByIdResponeModel
-                                              .imageUser!) as ImageProvider
+                                          ? NetworkImage(imageUser)
+                                              as ImageProvider
                                           : FileImage(File(imagePath!)),
                                     )),
                               ),

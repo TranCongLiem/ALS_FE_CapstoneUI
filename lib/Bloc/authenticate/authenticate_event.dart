@@ -17,12 +17,13 @@ class AuthenticateEvent with _$AuthenticateEvent {
 
   const factory AuthenticateEvent.Logout() = _LogoutRequested;
 
-
   const factory AuthenticateEvent.checkRegisterPatientRequested() =
       _checkRegisterPatientRequested;
   const factory AuthenticateEvent.checkRegisterSupporterRequested() =
       _checkRegisterSupporterRequested;
-
+  const factory AuthenticateEvent.checkLoginRequested() = _CheckLoginRequested;
+  const factory AuthenticateEvent.checkLoginFalseRequested() =
+      _CheckLoginFalseRequested;
   const factory AuthenticateEvent.setCheckRegisterPatientFalseRequested() =
       _setCheckRegisterPatientFalseRequested;
   const factory AuthenticateEvent.setCheckRegisterSupporterFalseRequested() =
@@ -35,5 +36,4 @@ class AuthenticateEvent with _$AuthenticateEvent {
       String phoneNumber) = _PhoneNumberChangedSupporter;
   const factory AuthenticateEvent.passwordChangedSupporter(String password) =
       _PasswordChangedSupporter;
-
 }

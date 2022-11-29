@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String mobileToken = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  late String validated;
+  late bool validated;
   @override
   void initState() {
     // TODO: implement initState
@@ -49,7 +49,14 @@ class _LoginScreenState extends State<LoginScreen> {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
           print("Authen or not: " + state.isAuthenticated.toString());
-
+          if (state.isCheckLogin) {
+            Fluttertoast.showToast(
+                msg: "Tài khoản hoặc mật khẩu không chính xác",
+                backgroundColor: ColorConstants.greyColor);
+            context
+                .read<AuthenticateBloc>()
+                .add(AuthenticateEvent.checkLoginFalseRequested());
+          }
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
               if (state.fullName.toString() != '') {
@@ -243,15 +250,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             ElevatedButton.icon(
                               onPressed: () {
                                 // validate();
-                                
+
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());
-                                setState(() {
-                                  validated = state.errorMessage ?? '';
-                                });
-                                checkInvalidPassword(
-                                    validated);
                               },
                               icon: Icon(Icons.login),
                               label: Text(
