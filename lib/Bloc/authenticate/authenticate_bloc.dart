@@ -53,9 +53,10 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           role: result.role,
           fullName: result.fullName ?? '',
           isRegisterPatient: true,
+          errorMessage: '',
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Đăng ký không thành công"));
+        emit(state.copyWith(errorMessage: "Số điện thoại đã tồn tại"));
         debugPrint(state.phoneNumber);
       }
     });
@@ -86,7 +87,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_PhoneNumberChanged>((event, emit) {
       emit(state.copyWith(phoneNumber: event.phoneNumber));
     });
-
+    on<_SetErrorMessageRequested>((event, emit) {
+      emit(state.copyWith(errorMessage: ''));
+    });
     on<_PasswordChanged>((event, emit) {
       emit(state.copyWith(password: event.password));
     });

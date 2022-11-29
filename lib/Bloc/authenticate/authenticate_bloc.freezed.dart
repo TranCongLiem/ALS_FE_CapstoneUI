@@ -34,6 +34,7 @@ mixin _$AuthenticateEvent {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -58,6 +59,7 @@ mixin _$AuthenticateEvent {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -82,6 +84,7 @@ mixin _$AuthenticateEvent {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -112,6 +115,8 @@ mixin _$AuthenticateEvent {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -144,6 +149,7 @@ mixin _$AuthenticateEvent {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -174,6 +180,7 @@ mixin _$AuthenticateEvent {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -285,6 +292,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -312,6 +320,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -339,6 +348,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -375,6 +385,8 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -410,6 +422,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -443,6 +456,7 @@ class _$_PhoneNumberChanged implements _PhoneNumberChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -549,6 +563,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -576,6 +591,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -603,6 +619,7 @@ class _$_PasswordChanged implements _PasswordChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -639,6 +656,8 @@ class _$_PasswordChanged implements _PasswordChanged {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -674,6 +693,7 @@ class _$_PasswordChanged implements _PasswordChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -707,6 +727,7 @@ class _$_PasswordChanged implements _PasswordChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -812,6 +833,7 @@ class _$_fullNameChanged implements _fullNameChanged {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -839,6 +861,7 @@ class _$_fullNameChanged implements _fullNameChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -866,6 +889,7 @@ class _$_fullNameChanged implements _fullNameChanged {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -902,6 +926,8 @@ class _$_fullNameChanged implements _fullNameChanged {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -937,6 +963,7 @@ class _$_fullNameChanged implements _fullNameChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -970,6 +997,7 @@ class _$_fullNameChanged implements _fullNameChanged {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1051,6 +1079,7 @@ class _$_LoginRequested implements _LoginRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -1078,6 +1107,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1105,6 +1135,7 @@ class _$_LoginRequested implements _LoginRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1141,6 +1172,8 @@ class _$_LoginRequested implements _LoginRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -1176,6 +1209,7 @@ class _$_LoginRequested implements _LoginRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1209,6 +1243,7 @@ class _$_LoginRequested implements _LoginRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1324,6 +1359,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -1351,6 +1387,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1378,6 +1415,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1414,6 +1452,8 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -1449,6 +1489,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1482,6 +1523,7 @@ class _$_RegistrationPatientRequested implements _RegistrationPatientRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1606,6 +1648,7 @@ class _$_RegistrationSupporterRequested
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -1633,6 +1676,7 @@ class _$_RegistrationSupporterRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1660,6 +1704,7 @@ class _$_RegistrationSupporterRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1696,6 +1741,8 @@ class _$_RegistrationSupporterRequested
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -1731,6 +1778,7 @@ class _$_RegistrationSupporterRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1764,6 +1812,7 @@ class _$_RegistrationSupporterRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -1848,6 +1897,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -1875,6 +1925,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1902,6 +1953,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -1938,6 +1990,8 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -1973,6 +2027,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2006,6 +2061,7 @@ class _$_AuthCheckRequested implements _AuthCheckRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2082,6 +2138,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -2109,6 +2166,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2136,6 +2194,7 @@ class _$_LogoutRequested implements _LogoutRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2172,6 +2231,8 @@ class _$_LogoutRequested implements _LogoutRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -2207,6 +2268,7 @@ class _$_LogoutRequested implements _LogoutRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2240,6 +2302,7 @@ class _$_LogoutRequested implements _LogoutRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2321,6 +2384,7 @@ class _$_checkRegisterPatientRequested
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -2348,6 +2412,7 @@ class _$_checkRegisterPatientRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2375,6 +2440,7 @@ class _$_checkRegisterPatientRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2411,6 +2477,8 @@ class _$_checkRegisterPatientRequested
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -2446,6 +2514,7 @@ class _$_checkRegisterPatientRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2479,6 +2548,7 @@ class _$_checkRegisterPatientRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2561,6 +2631,7 @@ class _$_checkRegisterSupporterRequested
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -2588,6 +2659,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2615,6 +2687,7 @@ class _$_checkRegisterSupporterRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2651,6 +2724,8 @@ class _$_checkRegisterSupporterRequested
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -2686,6 +2761,7 @@ class _$_checkRegisterSupporterRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2719,6 +2795,7 @@ class _$_checkRegisterSupporterRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2796,6 +2873,7 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -2823,6 +2901,7 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2850,6 +2929,7 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -2886,6 +2966,8 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -2921,6 +3003,7 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -2954,6 +3037,7 @@ class _$_CheckLoginRequested implements _CheckLoginRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3033,6 +3117,7 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -3060,6 +3145,7 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3087,6 +3173,7 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3123,6 +3210,8 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -3158,6 +3247,7 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3191,6 +3281,7 @@ class _$_CheckLoginFalseRequested implements _CheckLoginFalseRequested {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3273,6 +3364,7 @@ class _$_setCheckRegisterPatientFalseRequested
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -3300,6 +3392,7 @@ class _$_setCheckRegisterPatientFalseRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3327,6 +3420,7 @@ class _$_setCheckRegisterPatientFalseRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3363,6 +3457,8 @@ class _$_setCheckRegisterPatientFalseRequested
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -3398,6 +3494,7 @@ class _$_setCheckRegisterPatientFalseRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3431,6 +3528,7 @@ class _$_setCheckRegisterPatientFalseRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3515,6 +3613,7 @@ class _$_setCheckRegisterSupporterFalseRequested
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -3542,6 +3641,7 @@ class _$_setCheckRegisterSupporterFalseRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3569,6 +3669,7 @@ class _$_setCheckRegisterSupporterFalseRequested
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3605,6 +3706,8 @@ class _$_setCheckRegisterSupporterFalseRequested
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -3640,6 +3743,7 @@ class _$_setCheckRegisterSupporterFalseRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3673,6 +3777,7 @@ class _$_setCheckRegisterSupporterFalseRequested
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3692,6 +3797,250 @@ abstract class _setCheckRegisterSupporterFalseRequested
     implements AuthenticateEvent {
   const factory _setCheckRegisterSupporterFalseRequested() =
       _$_setCheckRegisterSupporterFalseRequested;
+}
+
+/// @nodoc
+abstract class _$$_SetErrorMessageRequestedCopyWith<$Res> {
+  factory _$$_SetErrorMessageRequestedCopyWith(
+          _$_SetErrorMessageRequested value,
+          $Res Function(_$_SetErrorMessageRequested) then) =
+      __$$_SetErrorMessageRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetErrorMessageRequestedCopyWithImpl<$Res>
+    extends _$AuthenticateEventCopyWithImpl<$Res>
+    implements _$$_SetErrorMessageRequestedCopyWith<$Res> {
+  __$$_SetErrorMessageRequestedCopyWithImpl(_$_SetErrorMessageRequested _value,
+      $Res Function(_$_SetErrorMessageRequested) _then)
+      : super(_value, (v) => _then(v as _$_SetErrorMessageRequested));
+
+  @override
+  _$_SetErrorMessageRequested get _value =>
+      super._value as _$_SetErrorMessageRequested;
+}
+
+/// @nodoc
+
+class _$_SetErrorMessageRequested implements _SetErrorMessageRequested {
+  const _$_SetErrorMessageRequested();
+
+  @override
+  String toString() {
+    return 'AuthenticateEvent.setErrorMessageRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetErrorMessageRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function(String fullName) fullNameChanged,
+    required TResult Function() loginRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationPatientRequested,
+    required TResult Function(String phoneNumber, String password)
+        registrationSupporterRequested,
+    required TResult Function() authCheckRequested,
+    required TResult Function() Logout,
+    required TResult Function() checkRegisterPatientRequested,
+    required TResult Function() checkRegisterSupporterRequested,
+    required TResult Function() checkLoginRequested,
+    required TResult Function() checkLoginFalseRequested,
+    required TResult Function() setCheckRegisterPatientFalseRequested,
+    required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
+    required TResult Function(String phoneNumber) phoneNumberChangedPatient,
+    required TResult Function(String password) passwordChangedPatient,
+    required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
+    required TResult Function(String password) passwordChangedSupporter,
+  }) {
+    return setErrorMessageRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function()? checkLoginRequested,
+    TResult Function()? checkLoginFalseRequested,
+    TResult Function()? setCheckRegisterPatientFalseRequested,
+    TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+  }) {
+    return setErrorMessageRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function(String fullName)? fullNameChanged,
+    TResult Function()? loginRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationPatientRequested,
+    TResult Function(String phoneNumber, String password)?
+        registrationSupporterRequested,
+    TResult Function()? authCheckRequested,
+    TResult Function()? Logout,
+    TResult Function()? checkRegisterPatientRequested,
+    TResult Function()? checkRegisterSupporterRequested,
+    TResult Function()? checkLoginRequested,
+    TResult Function()? checkLoginFalseRequested,
+    TResult Function()? setCheckRegisterPatientFalseRequested,
+    TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
+    TResult Function(String phoneNumber)? phoneNumberChangedPatient,
+    TResult Function(String password)? passwordChangedPatient,
+    TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
+    TResult Function(String password)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (setErrorMessageRequested != null) {
+      return setErrorMessageRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_fullNameChanged value) fullNameChanged,
+    required TResult Function(_LoginRequested value) loginRequested,
+    required TResult Function(_RegistrationPatientRequested value)
+        registrationPatientRequested,
+    required TResult Function(_RegistrationSupporterRequested value)
+        registrationSupporterRequested,
+    required TResult Function(_AuthCheckRequested value) authCheckRequested,
+    required TResult Function(_LogoutRequested value) Logout,
+    required TResult Function(_checkRegisterPatientRequested value)
+        checkRegisterPatientRequested,
+    required TResult Function(_checkRegisterSupporterRequested value)
+        checkRegisterSupporterRequested,
+    required TResult Function(_CheckLoginRequested value) checkLoginRequested,
+    required TResult Function(_CheckLoginFalseRequested value)
+        checkLoginFalseRequested,
+    required TResult Function(_setCheckRegisterPatientFalseRequested value)
+        setCheckRegisterPatientFalseRequested,
+    required TResult Function(_setCheckRegisterSupporterFalseRequested value)
+        setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
+    required TResult Function(_PhoneNumberChangedPatient value)
+        phoneNumberChangedPatient,
+    required TResult Function(_PasswordChangedPatient value)
+        passwordChangedPatient,
+    required TResult Function(_PhoneNumberChangedSupporter value)
+        phoneNumberChangedSupporter,
+    required TResult Function(_PasswordChangedSupporter value)
+        passwordChangedSupporter,
+  }) {
+    return setErrorMessageRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_CheckLoginRequested value)? checkLoginRequested,
+    TResult Function(_CheckLoginFalseRequested value)? checkLoginFalseRequested,
+    TResult Function(_setCheckRegisterPatientFalseRequested value)?
+        setCheckRegisterPatientFalseRequested,
+    TResult Function(_setCheckRegisterSupporterFalseRequested value)?
+        setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+  }) {
+    return setErrorMessageRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_fullNameChanged value)? fullNameChanged,
+    TResult Function(_LoginRequested value)? loginRequested,
+    TResult Function(_RegistrationPatientRequested value)?
+        registrationPatientRequested,
+    TResult Function(_RegistrationSupporterRequested value)?
+        registrationSupporterRequested,
+    TResult Function(_AuthCheckRequested value)? authCheckRequested,
+    TResult Function(_LogoutRequested value)? Logout,
+    TResult Function(_checkRegisterPatientRequested value)?
+        checkRegisterPatientRequested,
+    TResult Function(_checkRegisterSupporterRequested value)?
+        checkRegisterSupporterRequested,
+    TResult Function(_CheckLoginRequested value)? checkLoginRequested,
+    TResult Function(_CheckLoginFalseRequested value)? checkLoginFalseRequested,
+    TResult Function(_setCheckRegisterPatientFalseRequested value)?
+        setCheckRegisterPatientFalseRequested,
+    TResult Function(_setCheckRegisterSupporterFalseRequested value)?
+        setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+    TResult Function(_PhoneNumberChangedPatient value)?
+        phoneNumberChangedPatient,
+    TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
+    TResult Function(_PhoneNumberChangedSupporter value)?
+        phoneNumberChangedSupporter,
+    TResult Function(_PasswordChangedSupporter value)? passwordChangedSupporter,
+    required TResult orElse(),
+  }) {
+    if (setErrorMessageRequested != null) {
+      return setErrorMessageRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetErrorMessageRequested implements AuthenticateEvent {
+  const factory _SetErrorMessageRequested() = _$_SetErrorMessageRequested;
 }
 
 /// @nodoc
@@ -3780,6 +4129,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -3807,6 +4157,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3834,6 +4185,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -3870,6 +4222,8 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -3905,6 +4259,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -3938,6 +4293,7 @@ class _$_PhoneNumberChangedPatient implements _PhoneNumberChangedPatient {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4046,6 +4402,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -4073,6 +4430,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4100,6 +4458,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4136,6 +4495,8 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -4171,6 +4532,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4204,6 +4566,7 @@ class _$_PasswordChangedPatient implements _PasswordChangedPatient {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4315,6 +4678,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -4342,6 +4706,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4369,6 +4734,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4405,6 +4771,8 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -4440,6 +4808,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4473,6 +4842,7 @@ class _$_PhoneNumberChangedSupporter implements _PhoneNumberChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4582,6 +4952,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     required TResult Function() checkLoginFalseRequested,
     required TResult Function() setCheckRegisterPatientFalseRequested,
     required TResult Function() setCheckRegisterSupporterFalseRequested,
+    required TResult Function() setErrorMessageRequested,
     required TResult Function(String phoneNumber) phoneNumberChangedPatient,
     required TResult Function(String password) passwordChangedPatient,
     required TResult Function(String phoneNumber) phoneNumberChangedSupporter,
@@ -4609,6 +4980,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4636,6 +5008,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
     TResult Function()? checkLoginFalseRequested,
     TResult Function()? setCheckRegisterPatientFalseRequested,
     TResult Function()? setCheckRegisterSupporterFalseRequested,
+    TResult Function()? setErrorMessageRequested,
     TResult Function(String phoneNumber)? phoneNumberChangedPatient,
     TResult Function(String password)? passwordChangedPatient,
     TResult Function(String phoneNumber)? phoneNumberChangedSupporter,
@@ -4672,6 +5045,8 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     required TResult Function(_setCheckRegisterSupporterFalseRequested value)
         setCheckRegisterSupporterFalseRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
     required TResult Function(_PhoneNumberChangedPatient value)
         phoneNumberChangedPatient,
     required TResult Function(_PasswordChangedPatient value)
@@ -4707,6 +5082,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,
@@ -4740,6 +5116,7 @@ class _$_PasswordChangedSupporter implements _PasswordChangedSupporter {
         setCheckRegisterPatientFalseRequested,
     TResult Function(_setCheckRegisterSupporterFalseRequested value)?
         setCheckRegisterSupporterFalseRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     TResult Function(_PhoneNumberChangedPatient value)?
         phoneNumberChangedPatient,
     TResult Function(_PasswordChangedPatient value)? passwordChangedPatient,

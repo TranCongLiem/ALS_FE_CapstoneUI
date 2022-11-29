@@ -28,6 +28,8 @@ class AuthenticateEvent with _$AuthenticateEvent {
       _setCheckRegisterPatientFalseRequested;
   const factory AuthenticateEvent.setCheckRegisterSupporterFalseRequested() =
       _setCheckRegisterSupporterFalseRequested;
+  const factory AuthenticateEvent.setErrorMessageRequested() =
+      _SetErrorMessageRequested;
   const factory AuthenticateEvent.phoneNumberChangedPatient(
       String phoneNumber) = _PhoneNumberChangedPatient;
   const factory AuthenticateEvent.passwordChangedPatient(String password) =
