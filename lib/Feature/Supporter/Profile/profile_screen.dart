@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Bloc/user_detail/user_detail_bloc.dart';
 import '../../../services/api_User.dart';
+import 'connect_screen.dart';
 
 // import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
 
@@ -72,6 +73,25 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                     ),
                   ],
                 ),
+                floatingActionButton: FloatingActionButton.extended(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ConnectPatient()));
+                  },
+                  elevation: 10.0,
+                  backgroundColor: greenALS,
+                  label: Row(children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 4.0),
+                      child: Icon(Icons.connect_without_contact_outlined),
+                    ),
+                    Text("Kết nối bệnh nhân")
+                  ]),
+                ),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerFloat,
                 body: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
