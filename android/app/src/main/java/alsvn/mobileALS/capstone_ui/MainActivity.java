@@ -1,4 +1,4 @@
-package com.example.capstone_ui;
+package alsvn.mobile.capstone_ui;
 
 import io.flutter.embedding.android.FlutterActivity;
 

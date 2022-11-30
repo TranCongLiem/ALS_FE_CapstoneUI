@@ -1,4 +1,4 @@
-// import 'package:animated_splash_screen/animated_splash_screen.dart';
+
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
@@ -37,6 +37,7 @@ import 'services/api_User.dart';
 // import 'Login/login_screen.dart';
 
 void main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
