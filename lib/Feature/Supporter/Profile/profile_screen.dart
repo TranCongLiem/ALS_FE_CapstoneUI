@@ -6,12 +6,18 @@ import 'package:capstone_ui/Feature/Profile/profile_listnewsfeed.dart';
 import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:capstone_ui/Feature/Profile/profile_update.dart';
 import 'package:capstone_ui/Feature/Supporter/Profile/profile_body.dart';
+import 'package:capstone_ui/Feature/Supporter/Profile/profile_listnewfeed_supporter.dart';
 import 'package:capstone_ui/Feature/Supporter/Profile/profile_update.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Bloc/user_detail/user_detail_bloc.dart';
+import '../../../Login/login_screen.dart';
+import '../../../Model/UpdateDeviceTokenMobile.dart';
+import '../../../Splash/SharePreKey.dart';
 import '../../../services/api_User.dart';
+import '../../../services/api_login.dart';
 import 'connect_screen.dart';
 
 // import 'package:capstone_ui/Home/Components/BottomNavigation.dart';
@@ -24,17 +30,17 @@ class ProfileSupporter extends StatefulWidget {
 }
 
 class _ProfileSupporterState extends State<ProfileSupporter> {
-  // int index = 4;
+  UserService _UserService = UserService();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
-      builder: (context, state2) {
+      builder: (context, state1) {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
                 create: (context) => GetDetailBloc(
                     RepositoryProvider.of<UserPatientService>(context))
-                  ..add(LoadDetailUserEvent(userId: state2.userId))),
+                  ..add(LoadDetailUserEvent(userId: state1.userId))),
           ],
           child: BlocBuilder<GetDetailBloc, GetDeatailBlocState>(
             builder: (context, state) {
@@ -58,7 +64,7 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                                   builder: ((context) => ProfileUpdateSupporter(
                                         getProfileUserByIdResponeModel: state
                                             .getProfileUserByIdResponeModel,
-                                        userId: state2.userId,
+                                        userId: state1.userId,
                                       ))));
                         }
                       },
@@ -106,20 +112,18 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                       SizedBox(
                         height: 20,
                       ),
-                      ProfileMenuItem(
-                        iconSrc: "assets/images/logout-svgrepo-com.svg",
-                        title: "Đăng xuất",
-                        press: () {},
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ListNewsFeed()));
+                          MoveToLoginAndUpdateToken(
+                              UpdateDevicetokenMobileRequest(
+                                  userId: state1.userId));
+                          context
+                              .read<AuthenticateBloc>()
+                              .add(AuthenticateEvent.Logout());
+                          print("logout nha");
+                          // print(state1.isAuthenticated);
+                          //state1.isAuthenticated=false;
+                          ;
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -129,7 +133,41 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
                               Icon(Icons.view_agenda),
                               SizedBox(width: 20),
                               Text(
-                                'Lịc sử bài đăng',
+                                'Đăng xuất',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      ListNewsFeedSupporter()));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 30),
+                          child: Row(
+                            children: [
+                              Icon(Icons.view_agenda),
+                              SizedBox(width: 20),
+                              Text(
+                                'Lịch sử bài đăng',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.black,
@@ -156,6 +194,27 @@ class _ProfileSupporterState extends State<ProfileSupporter> {
         );
       },
     );
+  }
+
+  Future<void> MoveToLoginAndUpdateToken(
+      UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, false);
+    await prefs.remove(SharedPreferencesKey.SHARED_PHONE);
+    await prefs.remove(SharedPreferencesKey.SHARED_PASSWORD);
+    await prefs.remove(SharedPreferencesKey.SHARED_USER);
+    var result =
+        _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
+
+    // Navigator.pushAndRemoveUntil(
+    //   context,
+    //   RouteGenerator.withName("/SplashScreen"),
+    //  ModalRoute.withName("/Home")
+    // );
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()),
+        (Route<dynamic> route) => false);
   }
 }
 

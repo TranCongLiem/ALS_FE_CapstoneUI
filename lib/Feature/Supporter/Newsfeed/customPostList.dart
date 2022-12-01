@@ -66,8 +66,14 @@ class _CustomPostListState extends State<CustomPostList> {
                               child: CircleAvatar(
                                 radius: 17.0,
                                 backgroundColor: Colors.grey[200],
-                                backgroundImage: CachedNetworkImageProvider(
-                                    "https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"),
+                                backgroundImage:
+                                    widget.listPost[widget.indexx].imageUser !=
+                                            ''
+                                        ? NetworkImage(widget
+                                            .listPost[widget.indexx]
+                                            .imageUser!) as ImageProvider
+                                        : AssetImage(
+                                            'assets/images/logo_Avatar.jpg'),
                               ),
                             ),
                             const SizedBox(width: 8.0),
