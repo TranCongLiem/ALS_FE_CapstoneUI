@@ -31,6 +31,7 @@ import 'Bloc/react_post/react_post_bloc.dart';
 import 'Bloc/remove_record/remove_record_bloc.dart';
 import 'Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
 import 'Bloc/user_detail/user_detail_bloc.dart';
+import 'Splash/splash_screen.dart';
 import 'firebase_options.dart';
 import 'services/api_ReactPost.dart';
 import 'services/api_User.dart';
@@ -149,8 +150,8 @@ class MyApp extends StatelessWidget {
             fontFamily: 'San',
           ),
           debugShowCheckedModeBanner: false,
-          initialRoute: '/login',
-          onGenerateRoute: RouteGenerator.generateRoute,
+          // initialRoute: '/login',
+          home: SplashScreen(),
         ),
       ),
     );

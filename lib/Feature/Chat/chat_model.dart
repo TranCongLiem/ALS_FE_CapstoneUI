@@ -1,8 +1,9 @@
 class Chat {
-  final String name, lastMessage, image, time;
+  final String id, name, lastMessage, image, time;
   final bool isActive;
 
   Chat({
+    this.id = '',
     this.name = '',
     this.lastMessage = '',
     this.image = '',

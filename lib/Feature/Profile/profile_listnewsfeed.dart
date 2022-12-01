@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../Bloc/authenticate/authenticate_bloc.dart';
 import '../../Bloc/post/post_bloc.dart';
@@ -23,7 +24,7 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
             BlocProvider(
                 create: (context) =>
                     PostBlocBloc(RepositoryProvider.of<PostService>(context))
-                      ..add(LoadPostEvent(userId: state.userId))),
+                      ..add(LoadPostByUserIdEvent(userId: state.userId))),
           ],
           child: Scaffold(
             appBar: AppBar(
@@ -39,7 +40,7 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
                 if (state is PostLoadedState) {
                   return ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: 5,
+                    itemCount: state.list.length,
                     itemBuilder: (context, index) {
                       return CustomPostListByUserID(
                         listPost: state.list[index],

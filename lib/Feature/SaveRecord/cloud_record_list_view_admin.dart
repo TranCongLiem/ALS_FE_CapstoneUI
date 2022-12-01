@@ -143,6 +143,8 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                           ),
                           Text(
                             widget.references[index].recordName ?? '',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,

@@ -1,7 +1,13 @@
+
 import 'package:capstone_ui/Feature/Profile/profileInfo.dart';
+import 'package:capstone_ui/Feature/Profile/profile_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../Bloc/user_detail/user_detail_bloc.dart';
 import '../../Constant/constant.dart';
 import '../../Model/getProfileUser_model.dart';
+import '../../services/api_User.dart';
 
 // class ProfileBody extends StatelessWidget {
 //   const ProfileBody({Key? key}) : super(key: key);
@@ -78,51 +84,50 @@ import '../../Model/getProfileUser_model.dart';
 //     );
 //   }
 // }
-Widget ProfileBody(
-    GetProfileUserByIdResponeModel getProfileUserByIdResponeModel,
-    BuildContext context) {
+Widget ProfileBody(GetProfileUserByIdResponeModel getProfileUserByIdResponeModel, BuildContext context){
   return SizedBox(
     height: 240,
-    child: Stack(
-      children: [
-        ClipPath(
-          clipper: CustomeShape(),
-          child: Container(
-            height: 150,
-            color: greenALS,
-          ),
-        ),
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                margin: EdgeInsets.only(bottom: 10),
-                height: 140,
-                width: 140,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 8,
-                  ),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/logo_Avatar.jpg"),
-                  ),
+                child: Stack(
+                  children: [
+                    ClipPath(
+                      clipper: CustomeShape(),
+                      child: Container(
+                        height: 150,
+                        color: greenALS,
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(bottom: 10),
+                            height: 140,
+                            width: 140,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 8,
+                              ),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image:  NetworkImage(getProfileUserByIdResponeModel.imageUser.toString()),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            //getProfileUserByIdResponeModel.fullName.toString(),
+                            getProfileUserByIdResponeModel.fullName??'',
+                            style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                getProfileUserByIdResponeModel.fullName.toString(),
-                style: TextStyle(
-                    fontSize: 26,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
   );
 }

@@ -211,64 +211,68 @@ class _SaveRecordingState extends State<SaveRecording> {
       },
       builder: (context, state) {
         return Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                  decoration: InputDecoration(
-                      labelText: _textSpeech,
-                      suffixIcon: Icon(Icons.type_specimen),
-                      border: myinputborder(),
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder(),
-                      labelStyle: TextStyle(fontSize: 20.0)),
-                  onChanged: (value) {
-                    context
-                        .read<CreateRecordBloc>()
-                        .add(CreateRecordEvent.recordNameChanged(value));
-                  },
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(10),
-                child: TextFormField(
-                  controller: textEditingController,
-                  maxLines: 2,
-                  decoration: InputDecoration(
-                      labelText: "Nhập nội dung",
-                      border: myinputborder(),
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder(),
-                      labelStyle: TextStyle(fontSize: 20.0)),
-                ),
-              ),
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      //  speak(textEditingController.text, userId);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      padding: EdgeInsets.only(
-                          top: 20, bottom: 20, left: 30, right: 30),
-                      primary: greenALS,
-                      textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w300),
-                    ),
-                    child: FeatureButtonsViewTextFunction(
-                      onUploadComplete: _onUploadComplete,
-                      speakText: textEditingController.text.toString(),
+          child: ListView(
+            children: 
+              [Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          labelText: _textSpeech,
+                          suffixIcon: Icon(Icons.type_specimen),
+                          border: myinputborder(),
+                          enabledBorder: myinputborder(),
+                          focusedBorder: myfocusborder(),
+                          labelStyle: TextStyle(fontSize: 20.0)),
+                      onChanged: (value) {
+                        context
+                            .read<CreateRecordBloc>()
+                            .add(CreateRecordEvent.recordNameChanged(value));
+                      },
                     ),
                   ),
-                ),
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: TextFormField(
+                      controller: textEditingController,
+                      maxLines: 2,
+                      decoration: InputDecoration(
+                          labelText: "Nhập nội dung",
+                          border: myinputborder(),
+                          enabledBorder: myinputborder(),
+                          focusedBorder: myfocusborder(),
+                          labelStyle: TextStyle(fontSize: 20.0)),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          //  speak(textEditingController.text, userId);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          padding: EdgeInsets.only(
+                              top: 20, bottom: 20, left: 30, right: 30),
+                          primary: greenALS,
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w300),
+                        ),
+                        child: FeatureButtonsViewTextFunction(
+                          onUploadComplete: _onUploadComplete,
+                          speakText: textEditingController.text.toString(),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
