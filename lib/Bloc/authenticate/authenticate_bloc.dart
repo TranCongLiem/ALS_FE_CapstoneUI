@@ -79,7 +79,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           isRegisterSupporter: true,
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Đăng ký không thành công"));
+        emit(state.copyWith(errorMessage: "Số điện thoại đã tồn tại"));
         debugPrint(state.phoneNumber);
       }
     });
@@ -115,7 +115,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     });
 
     on<_LogoutRequested>((event, emit) {
-      emit(state.copyWith(isAuthenticated: _userService.Logout()));
+      emit(state.copyWith(isAuthenticated: _userService.Logout(),isRegisterPatient: false,isRegisterSupporter: false));
     });
 
     on<_checkRegisterPatientRequested>((event, emit) {
@@ -125,19 +125,18 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       emit(state.copyWith(
           isRegisterSupporter: _userService.isRegisterSupporter()));
     });
-
+    on<_setCheckRegisterPatientFalseRequested>((event, emit) {
+      emit(state.copyWith(isRegisterPatient: false));
+    });
+    on<_setCheckRegisterSupporterFalseRequested>((event, emit) {
+      emit(state.copyWith(isRegisterSupporter: false));
+    });
     on<_CheckLoginRequested>((event, emit) {
       emit(state.copyWith(isCheckLogin: _userService.isLogin()));
     });
 
     on<_CheckLoginFalseRequested>((event, emit) {
       emit(state.copyWith(isCheckLogin: false));
-    });
-    on<_setCheckRegisterPatientFalseRequested>((event, emit) {
-      emit(state.copyWith(isRegisterPatient: false));
-    });
-    on<_setCheckRegisterSupporterFalseRequested>((event, emit) {
-      emit(state.copyWith(isRegisterSupporter: false));
     });
   }
 }

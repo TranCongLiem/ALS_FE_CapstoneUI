@@ -254,11 +254,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());
-                                setState(() {
-                                  validated = state.errorMessage ?? '';
-                                });
-                                checkInvalidPassword(
-                                    validated);
+                                // setState(() {
+                                //   validated = state.errorMessage ?? '';
+                                // });
+                                // checkInvalidPassword(
+                                //     validated);
                               },
                               icon: Icon(Icons.login),
                               label: Text(

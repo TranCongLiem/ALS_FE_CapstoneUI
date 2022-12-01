@@ -44,7 +44,11 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
     return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {
         if (state.isUpdatedInformationSupporter) {
+          context
+                  .read<UserBloc>()
+                  .add(UserEvent.setStateFlaseInformationSupporter());
           Navigator.pushAndRemoveUntil(
+              
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => new NewFeedSupporter()),

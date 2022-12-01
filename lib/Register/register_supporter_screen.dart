@@ -65,9 +65,6 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
           }
         },
         builder: (context, state) {
-          context
-              .read<AuthenticateBloc>()
-              .add(AuthenticateEvent.checkRegisterSupporterRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,

@@ -48,6 +48,9 @@ class _RegisterInfoState extends State<RegisterInfo> {
     return BlocConsumer<UserBloc, UserState>(
       listener: (context, state) {
         if (state.isUpdatedInformationPatient) {
+          context
+              .read<UserBloc>()
+              .add(UserEvent.setStateFlaseInformationPatient());
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
@@ -360,6 +363,11 @@ class _RegisterInfoState extends State<RegisterInfo> {
                         width: MediaQuery.of(context).size.width * 0.6,
                         child: ElevatedButton(
                           onPressed: () {
+                            if (state2.isRegisterPatient) {
+                              context.read<AuthenticateBloc>().add(
+                                  AuthenticateEvent
+                                      .setCheckRegisterPatientFalseRequested());
+                            }
                             uploadImage(state2.userId, state.fullName,
                                 state.imageUser, state2.phoneNumber);
                           },
