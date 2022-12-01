@@ -6,6 +6,8 @@ class AuthenticateEvent with _$AuthenticateEvent {
       _PhoneNumberChanged;
   const factory AuthenticateEvent.passwordChanged(String password) =
       _PasswordChanged;
+  const factory AuthenticateEvent.fullNameChanged(String fullName) =
+      _fullNameChanged;
   const factory AuthenticateEvent.loginRequested() = _LoginRequested;
   const factory AuthenticateEvent.registrationPatientRequested(
       String phoneNumber, String password) = _RegistrationPatientRequested;
@@ -15,16 +17,19 @@ class AuthenticateEvent with _$AuthenticateEvent {
 
   const factory AuthenticateEvent.Logout() = _LogoutRequested;
 
-
   const factory AuthenticateEvent.checkRegisterPatientRequested() =
       _checkRegisterPatientRequested;
   const factory AuthenticateEvent.checkRegisterSupporterRequested() =
       _checkRegisterSupporterRequested;
-
+  const factory AuthenticateEvent.checkLoginRequested() = _CheckLoginRequested;
+  const factory AuthenticateEvent.checkLoginFalseRequested() =
+      _CheckLoginFalseRequested;
   const factory AuthenticateEvent.setCheckRegisterPatientFalseRequested() =
       _setCheckRegisterPatientFalseRequested;
   const factory AuthenticateEvent.setCheckRegisterSupporterFalseRequested() =
       _setCheckRegisterSupporterFalseRequested;
+  const factory AuthenticateEvent.setErrorMessageRequested() =
+      _SetErrorMessageRequested;
   const factory AuthenticateEvent.phoneNumberChangedPatient(
       String phoneNumber) = _PhoneNumberChangedPatient;
   const factory AuthenticateEvent.passwordChangedPatient(String password) =
@@ -33,5 +38,4 @@ class AuthenticateEvent with _$AuthenticateEvent {
       String phoneNumber) = _PhoneNumberChangedSupporter;
   const factory AuthenticateEvent.passwordChangedSupporter(String password) =
       _PasswordChangedSupporter;
-
 }

@@ -186,12 +186,10 @@ class _ListExceriseState extends State<ListExcerise> {
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-
                   }),
                 ),
               ],
             ),
-
           ),
         ));
 
@@ -360,62 +358,6 @@ class ButtonCreateEx extends StatelessWidget {
     );
   }
 }
-
-// class ButtonGetSession extends StatelessWidget {
-//   const ButtonGetSession({
-//     Key? key,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return BlocBuilder<SessionBloc, SessionState>(
-//       builder: (context, state) {
-//         return Padding(
-//           padding: const EdgeInsets.all(8.0),
-//           child: BlocBuilder<AuthenticateBloc, AuthenticateState>(
-//             builder: (context, state) {
-//               return Container(
-//                 child: ElevatedButton(
-//                   onPressed: () {
-//                     context
-//                         .read<SessionBloc>()
-//                         .add(SessionEvent.getSessionsByUserId(state.userId));
-//                     Navigator.push(
-//                         context,
-//                         MaterialPageRoute(
-//                             builder: (context) => SessionExercise()));
-//                   },
-//                   child: Text(
-//                     'Buổi tập của bạn',
-//                     style: TextStyle(
-//                       fontSize: 20.0,
-//                       fontWeight: FontWeight.bold,
-//                     ),
-//                   ),
-//                   //icon: Icon(Icons.add),
-//                   style: ButtonStyle(
-//                     foregroundColor:
-//                         MaterialStateProperty.all<Color>(Colors.white),
-//                     backgroundColor: MaterialStateProperty.all<Color>(
-//                         Color.fromARGB(255, 14, 106, 211)),
-//                     elevation: MaterialStateProperty.resolveWith<double>(
-//                         (Set<MaterialState> states) {
-//                       if (states.contains(MaterialState.pressed) ||
-//                           (states.contains(MaterialState.disabled))) {
-//                         return 0;
-//                       }
-//                       return 5;
-//                     }),
-//                   ),
-//                 ),
-//               );
-//             },
-//           ),
-//         );
-//       },
-//     );
-//   }
-// }
 
 class GetSessionsButton extends StatelessWidget {
   const GetSessionsButton({super.key});

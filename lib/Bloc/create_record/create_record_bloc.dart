@@ -20,6 +20,23 @@ class CreateRecordBloc extends Bloc<CreateRecordEvent, CreateRecordState> {
           recordName: state.recordName,
           linkAudio: state.linkAudio);
       final result = await _recordService.createRecord(reqModel);
+      if (result.message != null && result.success == true) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+          isCreated: true,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: "Tên record đã tồn tại"));
+      }
+    });
+
+    on<_CreateRecordConfirmedRequest>((event, emit) async {
+      CreateRecordReQuestModel reqModel = CreateRecordReQuestModel(
+          userId: event.userId,
+          recordName: state.recordName,
+          linkAudio: state.linkAudio);
+      final result = await _recordService.createRecordConfirmed(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
           message: result.message ?? '',
@@ -27,10 +44,13 @@ class CreateRecordBloc extends Bloc<CreateRecordEvent, CreateRecordState> {
           isCreated: true,
         ));
       } else {
-        emit(state.copyWith(errorMessage: "  "));
+        emit(state.copyWith(errorMessage: ""));
       }
     });
 
+    on<_SetErrorMessageRequested>((event, emit) {
+      emit(state.copyWith(errorMessage: ""));
+    });
     on<_RecordNameChanged>((event, emit) {
       emit(state.copyWith(recordName: event.recordName));
     });
@@ -44,9 +64,9 @@ class CreateRecordBloc extends Bloc<CreateRecordEvent, CreateRecordState> {
     });
 
     on<_SetStateFlase>((event, emit) {
-        emit(state.copyWith(
-          isCreated: false,
-        ));
+      emit(state.copyWith(
+        isCreated: false,
+      ));
     });
   }
 }

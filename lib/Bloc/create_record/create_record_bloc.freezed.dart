@@ -21,8 +21,10 @@ mixin _$CreateRecordEvent {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +32,10 @@ mixin _$CreateRecordEvent {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +43,10 @@ mixin _$CreateRecordEvent {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +55,12 @@ mixin _$CreateRecordEvent {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +68,11 @@ mixin _$CreateRecordEvent {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +80,11 @@ mixin _$CreateRecordEvent {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -161,8 +177,10 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) {
     return recordNameChanged(recordName);
   }
@@ -173,8 +191,10 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) {
     return recordNameChanged?.call(recordName);
   }
@@ -185,8 +205,10 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (recordNameChanged != null) {
@@ -201,8 +223,12 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) {
     return recordNameChanged(this);
   }
@@ -213,8 +239,11 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) {
     return recordNameChanged?.call(this);
   }
@@ -225,8 +254,11 @@ class _$_RecordNameChanged implements _RecordNameChanged {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (recordNameChanged != null) {
@@ -314,8 +346,10 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) {
     return linkAudioChanged(linkAudio);
   }
@@ -326,8 +360,10 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) {
     return linkAudioChanged?.call(linkAudio);
   }
@@ -338,8 +374,10 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (linkAudioChanged != null) {
@@ -354,8 +392,12 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) {
     return linkAudioChanged(this);
   }
@@ -366,8 +408,11 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) {
     return linkAudioChanged?.call(this);
   }
@@ -378,8 +423,11 @@ class _$_LinkAudioChanged implements _LinkAudioChanged {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (linkAudioChanged != null) {
@@ -467,8 +515,10 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) {
     return createRecordRequest(userId);
   }
@@ -479,8 +529,10 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) {
     return createRecordRequest?.call(userId);
   }
@@ -491,8 +543,10 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (createRecordRequest != null) {
@@ -507,8 +561,12 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) {
     return createRecordRequest(this);
   }
@@ -519,8 +577,11 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) {
     return createRecordRequest?.call(this);
   }
@@ -531,8 +592,11 @@ class _$_CreateRecordRequest implements _CreateRecordRequest {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (createRecordRequest != null) {
@@ -553,42 +617,70 @@ abstract class _CreateRecordRequest implements CreateRecordEvent {
 }
 
 /// @nodoc
-abstract class _$$_CreateCheckRequestedCopyWith<$Res> {
-  factory _$$_CreateCheckRequestedCopyWith(_$_CreateCheckRequested value,
-          $Res Function(_$_CreateCheckRequested) then) =
-      __$$_CreateCheckRequestedCopyWithImpl<$Res>;
+abstract class _$$_CreateRecordConfirmedRequestCopyWith<$Res> {
+  factory _$$_CreateRecordConfirmedRequestCopyWith(
+          _$_CreateRecordConfirmedRequest value,
+          $Res Function(_$_CreateRecordConfirmedRequest) then) =
+      __$$_CreateRecordConfirmedRequestCopyWithImpl<$Res>;
+  $Res call({String userId});
 }
 
 /// @nodoc
-class __$$_CreateCheckRequestedCopyWithImpl<$Res>
+class __$$_CreateRecordConfirmedRequestCopyWithImpl<$Res>
     extends _$CreateRecordEventCopyWithImpl<$Res>
-    implements _$$_CreateCheckRequestedCopyWith<$Res> {
-  __$$_CreateCheckRequestedCopyWithImpl(_$_CreateCheckRequested _value,
-      $Res Function(_$_CreateCheckRequested) _then)
-      : super(_value, (v) => _then(v as _$_CreateCheckRequested));
+    implements _$$_CreateRecordConfirmedRequestCopyWith<$Res> {
+  __$$_CreateRecordConfirmedRequestCopyWithImpl(
+      _$_CreateRecordConfirmedRequest _value,
+      $Res Function(_$_CreateRecordConfirmedRequest) _then)
+      : super(_value, (v) => _then(v as _$_CreateRecordConfirmedRequest));
 
   @override
-  _$_CreateCheckRequested get _value => super._value as _$_CreateCheckRequested;
+  _$_CreateRecordConfirmedRequest get _value =>
+      super._value as _$_CreateRecordConfirmedRequest;
+
+  @override
+  $Res call({
+    Object? userId = freezed,
+  }) {
+    return _then(_$_CreateRecordConfirmedRequest(
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$_CreateCheckRequested implements _CreateCheckRequested {
-  const _$_CreateCheckRequested();
+class _$_CreateRecordConfirmedRequest implements _CreateRecordConfirmedRequest {
+  const _$_CreateRecordConfirmedRequest(this.userId);
+
+  @override
+  final String userId;
 
   @override
   String toString() {
-    return 'CreateRecordEvent.createCheckRequested()';
+    return 'CreateRecordEvent.createRecordConfirmedRequest(userId: $userId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CreateCheckRequested);
+        (other.runtimeType == runtimeType &&
+            other is _$_CreateRecordConfirmedRequest &&
+            const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CreateRecordConfirmedRequestCopyWith<_$_CreateRecordConfirmedRequest>
+      get copyWith => __$$_CreateRecordConfirmedRequestCopyWithImpl<
+          _$_CreateRecordConfirmedRequest>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -596,10 +688,12 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) {
-    return createCheckRequested();
+    return createRecordConfirmedRequest(userId);
   }
 
   @override
@@ -608,10 +702,12 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) {
-    return createCheckRequested?.call();
+    return createRecordConfirmedRequest?.call(userId);
   }
 
   @override
@@ -620,12 +716,14 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) {
-    if (createCheckRequested != null) {
-      return createCheckRequested();
+    if (createRecordConfirmedRequest != null) {
+      return createRecordConfirmedRequest(userId);
     }
     return orElse();
   }
@@ -636,10 +734,14 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) {
-    return createCheckRequested(this);
+    return createRecordConfirmedRequest(this);
   }
 
   @override
@@ -648,10 +750,13 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) {
-    return createCheckRequested?.call(this);
+    return createRecordConfirmedRequest?.call(this);
   }
 
   @override
@@ -660,19 +765,28 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) {
-    if (createCheckRequested != null) {
-      return createCheckRequested(this);
+    if (createRecordConfirmedRequest != null) {
+      return createRecordConfirmedRequest(this);
     }
     return orElse();
   }
 }
 
-abstract class _CreateCheckRequested implements CreateRecordEvent {
-  const factory _CreateCheckRequested() = _$_CreateCheckRequested;
+abstract class _CreateRecordConfirmedRequest implements CreateRecordEvent {
+  const factory _CreateRecordConfirmedRequest(final String userId) =
+      _$_CreateRecordConfirmedRequest;
+
+  String get userId;
+  @JsonKey(ignore: true)
+  _$$_CreateRecordConfirmedRequestCopyWith<_$_CreateRecordConfirmedRequest>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -719,8 +833,10 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function(String recordName) recordNameChanged,
     required TResult Function(String linkAudio) linkAudioChanged,
     required TResult Function(String userId) createRecordRequest,
-    required TResult Function() createCheckRequested,
+    required TResult Function(String userId) createRecordConfirmedRequest,
     required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
   }) {
     return setStateFlase();
   }
@@ -731,8 +847,10 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
   }) {
     return setStateFlase?.call();
   }
@@ -743,8 +861,10 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String recordName)? recordNameChanged,
     TResult Function(String linkAudio)? linkAudioChanged,
     TResult Function(String userId)? createRecordRequest,
-    TResult Function()? createCheckRequested,
+    TResult Function(String userId)? createRecordConfirmedRequest,
     TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (setStateFlase != null) {
@@ -759,8 +879,12 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function(_RecordNameChanged value) recordNameChanged,
     required TResult Function(_LinkAudioChanged value) linkAudioChanged,
     required TResult Function(_CreateRecordRequest value) createRecordRequest,
-    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
     required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
   }) {
     return setStateFlase(this);
   }
@@ -771,8 +895,11 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
   }) {
     return setStateFlase?.call(this);
   }
@@ -783,8 +910,11 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(_RecordNameChanged value)? recordNameChanged,
     TResult Function(_LinkAudioChanged value)? linkAudioChanged,
     TResult Function(_CreateRecordRequest value)? createRecordRequest,
-    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
     TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
     required TResult orElse(),
   }) {
     if (setStateFlase != null) {
@@ -796,6 +926,287 @@ class _$_SetStateFlase implements _SetStateFlase {
 
 abstract class _SetStateFlase implements CreateRecordEvent {
   const factory _SetStateFlase() = _$_SetStateFlase;
+}
+
+/// @nodoc
+abstract class _$$_CreateCheckRequestedCopyWith<$Res> {
+  factory _$$_CreateCheckRequestedCopyWith(_$_CreateCheckRequested value,
+          $Res Function(_$_CreateCheckRequested) then) =
+      __$$_CreateCheckRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CreateCheckRequestedCopyWithImpl<$Res>
+    extends _$CreateRecordEventCopyWithImpl<$Res>
+    implements _$$_CreateCheckRequestedCopyWith<$Res> {
+  __$$_CreateCheckRequestedCopyWithImpl(_$_CreateCheckRequested _value,
+      $Res Function(_$_CreateCheckRequested) _then)
+      : super(_value, (v) => _then(v as _$_CreateCheckRequested));
+
+  @override
+  _$_CreateCheckRequested get _value => super._value as _$_CreateCheckRequested;
+}
+
+/// @nodoc
+
+class _$_CreateCheckRequested implements _CreateCheckRequested {
+  const _$_CreateCheckRequested();
+
+  @override
+  String toString() {
+    return 'CreateRecordEvent.createCheckRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CreateCheckRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String recordName) recordNameChanged,
+    required TResult Function(String linkAudio) linkAudioChanged,
+    required TResult Function(String userId) createRecordRequest,
+    required TResult Function(String userId) createRecordConfirmedRequest,
+    required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
+  }) {
+    return createCheckRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String recordName)? recordNameChanged,
+    TResult Function(String linkAudio)? linkAudioChanged,
+    TResult Function(String userId)? createRecordRequest,
+    TResult Function(String userId)? createRecordConfirmedRequest,
+    TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
+  }) {
+    return createCheckRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String recordName)? recordNameChanged,
+    TResult Function(String linkAudio)? linkAudioChanged,
+    TResult Function(String userId)? createRecordRequest,
+    TResult Function(String userId)? createRecordConfirmedRequest,
+    TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
+    required TResult orElse(),
+  }) {
+    if (createCheckRequested != null) {
+      return createCheckRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RecordNameChanged value) recordNameChanged,
+    required TResult Function(_LinkAudioChanged value) linkAudioChanged,
+    required TResult Function(_CreateRecordRequest value) createRecordRequest,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
+  }) {
+    return createCheckRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RecordNameChanged value)? recordNameChanged,
+    TResult Function(_LinkAudioChanged value)? linkAudioChanged,
+    TResult Function(_CreateRecordRequest value)? createRecordRequest,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+  }) {
+    return createCheckRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RecordNameChanged value)? recordNameChanged,
+    TResult Function(_LinkAudioChanged value)? linkAudioChanged,
+    TResult Function(_CreateRecordRequest value)? createRecordRequest,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+    required TResult orElse(),
+  }) {
+    if (createCheckRequested != null) {
+      return createCheckRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CreateCheckRequested implements CreateRecordEvent {
+  const factory _CreateCheckRequested() = _$_CreateCheckRequested;
+}
+
+/// @nodoc
+abstract class _$$_SetErrorMessageRequestedCopyWith<$Res> {
+  factory _$$_SetErrorMessageRequestedCopyWith(
+          _$_SetErrorMessageRequested value,
+          $Res Function(_$_SetErrorMessageRequested) then) =
+      __$$_SetErrorMessageRequestedCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetErrorMessageRequestedCopyWithImpl<$Res>
+    extends _$CreateRecordEventCopyWithImpl<$Res>
+    implements _$$_SetErrorMessageRequestedCopyWith<$Res> {
+  __$$_SetErrorMessageRequestedCopyWithImpl(_$_SetErrorMessageRequested _value,
+      $Res Function(_$_SetErrorMessageRequested) _then)
+      : super(_value, (v) => _then(v as _$_SetErrorMessageRequested));
+
+  @override
+  _$_SetErrorMessageRequested get _value =>
+      super._value as _$_SetErrorMessageRequested;
+}
+
+/// @nodoc
+
+class _$_SetErrorMessageRequested implements _SetErrorMessageRequested {
+  const _$_SetErrorMessageRequested();
+
+  @override
+  String toString() {
+    return 'CreateRecordEvent.setErrorMessageRequested()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetErrorMessageRequested);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String recordName) recordNameChanged,
+    required TResult Function(String linkAudio) linkAudioChanged,
+    required TResult Function(String userId) createRecordRequest,
+    required TResult Function(String userId) createRecordConfirmedRequest,
+    required TResult Function() setStateFlase,
+    required TResult Function() createCheckRequested,
+    required TResult Function() setErrorMessageRequested,
+  }) {
+    return setErrorMessageRequested();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String recordName)? recordNameChanged,
+    TResult Function(String linkAudio)? linkAudioChanged,
+    TResult Function(String userId)? createRecordRequest,
+    TResult Function(String userId)? createRecordConfirmedRequest,
+    TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
+  }) {
+    return setErrorMessageRequested?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String recordName)? recordNameChanged,
+    TResult Function(String linkAudio)? linkAudioChanged,
+    TResult Function(String userId)? createRecordRequest,
+    TResult Function(String userId)? createRecordConfirmedRequest,
+    TResult Function()? setStateFlase,
+    TResult Function()? createCheckRequested,
+    TResult Function()? setErrorMessageRequested,
+    required TResult orElse(),
+  }) {
+    if (setErrorMessageRequested != null) {
+      return setErrorMessageRequested();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RecordNameChanged value) recordNameChanged,
+    required TResult Function(_LinkAudioChanged value) linkAudioChanged,
+    required TResult Function(_CreateRecordRequest value) createRecordRequest,
+    required TResult Function(_CreateRecordConfirmedRequest value)
+        createRecordConfirmedRequest,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_CreateCheckRequested value) createCheckRequested,
+    required TResult Function(_SetErrorMessageRequested value)
+        setErrorMessageRequested,
+  }) {
+    return setErrorMessageRequested(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_RecordNameChanged value)? recordNameChanged,
+    TResult Function(_LinkAudioChanged value)? linkAudioChanged,
+    TResult Function(_CreateRecordRequest value)? createRecordRequest,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+  }) {
+    return setErrorMessageRequested?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RecordNameChanged value)? recordNameChanged,
+    TResult Function(_LinkAudioChanged value)? linkAudioChanged,
+    TResult Function(_CreateRecordRequest value)? createRecordRequest,
+    TResult Function(_CreateRecordConfirmedRequest value)?
+        createRecordConfirmedRequest,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_CreateCheckRequested value)? createCheckRequested,
+    TResult Function(_SetErrorMessageRequested value)? setErrorMessageRequested,
+    required TResult orElse(),
+  }) {
+    if (setErrorMessageRequested != null) {
+      return setErrorMessageRequested(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetErrorMessageRequested implements CreateRecordEvent {
+  const factory _SetErrorMessageRequested() = _$_SetErrorMessageRequested;
 }
 
 /// @nodoc

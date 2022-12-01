@@ -7,9 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Feature/Chat/constants/color_constants.dart';
 import '../Login/login_screen.dart';
 import '../Model/UpdateDeviceTokenMobile.dart';
 import '../Splash/SharePreKey.dart';
@@ -27,9 +29,10 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   UserService _UserService = UserService();
-    String mobileToken = '';
+  String mobileToken = '';
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-    @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -43,13 +46,20 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
+          if (state.errorMessage != '' && state.errorMessage != null) {
+            Fluttertoast.showToast(
+                msg: state.errorMessage.toString(),
+                backgroundColor: ColorConstants.greyColor);
+            context
+                .read<AuthenticateBloc>()
+                .add(AuthenticateEvent.setErrorMessageRequested());
+          }
           if (state.isRegisterPatient) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => RegisterInfo()));
-                       SetUserInfo(state.phoneNumber, state.password, state.userId);
-              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
-                  userId: state.userId, mobileToken: mobileToken));
-                
+            SetUserInfo(state.phoneNumber, state.password, state.userId);
+            UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                userId: state.userId, mobileToken: mobileToken));
           }
         },
         builder: (context, state) {
@@ -75,142 +85,167 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                         Container(
                           margin: EdgeInsets.symmetric(vertical: 30.0),
                           color: Colors.white,
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                margin: EdgeInsets.symmetric(vertical: 20.0),
-                                child: Text(
-                                  "TẠO TÀI KHOẢN",
-                                  style: TextStyle(
-                                      fontSize: 30,
-                                      color: greenALS,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(10),
-                                child: TextFormField(
-                                  keyboardType: TextInputType.numberWithOptions(
-                                      decimal: false),
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  controller: emailController,
-                                  decoration: InputDecoration(
-                                    suffixIcon: Icon(Icons.person),
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Số Điện Thoại',
-                                    hintText: 'Nhập Số Điện Thoại',
+                          child: Form(
+                            key: formkey,
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.symmetric(vertical: 20.0),
+                                  child: Text(
+                                    "TẠO TÀI KHOẢN",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        color: greenALS,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  style: TextStyle(fontSize: 25.sp),
-                                  onChanged: (value) {
-                                    context.read<AuthenticateBloc>().add(
-                                        AuthenticateEvent
-                                            .phoneNumberChangedPatient(value));
-                                  },
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.all(10),
-                                child: TextFormField(
-                                  keyboardType: TextInputType.numberWithOptions(
-                                      decimal: false),
-                                  inputFormatters: [
-                                    FilteringTextInputFormatter.digitsOnly
-                                  ],
-                                  controller: passwordController,
-                                  obscureText: hidePassword,
-                                  decoration: InputDecoration(
-                                    suffixIcon: IconButton(
-                                      icon: Icon(
-                                        hidePassword
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                      ),
-                                      onPressed: () {
-                                        setState(() {
-                                          hidePassword = !hidePassword;
-                                        });
-                                      },
-                                      color: Colors.green,
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: TextFormField(
+                                    keyboardType:
+                                        TextInputType.numberWithOptions(
+                                            decimal: false),
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                    controller: emailController,
+                                    decoration: InputDecoration(
+                                      suffixIcon: Icon(Icons.person),
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Số Điện Thoại',
+                                      hintText: 'Nhập Số Điện Thoại',
                                     ),
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Mật khẩu',
-                                    hintText: 'Nhập mật khẩu',
+                                    style: TextStyle(fontSize: 25.sp),
+                                    onChanged: (value) {
+                                      context.read<AuthenticateBloc>().add(
+                                          AuthenticateEvent
+                                              .phoneNumberChangedPatient(
+                                                  value));
+                                    },
+                                    validator: (value) {
+                                      if (value!.isEmpty ||
+                                          !RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)')
+                                              .hasMatch(value)) {
+                                        return "Nhập đúng số điện thoại";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
                                   ),
-                                  style: TextStyle(fontSize: 25.sp),
-                                  onChanged: (value) {
-                                    context.read<AuthenticateBloc>().add(
-                                        AuthenticateEvent
-                                            .passwordChangedPatient(value));
-                                  },
                                 ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  context.read<AuthenticateBloc>().add(
-                                      AuthenticateEvent
-                                          .registrationPatientRequested(
-                                              state.phoneNumberPatient,
-                                              state.passwordPatient));
-
-                                },
-                                child: Text(
-                                  'Đăng ký',
-                                  style: TextStyle(fontSize: 22.sp),
-                                ),
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.white),
-                                  backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          Colors.green),
-                                  elevation:
-                                      MaterialStateProperty.resolveWith<double>(
-                                          (Set<MaterialState> states) {
-                                    if (states
-                                            .contains(MaterialState.pressed) ||
-                                        (states.contains(
-                                            MaterialState.disabled))) {
-                                      return 0;
-                                    }
-                                    return 5;
-                                  }),
-                                ),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  // Navigator.push(
-                                  //     context,
-                                  //     MaterialPageRoute(
-                                  //         builder: (context) => RoleScreen()));
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Đã có tài khoản?',
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 18.sp),
-                                    ),
-                                    TextButton(
+                                Padding(
+                                  padding: EdgeInsets.all(10),
+                                  child: TextFormField(
+                                    keyboardType:
+                                        TextInputType.numberWithOptions(
+                                            decimal: false),
+                                    inputFormatters: [
+                                      FilteringTextInputFormatter.digitsOnly
+                                    ],
+                                    controller: passwordController,
+                                    obscureText: hidePassword,
+                                    decoration: InputDecoration(
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          hidePassword
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
+                                        ),
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      LoginScreen()));
+                                          setState(() {
+                                            hidePassword = !hidePassword;
+                                          });
                                         },
-                                        child: Text('Đăng nhập',
-                                            style: TextStyle(
-                                                color: greenALS,
-                                                fontSize: 18.sp,
-                                                fontFamily: 'GothamB'))),
-                                  ],
+                                        color: Colors.green,
+                                      ),
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Mật khẩu',
+                                      hintText: 'Nhập mật khẩu',
+                                    ),
+                                    style: TextStyle(fontSize: 25.sp),
+                                    onChanged: (value) {
+                                      context.read<AuthenticateBloc>().add(
+                                          AuthenticateEvent
+                                              .passwordChangedPatient(value));
+                                    },
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Vui lòng nhập mật khẩu';
+                                      } else if (value.length > 10) {
+                                        return 'Chỉ nhập 10 số';
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                  ),
                                 ),
-                              ),
-                            ],
+                                ElevatedButton(
+                                  onPressed: () {
+                                    validate();
+                                    context.read<AuthenticateBloc>().add(
+                                        AuthenticateEvent
+                                            .registrationPatientRequested(
+                                                state.phoneNumberPatient,
+                                                state.passwordPatient));
+                                  },
+                                  child: Text(
+                                    'Đăng ký',
+                                    style: TextStyle(fontSize: 22.sp),
+                                  ),
+                                  style: ButtonStyle(
+                                    foregroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.white),
+                                    backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            Colors.green),
+                                    elevation: MaterialStateProperty
+                                        .resolveWith<double>(
+                                            (Set<MaterialState> states) {
+                                      if (states.contains(
+                                              MaterialState.pressed) ||
+                                          (states.contains(
+                                              MaterialState.disabled))) {
+                                        return 0;
+                                      }
+                                      return 5;
+                                    }),
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    // Navigator.push(
+                                    //     context,
+                                    //     MaterialPageRoute(
+                                    //         builder: (context) => RoleScreen()));
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Đã có tài khoản?',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18.sp),
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        LoginScreen()));
+                                          },
+                                          child: Text('Đăng nhập',
+                                              style: TextStyle(
+                                                  color: greenALS,
+                                                  fontSize: 18.sp,
+                                                  fontFamily: 'GothamB'))),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -249,6 +284,15 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                   decimal: false),
                               controller: passwordController,
                               obscureText: hidePassword,
+                              validator: (value) {
+                                if (value!.isEmpty ||
+                                    !RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)')
+                                        .hasMatch(value)) {
+                                  return "Nhập đúng số điện thoại";
+                                } else {
+                                  return null;
+                                }
+                              },
                               decoration: InputDecoration(
                                 suffixIcon: IconButton(
                                   icon: Icon(
@@ -380,5 +424,13 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
       UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
+  }
+
+  void validate() {
+    if (formkey.currentState!.validate()) {
+      print('Validated');
+    } else {
+      print('Not validated');
+    }
   }
 }

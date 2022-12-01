@@ -22,14 +22,6 @@ class UserEvent with _$UserEvent {
   const factory UserEvent.getcondition(String condition) = _Getcondition;
   const factory UserEvent.getcause(String cause) = _Getcause;
   const factory UserEvent.getdateOfBirth(String dateOfBirth) = _GetdateOfBirth;
-  const factory UserEvent.updateProfilePatientCheckRequested() =
-      _UpdateProfilePatientCheckRequested;
-  const factory UserEvent.updateProfileSupporterCheckRequested() =
-      _UpdateProfileSupporterCheckRequested;
-  const factory UserEvent.updateInformationPatientCheckRequested() =
-      _UpdateInformationPatientCheckRequested;
-  const factory UserEvent.updateInformationSupporterCheckRequested() =
-      _UpdateInformationSupporterCheckRequested;
   const factory UserEvent.setStateFlase() = _SetStateFlase;
   const factory UserEvent.setStateFlaseSupporter() = _SetStateFlaseSupporter;
   const factory UserEvent.setStateFlaseInformationPatient() =

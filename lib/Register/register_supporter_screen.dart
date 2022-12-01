@@ -7,9 +7,11 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
+import '../Feature/Chat/constants/color_constants.dart';
 import '../Login/login_screen.dart';
 import '../Model/UpdateDeviceTokenMobile.dart';
 import '../Splash/SharePreKey.dart';
@@ -44,6 +46,14 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
     return Sizer(builder: (context, orientation, deviceType) {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
+          if (state.errorMessage != '' && state.errorMessage != null) {
+            Fluttertoast.showToast(
+                msg: state.errorMessage.toString(),
+                backgroundColor: ColorConstants.greyColor);
+            context
+                .read<AuthenticateBloc>()
+                .add(AuthenticateEvent.setErrorMessageRequested());
+          }
           if (state.isRegisterSupporter) {
             Navigator.push(
                 context,
@@ -55,9 +65,6 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
           }
         },
         builder: (context, state) {
-          context
-              .read<AuthenticateBloc>()
-              .add(AuthenticateEvent.checkRegisterSupporterRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,

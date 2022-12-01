@@ -115,23 +115,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.copyWith(address: event.address));
     });
 
-    on<_UpdateProfilePatientCheckRequested>((event, emit) {
-      emit(state.copyWith(
-          isUpdatedProfilePatient: _userService.isUpdatedProfilePatient()));
-    });
-    on<_UpdateProfileSupporterCheckRequested>((event, emit) {
-      emit(state.copyWith(
-          isUpdatedProfileSupporter: _userService.isUpdatedProfileSupporter()));
-    });
 
     on<_SetStateFlase>((event, emit) {
       emit(state.copyWith(
         isUpdatedProfilePatient: false,
-      ));
-    });
-    on<_SetStateFlaseSupporter>((event, emit) {
-      emit(state.copyWith(
-        isUpdatedProfileSupporter: false,
       ));
     });
 
@@ -147,16 +134,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       emit(state.copyWith(dateOfBirth: event.dateOfBirth));
     });
 
-    on<_UpdateInformationPatientCheckRequested>((event, emit) {
-      emit(state.copyWith(
-          isUpdatedInformationPatient:
-              _userService.isUpdatedInformationPatient()));
+    on<_SetStateFlaseInformationPatient>((event, emit) {
+      emit(state.copyWith(isUpdatedInformationPatient: false));
     });
 
-    on<_SetStateFlaseInformationPatient>((event, emit) {
-      emit(state.copyWith(
-        isUpdatedInformationPatient: false,
-      ));
+    on<_SetStateFlaseInformationSupporter>((event, emit) {
+      emit(state.copyWith(isUpdatedInformationSupporter: false));
     });
   }
 }
