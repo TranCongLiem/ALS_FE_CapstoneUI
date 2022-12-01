@@ -71,8 +71,8 @@ class _HomeState extends State<Home> {
                       // ignore: prefer_const_constructors
                       child: Icon(Icons.notifications_active),
                       onPressed: () async {
-                        
-                        if (state.relationshipWith == null || state.relationshipWith.isEmpty) {
+                        if (state.relationshipWith == null ||
+                            state.relationshipWith.isEmpty) {
                           Fluttertoast.showToast(
                               msg:
                                   "Bạn chưa liên kết với bất kì người hỗ trợ nào",
@@ -108,23 +108,9 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      alignment: Alignment.center,
-                                      height: 52,
-                                      width: 52,
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: new DecorationImage(
-                                            image: ExactAssetImage(
-                                                'assets/images/logo_Avatar.jpg')),
-                                      ),
-                                    ),
-                                  ),
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 30.0),
+                                        vertical: 40.0),
                                     child: Text(
                                       "Xin chào!\nHôm nay bạn cần gì?",
                                       style: TextStyle(

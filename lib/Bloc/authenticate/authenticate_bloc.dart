@@ -21,19 +21,23 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_LoginRequested>((event, emit) async {
       LoginRequestModel reqModel = LoginRequestModel(
           phoneNumber: state.phoneNumber, password: state.password);
-      final result = await _userService.login(reqModel);
-      if (result.role != null && result.phoneNumber != null) {
+      LoginResponeModel result = await _userService.login(reqModel);
+      if (result.phoneNumber != null && result.role != null) {
         emit(state.copyWith(
           userId: result.userId ?? '',
           phoneNumber: result.phoneNumber ?? '',
           role: result.role,
           fullName: result.fullName ?? '',
+          isCheckLogin: false,
           isAuthenticated: true,
-          relationshipWith: result.relationshipWith??''
+          relationshipWith: result.relationshipWith ?? '',
+          errorMessage: "",
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Invalid Phone Number or Password"));
-        debugPrint(state.phoneNumber);
+        emit(state.copyWith(
+          errorMessage: "Số điện thoại hoặc mật khẩu không chính xác",
+          isCheckLogin: true,
+        ));
       }
     });
 
@@ -49,11 +53,16 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           role: result.role,
           fullName: result.fullName ?? '',
           isRegisterPatient: true,
+          errorMessage: '',
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Đăng ký không thành công"));
+        emit(state.copyWith(errorMessage: "Số điện thoại đã tồn tại"));
         debugPrint(state.phoneNumber);
       }
+    });
+
+    on<_fullNameChanged>((event, emit) {
+      emit(state.copyWith(fullName: event.fullName));
     });
 
     on<_RegistrationSupporterRequested>((event, emit) async {
@@ -70,7 +79,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           isRegisterSupporter: true,
         ));
       } else {
-        emit(state.copyWith(errorMessage: "Đăng ký không thành công"));
+        emit(state.copyWith(errorMessage: "Số điện thoại đã tồn tại"));
         debugPrint(state.phoneNumber);
       }
     });
@@ -78,7 +87,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_PhoneNumberChanged>((event, emit) {
       emit(state.copyWith(phoneNumber: event.phoneNumber));
     });
-
+    on<_SetErrorMessageRequested>((event, emit) {
+      emit(state.copyWith(errorMessage: ''));
+    });
     on<_PasswordChanged>((event, emit) {
       emit(state.copyWith(password: event.password));
     });
@@ -103,9 +114,8 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
       emit(state.copyWith(isAuthenticated: _userService.isUserAuthenticated()));
     });
 
-
     on<_LogoutRequested>((event, emit) {
-      emit(state.copyWith(isAuthenticated: _userService.Logout()));
+      emit(state.copyWith(isAuthenticated: _userService.Logout(),isRegisterPatient: false,isRegisterSupporter: false));
     });
 
     on<_checkRegisterPatientRequested>((event, emit) {
@@ -114,19 +124,19 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_checkRegisterSupporterRequested>((event, emit) {
       emit(state.copyWith(
           isRegisterSupporter: _userService.isRegisterSupporter()));
-
     });
-
-     on<_setCheckRegisterPatientFalseRequested>((event, emit) {
+    on<_setCheckRegisterPatientFalseRequested>((event, emit) {
       emit(state.copyWith(isRegisterPatient: false));
     });
     on<_setCheckRegisterSupporterFalseRequested>((event, emit) {
-      emit(state.copyWith(
-          isRegisterSupporter: false));
-
+      emit(state.copyWith(isRegisterSupporter: false));
+    });
+    on<_CheckLoginRequested>((event, emit) {
+      emit(state.copyWith(isCheckLogin: _userService.isLogin()));
     });
 
-    
-  
-}
+    on<_CheckLoginFalseRequested>((event, emit) {
+      emit(state.copyWith(isCheckLogin: false));
+    });
   }
+}

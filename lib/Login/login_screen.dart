@@ -10,8 +10,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+import '../Feature/Chat/constants/color_constants.dart';
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
 import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
@@ -29,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   String mobileToken = '';
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  late String validated;
   @override
   void initState() {
     // TODO: implement initState
@@ -47,7 +49,14 @@ class _LoginScreenState extends State<LoginScreen> {
       return BlocConsumer<AuthenticateBloc, AuthenticateState>(
         listener: (context, state) {
           print("Authen or not: " + state.isAuthenticated.toString());
-
+          if (state.isCheckLogin) {
+            Fluttertoast.showToast(
+                msg: "Tài khoản hoặc mật khẩu không chính xác",
+                backgroundColor: ColorConstants.greyColor);
+            context
+                .read<AuthenticateBloc>()
+                .add(AuthenticateEvent.checkLoginFalseRequested());
+          }
           if (state.isAuthenticated) {
             if (state.role == 'Patient') {
               if (state.fullName.toString() != '') {
@@ -114,26 +123,25 @@ class _LoginScreenState extends State<LoginScreen> {
             } else if (state.role == 'Supporter') {
               if (state.fullName.toString() != '') {
                 Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          new NewFeedSupporter()),
-                  (Route<dynamic> route) => false);
-              SetUserInfo(state.phoneNumber, state.password, state.userId);
-              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
-                  userId: state.userId, mobileToken: mobileToken));
-              }else{
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new NewFeedSupporter()),
+                    (Route<dynamic> route) => false);
+                SetUserInfo(state.phoneNumber, state.password, state.userId);
+                UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                    userId: state.userId, mobileToken: mobileToken));
+              } else {
                 Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          new RegisterInfoSupporter()),
-                  (Route<dynamic> route) => false);
-              SetUserInfo(state.phoneNumber, state.password, state.userId);
-              UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
-                  userId: state.userId, mobileToken: mobileToken));
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            new RegisterInfoSupporter()),
+                    (Route<dynamic> route) => false);
+                SetUserInfo(state.phoneNumber, state.password, state.userId);
+                UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                    userId: state.userId, mobileToken: mobileToken));
               }
-              
             }
           }
         },
@@ -242,9 +250,15 @@ class _LoginScreenState extends State<LoginScreen> {
                             ElevatedButton.icon(
                               onPressed: () {
                                 // validate();
+                                
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());
+                                // setState(() {
+                                //   validated = state.errorMessage ?? '';
+                                // });
+                                // checkInvalidPassword(
+                                //     validated);
                               },
                               icon: Icon(Icons.login),
                               label: Text(
@@ -490,6 +504,15 @@ class _LoginScreenState extends State<LoginScreen> {
       UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
+  }
+
+  void checkInvalidPassword(String error) {
+    if (error != '' && !error.isEmpty) {
+      setState(() {
+        Fluttertoast.showToast(
+            msg: error, backgroundColor: ColorConstants.greyColor);
+      });
+    }
   }
 
   void validate() {

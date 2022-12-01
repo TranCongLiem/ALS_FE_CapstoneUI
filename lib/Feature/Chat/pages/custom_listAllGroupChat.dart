@@ -12,7 +12,7 @@ import '../utils/utilities.dart';
 import 'groupchat_page.dart';
 
 class CustomListAllGroupChat extends StatefulWidget {
-  final List<ListAllGroupChat> listAllGroupChat;
+  final List<ListAllGroupChat>? listAllGroupChat;
   final int index;
   const CustomListAllGroupChat(
       {super.key, required this.listAllGroupChat, required this.index});
@@ -21,9 +21,13 @@ class CustomListAllGroupChat extends StatefulWidget {
   State<CustomListAllGroupChat> createState() => _CustomListAllGroupChatState();
 }
 
-class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
-  late bool? hasJoin = widget.listAllGroupChat[widget.index].hasJoin;
-  late int totalMember = widget.listAllGroupChat[widget.index].totalMember ?? 0;
+class _CustomListAllGroupChatState extends State<CustomListAllGroupChat>
+    with AutomaticKeepAliveClientMixin<CustomListAllGroupChat> {
+  late bool? hasJoin = widget.listAllGroupChat![widget.index].hasJoin;
+  late int totalMember = widget.listAllGroupChat![widget.index].totalMember ?? 0;
+
+  @override
+  bool get wantKeepAlive => true;
   @override
   void initState() {
     // TODO: implement initState
@@ -32,6 +36,7 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         return InkWell(
@@ -62,7 +67,7 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                 children: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        widget.listAllGroupChat[widget.index].groupImage ?? ''),
+                        widget.listAllGroupChat![widget.index].groupImage ?? ''),
                     maxRadius: 25,
                   ),
                   SizedBox(
@@ -75,7 +80,7 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
-                            widget.listAllGroupChat[widget.index]
+                            widget.listAllGroupChat?[widget.index]
                                     .groupChatName ??
                                 '',
                             style: TextStyle(
@@ -102,9 +107,8 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                         {
                           addedMemberGroupChat(
                               state.userId,
-                              widget.listAllGroupChat[widget.index].groupChatId
+                              widget.listAllGroupChat![widget.index].groupChatId
                                   .toString()),
-                         
                         }
                       else
                         {

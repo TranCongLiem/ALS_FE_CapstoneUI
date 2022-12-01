@@ -13,12 +13,10 @@ class AuthenticateState with _$AuthenticateState {
     required String passwordSupporter,
     required String fullName,
     required bool isAuthenticated,
-
     required String relationshipWith,
-
     required bool isRegisterPatient,
     required bool isRegisterSupporter,
-
+    required bool isCheckLogin,
     String? role,
     String? errorMessage,
   }) = _AuthenticateState;
@@ -36,10 +34,10 @@ class AuthenticateState with _$AuthenticateState {
         passwordSupporter: '',
         isAuthenticated: false,
         relationshipWith: '',
+        isCheckLogin: false,
       );
 
-
-      factory AuthenticateState.Logout() => AuthenticateState(
+  factory AuthenticateState.Logout() => AuthenticateState(
         userId: '',
         phoneNumber: '',
         password: '',
@@ -52,7 +50,7 @@ class AuthenticateState with _$AuthenticateState {
         passwordSupporter: '',
         isAuthenticated: false,
         relationshipWith: '',
-
+        isCheckLogin: false,
       );
 }
 

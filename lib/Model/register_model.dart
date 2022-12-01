@@ -28,6 +28,8 @@ class RegisterResponseModel {
       phoneNumber: json["phoneNumber"],
       fullName: json["fullName"],
     );
+
+
     //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
   }
 }
