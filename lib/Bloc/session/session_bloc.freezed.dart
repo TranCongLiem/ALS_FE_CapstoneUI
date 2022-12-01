@@ -19,7 +19,8 @@ mixin _$SessionEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -33,7 +34,8 @@ mixin _$SessionEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -47,7 +49,8 @@ mixin _$SessionEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -199,7 +202,8 @@ class _$_AddToSession implements _AddToSession {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -216,7 +220,8 @@ class _$_AddToSession implements _AddToSession {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -233,7 +238,8 @@ class _$_AddToSession implements _AddToSession {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -333,7 +339,7 @@ abstract class _$$_CreateSessionRequestedCopyWith<$Res> {
   factory _$$_CreateSessionRequestedCopyWith(_$_CreateSessionRequested value,
           $Res Function(_$_CreateSessionRequested) then) =
       __$$_CreateSessionRequestedCopyWithImpl<$Res>;
-  $Res call({String? userId});
+  $Res call({String? userId, String sessionName});
 }
 
 /// @nodoc
@@ -351,12 +357,17 @@ class __$$_CreateSessionRequestedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? userId = freezed,
+    Object? sessionName = freezed,
   }) {
     return _then(_$_CreateSessionRequested(
       userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
               as String?,
+      sessionName == freezed
+          ? _value.sessionName
+          : sessionName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -364,14 +375,16 @@ class __$$_CreateSessionRequestedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CreateSessionRequested implements _CreateSessionRequested {
-  const _$_CreateSessionRequested(this.userId);
+  const _$_CreateSessionRequested(this.userId, this.sessionName);
 
   @override
   final String? userId;
+  @override
+  final String sessionName;
 
   @override
   String toString() {
-    return 'SessionEvent.createSessionRequested(userId: $userId)';
+    return 'SessionEvent.createSessionRequested(userId: $userId, sessionName: $sessionName)';
   }
 
   @override
@@ -379,12 +392,16 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CreateSessionRequested &&
-            const DeepCollectionEquality().equals(other.userId, userId));
+            const DeepCollectionEquality().equals(other.userId, userId) &&
+            const DeepCollectionEquality()
+                .equals(other.sessionName, sessionName));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(userId),
+      const DeepCollectionEquality().hash(sessionName));
 
   @JsonKey(ignore: true)
   @override
@@ -396,7 +413,8 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -406,14 +424,15 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
   }) {
-    return createSessionRequested(userId);
+    return createSessionRequested(userId, sessionName);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -423,14 +442,15 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
   }) {
-    return createSessionRequested?.call(userId);
+    return createSessionRequested?.call(userId, sessionName);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -442,7 +462,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult orElse(),
   }) {
     if (createSessionRequested != null) {
-      return createSessionRequested(userId);
+      return createSessionRequested(userId, sessionName);
     }
     return orElse();
   }
@@ -517,10 +537,12 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
 }
 
 abstract class _CreateSessionRequested implements SessionEvent {
-  const factory _CreateSessionRequested(final String? userId) =
+  const factory _CreateSessionRequested(
+          final String? userId, final String sessionName) =
       _$_CreateSessionRequested;
 
   String? get userId;
+  String get sessionName;
   @JsonKey(ignore: true)
   _$$_CreateSessionRequestedCopyWith<_$_CreateSessionRequested> get copyWith =>
       throw _privateConstructorUsedError;
@@ -572,7 +594,8 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -589,7 +612,8 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -606,7 +630,8 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -743,7 +768,8 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -760,7 +786,8 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -777,7 +804,8 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -937,7 +965,8 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -954,7 +983,8 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -971,7 +1001,8 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1134,7 +1165,8 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -1151,7 +1183,8 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1168,7 +1201,8 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1334,7 +1368,8 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -1351,7 +1386,8 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1368,7 +1404,8 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1506,7 +1543,8 @@ class _$_StartSession implements _StartSession {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -1523,7 +1561,8 @@ class _$_StartSession implements _StartSession {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1540,7 +1579,8 @@ class _$_StartSession implements _StartSession {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1705,7 +1745,8 @@ class _$_EndSession implements _EndSession {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -1722,7 +1763,8 @@ class _$_EndSession implements _EndSession {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1739,7 +1781,8 @@ class _$_EndSession implements _EndSession {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1903,7 +1946,8 @@ class _$_GetSessionHistory implements _GetSessionHistory {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Exericse exericse) addToSession,
-    required TResult Function(String? userId) createSessionRequested,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
     required TResult Function() showCreatingSessionRequested,
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
@@ -1920,7 +1964,8 @@ class _$_GetSessionHistory implements _GetSessionHistory {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
@@ -1937,7 +1982,8 @@ class _$_GetSessionHistory implements _GetSessionHistory {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Exericse exericse)? addToSession,
-    TResult Function(String? userId)? createSessionRequested,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
     TResult Function()? showCreatingSessionRequested,
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,

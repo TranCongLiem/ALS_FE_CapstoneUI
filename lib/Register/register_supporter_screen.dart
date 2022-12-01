@@ -59,7 +59,8 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
                 context,
                 MaterialPageRoute(
                     builder: (context) => RegisterInfoSupporter()));
-            SetUserInfo(state.phoneNumber, state.password, state.userId);
+            SetUserInfo(state.phoneNumberSupporter, state.passwordSupporter,
+                state.userId);
             UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
                 userId: state.userId, mobileToken: mobileToken));
           }

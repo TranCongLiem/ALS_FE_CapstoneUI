@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:capstone_ui/Login/login_screen.dart';
+import 'package:capstone_ui/Login/update_info_supporter.dart';
 import 'package:capstone_ui/Splash/SharePreKey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,100 +66,11 @@ class _SplashScreenState extends State<SplashScreen> {
             .read<AuthenticateBloc>()
             .add(AuthenticateEvent.loginRequested());
       }
-
-      // userService
-      //     .login(LoginRequestModel(
-      //         phoneNumber:
-      //             prefs.getString(SharedPreferencesKey.SHARED_PHONE) ?? '',
-      //         password:
-      //             prefs.getString(SharedPreferencesKey.SHARED_PASSWORD) ?? ''))
-      //     .then((response) {
-      //   if (response != null) {
-      //     if (response.role == 'Patient') {
-      //       if (response.fullName.toString() != '') {
-      //         Navigator.push(
-      //           context,
-      //           PageRouteBuilder(
-      //             transitionsBuilder:
-      //                 (context, animation, secondaryAnimation, child) {
-      //               return ScaleTransition(
-      //                 alignment: Alignment.center,
-      //                 scale: Tween<double>(begin: 0.1, end: 1).animate(
-      //                   CurvedAnimation(
-      //                     parent: animation,
-      //                     curve: Curves.bounceIn,
-      //                   ),
-      //                 ),
-      //                 child: child,
-      //               );
-      //             },
-      //             transitionDuration: Duration(seconds: 1),
-      //             pageBuilder: (BuildContext context,
-      //                 Animation<double> animation,
-      //                 Animation<double> secondaryAnimation) {
-      //               context.read<AuthenticateBloc>().add(
-      //                   AuthenticateEvent.phoneNumberChanged(prefs
-      //                           .getString(SharedPreferencesKey.SHARED_PHONE) ??
-      //                       ''));
-      //               return NewFeed();
-      //             },
-      //           ),
-      //         );
-      //       } else {
-      //         Navigator.push(
-      //           context,
-      //           PageRouteBuilder(
-      //             transitionsBuilder:
-      //                 (context, animation, secondaryAnimation, child) {
-      //               return ScaleTransition(
-      //                 alignment: Alignment.center,
-      //                 scale: Tween<double>(begin: 0.1, end: 1).animate(
-      //                   CurvedAnimation(
-      //                     parent: animation,
-      //                     curve: Curves.bounceIn,
-      //                   ),
-      //                 ),
-      //                 child: child,
-      //               );
-      //             },
-      //             transitionDuration: Duration(seconds: 1),
-      //             pageBuilder: (BuildContext context,
-      //                 Animation<double> animation,
-      //                 Animation<double> secondaryAnimation) {
-      //               return RegisterInfo();
-      //             },
-      //           ),
-      //         );
-      //       }
-
-      //       //SetUserInfo(state.phoneNumber, state.password, state.userId);
-
-      //       //  Navigator.push(context, MaterialPageRoute(builder: (context) => NewFeed()));
-
-      //     } else if (response.role == 'Supporter') {
-      //       Navigator.push(context,
-      //           MaterialPageRoute(builder: (context) => NewFeedSupporter()));
-      //     } else {
-      //       Navigator.push(context,
-      //           MaterialPageRoute(builder: (context) => LoginScreen()));
-      //     }
-      //     //  Navigator.of(context).pushReplacementNamed(HomePage.routeName);
-      //     // Navigator.pushReplacement(
-      //     //     context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      //   }
-      // }).catchError((error) {
-      //   Navigator.pushReplacement(
-      //       context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      // });
     } else {
       Timer(
           Duration(seconds: 1),
           () => Navigator.pushReplacement(
               context, MaterialPageRoute(builder: (context) => LoginScreen())));
-      // setState(() {
-      //   _doLogin = false;
-      //   print("else in SharePre Null");
-      // });
     }
   }
 
@@ -173,7 +85,9 @@ class _SplashScreenState extends State<SplashScreen> {
           // TODO: implement listener
           switch (state.role) {
             case 'Patient':
-              if (state.fullName.toString() != '') {
+              if (state.fullName.toString() != '' &&
+                  state.fullName != null &&
+                  !state.fullName.isEmpty) {
                 print("relation: " + state.relationshipWith);
                 Navigator.pushReplacement(
                   context,
@@ -230,6 +144,64 @@ class _SplashScreenState extends State<SplashScreen> {
               break;
 
             case 'Supporter':
+              if (state.fullName.toString() != '' &&
+                  state.fullName != null &&
+                  !state.fullName.isEmpty) {
+                print("relation: " + state.relationshipWith);
+                Navigator.pushReplacement(
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return NewFeedSupporter();
+                    },
+                  ),
+                );
+                //return NewFeed();
+              } else {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        alignment: Alignment.center,
+                        scale: Tween<double>(begin: 0.1, end: 1).animate(
+                          CurvedAnimation(
+                            parent: animation,
+                            curve: Curves.bounceIn,
+                          ),
+                        ),
+                        child: child,
+                      );
+                    },
+                    transitionDuration: Duration(seconds: 1),
+                    pageBuilder: (BuildContext context,
+                        Animation<double> animation,
+                        Animation<double> secondaryAnimation) {
+                      return RegisterInfoSupporter();
+                    },
+                  ),
+                );
+                // return RegisterInfo();
+              }
+              break;
+            case '':
               Navigator.pushReplacement(
                 context,
                 PageRouteBuilder(
@@ -250,168 +222,21 @@ class _SplashScreenState extends State<SplashScreen> {
                   pageBuilder: (BuildContext context,
                       Animation<double> animation,
                       Animation<double> secondaryAnimation) {
-                    return NewFeedSupporter();
-                  },
-                ),
-              );
-              break;
-            case '':
-              Navigator.pushReplacement(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
-                        ),
-                      ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context, Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
                     return LoginScreen();
                   },
                 ),
               );
               break;
           }
-          // if (state.role == 'Patient') {
-          //   if (state.fullName.toString() != '') {
-          //     Navigator.push(
-          //       context,
-          //       PageRouteBuilder(
-          //         transitionsBuilder:
-          //             (context, animation, secondaryAnimation, child) {
-          //           return ScaleTransition(
-          //             alignment: Alignment.center,
-          //             scale: Tween<double>(begin: 0.1, end: 1).animate(
-          //               CurvedAnimation(
-          //                 parent: animation,
-          //                 curve: Curves.bounceIn,
-          //               ),
-          //             ),
-          //             child: child,
-          //           );
-          //         },
-          //         transitionDuration: Duration(seconds: 1),
-          //         pageBuilder: (BuildContext context,
-          //             Animation<double> animation,
-          //             Animation<double> secondaryAnimation) {
-          //           return NewFeed();
-          //         },
-          //       ),
-          //     );
-          //     //return NewFeed();
-          //   } else {
-          //     Navigator.push(
-          //       context,
-          //       PageRouteBuilder(
-          //         transitionsBuilder:
-          //             (context, animation, secondaryAnimation, child) {
-          //           return ScaleTransition(
-          //             alignment: Alignment.center,
-          //             scale: Tween<double>(begin: 0.1, end: 1).animate(
-          //               CurvedAnimation(
-          //                 parent: animation,
-          //                 curve: Curves.bounceIn,
-          //               ),
-          //             ),
-          //             child: child,
-          //           );
-          //         },
-          //         transitionDuration: Duration(seconds: 1),
-          //         pageBuilder: (BuildContext context,
-          //             Animation<double> animation,
-          //             Animation<double> secondaryAnimation) {
-          //           return RegisterInfo();
-          //         },
-          //       ),
-          //     );
-          //     // return RegisterInfo();
-          //   }
-
-          // } else if (state.role == 'Supporter') {
-          //return NewFeedSupporter();
-          // Navigator.push(
-          //   context,
-          //   PageRouteBuilder(
-          //     transitionsBuilder:
-          //         (context, animation, secondaryAnimation, child) {
-          //       return ScaleTransition(
-          //         alignment: Alignment.center,
-          //         scale: Tween<double>(begin: 0.1, end: 1).animate(
-          //           CurvedAnimation(
-          //             parent: animation,
-          //             curve: Curves.bounceIn,
-          //           ),
-          //         ),
-          //         child: child,
-          //       );
-          //     },
-          //     transitionDuration: Duration(seconds: 1),
-          //     pageBuilder: (BuildContext context, Animation<double> animation,
-          //         Animation<double> secondaryAnimation) {
-          //       return NewFeedSupporter();
-          //     },
-          //   ),
-          // );
-
-          // } else {
-          //   // Navigator.pushReplacement(context,
-          //   //     MaterialPageRoute(builder: (context) => LoginScreen()));
-          //   //PushToDefaultScreen2(context);
-          //   // return LoginScreen();
-          //  // return LoginScreen();
-          //   Navigator.push(
-          //     context,
-          //     PageRouteBuilder(
-          //       transitionsBuilder:
-          //           (context, animation, secondaryAnimation, child) {
-          //         return ScaleTransition(
-          //           alignment: Alignment.center,
-          //           scale: Tween<double>(begin: 0.1, end: 1).animate(
-          //             CurvedAnimation(
-          //               parent: animation,
-          //               curve: Curves.bounceIn,
-          //             ),
-          //           ),
-          //           child: child,
-          //         );
-          //       },
-          //       transitionDuration: Duration(seconds: 1),
-          //       pageBuilder: (BuildContext context, Animation<double> animation,
-          //           Animation<double> secondaryAnimation) {
-          //         return LoginScreen();
-          //       },
-          //     ),
-          //   );
-          // }
-
-          //  return Container(
-          //   color: Colors.white,
-          //   // child:FlutterLogo(size:MediaQuery.of(context).size.height)
-          //   child: Image.asset(
-          //     'assets/images/logo_ALS.png',
-          //     height: size.height,
-          //   ),
-          // );
-
-          // return Center();
         },
         child: Container(
-              color: Colors.white,
-              // child:FlutterLogo(size:MediaQuery.of(context).size.height)
-              child: Image.asset(
-                'assets/images/logo_ALS.png',
-                height: size.height,
-              ),
-            )
+          color: Colors.white,
+          // child:FlutterLogo(size:MediaQuery.of(context).size.height)
+          child: Image.asset(
+            'assets/images/logo_ALS.png',
+            height: size.height,
+          ),
+        )
         // builder: (context, state){
         //   if(state is AuthenticateState){
         //      return Container(

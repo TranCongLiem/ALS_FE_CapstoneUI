@@ -9,6 +9,7 @@ import 'package:video_player/video_player.dart';
 class SessionDetail extends StatefulWidget {
   const SessionDetail({super.key, required this.details});
 
+  // final GetSessionsResponseModel session;
   final List<GetSessionDetailResponseModel> details;
 
   @override
@@ -62,7 +63,8 @@ class _SessionDetailState extends State<SessionDetail> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Tên Buổi Tập",
+                              // widget.session.sessionName != null ? widget.session.sessionName! : "Tên buổi tập",
+                              "Tên buổi tập",
                               style: TextStyle(
                                 fontSize: 28,
                                 color: Colors.white,

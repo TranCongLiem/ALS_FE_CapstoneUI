@@ -18,8 +18,10 @@ class CurrentSession extends StatefulWidget {
 }
 
 class _CurrentSessionState extends State<CurrentSession> {
+  TextEditingController _textFieldController = TextEditingController();
   bool isChecked = false;
   String category_in_Session = '';
+  String sessionName = '';
   // late CategoryExercise categoryExercise;
   Future LoadExBycate(String cate) async {
     category_in_Session = cate;
@@ -73,17 +75,51 @@ class _CurrentSessionState extends State<CurrentSession> {
                       ElevatedButton(
                         onPressed: () {
                           if (exercises != null && exercises!.isNotEmpty) {
-                            context.read<SessionBloc>().add(
-                                SessionEvent.createSessionRequested(
-                                    state.userId));
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ListExcerise()));
-                            Fluttertoast.showToast(
-                              msg: 'Tạo thành công',
-                              backgroundColor: greenALS.withOpacity(0.7),
-                            );
+                            showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                      title: Text("Tên buổi tập"),
+                                      content: TextField(
+                                        onChanged: (values) {
+                                          setState(() {
+                                            sessionName = values;
+                                          });
+                                        },
+                                        controller: _textFieldController,
+                                        decoration: InputDecoration(
+                                            hintText: "Xin điền tên buổi tập"),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: Text('Cancel'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () {
+                                            if (sessionName.isNotEmpty) {
+                                              debugPrint(sessionName);
+                                              context.read<SessionBloc>().add(
+                                                  SessionEvent
+                                                      .createSessionRequested(
+                                                          state.userId,
+                                                          sessionName));
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ListExcerise()));
+                                              Fluttertoast.showToast(
+                                                msg: 'Tạo thành công',
+                                                backgroundColor:
+                                                    greenALS.withOpacity(0.7),
+                                              );
+                                            }
+                                          },
+                                          child: Text('OK'),
+                                        )
+                                      ],
+                                    ));
                           } else {
                             showDialog(
                                 context: context,

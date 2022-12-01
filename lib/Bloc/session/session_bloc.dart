@@ -41,6 +41,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       }
       CreateSessionRequestModel requestModel = CreateSessionRequestModel(
         userId: event.userId,
+        sessionName: event.sessionName,
         startTime: DateTime.now(),
         endTime: DateTime.now(),
         exercises: requestExercises,

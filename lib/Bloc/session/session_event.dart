@@ -3,8 +3,8 @@ part of 'session_bloc.dart';
 @Freezed(makeCollectionsUnmodifiable: false)
 class SessionEvent with _$SessionEvent {
   const factory SessionEvent.addToSession(Exericse exericse) = _AddToSession;
-  const factory SessionEvent.createSessionRequested(String? userId) =
-      _CreateSessionRequested;
+  const factory SessionEvent.createSessionRequested(
+      String? userId, String sessionName) = _CreateSessionRequested;
   const factory SessionEvent.showCreatingSessionRequested() =
       _ShowCreatingSessionRequested;
   const factory SessionEvent.showSessionDetailRequested() =

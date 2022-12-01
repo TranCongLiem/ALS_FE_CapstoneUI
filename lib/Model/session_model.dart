@@ -42,12 +42,14 @@ class CreateSessionResponseModel {
 
 class CreateSessionRequestModel {
   String? userId;
+  String sessionName;
   DateTime startTime;
   DateTime endTime;
   List<CreateSessionRequestExercise>? exercises;
 
   CreateSessionRequestModel({
     required this.userId,
+    required this.sessionName,
     required this.startTime,
     required this.endTime,
     required this.exercises,
@@ -55,6 +57,7 @@ class CreateSessionRequestModel {
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'userId': userId,
+      'sessionName': sessionName,
       'startTime': startTime.toIso8601String(),
       'endTime': endTime.toIso8601String(),
       'exercises': exercises,

@@ -112,8 +112,10 @@ class SessionsScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              SessionDetail(details: details!)));
+                          builder: (context) => SessionDetail(
+                                details: details!,
+                                // session: state.sessions[index],
+                              )));
                 },
                 child: Row(
                   children: [
@@ -138,7 +140,9 @@ class SessionsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Tên Buổi Tập",
+                              state.sessions[index].sessionName != null
+                                  ? state.sessions[index].sessionName!
+                                  : "Tên buổi tập",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
