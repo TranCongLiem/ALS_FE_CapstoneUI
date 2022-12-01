@@ -332,26 +332,6 @@ class _CustomPostListState extends State<CustomPostList> {
     String userId,
     String postId,
   ) async {
-    // if (checkReact == true) {
-    //   context
-    //       .read<ReactPostBloc>()
-    //       .add(ReactPostEvent.reactPostRequest(userId, postId, false));
-    //   setState(() {
-    //     checkReact = false;
-    //     countReact--;
-    //   });
-
-    //   return checkReact!;
-    // } else {
-    //   context
-    //       .read<ReactPostBloc>()
-    //       .add(ReactPostEvent.reactPostRequest(userId, postId, true));
-    //   setState(() {
-    //     checkReact = true;
-    //     countReact++;
-    //   });
-    //   return checkReact!;
-    // }
     context
         .read<ReactPostBloc>()
         .add(ReactPostEvent.reactPostRequest(userId, postId, true));

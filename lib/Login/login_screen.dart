@@ -62,28 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
               if (state.fullName.toString() != '') {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    // PageRouteBuilder(
-                    //   transitionsBuilder:
-                    //       (context, animation, secondaryAnimation, child) {
-                    //     return ScaleTransition(
-                    //       alignment: Alignment.center,
-                    //       scale: Tween<double>(begin: 0.1, end: 1).animate(
-                    //         CurvedAnimation(
-                    //           parent: animation,
-                    //           curve: Curves.bounceIn,
-                    //         ),
-                    //       ),
-                    //       child: child,
-                    //     );
-                    //   },
-                    //   transitionDuration: Duration(seconds: 1),
-                    //   pageBuilder: (BuildContext context,
-                    //       Animation<double> animation,
-                    //       Animation<double> secondaryAnimation) {
-                    //     return NewFeed();
-                    //   },
-                    // ),
-
                     MaterialPageRoute(
                         builder: (BuildContext context) => new NewFeed()),
                     (Route<dynamic> route) => false);
@@ -146,9 +124,6 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
         builder: (context, state) {
-          context
-              .read<AuthenticateBloc>()
-              .add(AuthenticateEvent.authCheckRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,
@@ -250,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ElevatedButton.icon(
                               onPressed: () {
                                 // validate();
-                                
+
                                 context
                                     .read<AuthenticateBloc>()
                                     .add(AuthenticateEvent.loginRequested());

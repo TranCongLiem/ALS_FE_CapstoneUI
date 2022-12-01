@@ -4,9 +4,13 @@ import 'package:capstone_ui/Bloc/react_post/react_post_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:like_button/like_button.dart';
+import 'package:readmore/readmore.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import '../../Bloc/post/post_bloc.dart';
 import '../../Bloc/update_isPublic_post/update_is_public_post_bloc.dart';
 import '../../Model/getListPost_model.dart';
+import '../../services/api_Post.dart';
 
 class CustomPostListByUserID extends StatefulWidget {
   final ListPost listPost;
@@ -21,6 +25,7 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
   late bool? checkReact;
   late int countReact;
   late bool? isPublic;
+  late String userId;
   @override
   void initState() {
     super.initState();
@@ -119,8 +124,13 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                               const SizedBox(height: 4.0),
                               Padding(
                                 padding: EdgeInsets.symmetric(vertical: 10.0),
-                                child: Text(
+                                child: ReadMoreText(
                                   widget.listPost.caption ?? '',
+                                  trimLines: 2,
+                                  colorClickableText: greenALS.withOpacity(0.8),
+                                  trimMode: TrimMode.Line,
+                                  trimCollapsedText: 'Xem thêm',
+                                  trimExpandedText: 'Thu gọn',
                                   style: TextStyle(fontSize: 20.0),
                                 ),
                               ),
@@ -130,43 +140,44 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                             ],
                           ),
                         ),
-                        widget.listPost.image != null
+                        widget.listPost.image != ''
                             ? Padding(
                                 padding:
                                     const EdgeInsets.symmetric(vertical: 8.0),
                                 child: CachedNetworkImage(
-                                    imageUrl: widget.listPost.image ?? ''),
+                                  imageUrl: widget.listPost.image ?? '',
+                                  errorWidget: ((context, url, error) =>
+                                      Container(
+                                        alignment: Alignment.center,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.3,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        color: Colors.grey[300],
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.error_outline_outlined),
+                                            SizedBox(
+                                              width: 5.0,
+                                            ),
+                                            Text(
+                                              'Có lỗi khi tải ảnh',
+                                              style: TextStyle(fontSize: 16.0),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                ),
                               )
                             : const SizedBox.shrink(),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 12.0),
                           child: Column(
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(4.0),
-                                    decoration: BoxDecoration(
-                                      color: Colors.redAccent,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: const Icon(
-                                      Icons.favorite,
-                                      size: 20.0,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 4.0),
-                                  Expanded(
-                                    child: Text(
-                                      '${countReact}',
-                                      style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontSize: 20.0),
-                                    ),
-                                  ),
-                                ],
-                              ),
                               const Divider(),
                               Row(
                                 children: [
@@ -183,69 +194,93 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                                 child: checkReact ?? false
                                                     ? Row(
                                                         children: [
-                                                          IconButton(
-                                                              onPressed: () {
-                                                                setState(() {
-                                                                  diableReactPost(
-                                                                      state2
-                                                                          .userId,
-                                                                      widget
-                                                                          .listPost
-                                                                          .postId
-                                                                          .toString());
-                                                                });
-                                                              },
-                                                              icon: Icon(
+                                                          LikeButton(
+                                                            likeCount:
+                                                                countReact,
+                                                            onTap: (isLiked) =>
+                                                                diableReactPost(
+                                                                    state2
+                                                                        .userId,
+                                                                    widget
+                                                                        .listPost
+                                                                        .postId
+                                                                        .toString()),
+                                                            likeBuilder:
+                                                                (bool isLiked) {
+                                                              return Icon(
                                                                 Icons.favorite,
-                                                                color: Colors
-                                                                    .redAccent,
-                                                                size: 28.0,
-                                                              )),
-                                                          const SizedBox(
-                                                              width: 4.0),
-                                                          Text('Thích',
-                                                              style: TextStyle(
-                                                                fontSize: 20.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Colors
-                                                                    .redAccent,
-                                                              )),
+                                                                color:
+                                                                    Colors.red,
+                                                                size: 26.0,
+                                                              );
+                                                            },
+                                                            countBuilder:
+                                                                (likeCount,
+                                                                    isLiked,
+                                                                    text) {
+                                                              var color =
+                                                                  Colors.red;
+                                                              Widget result;
+                                                              result = Text(
+                                                                text,
+                                                                style: TextStyle(
+                                                                    color:
+                                                                        color),
+                                                              );
+                                                              return result;
+                                                            },
+                                                          ),
                                                         ],
                                                       )
                                                     : Row(
                                                         children: [
-                                                          IconButton(
-                                                              onPressed: () {
-                                                                setState(() {
-                                                                  enableReactPost(
-                                                                      state2
-                                                                          .userId,
-                                                                      widget
-                                                                          .listPost
-                                                                          .postId
-                                                                          .toString());
-                                                                });
-                                                              },
-                                                              icon: Icon(
+                                                          LikeButton(
+                                                            likeCount:
+                                                                countReact,
+                                                            onTap: (isLiked) =>
+                                                                enableReactPost(
+                                                                    state2
+                                                                        .userId,
+                                                                    widget
+                                                                        .listPost
+                                                                        .postId
+                                                                        .toString()),
+                                                            likeBuilder:
+                                                                (bool isLiked) {
+                                                              return Icon(
                                                                 Icons.favorite,
-                                                                color: Colors
-                                                                    .grey[600],
-                                                                size: 28.0,
-                                                              )),
+                                                                color:
+                                                                    Colors.grey,
+                                                                size: 26.0,
+                                                              );
+                                                            },
+                                                            countBuilder:
+                                                                (likeCount,
+                                                                    isLiked,
+                                                                    text) {
+                                                              var color =
+                                                                  Colors.grey;
+                                                              Widget result;
+                                                              if (countReact ==
+                                                                  0) {
+                                                                result = Text(
+                                                                  "Thích",
+                                                                  style: TextStyle(
+                                                                      color:
+                                                                          color),
+                                                                );
+                                                              } else
+                                                                result = Text(
+                                                                  text,
+                                                                  style: TextStyle(
+                                                                      color:
+                                                                          color),
+                                                                );
+                                                              return result;
+                                                            },
+                                                          ),
                                                           const SizedBox(
                                                               width: 4.0),
-                                                          Text(
-                                                            'Thích',
-                                                            style: TextStyle(
-                                                                fontSize: 20.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                color: Colors
-                                                                    .grey[600]),
-                                                          ),
                                                         ],
                                                       )),
                                           ],
@@ -288,23 +323,40 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
     });
   }
 
-  Future<void> enableReactPost(String userId, String postId) async {
+  Future<bool> enableReactPost(
+    String userId,
+    String postId,
+  ) async {
     context
         .read<ReactPostBloc>()
         .add(ReactPostEvent.reactPostRequest(userId, postId, true));
     setState(() {
       checkReact = true;
       countReact++;
+      widget.listPost.checkReact = true;
+      widget.listPost.countReact = countReact;
     });
+
+    return checkReact!;
   }
 
-  Future<void> diableReactPost(String userId, String postId) async {
+  void onLikeButtonTapped() {
+    (context) => PostBlocBloc(RepositoryProvider.of<PostService>(context))
+      ..add(LoadPostEvent(userId: userId));
+  }
+
+  Future<bool> diableReactPost(String userId, String postId) async {
     context
         .read<ReactPostBloc>()
         .add(ReactPostEvent.reactPostRequest(userId, postId, false));
     setState(() {
       checkReact = false;
       countReact--;
+      widget.listPost.checkReact = false;
+      widget.listPost.countReact = countReact;
     });
+
+    return checkReact!;
+    // return checkReact!;
   }
 }
