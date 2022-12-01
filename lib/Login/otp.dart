@@ -1,5 +1,6 @@
 import 'package:capstone_ui/Constant/constant.dart';
-import 'package:capstone_ui/Login/home.dart';
+import 'package:capstone_ui/Home/home.dart';
+import 'package:capstone_ui/Home/home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';

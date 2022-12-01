@@ -37,14 +37,14 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
   String? fullName;
   String? address;
   late String? imagePath;
-  late ChatProvider chatProvider;
+  //late ChatProvider chatProvider;
   MediaType _mediaType = MediaType.image;
   var imageUser;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    chatProvider = context.read<ChatProvider>();
+    //chatProvider = context.read<ChatProvider>();
     fullNameController.text =
         widget.getProfileUserByIdResponeModel.fullName.toString();
     addressController.text =
@@ -308,21 +308,19 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
 
   Future<void> uploadInfo(String userId) async {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    // String _imagePath = imagePath ?? '';
-    // Reference reference =
-    //     firebaseStorage.ref('upload-image-user')
-    //     .child(userId)
-    //     .child(_imagePath.substring(
-    //         _imagePath.lastIndexOf('image_picker'), _imagePath.length));
-    // UploadTask uploadTask =  reference.putFile(File(imagePath!));
-    // TaskSnapshot snapshot = await uploadTask;
-    // String imageDatabase = await snapshot.ref.getDownloadURL();
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+    String imageDatabase='';
+    if(imagePath != null ){
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
     Reference reference =
         firebaseStorage.ref('upload-image-user').child(userId).child(fileName);
+        
     UploadTask uploadTask = reference.putFile(File(imagePath!));
     TaskSnapshot snapshot = await uploadTask;
-    String imageDatabase = await snapshot.ref.getDownloadURL();
+     imageDatabase = await snapshot.ref.getDownloadURL();
+    }else{
+      imageDatabase=widget.getProfileUserByIdResponeModel.imageUser.toString();
+    }
+    
     context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
     context.read<UserBloc>().add(UserEvent.getFullName(fullName!));
     context
@@ -332,10 +330,6 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
     context
         .read<UserBloc>()
         .add(UserEvent.updateProfilePatientRequest(widget.userId));
-    chatProvider.updateDataFirestore(
-      FirestoreConstants.pathUserCollection,
-      userId,
-      {FirestoreConstants.nickname: fullName},
-    );
+    
   }
 }

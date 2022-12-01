@@ -1,9 +1,7 @@
-import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/CustomExerciseList.dart';
 import 'package:capstone_ui/Model/getListCategory_model.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
-import 'package:capstone_ui/services/api_Session.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -39,13 +37,13 @@ class ListExerciseByCategory extends StatelessWidget {
               children: [
                 Container(
                   alignment: Alignment.center,
-                  padding: EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(30.0),
                   child: Text(
                     'Danh sách bài tập về ${categoryExericse.categoryName}',
                     style: TextStyle(
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.black),
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.grey),
                   ),
                 ),
                 Expanded(child:
@@ -64,7 +62,8 @@ class ListExerciseByCategory extends StatelessWidget {
                     child: CircularProgressIndicator(),
                     // child: Text('a'),
                   );
-                })),
+                })
+                ),
               ],
             ),
           ),

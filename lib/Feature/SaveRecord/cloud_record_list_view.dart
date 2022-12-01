@@ -2,12 +2,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:capstone_ui/Bloc/remove_record/remove_record_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Model/getListRecordById_model.dart';
-import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
-import '../../Model/CreatePushNotiToSupporter_model.dart';
 import 'home_view.dart';
 
 class CloudRecordListView extends StatefulWidget {
@@ -33,16 +30,12 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
   late bool isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
-  TextEditingController _textFieldController = TextEditingController();
-  String valueText = '';
-  String codeDialog = '';
   @override
   void initState() {
     super.initState();
     isPlaying = false;
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
-    _textFieldController.text = '';
   }
 
   @override
@@ -106,278 +99,100 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                       child: Column(
                         children: [
                           Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.symmetric(vertical: 3.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[300]!
-                                                .withOpacity(0.5),
-                                            borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(30),
-                                                bottomLeft: Radius.circular(30),
-                                                bottomRight:
-                                                    Radius.circular(30),
-                                                topRight: Radius.circular(30))),
-                                        child: IconButton(
-                                          onPressed: () {
-                                            _textFieldController.text = widget
-                                                    .references[index]
-                                                    .recordName ??
-                                                '';
-                                            showDialog(
-                                                context: context,
-                                                builder: (context) {
-                                                  return BlocProvider(
-                                                    create: (BuildContext
-                                                            context) =>
-                                                        PushNotiToSupporterBloc(
-                                                            RepositoryProvider
-                                                                .of<ShortCutNotificationService>(
-                                                                    context)),
-                                                    child: AlertDialog(
-                                                      scrollable: true,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(15.0),
-                                                      ),
-                                                      buttonPadding:
-                                                          EdgeInsets.all(10.0),
-                                                      contentPadding:
-                                                          EdgeInsets.all(30.0),
-                                                      title: Text(
-                                                          'Mô tả thông tin trợ giúp'),
-                                                      content: TextField(
-                                                        onChanged: (value) {
-                                                          _textFieldController
-                                                              .text = value;
-                                                          // setState(() {
-
-                                                          // });
-                                                        },
-                                                        // controller: TextEditingController(
-                                                        //     text: widget
-                                                        //             .references[
-                                                        //                 index]
-                                                        //             .recordName ??
-                                                        //         ''),
-                                                        controller:
-                                                            _textFieldController,
-                                                        decoration:
-                                                            InputDecoration(
-                                                                hintText:
-                                                                    "Nhập mô tả"),
-                                                      ),
-                                                      actions: <Widget>[
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .red),
-                                                          child: Text('HỦY'),
-                                                          onPressed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                        ),
-                                                        BlocBuilder<
-                                                            PushNotiToSupporterBloc,
-                                                            PushNotiToSupporterState>(
-                                                          builder:
-                                                              (context, state) {
-                                                            // if (state
-                                                            //     is PushNotiToSupporterBlocInitial) {
-                                                            return ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                  backgroundColor: Colors
-                                                                      .green
-                                                                      .withOpacity(
-                                                                          0.7)),
-                                                              child:
-                                                                  Text('GỬI'),
-                                                              onPressed: () {
-                                                                BlocProvider.of<PushNotiToSupporterBloc>(context).add(PushNotiToSupporterByRequestEvent(
-                                                                    createPushNotificationRequestModel: CreatePushNotificationRequestModel(
-                                                                        senderId: widget.userId,
-                                                                        // receiverId:
-                                                                        //     "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
-                                                                        // receiverId: "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
-                                                                        title: _textFieldController.text)));
-                                                                // if (state
-                                                                //     is PushNotiToSupporterErrorState) {
-                                                                //   ScaffoldMessenger.of(
-                                                                //           context)
-                                                                //       .showSnackBar(
-                                                                //           SnackBar(
-                                                                //     content: Text(state
-                                                                //             .createPushNotificationResponeModel
-                                                                //             .message ??
-                                                                //         'Gửi thông báo cho supporter thất bại'),
-                                                                //   ));
-                                                                // }
-
-                                                                Navigator.pop(
-                                                                    context);
-
-                                                                // if (mounted) {
-                                                                //   setState(
-                                                                //       () {});
-                                                                // }
-                                                              },
-                                                            );
-                                                            if (state
-                                                                is PushNotiToSupporterErrorState) {
-                                                              // showDialog(
-                                                              //   context:
-                                                              //       context,
-                                                              //   builder:
-                                                              //       (context) {
-                                                              //     return AlertDialog(
-                                                              //       // Retrieve the text the that user has entered by using the
-                                                              //       // TextEditingController.
-                                                              //       content: Text(
-                                                              //           "Cann't send notification for Supporter"),
-                                                              //     );
-                                                              //   },
-                                                              // );
-
-                                                              //   ShowDialogError(
-                                                              //       context,
-                                                              //       state.createPushNotificationResponeModel
-                                                              //               .message ??
-                                                              //           'Can not send notification for Supporter');
-                                                              // }
-                                                              ScaffoldMessenger
-                                                                      .of(
-                                                                          context)
-                                                                  .showSnackBar(
-                                                                      SnackBar(
-                                                                content: Text(state
-                                                                        .createPushNotificationResponeModel
-                                                                        .message ??
-                                                                    'Gửi thông báo cho supporter thất bại'),
-                                                              ));
-                                                            }
-                                                            return Center(
-                                                              child:
-                                                                  CircularProgressIndicator(),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  );
-                                                });
-                                          },
-                                          icon: Icon(
-                                            Icons.notifications,
-                                            color: Colors.amber[800]!
-                                                .withOpacity(0.6),
-                                            size: 30.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Text(
-                                  '',
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Color.fromARGB(95, 177, 23, 23),
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(30),
-                                          bottomLeft: Radius.circular(30),
-                                          bottomRight: Radius.circular(30),
-                                          topRight: Radius.circular(30))),
-                                  child: IconButton(
-                                    icon: Icon(Icons.delete),
-                                    onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return Scaffold(
-                                            backgroundColor: Colors.transparent,
-                                            body: AlertDialog(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(15.0),
-                                              ),
-                                              buttonPadding:
-                                                  EdgeInsets.all(10.0),
-                                              contentPadding:
-                                                  EdgeInsets.all(30.0),
-                                              title: Text(
-                                                'Xác nhận',
-                                                style: TextStyle(
-                                                    fontSize: 21.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              content: Text(
-                                                'Bạn có muốn xóa bản ghi này?',
-                                                style:
-                                                    TextStyle(fontSize: 19.0),
-                                              ),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text('HỦY'),
-                                                ),
-                                                ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                          backgroundColor:
-                                                              Colors.red),
-                                                  onPressed: () {
-                                                    context
-                                                        .read<
-                                                            RemoveRecordBloc>()
-                                                        .add(RemoveRecordEvent
-                                                            .getRecordId(widget
-                                                                .references[
-                                                                    index]
-                                                                .recordId
-                                                                .toString()));
-                                                    context
-                                                        .read<
-                                                            RemoveRecordBloc>()
-                                                        .add(RemoveRecordEvent
-                                                            .removeRecordRequest());
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Text(
-                                                    'XÓA',
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 20.0),
-                                                  ),
-                                                ),
-                                              ],
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '',
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(95, 177, 23, 23),
+                                    borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(30),
+                                        bottomLeft: Radius.circular(30),
+                                        bottomRight: Radius.circular(30),
+                                        topRight: Radius.circular(30))),
+                                child: IconButton(
+                                  icon: Icon(Icons.delete),
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return Scaffold(
+                                          backgroundColor: Colors.transparent,
+                                          body: AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
                                             ),
-                                          );
-                                        },
-                                      );
-                                    },
-                                    color: Colors.white,
-                                  ),
+                                            buttonPadding: EdgeInsets.all(10.0),
+                                            contentPadding:
+                                                EdgeInsets.all(30.0),
+                                            title: Text(
+                                              'Xác nhận',
+                                              style: TextStyle(
+                                                  fontSize: 21.0,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            content: Text(
+                                              'Bạn có muốn xóa bản ghi này?',
+                                              style: TextStyle(fontSize: 19.0),
+                                            ),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'HỦY',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0,
+                                                      color: Colors.black87),
+                                                ),
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                    backgroundColor:
+                                                        Colors.red),
+                                                onPressed: () {
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .getRecordId(widget
+                                                              .references[index]
+                                                              .recordId
+                                                              .toString()));
+                                                  context
+                                                      .read<RemoveRecordBloc>()
+                                                      .add(RemoveRecordEvent
+                                                          .removeRecordRequest());
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Text(
+                                                  'XÓA',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 20.0),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  color: Colors.white,
                                 ),
-                              ]),
-                          Container(
-                              alignment: Alignment.center,
-                              child: ElevatedButton.icon(
+                              ),
+                            ],
+                          ),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
                                         widget.references[index],
@@ -385,32 +200,34 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                         widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 60.0)
+                                      ? Icon(Icons.pause, size: 70.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 60.0,
+                                          size: 70.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
                                     shape: CircleBorder(),
                                     padding: EdgeInsets.only(left: 7),
                                     backgroundColor: greenALS,
-                                  ))),
-                          SizedBox(
-                            height: 8.0,
+                                  ))
+                            ],
                           ),
                           Text(
                             widget.references[index].recordName ?? '',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 18.0,
+                              fontSize: 22.0,
                             ),
                           )
                         ],
                       ),
                     ),
                   );
+
                 }));
       },
     );
@@ -444,26 +261,5 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
       });
     }
     // await audioPlayer.stop();
-  }
-
-  void ShowDialogError(BuildContext context, String errorText) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          // Retrieve the text the that user has entered by using the
-          // TextEditingController.
-          content: Text(errorText),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('HỦY'),
-            ),
-          ],
-        );
-      },
-    );
   }
 }

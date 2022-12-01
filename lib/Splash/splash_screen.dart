@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:capstone_ui/Home/home.dart';
 import 'package:capstone_ui/Login/login_screen.dart';
 import 'package:capstone_ui/Splash/SharePreKey.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,9 @@ import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Bloc/authenticate/authenticate_bloc.dart';
+
+import '../Login/update_info.dart';
 import '../Feature/Newsfeed/newfeeds.dart';
-import '../Feature/Supporter/Newsfeed/newfeeds.dart';
 import '../Login/update_info.dart';
 import '../Model/login_model.dart';
 import '../services/api_User.dart';
@@ -195,7 +197,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     pageBuilder: (BuildContext context,
                         Animation<double> animation,
                         Animation<double> secondaryAnimation) {
-                      return NewFeed();
+                      return Home();
                     },
                   ),
                 );
@@ -250,7 +252,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   pageBuilder: (BuildContext context,
                       Animation<double> animation,
                       Animation<double> secondaryAnimation) {
-                    return NewFeedSupporter();
+                    return Home();
                   },
                 ),
               );
@@ -436,7 +438,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void PushToDefaultScreen(BuildContext context) {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => NewFeedSupporter()));
+        context, MaterialPageRoute(builder: (context) => NewFeed()));
   }
 
   void PushToDefaultScreen2(BuildContext context) {

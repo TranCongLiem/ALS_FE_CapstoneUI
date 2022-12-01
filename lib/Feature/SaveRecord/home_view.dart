@@ -11,7 +11,6 @@ import 'package:capstone_ui/Feature/SaveRecord/SaveRecording.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-import '../../Home/home.dart';
 import 'cloud_record_list_view.dart';
 
 class HomeViewRecord extends StatefulWidget {
@@ -55,21 +54,17 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                     height: 20.5.h,
                     child: Scaffold(
                         appBar: AppBar(
-                            title: Text('Hỗ trợ ghi âm'),
+                            title: Text(
+                              'Hỗ trợ ghi âm',
+                              style: TextStyle(
+                                  fontSize: 28.0, fontWeight: FontWeight.bold),
+                            ),
                             backgroundColor: greenALS,
                             centerTitle: true,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0))),
-                            leading: IconButton(
-                                icon:
-                                    Icon(Icons.arrow_back, color: Colors.white),
-                                onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Home()),
-                                    ))),
+                                    bottomRight: Radius.circular(20.0)))),
                         body: SafeArea(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -99,7 +94,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                         controller: tabController,
                                         isScrollable: true,
                                         labelPadding: EdgeInsets.symmetric(
-                                            horizontal: 30),
+                                            horizontal: 50),
                                         tabs: [
                                           Padding(
                                             padding: const EdgeInsets.all(2.0),

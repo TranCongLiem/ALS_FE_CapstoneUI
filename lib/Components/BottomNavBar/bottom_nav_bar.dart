@@ -3,7 +3,6 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_ui/Components/BottomNavBar/NavItem.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class MyBottomNavBar extends StatelessWidget {
   const MyBottomNavBar({Key? key, this.index}) : super(key: key);
@@ -22,6 +21,10 @@ class MyBottomNavBar extends StatelessWidget {
           unselectedFontSize: 15,
           selectedFontSize: 15,
           iconSize: 30.0,
+          unselectedLabelStyle:
+              TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
+          selectedLabelStyle:
+              TextStyle(fontSize: 20.0, fontWeight: FontWeight.w800),
           onTap: (index) {
             if (NavItems().items[index].destinationChecker()) {
               BlocProvider.of<BottomNavBarBloc>(context)
@@ -35,10 +38,6 @@ class MyBottomNavBar extends StatelessWidget {
             }
           },
           items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Trang chủ',
-            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.category),
               label: 'Trợ giúp',

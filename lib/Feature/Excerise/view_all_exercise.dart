@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../Bloc/categoryExercise/category_exercise_bloc.dart';
+import '../../Components/BottomNavBar/bottom_nav_bar.dart';
+import '../../Constant/constant.dart';
 import '../../services/api_CategoryExercise.dart';
 import '../CategoryExercise/CustomCategoryList.dart';
 

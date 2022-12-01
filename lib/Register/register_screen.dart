@@ -57,7 +57,7 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
           if (state.isRegisterPatient) {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => RegisterInfo()));
-            SetUserInfo(state.phoneNumber, state.password, state.userId);
+            SetUserInfo(state.phoneNumberPatient, state.passwordPatient, state.userId);
             UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
                 userId: state.userId, mobileToken: mobileToken));
           }

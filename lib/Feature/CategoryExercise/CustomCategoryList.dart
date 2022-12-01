@@ -1,6 +1,13 @@
 import 'package:capstone_ui/Feature/Excerise/ListExerciseByCategory.dart';
 import 'package:capstone_ui/Model/getListCategory_model.dart';
+import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../Components/Feature/Excerise/Excerise/category_ex.dart';
+import '../../Constant/color_filter.dart';
+import '../../Feature/News/detail_news.dart';
+import '../../Feature/News/model/article_model.dart';
 
 Widget CustomCategoryList(
     CategoryExercise categoryExericse, BuildContext context) {
@@ -19,7 +26,7 @@ Widget CustomCategoryList(
               alignment: Alignment.center,
               children: [
                 Ink.image(
-                    height: 180,
+                    height: 150,
                     fit: BoxFit.cover,
                     child: InkWell(
                       onTap: () {
@@ -39,7 +46,7 @@ Widget CustomCategoryList(
                   categoryExericse.categoryName ?? '',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 251, 252, 251),
+                      color: Colors.white,
                       fontSize: 28.0),
                 )
               ],

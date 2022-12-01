@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
-import 'package:capstone_ui/Feature/Chat/constants/firestore_constants.dart';
-import 'package:capstone_ui/Feature/Supporter/Newsfeed/newfeeds.dart';
+import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +51,7 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
               
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => new NewFeedSupporter()),
+                  builder: (BuildContext context) => new NewFeed()),
               (Route<dynamic> route) => false);
         }
       },
@@ -301,15 +301,15 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
 
   Future<void> uploadToFirebase(
       String userId, String fullName, String imageUser) async {
-    CollectionReference users = await FirebaseFirestore.instance
-        .collection(FirestoreConstants.pathUserCollection);
-    users.doc(userId).set({
-      FirestoreConstants.nickname: fullName,
-      FirestoreConstants.photoUrl: imageUser,
-      FirestoreConstants.id: userId,
-      'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
-      FirestoreConstants.chattingWith: null
-    });
+    // CollectionReference users = await FirebaseFirestore.instance
+    //     .collection(FirestoreConstants.pathUserCollection);
+    // users.doc(userId).set({
+    //   FirestoreConstants.nickname: fullName,
+    //   FirestoreConstants.photoUrl: imageUser,
+    //   FirestoreConstants.id: userId,
+    //   'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
+    //   FirestoreConstants.chattingWith: null
+    // });
     context
         .read<UserBloc>()
         .add(UserEvent.updateInformationSupporterRequest(userId));

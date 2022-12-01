@@ -12,8 +12,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../Bloc/user/user_bloc.dart';
 import '../Constant/constant.dart';
-import '../Feature/Chat/constants/firestore_constants.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+import '../Feature/Chat/constants/firestore_constants.dart';
+import '../Home/home.dart';
 
 enum MediaType {
   image,
@@ -54,7 +56,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) => new NewFeed()),
+                  builder: (BuildContext context) => new Home()),
               (Route<dynamic> route) => false);
         }
       },

@@ -42,101 +42,101 @@ class _RoleScreenState extends State<RoleScreen> {
                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
               ),
             ),
-            Column(
-              children: [
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Expanded(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Ink.image(
-                            height: MediaQuery.of(context).size.height * 0.27,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            fit: BoxFit.cover,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RegisterScreenPatient()));
-                              },
-                            ),
-                            image: AssetImage('assets/images/role_patient.png'),
-                            colorFilter: ColorFilter.mode(
-                              Colors.grey.withOpacity(0.85),
-                              BlendMode.modulate,
-                            )),
-                        Text(
-                          'BỆNH NHÂN',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 251, 252, 251),
-                            fontSize: 28.0,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 12,
-                )
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.02,
-            ),
-            Column(
-              children: [
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  child: Expanded(
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Ink.image(
-                            height: MediaQuery.of(context).size.height * 0.27,
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            fit: BoxFit.cover,
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RegisterScreenSupporter()));
-                              },
-                            ),
-                            image:
-                                AssetImage('assets/images/role_supporter.png'),
-                            colorFilter: ColorFilter.mode(
-                              Colors.grey.withOpacity(0.85),
-                              BlendMode.modulate,
-                            )),
-                        Text(
-                          'NGƯỜI HỖ TRỢ',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 251, 252, 251),
-                              fontSize: 28.0),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 12,
-                )
-              ],
-            ),
+            // Column(
+            //   children: [
+            //     Card(
+            //       clipBehavior: Clip.antiAlias,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(24),
+            //       ),
+            //       child: Expanded(
+            //         child: Stack(
+            //           alignment: Alignment.center,
+            //           children: [
+            //             Ink.image(
+            //                 height: MediaQuery.of(context).size.height * 0.27,
+            //                 width: MediaQuery.of(context).size.width * 0.8,
+            //                 fit: BoxFit.cover,
+            //                 child: InkWell(
+            //                   onTap: () {
+            //                     Navigator.push(
+            //                         context,
+            //                         MaterialPageRoute(
+            //                             builder: (context) =>
+            //                                 RegisterScreenPatient()));
+            //                   },
+            //                 ),
+            //                 image: AssetImage('assets/images/role_patient.png'),
+            //                 colorFilter: ColorFilter.mode(
+            //                   Colors.grey.withOpacity(0.85),
+            //                   BlendMode.modulate,
+            //                 )),
+            //             Text(
+            //               'BỆNH NHÂN',
+            //               style: TextStyle(
+            //                 fontWeight: FontWeight.bold,
+            //                 color: Color.fromARGB(255, 251, 252, 251),
+            //                 fontSize: 28.0,
+            //               ),
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 12,
+            //     )
+            //   ],
+            // ),
+            // SizedBox(
+            //   height: MediaQuery.of(context).size.height * 0.02,
+            // ),
+            // Column(
+            //   children: [
+            //     Card(
+            //       clipBehavior: Clip.antiAlias,
+            //       shape: RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.circular(24),
+            //       ),
+            //       child: Expanded(
+            //         child: Stack(
+            //           alignment: Alignment.center,
+            //           children: [
+            //             Ink.image(
+            //                 height: MediaQuery.of(context).size.height * 0.27,
+            //                 width: MediaQuery.of(context).size.width * 0.8,
+            //                 fit: BoxFit.cover,
+            //                 child: InkWell(
+            //                   onTap: () {
+            //                     Navigator.push(
+            //                         context,
+            //                         MaterialPageRoute(
+            //                             builder: (context) =>
+            //                                 RegisterScreenSupporter()));
+            //                   },
+            //                 ),
+            //                 image:
+            //                     AssetImage('assets/images/role_supporter.png'),
+            //                 colorFilter: ColorFilter.mode(
+            //                   Colors.grey.withOpacity(0.85),
+            //                   BlendMode.modulate,
+            //                 )),
+            //             Text(
+            //               'NGƯỜI HỖ TRỢ',
+            //               style: TextStyle(
+            //                   fontWeight: FontWeight.bold,
+            //                   color: Color.fromARGB(255, 251, 252, 251),
+            //                   fontSize: 28.0),
+            //             )
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //       width: 12,
+            //     )
+            //   ],
+            // ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
             ),

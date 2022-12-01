@@ -20,7 +20,7 @@ mixin _$CreatePostEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) =>
@@ -29,7 +29,7 @@ mixin _$CreatePostEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) =>
@@ -38,7 +38,7 @@ mixin _$CreatePostEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -158,7 +158,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -170,7 +170,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -182,7 +182,7 @@ class _$_ImageChanged implements _ImageChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -310,7 +310,7 @@ class _$_CaptionChanged implements _CaptionChanged {
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -322,7 +322,7 @@ class _$_CaptionChanged implements _CaptionChanged {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -334,7 +334,7 @@ class _$_CaptionChanged implements _CaptionChanged {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -400,7 +400,6 @@ abstract class _$$_CreatePostRequestCopyWith<$Res> {
   factory _$$_CreatePostRequestCopyWith(_$_CreatePostRequest value,
           $Res Function(_$_CreatePostRequest) then) =
       __$$_CreatePostRequestCopyWithImpl<$Res>;
-  $Res call({String userId});
 }
 
 /// @nodoc
@@ -413,61 +412,37 @@ class __$$_CreatePostRequestCopyWithImpl<$Res>
 
   @override
   _$_CreatePostRequest get _value => super._value as _$_CreatePostRequest;
-
-  @override
-  $Res call({
-    Object? userId = freezed,
-  }) {
-    return _then(_$_CreatePostRequest(
-      userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_CreatePostRequest implements _CreatePostRequest {
-  const _$_CreatePostRequest(this.userId);
-
-  @override
-  final String userId;
+  const _$_CreatePostRequest();
 
   @override
   String toString() {
-    return 'CreatePostEvent.createPostRequest(userId: $userId)';
+    return 'CreatePostEvent.createPostRequest()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CreatePostRequest &&
-            const DeepCollectionEquality().equals(other.userId, userId));
+        (other.runtimeType == runtimeType && other is _$_CreatePostRequest);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(userId));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$_CreatePostRequestCopyWith<_$_CreatePostRequest> get copyWith =>
-      __$$_CreatePostRequestCopyWithImpl<_$_CreatePostRequest>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
-    return createPostRequest(userId);
+    return createPostRequest();
   }
 
   @override
@@ -475,11 +450,11 @@ class _$_CreatePostRequest implements _CreatePostRequest {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
-    return createPostRequest?.call(userId);
+    return createPostRequest?.call();
   }
 
   @override
@@ -487,13 +462,13 @@ class _$_CreatePostRequest implements _CreatePostRequest {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
   }) {
     if (createPostRequest != null) {
-      return createPostRequest(userId);
+      return createPostRequest();
     }
     return orElse();
   }
@@ -540,12 +515,7 @@ class _$_CreatePostRequest implements _CreatePostRequest {
 }
 
 abstract class _CreatePostRequest implements CreatePostEvent {
-  const factory _CreatePostRequest(final String userId) = _$_CreatePostRequest;
-
-  String get userId;
-  @JsonKey(ignore: true)
-  _$$_CreatePostRequestCopyWith<_$_CreatePostRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _CreatePostRequest() = _$_CreatePostRequest;
 }
 
 /// @nodoc
@@ -591,7 +561,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -603,7 +573,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -615,7 +585,7 @@ class _$_CreateCheckRequested implements _CreateCheckRequested {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),
@@ -714,7 +684,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult when<TResult extends Object?>({
     required TResult Function(String image) imageChanged,
     required TResult Function(String caption) captionChanged,
-    required TResult Function(String userId) createPostRequest,
+    required TResult Function() createPostRequest,
     required TResult Function() createCheckRequested,
     required TResult Function() setStateFlase,
   }) {
@@ -726,7 +696,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
   }) {
@@ -738,7 +708,7 @@ class _$_SetStateFlase implements _SetStateFlase {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String image)? imageChanged,
     TResult Function(String caption)? captionChanged,
-    TResult Function(String userId)? createPostRequest,
+    TResult Function()? createPostRequest,
     TResult Function()? createCheckRequested,
     TResult Function()? setStateFlase,
     required TResult orElse(),

@@ -13,8 +13,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import '../Feature/Chat/constants/color_constants.dart';
-import '../Feature/Supporter/Newsfeed/newfeeds.dart';
+import '../Home/home.dart';
+import '../Register/register_screen.dart';
 import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
 
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state.isCheckLogin) {
             Fluttertoast.showToast(
                 msg: "Tài khoản hoặc mật khẩu không chính xác",
-                backgroundColor: ColorConstants.greyColor);
+                backgroundColor: Colors.green);
             context
                 .read<AuthenticateBloc>()
                 .add(AuthenticateEvent.checkLoginFalseRequested());
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) => new NewFeed()),
+                        builder: (BuildContext context) => new Home()),
                     (Route<dynamic> route) => false);
               } else {
                 Navigator.push(
@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new NewFeedSupporter()),
+                            new Home()),
                     (Route<dynamic> route) => false);
                 SetUserInfo(state.phoneNumber, state.password, state.userId);
                 UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) =>
-                            new RegisterInfoSupporter()),
+                            new RegisterInfo()),
                     (Route<dynamic> route) => false);
                 SetUserInfo(state.phoneNumber, state.password, state.userId);
                 UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
@@ -292,7 +292,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    RoleScreen()));
+                                                    RegisterScreenPatient()));
                                       },
                                       child: Text('Đăng ký',
                                           style: TextStyle(
@@ -392,7 +392,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   pageBuilder: (BuildContext context,
                                       Animation<double> animation,
                                       Animation<double> secondaryAnimation) {
-                                    return NewFeed();
+                                    return Home();
                                   },
                                 ),
                               );
@@ -485,7 +485,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (error != '' && !error.isEmpty) {
       setState(() {
         Fluttertoast.showToast(
-            msg: error, backgroundColor: ColorConstants.greyColor);
+            msg: error, backgroundColor: Colors.green);
       });
     }
   }
