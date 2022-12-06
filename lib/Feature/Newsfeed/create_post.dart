@@ -488,16 +488,22 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
     FirebaseStorage firebaseStorage = FirebaseStorage.instance;
     try {
       String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-      Reference reference = firebaseStorage
-          .ref('upload-image-firebase')
-          .child(userId)
-          .child(fileName);
-      UploadTask uploadTask = reference.putFile(File(imagePath!));
-      TaskSnapshot snapshot = await uploadTask;
-      String imageDatabase = await snapshot.ref.getDownloadURL();
-      context
-          .read<CreatePostBloc>()
-          .add(CreatePostEvent.imageChanged(imageDatabase));
+      if (imagePath != null) {
+        Reference reference = firebaseStorage
+            .ref('upload-image-firebase')
+            .child(userId)
+            .child(fileName);
+        UploadTask uploadTask = reference.putFile(File(imagePath!));
+        TaskSnapshot snapshot = await uploadTask;
+        String imageDatabase = await snapshot.ref.getDownloadURL();
+        context
+            .read<CreatePostBloc>()
+            .add(CreatePostEvent.imageChanged(imageDatabase));
+      } else {
+        context
+            .read<CreatePostBloc>()
+            .add(CreatePostEvent.imageChanged(imagePath!));
+      }
       context
           .read<CreatePostBloc>()
           .add(CreatePostEvent.captionChanged(_textSpeech));

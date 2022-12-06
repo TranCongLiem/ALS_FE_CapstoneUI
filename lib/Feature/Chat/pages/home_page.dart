@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Chat/pages/search.dart';
 import 'package:capstone_ui/Home/home.dart';
@@ -81,7 +82,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
+    return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.white,
