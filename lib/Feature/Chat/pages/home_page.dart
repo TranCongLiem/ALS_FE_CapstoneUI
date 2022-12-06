@@ -82,7 +82,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
+    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Colors.white,

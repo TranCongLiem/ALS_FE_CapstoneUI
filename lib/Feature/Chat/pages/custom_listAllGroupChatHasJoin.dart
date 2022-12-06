@@ -23,10 +23,8 @@ class CustomListAllGroupChatUserJoin extends StatefulWidget {
 }
 
 class _CustomListAllGroupChatUserJoinState
-    extends State<CustomListAllGroupChatUserJoin> with AutomaticKeepAliveClientMixin<CustomListAllGroupChatUserJoin>{
+    extends State<CustomListAllGroupChatUserJoin>{
   
-  @override
-  bool get wantKeepAlive => true;
   @override
   void initState() {
     // TODO: implement initState

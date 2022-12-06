@@ -21,13 +21,11 @@ class CustomListAllGroupChat extends StatefulWidget {
   State<CustomListAllGroupChat> createState() => _CustomListAllGroupChatState();
 }
 
-class _CustomListAllGroupChatState extends State<CustomListAllGroupChat>
-    with AutomaticKeepAliveClientMixin<CustomListAllGroupChat> {
+class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
   late bool? hasJoin = widget.listAllGroupChat![widget.index].hasJoin;
   late int totalMember = widget.listAllGroupChat![widget.index].totalMember ?? 0;
 
-  @override
-  bool get wantKeepAlive => true;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -36,7 +34,6 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat>
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     return BlocBuilder<AuthenticateBloc, AuthenticateState>(
       builder: (context, state) {
         return InkWell(
