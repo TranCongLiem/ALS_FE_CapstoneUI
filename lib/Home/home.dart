@@ -185,13 +185,15 @@ class _HomeState extends State<Home> {
                                                 title: "Trò chuyện",
                                                 svgSrc: "assets/icons/ex1.svg",
                                                 press: () {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              HomePage(
-                                                                  userId: state
-                                                                      .userId)));
+                                                  if (state2 is GetDetailLoadedState) {
+                                                    Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                HomePage(
+                                                                    userId: state
+                                                                        .userId,userName: state2.getProfileUserByIdResponeModel.fullName.toString(),)));
+                                                  }
                                                 },
                                               ),
                                               // BlocBuilder<CreateSosNotiBloc,

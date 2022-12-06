@@ -103,6 +103,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                     GroupInfo(
                         groupId: widget.groupId,
                         groupName: widget.groupName,
+                        userName: widget.userName,
                         adminName: widget.adminId,
                         userId: widget.userId,
                         groupImage: widget.groupImage));
