@@ -24,6 +24,26 @@ class ListKnowledgeService {
     }
 
   }
+  Future<DetailKnowledgeResponse> GetDetailKnowLedgeById(
+      GetDetailKnowLedgeByIdRequest requestModel) async {
+    String url = "https://als.cosplane.asia/api/News/GetDetailNewsAndNewsByNewsId?id=" +
+        requestModel.newsId;
+    final response = await get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return DetailKnowledgeResponse.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+  
 
   
   

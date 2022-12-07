@@ -64,7 +64,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_fullNameChanged>((event, emit) {
       emit(state.copyWith(fullName: event.fullName));
     });
-
+    on<_UpdateRelationshipwith>((event, emit) {
+      emit(state.copyWith(relationshipWith: event.relationsipwith));
+    });
     on<_RegistrationSupporterRequested>((event, emit) async {
       RegisterRequestModel reqModel = RegisterRequestModel(
           phoneNumber: state.phoneNumberSupporter,
@@ -115,7 +117,10 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     });
 
     on<_LogoutRequested>((event, emit) {
-      emit(state.copyWith(isAuthenticated: _userService.Logout(),isRegisterPatient: false,isRegisterSupporter: false));
+      emit(state.copyWith(
+          isAuthenticated: _userService.Logout(),
+          isRegisterPatient: false,
+          isRegisterSupporter: false));
     });
 
     on<_checkRegisterPatientRequested>((event, emit) {

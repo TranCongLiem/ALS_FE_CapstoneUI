@@ -120,6 +120,42 @@ class UserPatientService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+  Future<GetDetailUserByPhoneResponse> GetDetailUserByPhone(
+      GetDetailUserByPhoneRequest requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/user/GetDetailUserByPhone?id=" + requestModel.patientPhoneNumber;
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      //body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GetDetailUserByPhoneResponse.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+  Future<DeleteRelationwithPatientResponse> DeleteRelationwithPatient(
+      DeleteRelationwithPatientRequest requestModel) async {
+    String url =
+        "https://als.cosplane.asia/api/user/DeleteRelationship";
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return DeleteRelationwithPatientResponse.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 
   Future<GetProfileUserByIdResponeModel> getProfileUserById(
       GetProfileUserByIdRequestModel requestModel) async {
@@ -135,6 +171,25 @@ class UserPatientService {
     );
     if (response.statusCode == 200) {
       return GetProfileUserByIdResponeModel.fromJson(
+          json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+  Future<GetProfilePatientInSupporterByIdResponeModel> getProfilePatientInRoleSupporterById(
+      GetProfileUserByIdRequestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/user/GetDetailUserByID?id=" +
+        requestModel.userId;
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GetProfilePatientInSupporterByIdResponeModel.fromJson(
           json.decode(response.body));
     } else {
       throw Exception('Lỗi dữ liệu');
