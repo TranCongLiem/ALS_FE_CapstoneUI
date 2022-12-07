@@ -64,9 +64,6 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
           }
         },
         builder: (context, state) {
-          context
-              .read<AuthenticateBloc>()
-              .add(AuthenticateEvent.checkRegisterPatientRequested());
           return SizerUtil.deviceType == DeviceType.mobile
               ? Container(
                   width: 100.w,

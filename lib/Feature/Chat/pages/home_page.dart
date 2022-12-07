@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
+import 'package:capstone_ui/Bloc/user/user_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Chat/pages/search.dart';
 import 'package:capstone_ui/Home/home.dart';
@@ -26,7 +27,8 @@ import 'groupchat_page.dart';
 
 class HomePage extends StatefulWidget {
   final String userId;
-  HomePage({Key? key, required this.userId}) : super(key: key);
+  final String userName;
+  HomePage({Key? key, required this.userId, required this.userName}) : super(key: key);
 
   @override
   State createState() => HomePageState();
@@ -122,7 +124,7 @@ class HomePageState extends State<HomePage> {
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: IconButton(
                   onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => GroupChatPage(userId: state.userId,fullName: state.fullName,)));
+                     Navigator.push(context, MaterialPageRoute(builder: (context) => GroupChatPage(userId: state.userId,fullName: widget.userName,)));
                   },
                   icon: Icon(
                     Icons.person,

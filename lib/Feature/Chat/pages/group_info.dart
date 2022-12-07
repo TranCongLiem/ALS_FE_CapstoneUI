@@ -12,6 +12,7 @@ import 'groupchat_page.dart';
 class GroupInfo extends StatefulWidget {
   final String groupId;
   final String groupName;
+  final String userName;
   final String adminName;
   final String userId;
   final String groupImage;
@@ -19,6 +20,7 @@ class GroupInfo extends StatefulWidget {
     Key? key,
     required this.adminName,
     required this.groupName,
+    required this.userName,
     required this.groupId,
     required this.userId,
     required this.groupImage,
@@ -100,7 +102,7 @@ class _GroupInfoState extends State<GroupInfo> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => GroupChatPage(
-                                                fullName: widget.groupName,
+                                                fullName: widget.userName,
                                                 userId: widget.userId,
                                               )));
                                 },

@@ -96,7 +96,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                         context,
                         MaterialPageRoute(
                             builder: (context) => HomePage(
-                                  userId: widget.userId,
+                                  userId: widget.userId,userName: widget.fullName,
                                 )),
                       ))),
           floatingActionButton: FloatingActionButton(
