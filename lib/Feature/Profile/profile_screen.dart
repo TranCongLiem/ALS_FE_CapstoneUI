@@ -189,8 +189,12 @@ class _ProfiletState extends State<Profile> {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
 
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()));
+    
+
+        Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()),
+        (Route<dynamic> route) => false);
   }
 }
 

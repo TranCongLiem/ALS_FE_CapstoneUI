@@ -15,6 +15,8 @@ class AuthenticateEvent with _$AuthenticateEvent {
       String phoneNumber, String password) = _RegistrationSupporterRequested;
   const factory AuthenticateEvent.authCheckRequested() = _AuthCheckRequested;
 
+  const factory AuthenticateEvent.updateRelationshipwith(
+      String relationsipwith) = _UpdateRelationshipwith;
   const factory AuthenticateEvent.Logout() = _LogoutRequested;
 
   const factory AuthenticateEvent.checkRegisterPatientRequested() =

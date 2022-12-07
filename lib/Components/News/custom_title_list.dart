@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Model/getListKnowledge_model.dart';
+import 'package:capstone_ui/services/api_ListKnowledge.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../../Feature/News/detail_news.dart';
@@ -7,12 +8,19 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
   DateTime time = DateTime.parse(listKnowledge.createDate ?? '');
   timeago.setLocaleMessages('vi', timeago.ViMessages());
   return InkWell(
-    onTap: () {
+    onTap: () async {
+      var result= await GetDetailKnowLedgeById(GetDetailKnowLedgeByIdRequest(newsId: listKnowledge.newsId??''));
+      print("abc23" + result.toString());
+      // Navigator.push(
+      //     context,
+      //     MaterialPageRoute(
+      //         builder: ((context) =>
+      //             DetailKnowledgeCustom(listKnowledge: listKnowledge))));
       Navigator.push(
           context,
           MaterialPageRoute(
               builder: ((context) =>
-                  DetailKnowledgeCustom(listKnowledge: listKnowledge))));
+                  DetailKnowledgeCustom(listKnowledge: result))));
     },
     child: Container(
       margin: EdgeInsets.all(15.0),
@@ -78,4 +86,10 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
       ),
     ),
   );
+
+}
+Future<DetailKnowledgeResponse> GetDetailKnowLedgeById(GetDetailKnowLedgeByIdRequest request){
+  ListKnowledgeService service = ListKnowledgeService();
+  var result= service.GetDetailKnowLedgeById(request);
+  return result;
 }

@@ -90,13 +90,14 @@ class _NotifyState extends State<Notify> {
                                   image: NetworkImage(
                                       'https://cdn-icons-png.flaticon.com/512/1827/1827301.png'))),
                         ),
-                        title: Text(
-                          state.list[index].title ?? 'Thông báo từ bệnh nhân',
+                        title: Text( 
+                          
+                          " ${state.list[index].SenderName??''}" + ': ' +" ${state.list[index].title!.isEmpty?'Cần giúp đỡ' : '${state.list[index].title}'}" ,
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                               fontSize: 20.0),
-                        ),
+                        ),                     
                         subtitle: Text(
                          // state.list[index].CreateAt ?? '',
                          TimeAgo(state.list[index].CreateAt??''),

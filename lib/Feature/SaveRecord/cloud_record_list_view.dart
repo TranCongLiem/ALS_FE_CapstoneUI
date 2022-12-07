@@ -155,13 +155,11 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                       title: Text(
                                                           'Mô tả thông tin trợ giúp'),
                                                       content: TextField(
-                                                        onChanged: (value) {
-                                                          _textFieldController
-                                                              .text = value;
-                                                          // setState(() {
-
-                                                          // });
-                                                        },
+                                                        // onChanged: (value) {
+                                                        //   _textFieldController
+                                                        //       .text = value;
+                                                          
+                                                        // },
                                                         // controller: TextEditingController(
                                                         //     text: widget
                                                         //             .references[
@@ -207,9 +205,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                                 BlocProvider.of<PushNotiToSupporterBloc>(context).add(PushNotiToSupporterByRequestEvent(
                                                                     createPushNotificationRequestModel: CreatePushNotificationRequestModel(
                                                                         senderId: widget.userId,
-                                                                        // receiverId:
-                                                                        //     "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
-                                                                        // receiverId: "f1cacaa7-ddc0-43a3-915f-0a8ad356bdf2",
+                                                                        
                                                                         title: _textFieldController.text)));
                                                                 // if (state
                                                                 //     is PushNotiToSupporterErrorState) {
@@ -227,10 +223,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                                 Navigator.pop(
                                                                     context);
 
-                                                                // if (mounted) {
-                                                                //   setState(
-                                                                //       () {});
-                                                                // }
+                                                                
                                                               },
                                                             );
                                                             if (state

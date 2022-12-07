@@ -99,7 +99,7 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                         controller: tabController,
                                         isScrollable: true,
                                         labelPadding: EdgeInsets.symmetric(
-                                            horizontal: 30),
+                                            horizontal: 35),
                                         tabs: [
                                           Padding(
                                             padding: const EdgeInsets.all(2.0),

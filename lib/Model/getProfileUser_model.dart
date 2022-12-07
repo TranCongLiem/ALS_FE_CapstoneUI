@@ -27,6 +27,25 @@ class GetProfileUserByIdResponeModel {
     );
   }
 }
+class GetProfilePatientInSupporterByIdResponeModel {
+  String? fullName;
+  String? address;
+  String? imageUser;
+  String? relationshipWith;
+  String? phoneNumber;
+  GetProfilePatientInSupporterByIdResponeModel(
+      {this.fullName, this.address, this.imageUser, this.relationshipWith,this.phoneNumber});
+
+  factory GetProfilePatientInSupporterByIdResponeModel.fromJson(Map<String, dynamic> json) {
+    return GetProfilePatientInSupporterByIdResponeModel(
+      fullName: json["fullName"],
+      address: json["address"],
+      imageUser: json["imageUser"],
+      relationshipWith: json["relationshipWith"],
+      phoneNumber: json["phoneNumber"],
+    );
+  }
+}
 
 class GetRelatinshipWithUserByIdRequestModel {
   String userId;
