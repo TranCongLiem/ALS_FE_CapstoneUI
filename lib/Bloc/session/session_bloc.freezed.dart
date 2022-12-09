@@ -29,6 +29,8 @@ mixin _$SessionEvent {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,7 @@ mixin _$SessionEvent {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +62,7 @@ mixin _$SessionEvent {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +83,7 @@ mixin _$SessionEvent {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +102,7 @@ mixin _$SessionEvent {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -115,6 +121,7 @@ mixin _$SessionEvent {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -212,6 +219,8 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return addToSession(exericse);
   }
@@ -230,6 +239,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return addToSession?.call(exericse);
   }
@@ -248,6 +258,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (addToSession != null) {
@@ -274,6 +285,7 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return addToSession(this);
   }
@@ -295,6 +307,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return addToSession?.call(this);
   }
@@ -316,6 +329,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (addToSession != null) {
@@ -423,6 +437,8 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return createSessionRequested(userId, sessionName);
   }
@@ -441,6 +457,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return createSessionRequested?.call(userId, sessionName);
   }
@@ -459,6 +476,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (createSessionRequested != null) {
@@ -485,6 +503,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return createSessionRequested(this);
   }
@@ -506,6 +525,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return createSessionRequested?.call(this);
   }
@@ -527,6 +547,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (createSessionRequested != null) {
@@ -604,6 +625,8 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return showCreatingSessionRequested();
   }
@@ -622,6 +645,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return showCreatingSessionRequested?.call();
   }
@@ -640,6 +664,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (showCreatingSessionRequested != null) {
@@ -666,6 +691,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return showCreatingSessionRequested(this);
   }
@@ -687,6 +713,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return showCreatingSessionRequested?.call(this);
   }
@@ -708,6 +735,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (showCreatingSessionRequested != null) {
@@ -778,6 +806,8 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return showSessionDetailRequested();
   }
@@ -796,6 +826,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return showSessionDetailRequested?.call();
   }
@@ -814,6 +845,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (showSessionDetailRequested != null) {
@@ -840,6 +872,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return showSessionDetailRequested(this);
   }
@@ -861,6 +894,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return showSessionDetailRequested?.call(this);
   }
@@ -882,6 +916,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (showSessionDetailRequested != null) {
@@ -975,6 +1010,8 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return getSessionDetailRequested(sessionID);
   }
@@ -993,6 +1030,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return getSessionDetailRequested?.call(sessionID);
   }
@@ -1011,6 +1049,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionDetailRequested != null) {
@@ -1037,6 +1076,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return getSessionDetailRequested(this);
   }
@@ -1058,6 +1098,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return getSessionDetailRequested?.call(this);
   }
@@ -1079,6 +1120,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionDetailRequested != null) {
@@ -1175,6 +1217,8 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return getSessionsByUserId(userId);
   }
@@ -1193,6 +1237,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return getSessionsByUserId?.call(userId);
   }
@@ -1211,6 +1256,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionsByUserId != null) {
@@ -1237,6 +1283,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return getSessionsByUserId(this);
   }
@@ -1258,6 +1305,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return getSessionsByUserId?.call(this);
   }
@@ -1279,6 +1327,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionsByUserId != null) {
@@ -1378,6 +1427,8 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return removeFromCreatingSession(index);
   }
@@ -1396,6 +1447,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return removeFromCreatingSession?.call(index);
   }
@@ -1414,6 +1466,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (removeFromCreatingSession != null) {
@@ -1440,6 +1493,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return removeFromCreatingSession(this);
   }
@@ -1461,6 +1515,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return removeFromCreatingSession?.call(this);
   }
@@ -1482,6 +1537,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (removeFromCreatingSession != null) {
@@ -1553,6 +1609,8 @@ class _$_StartSession implements _StartSession {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return startSession();
   }
@@ -1571,6 +1629,7 @@ class _$_StartSession implements _StartSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return startSession?.call();
   }
@@ -1589,6 +1648,7 @@ class _$_StartSession implements _StartSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (startSession != null) {
@@ -1615,6 +1675,7 @@ class _$_StartSession implements _StartSession {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return startSession(this);
   }
@@ -1636,6 +1697,7 @@ class _$_StartSession implements _StartSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return startSession?.call(this);
   }
@@ -1657,6 +1719,7 @@ class _$_StartSession implements _StartSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (startSession != null) {
@@ -1755,6 +1818,8 @@ class _$_EndSession implements _EndSession {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return endSession(sessionId, userId);
   }
@@ -1773,6 +1838,7 @@ class _$_EndSession implements _EndSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return endSession?.call(sessionId, userId);
   }
@@ -1791,6 +1857,7 @@ class _$_EndSession implements _EndSession {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (endSession != null) {
@@ -1817,6 +1884,7 @@ class _$_EndSession implements _EndSession {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return endSession(this);
   }
@@ -1838,6 +1906,7 @@ class _$_EndSession implements _EndSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return endSession?.call(this);
   }
@@ -1859,6 +1928,7 @@ class _$_EndSession implements _EndSession {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (endSession != null) {
@@ -1956,6 +2026,8 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     required TResult Function() startSession,
     required TResult Function(String sessionId, String userId) endSession,
     required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
   }) {
     return getSessionHistory(userId);
   }
@@ -1974,6 +2046,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
     return getSessionHistory?.call(userId);
   }
@@ -1992,6 +2065,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function()? startSession,
     TResult Function(String sessionId, String userId)? endSession,
     TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionHistory != null) {
@@ -2018,6 +2092,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     required TResult Function(_StartSession value) startSession,
     required TResult Function(_EndSession value) endSession,
     required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
   }) {
     return getSessionHistory(this);
   }
@@ -2039,6 +2114,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
   }) {
     return getSessionHistory?.call(this);
   }
@@ -2060,6 +2136,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function(_StartSession value)? startSession,
     TResult Function(_EndSession value)? endSession,
     TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (getSessionHistory != null) {
@@ -2075,6 +2152,224 @@ abstract class _GetSessionHistory implements SessionEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$_GetSessionHistoryCopyWith<_$_GetSessionHistory> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_EndExerciseWorkoutCopyWith<$Res> {
+  factory _$$_EndExerciseWorkoutCopyWith(_$_EndExerciseWorkout value,
+          $Res Function(_$_EndExerciseWorkout) then) =
+      __$$_EndExerciseWorkoutCopyWithImpl<$Res>;
+  $Res call({Exericse exericse, String? userId});
+}
+
+/// @nodoc
+class __$$_EndExerciseWorkoutCopyWithImpl<$Res>
+    extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_EndExerciseWorkoutCopyWith<$Res> {
+  __$$_EndExerciseWorkoutCopyWithImpl(
+      _$_EndExerciseWorkout _value, $Res Function(_$_EndExerciseWorkout) _then)
+      : super(_value, (v) => _then(v as _$_EndExerciseWorkout));
+
+  @override
+  _$_EndExerciseWorkout get _value => super._value as _$_EndExerciseWorkout;
+
+  @override
+  $Res call({
+    Object? exericse = freezed,
+    Object? userId = freezed,
+  }) {
+    return _then(_$_EndExerciseWorkout(
+      exericse == freezed
+          ? _value.exericse
+          : exericse // ignore: cast_nullable_to_non_nullable
+              as Exericse,
+      userId == freezed
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_EndExerciseWorkout implements _EndExerciseWorkout {
+  const _$_EndExerciseWorkout(this.exericse, this.userId);
+
+  @override
+  final Exericse exericse;
+  @override
+  final String? userId;
+
+  @override
+  String toString() {
+    return 'SessionEvent.endExerciseWorkout(exericse: $exericse, userId: $userId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EndExerciseWorkout &&
+            const DeepCollectionEquality().equals(other.exericse, exericse) &&
+            const DeepCollectionEquality().equals(other.userId, userId));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(exericse),
+      const DeepCollectionEquality().hash(userId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_EndExerciseWorkoutCopyWith<_$_EndExerciseWorkout> get copyWith =>
+      __$$_EndExerciseWorkoutCopyWithImpl<_$_EndExerciseWorkout>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
+  }) {
+    return endExerciseWorkout(exericse, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
+  }) {
+    return endExerciseWorkout?.call(exericse, userId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
+    required TResult orElse(),
+  }) {
+    if (endExerciseWorkout != null) {
+      return endExerciseWorkout(exericse, userId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
+  }) {
+    return endExerciseWorkout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
+  }) {
+    return endExerciseWorkout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
+    required TResult orElse(),
+  }) {
+    if (endExerciseWorkout != null) {
+      return endExerciseWorkout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EndExerciseWorkout implements SessionEvent {
+  const factory _EndExerciseWorkout(
+      final Exericse exericse, final String? userId) = _$_EndExerciseWorkout;
+
+  Exericse get exericse;
+  String? get userId;
+  @JsonKey(ignore: true)
+  _$$_EndExerciseWorkoutCopyWith<_$_EndExerciseWorkout> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
