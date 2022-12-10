@@ -145,5 +145,48 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         );
       }),
     );
+
+    on<_EndExerciseWorkout>(((event, emit) async {
+      final endTime = DateTime.now();
+
+      var reqEx =
+          CreateSessionRequestExercise(exerciseId: event.exericse.ExericseID);
+      requestExercises.add(reqEx);
+
+      CreateSessionRequestModel sessionRequestModel = CreateSessionRequestModel(
+        userId: event.userId,
+        sessionName: "Tập luyện",
+        startTime: DateTime.now(),
+        endTime: DateTime.now(),
+        exercises: requestExercises,
+      );
+      requestExercises = [];
+      final sessionCreate =
+          await _sessionService.createSession(sessionRequestModel);
+      final listSession =
+          await _sessionService.getSessionsByUserId(event.userId!);
+      final session =
+          listSession.where((ss) => ss.createAt!.isAfter(endTime)).toList();
+      final sessionId = session[0].sessionId;
+
+      CreateSessionHistoryRequestModel historyRequestModel =
+          CreateSessionHistoryRequestModel(
+        userId: event.userId!,
+        startTime: state.startTime!,
+        endTime: endTime,
+        sessionId: sessionId!,
+      );
+      final result =
+          await _sessionService.createSessionHistory(historyRequestModel);
+      if (result.isSuccess) {
+        emit(state.copyWith(
+          message: result.message,
+        ));
+      } else {
+        emit(state.copyWith(
+          message: "Create Session History Failed",
+        ));
+      }
+    }));
   }
 }

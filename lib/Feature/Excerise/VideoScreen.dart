@@ -1,6 +1,9 @@
+import 'package:capstone_ui/Bloc/session/session_bloc.dart';
+import 'package:capstone_ui/Feature/Session/exercise_workout_screen.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class Video extends StatefulWidget {
@@ -96,9 +99,93 @@ class _VideoState extends State<Video> {
                     color: Colors.black87,
                     fontSize: 26.0,
                     fontWeight: FontWeight.w300),
-              )
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //             builder: (context) => ExerciseWorkoutScreen(
+              //                 exercise: widget.exericse)));
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Colors.blue[300],
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(25),
+              //     ),
+              //     elevation: 15.0,
+              //   ),
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(20.0),
+              //     child: Text(
+              //       'Bắt đầu tập',
+              //       style: TextStyle(fontSize: 20),
+              //     ),
+              //   ),
+              // ),
             ],
           )),
+          floatingActionButton: Container(
+            width: MediaQuery.of(context).size.width / 2,
+            // alignment: Alignment.center,
+            child: ElevatedButton(
+              onPressed: () {
+                context.read<SessionBloc>().add(SessionEvent.startSession());
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ExerciseWorkoutScreen(exercise: widget.exericse)));
+              },
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue[300],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                elevation: 15.0,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  'Bắt đầu tập',
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ),
+          ),
+          // label: Text(
+          //   'Bắt đầu tập',
+          //   style: TextStyle(fontSize: 20),
+          // ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          // bottomSheet: Container(
+          //   width: MediaQuery.of(context).size.width,
+          //   // alignment: Alignment.center,
+          //   child: ElevatedButton(
+          //     onPressed: () {
+          //       Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) =>
+          //                   ExerciseWorkoutScreen(exercise: widget.exericse)));
+          //     },
+          //     style: ElevatedButton.styleFrom(
+          //       primary: Colors.blue[300],
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(25),
+          //       ),
+          //       elevation: 15.0,
+          //     ),
+          //     child: Padding(
+          //       padding: const EdgeInsets.all(20.0),
+          //       child: Text(
+          //         'Bắt đầu tập',
+          //         style: TextStyle(fontSize: 20),
+          //       ),
+          //     ),
+          //   ),
+          // ),
         );
       },
     );

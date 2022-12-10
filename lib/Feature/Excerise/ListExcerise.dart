@@ -147,7 +147,7 @@ class _ListExceriseState extends State<ListExcerise> {
                   ],
                 ),
 
-                WidgetEx1(),
+                WidgetEx1(), // Lich su
                 Expanded(
                   child: BlocBuilder<SessionBloc, SessionState>(
                       builder: (context, state) {
@@ -455,7 +455,7 @@ Widget buildCardHistory(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Tên Buổi Tập",
+                            "Tập Luyện",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,

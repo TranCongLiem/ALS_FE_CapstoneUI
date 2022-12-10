@@ -11,21 +11,21 @@ import 'package:capstone_ui/Model/session_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WorkoutScreen extends StatefulWidget {
-  const WorkoutScreen({
+class ExerciseWorkoutScreen extends StatefulWidget {
+  const ExerciseWorkoutScreen({
     super.key,
-    required this.details,
+    required this.exercise,
   });
 
-  final List<GetSessionDetailResponseModel> details;
+  final Exericse exercise;
 
   @override
-  State<WorkoutScreen> createState() => _WorkoutScreenState();
+  State<ExerciseWorkoutScreen> createState() => _ExerciseWorkoutScreenState();
 }
 
-class _WorkoutScreenState extends State<WorkoutScreen> {
+class _ExerciseWorkoutScreenState extends State<ExerciseWorkoutScreen> {
   final _pageController = PageController();
-  Exericse? currentExercise;
+  // Exericse? currentExercise;
   bool _isPlaying = true;
   Duration duration = Duration();
   Timer? timer;
@@ -35,8 +35,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     // TODO: implement initState
     super.initState();
 
-    currentExercise = widget.details.first.exercise;
     startTimer();
+    // currentExercise = widget.details.first.exercise;
   }
 
   void addTime() {
@@ -69,8 +69,10 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 buildVideoControls(),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<SessionBloc>().add(SessionEvent.endSession(
-                          widget.details.first.sessionId!,
+                    context
+                        .read<SessionBloc>()
+                        .add(SessionEvent.endExerciseWorkout(
+                          widget.exercise,
                           context.read<AuthenticateBloc>().state.userId,
                         ));
                     Navigator.push(
@@ -88,7 +90,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Text(
-                      'Kết thúc buổi tập',
+                      'Kết thúc tập',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
@@ -101,34 +103,35 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     );
   }
 
-  Widget buildVideos() => PageView(
-        controller: _pageController,
-        onPageChanged: (index) => setState(() {
-          currentExercise = widget.details[index].exercise;
-        }),
-        children: widget.details
-            .map((detail) => ExerciseVideoScreen(
-                  exercise: detail.exercise!,
-                  onInitialized: () => setState(() {}),
-                  setIsPlaying: () {
-                    setState(() {
-                      _isPlaying = true;
-                    });
-                  },
-                ))
-            .toList(),
+  Widget buildVideos() =>
+      // PageView(
+      //       controller: _pageController,
+      //       onPageChanged: (index) => setState(() {
+      //         // currentExercise = widget.details[index].exercise;
+      //       }),
+      //       children:
+      ExerciseVideoScreen(
+        exercise: widget.exercise,
+        onInitialized: () => setState(() {}),
+        setIsPlaying: () {
+          setState(() {
+            _isPlaying = true;
+          });
+        },
       );
+  //           );
+  // );
 
   Widget buildVideoControls() => VideoControlsWidget(
         duration: duration,
-        exercise: currentExercise!,
+        exercise: widget.exercise,
         onTogglePlaying: (isPlaying) {
           setState(() {
             if (isPlaying) {
-              currentExercise!.controller!.play();
+              widget.exercise.controller!.play();
               _isPlaying = true;
             } else {
-              currentExercise!.controller!.pause();
+              widget.exercise.controller!.pause();
               _isPlaying = false;
             }
           });

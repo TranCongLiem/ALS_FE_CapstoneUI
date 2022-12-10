@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/material.dart';
 
-class VideoControlsWidget extends StatelessWidget {
+class VideoControlsWidget extends StatefulWidget {
   final Exericse exercise;
   final VoidCallback onRewindVideo;
   final VoidCallback onNextVideo;
   final ValueChanged<bool> onTogglePlaying;
   final bool isPlaying;
+  final Duration duration;
 
   const VideoControlsWidget({
     required this.exercise,
@@ -14,35 +17,77 @@ class VideoControlsWidget extends StatelessWidget {
     required this.onNextVideo,
     required this.onTogglePlaying,
     required this.isPlaying,
+    required this.duration,
   });
 
   @override
-  Widget build(BuildContext context) => Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: Colors.white.withOpacity(0.95),
-        ),
-        height: 100,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //   children: [
-            //     buildText(
-            //       title: 'Duration',
-            //       value: '${exercise.duration.inSeconds} Seconds',
-            //     ),
-            //     buildText(
-            //       title: 'Reps',
-            //       value: '${exercise.noOfReps} times',
-            //     ),
-            //   ],
-            // ),
-            buildButtons(context),
-          ],
-        ),
-      );
+  State<VideoControlsWidget> createState() => _VideoControlsWidgetState();
+}
+
+class _VideoControlsWidgetState extends State<VideoControlsWidget> {
+  // Duration duration = Duration();
+  // Timer? timer;
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+
+  //   startTimer();
+  //   // currentExercise = widget.details.first.exercise;
+  // }
+
+  // void addTime() {
+  //   final addSeconds = 1;
+
+  //   setState(() {
+  //     final seconds = duration.inSeconds + addSeconds;
+
+  //     duration = Duration(seconds: seconds);
+  //   });
+  // }
+
+  // void startTimer() {
+  //   timer = Timer.periodic(Duration(seconds: 1), (_) => addTime());
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final minutes = twoDigits(widget.duration.inMinutes.remainder(60));
+    final seconds = twoDigits(widget.duration.inSeconds.remainder(60));
+    final hours = twoDigits(widget.duration.inHours.remainder(60));
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white.withOpacity(0.95),
+      ),
+      height: 120,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: [
+          //     buildText(
+          //       title: 'Duration',
+          //       value: '${exercise.duration.inSeconds} Seconds',
+          //     ),
+          //     buildText(
+          //       title: 'Reps',
+          //       value: '${exercise.noOfReps} times',
+          //     ),
+          //   ],
+          // ),
+          buildButtons(context),
+          Text(
+            '$hours:$minutes:$seconds',
+            style: TextStyle(fontSize: 28),
+          )
+        ],
+      ),
+    );
+  }
 
   Widget buildText({
     required String title,
@@ -71,7 +116,7 @@ class VideoControlsWidget extends StatelessWidget {
               color: Colors.black87,
               size: 40,
             ),
-            onPressed: onRewindVideo,
+            onPressed: widget.onRewindVideo,
           ),
           buildPlayButton(context),
           IconButton(
@@ -80,28 +125,28 @@ class VideoControlsWidget extends StatelessWidget {
               color: Colors.black87,
               size: 40,
             ),
-            onPressed: onNextVideo,
+            onPressed: widget.onNextVideo,
           ),
         ],
       );
 
   Widget buildPlayButton(BuildContext context) {
-    final isLoading =
-        exercise.controller == null || !exercise.controller!.value.isReady;
+    final isLoading = widget.exercise.controller == null ||
+        !widget.exercise.controller!.value.isReady;
 
     if (isLoading) {
       return Center(child: CircularProgressIndicator());
-    } else if (isPlaying) {
+    } else if (widget.isPlaying) {
       return buildButton(
         context,
         icon: Icon(Icons.pause, size: 40, color: Colors.white),
-        onClicked: () => onTogglePlaying(false),
+        onClicked: () => widget.onTogglePlaying(false),
       );
     } else {
       return buildButton(
         context,
         icon: Icon(Icons.play_arrow, size: 40, color: Colors.white),
-        onClicked: () => onTogglePlaying(true),
+        onClicked: () => widget.onTogglePlaying(true),
       );
     }
   }

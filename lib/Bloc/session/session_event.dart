@@ -20,4 +20,6 @@ class SessionEvent with _$SessionEvent {
       _EndSession;
   const factory SessionEvent.getSessionHistory(String userId) =
       _GetSessionHistory;
+  const factory SessionEvent.endExerciseWorkout(
+      Exericse exericse, String? userId) = _EndExerciseWorkout;
 }
