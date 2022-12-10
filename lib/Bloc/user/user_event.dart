@@ -10,7 +10,8 @@ class UserEvent with _$UserEvent {
       _UpdateInformationPatientRequest;
   const factory UserEvent.getProfileUserByIdRequest(String userId) =
       _GetProfileUserByIdRequest;
-
+  const factory UserEvent.checkPhonedExistInSystem(String phone) =
+      _CheckPhonedExistInSystem;
   const factory UserEvent.updateInformationSupporterRequest(String userId) =
       _UpdateInformationSupporterRequest;
   // const factory UserEvent.getProfileUserByIdRequest() =
@@ -28,4 +29,9 @@ class UserEvent with _$UserEvent {
       _SetStateFlaseInformationPatient;
   const factory UserEvent.setStateFlaseInformationSupporter() =
       _SetStateFlaseInformationSupporter;
+
+  const factory UserEvent.setStateFlaseCheckedPhone() =
+      _SetStateFlaseCheckdPhone;
+  const factory UserEvent.setStateFlaseCheckedSentOTP() =
+      _SetStateFlaseCheckedSentOTP;
 }

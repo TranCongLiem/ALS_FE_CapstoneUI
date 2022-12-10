@@ -27,6 +27,7 @@ class GetProfileUserByIdResponeModel {
     );
   }
 }
+
 class GetProfilePatientInSupporterByIdResponeModel {
   String? fullName;
   String? address;
@@ -34,9 +35,14 @@ class GetProfilePatientInSupporterByIdResponeModel {
   String? relationshipWith;
   String? phoneNumber;
   GetProfilePatientInSupporterByIdResponeModel(
-      {this.fullName, this.address, this.imageUser, this.relationshipWith,this.phoneNumber});
+      {this.fullName,
+      this.address,
+      this.imageUser,
+      this.relationshipWith,
+      this.phoneNumber});
 
-  factory GetProfilePatientInSupporterByIdResponeModel.fromJson(Map<String, dynamic> json) {
+  factory GetProfilePatientInSupporterByIdResponeModel.fromJson(
+      Map<String, dynamic> json) {
     return GetProfilePatientInSupporterByIdResponeModel(
       fullName: json["fullName"],
       address: json["address"],
@@ -92,6 +98,30 @@ class GetPhoneByIdResponeModel {
   factory GetPhoneByIdResponeModel.fromJson(Map<String, dynamic> json) {
     return GetPhoneByIdResponeModel(
       phoneNumber: json["phoneNumber"],
+    );
+  }
+}
+
+class GetPhoneRequestModel {
+  String phoneNumber;
+  GetPhoneRequestModel({required this.phoneNumber});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'phoneNumber': phoneNumber.trim(),
+    };
+    return map;
+  }
+}
+
+class GetPhoneResponeModel {
+  bool? success;
+  String? message;
+  GetPhoneResponeModel({this.success, this.message});
+
+  factory GetPhoneResponeModel.fromJson(Map<String, dynamic> json) {
+    return GetPhoneResponeModel(
+      success: json["success"],
+      message: json["message"],
     );
   }
 }

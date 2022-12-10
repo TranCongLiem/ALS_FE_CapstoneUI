@@ -215,6 +215,22 @@ class UserPatientService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+   Future<GetPhoneResponeModel> checkPhoneNumber(GetPhoneRequestModel requestModel) async {
+    String url = "https://als.cosplane.asia/api/user/CheckPhoneExistInSystem?phoneNumber=" + requestModel.phoneNumber;
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+      //  body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == 200) {
+      return GetPhoneResponeModel.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 
   Future<GetPhoneByIdResponeModel> getPhoneNumberById(
       GetPhoneByIdRequestModel requestModel) async {
