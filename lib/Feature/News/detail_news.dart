@@ -48,21 +48,20 @@ class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
                           padding: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                           child: Text(
                             widget.listKnowledge.title ?? "",
-                            style:
-                                TextStyle(fontSize: 30.0, fontFamily: 'GothamB'
-                                    //
-                                    ),
+                            style: TextStyle(fontSize: 30.0
+                                //
+                                ),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.all(20.0),
-                          child: Text(
-                            widget.listKnowledge.description ?? "",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.all(20.0),
+                        //   child: Text(
+                        //     widget.listKnowledge.description ?? "",
+                        //     style: TextStyle(
+                        //       fontSize: 20.0,
+                        //     ),
+                        //   ),
+                        // ),
                         Expanded(
                           child: ListView.builder(
                               scrollDirection: Axis.vertical,
@@ -71,8 +70,8 @@ class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
                                   widget.listKnowledge.newsDetail?.length ?? 0,
                               itemBuilder: (context, index) {
                                 return Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  width: MediaQuery.of(context).size.width,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 15, vertical: 10),
                                   child: Material(
                                     borderRadius: BorderRadius.circular(35.0),
                                     child: Column(
@@ -84,28 +83,31 @@ class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
                                                   .headerName ??
                                               "Tiêu đề",
                                           style: TextStyle(
-                                              fontSize: 30.0,
-                                              fontFamily: 'GothamB'
-                                              //
-                                              ),
+                                            fontSize: 30.0,
+                                            //
+                                          ),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.all(20.0),
-                                          child: Text(
-                                            widget
-                                                    .listKnowledge
-                                                    .newsDetail?[index]
-                                                    .descriptionHeader ??
-                                                "Mô tả",
-                                            style: TextStyle(
-                                              fontSize: 20.0,
-                                            ),
+                                        Text(
+                                          widget
+                                                  .listKnowledge
+                                                  .newsDetail?[index]
+                                                  .descriptionHeader ??
+                                              "Mô tả",
+                                          style: TextStyle(
+                                            fontSize: 20.0,
                                           ),
                                         ),
                                         Image.network(
-                                          widget.listKnowledge.newsDetail?[index].imageHeader ??"",
+                                          widget
+                                                  .listKnowledge
+                                                  .newsDetail?[index]
+                                                  .imageHeader ??
+                                              "",
                                           fit: BoxFit.cover,
-                                          height: MediaQuery.of(context).size.height *0.35,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.35,
                                           width:
                                               MediaQuery.of(context).size.width,
                                         )

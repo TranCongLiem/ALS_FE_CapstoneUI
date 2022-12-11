@@ -71,9 +71,7 @@ class _ListExceriseState extends State<ListExcerise> {
           body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
               children: [
-                //search bar
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24, vertical: 4),
                 ),
@@ -136,17 +134,18 @@ class _ListExceriseState extends State<ListExcerise> {
                     ],
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ButtonCreateEx(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    GetSessionsButton(),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ButtonCreateEx(),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      GetSessionsButton(),
+                    ],
+                  ),
                 ),
-
                 WidgetEx1(), // Lich su
                 Expanded(
                   child: BlocBuilder<SessionBloc, SessionState>(
