@@ -72,14 +72,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   autovalidateMode: AutovalidateMode.always,
                   key: formkey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.all(5),
-                          child: Image.asset('assets/images/logo_ALS.png',
-                              width: 450),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 20.0),
+                        child: Text(
+                          "TẠO MẬT KHẨU MỚI",
+                          style: TextStyle(
+                              fontSize: 30,
+                              color: greenALS,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
@@ -92,7 +96,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           ],
                           controller: emailController,
                           decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.person),
+                            suffixIcon: Icon(Icons.lock),
                             border: OutlineInputBorder(),
                             labelText: 'Mật khẩu mới',
                             hintText: 'Nhập mật khẩu mới',
@@ -128,7 +132,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               color: Colors.green,
                             ),
                             border: OutlineInputBorder(),
-                            labelText: 'Mật khẩu mới',
+                            labelText: 'Nhập lại mật khẩu',
                             hintText: 'Nhập mật khẩu mới',
                           ),
                           style: TextStyle(fontSize: 25.sp),
@@ -141,25 +145,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               AuthenticateEvent.changePasswordRequested(
                                   widget.phone, newPassword));
                         },
-                        icon: Icon(Icons.login),
-                        label: Text(
-                          'OTP',
-                          style: TextStyle(
-                              fontSize: 22.sp, fontWeight: FontWeight.bold),
+                        style: ElevatedButton.styleFrom(
+                          primary: greenALS,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
                         ),
-                        style: ButtonStyle(
-                          foregroundColor:
-                              MaterialStateProperty.all<Color>(Colors.white),
-                          backgroundColor:
-                              MaterialStateProperty.all<Color>(Colors.green),
-                          elevation: MaterialStateProperty.resolveWith<double>(
-                              (Set<MaterialState> states) {
-                            if (states.contains(MaterialState.pressed) ||
-                                (states.contains(MaterialState.disabled))) {
-                              return 0;
-                            }
-                            return 5;
-                          }),
+                        icon: Icon(Icons.login),
+                        label: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(
+                            'Đăng nhập',
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ],
@@ -169,122 +168,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               // This trailing comma makes auto-formatting nicer for build methods.
             ),
           );
-          // : Container(
-          //     width: 100.w,
-          //     height: 12.5.h,
-          //     child: Scaffold(
-          //       body: Center(
-          //           child: Container(
-          //         color: Colors.white,
-          //         child: Column(
-          //           mainAxisAlignment: MainAxisAlignment.center,
-          //           children: <Widget>[
-          //             Flexible(
-          //               flex: 1,
-          //               child: Padding(
-          //                 padding: EdgeInsets.all(5),
-          //                 child: Image.asset('assets/images/logo_ALS.png',
-          //                     width: 450),
-          //               ),
-          //             ),
-          //             Padding(
-          //               padding: EdgeInsets.all(10),
-          //               child: TextFormField(
-          //                 controller: emailController,
-          //                 autofocus: true,
-          //                 decoration: InputDecoration(
-          //                   suffixIcon: Icon(Icons.person),
-          //                   border: OutlineInputBorder(),
-          //                   labelText: 'Mật khẩu mới',
-          //                   hintText: 'Nhập mật khẩu mới',
-          //                 ),
-          //                 style: TextStyle(fontSize: 25.sp),
-          //               ),
-          //             ),
-          //             Padding(
-          //               padding: EdgeInsets.all(10),
-          //               child: TextFormField(
-          //                 keyboardType: TextInputType.numberWithOptions(
-          //                     decimal: false),
-          //                 controller: passwordController,
-          //                 obscureText: hidePassword,
-          //                 decoration: InputDecoration(
-          //                   suffixIcon: IconButton(
-          //                     icon: Icon(
-          //                       hidePassword
-          //                           ? Icons.visibility_off
-          //                           : Icons.visibility,
-          //                     ),
-          //                     onPressed: () {
-          //                       setState(() {
-          //                         hidePassword = !hidePassword;
-          //                       });
-          //                     },
-          //                     color: Colors.green,
-          //                   ),
-          //                   border: OutlineInputBorder(),
-          //                   labelText: 'Mật khẩu',
-          //                   hintText: 'Nhập lại mật khẩu',
-          //                 ),
-          //                 style: TextStyle(fontSize: 25.sp),
-          //               ),
-          //             ),
-          //             ElevatedButton.icon(
-          //               onPressed: () {
-          //                 Navigator.push(
-          //                   context,
-          //                   PageRouteBuilder(
-          //                     transitionsBuilder: (context, animation,
-          //                         secondaryAnimation, child) {
-          //                       return ScaleTransition(
-          //                         alignment: Alignment.center,
-          //                         scale: Tween<double>(begin: 0.1, end: 1)
-          //                             .animate(
-          //                           CurvedAnimation(
-          //                             parent: animation,
-          //                             curve: Curves.bounceIn,
-          //                           ),
-          //                         ),
-          //                         child: child,
-          //                       );
-          //                     },
-          //                     transitionDuration: Duration(seconds: 1),
-          //                     pageBuilder: (BuildContext context,
-          //                         Animation<double> animation,
-          //                         Animation<double> secondaryAnimation) {
-          //                       return NewFeed();
-          //                     },
-          //                   ),
-          //                 );
-          //               },
-          //               icon: Icon(Icons.login),
-          //               label: Text(
-          //                 'Xác nhận',
-          //                 style: TextStyle(
-          //                     fontSize: 22.sp, fontFamily: 'GothamB'),
-          //               ),
-          //               style: ButtonStyle(
-          //                 foregroundColor: MaterialStateProperty.all<Color>(
-          //                     Colors.white),
-          //                 backgroundColor: MaterialStateProperty.all<Color>(
-          //                     Colors.green),
-          //                 elevation:
-          //                     MaterialStateProperty.resolveWith<double>(
-          //                         (Set<MaterialState> states) {
-          //                   if (states.contains(MaterialState.pressed) ||
-          //                       (states.contains(MaterialState.disabled))) {
-          //                     return 0;
-          //                   }
-          //                   return 5;
-          //                 }),
-          //               ),
-          //             ),
-          //           ],
-          //         ),
-          //       )),
-          //       // This trailing comma makes auto-formatting nicer for build methods.
-          //     ),
-          //   );
         },
       );
     });

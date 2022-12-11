@@ -261,7 +261,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }),
                               ),
                             ),
-                            ElevatedButton.icon(
+                            TextButton(
                               onPressed: () {
                                 Navigator.push(
                                   context,
@@ -289,29 +289,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 );
                               },
-                              icon: Icon(Icons.login),
-                              label: Text(
-                                'OTP',
+                              child: Text(
+                                'Quên mật khẩu',
                                 style: TextStyle(
-                                    fontSize: 22.sp, fontFamily: 'GothamB'),
-                              ),
-                              style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.white),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.green),
-                                elevation:
-                                    MaterialStateProperty.resolveWith<double>(
-                                        (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed) ||
-                                      (states
-                                          .contains(MaterialState.disabled))) {
-                                    return 0;
-                                  }
-                                  return 5;
-                                }),
+                                    fontSize: 18.sp,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black),
                               ),
                             ),
                             // TextButton(

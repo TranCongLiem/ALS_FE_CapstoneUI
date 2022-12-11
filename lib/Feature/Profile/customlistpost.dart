@@ -4,6 +4,7 @@ import 'package:capstone_ui/Bloc/react_post/react_post_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:like_button/like_button.dart';
 import 'package:readmore/readmore.dart';
 import 'package:timeago/timeago.dart' as timeago;
@@ -105,8 +106,14 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                               PrivatePost(widget.listPost.postId
                                                   .toString());
                                             });
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    'Bài viết đang ở chế độ riêng tư',
+                                                backgroundColor: greenALS,
+                                                fontSize: 18.0);
                                           },
-                                          child: Text('Chỉ mình tôi'),
+                                          child: Text('Công khai',
+                                              style: TextStyle(fontSize: 18.0)),
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor:
                                                   Colors.green[300]),
@@ -117,8 +124,20 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                               PublicPost(widget.listPost.postId
                                                   .toString());
                                             });
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    'Bài viết đang ở chế độ công khai',
+                                                backgroundColor: greenALS,
+                                                fontSize: 18.0);
                                           },
-                                          child: Text('Chỉ mình tôi'))
+                                          child: Text(
+                                            'Riêng tư',
+                                            style: TextStyle(fontSize: 18.0),
+                                          ),
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor:
+                                                  Colors.grey[400]),
+                                        )
                                 ],
                               ),
                               const SizedBox(height: 4.0),

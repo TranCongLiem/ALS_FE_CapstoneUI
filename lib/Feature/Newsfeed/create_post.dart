@@ -226,7 +226,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                           color: Colors.white,
                                         )),
                                     Text(
-                                      'Tạo bài viết',
+                                      'Tạo nội dung',
                                       style: TextStyle(
                                           fontSize: 22.0,
                                           fontWeight: FontWeight.bold,

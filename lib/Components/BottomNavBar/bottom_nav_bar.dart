@@ -16,12 +16,12 @@ class MyBottomNavBar extends StatelessWidget {
       if (state is BottomNavBarIndex) {
         return BottomNavigationBar(
           currentIndex: state.index,
-          showUnselectedLabels: true,
+          showUnselectedLabels: false,
           selectedItemColor: greenALS,
           unselectedItemColor: Colors.grey,
-          unselectedFontSize: 15,
-          selectedFontSize: 15,
-          iconSize: 30.0,
+          unselectedFontSize: 20,
+          selectedFontSize: 20,
+          iconSize: 35.0,
           onTap: (index) {
             if (NavItems().items[index].destinationChecker()) {
               BlocProvider.of<BottomNavBarBloc>(context)
