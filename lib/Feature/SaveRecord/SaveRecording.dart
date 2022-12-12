@@ -29,6 +29,7 @@ class _SaveRecordingState extends State<SaveRecording> {
   late stt.SpeechToText _speech;
   bool _isListening = false;
   String valueText = '';
+  String titleText = '';
   String _textSpeech = '';
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
@@ -147,7 +148,8 @@ class _SaveRecordingState extends State<SaveRecording> {
                       if (isSelected[0])
                         getGraphWidget(state2.userId.toString()),
                       //văn bản
-                      if (isSelected[1]) getGraphWidget2(), //giọng nói
+                      if (isSelected[1])
+                        getGraphWidget2(state2.userId.toString()), //giọng nói
                     ],
                   ),
                 ),
@@ -182,9 +184,11 @@ class _SaveRecordingState extends State<SaveRecording> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                        textCapitalization: TextCapitalization.words,
                         maxLength: 20,
                         decoration: InputDecoration(
-                            labelText: _textSpeech,
+                            // labelText: _textSpeech,
+                            labelText: 'Tên bản ghi',
                             suffixIcon: Icon(
                               Icons.description,
                               color: greenALS,
@@ -203,9 +207,9 @@ class _SaveRecordingState extends State<SaveRecording> {
                           }
                         },
                         onChanged: (value) {
-                          context
-                              .read<CreateRecordBloc>()
-                              .add(CreateRecordEvent.recordNameChanged(value));
+                          setState(() {
+                            titleText = value;
+                          });
                         },
                       ),
                     ),
@@ -238,6 +242,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                         padding: const EdgeInsets.all(15.0),
                         child: FeatureButtonsViewTextFunction(
                           speakText: valueText,
+                          titleText: titleText,
                         ),
                       ),
                     ),
@@ -251,7 +256,7 @@ class _SaveRecordingState extends State<SaveRecording> {
     );
   }
 
-  Widget getGraphWidget2() {
+  Widget getGraphWidget2(String userId) {
     return Expanded(
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -266,7 +271,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                   textCapitalization: TextCapitalization.words,
                   controller: titleController,
                   decoration: InputDecoration(
-                      labelText: 'Mô tả',
+                      labelText: 'Tên bản ghi',
                       suffixIcon: IconButton(
                         onPressed: (() {
                           onListen();
@@ -292,6 +297,7 @@ class _SaveRecordingState extends State<SaveRecording> {
               child: FeatureButtonsView(
                 onUploadComplete: _onUploadComplete,
                 titleText: _textSpeech,
+                userId: userId,
               ),
             ),
           ],
@@ -318,41 +324,6 @@ class _SaveRecordingState extends State<SaveRecording> {
           color: greenALS,
           width: 2,
         ));
-  }
-
-  Future<void> _onFileUploadButtonPressed(
-      String filepath, String userId) async {
-    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    setState(() {
-      _isUploading = true;
-    });
-    try {
-      print('TNT' + filepath.trim());
-      String filepath3 =
-          '/storage/emulated/0/Android/data/com.example.capstone_ui/files/' +
-              '1667639447029.aac';
-      await firebaseStorage
-          .ref()
-          .child('upload-voice-firebase')
-          .child(userId)
-          .child(
-              filepath3.substring(filepath3.lastIndexOf('/'), filepath3.length))
-          .putFile(File(filepath3));
-      context
-          .read<CreateRecordBloc>()
-          .add(CreateRecordEvent.createRecordRequest(userId));
-    } catch (error) {
-      print('Error occured while uploading to Firebase ${error.toString()}');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error occured while uploading'),
-        ),
-      );
-    } finally {
-      setState(() {
-        _isUploading = false;
-      });
-    }
   }
 
   void validate() {

@@ -11,6 +11,7 @@ class CreateRecordState with _$CreateRecordState {
     bool? success,
     String? message,
     String? errorMessage,
+    String? errorMessageText,
   }) = _CreateRecordState;
 
   factory CreateRecordState.initial() => CreateRecordState(

@@ -15,9 +15,11 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 
 class FeatureButtonsViewTextFunction extends StatefulWidget {
   final String speakText;
+  final String titleText;
   const FeatureButtonsViewTextFunction({
     Key? key,
     required this.speakText,
+    required this.titleText,
   }) : super(key: key);
   @override
   _FeatureButtonsViewTextFunctionState createState() =>
@@ -51,7 +53,7 @@ class _FeatureButtonsViewTextFunctionState
       builder: (context, state2) {
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
           listener: (context, state) {
-            if (state.errorMessage != '' && state.errorMessage != null) {
+            if (state.errorMessageText == 'Tên record đã tồn tại') {
               context
                   .read<CreateRecordBloc>()
                   .add(CreateRecordEvent.setErrorMessageRequested());
@@ -72,7 +74,7 @@ class _FeatureButtonsViewTextFunctionState
                             fontSize: 21.0, fontWeight: FontWeight.bold),
                       ),
                       content: Text(
-                        'Tên ${state.recordName} đã tồn tại',
+                        'Tên ${widget.titleText} đã tồn tại',
                         style: TextStyle(fontSize: 19.0),
                       ),
                       actions: [
@@ -84,11 +86,11 @@ class _FeatureButtonsViewTextFunctionState
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red),
+                              backgroundColor: Colors.green[800]),
                           onPressed: () {
                             context.read<CreateRecordBloc>().add(
                                 CreateRecordEvent.createRecordConfirmedRequest(
-                                    state2.userId));
+                                    state2.userId, widget.titleText));
                             Navigator.pop(context);
                           },
                           child: Text(
@@ -104,7 +106,7 @@ class _FeatureButtonsViewTextFunctionState
               );
             }
             if (state.isCreated) {
-               _onFileUploadButtonPressed(state2.userId);
+              _onFileUploadButtonPressed(state2.userId);
               Navigator.push(
                 context,
                 PageRouteBuilder(
@@ -189,7 +191,7 @@ class _FeatureButtonsViewTextFunctionState
                               onPressed: () => context
                                   .read<CreateRecordBloc>()
                                   .add(CreateRecordEvent.createRecordRequest(
-                                      state2.userId)),
+                                      state2.userId, widget.titleText)),
                               label: Text(''),
                             ),
                           ],
