@@ -15,6 +15,8 @@ class UserState with _$UserState {
     required bool isUpdatedProfileSupporter,
     required bool isUpdatedInformationPatient,
     required bool isUpdatedInformationSupporter,
+    required bool isCheckedPhoneNumber,
+    required bool isCheckedSentOTP,
     String? errorMessage,
     bool? success,
     String? message,
@@ -32,5 +34,7 @@ class UserState with _$UserState {
         isUpdatedInformationPatient: false,
         isUpdatedInformationSupporter: false,
         isUpdatedProfileSupporter: false,
+        isCheckedPhoneNumber: false,
+        isCheckedSentOTP: false,
       );
 }

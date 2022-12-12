@@ -3,7 +3,6 @@ import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
 import 'package:capstone_ui/Login/update_info.dart';
 import 'package:capstone_ui/Login/update_info_supporter.dart';
-import 'package:capstone_ui/Login/verify_phone.dart';
 import 'package:capstone_ui/Model/UpdateDeviceTokenMobile.dart';
 import 'package:capstone_ui/services/api_login.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -17,6 +16,7 @@ import '../Feature/Chat/constants/color_constants.dart';
 import '../Feature/Supporter/Newsfeed/newfeeds.dart';
 import '../Register/role_screen.dart';
 import '../Splash/SharePreKey.dart';
+import 'otp.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -259,6 +259,42 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                   return 5;
                                 }),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionsBuilder: (context, animation,
+                                        secondaryAnimation, child) {
+                                      return ScaleTransition(
+                                        alignment: Alignment.center,
+                                        scale: Tween<double>(begin: 0.1, end: 1)
+                                            .animate(
+                                          CurvedAnimation(
+                                            parent: animation,
+                                            curve: Curves.bounceIn,
+                                          ),
+                                        ),
+                                        child: child,
+                                      );
+                                    },
+                                    transitionDuration: Duration(seconds: 1),
+                                    pageBuilder: (BuildContext context,
+                                        Animation<double> animation,
+                                        Animation<double> secondaryAnimation) {
+                                      return OTPScreen();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                'Quên mật khẩu',
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontStyle: FontStyle.italic,
+                                    color: Colors.black),
                               ),
                             ),
                             // TextButton(

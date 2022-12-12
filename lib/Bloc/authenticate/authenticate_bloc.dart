@@ -64,9 +64,7 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_fullNameChanged>((event, emit) {
       emit(state.copyWith(fullName: event.fullName));
     });
-    on<_UpdateRelationshipwith>((event, emit) {
-      emit(state.copyWith(relationshipWith: event.relationsipwith));
-    });
+
     on<_RegistrationSupporterRequested>((event, emit) async {
       RegisterRequestModel reqModel = RegisterRequestModel(
           phoneNumber: state.phoneNumberSupporter,
@@ -82,6 +80,24 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
         ));
       } else {
         emit(state.copyWith(errorMessage: "Số điện thoại đã tồn tại"));
+        debugPrint(state.phoneNumber);
+      }
+    });
+
+    on<_ChangePasswordRequested>((event, emit) async {
+      ForgotPasswordRequestModel reqModel = ForgotPasswordRequestModel(
+          phoneNumber: event.phoneNumber, newPassword: event.newPassword);
+      final result = await _userService.forgotPassword(reqModel);
+      if (result.role != null && result.phoneNumber != null) {
+        emit(state.copyWith(
+          userId: result.userId ?? '',
+          phoneNumber: result.phoneNumber ?? '',
+          role: result.role,
+          fullName: result.fullName ?? '',
+          isChangedPassword: true,
+        ));
+      } else {
+        emit(state.copyWith(errorMessage: "Đổi mật khẩu không thành công"));
         debugPrint(state.phoneNumber);
       }
     });
@@ -142,6 +158,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
 
     on<_CheckLoginFalseRequested>((event, emit) {
       emit(state.copyWith(isCheckLogin: false));
+    });
+    on<_SetCheckFalseChangedPassword>((event, emit) {
+      emit(state.copyWith(isChangedPassword: false));
     });
   }
 }

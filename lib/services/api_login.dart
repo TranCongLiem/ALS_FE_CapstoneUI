@@ -123,6 +123,32 @@ class UserService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+  Future<ForgotPasswordResponeModel> forgotPassword(ForgotPasswordRequestModel requestModel) async {
+    //String url = "https://reqres.in/api/login";
+
+    String url = "https://als.cosplane.asia/api/user/UpdateNewPasswordMobile";
+
+
+    final response = await http.put(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(requestModel.toJson()),
+    );
+    if (response.statusCode == HttpStatus.ok) {
+      ForgotPasswordResponeModel a = new ForgotPasswordResponeModel();
+      if (response.body == 'Update new password Fail') {
+        return a;
+      } else {
+        UserService.authenticated = true;
+        return ForgotPasswordResponeModel.fromJson(json.decode(response.body));
+      }
+    } else {
+      UserService.authenticated = false;
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
 
   bool Logout() {
     authenticated = false;

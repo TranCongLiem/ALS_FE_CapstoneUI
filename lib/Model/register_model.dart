@@ -29,7 +29,47 @@ class RegisterResponseModel {
       fullName: json["fullName"],
     );
 
+    //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
+  }
+}
 
+class ForgotPasswordRequestModel {
+  String phoneNumber;
+  String newPassword;
+
+  ForgotPasswordRequestModel(
+      {required this.phoneNumber, required this.newPassword});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'phoneNumber': phoneNumber.trim(),
+      'newPassword': newPassword.trim()
+    };
+    return map;
+  }
+}
+
+class ForgotPasswordResponeModel {
+  String? userId;
+  String? phoneNumber;
+  String? role;
+  String? fullName;
+  String? relationshipWith;
+  //String? message;
+  ForgotPasswordResponeModel(
+      {this.userId,
+      this.phoneNumber,
+      this.role,
+      this.fullName,
+      this.relationshipWith});
+
+  factory ForgotPasswordResponeModel.fromJson(Map<String, dynamic> json) {
+    return ForgotPasswordResponeModel(
+      userId: json["userId"] ?? '',
+      role: json["role"] ?? '',
+      phoneNumber: json["phoneNumber"] ?? '',
+      fullName: json["fullName"] ?? '',
+      relationshipWith: json["relationshipWith"] ?? '',
+    );
     //message: json["role"] ? "Success" : "Invalid Phone Number or Password");
   }
 }

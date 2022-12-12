@@ -11,12 +11,15 @@ class AuthenticateState with _$AuthenticateState {
     required String passwordPatient,
     required String phoneNumberSupporter,
     required String passwordSupporter,
+    required String phoneNumberChangePassword,
+    required String passwordChanged,
     required String fullName,
     required bool isAuthenticated,
     required String relationshipWith,
     required bool isRegisterPatient,
     required bool isRegisterSupporter,
     required bool isCheckLogin,
+    required bool isChangedPassword,
     String? role,
     String? errorMessage,
   }) = _AuthenticateState;
@@ -32,9 +35,12 @@ class AuthenticateState with _$AuthenticateState {
         passwordPatient: '',
         phoneNumberSupporter: '',
         passwordSupporter: '',
+        phoneNumberChangePassword: '',
+        passwordChanged: '',
         isAuthenticated: false,
         relationshipWith: '',
         isCheckLogin: false,
+        isChangedPassword: false,
       );
 
   factory AuthenticateState.Logout() => AuthenticateState(
@@ -48,9 +54,12 @@ class AuthenticateState with _$AuthenticateState {
         passwordPatient: '',
         phoneNumberSupporter: '',
         passwordSupporter: '',
+        phoneNumberChangePassword: '',
+        passwordChanged: '',
         isAuthenticated: false,
         relationshipWith: '',
         isCheckLogin: false,
+        isChangedPassword: false,
       );
 }
 

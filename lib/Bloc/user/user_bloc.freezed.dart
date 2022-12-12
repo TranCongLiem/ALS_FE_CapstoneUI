@@ -22,6 +22,7 @@ mixin _$UserEvent {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -33,6 +34,8 @@ mixin _$UserEvent {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +44,7 @@ mixin _$UserEvent {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -52,6 +56,8 @@ mixin _$UserEvent {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +66,7 @@ mixin _$UserEvent {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -71,6 +78,8 @@ mixin _$UserEvent {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -84,6 +93,8 @@ mixin _$UserEvent {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -99,6 +110,10 @@ mixin _$UserEvent {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -111,6 +126,7 @@ mixin _$UserEvent {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -125,6 +141,10 @@ mixin _$UserEvent {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -137,6 +157,7 @@ mixin _$UserEvent {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -151,6 +172,10 @@ mixin _$UserEvent {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -244,6 +269,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -255,6 +281,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return updateProfilePatientRequest(userId);
   }
@@ -266,6 +294,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -277,6 +306,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return updateProfilePatientRequest?.call(userId);
   }
@@ -288,6 +319,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -299,6 +331,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateProfilePatientRequest != null) {
@@ -318,6 +352,8 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -333,6 +369,10 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateProfilePatientRequest(this);
   }
@@ -348,6 +388,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -362,6 +403,10 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateProfilePatientRequest?.call(this);
   }
@@ -377,6 +422,7 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -391,6 +437,10 @@ class _$_UpdateProfilePatientRequest implements _UpdateProfilePatientRequest {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateProfilePatientRequest != null) {
@@ -484,6 +534,7 @@ class _$_UpdateProfileSupporterRequest
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -495,6 +546,8 @@ class _$_UpdateProfileSupporterRequest
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return updateProfileSupporterRequest(userId);
   }
@@ -506,6 +559,7 @@ class _$_UpdateProfileSupporterRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -517,6 +571,8 @@ class _$_UpdateProfileSupporterRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return updateProfileSupporterRequest?.call(userId);
   }
@@ -528,6 +584,7 @@ class _$_UpdateProfileSupporterRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -539,6 +596,8 @@ class _$_UpdateProfileSupporterRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateProfileSupporterRequest != null) {
@@ -558,6 +617,8 @@ class _$_UpdateProfileSupporterRequest
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -573,6 +634,10 @@ class _$_UpdateProfileSupporterRequest
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateProfileSupporterRequest(this);
   }
@@ -588,6 +653,7 @@ class _$_UpdateProfileSupporterRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -602,6 +668,10 @@ class _$_UpdateProfileSupporterRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateProfileSupporterRequest?.call(this);
   }
@@ -617,6 +687,7 @@ class _$_UpdateProfileSupporterRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -631,6 +702,10 @@ class _$_UpdateProfileSupporterRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateProfileSupporterRequest != null) {
@@ -725,6 +800,7 @@ class _$_UpdateInformationPatientRequest
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -736,6 +812,8 @@ class _$_UpdateInformationPatientRequest
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationPatientRequest(userId);
   }
@@ -747,6 +825,7 @@ class _$_UpdateInformationPatientRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -758,6 +837,8 @@ class _$_UpdateInformationPatientRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationPatientRequest?.call(userId);
   }
@@ -769,6 +850,7 @@ class _$_UpdateInformationPatientRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -780,6 +862,8 @@ class _$_UpdateInformationPatientRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateInformationPatientRequest != null) {
@@ -799,6 +883,8 @@ class _$_UpdateInformationPatientRequest
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -814,6 +900,10 @@ class _$_UpdateInformationPatientRequest
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationPatientRequest(this);
   }
@@ -829,6 +919,7 @@ class _$_UpdateInformationPatientRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -843,6 +934,10 @@ class _$_UpdateInformationPatientRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationPatientRequest?.call(this);
   }
@@ -858,6 +953,7 @@ class _$_UpdateInformationPatientRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -872,6 +968,10 @@ class _$_UpdateInformationPatientRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateInformationPatientRequest != null) {
@@ -965,6 +1065,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -976,6 +1077,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getProfileUserByIdRequest(userId);
   }
@@ -987,6 +1090,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -998,6 +1102,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getProfileUserByIdRequest?.call(userId);
   }
@@ -1009,6 +1115,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1020,6 +1127,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getProfileUserByIdRequest != null) {
@@ -1039,6 +1148,8 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -1054,6 +1165,10 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getProfileUserByIdRequest(this);
   }
@@ -1069,6 +1184,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1083,6 +1199,10 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getProfileUserByIdRequest?.call(this);
   }
@@ -1098,6 +1218,7 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1112,6 +1233,10 @@ class _$_GetProfileUserByIdRequest implements _GetProfileUserByIdRequest {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getProfileUserByIdRequest != null) {
@@ -1128,6 +1253,269 @@ abstract class _GetProfileUserByIdRequest implements UserEvent {
   String get userId;
   @JsonKey(ignore: true)
   _$$_GetProfileUserByIdRequestCopyWith<_$_GetProfileUserByIdRequest>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_CheckPhonedExistInSystemCopyWith<$Res> {
+  factory _$$_CheckPhonedExistInSystemCopyWith(
+          _$_CheckPhonedExistInSystem value,
+          $Res Function(_$_CheckPhonedExistInSystem) then) =
+      __$$_CheckPhonedExistInSystemCopyWithImpl<$Res>;
+  $Res call({String phone});
+}
+
+/// @nodoc
+class __$$_CheckPhonedExistInSystemCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_CheckPhonedExistInSystemCopyWith<$Res> {
+  __$$_CheckPhonedExistInSystemCopyWithImpl(_$_CheckPhonedExistInSystem _value,
+      $Res Function(_$_CheckPhonedExistInSystem) _then)
+      : super(_value, (v) => _then(v as _$_CheckPhonedExistInSystem));
+
+  @override
+  _$_CheckPhonedExistInSystem get _value =>
+      super._value as _$_CheckPhonedExistInSystem;
+
+  @override
+  $Res call({
+    Object? phone = freezed,
+  }) {
+    return _then(_$_CheckPhonedExistInSystem(
+      phone == freezed
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CheckPhonedExistInSystem implements _CheckPhonedExistInSystem {
+  const _$_CheckPhonedExistInSystem(this.phone);
+
+  @override
+  final String phone;
+
+  @override
+  String toString() {
+    return 'UserEvent.checkPhonedExistInSystem(phone: $phone)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CheckPhonedExistInSystem &&
+            const DeepCollectionEquality().equals(other.phone, phone));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(phone));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CheckPhonedExistInSystemCopyWith<_$_CheckPhonedExistInSystem>
+      get copyWith => __$$_CheckPhonedExistInSystemCopyWithImpl<
+          _$_CheckPhonedExistInSystem>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
+  }) {
+    return checkPhonedExistInSystem(phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+  }) {
+    return checkPhonedExistInSystem?.call(phone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (checkPhonedExistInSystem != null) {
+      return checkPhonedExistInSystem(phone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return checkPhonedExistInSystem(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return checkPhonedExistInSystem?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (checkPhonedExistInSystem != null) {
+      return checkPhonedExistInSystem(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _CheckPhonedExistInSystem implements UserEvent {
+  const factory _CheckPhonedExistInSystem(final String phone) =
+      _$_CheckPhonedExistInSystem;
+
+  String get phone;
+  @JsonKey(ignore: true)
+  _$$_CheckPhonedExistInSystemCopyWith<_$_CheckPhonedExistInSystem>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1206,6 +1594,7 @@ class _$_UpdateInformationSupporterRequest
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -1217,6 +1606,8 @@ class _$_UpdateInformationSupporterRequest
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationSupporterRequest(userId);
   }
@@ -1228,6 +1619,7 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1239,6 +1631,8 @@ class _$_UpdateInformationSupporterRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationSupporterRequest?.call(userId);
   }
@@ -1250,6 +1644,7 @@ class _$_UpdateInformationSupporterRequest
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1261,6 +1656,8 @@ class _$_UpdateInformationSupporterRequest
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateInformationSupporterRequest != null) {
@@ -1280,6 +1677,8 @@ class _$_UpdateInformationSupporterRequest
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -1295,6 +1694,10 @@ class _$_UpdateInformationSupporterRequest
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationSupporterRequest(this);
   }
@@ -1310,6 +1713,7 @@ class _$_UpdateInformationSupporterRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1324,6 +1728,10 @@ class _$_UpdateInformationSupporterRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return updateInformationSupporterRequest?.call(this);
   }
@@ -1339,6 +1747,7 @@ class _$_UpdateInformationSupporterRequest
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1353,6 +1762,10 @@ class _$_UpdateInformationSupporterRequest
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (updateInformationSupporterRequest != null) {
@@ -1441,6 +1854,7 @@ class _$_GetFullName implements _GetFullName {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -1452,6 +1866,8 @@ class _$_GetFullName implements _GetFullName {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getFullName(fullName);
   }
@@ -1463,6 +1879,7 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1474,6 +1891,8 @@ class _$_GetFullName implements _GetFullName {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getFullName?.call(fullName);
   }
@@ -1485,6 +1904,7 @@ class _$_GetFullName implements _GetFullName {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1496,6 +1916,8 @@ class _$_GetFullName implements _GetFullName {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getFullName != null) {
@@ -1515,6 +1937,8 @@ class _$_GetFullName implements _GetFullName {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -1530,6 +1954,10 @@ class _$_GetFullName implements _GetFullName {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getFullName(this);
   }
@@ -1545,6 +1973,7 @@ class _$_GetFullName implements _GetFullName {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1559,6 +1988,10 @@ class _$_GetFullName implements _GetFullName {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getFullName?.call(this);
   }
@@ -1574,6 +2007,7 @@ class _$_GetFullName implements _GetFullName {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1588,6 +2022,10 @@ class _$_GetFullName implements _GetFullName {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getFullName != null) {
@@ -1674,6 +2112,7 @@ class _$_GetAddress implements _GetAddress {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -1685,6 +2124,8 @@ class _$_GetAddress implements _GetAddress {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getAddress(address);
   }
@@ -1696,6 +2137,7 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1707,6 +2149,8 @@ class _$_GetAddress implements _GetAddress {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getAddress?.call(address);
   }
@@ -1718,6 +2162,7 @@ class _$_GetAddress implements _GetAddress {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1729,6 +2174,8 @@ class _$_GetAddress implements _GetAddress {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -1748,6 +2195,8 @@ class _$_GetAddress implements _GetAddress {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -1763,6 +2212,10 @@ class _$_GetAddress implements _GetAddress {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getAddress(this);
   }
@@ -1778,6 +2231,7 @@ class _$_GetAddress implements _GetAddress {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1792,6 +2246,10 @@ class _$_GetAddress implements _GetAddress {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getAddress?.call(this);
   }
@@ -1807,6 +2265,7 @@ class _$_GetAddress implements _GetAddress {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -1821,6 +2280,10 @@ class _$_GetAddress implements _GetAddress {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getAddress != null) {
@@ -1907,6 +2370,7 @@ class _$_GetImageUser implements _GetImageUser {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -1918,6 +2382,8 @@ class _$_GetImageUser implements _GetImageUser {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getImageUser(imageUser);
   }
@@ -1929,6 +2395,7 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1940,6 +2407,8 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getImageUser?.call(imageUser);
   }
@@ -1951,6 +2420,7 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -1962,6 +2432,8 @@ class _$_GetImageUser implements _GetImageUser {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getImageUser != null) {
@@ -1981,6 +2453,8 @@ class _$_GetImageUser implements _GetImageUser {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -1996,6 +2470,10 @@ class _$_GetImageUser implements _GetImageUser {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getImageUser(this);
   }
@@ -2011,6 +2489,7 @@ class _$_GetImageUser implements _GetImageUser {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2025,6 +2504,10 @@ class _$_GetImageUser implements _GetImageUser {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getImageUser?.call(this);
   }
@@ -2040,6 +2523,7 @@ class _$_GetImageUser implements _GetImageUser {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2054,6 +2538,10 @@ class _$_GetImageUser implements _GetImageUser {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getImageUser != null) {
@@ -2140,6 +2628,7 @@ class _$_Getcondition implements _Getcondition {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -2151,6 +2640,8 @@ class _$_Getcondition implements _Getcondition {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getcondition(condition);
   }
@@ -2162,6 +2653,7 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2173,6 +2665,8 @@ class _$_Getcondition implements _Getcondition {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getcondition?.call(condition);
   }
@@ -2184,6 +2678,7 @@ class _$_Getcondition implements _Getcondition {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2195,6 +2690,8 @@ class _$_Getcondition implements _Getcondition {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getcondition != null) {
@@ -2214,6 +2711,8 @@ class _$_Getcondition implements _Getcondition {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -2229,6 +2728,10 @@ class _$_Getcondition implements _Getcondition {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getcondition(this);
   }
@@ -2244,6 +2747,7 @@ class _$_Getcondition implements _Getcondition {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2258,6 +2762,10 @@ class _$_Getcondition implements _Getcondition {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getcondition?.call(this);
   }
@@ -2273,6 +2781,7 @@ class _$_Getcondition implements _Getcondition {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2287,6 +2796,10 @@ class _$_Getcondition implements _Getcondition {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getcondition != null) {
@@ -2373,6 +2886,7 @@ class _$_Getcause implements _Getcause {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -2384,6 +2898,8 @@ class _$_Getcause implements _Getcause {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getcause(cause);
   }
@@ -2395,6 +2911,7 @@ class _$_Getcause implements _Getcause {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2406,6 +2923,8 @@ class _$_Getcause implements _Getcause {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getcause?.call(cause);
   }
@@ -2417,6 +2936,7 @@ class _$_Getcause implements _Getcause {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2428,6 +2948,8 @@ class _$_Getcause implements _Getcause {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getcause != null) {
@@ -2447,6 +2969,8 @@ class _$_Getcause implements _Getcause {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -2462,6 +2986,10 @@ class _$_Getcause implements _Getcause {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getcause(this);
   }
@@ -2477,6 +3005,7 @@ class _$_Getcause implements _Getcause {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2491,6 +3020,10 @@ class _$_Getcause implements _Getcause {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getcause?.call(this);
   }
@@ -2506,6 +3039,7 @@ class _$_Getcause implements _Getcause {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2520,6 +3054,10 @@ class _$_Getcause implements _Getcause {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getcause != null) {
@@ -2608,6 +3146,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -2619,6 +3158,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return getdateOfBirth(dateOfBirth);
   }
@@ -2630,6 +3171,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2641,6 +3183,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return getdateOfBirth?.call(dateOfBirth);
   }
@@ -2652,6 +3196,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2663,6 +3208,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getdateOfBirth != null) {
@@ -2682,6 +3229,8 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -2697,6 +3246,10 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return getdateOfBirth(this);
   }
@@ -2712,6 +3265,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2726,6 +3280,10 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return getdateOfBirth?.call(this);
   }
@@ -2741,6 +3299,7 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2755,6 +3314,10 @@ class _$_GetdateOfBirth implements _GetdateOfBirth {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (getdateOfBirth != null) {
@@ -2817,6 +3380,7 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -2828,6 +3392,8 @@ class _$_SetStateFlase implements _SetStateFlase {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlase();
   }
@@ -2839,6 +3405,7 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2850,6 +3417,8 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlase?.call();
   }
@@ -2861,6 +3430,7 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -2872,6 +3442,8 @@ class _$_SetStateFlase implements _SetStateFlase {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlase != null) {
@@ -2891,6 +3463,8 @@ class _$_SetStateFlase implements _SetStateFlase {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -2906,6 +3480,10 @@ class _$_SetStateFlase implements _SetStateFlase {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlase(this);
   }
@@ -2921,6 +3499,7 @@ class _$_SetStateFlase implements _SetStateFlase {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2935,6 +3514,10 @@ class _$_SetStateFlase implements _SetStateFlase {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlase?.call(this);
   }
@@ -2950,6 +3533,7 @@ class _$_SetStateFlase implements _SetStateFlase {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -2964,6 +3548,10 @@ class _$_SetStateFlase implements _SetStateFlase {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlase != null) {
@@ -3024,6 +3612,7 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -3035,6 +3624,8 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseSupporter();
   }
@@ -3046,6 +3637,7 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3057,6 +3649,8 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseSupporter?.call();
   }
@@ -3068,6 +3662,7 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3079,6 +3674,8 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseSupporter != null) {
@@ -3098,6 +3695,8 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -3113,6 +3712,10 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseSupporter(this);
   }
@@ -3128,6 +3731,7 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3142,6 +3746,10 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseSupporter?.call(this);
   }
@@ -3157,6 +3765,7 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3171,6 +3780,10 @@ class _$_SetStateFlaseSupporter implements _SetStateFlaseSupporter {
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseSupporter != null) {
@@ -3234,6 +3847,7 @@ class _$_SetStateFlaseInformationPatient
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -3245,6 +3859,8 @@ class _$_SetStateFlaseInformationPatient
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationPatient();
   }
@@ -3256,6 +3872,7 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3267,6 +3884,8 @@ class _$_SetStateFlaseInformationPatient
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationPatient?.call();
   }
@@ -3278,6 +3897,7 @@ class _$_SetStateFlaseInformationPatient
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3289,6 +3909,8 @@ class _$_SetStateFlaseInformationPatient
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseInformationPatient != null) {
@@ -3308,6 +3930,8 @@ class _$_SetStateFlaseInformationPatient
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -3323,6 +3947,10 @@ class _$_SetStateFlaseInformationPatient
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationPatient(this);
   }
@@ -3338,6 +3966,7 @@ class _$_SetStateFlaseInformationPatient
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3352,6 +3981,10 @@ class _$_SetStateFlaseInformationPatient
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationPatient?.call(this);
   }
@@ -3367,6 +4000,7 @@ class _$_SetStateFlaseInformationPatient
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3381,6 +4015,10 @@ class _$_SetStateFlaseInformationPatient
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseInformationPatient != null) {
@@ -3445,6 +4083,7 @@ class _$_SetStateFlaseInformationSupporter
     required TResult Function(String userId) updateProfileSupporterRequest,
     required TResult Function(String userId) updateInformationPatientRequest,
     required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
     required TResult Function(String userId) updateInformationSupporterRequest,
     required TResult Function(String fullName) getFullName,
     required TResult Function(String address) getAddress,
@@ -3456,6 +4095,8 @@ class _$_SetStateFlaseInformationSupporter
     required TResult Function() setStateFlaseSupporter,
     required TResult Function() setStateFlaseInformationPatient,
     required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationSupporter();
   }
@@ -3467,6 +4108,7 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3478,6 +4120,8 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationSupporter?.call();
   }
@@ -3489,6 +4133,7 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function(String userId)? updateProfileSupporterRequest,
     TResult Function(String userId)? updateInformationPatientRequest,
     TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
     TResult Function(String userId)? updateInformationSupporterRequest,
     TResult Function(String fullName)? getFullName,
     TResult Function(String address)? getAddress,
@@ -3500,6 +4145,8 @@ class _$_SetStateFlaseInformationSupporter
     TResult Function()? setStateFlaseSupporter,
     TResult Function()? setStateFlaseInformationPatient,
     TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseInformationSupporter != null) {
@@ -3519,6 +4166,8 @@ class _$_SetStateFlaseInformationSupporter
         updateInformationPatientRequest,
     required TResult Function(_GetProfileUserByIdRequest value)
         getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
     required TResult Function(_UpdateInformationSupporterRequest value)
         updateInformationSupporterRequest,
     required TResult Function(_GetFullName value) getFullName,
@@ -3534,6 +4183,10 @@ class _$_SetStateFlaseInformationSupporter
         setStateFlaseInformationPatient,
     required TResult Function(_SetStateFlaseInformationSupporter value)
         setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationSupporter(this);
   }
@@ -3549,6 +4202,7 @@ class _$_SetStateFlaseInformationSupporter
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3563,6 +4217,10 @@ class _$_SetStateFlaseInformationSupporter
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
   }) {
     return setStateFlaseInformationSupporter?.call(this);
   }
@@ -3578,6 +4236,7 @@ class _$_SetStateFlaseInformationSupporter
         updateInformationPatientRequest,
     TResult Function(_GetProfileUserByIdRequest value)?
         getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
     TResult Function(_UpdateInformationSupporterRequest value)?
         updateInformationSupporterRequest,
     TResult Function(_GetFullName value)? getFullName,
@@ -3592,6 +4251,10 @@ class _$_SetStateFlaseInformationSupporter
         setStateFlaseInformationPatient,
     TResult Function(_SetStateFlaseInformationSupporter value)?
         setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
     required TResult orElse(),
   }) {
     if (setStateFlaseInformationSupporter != null) {
@@ -3607,6 +4270,473 @@ abstract class _SetStateFlaseInformationSupporter implements UserEvent {
 }
 
 /// @nodoc
+abstract class _$$_SetStateFlaseCheckdPhoneCopyWith<$Res> {
+  factory _$$_SetStateFlaseCheckdPhoneCopyWith(
+          _$_SetStateFlaseCheckdPhone value,
+          $Res Function(_$_SetStateFlaseCheckdPhone) then) =
+      __$$_SetStateFlaseCheckdPhoneCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetStateFlaseCheckdPhoneCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_SetStateFlaseCheckdPhoneCopyWith<$Res> {
+  __$$_SetStateFlaseCheckdPhoneCopyWithImpl(_$_SetStateFlaseCheckdPhone _value,
+      $Res Function(_$_SetStateFlaseCheckdPhone) _then)
+      : super(_value, (v) => _then(v as _$_SetStateFlaseCheckdPhone));
+
+  @override
+  _$_SetStateFlaseCheckdPhone get _value =>
+      super._value as _$_SetStateFlaseCheckdPhone;
+}
+
+/// @nodoc
+
+class _$_SetStateFlaseCheckdPhone implements _SetStateFlaseCheckdPhone {
+  const _$_SetStateFlaseCheckdPhone();
+
+  @override
+  String toString() {
+    return 'UserEvent.setStateFlaseCheckedPhone()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetStateFlaseCheckdPhone);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedPhone();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedPhone?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseCheckedPhone != null) {
+      return setStateFlaseCheckedPhone();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedPhone(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedPhone?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseCheckedPhone != null) {
+      return setStateFlaseCheckedPhone(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetStateFlaseCheckdPhone implements UserEvent {
+  const factory _SetStateFlaseCheckdPhone() = _$_SetStateFlaseCheckdPhone;
+}
+
+/// @nodoc
+abstract class _$$_SetStateFlaseCheckedSentOTPCopyWith<$Res> {
+  factory _$$_SetStateFlaseCheckedSentOTPCopyWith(
+          _$_SetStateFlaseCheckedSentOTP value,
+          $Res Function(_$_SetStateFlaseCheckedSentOTP) then) =
+      __$$_SetStateFlaseCheckedSentOTPCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetStateFlaseCheckedSentOTPCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements _$$_SetStateFlaseCheckedSentOTPCopyWith<$Res> {
+  __$$_SetStateFlaseCheckedSentOTPCopyWithImpl(
+      _$_SetStateFlaseCheckedSentOTP _value,
+      $Res Function(_$_SetStateFlaseCheckedSentOTP) _then)
+      : super(_value, (v) => _then(v as _$_SetStateFlaseCheckedSentOTP));
+
+  @override
+  _$_SetStateFlaseCheckedSentOTP get _value =>
+      super._value as _$_SetStateFlaseCheckedSentOTP;
+}
+
+/// @nodoc
+
+class _$_SetStateFlaseCheckedSentOTP implements _SetStateFlaseCheckedSentOTP {
+  const _$_SetStateFlaseCheckedSentOTP();
+
+  @override
+  String toString() {
+    return 'UserEvent.setStateFlaseCheckedSentOTP()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetStateFlaseCheckedSentOTP);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userId) updateProfilePatientRequest,
+    required TResult Function(String userId) updateProfileSupporterRequest,
+    required TResult Function(String userId) updateInformationPatientRequest,
+    required TResult Function(String userId) getProfileUserByIdRequest,
+    required TResult Function(String phone) checkPhonedExistInSystem,
+    required TResult Function(String userId) updateInformationSupporterRequest,
+    required TResult Function(String fullName) getFullName,
+    required TResult Function(String address) getAddress,
+    required TResult Function(String imageUser) getImageUser,
+    required TResult Function(String condition) getcondition,
+    required TResult Function(String cause) getcause,
+    required TResult Function(String dateOfBirth) getdateOfBirth,
+    required TResult Function() setStateFlase,
+    required TResult Function() setStateFlaseSupporter,
+    required TResult Function() setStateFlaseInformationPatient,
+    required TResult Function() setStateFlaseInformationSupporter,
+    required TResult Function() setStateFlaseCheckedPhone,
+    required TResult Function() setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedSentOTP();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedSentOTP?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userId)? updateProfilePatientRequest,
+    TResult Function(String userId)? updateProfileSupporterRequest,
+    TResult Function(String userId)? updateInformationPatientRequest,
+    TResult Function(String userId)? getProfileUserByIdRequest,
+    TResult Function(String phone)? checkPhonedExistInSystem,
+    TResult Function(String userId)? updateInformationSupporterRequest,
+    TResult Function(String fullName)? getFullName,
+    TResult Function(String address)? getAddress,
+    TResult Function(String imageUser)? getImageUser,
+    TResult Function(String condition)? getcondition,
+    TResult Function(String cause)? getcause,
+    TResult Function(String dateOfBirth)? getdateOfBirth,
+    TResult Function()? setStateFlase,
+    TResult Function()? setStateFlaseSupporter,
+    TResult Function()? setStateFlaseInformationPatient,
+    TResult Function()? setStateFlaseInformationSupporter,
+    TResult Function()? setStateFlaseCheckedPhone,
+    TResult Function()? setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseCheckedSentOTP != null) {
+      return setStateFlaseCheckedSentOTP();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_UpdateProfilePatientRequest value)
+        updateProfilePatientRequest,
+    required TResult Function(_UpdateProfileSupporterRequest value)
+        updateProfileSupporterRequest,
+    required TResult Function(_UpdateInformationPatientRequest value)
+        updateInformationPatientRequest,
+    required TResult Function(_GetProfileUserByIdRequest value)
+        getProfileUserByIdRequest,
+    required TResult Function(_CheckPhonedExistInSystem value)
+        checkPhonedExistInSystem,
+    required TResult Function(_UpdateInformationSupporterRequest value)
+        updateInformationSupporterRequest,
+    required TResult Function(_GetFullName value) getFullName,
+    required TResult Function(_GetAddress value) getAddress,
+    required TResult Function(_GetImageUser value) getImageUser,
+    required TResult Function(_Getcondition value) getcondition,
+    required TResult Function(_Getcause value) getcause,
+    required TResult Function(_GetdateOfBirth value) getdateOfBirth,
+    required TResult Function(_SetStateFlase value) setStateFlase,
+    required TResult Function(_SetStateFlaseSupporter value)
+        setStateFlaseSupporter,
+    required TResult Function(_SetStateFlaseInformationPatient value)
+        setStateFlaseInformationPatient,
+    required TResult Function(_SetStateFlaseInformationSupporter value)
+        setStateFlaseInformationSupporter,
+    required TResult Function(_SetStateFlaseCheckdPhone value)
+        setStateFlaseCheckedPhone,
+    required TResult Function(_SetStateFlaseCheckedSentOTP value)
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedSentOTP(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+  }) {
+    return setStateFlaseCheckedSentOTP?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_UpdateProfilePatientRequest value)?
+        updateProfilePatientRequest,
+    TResult Function(_UpdateProfileSupporterRequest value)?
+        updateProfileSupporterRequest,
+    TResult Function(_UpdateInformationPatientRequest value)?
+        updateInformationPatientRequest,
+    TResult Function(_GetProfileUserByIdRequest value)?
+        getProfileUserByIdRequest,
+    TResult Function(_CheckPhonedExistInSystem value)? checkPhonedExistInSystem,
+    TResult Function(_UpdateInformationSupporterRequest value)?
+        updateInformationSupporterRequest,
+    TResult Function(_GetFullName value)? getFullName,
+    TResult Function(_GetAddress value)? getAddress,
+    TResult Function(_GetImageUser value)? getImageUser,
+    TResult Function(_Getcondition value)? getcondition,
+    TResult Function(_Getcause value)? getcause,
+    TResult Function(_GetdateOfBirth value)? getdateOfBirth,
+    TResult Function(_SetStateFlase value)? setStateFlase,
+    TResult Function(_SetStateFlaseSupporter value)? setStateFlaseSupporter,
+    TResult Function(_SetStateFlaseInformationPatient value)?
+        setStateFlaseInformationPatient,
+    TResult Function(_SetStateFlaseInformationSupporter value)?
+        setStateFlaseInformationSupporter,
+    TResult Function(_SetStateFlaseCheckdPhone value)?
+        setStateFlaseCheckedPhone,
+    TResult Function(_SetStateFlaseCheckedSentOTP value)?
+        setStateFlaseCheckedSentOTP,
+    required TResult orElse(),
+  }) {
+    if (setStateFlaseCheckedSentOTP != null) {
+      return setStateFlaseCheckedSentOTP(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetStateFlaseCheckedSentOTP implements UserEvent {
+  const factory _SetStateFlaseCheckedSentOTP() = _$_SetStateFlaseCheckedSentOTP;
+}
+
+/// @nodoc
 mixin _$UserState {
   String get userId => throw _privateConstructorUsedError;
   String get fullName => throw _privateConstructorUsedError;
@@ -3619,6 +4749,8 @@ mixin _$UserState {
   bool get isUpdatedProfileSupporter => throw _privateConstructorUsedError;
   bool get isUpdatedInformationPatient => throw _privateConstructorUsedError;
   bool get isUpdatedInformationSupporter => throw _privateConstructorUsedError;
+  bool get isCheckedPhoneNumber => throw _privateConstructorUsedError;
+  bool get isCheckedSentOTP => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
   bool? get success => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
@@ -3644,6 +4776,8 @@ abstract class $UserStateCopyWith<$Res> {
       bool isUpdatedProfileSupporter,
       bool isUpdatedInformationPatient,
       bool isUpdatedInformationSupporter,
+      bool isCheckedPhoneNumber,
+      bool isCheckedSentOTP,
       String? errorMessage,
       bool? success,
       String? message});
@@ -3670,6 +4804,8 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
     Object? isUpdatedProfileSupporter = freezed,
     Object? isUpdatedInformationPatient = freezed,
     Object? isUpdatedInformationSupporter = freezed,
+    Object? isCheckedPhoneNumber = freezed,
+    Object? isCheckedSentOTP = freezed,
     Object? errorMessage = freezed,
     Object? success = freezed,
     Object? message = freezed,
@@ -3719,6 +4855,14 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
           ? _value.isUpdatedInformationSupporter
           : isUpdatedInformationSupporter // ignore: cast_nullable_to_non_nullable
               as bool,
+      isCheckedPhoneNumber: isCheckedPhoneNumber == freezed
+          ? _value.isCheckedPhoneNumber
+          : isCheckedPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCheckedSentOTP: isCheckedSentOTP == freezed
+          ? _value.isCheckedSentOTP
+          : isCheckedSentOTP // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -3753,6 +4897,8 @@ abstract class _$$_UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
       bool isUpdatedProfileSupporter,
       bool isUpdatedInformationPatient,
       bool isUpdatedInformationSupporter,
+      bool isCheckedPhoneNumber,
+      bool isCheckedSentOTP,
       String? errorMessage,
       bool? success,
       String? message});
@@ -3781,6 +4927,8 @@ class __$$_UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     Object? isUpdatedProfileSupporter = freezed,
     Object? isUpdatedInformationPatient = freezed,
     Object? isUpdatedInformationSupporter = freezed,
+    Object? isCheckedPhoneNumber = freezed,
+    Object? isCheckedSentOTP = freezed,
     Object? errorMessage = freezed,
     Object? success = freezed,
     Object? message = freezed,
@@ -3830,6 +4978,14 @@ class __$$_UserStateCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
           ? _value.isUpdatedInformationSupporter
           : isUpdatedInformationSupporter // ignore: cast_nullable_to_non_nullable
               as bool,
+      isCheckedPhoneNumber: isCheckedPhoneNumber == freezed
+          ? _value.isCheckedPhoneNumber
+          : isCheckedPhoneNumber // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isCheckedSentOTP: isCheckedSentOTP == freezed
+          ? _value.isCheckedSentOTP
+          : isCheckedSentOTP // ignore: cast_nullable_to_non_nullable
+              as bool,
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -3861,6 +5017,8 @@ class _$_UserState implements _UserState {
       required this.isUpdatedProfileSupporter,
       required this.isUpdatedInformationPatient,
       required this.isUpdatedInformationSupporter,
+      required this.isCheckedPhoneNumber,
+      required this.isCheckedSentOTP,
       this.errorMessage,
       this.success,
       this.message});
@@ -3888,6 +5046,10 @@ class _$_UserState implements _UserState {
   @override
   final bool isUpdatedInformationSupporter;
   @override
+  final bool isCheckedPhoneNumber;
+  @override
+  final bool isCheckedSentOTP;
+  @override
   final String? errorMessage;
   @override
   final bool? success;
@@ -3896,7 +5058,7 @@ class _$_UserState implements _UserState {
 
   @override
   String toString() {
-    return 'UserState(userId: $userId, fullName: $fullName, address: $address, imageUser: $imageUser, condition: $condition, cause: $cause, dateOfBirth: $dateOfBirth, isUpdatedProfilePatient: $isUpdatedProfilePatient, isUpdatedProfileSupporter: $isUpdatedProfileSupporter, isUpdatedInformationPatient: $isUpdatedInformationPatient, isUpdatedInformationSupporter: $isUpdatedInformationSupporter, errorMessage: $errorMessage, success: $success, message: $message)';
+    return 'UserState(userId: $userId, fullName: $fullName, address: $address, imageUser: $imageUser, condition: $condition, cause: $cause, dateOfBirth: $dateOfBirth, isUpdatedProfilePatient: $isUpdatedProfilePatient, isUpdatedProfileSupporter: $isUpdatedProfileSupporter, isUpdatedInformationPatient: $isUpdatedInformationPatient, isUpdatedInformationSupporter: $isUpdatedInformationSupporter, isCheckedPhoneNumber: $isCheckedPhoneNumber, isCheckedSentOTP: $isCheckedSentOTP, errorMessage: $errorMessage, success: $success, message: $message)';
   }
 
   @override
@@ -3923,6 +5085,10 @@ class _$_UserState implements _UserState {
                 other.isUpdatedInformationSupporter,
                 isUpdatedInformationSupporter) &&
             const DeepCollectionEquality()
+                .equals(other.isCheckedPhoneNumber, isCheckedPhoneNumber) &&
+            const DeepCollectionEquality()
+                .equals(other.isCheckedSentOTP, isCheckedSentOTP) &&
+            const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage) &&
             const DeepCollectionEquality().equals(other.success, success) &&
             const DeepCollectionEquality().equals(other.message, message));
@@ -3942,6 +5108,8 @@ class _$_UserState implements _UserState {
       const DeepCollectionEquality().hash(isUpdatedProfileSupporter),
       const DeepCollectionEquality().hash(isUpdatedInformationPatient),
       const DeepCollectionEquality().hash(isUpdatedInformationSupporter),
+      const DeepCollectionEquality().hash(isCheckedPhoneNumber),
+      const DeepCollectionEquality().hash(isCheckedSentOTP),
       const DeepCollectionEquality().hash(errorMessage),
       const DeepCollectionEquality().hash(success),
       const DeepCollectionEquality().hash(message));
@@ -3965,6 +5133,8 @@ abstract class _UserState implements UserState {
       required final bool isUpdatedProfileSupporter,
       required final bool isUpdatedInformationPatient,
       required final bool isUpdatedInformationSupporter,
+      required final bool isCheckedPhoneNumber,
+      required final bool isCheckedSentOTP,
       final String? errorMessage,
       final bool? success,
       final String? message}) = _$_UserState;
@@ -3991,6 +5161,10 @@ abstract class _UserState implements UserState {
   bool get isUpdatedInformationPatient;
   @override
   bool get isUpdatedInformationSupporter;
+  @override
+  bool get isCheckedPhoneNumber;
+  @override
+  bool get isCheckedSentOTP;
   @override
   String? get errorMessage;
   @override

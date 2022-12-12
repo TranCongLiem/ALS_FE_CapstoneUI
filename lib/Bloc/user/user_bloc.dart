@@ -93,6 +93,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
 
+    on<_CheckPhonedExistInSystem>((event, emit) async {
+      GetPhoneRequestModel reqModel = GetPhoneRequestModel(
+        phoneNumber: event.phone,
+      );
+      final result = await _userService.checkPhoneNumber(reqModel);
+      if (result.success == false) {
+        emit(state.copyWith(
+          message: result.message ?? '',
+          success: result.success,
+          isCheckedPhoneNumber: true,
+        ));
+      } else {
+        emit(state.copyWith(
+          errorMessage: "",
+          isCheckedSentOTP: true,
+        ));
+      }
+    });
+
     on<_GetProfileUserByIdRequest>((event, emit) async {
       GetProfileUserByIdRequestModel reqModel =
           GetProfileUserByIdRequestModel(userId: event.userId);
@@ -114,7 +133,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<_GetAddress>((event, emit) {
       emit(state.copyWith(address: event.address));
     });
-
 
     on<_SetStateFlase>((event, emit) {
       emit(state.copyWith(
@@ -140,6 +158,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<_SetStateFlaseInformationSupporter>((event, emit) {
       emit(state.copyWith(isUpdatedInformationSupporter: false));
+    });
+    on<_SetStateFlaseCheckdPhone>((event, emit) {
+      emit(state.copyWith(isCheckedPhoneNumber: false));
+    });
+    on<_SetStateFlaseCheckedSentOTP>((event, emit) {
+      emit(state.copyWith(isCheckedSentOTP: false));
     });
   }
 }
