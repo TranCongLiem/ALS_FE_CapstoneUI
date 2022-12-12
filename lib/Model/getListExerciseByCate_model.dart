@@ -6,6 +6,8 @@ class Exericse {
   String? ExericseID;
   String? ExerciseName;
   String? Description;
+  String? exerciseLevel;
+  String? exerciseImage;
   String? VideoLink;
   bool? status;
   String? CategoryID;
@@ -15,6 +17,8 @@ class Exericse {
     this.ExericseID,
     this.ExerciseName,
     this.Description,
+    this.exerciseLevel,
+    this.exerciseImage,
     this.VideoLink,
     this.status,
     this.CategoryID,
@@ -34,6 +38,8 @@ class Exericse {
       ExericseID: json['exerciseId'] ?? '' as String,
       ExerciseName: json['exerciseName'] ?? '' as String,
       Description: json['description'] ?? '' as String,
+      exerciseLevel: json['exerciseLevel'] ?? '' as String,
+      exerciseImage: json['exerciseImage'] ?? '' as String,
       VideoLink: json['videoLink'] ?? '' as String,
       status: json['status'] ?? '' as bool,
       CategoryID: json['categoryName'] ?? '' as String,

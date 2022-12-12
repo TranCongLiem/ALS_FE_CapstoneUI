@@ -99,3 +99,27 @@ class GetDetailKnowLedgeByIdRequest {
     return map;
   }
 }
+class GetKnowledgeByCategoryKnowledgeIdRequest {
+  String CategoryKnowLedeId;
+
+  GetKnowledgeByCategoryKnowledgeIdRequest({required this.CategoryKnowLedeId});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'categoryNewsId': CategoryKnowLedeId.toString().trim(),
+    };
+    return map;
+  }
+}
+class CategoryNewsKnowLedgeResponse{
+  String categoryNewId;
+  String categoryName;
+
+  CategoryNewsKnowLedgeResponse({ required this.categoryNewId, required this.categoryName});
+  factory CategoryNewsKnowLedgeResponse.fromJson(Map<String, dynamic> json) {
+    return CategoryNewsKnowLedgeResponse(
+      categoryNewId: json['categoryNewId'] ?? '' as String,
+      categoryName: json['categoryName'] ?? '' as String,      
+    );
+  }
+
+}

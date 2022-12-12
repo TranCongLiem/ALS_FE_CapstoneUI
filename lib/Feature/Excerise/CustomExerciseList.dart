@@ -46,7 +46,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                             child: CircleAvatar(
                               backgroundColor: Colors.green,
                               foregroundColor: Colors.green,
-                              backgroundImage: NetworkImage(
+                              backgroundImage: NetworkImage(exericse.exerciseImage??
                                   "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
                             ),
                           ),
@@ -78,7 +78,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                           //Colors.white,
                                           backgroundColor: Colors.red[400]),
                                       onPressed: () {},
-                                      child: Text(
+                                      child: Text(exericse.exerciseLevel??
                                         'Khó',
                                         style: TextStyle(
                                             fontSize: 18.0,
