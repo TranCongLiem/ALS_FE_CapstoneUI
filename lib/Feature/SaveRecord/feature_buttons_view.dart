@@ -15,11 +15,13 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 class FeatureButtonsView extends StatefulWidget {
   final Function onUploadComplete;
   final String titleText;
+  final String userId;
 
   const FeatureButtonsView({
     Key? key,
     required this.onUploadComplete,
     required this.titleText,
+    required this.userId,
   }) : super(key: key);
   @override
   _FeatureButtonsViewState createState() => _FeatureButtonsViewState();
@@ -31,6 +33,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
   late bool _isUploading;
   late bool _isRecorded;
   late bool _isRecording;
+  late bool _isAccept;
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   late AudioPlayer _audioPlayer;
   late String _filePath;
@@ -44,6 +47,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
     _isUploading = false;
     _isRecorded = false;
     _isRecording = false;
+    _isAccept = false;
     _audioPlayer = AudioPlayer();
   }
 
@@ -53,7 +57,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
       builder: (context, state2) {
         return BlocConsumer<CreateRecordBloc, CreateRecordState>(
           listener: (context, state) {
-            if (state.errorMessage != '' && state.errorMessage != null) {
+            if (state.errorMessage == 'Tên record đã tồn tại') {
               context
                   .read<CreateRecordBloc>()
                   .add(CreateRecordEvent.setErrorMessageRequested());
@@ -74,7 +78,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                             fontSize: 21.0, fontWeight: FontWeight.bold),
                       ),
                       content: Text(
-                        'Tên ${state.recordName} đã tồn tại',
+                        'Tên ${widget.titleText} đã tồn tại',
                         style: TextStyle(fontSize: 19.0),
                       ),
                       actions: [
@@ -86,11 +90,11 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red),
+                              backgroundColor: Colors.green[800]),
                           onPressed: () {
                             context.read<CreateRecordBloc>().add(
                                 CreateRecordEvent.createRecordConfirmedRequest(
-                                    state2.userId));
+                                    widget.userId, widget.titleText));
                             Navigator.pop(context);
                           },
                           child: Text(
@@ -106,34 +110,8 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
               );
             }
             if (state.isCreated) {
-              _onFileUploadButtonPressed(state.userId);
-              Navigator.push(
-                context,
-                PageRouteBuilder(
-                  transitionsBuilder:
-                      (context, animation, secondaryAnimation, child) {
-                    return ScaleTransition(
-                      alignment: Alignment.center,
-                      scale: Tween<double>(begin: 0.1, end: 1).animate(
-                        CurvedAnimation(
-                          parent: animation,
-                          curve: Curves.bounceIn,
-                        ),
-                      ),
-                      child: child,
-                    );
-                  },
-                  transitionDuration: Duration(seconds: 1),
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
-                      Animation<double> secondaryAnimation) {
-                    context
-                        .read<CreateRecordBloc>()
-                        .add(CreateRecordEvent.setStateFlase());
-                    return HomeViewRecord();
-                  },
-                ),
-              );
+              _onFileUploadButtonPressed(state2.userId);
+              pushHomeViewRecord();
             }
           },
           builder: (context, state) {
@@ -209,12 +187,12 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                     //   if (value!.isEmpty)
                                     //     return 'Required field';
                                     // };
-                                    context.read<CreateRecordBloc>().add(
-                                        CreateRecordEvent.recordNameChanged(
-                                            widget.titleText));
+                                    // context.read<CreateRecordBloc>().add(
+                                    //     CreateRecordEvent.recordNameChanged(
+                                    //         widget.titleText));
                                     context.read<CreateRecordBloc>().add(
                                         CreateRecordEvent.createRecordRequest(
-                                            state2.userId));
+                                            widget.userId, widget.titleText));
                                   },
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
@@ -284,6 +262,34 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
         _isUploading = false;
       });
     }
+  }
+
+  Future<void> pushHomeViewRecord() async {
+    await Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return ScaleTransition(
+            alignment: Alignment.center,
+            scale: Tween<double>(begin: 0.1, end: 1).animate(
+              CurvedAnimation(
+                parent: animation,
+                curve: Curves.bounceIn,
+              ),
+            ),
+            child: child,
+          );
+        },
+        transitionDuration: Duration(seconds: 1),
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          context
+              .read<CreateRecordBloc>()
+              .add(CreateRecordEvent.setStateFlase());
+          return HomeViewRecord();
+        },
+      ),
+    );
   }
 
   void _onRecordAgainButtonPressed() {

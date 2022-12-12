@@ -6,10 +6,10 @@ class CreateRecordEvent with _$CreateRecordEvent {
       _RecordNameChanged;
   const factory CreateRecordEvent.linkAudioChanged(String linkAudio) =
       _LinkAudioChanged;
-  const factory CreateRecordEvent.createRecordRequest(String userId) =
-      _CreateRecordRequest;
-  const factory CreateRecordEvent.createRecordConfirmedRequest(String userId) =
-      _CreateRecordConfirmedRequest;
+  const factory CreateRecordEvent.createRecordRequest(
+      String userId, String recordName) = _CreateRecordRequest;
+  const factory CreateRecordEvent.createRecordConfirmedRequest(
+      String userId, String recordName) = _CreateRecordConfirmedRequest;
 
   const factory CreateRecordEvent.setStateFlase() = _SetStateFlase;
   const factory CreateRecordEvent.createCheckRequested() =

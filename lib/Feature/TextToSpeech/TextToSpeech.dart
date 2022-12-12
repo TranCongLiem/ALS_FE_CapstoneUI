@@ -107,17 +107,17 @@ class _TextToSpeechState extends State<TextToSpeech> {
                   endIndent: 50,
                   indent: 50,
                 ),
-                // Container(
-                //   padding: EdgeInsets.all(8.0),
-                //   alignment: Alignment.topLeft,
-                //   child: Text(
-                //     'Lịch sử',
-                //     style: TextStyle(
-                //         fontSize: 35.0,
-                //         color: Colors.black87,
-                //         fontWeight: FontWeight.bold),
-                //   ),
-                // ),
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    'Lịch sử',
+                    style: TextStyle(
+                        fontSize: 35.0,
+                        color: Colors.black87,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
                 Expanded(
                   child: ListView.builder(
                       scrollDirection: Axis.vertical,
