@@ -34,6 +34,8 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
   String groupChatImage = '';
   File? imageFile;
   MediaType _mediaType = MediaType.image;
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> groupNameKey = GlobalKey();
   @override
   void initState() {
     // TODO: implement initState
@@ -168,47 +170,55 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                 //   )
                 Column(
                   children: [
-                    TextField(
-                      onChanged: (val) {
-                        setState(() {
-                          groupName = val;
-                        });
-                      },
-                      style: const TextStyle(color: Colors.black),
-                      decoration: InputDecoration(
-                          hintText: 'Tên nhóm',
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor),
-                              borderRadius: BorderRadius.circular(20)),
-                          errorBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.red),
-                              borderRadius: BorderRadius.circular(20)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor),
-                              borderRadius: BorderRadius.circular(20))),
+                    Form(
+                      key: formKey,
+                      child: TextFormField(
+                        key: groupNameKey,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        onChanged: (val) {
+                          setState(() {
+                            groupName = val;
+                          });
+                        },
+                        style: const TextStyle(color: Colors.black),
+                        decoration: InputDecoration(
+                            hintText: 'Tên nhóm',
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor),
+                                borderRadius: BorderRadius.circular(20)),
+                            errorBorder: OutlineInputBorder(
+                                borderSide: const BorderSide(color: Colors.red),
+                                borderRadius: BorderRadius.circular(20)),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Theme.of(context).primaryColor),
+                                borderRadius: BorderRadius.circular(20))),
+                        validator: (val) => validateGroupName(val!),
+                      ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 20.0),
                       width: MediaQuery.of(context).size.width * 0.6,
                       child: ElevatedButton(
                         onPressed: () async {
-                          if (groupName != "") {
-                            var uuid = Uuid();
-                            var groupId = uuid.v1().toString();
-                            DatabaseService(uid: widget.userId)
-                                .createGroup(groupId, widget.fullName,
-                                    widget.userId, groupName)
-                                .whenComplete(() {});
-                            createdGroupChatRequest(
-                              groupId,
-                              widget.userId,
-                              groupName,
-                            );
+                          if (formKey.currentState!.validate()) {
+                            if (groupName != "") {
+                              var uuid = Uuid();
+                              var groupId = uuid.v1().toString();
+                              DatabaseService(uid: widget.userId)
+                                  .createGroup(groupId, widget.fullName,
+                                      widget.userId, groupName)
+                                  .whenComplete(() {});
+                              createdGroupChatRequest(
+                                groupId,
+                                widget.userId,
+                                groupName,
+                              );
 
-                            showSnackbar(
-                                context, Colors.green, "Tạo nhóm thành công.");
+                              showSnackbar(context, Colors.green,
+                                  "Tạo nhóm thành công.");
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -235,6 +245,13 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
         ),
       ),
     );
+  }
+
+  String? validateGroupName(String title) {
+    if (title == null || title.isEmpty) {
+      return 'Vui lòng điền tên nhóm';
+    }
+    return null;
   }
 
   void createdGroupChatRequest(

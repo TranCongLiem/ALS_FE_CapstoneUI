@@ -18,24 +18,17 @@ class CloudRecordListViewAdmin extends StatefulWidget {
   //final List<Reference> references;
   final List<RecordById> references;
   final String userId;
-  const CloudRecordListViewAdmin({
-    Key? key,
-    required this.references,required this.userId
-  }) : super(key: key);
+  const CloudRecordListViewAdmin(
+      {Key? key, required this.references, required this.userId})
+      : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _CloudRecordListViewAdminState createState() => _CloudRecordListViewAdminState();
+  _CloudRecordListViewAdminState createState() =>
+      _CloudRecordListViewAdminState();
 }
 
 class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
-  var list_tes = [
-    '/upload-voice-firebase/1663767506989.acc',
-    '/upload-voice-firebase/1663767506989.acc',
-    '/upload-voice-firebase/1663767506989.acc',
-    '/upload-voice-firebase/1663767506989.acc'
-  ];
-
   late bool isPlaying;
   late AudioPlayer audioPlayer;
   int? selectedIndex;
@@ -46,7 +39,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
     audioPlayer = AudioPlayer();
     selectedIndex = -1;
   }
-  
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -71,7 +64,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                       parent: animation,
                       curve: Curves.bounceIn,
                     ),
-                  ), 
+                  ),
                   child: child,
                 );
               },
@@ -96,7 +89,6 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                 scrollDirection: Axis.vertical,
                 itemCount: widget.references.length,
                 itemBuilder: (BuildContext context, int index) {
-                  //return CustomRecordList(widget.references[index], context , selectedIndex);
                   return Card(
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
@@ -121,9 +113,11 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                                         bottomLeft: Radius.circular(30),
                                         bottomRight: Radius.circular(30),
                                         topRight: Radius.circular(30))),
-                                
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
                           ),
                           Stack(
                             alignment: Alignment.center,
@@ -140,7 +134,9 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                               ElevatedButton.icon(
                                   onPressed: () {
                                     _onListTileButtonPressed(
-                                        widget.references[index], index,widget.userId);
+                                        widget.references[index],
+                                        index,
+                                        widget.userId);
                                   },
                                   icon: selectedIndex == index
                                       ? Icon(Icons.pause, size: 80.0)
@@ -156,12 +152,15 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
                                   ))
                             ],
                           ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.01,
+                          ),
                           Text(
                             widget.references[index].recordName ?? '',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 18.0,
+                              fontSize: 23.0,
                             ),
                           )
                         ],
@@ -173,9 +172,8 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
     );
   }
 
-
   Future<void> _onListTileButtonPressed(
-      RecordById recordById, int index,String userId) async {
+      RecordById recordById, int index, String userId) async {
     // await audioPlayer.stop();
     setState(() {
       selectedIndex = index;
@@ -185,7 +183,7 @@ class _CloudRecordListViewAdminState extends State<CloudRecordListViewAdmin> {
         .ref()
         .child('upload-voice-firebase')
         .child(recordById.linkAudio ?? '');
-    audioPlayer.stop();   
+    audioPlayer.stop();
     audioPlayer.play(await pathReference.getDownloadURL(), isLocal: false);
     audioPlayer.onPlayerCompletion.listen((duration) {
       setState(() {

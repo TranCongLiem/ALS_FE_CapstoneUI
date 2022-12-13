@@ -109,7 +109,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.symmetric(vertical: 3.0),
+                                  margin: EdgeInsets.symmetric(vertical: 1.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -149,38 +149,33 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                                 .circular(15.0),
                                                       ),
                                                       buttonPadding:
-                                                          EdgeInsets.all(10.0),
+                                                          EdgeInsets.all(15.0),
                                                       contentPadding:
                                                           EdgeInsets.all(30.0),
                                                       title: Text(
-                                                          'Mô tả thông tin trợ giúp'),
+                                                        'Mô tả thông tin trợ giúp',
+                                                        style: TextStyle(
+                                                            fontSize: 23,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                                       content: TextField(
-                                                        // onChanged: (value) {
-                                                        //   _textFieldController
-                                                        //       .text = value;
-                                                          
-                                                        // },
-                                                        // controller: TextEditingController(
-                                                        //     text: widget
-                                                        //             .references[
-                                                        //                 index]
-                                                        //             .recordName ??
-                                                        //         ''),
                                                         controller:
                                                             _textFieldController,
                                                         decoration:
                                                             InputDecoration(
                                                                 hintText:
                                                                     "Nhập mô tả"),
+                                                        style: TextStyle(
+                                                            fontSize: 22),
                                                       ),
                                                       actions: <Widget>[
-                                                        ElevatedButton(
-                                                          style: ElevatedButton
-                                                              .styleFrom(
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .red),
-                                                          child: Text('HỦY'),
+                                                        TextButton(
+                                                          child: Text('HỦY',
+                                                              style: TextStyle(
+                                                                  fontSize:
+                                                                      22)),
                                                           onPressed: () {
                                                             Navigator.pop(
                                                                 context);
@@ -199,14 +194,22 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                                       .green
                                                                       .withOpacity(
                                                                           0.7)),
-                                                              child:
-                                                                  Text('GỬI'),
+                                                              child: Text('GỬI',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontSize:
+                                                                          22.0)),
                                                               onPressed: () {
-                                                                BlocProvider.of<PushNotiToSupporterBloc>(context).add(PushNotiToSupporterByRequestEvent(
-                                                                    createPushNotificationRequestModel: CreatePushNotificationRequestModel(
-                                                                        senderId: widget.userId,
-                                                                        
-                                                                        title: _textFieldController.text)));
+                                                                BlocProvider.of<
+                                                                            PushNotiToSupporterBloc>(
+                                                                        context)
+                                                                    .add(PushNotiToSupporterByRequestEvent(
+                                                                        createPushNotificationRequestModel: CreatePushNotificationRequestModel(
+                                                                            senderId:
+                                                                                widget.userId,
+                                                                            title: _textFieldController.text)));
                                                                 // if (state
                                                                 //     is PushNotiToSupporterErrorState) {
                                                                 //   ScaffoldMessenger.of(
@@ -222,8 +225,6 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
 
                                                                 Navigator.pop(
                                                                     context);
-
-                                                                
                                                               },
                                                             );
                                                             if (state
@@ -281,9 +282,6 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  '',
-                                ),
                                 Container(
                                   decoration: BoxDecoration(
                                       color: Color.fromARGB(95, 177, 23, 23),
@@ -306,27 +304,31 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                     BorderRadius.circular(15.0),
                                               ),
                                               buttonPadding:
-                                                  EdgeInsets.all(10.0),
+                                                  EdgeInsets.all(15.0),
                                               contentPadding:
                                                   EdgeInsets.all(30.0),
                                               title: Text(
                                                 'Xác nhận',
                                                 style: TextStyle(
-                                                    fontSize: 21.0,
+                                                    fontSize: 23.0,
                                                     fontWeight:
                                                         FontWeight.bold),
                                               ),
                                               content: Text(
-                                                'Bạn có muốn xóa bản ghi này?',
+                                                'Bạn có muốn xóa bản ghi?',
                                                 style:
-                                                    TextStyle(fontSize: 19.0),
+                                                    TextStyle(fontSize: 20.0),
                                               ),
                                               actions: [
                                                 TextButton(
                                                   onPressed: () {
                                                     Navigator.pop(context);
                                                   },
-                                                  child: Text('HỦY'),
+                                                  child: Text(
+                                                    'HỦY',
+                                                    style:
+                                                        TextStyle(fontSize: 22),
+                                                  ),
                                                 ),
                                                 ElevatedButton(
                                                   style:
@@ -355,7 +357,7 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        fontSize: 20.0),
+                                                        fontSize: 22.0),
                                                   ),
                                                 ),
                                               ],
@@ -378,10 +380,10 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                         widget.userId);
                                   },
                                   icon: selectedIndex == index
-                                      ? Icon(Icons.pause, size: 60.0)
+                                      ? Icon(Icons.pause, size: 80.0)
                                       : Icon(
                                           Icons.play_circle,
-                                          size: 60.0,
+                                          size: 80.0,
                                         ),
                                   label: Text(''),
                                   style: ElevatedButton.styleFrom(
@@ -390,14 +392,15 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                     backgroundColor: greenALS,
                                   ))),
                           SizedBox(
-                            height: 8.0,
+                            height: MediaQuery.of(context).size.height * 0.01,
                           ),
                           Text(
                             widget.references[index].recordName ?? '',
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
-                              fontSize: 18.0,
+                              fontSize: 23.0,
                             ),
                           )
                         ],

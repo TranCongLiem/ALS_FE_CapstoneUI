@@ -32,6 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late String validated;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,6 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> usernameKey = GlobalKey();
+  GlobalKey<FormFieldState> passwordKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +136,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Container(
                       color: Colors.white,
                       child: Form(
-                        autovalidateMode: AutovalidateMode.always,
                         key: formkey,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -149,6 +151,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: TextFormField(
+                                key: usernameKey,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.numberWithOptions(
                                     decimal: false),
                                 inputFormatters: [
@@ -161,15 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Số Điện Thoại',
                                   hintText: 'Nhập Số Điện Thoại',
                                 ),
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return 'Vui lòng nhập số điện thoại';
-                                //   } else if (value.length > 10) {
-                                //     return 'Chỉ nhập 10 số';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (val) => validateUsername(val!),
                                 style: TextStyle(fontSize: 25.sp),
                                 onChanged: (value) {
                                   context.read<AuthenticateBloc>().add(
@@ -181,6 +178,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: TextFormField(
+                                key: passwordKey,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.numberWithOptions(
                                     decimal: false),
                                 inputFormatters: [
@@ -206,15 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   labelText: 'Mật khẩu',
                                   hintText: 'Nhập mật khẩu',
                                 ),
-                                // validator: (value) {
-                                //   if (value!.isEmpty) {
-                                //     return 'Vui lòng nhập mật khẩu';
-                                //   } else if (value.length > 10) {
-                                //     return 'Chỉ nhập 10 số';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
+                                validator: (val) => validatePassword(val!),
                                 style: TextStyle(fontSize: 25.sp),
                                 onChanged: (value) {
                                   context.read<AuthenticateBloc>().add(
@@ -224,16 +216,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             ElevatedButton.icon(
                               onPressed: () {
-                                // validate();
-
-                                context
-                                    .read<AuthenticateBloc>()
-                                    .add(AuthenticateEvent.loginRequested());
-                                // setState(() {
-                                //   validated = state.errorMessage ?? '';
-                                // });
-                                // checkInvalidPassword(
-                                //     validated);
+                                if (formkey.currentState!.validate()) {
+                                  context
+                                      .read<AuthenticateBloc>()
+                                      .add(AuthenticateEvent.loginRequested());
+                                }
                               },
                               icon: Icon(Icons.login),
                               label: Text(
@@ -297,21 +284,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.black),
                               ),
                             ),
-                            // TextButton(
-                            //     onPressed: () {
-                            //       Navigator.push(
-                            //           context,
-                            //           MaterialPageRoute(
-                            //               builder: (context) =>
-                            //                   VerifyScreen()));
-                            //     },
-                            //     child: Text(
-                            //       'Quên mật khẩu',
-                            //       style: TextStyle(
-                            //           fontSize: 18.sp,
-                            //           fontStyle: FontStyle.italic,
-                            //           color: Colors.black),
-                            //     )),
                             TextButton(
                               onPressed: () {},
                               child: Row(
@@ -456,17 +428,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => RoleScreen()));
-                            },
-                            // child: Text('Chưa có tài khoản? Đăng ký'),
-                            // style: ButtonStyle(
-                            //   foregroundColor: MaterialStateProperty.all<Color>(Colors.black),
-                            //
-                            // ),
+                            onPressed: () {},
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -476,13 +438,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       color: Colors.black, fontSize: 18.sp),
                                 ),
                                 TextButton(
-                                    onPressed: () {
-                                      // Navigator.push(
-                                      //     context,
-                                      //     MaterialPageRoute(
-                                      //         builder: (context) =>
-                                      //             RoleScreen()));
-                                    },
+                                    onPressed: () {},
                                     child: Text('Đăng ký',
                                         style: TextStyle(
                                             color: greenALS,
@@ -526,11 +482,19 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void validate() {
-    if (formkey.currentState!.validate()) {
-      print('Validated');
-    } else {
-      print('Not validated');
+  String? validateUsername(String username) {
+    if (username == null || username.isEmpty) {
+      return 'Vui lòng nhập số điện thoại';
+    } else if (username.length > 10) {
+      return 'Vui lòng nhập 10 số';
     }
+    return null;
+  }
+
+  String? validatePassword(String title) {
+    if (title == null || title.isEmpty) {
+      return 'Vui lòng nhập mật khẩu';
+    }
+    return null;
   }
 }

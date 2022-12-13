@@ -16,10 +16,16 @@ import '../../Bloc/create_record/create_record_bloc.dart';
 class FeatureButtonsViewTextFunction extends StatefulWidget {
   final String speakText;
   final String titleText;
+  final GlobalKey<FormState> formKey;
+  final GlobalKey<FormFieldState> fieldTextKey;
+  final GlobalKey<FormFieldState> fieldContentTextKey;
   const FeatureButtonsViewTextFunction({
     Key? key,
     required this.speakText,
     required this.titleText,
+    required this.formKey,
+    required this.fieldTextKey,
+    required this.fieldContentTextKey,
   }) : super(key: key);
   @override
   _FeatureButtonsViewTextFunctionState createState() =>
@@ -188,19 +194,22 @@ class _FeatureButtonsViewTextFunctionState
                               ),
                               icon: Icon(Icons.save_alt,
                                   size: 35.0, color: Colors.white),
-                              onPressed: () => context
-                                  .read<CreateRecordBloc>()
-                                  .add(CreateRecordEvent.createRecordRequest(
-                                      state2.userId, widget.titleText)),
+                              onPressed: () {
+                                context.read<CreateRecordBloc>().add(
+                                    CreateRecordEvent.createRecordRequest(
+                                        state2.userId, widget.titleText));
+                              },
                               label: Text(''),
                             ),
                           ],
                         )
                   : ElevatedButton(
                       onPressed: () {
-                        setState(() {
-                          _onRecordButtonPressed(widget.speakText);
-                        });
+                        if (widget.formKey.currentState!.validate()) {
+                          setState(() {
+                            _onRecordButtonPressed(widget.speakText);
+                          });
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 5.0,

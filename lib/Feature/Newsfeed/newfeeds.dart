@@ -44,7 +44,10 @@ class _NewFeedState extends State<NewFeed> {
               home: Scaffold(
                 appBar: AppBar(
                   backgroundColor: greenALS,
-                  title: Text('Tin tức'),
+                  title: Text(
+                    'Tin tức',
+                    style: TextStyle(fontSize: 23),
+                  ),
                   centerTitle: true,
                 ),
                 bottomNavigationBar: MyBottomNavBar(

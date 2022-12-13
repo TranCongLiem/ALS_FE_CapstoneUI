@@ -55,21 +55,30 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                     height: 20.5.h,
                     child: Scaffold(
                         appBar: AppBar(
-                            title: Text('Hỗ trợ ghi âm'),
+                            title: Text(
+                              'Hỗ trợ ghi âm',
+                              style: TextStyle(fontSize: 26),
+                            ),
                             backgroundColor: greenALS,
                             centerTitle: true,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(20.0),
                                     bottomRight: Radius.circular(20.0))),
-                            leading: IconButton(
-                                icon:
-                                    Icon(Icons.arrow_back, color: Colors.white),
-                                onPressed: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Home()),
-                                    ))),
+                            leading: Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: IconButton(
+                                  icon: Icon(
+                                    Icons.arrow_back,
+                                    color: Colors.white,
+                                    size: 40,
+                                  ),
+                                  onPressed: () => Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Home()),
+                                      )),
+                            )),
                         body: SafeArea(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -78,51 +87,44 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 ButtonCreateRecord(),
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 18.0),
+                                Container(
+                                  alignment: Alignment.center,
                                   child: Card(
-                                    margin: EdgeInsets.only(left: 40.0),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(12)),
                                     elevation: 5,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.black.withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: TabBar(
-                                        indicator: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                            color: greenALS),
-                                        controller: tabController,
-                                        isScrollable: true,
-                                        labelPadding: EdgeInsets.symmetric(
-                                            horizontal: 35),
-                                        tabs: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(2.0),
-                                            child: Tab(
-                                              child: Text(
-                                                "Mẫu",
-                                                style: TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 69, 57, 57),
-                                                    fontSize: 26.0),
-                                              ),
-                                            ),
-                                          ),
-                                          Tab(
+                                    child: TabBar(
+                                      labelPadding:
+                                          EdgeInsets.symmetric(horizontal: 40),
+                                      indicator: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          color: greenALS),
+                                      controller: tabController,
+                                      isScrollable: true,
+                                      tabs: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(2.0),
+                                          child: Tab(
                                             child: Text(
-                                              "Thêm",
+                                              "Mẫu",
                                               style: TextStyle(
-                                                  color: Colors.black,
+                                                  color: Color.fromARGB(
+                                                      255, 69, 57, 57),
                                                   fontSize: 26.0),
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        ),
+                                        Tab(
+                                          child: Text(
+                                            "Thêm",
+                                            style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 26.0),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -156,18 +158,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                                           child: CircularProgressIndicator(),
                                         );
                                       })
-
-                                      // CloudRecordListViewAdmin(
-                                      //   references: state.list,
-                                      // ),
-                                      // state.list.isEmpty
-                                      //     ? Center(
-                                      //         child: Text(
-                                      //             'Chưa có bản ghi âm nào'),
-                                      //       )
-                                      //     : CloudRecordListView(
-                                      //         references: state.list,
-                                      //       ),
                                     ])),
                               ],
                             ),
@@ -274,7 +264,7 @@ class ButtonCreateRecord extends StatelessWidget {
           label: Text(
             'Tạo bản ghi',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 24.0,
               fontWeight: FontWeight.bold,
             ),
           ),

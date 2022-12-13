@@ -176,22 +176,25 @@ class _GroupInfoState extends State<GroupInfo> {
                 endIndent: 20,
                 thickness: 3,
               ),
-              BlocBuilder<ListUserGroupChatBloc, ListUserGroupChatState>(
-                builder: (context, state) {
-                  if (state is UserGroupChatLoadedState) {
-                    return ListView.builder(
-                      itemCount: state.list1.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return CustomListUserGroupChat(
-                            listGetAllUserInGroupChat: state.list1[index]);
-                      },
+              Expanded(
+                child:
+                    BlocBuilder<ListUserGroupChatBloc, ListUserGroupChatState>(
+                  builder: (context, state) {
+                    if (state is UserGroupChatLoadedState) {
+                      return ListView.builder(
+                        itemCount: state.list1.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return CustomListUserGroupChat(
+                              listGetAllUserInGroupChat: state.list1[index]);
+                        },
+                      );
+                    }
+                    return Center(
+                      child: CircularProgressIndicator(),
                     );
-                  }
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
+                  },
+                ),
               )
             ],
           ),

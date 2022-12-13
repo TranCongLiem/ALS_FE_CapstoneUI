@@ -90,6 +90,39 @@ class _ProfiletState extends State<Profile> {
                       SizedBox(
                         height: 20,
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ListNewsFeed()));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 30),
+                          child: Row(
+                            children: [
+                              Icon(Icons.view_agenda),
+                              SizedBox(width: 20),
+                              Text(
+                                'Lịch sử bài đăng',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Spacer(),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
                       InkWell(
                         onTap: () {
                           MoveToLoginAndUpdateToken(
@@ -130,41 +163,6 @@ class _ProfiletState extends State<Profile> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ListNewsFeed()));
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 30),
-                          child: Row(
-                            children: [
-                              Icon(Icons.view_agenda),
-                              SizedBox(width: 20),
-                              Text(
-                                'Lịch sử bài đăng',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Spacer(),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 16,
-                              )
-                            ],
-                          ),
-
-                          
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -189,12 +187,9 @@ class _ProfiletState extends State<Profile> {
     var result =
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
 
-    
-
-        Navigator.pushAndRemoveUntil(
+    Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (BuildContext ctx) => LoginScreen()),
         (Route<dynamic> route) => false);
   }
 }
-

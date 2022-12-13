@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/SaveRecord/feature_buttons_view_text.dart';
-import 'package:capstone_ui/Feature/SaveRecord/home_view.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../Bloc/create_record/create_record_bloc.dart';
 import 'feature_buttons_view.dart';
+import 'home_view.dart';
 
 class SaveRecording extends StatefulWidget {
   final Function(String)? validators;
@@ -32,7 +32,11 @@ class _SaveRecordingState extends State<SaveRecording> {
   String titleText = '';
   String _textSpeech = '';
 
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formTextKey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> titleKey = GlobalKey();
+  GlobalKey<FormFieldState> titleTextKey = GlobalKey();
+  GlobalKey<FormFieldState> contentTextKey = GlobalKey();
   void onListen() async {
     bool available = await _speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -92,12 +96,24 @@ class _SaveRecordingState extends State<SaveRecording> {
               return Center(
                   child: Scaffold(
                 appBar: AppBar(
-                  elevation: 0.0,
-                  centerTitle: true,
-                  title: Text('Tạo bản ghi'),
-                  backgroundColor: greenALS,
-                  // iconTheme: IconThemeData(color: Colors.black, size: 30.0),
-                ),
+                    elevation: 0.0,
+                    centerTitle: true,
+                    title: Text('Tạo bản ghi', style: TextStyle(fontSize: 26)),
+                    backgroundColor: greenALS,
+                    leading: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeViewRecord()),
+                              )),
+                    )),
                 body: Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
@@ -108,7 +124,7 @@ class _SaveRecordingState extends State<SaveRecording> {
                         child: Text(
                           'Bạn sẽ tạo bản ghi bằng:',
                           style: TextStyle(
-                              fontSize: 25.0, fontWeight: FontWeight.w500),
+                              fontSize: 26.0, fontWeight: FontWeight.w500),
                         ),
                       ),
                       Padding(
@@ -124,14 +140,14 @@ class _SaveRecordingState extends State<SaveRecording> {
                               padding: const EdgeInsets.all(15.0),
                               child: Text(
                                 'Văn bản',
-                                style: TextStyle(fontSize: 22),
+                                style: TextStyle(fontSize: 24),
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: Text(
                                 'Giọng nói',
-                                style: TextStyle(fontSize: 22),
+                                style: TextStyle(fontSize: 24),
                               ),
                             ),
                           ],
@@ -176,6 +192,7 @@ class _SaveRecordingState extends State<SaveRecording> {
       builder: (context, state) {
         return Expanded(
           child: Form(
+            key: formTextKey,
             child: ListView(
               children: [
                 Column(
@@ -184,10 +201,14 @@ class _SaveRecordingState extends State<SaveRecording> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                        style: TextStyle(fontSize: 24),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        key: titleTextKey,
                         textCapitalization: TextCapitalization.words,
                         maxLength: 20,
                         decoration: InputDecoration(
                             // labelText: _textSpeech,
+
                             labelText: 'Tên bản ghi',
                             suffixIcon: Icon(
                               Icons.description,
@@ -196,16 +217,10 @@ class _SaveRecordingState extends State<SaveRecording> {
                             border: myinputborder(),
                             enabledBorder: myinputborder(),
                             focusedBorder: myfocusborder(),
-                            labelStyle: TextStyle(fontSize: 20.0)),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Vui lòng không bỏ trống';
-                          } else if (value.length > 50) {
-                            return 'Vui lòng không nhập hơn 50 ký tự';
-                          } else {
-                            return null;
-                          }
-                        },
+                            labelStyle: TextStyle(fontSize: 24.0),
+                            contentPadding:
+                                EdgeInsets.only(left: 15, top: 25, bottom: 25)),
+                        validator: (val) => validateTitleText(val!),
                         onChanged: (value) {
                           setState(() {
                             titleText = value;
@@ -216,20 +231,19 @@ class _SaveRecordingState extends State<SaveRecording> {
                     Padding(
                       padding: EdgeInsets.all(10),
                       child: TextFormField(
+                        style: TextStyle(fontSize: 24),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        key: contentTextKey,
                         maxLines: 2,
                         decoration: InputDecoration(
                             labelText: "Nhập nội dung",
                             border: myinputborder(),
                             enabledBorder: myinputborder(),
                             focusedBorder: myfocusborder(),
-                            labelStyle: TextStyle(fontSize: 20.0)),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Vui lòng không bỏ trống';
-                          } else {
-                            return null;
-                          }
-                        },
+                            labelStyle: TextStyle(fontSize: 24.0),
+                            contentPadding:
+                                EdgeInsets.only(left: 15, top: 25, bottom: 25)),
+                        validator: (val) => validateContentText(val!),
                         onChanged: (value) {
                           setState(() {
                             valueText = value;
@@ -243,6 +257,9 @@ class _SaveRecordingState extends State<SaveRecording> {
                         child: FeatureButtonsViewTextFunction(
                           speakText: valueText,
                           titleText: titleText,
+                          formKey: formTextKey,
+                          fieldTextKey: titleTextKey,
+                          fieldContentTextKey: contentTextKey,
                         ),
                       ),
                     ),
@@ -260,50 +277,78 @@ class _SaveRecordingState extends State<SaveRecording> {
     return Expanded(
       child: Form(
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        key: formkey,
+        key: formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.all(10),
               child: TextFormField(
-                  maxLength: 20,
-                  textCapitalization: TextCapitalization.words,
-                  controller: titleController,
-                  decoration: InputDecoration(
-                      labelText: 'Tên bản ghi',
-                      suffixIcon: IconButton(
-                        onPressed: (() {
-                          onListen();
-                        }),
-                        icon: Icon(Icons.mic),
-                      ),
-                      border: myinputborder(),
-                      enabledBorder: myinputborder(),
-                      focusedBorder: myfocusborder(),
-                      labelStyle: TextStyle(fontSize: 20.0)),
-                  onChanged: (value) {
-                    setState(() {
-                      _textSpeech = value;
-                    });
-                    // context
-                    //     .read<CreateRecordBloc>()
-                    //     .add(CreateRecordEvent.recordNameChanged(value));
-                  },
-                  validator: widget.validators as String? Function(String?)?),
+                style: TextStyle(fontSize: 24),
+                key: titleKey,
+                maxLength: 20,
+                textCapitalization: TextCapitalization.words,
+                controller: titleController,
+                decoration: InputDecoration(
+                    labelText: 'Tên bản ghi',
+                    suffixIcon: IconButton(
+                      onPressed: (() {
+                        onListen();
+                      }),
+                      icon: Icon(Icons.mic),
+                    ),
+                    border: myinputborder(),
+                    enabledBorder: myinputborder(),
+                    focusedBorder: myfocusborder(),
+                    labelStyle: TextStyle(fontSize: 24.0),
+                    contentPadding:
+                        EdgeInsets.only(left: 15, top: 25, bottom: 25)),
+                onChanged: (value) {
+                  setState(() {
+                    _textSpeech = value;
+                  });
+                },
+                validator: (val) => validateTitle(val!),
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: FeatureButtonsView(
-                onUploadComplete: _onUploadComplete,
-                titleText: _textSpeech,
-                userId: userId,
-              ),
+                  onUploadComplete: _onUploadComplete,
+                  titleText: _textSpeech,
+                  userId: userId,
+                  formKey: formKey,
+                  fieldKey: titleKey),
             ),
           ],
         ),
       ),
     );
+  }
+
+  String? validateTitle(String title) {
+    if (title == null || title.isEmpty) {
+      return 'Vui lòng điền tên bản ghi';
+    } else if (title.length > 20) {
+      return 'Vui lòng nhập dưới 20 ký tự';
+    }
+    return null;
+  }
+
+  String? validateTitleText(String titleText) {
+    if (titleText.isEmpty) {
+      return 'Vui lòng điền tên bản ghi';
+    } else if (titleText.length > 20) {
+      return 'Vui lòng nhập dưới 20 ký tự';
+    }
+    return null;
+  }
+
+  String? validateContentText(String titleText) {
+    if (titleText == null || titleText.isEmpty) {
+      return 'Vui lòng nhập nội dung';
+    }
+    return null;
   }
 
   OutlineInputBorder myinputborder() {
@@ -326,11 +371,11 @@ class _SaveRecordingState extends State<SaveRecording> {
         ));
   }
 
-  void validate() {
-    if (formkey.currentState!.validate()) {
-      print('Validated');
-    } else {
-      print('Not validated');
-    }
-  }
+  // void validate() {
+  //   if (formKey.currentState!.validate()) {
+  //     print('Validated');
+  //   } else {
+  //     print('Not validated');
+  //   }
+  // }
 }

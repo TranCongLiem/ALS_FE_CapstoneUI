@@ -240,7 +240,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                 onChanged: (value) {
                   _textSpeech = value;
                 },
-                autofocus: true,
+                autofocus: false,
               ),
             ),
           ),

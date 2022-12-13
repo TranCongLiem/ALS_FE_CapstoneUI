@@ -91,7 +91,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
                     padding: EdgeInsets.only(left: 5, right: 5),
                     child: TextFormField(
                       maxLines: 5,
-                      autofocus: true,
+                      autofocus: false,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Nhập để nói',

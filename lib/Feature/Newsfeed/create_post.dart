@@ -224,11 +224,12 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                         icon: Icon(
                                           Icons.close,
                                           color: Colors.white,
+                                          size: 35,
                                         )),
                                     Text(
                                       'Tạo nội dung',
                                       style: TextStyle(
-                                          fontSize: 22.0,
+                                          fontSize: 24.0,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white),
                                     ),
@@ -309,6 +310,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                             _speech.isListening
                                                                 ? greenALS
                                                                 : Colors.grey,
+                                                        size: 35,
                                                       ),
                                                     )),
                                                 style: TextStyle(
@@ -316,10 +318,6 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                     fontSize: 24.0),
                                                 onChanged: (value) {
                                                   _textSpeech = value;
-                                                  // context
-                                                  //     .read<CreatePostBloc>()
-                                                  //     .add(CreatePostEvent
-                                                  //         .captionChanged(_textSpeech));
                                                 },
                                                 validator: (value) {
                                                   if (value!.isEmpty) {
@@ -368,7 +366,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                                 'Chọn ảnh',
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                        20.0),
+                                                                        24.0),
                                                               ),
                                                               SizedBox(
                                                                 height: 20.0,
@@ -384,8 +382,8 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                                             ImageSource.gallery);
                                                                       },
                                                                       icon: Icon(Icons.image),
-                                                                      label: Text('Thư viện'),
-                                                                      style: ElevatedButton.styleFrom(backgroundColor: greenALS)),
+                                                                      label: Text('Thư viện', style: TextStyle(fontSize: 24)),
+                                                                      style: ElevatedButton.styleFrom(backgroundColor: greenALS, padding: EdgeInsets.all(10))),
                                                                   ElevatedButton
                                                                       .icon(
                                                                     onPressed:
@@ -397,10 +395,16 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                                     icon: Icon(Icons
                                                                         .camera),
                                                                     label: Text(
-                                                                        'Máy ảnh'),
+                                                                      'Máy ảnh',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              24),
+                                                                    ),
                                                                     style: ElevatedButton.styleFrom(
                                                                         backgroundColor:
-                                                                            greenALS),
+                                                                            greenALS,
+                                                                        padding:
+                                                                            EdgeInsets.all(10)),
                                                                   )
                                                                 ],
                                                               )
@@ -409,13 +413,20 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                         ),
                                                       );
                                                     },
-                                                    label: Text('Thêm ảnh'),
+                                                    label: Text(
+                                                      'Thêm ảnh',
+                                                      style: TextStyle(
+                                                          fontSize: 24),
+                                                    ),
                                                     icon: Icon(Icons
                                                         .add_a_photo_rounded),
                                                     style: ElevatedButton
                                                         .styleFrom(
                                                             backgroundColor:
-                                                                greenALS),
+                                                                greenALS,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10)),
                                                   ),
                                                   Icon(
                                                     Icons.favorite,
@@ -464,7 +475,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                     padding: const EdgeInsets.all(15.0),
                                     child: Text(
                                       'ĐĂNG BÀI',
-                                      style: TextStyle(fontSize: 20),
+                                      style: TextStyle(fontSize: 24),
                                     ),
                                   ),
                                 ),
@@ -500,9 +511,7 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
             .read<CreatePostBloc>()
             .add(CreatePostEvent.imageChanged(imageDatabase));
       } else {
-        context
-            .read<CreatePostBloc>()
-            .add(CreatePostEvent.imageChanged(imagePath!));
+        context.read<CreatePostBloc>().add(CreatePostEvent.imageChanged(''));
       }
       context
           .read<CreatePostBloc>()

@@ -64,10 +64,10 @@ class _CustomPostListState extends State<CustomPostList> {
                         Row(
                           children: [
                             CircleAvatar(
-                              radius: 20.0,
+                              radius: 25.0,
                               backgroundColor: greenALS,
                               child: CircleAvatar(
-                                radius: 17.0,
+                                radius: 25.0,
                                 backgroundColor: Colors.grey[200],
                                 backgroundImage:
                                     widget.listPost[widget.indexx].imageUser !=
@@ -90,13 +90,13 @@ class _CustomPostListState extends State<CustomPostList> {
                                         '',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 20.0),
+                                        fontSize: 22.0),
                                   ),
                                   Text(
                                     timeago.format(time, locale: 'vi'),
                                     style: TextStyle(
                                       color: Colors.grey[600],
-                                      fontSize: 12.0,
+                                      fontSize: 16.0,
                                     ),
                                   ),
                                 ],
@@ -114,7 +114,7 @@ class _CustomPostListState extends State<CustomPostList> {
                             trimMode: TrimMode.Line,
                             trimCollapsedText: 'Xem thêm',
                             trimExpandedText: 'Thu gọn',
-                            style: TextStyle(fontSize: 20.0),
+                            style: TextStyle(fontSize: 22.0),
                           ),
                         ),
                         widget.listPost[widget.indexx].image != null
@@ -157,30 +157,6 @@ class _CustomPostListState extends State<CustomPostList> {
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            // Container(
-                            //   padding: const EdgeInsets.all(4.0),
-                            //   decoration: BoxDecoration(
-                            //     color: Colors.redAccent,
-                            //     shape: BoxShape.circle,
-                            //   ),
-                            //   child: const Icon(
-                            //     Icons.favorite,
-                            //     size: 20.0,
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
-                            // const SizedBox(width: 4.0),
-                            // Expanded(
-                            //   child: Text(
-                            //     '${countReact}',
-                            //     style: TextStyle(
-                            //         color: Colors.grey[600], fontSize: 20.0),
-                            //   ),
-                            // ),
-                          ],
-                        ),
                         const Divider(),
                         Row(
                           children: [
@@ -269,46 +245,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                     ),
                                                     const SizedBox(width: 4.0),
                                                   ],
-                                                )
-                                          // child: LikeButton(
-                                          //   likeCount: countReact,
-                                          //   onTap: (checkReact) =>
-                                          //       enableReactPost(
-                                          //           state2.userId,
-                                          //           widget.listPost.postId
-                                          //               .toString()),
-                                          //   likeBuilder: (isLike) {
-                                          //     return Icon(
-                                          //       Icons.favorite,
-                                          //       color: checkReact!
-                                          //           ? Colors.red
-                                          //           : Colors.grey,
-                                          //       size: 26.0,
-                                          //     );
-                                          //   },
-
-                                          //   countBuilder:
-                                          //       (likeCount, isLike, text) {
-                                          //     var color = checkReact!
-                                          //         ? Colors.red
-                                          //         : Colors.grey;
-                                          //     Widget result;
-                                          //     if (countReact == 0) {
-                                          //       result = Text(
-                                          //         "Thích",
-                                          //         style:
-                                          //             TextStyle(color: color),
-                                          //       );
-                                          //     } else
-                                          //       result = Text(
-                                          //         text,
-                                          //         style:
-                                          //             TextStyle(color: color),
-                                          //       );
-                                          //     return result;
-                                          //   },
-                                          // ),
-                                          ),
+                                                )),
                                     ],
                                   ),
                                 ),

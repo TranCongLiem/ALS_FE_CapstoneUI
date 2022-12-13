@@ -31,6 +31,8 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
   UserService _UserService = UserService();
   String mobileToken = '';
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> usernameKey = GlobalKey();
+  GlobalKey<FormFieldState> passwordKey = GlobalKey();
 
   @override
   void initState() {
@@ -100,6 +102,9 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                 Padding(
                                   padding: EdgeInsets.all(10),
                                   child: TextFormField(
+                                    key: usernameKey,
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
                                     keyboardType:
                                         TextInputType.numberWithOptions(
                                             decimal: false),
@@ -120,20 +125,15 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                               .phoneNumberChangedPatient(
                                                   value));
                                     },
-                                    validator: (value) {
-                                      if (value!.isEmpty ||
-                                          !RegExp(r'(^(?:[+0]9)?[0-9]{10,12}$)')
-                                              .hasMatch(value)) {
-                                        return "Nhập đúng số điện thoại";
-                                      } else {
-                                        return null;
-                                      }
-                                    },
+                                    validator: (val) => validateUsername(val!),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.all(10),
                                   child: TextFormField(
+                                    key: passwordKey,
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
                                     keyboardType:
                                         TextInputType.numberWithOptions(
                                             decimal: false),
@@ -166,25 +166,18 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
                                           AuthenticateEvent
                                               .passwordChangedPatient(value));
                                     },
-                                    validator: (value) {
-                                      if (value!.isEmpty) {
-                                        return 'Vui lòng nhập mật khẩu';
-                                      } else if (value.length > 10) {
-                                        return 'Chỉ nhập 10 số';
-                                      } else {
-                                        return null;
-                                      }
-                                    },
+                                    validator: (val) => validatePassword(val!),
                                   ),
                                 ),
                                 ElevatedButton(
                                   onPressed: () {
-                                    validate();
-                                    context.read<AuthenticateBloc>().add(
-                                        AuthenticateEvent
-                                            .registrationPatientRequested(
-                                                state.phoneNumberPatient,
-                                                state.passwordPatient));
+                                    if (formkey.currentState!.validate()) {
+                                      context.read<AuthenticateBloc>().add(
+                                          AuthenticateEvent
+                                              .registrationPatientRequested(
+                                                  state.phoneNumberPatient,
+                                                  state.passwordPatient));
+                                    }
                                   },
                                   child: Text(
                                     'Đăng ký',
@@ -424,11 +417,19 @@ class _RegisterScreenPatientState extends State<RegisterScreenPatient> {
         _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
   }
 
-  void validate() {
-    if (formkey.currentState!.validate()) {
-      print('Validated');
-    } else {
-      print('Not validated');
+  String? validateUsername(String username) {
+    if (username == null || username.isEmpty) {
+      return 'Vui lòng nhập số điện thoại';
+    } else if (username.length > 10) {
+      return 'Vui lòng nhập 10 số';
     }
+    return null;
+  }
+
+  String? validatePassword(String title) {
+    if (title == null || title.isEmpty) {
+      return 'Vui lòng nhập mật khẩu';
+    }
+    return null;
   }
 }
