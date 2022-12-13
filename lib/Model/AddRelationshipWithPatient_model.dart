@@ -27,6 +27,35 @@ class AddRelationwithPatientResponse {
   }
 }
 
+class UpdateDateSupportRequest {
+  String supporterId;
+  String startSupportDate;
+  String endSupportDate;
+
+  UpdateDateSupportRequest(
+      {required this.supporterId, required this.startSupportDate, required this.endSupportDate});
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> map = {
+      'supporterId': supporterId,
+      'startSupportDate': startSupportDate,
+      'endSupportDate': endSupportDate,
+    };
+    return map;
+  }
+}
+class UpdateDateSupportResponse {
+  bool? success;
+  String? message;
+  UpdateDateSupportResponse({this.success, this.message});
+
+  factory UpdateDateSupportResponse.fromJson(Map<String, dynamic> json) {
+    return UpdateDateSupportResponse(
+      success: json["success"],
+      message: json["message"],
+    );
+  }
+}
+
 class GetDetailUserByPhoneRequest{
   String patientPhoneNumber;
 

@@ -127,7 +127,9 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
     on<_PasswordChangedSupporter>((event, emit) {
       emit(state.copyWith(passwordSupporter: event.password));
     });
-
+on<_UpdateRelationshipwith>((event, emit) {
+      emit(state.copyWith(relationshipWith: event.relationsipwith));
+    });
     on<_AuthCheckRequested>((event, emit) {
       emit(state.copyWith(isAuthenticated: _userService.isUserAuthenticated()));
     });

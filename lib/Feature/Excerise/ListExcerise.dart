@@ -366,7 +366,7 @@ class GetSessionsButton extends StatelessWidget {
     return BlocBuilder<SessionBloc, SessionState>(
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(1.0),
           child: BlocBuilder<AuthenticateBloc, AuthenticateState>(
             builder: (context, state) {
               return Container(
@@ -449,7 +449,7 @@ Widget buildCardHistory(
                   Container(
                     width: MediaQuery.of(context).size.width * 0.3,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20 / 2, top: 5),
+                      padding: const EdgeInsets.only(left: 20 / 2, top: 1),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -462,10 +462,10 @@ Widget buildCardHistory(
                             maxLines: 2,
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
+                            height: MediaQuery.of(context).size.height * 0.005,
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
+                            height: MediaQuery.of(context).size.height * 0.005,
                           ),
                           Row(
                             children: [
@@ -487,7 +487,7 @@ Widget buildCardHistory(
                             ],
                           ),
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
+                            height: MediaQuery.of(context).size.height * 0.005,
                           ),
                           Text(
                             "Kết thúc vào ",

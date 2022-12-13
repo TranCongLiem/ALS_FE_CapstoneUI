@@ -1,5 +1,6 @@
 // import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:audioplayers/notifications.dart';
+import 'package:capstone_ui/Bloc/CategoryNews/CategoryNews_bloc_bloc.dart';
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
@@ -166,6 +167,9 @@ class MyApp extends StatelessWidget {
                 create: (context) => ListKnowledgeBlocBloc(
                     RepositoryProvider.of<ListKnowledgeService>(context))),
             BlocProvider(
+                create: (context) => CategoryKnowledgeBlocBloc(
+                    RepositoryProvider.of<ListKnowledgeService>(context))),
+            BlocProvider(
                 create: (context) =>
                     PostBlocBloc(RepositoryProvider.of<PostService>(context))),
             BlocProvider(
@@ -246,14 +250,13 @@ class MyApp extends StatelessWidget {
                   RepositoryProvider.of<ShortCutNotificationService>(context)),
             ),
 
-             BlocProvider(
-              create: (context) =>
-                  CreateSosNotiBloc(RepositoryProvider.of<UserPatientService>(context)),
+            BlocProvider(
+              create: (context) => CreateSosNotiBloc(
+                  RepositoryProvider.of<UserPatientService>(context)),
             ),
             BlocProvider(
-              create: (context) =>
-                  ListUserGroupChatBloc(RepositoryProvider.of<GroupChatService>(context)),
-
+              create: (context) => ListUserGroupChatBloc(
+                  RepositoryProvider.of<GroupChatService>(context)),
             ),
             BlocProvider(
                 create: (context) => SessionBloc(
@@ -267,7 +270,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             // initialRoute: '/login',
             // onGenerateRoute: RouteGenerator.generateRoute,
-            home:  SplashScreen(),
+            home: SplashScreen(),
           ),
         ),
       ),

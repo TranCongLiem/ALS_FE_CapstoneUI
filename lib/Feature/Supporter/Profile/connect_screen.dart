@@ -1,4 +1,5 @@
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:capstone_ui/Feature/Supporter/Profile/set_time_connect.dart';
 import 'package:capstone_ui/Model/AddRelationshipWithPatient_model.dart';
 import 'package:capstone_ui/services/api_User.dart';
 import 'package:flutter/material.dart';
@@ -117,13 +118,15 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                 context.read<AuthenticateBloc>().add(
                                     AuthenticateEvent.updateRelationshipwith(
                                         profile.userId ?? ''));
-                                setState(() {});
+                               // setState(() {});
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            SetTimeConnect()));
                               } else if (resultAddReation.success == false &&
                                   resultAddReation.message!
-                                      .contains("doesn't register account")) {
-                                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                //   content: Text("Bệnh nhân chưa tồn tại"),
-                                // ));
+                                      .contains("doesn't register account")) {                              
                                 Fluttertoast.showToast(
                                     msg:
                                         "Số điện thoại này chưa đăng kí tài khoản",

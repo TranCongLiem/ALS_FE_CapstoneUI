@@ -33,5 +33,14 @@ class ListKnowledgeBlocBloc extends Bloc<ListKnowledgeBlocEvent, ListKnowledgeBl
       emit(ListKnowledgeLoadedState(list));
       
     });
-  }
+  
+    on<LoadKnowLedgeByCateEvent>((event, emit) async {
+      // TODO: implement event handler
+      final categoryRequestModel= event.request;
+      final list= await _knowledgeService.GetKnowLedgeByCategoryId(categoryRequestModel);
+      emit(ListKnowledgeLoadedState(list));
+      
+    });
+
+}
 }

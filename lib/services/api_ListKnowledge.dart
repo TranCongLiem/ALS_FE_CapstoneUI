@@ -44,7 +44,37 @@ class ListKnowledgeService {
     }
   }
   
+Future<List<ListKnowledge>> GetKnowLedgeByCategoryId(GetKnowledgeByCategoryKnowledgeIdRequest request) async {
+  String url="https://als.cosplane.asia/api/News/GetNewsByCategoryId?categoryNewsId=" +request.CategoryKnowLedeId;
+    final response = await get(Uri.parse(url));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+    if (response.statusCode == 200) {
+      //List<ListKnowledge> listKnowledge = [];
+      final List<dynamic> result= jsonDecode(response.body);
+       print("result: + ${result.map((e) => ListKnowledge.fromJson(e)).toList()}");
+      return result.map((e) => ListKnowledge.fromJson(e)).toList();
+    } else {
+      throw Exception("Failed to load List KnowLedge");
+    }
 
+  }
+
+  Future<List<CategoryNewsKnowLedgeResponse>> GetAllCategoryKnowLedge() async {
+    String url= "https://als.cosplane.asia/api/categoryNew/GetAllCategoryNew";
+    final response = await get(Uri.parse(url));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+    if (response.statusCode == 200) {
+     // List<ListKnowledge> listKnowledge = [];
+      final List<dynamic> result= jsonDecode(response.body);
+       print("result: + ${result.map((e) => ListKnowledge.fromJson(e)).toList()}");
+      return result.map((e) => CategoryNewsKnowLedgeResponse.fromJson(e)).toList();
+    } else {
+      throw Exception("Failed to load CategoryKnowLedge");
+    }
+
+  }
   
   
 }
