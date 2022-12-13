@@ -76,7 +76,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                       style: TextButton.styleFrom(
                                           // foregroundColor:
                                           //Colors.white,
-                                          backgroundColor: Colors.red[400]),
+                                          backgroundColor: Colors.blue[400]),
                                       onPressed: () {},
                                       child: Text(exericse.exerciseLevel??
                                         'Khó',

@@ -192,7 +192,7 @@ class _SetTimeConnectState extends State<SetTimeConnect> {
                                       dateToController.text =
                                           DateFormat('yyyy-MM-dd').format(date);
                                       dateTo = DateTime.parse(
-                                          dateFromController.text);
+                                          dateToController.text);
                                       print("Test Date From: " +
                                           dateTo.toString());
                                     });
