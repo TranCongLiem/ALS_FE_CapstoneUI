@@ -14,36 +14,34 @@ Widget CustomCategoryList(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
-          child: Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Ink.image(
-                    height: 150,
-                    fit: BoxFit.cover,
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListExerciseByCategory(
-                                    categoryExericse: categoryExericse)));
-                      },
-                    ),
-                    image: NetworkImage(categoryExericse.categoryImage ?? ''),
-                    colorFilter: ColorFilter.mode(
-                      Colors.grey.withOpacity(0.9),
-                      BlendMode.modulate,
-                    )),
-                Text(
-                  categoryExericse.categoryName ?? '',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 251, 252, 251),
-                      fontSize: 28.0),
-                )
-              ],
-            ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Ink.image(
+                  height: 160,
+                  fit: BoxFit.cover,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ListExerciseByCategory(
+                                  categoryExericse: categoryExericse)));
+                    },
+                  ),
+                  image: NetworkImage(categoryExericse.categoryImage ?? ''),
+                  colorFilter: ColorFilter.mode(
+                    Colors.grey.withOpacity(0.9),
+                    BlendMode.modulate,
+                  )),
+              Text(
+                categoryExericse.categoryName ?? '',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 251, 252, 251),
+                    fontSize: 28.0),
+              )
+            ],
           ),
         ),
         SizedBox(

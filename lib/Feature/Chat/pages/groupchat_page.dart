@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Feature/Chat/pages/create_groupchat.dart';
@@ -9,8 +10,6 @@ import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:uuid/uuid.dart';
-import '../../../Bloc/list_group_chat/list_group_chat_bloc.dart';
-import '../../../Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import '../../../Constant/constant.dart';
 import '../../../Model/groupChat_model.dart';
 import '../../../services/api_groupchat.dart';
@@ -31,7 +30,7 @@ class _GroupChatPageState extends State<GroupChatPage>
     with TickerProviderStateMixin {
   String groupName = "";
   bool _isLoading = false;
-  late List<ListAllGroupChatUserJoin> data2 ;
+  late List<ListAllGroupChatUserJoin> data2;
   GroupChatService _groupList = GroupChatService();
 
   @override
@@ -47,7 +46,7 @@ class _GroupChatPageState extends State<GroupChatPage>
       length: 2,
       child: Scaffold(
           appBar: AppBar(
-              toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+              toolbarHeight: MediaQuery.of(context).size.height * 0.12,
               shape: ShapeBorder.lerp(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -60,7 +59,7 @@ class _GroupChatPageState extends State<GroupChatPage>
               backgroundColor: greenALS,
               title: Text(
                 'Trò chuyện nhóm',
-                style: TextStyle(),
+                style: TextStyle(fontSize: 23),
               ),
               actions: [
                 Container(
@@ -76,46 +75,65 @@ class _GroupChatPageState extends State<GroupChatPage>
                     icon: Icon(
                       Icons.search_sharp,
                       color: Colors.black,
+                      size: 30,
                     ),
                   ),
                 ),
               ],
-              bottom: TabBar(tabs: [
+              bottom: TabBar(labelStyle: TextStyle(fontSize: 22), tabs: [
                 Tab(
                   text: 'Nhóm của bạn',
-                  icon: Icon(Icons.group_add),
+                  icon: Icon(
+                    Icons.person,
+                    size: 35,
+                  ),
                 ),
                 Tab(
                   text: 'Nhóm',
-                  icon: Icon(Icons.person),
+                  icon: Icon(
+                    Icons.group_add,
+                    size: 35,
+                  ),
                 ),
               ]),
-              leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.white),
-                  onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomePage(
-                                  userId: widget.userId,userName: widget.fullName,
-                                )),
-                      ))),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // popUpDialog(context);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CreateGroupChat(
-                            userId: widget.userId,
-                            fullName: widget.fullName,
-                          )));
-            },
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            child: const Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 30,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage(
+                                    userId: widget.userId,
+                                    userName: widget.fullName,
+                                  )),
+                        )),
+              )),
+          floatingActionButton: Container(
+            width: MediaQuery.of(context).size.width * 0.2,
+            height: MediaQuery.of(context).size.height * 0.08,
+            child: FloatingActionButton(
+              onPressed: () {
+                // popUpDialog(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CreateGroupChat(
+                              userId: widget.userId,
+                              fullName: widget.fullName,
+                            )));
+              },
+              elevation: 0,
+              backgroundColor: greenALS,
+              child: const Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 35,
+              ),
             ),
           ),
           body: TabBarView(
@@ -167,17 +185,18 @@ class _GroupChatPageState extends State<GroupChatPage>
     );
   }
 
-  Future refesh() async{
-    final response = await http.get(
-        Uri.parse("https://als.cosplane.asia/api/groupchat/GetAllGroupChatUserJoin?userId=" + widget.userId));
+  Future refesh() async {
+    final response = await http.get(Uri.parse(
+        "https://als.cosplane.asia/api/groupchat/GetAllGroupChatUserJoin?userId=" +
+            widget.userId));
     if (response.statusCode == 200) {
       setState(() {
         var data = [];
         data = json.decode(response.body);
-      data2 = data.map((e) => ListAllGroupChatUserJoin.fromJson(e)).toList();
+        data2 = data.map((e) => ListAllGroupChatUserJoin.fromJson(e)).toList();
       });
     } else {
-      throw Exception ('Lỗi dữ liệu');
+      throw Exception('Lỗi dữ liệu');
     }
   }
 

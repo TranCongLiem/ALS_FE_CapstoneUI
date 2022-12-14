@@ -53,7 +53,7 @@ class _MessageTileState extends State<MessageTile> {
                         widget.sender.toUpperCase(),
                         textAlign: TextAlign.start,
                         style: const TextStyle(
-                            fontSize: 13,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
                             letterSpacing: -0.5),
@@ -64,7 +64,7 @@ class _MessageTileState extends State<MessageTile> {
                       Text(widget.message,
                           textAlign: TextAlign.start,
                           style: const TextStyle(
-                              fontSize: 16, color: Colors.black))
+                              fontSize: 18, color: Colors.black))
                     ],
                   )
                 : widget.type == TypeMessage.image
@@ -75,7 +75,7 @@ class _MessageTileState extends State<MessageTile> {
                               widget.sender.toUpperCase(),
                               textAlign: TextAlign.start,
                               style: const TextStyle(
-                                  fontSize: 13,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.black,
                                   letterSpacing: -0.5),
@@ -161,7 +161,7 @@ class _MessageTileState extends State<MessageTile> {
                             widget.sender.toUpperCase(),
                             textAlign: TextAlign.start,
                             style: const TextStyle(
-                                fontSize: 13,
+                                fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black,
                                 letterSpacing: -0.5),

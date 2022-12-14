@@ -23,8 +23,7 @@ class CustomListAllGroupChatUserJoin extends StatefulWidget {
 }
 
 class _CustomListAllGroupChatUserJoinState
-    extends State<CustomListAllGroupChatUserJoin>{
-  
+    extends State<CustomListAllGroupChatUserJoin> {
   @override
   void initState() {
     // TODO: implement initState
@@ -67,7 +66,7 @@ class _CustomListAllGroupChatUserJoinState
               CircleAvatar(
                 backgroundImage: NetworkImage(
                     widget.listAllGroupChatUserJoin.groupImage ?? ''),
-                maxRadius: 25,
+                maxRadius: 30,
               ),
               SizedBox(
                 width: 16,
@@ -81,7 +80,7 @@ class _CustomListAllGroupChatUserJoinState
                       Text(
                         widget.listAllGroupChatUserJoin.groupChatName ?? '',
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 22,
                         ),
                       ),
                       SizedBox(
@@ -91,7 +90,7 @@ class _CustomListAllGroupChatUserJoinState
                         widget.listAllGroupChatUserJoin.lastMessageGroup ?? '',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 16,
                         ),
                       ),
                     ],
@@ -105,7 +104,7 @@ class _CustomListAllGroupChatUserJoinState
                     // :  timeago.format(time, locale: 'vi'),
                     : timeago.format(time, locale: 'vi'),
                 style: TextStyle(
-                  fontSize: 12,
+                  fontSize: 14,
                 ),
               )
             ],

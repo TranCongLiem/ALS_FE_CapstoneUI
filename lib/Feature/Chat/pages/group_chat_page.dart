@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
 import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -108,7 +107,10 @@ class _GroupChatPageState extends State<GroupChatPage> {
                         userId: widget.userId,
                         groupImage: widget.groupImage));
               },
-              icon: const Icon(Icons.info))
+              icon: const Icon(
+                Icons.info,
+                size: 35,
+              ))
         ],
       ),
       body: Stack(
@@ -193,7 +195,10 @@ class _GroupChatPageState extends State<GroupChatPage> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
-                icon: Icon(Icons.image),
+                icon: Icon(
+                  Icons.image,
+                  size: 35,
+                ),
                 onPressed: () => getImage(),
                 color: greenALS,
               ),
@@ -204,7 +209,10 @@ class _GroupChatPageState extends State<GroupChatPage> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
-                icon: Icon(Icons.face),
+                icon: Icon(
+                  Icons.face,
+                  size: 35,
+                ),
                 onPressed: getSticker,
                 color: greenALS,
               ),
@@ -221,12 +229,13 @@ class _GroupChatPageState extends State<GroupChatPage> {
                   //     TypeMessage.text, widget.userId, widget.arguments.peerId);
                 },
                 style:
-                    TextStyle(color: ColorConstants.primaryColor, fontSize: 18),
+                    TextStyle(color: ColorConstants.primaryColor, fontSize: 22),
                 controller: messageController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Soạn tin nhắn...',
-                  hintStyle: TextStyle(color: ColorConstants.greyColor),
+                  hintStyle:
+                      TextStyle(color: ColorConstants.greyColor, fontSize: 22),
                   suffixIcon: IconButton(
                     onPressed: () {
                       onListen();
@@ -234,6 +243,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                     icon: Icon(
                       _speech.isListening ? Icons.mic : Icons.mic_none,
                       color: _speech.isListening ? greenALS : Colors.grey,
+                      size: 30,
                     ),
                   ),
                 ),
@@ -253,6 +263,7 @@ class _GroupChatPageState extends State<GroupChatPage> {
                 icon: Icon(
                   Icons.send,
                   color: greenALS,
+                  size: 35,
                 ),
                 // onPressed: () => onSendMessage(textEditingController.text, '',
                 //     TypeMessage.text, widget.userId, widget.arguments.peerId),

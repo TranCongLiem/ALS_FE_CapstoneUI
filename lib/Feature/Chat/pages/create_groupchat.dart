@@ -1,10 +1,8 @@
 import 'package:capstone_ui/Feature/Chat/pages/groupchat_page.dart';
-import 'package:capstone_ui/Feature/Chat/pages/widgets.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:uuid/uuid.dart';
@@ -12,6 +10,7 @@ import '../../../Bloc/groupchat/groupchat_bloc.dart';
 import '../../../Constant/constant.dart';
 import '../providers/database_service.dart';
 import 'dart:io';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 enum MediaType {
   image,
@@ -36,20 +35,33 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
   MediaType _mediaType = MediaType.image;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormFieldState> groupNameKey = GlobalKey();
+  late stt.SpeechToText _speech;
+  bool _isListening = false;
+  String _textSpeech = '';
+  final TextEditingController groupNameController = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _speech = stt.SpeechToText();
+    groupNameController.text = '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Tạo nhóm trò chuyện'),
+          title: Text(
+            'Tạo nhóm trò chuyện',
+            style: TextStyle(fontSize: 23),
+          ),
           backgroundColor: greenALS,
           leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.white),
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 40,
+              ),
               onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -94,8 +106,8 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                           bottom: 0,
                           right: 0,
                           child: Container(
-                            height: 40,
-                            width: 40,
+                            height: 55,
+                            width: 55,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
@@ -106,7 +118,10 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                               color: Colors.green,
                             ),
                             child: IconButton(
-                              icon: Icon(Icons.edit),
+                              icon: Icon(
+                                Icons.edit,
+                                size: 30,
+                              ),
                               onPressed: () {
                                 showMaterialModalBottomSheet(
                                   context: context,
@@ -120,7 +135,7 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                                       children: <Widget>[
                                         Text(
                                           'Chọn ảnh từ',
-                                          style: TextStyle(fontSize: 20.0),
+                                          style: TextStyle(fontSize: 24.0),
                                         ),
                                         SizedBox(
                                           height: 20.0,
@@ -134,17 +149,32 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                                                   pickMedia(
                                                       ImageSource.gallery);
                                                 },
-                                                icon: Icon(Icons.image),
-                                                label: Text('Thư viện'),
+                                                icon: Icon(
+                                                  Icons.image,
+                                                  size: 35,
+                                                ),
+                                                label: Text(
+                                                  'Thư viện',
+                                                  style:
+                                                      TextStyle(fontSize: 24),
+                                                ),
                                                 style: ElevatedButton.styleFrom(
+                                                    padding: EdgeInsets.all(10),
                                                     backgroundColor: greenALS)),
                                             ElevatedButton.icon(
                                               onPressed: () {
                                                 pickMedia(ImageSource.camera);
                                               },
-                                              icon: Icon(Icons.camera),
-                                              label: Text('Máy ảnh'),
+                                              icon: Icon(
+                                                Icons.camera,
+                                                size: 35,
+                                              ),
+                                              label: Text(
+                                                'Máy ảnh',
+                                                style: TextStyle(fontSize: 24),
+                                              ),
                                               style: ElevatedButton.styleFrom(
+                                                  padding: EdgeInsets.all(10),
                                                   backgroundColor: greenALS),
                                             )
                                           ],
@@ -163,16 +193,12 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.04,
                 ),
-                // _isLoading == true
-                // ? Center(
-                //     child: CircularProgressIndicator(
-                //         color: Theme.of(context).primaryColor),
-                //   )
                 Column(
                   children: [
                     Form(
                       key: formKey,
                       child: TextFormField(
+                        controller: groupNameController,
                         key: groupNameKey,
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         onChanged: (val) {
@@ -180,20 +206,34 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                             groupName = val;
                           });
                         },
-                        style: const TextStyle(color: Colors.black),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 24),
                         decoration: InputDecoration(
-                            hintText: 'Tên nhóm',
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor),
-                                borderRadius: BorderRadius.circular(20)),
-                            errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(color: Colors.red),
-                                borderRadius: BorderRadius.circular(20)),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Theme.of(context).primaryColor),
-                                borderRadius: BorderRadius.circular(20))),
+                          hintText: 'Tên nhóm',
+                          hintStyle: TextStyle(fontSize: 24),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius: BorderRadius.circular(20)),
+                          errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(20)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColor),
+                              borderRadius: BorderRadius.circular(20)),
+                          suffixIcon: IconButton(
+                            onPressed: (() {
+                              onListen();
+                            }),
+                            icon: Icon(
+                              _speech.isListening ? Icons.mic : Icons.mic_none,
+                              color:
+                                  _speech.isListening ? greenALS : Colors.grey,
+                              size: 35,
+                            ),
+                          ),
+                        ),
                         validator: (val) => validateGroupName(val!),
                       ),
                     ),
@@ -215,9 +255,18 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                                 widget.userId,
                                 groupName,
                               );
-
-                              showSnackbar(context, Colors.green,
-                                  "Tạo nhóm thành công.");
+                              // Navigator.pop(context);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => GroupChatPage(
+                                        userId: widget.userId,
+                                        fullName: widget.fullName)),
+                              );
+                              Fluttertoast.showToast(
+                                  msg: 'Tạo nhóm thành công',
+                                  backgroundColor: greenALS,
+                                  fontSize: 18.0);
                             }
                           }
                         },
@@ -232,7 +281,7 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                           padding: const EdgeInsets.all(15.0),
                           child: Text(
                             'Tạo nhóm',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 24),
                           ),
                         ),
                       ),
@@ -279,5 +328,36 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
       imageFile = File(file.path);
       setState(() {});
     }
+  }
+
+  void onListen() async {
+    bool available = await _speech.initialize(
+        onStatus: (val) => print('onStatus: $val'),
+        onError: (val) => print('onError: $val'));
+
+    if (!_isListening) {
+      if (available) {
+        setState(() {
+          _isListening = false;
+          _speech.listen(
+            onResult: (val) => setState(() {
+              groupName = val.recognizedWords;
+              groupNameController.text = val.recognizedWords;
+            }),
+          );
+        });
+      }
+    } else {
+      setState(() {
+        _isListening = false;
+        _speech.stop();
+        print("Stop Listening");
+      });
+    }
+  }
+
+  void stopListen() {
+    _speech.stop();
+    setState(() {});
   }
 }

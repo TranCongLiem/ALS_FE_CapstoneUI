@@ -73,40 +73,47 @@ class _HomeState extends State<Home> {
                         width: 100.w,
                         height: 20.5.h,
                         child: Scaffold(
-                          bottomNavigationBar: MyBottomNavBar(
-                              // ignore: unnecessary_this
-                              // index: this.index,
+                          bottomNavigationBar: MyBottomNavBar(),
+                          floatingActionButton: Container(
+                            width: MediaQuery.of(context).size.width * 0.2,
+                            height: MediaQuery.of(context).size.height * 0.08,
+                            child: FloatingActionButton(
+                              // ignore: prefer_const_constructors
+                              elevation: 5,
+                              backgroundColor: Colors.yellow[700],
+                              child: Icon(
+                                Icons.sos_outlined,
+                                size: 50,
+                                color: Colors.black,
                               ),
-                          floatingActionButton: FloatingActionButton(
-                            // ignore: prefer_const_constructors
-                            child: Icon(Icons.notifications_active),
-                            onPressed: () async {
-                              if (state2 is GetDetailLoadedState) {
-                                if (state2.getProfileUserByIdResponeModel
-                                        .relationshipWith ==
-                                    null) {
-                                  Fluttertoast.showToast(
-                                      msg:
-                                          "Bạn chưa liên kết với bất kì người hỗ trợ nào",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.SNACKBAR,
-                                      timeInSecForIosWeb: 1,
-                                      backgroundColor: greenALS,
-                                      textColor: Colors.white,
-                                      fontSize: 16.0);
-                                } else {
-                                  var result = await getPhoneNumberById(
-                                      GetPhoneByIdRequestModel(
-                                          userId: state2
-                                              .getProfileUserByIdResponeModel
-                                              .relationshipWith
-                                              .toString()));
-                                  if (result != null) {
-                                    launch("tel:${result.phoneNumber}");
+                              onPressed: () async {
+                                if (state2 is GetDetailLoadedState) {
+                                  if (state2.getProfileUserByIdResponeModel
+                                          .relationshipWith ==
+                                      null) {
+                                    Fluttertoast.showToast(
+                                        msg:
+                                            "Bạn chưa liên kết với bất kì người hỗ trợ nào",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.SNACKBAR,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: greenALS,
+                                        textColor: Colors.white,
+                                        fontSize: 18.0);
+                                  } else {
+                                    var result = await getPhoneNumberById(
+                                        GetPhoneByIdRequestModel(
+                                            userId: state2
+                                                .getProfileUserByIdResponeModel
+                                                .relationshipWith
+                                                .toString()));
+                                    if (result != null) {
+                                      launch("tel:${result.phoneNumber}");
+                                    }
                                   }
                                 }
-                              }
-                            },
+                              },
+                            ),
                           ),
                           body: Stack(
                             children: <Widget>[
@@ -185,40 +192,24 @@ class _HomeState extends State<Home> {
                                                 title: "Trò chuyện",
                                                 svgSrc: "assets/icons/ex1.svg",
                                                 press: () {
-                                                  if (state2 is GetDetailLoadedState) {
+                                                  if (state2
+                                                      is GetDetailLoadedState) {
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomePage(
-                                                                    userId: state
-                                                                        .userId,userName: state2.getProfileUserByIdResponeModel.fullName.toString(),)));
+                                                            builder:
+                                                                (context) =>
+                                                                    HomePage(
+                                                                      userId: state
+                                                                          .userId,
+                                                                      userName: state2
+                                                                          .getProfileUserByIdResponeModel
+                                                                          .fullName
+                                                                          .toString(),
+                                                                    )));
                                                   }
                                                 },
                                               ),
-                                              // BlocBuilder<CreateSosNotiBloc,
-                                              //     SendSOSBlocState>(
-                                              //   builder: (context, state) {
-                                              //     if (state
-                                              //         is SendSOSFailBlocState) {
-                                              //       showDialog(
-                                              //           context: context,
-                                              //           builder: (_) =>
-                                              //               AlertDialog(
-                                              //                 title: Text('Lỗi'),
-                                              //                 content: Text(state
-                                              //                         .getPhoneByIdResponeModel
-                                              //                         .phoneNumber ??
-                                              //                     'Không thể thực hiện tính năng này'),
-                                              //               ));
-                                              //     } else if (state
-                                              //         is SendSOSSuccessBlocState) {
-                                              //       launch(
-                                              //           "tel:${state.getPhoneByIdResponeModel.phoneNumber}");
-                                              //     } else {}
-                                              //     return Container();
-                                              //   },
-                                              // ),
                                             ],
                                           ),
                                         ),

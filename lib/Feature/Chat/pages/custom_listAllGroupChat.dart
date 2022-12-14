@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../../Constant/constant.dart';
 import '../../../Model/groupChat_model.dart';
 import '../utils/utilities.dart';
@@ -23,8 +22,8 @@ class CustomListAllGroupChat extends StatefulWidget {
 
 class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
   late bool? hasJoin = widget.listAllGroupChat![widget.index].hasJoin;
-  late int totalMember = widget.listAllGroupChat![widget.index].totalMember ?? 0;
-
+  late int totalMember =
+      widget.listAllGroupChat![widget.index].totalMember ?? 0;
 
   @override
   void initState() {
@@ -41,21 +40,6 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
             if (Utilities.isKeyboardShowing()) {
               Utilities.closeKeyboard(context);
             }
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => (
-            //       // arguments: ChatPageArguments(
-            //       //   peerId: data?[index].userId ?? '',
-            //       //   peerAvatar:
-            //       //       data?[index].imageUser ?? '',
-            //       //   peerNickname:
-            //       //       data?[index].fullName ?? '',
-            //       // ),
-
-            //     ),
-            //   ),
-            // );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -64,8 +48,9 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                 children: [
                   CircleAvatar(
                     backgroundImage: NetworkImage(
-                        widget.listAllGroupChat![widget.index].groupImage ?? ''),
-                    maxRadius: 25,
+                        widget.listAllGroupChat![widget.index].groupImage ??
+                            ''),
+                    maxRadius: 30,
                   ),
                   SizedBox(
                     width: 16,
@@ -81,7 +66,7 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                                     .groupChatName ??
                                 '',
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 22,
                             ),
                           ),
                           SizedBox(
@@ -91,7 +76,7 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                             'Tổng thành viên: ${totalMember}',
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 16,
                             ),
                           ),
                         ],
@@ -111,14 +96,18 @@ class _CustomListAllGroupChatState extends State<CustomListAllGroupChat> {
                         {
                           Fluttertoast.showToast(
                               msg: 'Bạn đã tham gia nhóm này rồi',
-                              backgroundColor: ColorConstants.greyColor),
+                              backgroundColor: greenALS,
+                              fontSize: 18.0),
                         }
                     },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: hasJoin == true
                             ? greenALS.withOpacity(0.6)
                             : Colors.grey),
-                    child: Text(hasJoin == true ? 'Đã tham gia' : 'Tham gia'),
+                    child: Text(
+                      hasJoin == true ? 'Đã tham gia' : 'Tham gia',
+                      style: TextStyle(fontSize: 20),
+                    ),
                   )
                 ],
               ),

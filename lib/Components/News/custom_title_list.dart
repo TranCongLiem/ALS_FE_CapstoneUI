@@ -9,13 +9,8 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
   timeago.setLocaleMessages('vi', timeago.ViMessages());
   return InkWell(
     onTap: () async {
-      var result= await GetDetailKnowLedgeById(GetDetailKnowLedgeByIdRequest(newsId: listKnowledge.newsId??''));
-      print("abc23" + result.toString());
-      // Navigator.push(
-      //     context,
-      //     MaterialPageRoute(
-      //         builder: ((context) =>
-      //             DetailKnowledgeCustom(listKnowledge: listKnowledge))));
+      var result = await GetDetailKnowLedgeById(
+          GetDetailKnowLedgeByIdRequest(newsId: listKnowledge.newsId ?? ''));
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -23,7 +18,7 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
                   DetailKnowledgeCustom(listKnowledge: result))));
     },
     child: Container(
-      margin: EdgeInsets.all(15.0),
+      margin: EdgeInsets.all(5.0),
       padding: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -54,42 +49,60 @@ Widget customTitleList(ListKnowledge listKnowledge, BuildContext context) {
             height: 8.0,
           ),
           Container(
-            padding: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              color: Colors.lightGreen,
-              borderRadius: BorderRadius.circular(10.0),
-            ),
+            padding: EdgeInsets.all(8.0),
+            margin: EdgeInsets.only(left: 4),
+            // decoration: BoxDecoration(
+            //   color: Colors.lightGreen,
+            //   borderRadius: BorderRadius.circular(5.0),
+            // ),
             child: Text(
               listKnowledge.title ?? '',
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.white, fontSize: 16.0),
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22.0,
+                  fontWeight: FontWeight.bold),
             ),
           ),
-          Text(
-            timeago.format(time, locale: 'vi'),
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 12.0,
+          Container(
+            padding: EdgeInsets.all(6.0),
+            margin: EdgeInsets.only(left: 4),
+            child: Row(
+              children: [
+                Icon(Icons.date_range),
+                Text(
+                  timeago.format(time, locale: 'vi'),
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 17.0,
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
             height: 8.0,
           ),
-          Text(
-            listKnowledge.description ?? "",
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+          Container(
+            padding: EdgeInsets.all(6.0),
+            margin: EdgeInsets.only(left: 4),
+            child: Text(
+              listKnowledge.description ?? "",
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 22.0),
+            ),
           ),
         ],
       ),
     ),
   );
-
 }
-Future<DetailKnowledgeResponse> GetDetailKnowLedgeById(GetDetailKnowLedgeByIdRequest request){
+
+Future<DetailKnowledgeResponse> GetDetailKnowLedgeById(
+    GetDetailKnowLedgeByIdRequest request) {
   ListKnowledgeService service = ListKnowledgeService();
-  var result= service.GetDetailKnowLedgeById(request);
+  var result = service.GetDetailKnowLedgeById(request);
   return result;
 }

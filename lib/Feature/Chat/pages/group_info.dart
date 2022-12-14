@@ -59,12 +59,18 @@ class _GroupInfoState extends State<GroupInfo> {
           centerTitle: true,
           elevation: 0,
           backgroundColor: greenALS,
-          title: const Text("Thông tin"),
+          title: const Text(
+            "Thông tin",
+            style: TextStyle(fontSize: 23),
+          ),
           actions: <Widget>[
             BlocBuilder<GroupchatBloc, GroupchatState>(
               builder: (context, state) {
                 return IconButton(
-                  icon: Icon(Icons.logout),
+                  icon: Icon(
+                    Icons.logout,
+                    size: 35,
+                  ),
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -80,18 +86,21 @@ class _GroupInfoState extends State<GroupInfo> {
                             title: Text(
                               'Xác nhận',
                               style: TextStyle(
-                                  fontSize: 21.0, fontWeight: FontWeight.bold),
+                                  fontSize: 23.0, fontWeight: FontWeight.bold),
                             ),
                             content: Text(
                               'Bạn có muốn rời khỏi nhóm?',
-                              style: TextStyle(fontSize: 19.0),
+                              style: TextStyle(fontSize: 20.0),
                             ),
                             actions: [
                               TextButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: Text('HỦY'),
+                                child: Text(
+                                  'HỦY',
+                                  style: TextStyle(fontSize: 22),
+                                ),
                               ),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
@@ -110,7 +119,7 @@ class _GroupInfoState extends State<GroupInfo> {
                                   'Rời',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20.0),
+                                      fontSize: 22.0),
                                 ),
                               ),
                             ],
@@ -143,11 +152,6 @@ class _GroupInfoState extends State<GroupInfo> {
                     CircleAvatar(
                       radius: 60,
                       backgroundImage: NetworkImage(widget.groupImage),
-                      // child: Text(
-                      //   widget.groupName.substring(0, 1).toUpperCase(),
-                      //   style: const TextStyle(
-                      //       fontWeight: FontWeight.w500, color: Colors.white),
-                      // ),
                     ),
                     const SizedBox(
                       width: 20,
@@ -158,7 +162,7 @@ class _GroupInfoState extends State<GroupInfo> {
                         "${widget.groupName}",
                         maxLines: 2,
                         style: const TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 22.0),
+                            fontWeight: FontWeight.w500, fontSize: 24.0),
                       ),
                     ),
                     const SizedBox(

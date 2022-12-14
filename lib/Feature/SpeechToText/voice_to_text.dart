@@ -9,6 +9,8 @@ import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:flutter/material.dart';
 
+import '../../Home/home.dart';
+
 class SpeechSampleApp extends StatefulWidget {
   const SpeechSampleApp({Key? key}) : super(key: key);
 
@@ -38,40 +40,57 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title:
-              // Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
-              // ignore: prefer_const_constructors
-              Text('Chuyển giọng nói thành văn bản'),
-          centerTitle: true,
-          backgroundColor: greenALS,
-          actions: [
-            Builder(builder: (context) {
-              return IconButton(
-                  onPressed: () async {
-                    await FlutterClipboard.copy(outputText);
-                    // ignore: use_build_context_synchronously
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text("Đã sao chép")),
-                    );
-                  },
-                  icon: Icon(Icons.content_copy));
-            })
-          ],
-        ),
+            title:
+                // Text('Đã nhận diện: ${(_confidence * 100.0).toStringAsFixed(1)}%'),
+                // ignore: prefer_const_constructors
+                Text('Chuyển giọng nói thành văn bản'),
+            centerTitle: true,
+            backgroundColor: greenALS,
+            actions: [
+              Builder(builder: (context) {
+                return IconButton(
+                    onPressed: () async {
+                      await FlutterClipboard.copy(outputText);
+                      // ignore: use_build_context_synchronously
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Đã sao chép")),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.content_copy,
+                      size: 35,
+                    ));
+              })
+            ],
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      )),
+            )),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Text(
-                  speech.isListening
-                      ? '$outputText'
-                      : _hasSpeech
-                          ? outputText
-                          : 'Speech not available',
-                  style: TextStyle(
-                    fontSize: 30.sp,
+                SingleChildScrollView(
+                  child: Text(
+                    speech.isListening
+                        ? '$outputText'
+                        : _hasSpeech
+                            ? outputText
+                            : 'Không khả dụng',
+                    style: TextStyle(
+                      fontSize: 30.sp,
+                    ),
                   ),
                 ),
                 Container(
@@ -137,7 +156,7 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
     }
     speech.listen(
         onResult: resultListener,
-        listenFor: Duration(seconds: 10),
+        listenFor: Duration(seconds: 20),
         partialResults: true,
         localeId: _currentLocaleId,
         onSoundLevelChange: soundLevelListener,
