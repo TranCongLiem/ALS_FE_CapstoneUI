@@ -60,36 +60,33 @@ class _NewFeedState extends State<NewFeed> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-                        child: SizedBox(
-                          child: Expanded(
-                              child: Container(
-                            decoration: BoxDecoration(
-                                color: Color.fromARGB(31, 165, 159, 159),
-                                borderRadius: BorderRadius.circular(22)),
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 30),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(31, 165, 159, 159),
+                              borderRadius: BorderRadius.circular(22)),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 30),
+                              ),
+                              Expanded(
+                                  child: TextButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CreatePostNewFeed()));
+                                },
+                                child: Text(
+                                  'Bạn đang nghĩ gì',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.black38, fontSize: 24.0),
                                 ),
-                                Expanded(
-                                    child: TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                CreatePostNewFeed()));
-                                  },
-                                  child: Text(
-                                    'Bạn đang nghĩ gì',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black38, fontSize: 24.0),
-                                  ),
-                                )),
-                              ],
-                            ),
-                          )),
+                              )),
+                            ],
+                          ),
                         ),
                       ),
                       BlocBuilder<AuthenticateBloc, AuthenticateState>(
@@ -124,66 +121,6 @@ class _NewFeedState extends State<NewFeed> {
               )),
         );
       },
-    );
-  }
-}
-
-class CardItem extends StatelessWidget {
-  const CardItem({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Container(
-        height: 350.0,
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://www.als.org/sites/default/files/styles/hero_image/public/2021-06/navigating-ALS_01-smaller.jpg?h=2f03dbdf&itok=6xFToT1-"),
-              ),
-              title: Text("Nguyễn Văn A"),
-              subtitle: Text("September 22 at 12:17 PM"),
-            ),
-            Expanded(
-                child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                      "https://www.als.org/sites/default/files/styles/hero_image/public/2020-06/Hero-New-Site_08.jpg?h=be2185f4&itok=qkJVB6S9"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )),
-            SizedBox(
-              height: 12.0,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.grey,
-                    ),
-                    Text(
-                      "Thích",
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                  ],
-                )
-              ],
-            ),
-            SizedBox(
-              height: 12.0,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

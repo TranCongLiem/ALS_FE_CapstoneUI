@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 Widget CustomCategoryList(
     CategoryExercise categoryExericse, BuildContext context) {
-  return Container(
+  return SizedBox(
     height: 100,
     width: 200,
     child: Column(
@@ -17,23 +17,25 @@ Widget CustomCategoryList(
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Ink.image(
-                  height: 160,
-                  fit: BoxFit.cover,
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ListExerciseByCategory(
-                                  categoryExericse: categoryExericse)));
-                    },
-                  ),
-                  image: NetworkImage(categoryExericse.categoryImage ?? ''),
-                  colorFilter: ColorFilter.mode(
-                    Colors.grey.withOpacity(0.9),
-                    BlendMode.modulate,
-                  )),
+              Positioned(
+                child: Ink.image(
+                    height: 160,
+                    fit: BoxFit.cover,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListExerciseByCategory(
+                                    categoryExericse: categoryExericse)));
+                      },
+                    ),
+                    image: NetworkImage(categoryExericse.categoryImage ?? ''),
+                    colorFilter: ColorFilter.mode(
+                      Colors.grey.withOpacity(0.9),
+                      BlendMode.modulate,
+                    )),
+              ),
               Text(
                 categoryExericse.categoryName ?? '',
                 style: TextStyle(
@@ -44,9 +46,6 @@ Widget CustomCategoryList(
             ],
           ),
         ),
-        SizedBox(
-          width: 12,
-        )
       ],
     ),
   );
