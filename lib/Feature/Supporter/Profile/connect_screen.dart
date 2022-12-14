@@ -96,20 +96,16 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                           supporterId: state1.userId,
                                           patientPhoneNumber: controller.text));
                               if (resultAddReation.success ?? false) {
-                                // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                //   content:
-                                //       Text("Thêm liên kết đến bệnh nhân thành công"),
-                                //   backgroundColor: greenALS,
-                                // ));
-                                Fluttertoast.showToast(
-                                    msg:
-                                        "Thêm liên kết đến bệnh nhân thành công",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.SNACKBAR,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: greenALS,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                               
+                                // Fluttertoast.showToast(
+                                //     msg:
+                                //         "Thêm liên kết đến bệnh nhân thành công",
+                                //     toastLength: Toast.LENGTH_SHORT,
+                                //     gravity: ToastGravity.SNACKBAR,
+                                //     timeInSecForIosWeb: 1,
+                                //     backgroundColor: greenALS,
+                                //     textColor: Colors.white,
+                                //     fontSize: 16.0);
                                 var profile =
                                     await getProfilePatientAfterAddRelation(
                                         GetDetailUserByPhoneRequest(
