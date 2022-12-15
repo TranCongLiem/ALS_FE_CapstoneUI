@@ -39,12 +39,15 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
   bool _isListening = false;
   String _textSpeech = '';
   final TextEditingController groupNameController = TextEditingController();
+  var imageGroupChatDefault;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _speech = stt.SpeechToText();
     groupNameController.text = '';
+    imageGroupChatDefault =
+        "https://scontent.xx.fbcdn.net/v/t1.15752-9/319750872_1371673096904649_6423149025223113406_n.png?stp=dst-png_p206x206&_nc_cat=103&ccb=1-7&_nc_sid=aee45a&_nc_ohc=aOrddTH-0sIAX_BjzjR&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdRQ-Ayvm0MXOWrnrqOg5M9HAqxtDWS1OTgS1Jy3S1iUGQ&oe=63C24F06";
   }
 
   @override
@@ -125,8 +128,7 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: imageFile == null
-                                      ? NetworkImage(
-                                              "assets/images/logo_ALS.png")
+                                      ? NetworkImage(imageGroupChatDefault)
                                           as ImageProvider
                                       : FileImage(imageFile!),
                                 )),
@@ -343,15 +345,20 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
 
   void createdGroupChatRequest(
       String groupId, String userId, String groupChatName) async {
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    Reference reference =
-        firebaseStorage.ref('upload-image-groupchat').child(fileName);
-    UploadTask uploadTask = reference.putFile(imageFile!);
-    TaskSnapshot snapshot = await uploadTask;
-    groupChatImage = await snapshot.ref.getDownloadURL();
-    context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
-        groupId, userId, groupChatName, groupChatImage));
+    if (imageFile != null) {
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+      Reference reference =
+          firebaseStorage.ref('upload-image-groupchat').child(fileName);
+      UploadTask uploadTask = reference.putFile(imageFile!);
+      TaskSnapshot snapshot = await uploadTask;
+      groupChatImage = await snapshot.ref.getDownloadURL();
+      context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
+          groupId, userId, groupChatName, groupChatImage));
+    } else {
+      context.read<GroupchatBloc>().add(GroupchatEvent.CreatedGroupChatRequest(
+          groupId, userId, groupChatName, imageGroupChatDefault));
+    }
   }
 
   void pickMedia(ImageSource source) async {
