@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import '../Bloc/user/user_bloc.dart';
@@ -63,6 +64,15 @@ class _RegisterInfoState extends State<RegisterInfo> {
               MaterialPageRoute(
                   builder: (BuildContext context) => new NewFeed()),
               (Route<dynamic> route) => false);
+              Fluttertoast.showToast(
+                                    msg:
+                                        "Hoàn tất đăng kí",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.SNACKBAR,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: greenALS,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
         }
       },
       builder: (context, state) {

@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import '../Bloc/user/user_bloc.dart';
 import '../Constant/constant.dart';
@@ -58,6 +59,15 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
               MaterialPageRoute(
                   builder: (BuildContext context) => new NewFeedSupporter()),
               (Route<dynamic> route) => false);
+              Fluttertoast.showToast(
+                                    msg:
+                                        "Hoàn tất đăng kí",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.SNACKBAR,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: greenALS,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
         }
       },
       builder: (context, state) {
