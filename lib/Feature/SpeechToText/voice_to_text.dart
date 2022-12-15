@@ -2,6 +2,7 @@
 import 'dart:math';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:clipboard/clipboard.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:sizer/sizer.dart';
 import 'package:speech_to_text/speech_recognition_error.dart';
@@ -52,9 +53,18 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
                     onPressed: () async {
                       await FlutterClipboard.copy(outputText);
                       // ignore: use_build_context_synchronously
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("Đã sao chép")),
-                      );
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   SnackBar(content: Text("Đã sao chép")),
+                      // );
+                      Fluttertoast.showToast(
+                                    msg:
+                                        "Đã sao chép",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.SNACKBAR,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: greenALS,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
                     },
                     icon: Icon(
                       Icons.content_copy,
