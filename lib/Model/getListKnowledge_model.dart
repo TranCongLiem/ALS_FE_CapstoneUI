@@ -26,7 +26,7 @@ class ListKnowledge {
       createDate: json['createDate'] ?? '' as String,
       lastModifyBy: json['lastModifyBy'] ?? '' as String,
       modifyDate: json['modifyDate'] ?? '' as String,
-      status: json['status'] ?? '' as bool,
+      status: json['status'] ?? false as bool,
     );
   }
 
@@ -111,14 +111,14 @@ class GetKnowledgeByCategoryKnowledgeIdRequest {
   }
 }
 class CategoryNewsKnowLedgeResponse{
-  String categoryNewId;
-  String categoryName;
+  String? categoryNewId;
+  String? categoryName;
 
-  CategoryNewsKnowLedgeResponse({ required this.categoryNewId, required this.categoryName});
+  CategoryNewsKnowLedgeResponse({  this.categoryNewId,  this.categoryName});
   factory CategoryNewsKnowLedgeResponse.fromJson(Map<String, dynamic> json) {
     return CategoryNewsKnowLedgeResponse(
-      categoryNewId: json['categoryNewId'] ?? '' as String,
-      categoryName: json['categoryName'] ?? '' as String,      
+      categoryNewId: json['categoryNewId']??'' as String,
+      categoryName: json['categoryName'] ??'' as String,      
     );
   }
 

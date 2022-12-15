@@ -95,6 +95,8 @@ class AuthenticateBloc extends Bloc<AuthenticateEvent, AuthenticateState> {
           role: result.role,
           fullName: result.fullName ?? '',
           isChangedPassword: true,
+          password: event.newPassword,
+          
         ));
       } else {
         emit(state.copyWith(errorMessage: "Đổi mật khẩu không thành công"));

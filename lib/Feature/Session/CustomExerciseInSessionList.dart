@@ -46,7 +46,7 @@ Widget CustomExerciseInSessionList(
                         child: CircleAvatar(
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.green,
-                          backgroundImage: NetworkImage(
+                          backgroundImage: NetworkImage( exericse?.exerciseImage ??
                               "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
                         ),
                       ),
@@ -76,8 +76,7 @@ Widget CustomExerciseInSessionList(
                                   style: TextButton.styleFrom(
                                       backgroundColor: Colors.red[400]),
                                   onPressed: () {},
-                                  child: Text(
-                                    'Khó',
+                                  child: Text( exericse?.exerciseLevel ?? 'Khó',
                                     style: TextStyle(
                                         fontSize: 18.0, color: Colors.white),
                                   )),

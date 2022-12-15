@@ -82,6 +82,7 @@ class ListExerciseByCategory extends StatelessWidget {
               ],
             ),
           ),
-        ));
+        )
+        );
   }
 }

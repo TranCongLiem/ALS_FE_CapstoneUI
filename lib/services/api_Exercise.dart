@@ -85,6 +85,26 @@ class ExerciseService {
     }
   }
 
+
+  Future<List<Exericse>> getListExerciseByName(String name) async {
+    final String url="https://als.cosplane.asia/api/exercise/SearchExerciseByName?name=";
+    final response =
+        await get(Uri.parse(url + name));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+
+    
+    if (response.statusCode == 200) {
+      
+      final List<dynamic> result = jsonDecode(response.body);
+      print("result: + ${result.map((e) => Exericse.fromJson(e)).toList()}");
+      return result.map((e) => Exericse.fromJson(e)).toList();
+      
+    } else {
+      throw Exception("Failed to load Exercise by Name");
+    }
+  }
+
   Future<List<Exericse>> getAllExercise() async {
     Response response = await get(Uri.parse(getListExercise));
 
