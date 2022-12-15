@@ -143,7 +143,7 @@ class DetailKnowledgeCustom extends StatefulWidget {
 
 class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
   @override
-  Widget build(BuildContext context) async {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Text(
