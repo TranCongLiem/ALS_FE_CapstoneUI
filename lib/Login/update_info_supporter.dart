@@ -31,6 +31,9 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
   late String? imagePath;
   MediaType _mediaType = MediaType.image;
   var imageUserDefault;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormFieldState> usernameKey = GlobalKey();
+  GlobalKey<FormFieldState> addressKey = GlobalKey();
 
   @override
   void initState() {
@@ -67,216 +70,234 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                 body: Container(
                   height: MediaQuery.of(context).size.height * 1,
                   padding: EdgeInsets.all(10.0),
-                  child: ListView(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
-                        child: Text(
-                          'HÃY CHO CHÚNG TÔI BIẾT THÊM VỀ BẠN',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 26.0, fontWeight: FontWeight.bold),
+                  child: Form(
+                    key: formkey,
+                    child: ListView(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 20.0, bottom: 10.0),
+                          child: Text(
+                            'HÃY CHO CHÚNG TÔI BIẾT THÊM VỀ BẠN',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 26.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          margin: EdgeInsets.only(
-                              left: 20.0, right: 20.0, top: 20.0),
-                          child: Column(
-                            children: [
-                              Center(
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      width: 130,
-                                      height: 130,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              width: 4,
-                                              color: Theme.of(context)
-                                                  .scaffoldBackgroundColor),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                spreadRadius: 2,
-                                                blurRadius: 10,
-                                                color: Colors.black
-                                                    .withOpacity(0.1),
-                                                offset: Offset(0, 10))
-                                          ],
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: imagePath == null
-                                                ? NetworkImage(imageUserDefault)
-                                                    as ImageProvider
-                                                : FileImage(File(imagePath!)),
-                                          )),
-                                    ),
-                                    Positioned(
-                                        bottom: 0,
-                                        right: 0,
-                                        child: Container(
-                                          height: 40,
-                                          width: 40,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
+                        Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.only(
+                                left: 20.0, right: 20.0, top: 20.0),
+                            child: Column(
+                              children: [
+                                Center(
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: 130,
+                                        height: 130,
+                                        decoration: BoxDecoration(
                                             border: Border.all(
-                                              width: 4,
-                                              color: Theme.of(context)
-                                                  .scaffoldBackgroundColor,
+                                                width: 4,
+                                                color: Theme.of(context)
+                                                    .scaffoldBackgroundColor),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  spreadRadius: 2,
+                                                  blurRadius: 10,
+                                                  color: Colors.black
+                                                      .withOpacity(0.1),
+                                                  offset: Offset(0, 10))
+                                            ],
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: imagePath == null
+                                                  ? NetworkImage(
+                                                          imageUserDefault)
+                                                      as ImageProvider
+                                                  : FileImage(File(imagePath!)),
+                                            )),
+                                      ),
+                                      Positioned(
+                                          bottom: 0,
+                                          right: 0,
+                                          child: Container(
+                                            height: 40,
+                                            width: 40,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                width: 4,
+                                                color: Theme.of(context)
+                                                    .scaffoldBackgroundColor,
+                                              ),
+                                              color: Colors.green,
                                             ),
-                                            color: Colors.green,
-                                          ),
-                                          child: IconButton(
-                                            icon: Icon(Icons.edit),
-                                            onPressed: () {
-                                              showMaterialModalBottomSheet(
-                                                context: context,
-                                                builder: (context) => Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.15,
-                                                  width: MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                                  margin: EdgeInsets.symmetric(
-                                                      horizontal: 20.0,
-                                                      vertical: 20.0),
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      Text(
-                                                        'Chọn ảnh từ',
-                                                        style: TextStyle(
-                                                            fontSize: 20.0),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 20.0,
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        children: [
-                                                          ElevatedButton.icon(
+                                            child: IconButton(
+                                              icon: Icon(Icons.edit),
+                                              onPressed: () {
+                                                showMaterialModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      Container(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.15,
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    margin:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 20.0,
+                                                            vertical: 20.0),
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        Text(
+                                                          'Chọn ảnh từ',
+                                                          style: TextStyle(
+                                                              fontSize: 20.0),
+                                                        ),
+                                                        SizedBox(
+                                                          height: 20.0,
+                                                        ),
+                                                        Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceEvenly,
+                                                          children: [
+                                                            ElevatedButton.icon(
+                                                                onPressed: () {
+                                                                  pickMedia(
+                                                                      ImageSource
+                                                                          .gallery);
+                                                                },
+                                                                icon: Icon(Icons
+                                                                    .image),
+                                                                label: Text(
+                                                                    'Thư viện'),
+                                                                style: ElevatedButton
+                                                                    .styleFrom(
+                                                                        backgroundColor:
+                                                                            greenALS)),
+                                                            ElevatedButton.icon(
                                                               onPressed: () {
                                                                 pickMedia(
                                                                     ImageSource
-                                                                        .gallery);
+                                                                        .camera);
                                                               },
                                                               icon: Icon(
-                                                                  Icons.image),
+                                                                  Icons.camera),
                                                               label: Text(
-                                                                  'Thư viện'),
+                                                                  'Máy ảnh'),
                                                               style: ElevatedButton
                                                                   .styleFrom(
                                                                       backgroundColor:
-                                                                          greenALS)),
-                                                          ElevatedButton.icon(
-                                                            onPressed: () {
-                                                              pickMedia(
-                                                                  ImageSource
-                                                                      .camera);
-                                                            },
-                                                            icon: Icon(
-                                                                Icons.camera),
-                                                            label:
-                                                                Text('Máy ảnh'),
-                                                            style: ElevatedButton
-                                                                .styleFrom(
-                                                                    backgroundColor:
-                                                                        greenALS),
-                                                          )
-                                                        ],
-                                                      )
-                                                    ],
+                                                                          greenALS),
+                                                            )
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            },
-                                            color: Colors.white,
-                                          ),
-                                        )),
-                                  ],
+                                                );
+                                              },
+                                              color: Colors.white,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
                                 ),
+                                Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Họ tên',
+                                      style: TextStyle(
+                                          fontSize: 22.0,
+                                          fontWeight: FontWeight.w600),
+                                    )),
+                                TextFormField(
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  key: usernameKey,
+                                  style: TextStyle(
+                                      fontSize: 24.0, color: Colors.black54),
+                                  controller: fullNameController,
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(color: Colors.blue),
+                                  ),
+                                  onChanged: (value) {
+                                    context
+                                        .read<UserBloc>()
+                                        .add(UserEvent.getFullName(value));
+                                  },
+                                  validator: (val) => validateUsername(val!),
+                                )
+                              ],
+                            )),
+                        Container(
+                            alignment: Alignment.topLeft,
+                            margin: EdgeInsets.all(20.0),
+                            child: Column(
+                              children: [
+                                Container(
+                                    alignment: Alignment.topLeft,
+                                    child: Text(
+                                      'Địa chỉ',
+                                      style: TextStyle(
+                                          fontSize: 22.0,
+                                          fontWeight: FontWeight.w600),
+                                    )),
+                                TextFormField(
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  key: addressKey,
+                                  controller: addressController,
+                                  style: TextStyle(
+                                      fontSize: 24.0, color: Colors.black54),
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(color: Colors.blue),
+                                  ),
+                                  onChanged: (value) {
+                                    context
+                                        .read<UserBloc>()
+                                        .add(UserEvent.getAddress(value));
+                                  },
+                                  validator: (val) => validateAddress(val!),
+                                )
+                              ],
+                            )),
+                        Container(
+                          margin: EdgeInsets.only(top: 20.0),
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (formkey.currentState!.validate()) {
+                                uploadImage(state2.userId, state.fullName,
+                                    state.imageUser);
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                              primary: greenALS,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
                               ),
-                              Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Họ tên',
-                                    style: TextStyle(
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                              TextField(
-                                style: TextStyle(
-                                    fontSize: 24.0, color: Colors.black54),
-                                controller: fullNameController,
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(color: Colors.blue),
-                                ),
-                                onChanged: (value) {
-                                  context
-                                      .read<UserBloc>()
-                                      .add(UserEvent.getFullName(value));
-                                },
-                              )
-                            ],
-                          )),
-                      Container(
-                          alignment: Alignment.topLeft,
-                          margin: EdgeInsets.all(20.0),
-                          child: Column(
-                            children: [
-                              Container(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Địa chỉ',
-                                    style: TextStyle(
-                                        fontSize: 22.0,
-                                        fontWeight: FontWeight.w600),
-                                  )),
-                              TextField(
-                                controller: addressController,
-                                style: TextStyle(
-                                    fontSize: 24.0, color: Colors.black54),
-                                decoration: InputDecoration(
-                                  hintStyle: TextStyle(color: Colors.blue),
-                                ),
-                                onChanged: (value) {
-                                  context
-                                      .read<UserBloc>()
-                                      .add(UserEvent.getAddress(value));
-                                },
-                              )
-                            ],
-                          )),
-                      Container(
-                        margin: EdgeInsets.only(top: 20.0),
-                        width: MediaQuery.of(context).size.width * 0.6,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            uploadImage(
-                                state2.userId, state.fullName, state.imageUser);
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: greenALS,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
+                              elevation: 10.0,
                             ),
-                            elevation: 10.0,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Text(
-                              'BẮT ĐẦU THÔI',
-                              style: TextStyle(fontSize: 20),
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Text(
+                                'BẮT ĐẦU THÔI',
+                                style: TextStyle(fontSize: 20),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -335,5 +356,21 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
       imagePath = file.path;
       setState(() {});
     }
+  }
+
+  String? validateUsername(String username) {
+    if (username == null || username.isEmpty) {
+      return 'Vui lòng nhập họ tên';
+    } else if (username.length > 50) {
+      return 'Vui lòng nhập 50 ký tự';
+    }
+    return null;
+  }
+
+  String? validateAddress(String address) {
+    if (address == null || address.isEmpty) {
+      return 'Vui lòng nhập địa chỉ';
+    }
+    return null;
   }
 }

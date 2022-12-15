@@ -64,8 +64,7 @@ class _NewsScreenState extends State<NewsScreen> {
           ),
           automaticallyImplyLeading: false,
         ),
-        body:
-            Column(
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
@@ -91,29 +90,30 @@ class _NewsScreenState extends State<NewsScreen> {
                                   return Container(
                                     margin: EdgeInsets.only(right: 16),
                                     width: MediaQuery.of(context).size.width *
-                                        0.35,
+                                        0.38,
                                     child: ElevatedButton(
                                         onPressed: () {
                                           setState(() {
                                             tappedIndex = index;
-                                                                              category_in_Session =
-                                                  state.list[index].categoryNewId??'';
+                                            category_in_Session = state
+                                                    .list[index]
+                                                    .categoryNewId ??
+                                                '';
 
-                                              BlocProvider.of<
-                                                          ListKnowledgeBlocBloc>(
-                                                      context)
-                                                  .add(LoadKnowLedgeByCateEvent(
-                                                      request:
-                                                          GetKnowledgeByCategoryKnowledgeIdRequest(
-                                                              CategoryKnowLedeId: state
-                                                                  .list[index]
-                                                                  .categoryNewId??'')));
+                                            BlocProvider.of<
+                                                        ListKnowledgeBlocBloc>(
+                                                    context)
+                                                .add(LoadKnowLedgeByCateEvent(
+                                                    request: GetKnowledgeByCategoryKnowledgeIdRequest(
+                                                        CategoryKnowLedeId: state
+                                                                .list[index]
+                                                                .categoryNewId ??
+                                                            '')));
                                           });
                                         },
                                         style: ButtonStyle(
                                             padding: MaterialStateProperty.all(
                                                 EdgeInsets.symmetric(
-                                                    vertical: 5.0,
                                                     horizontal: 10.0)),
                                             backgroundColor: tappedIndex == index
                                                 ? MaterialStateProperty.all<Color>(
@@ -124,12 +124,11 @@ class _NewsScreenState extends State<NewsScreen> {
                                                     RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.circular(18.0),
+                                                        BorderRadius.circular(10.0),
                                                     side: BorderSide(color: greenALS)))),
                                         child: Text(
-                                          state.list[index]
-                                                  .categoryName ??
-                                          'Sức khỏe',
+                                          state.list[index].categoryName ??
+                                              'Sức khỏe',
                                           textAlign: TextAlign.center,
                                           overflow: TextOverflow.ellipsis,
                                           //category_in_Session = state.list[index].categoryName,

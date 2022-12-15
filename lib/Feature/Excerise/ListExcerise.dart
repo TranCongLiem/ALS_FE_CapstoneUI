@@ -73,58 +73,33 @@ class _ListExceriseState extends State<ListExcerise> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: Container(
-                        height: size.height / 15,
-                        decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(22)),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 24),
+                          child: InkWell(
+                        onTap: () {
+                          showSearch(
+                              context: context,
+                              delegate: SearchExercise(hintText: 'Tìm kiếm'));
+                        },
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          height: size.height / 15,
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(22)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  child: Text(
+                                    outputText,
+                                    style: TextStyle(fontSize: 24),
+                                  ),
+                                ),
+                                Icon(Icons.search)
+                              ],
                             ),
-                            InkWell(
-                              child: Text(outputText),
-                              onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) =>
-                                //             SearchExercise(hintText: "")));
-                            showSearch(context: context, delegate: SearchExercise());
-
-                              },
-                            ),
-                            // Container(
-                            //   decoration: BoxDecoration(
-                            //       boxShadow: [
-                            //         BoxShadow(
-                            //             blurRadius: .26,
-                            //             spreadRadius: level * 1.5,
-                            //             color: greenALS.withOpacity(.1))
-                            //       ],
-                            //       borderRadius:
-                            //           BorderRadius.all(Radius.circular(100))),
-                            //   child: ElevatedButton(
-                            //     onPressed: () {
-                            //       !_hasSpeech || speech.isListening
-                            //           ? null
-                            //           : startListening();
-                            //     },
-                            //     // ignore: sort_child_properties_last
-                            //     child: Icon(Icons.mic,
-                            //         color: speech.isListening
-                            //             ? Colors.red
-                            //             : Colors.white,
-                            //         size: 25),
-                            //     style: ElevatedButton.styleFrom(
-                            //       shape: CircleBorder(),
-                            //       padding: EdgeInsets.all(7.0),
-                            //       primary: greenALS, // <-- Button color
-                            //     ),
-                            //   ),
-                            // ),
-                          ],
+                          ),
                         ),
                       )),
                     ],
@@ -250,12 +225,6 @@ class WidgetEx1 extends StatelessWidget {
               fontWeight: FontWeight.w700,
             ),
           ),
-          // Text(
-          //   'Xem tất cả',
-          //   style: TextStyle(
-          //     color: Colors.blueAccent,
-          //   ),
-          // ),
         ],
       ),
     );
@@ -280,22 +249,17 @@ class ButtonCreateEx extends StatelessWidget {
           label: Text(
             'Tạo buổi tập',
             style: TextStyle(
-              fontSize: 20.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           icon: Icon(Icons.add),
-          style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-            elevation: MaterialStateProperty.resolveWith<double>(
-                (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed) ||
-                  (states.contains(MaterialState.disabled))) {
-                return 0;
-              }
-              return 5;
-            }),
+          style: ElevatedButton.styleFrom(
+            primary: greenALS,
+            padding: EdgeInsets.all(10),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
         ),
       ),
@@ -319,24 +283,14 @@ class GetSessionsButton extends StatelessWidget {
                   child: Text(
                     "Buổi tập của bạn",
                     style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 22.0,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  style: ButtonStyle(
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    backgroundColor: MaterialStateProperty.all(
-                      Color.fromARGB(255, 14, 106, 211),
-                    ),
-                    elevation: MaterialStateProperty.resolveWith<double>(
-                      (Set<MaterialState> states) {
-                        if (states.contains(MaterialState.pressed) ||
-                            states.contains(MaterialState.disabled)) {
-                          return 0;
-                        }
-                        return 5;
-                      },
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.all(10),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: () {
@@ -371,14 +325,9 @@ Widget buildCardHistory(
         child: Container(
           height: MediaQuery.of(context).size.height * 0.15,
           decoration: BoxDecoration(
-              color: Color.fromARGB(255, 199, 247, 201),
-              borderRadius: BorderRadius.circular(20.0),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.black45,
-                    blurRadius: 10.0,
-                    offset: Offset(5, 10))
-              ]),
+            color: greenALS.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: InkWell(
@@ -392,92 +341,89 @@ Widget buildCardHistory(
               child: Row(
                 children: [
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20 / 2, top: 1),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Tập Luyện",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                    width: MediaQuery.of(context).size.width * 0.33,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Tập Luyện",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                          maxLines: 2,
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.003,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time_outlined,
+                              color: Colors.black45,
+                              size: 25,
                             ),
-                            maxLines: 2,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.005,
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.005,
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.access_time_outlined,
-                                color: Colors.black45,
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.01,
-                              ),
-                              Text(
-                                //state.details!.length.toString() + ' exercises',
-                                history.sessionDetail!.length.toString() +
-                                    " Bài tập",
-                                style: TextStyle(
-                                  color: Colors.black45,
-                                ),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.005,
-                          ),
-                          Text(
-                            "Kết thúc vào ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            DateFormat.yMd()
-                                .format(history.endTime!.toLocal())
-                                .toString(),
-                          ),
-                          Text(
-                            DateFormat.jm()
-                                .format(history.endTime!.toLocal())
-                                .toString(),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.01,
-                          ),
-                          Text(
-                            "Thời lượng ",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            history.endTime!
-                                    .difference(history.startTime!)
-                                    .inHours
-                                    .toString()
-                                    .padLeft(2, "0") +
-                                ":" +
-                                history.endTime!
-                                    .difference(history.startTime!)
-                                    .inMinutes
-                                    .remainder(60)
-                                    .toString()
-                                    .padLeft(2, "0") +
-                                ":" +
-                                history.endTime!
-                                    .difference(history.startTime!)
-                                    .inSeconds
-                                    .remainder(60)
-                                    .toString()
-                                    .padLeft(2, "0"),
-                          ),
-                        ],
-                      ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.01,
+                            ),
+                            Text(
+                              //state.details!.length.toString() + ' exercises',
+                              history.sessionDetail!.length.toString() +
+                                  " Bài tập",
+                              style: TextStyle(
+                                  color: Colors.black45, fontSize: 18),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        Text(
+                          "Kết thúc vào ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        Text(
+                          DateFormat.yMd()
+                              .format(history.endTime!.toLocal())
+                              .toString(),
+                        ),
+                        Text(
+                          DateFormat.jm()
+                              .format(history.endTime!.toLocal())
+                              .toString(),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Text(
+                          "Thời lượng ",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        Text(
+                          history.endTime!
+                                  .difference(history.startTime!)
+                                  .inHours
+                                  .toString()
+                                  .padLeft(2, "0") +
+                              ":" +
+                              history.endTime!
+                                  .difference(history.startTime!)
+                                  .inMinutes
+                                  .remainder(60)
+                                  .toString()
+                                  .padLeft(2, "0") +
+                              ":" +
+                              history.endTime!
+                                  .difference(history.startTime!)
+                                  .inSeconds
+                                  .remainder(60)
+                                  .toString()
+                                  .padLeft(2, "0"),
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
                     ),
                   )
                 ],
