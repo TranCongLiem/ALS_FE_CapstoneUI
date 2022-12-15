@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 
 import '../../Home/home.dart';
 import 'cloud_record_list_view.dart';
+import 'search_record.dart';
 
 class HomeViewRecord extends StatefulWidget {
   @override
@@ -86,6 +87,47 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
+                                SizedBox(
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: InkWell(
+                                        onTap: () {
+                                          showSearch(
+                                              context: context,
+                                              delegate: SearchRecord(
+                                                  hintText: 'Tìm kiếm'));
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          height: size.height / 15,
+                                          decoration: BoxDecoration(
+                                              color: Colors.black12,
+                                              borderRadius:
+                                                  BorderRadius.circular(22)),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(15.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                InkWell(
+                                                  child: Text(
+                                                    'Tìm kiếm',
+                                                    style:
+                                                        TextStyle(fontSize: 24),
+                                                  ),
+                                                ),
+                                                Icon(Icons.search)
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )),
+                                    ],
+                                  ),
+                                ),
                                 ButtonCreateRecord(),
                                 Container(
                                   alignment: Alignment.center,

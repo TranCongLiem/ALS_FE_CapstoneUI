@@ -12,6 +12,8 @@ class RecordService {
   final endPointUrl = "https://als.cosplane.asia/api/record/";
   static bool isCreatedRecord = false;
   static bool isRemovedRecord = false;
+  List<RecordById> results = [];
+  var data = [];
 
   Future<List<RecordById>> getRecordByIdAdmin() async {
     final response = await http.get(Uri.parse(endPointUrl +
@@ -42,6 +44,29 @@ class RecordService {
       throw Exception('Lỗi dữ liệu');
     }
   }
+
+  Future<List<RecordById>> searchRecordById(String userId, {String? query}) async {
+    final response = await http
+        .get(Uri.parse(endPointUrl + "GetRecordByUserId?id=" + userId));
+    print('Respone Status: ${response.statusCode}');
+    print('Respone body: ${response.body}');
+
+    if (response.statusCode == 200) {
+      data = json.decode(response.body);
+        results = data.map((e) => RecordById.fromJson(e)).toList();
+        if (query != null) {
+          results = results
+              .where((element) => element.recordName!
+                  .toLowerCase()
+                  .contains((query.toString().toLowerCase())))
+              .toList();
+        }
+        return results;
+    } else {
+      throw Exception('Lỗi dữ liệu');
+    }
+  }
+
 
   Future<CreateRecordResponeModel> createRecord(
       CreateRecordReQuestModel requestModel) async {
