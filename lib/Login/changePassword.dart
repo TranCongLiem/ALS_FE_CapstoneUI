@@ -58,6 +58,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             context
                 .read<AuthenticateBloc>()
                 .add(AuthenticateEvent.setCheckFalseChangedPassword());
+
+            SetUserInfo(state.phoneNumber, state.password, state.userId);
+            UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
+                userId: state.userId, mobileToken: mobileToken));
           }
         },
         builder: (context, state) {
@@ -171,5 +175,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         },
       );
     });
+  }
+
+  void SetUserInfo(String phone, String Password, String userId) async {
+    //final prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(SharedPreferencesKey.SHARED_LOGGED, true);
+    await prefs.setString(SharedPreferencesKey.SHARED_PHONE, phone);
+    await prefs.setString(SharedPreferencesKey.SHARED_PASSWORD, Password);
+    await prefs.setString(SharedPreferencesKey.SHARED_USER, userId);
+  }
+
+  void UpdateDeviceMobileToken(
+      UpdateDevicetokenMobileRequest updateDevicetokenMobileRequest) {
+    var result =
+        _UserService.updateDeviceTokenMobile(updateDevicetokenMobileRequest);
   }
 }

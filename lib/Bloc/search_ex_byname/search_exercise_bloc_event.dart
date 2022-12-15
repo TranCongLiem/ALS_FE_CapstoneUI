@@ -5,28 +5,28 @@
 //   const factory ExerciseBlocEvent.started() = _Started;
 // }
 
-part of 'exercise_bloc_bloc.dart';
+part of 'search_exercise_bloc_bloc.dart';
 
-abstract class ExerciseBlocEvent {
-  const ExerciseBlocEvent();
+abstract class SearchExerciseBlocEvent {
+  const SearchExerciseBlocEvent();
 }
 
-class LoadExerciseByCateEvent extends ExerciseBlocEvent {
-  final String categoryId;
+class LoadExerciseByNameEvent extends SearchExerciseBlocEvent {
+  final String name;
 
-  const LoadExerciseByCateEvent({required this.categoryId});
+  const LoadExerciseByNameEvent({required this.name});
 
   @override
   // TODO: implement props
-  List<Object?> get props => [categoryId];
+  List<Object?> get props => [name];
   
-  LoadExerciseByCateEvent copyWith({String? categoryId}) {
-    return LoadExerciseByCateEvent(categoryId: categoryId?? this.categoryId);
+  LoadExerciseByNameEvent copyWith({String? name}) {
+    return LoadExerciseByNameEvent(name: name?? this.name);
   }
 }
 
-class LoadAllExerciseEvent extends ExerciseBlocEvent {
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
-}
+// class LoadAllExerciseEvent extends SearchExerciseBlocEvent {
+//   @override
+//   // TODO: implement props
+//   List<Object?> get props => [];
+// }

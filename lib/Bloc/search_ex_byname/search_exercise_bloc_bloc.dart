@@ -26,16 +26,16 @@ import 'package:flutter/cupertino.dart';
 part 'search_exercise_bloc_event.dart';
 part 'search_exercise_bloc_state.dart';
 
-class ExerciseBlocBloc extends Bloc<SearchExerciseBlocEvent, SearchExerciseBlocState> {
+class SearchExerciseBlocBloc extends Bloc<SearchExerciseBlocEvent, SearchExerciseBlocState> {
  final ExerciseService _exerciseService;
  
  
  
-  ExerciseBlocBloc(this._exerciseService) : super(SearchExerciseBlocInitial()) {
+  SearchExerciseBlocBloc(this._exerciseService) : super(SearchExerciseBlocInitial()) {
     on<LoadExerciseByNameEvent>((event, emit) async {
       // TODO: implement event handler
-      final categoryId= event.name;
-      final list= await _exerciseService.getListExerciseByCateId(categoryId);
+      final name= event.name;
+      final list= await _exerciseService.getListExerciseByName(name);
       emit(SearchExerciseLoadedState(list));
       
     });

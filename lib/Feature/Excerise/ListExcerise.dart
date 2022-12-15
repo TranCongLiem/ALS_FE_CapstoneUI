@@ -4,6 +4,7 @@ import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
+import 'package:capstone_ui/Feature/Excerise/ListExerciseByName.dart';
 import 'package:capstone_ui/Feature/Session/session_detail_screen.dart';
 import 'package:capstone_ui/Feature/Session/session_exercise.dart';
 import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
@@ -89,16 +90,18 @@ class _ListExceriseState extends State<ListExcerise> {
                             Padding(
                               padding: EdgeInsets.only(left: 24),
                             ),
-                            Expanded(
-                                child: TextField(
-                              decoration: InputDecoration(
-                                  hintText: outputText,
-                                  border: InputBorder.none,
-                                  suffixIcon: Icon(Icons.search),
-                                  hintStyle: TextStyle(
-                                      fontSize: 22.0,
-                                      fontWeight: FontWeight.w500)),
-                            )),
+                            InkWell(
+                              child: Text(outputText),
+                              onTap: () {
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             SearchExercise(hintText: "")));
+                            showSearch(context: context, delegate: SearchExercise());
+
+                              },
+                            ),
                             Container(
                               decoration: BoxDecoration(
                                   boxShadow: [
