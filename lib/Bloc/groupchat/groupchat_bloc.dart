@@ -13,27 +13,30 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
   GroupchatBloc(this._groupChatService) : super(GroupchatState.initial()) {
     on<_CreatedGroupChatRequest>((event, emit) async {
       CreateGroupChatRequest reqModel = CreateGroupChatRequest(
-          groupChatId : event.groupChatId,
+          groupChatId: event.groupChatId,
           userId: event.userId,
           groupChatName: event.groupChatName,
           groupChatImage: event.groupChatImage);
       final result = await _groupChatService.createGroupChat(reqModel);
-      if (result.message != null && result.success != null) {
+      if (result.message != null && result.success == true) {
         emit(state.copyWith(
           message: result.message ?? '',
           success: result.success,
+          isCreated: true,
         ));
       } else {
-        emit(state.copyWith(errorMessage: "  "));
+        emit(state.copyWith(errorMessage: "Tên nhóm chat đã tồn tại"));
       }
     });
 
     on<_UpdatedLastMessageGroupChatRequest>((event, emit) async {
-      UpdateLastMessageGroupChatRequest reqModel = UpdateLastMessageGroupChatRequest(
-          groupChatId: event.groupChatId,
-          lastMessageGroup: event.lastMessageGroup,
-          lastMessageSender: event.fullName);
-      final result = await _groupChatService.updateLastMessageGroupChat(reqModel);
+      UpdateLastMessageGroupChatRequest reqModel =
+          UpdateLastMessageGroupChatRequest(
+              groupChatId: event.groupChatId,
+              lastMessageGroup: event.lastMessageGroup,
+              lastMessageSender: event.fullName);
+      final result =
+          await _groupChatService.updateLastMessageGroupChat(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
           message: result.message ?? '',
@@ -46,8 +49,7 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
 
     on<_AddedMemberGroupChatRequest>((event, emit) async {
       AddMemberGroupChatRequest reqModel = AddMemberGroupChatRequest(
-          memberId: event.memberId,
-          groupChatId: event.groupChatId);
+          memberId: event.memberId, groupChatId: event.groupChatId);
       final result = await _groupChatService.addMemberGroupChat(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -60,9 +62,9 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
     });
 
     on<_RemovedMemberInGroupChatRequest>((event, emit) async {
-      RemoveMemberInGroupRequestModel reqModel = RemoveMemberInGroupRequestModel(
-          groupId: event.groupId,
-          userId: event.userId);
+      RemoveMemberInGroupRequestModel reqModel =
+          RemoveMemberInGroupRequestModel(
+              groupId: event.groupId, userId: event.userId);
       final result = await _groupChatService.removeMember(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
@@ -74,9 +76,11 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
       }
     });
 
-    // on<_GroupChatNameChanged>((event, emit) {
-    //   emit(state.copyWith(groupChatName: event.groupChatName));
-    // });
-
+    on<_SetErrorMessageGroupChatRequest>((event, emit) {
+      emit(state.copyWith(errorMessage: ''));
+    });
+    on<_SetIsCreatedGroupChatRequest>((event, emit) {
+      emit(state.copyWith(isCreated: false));
+    });
   }
 }

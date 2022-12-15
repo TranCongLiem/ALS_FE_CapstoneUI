@@ -161,7 +161,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ],
                                 controller: emailController,
                                 decoration: InputDecoration(
-                                  suffixIcon: Icon(Icons.person),
+                                  suffixIcon: Icon(
+                                    Icons.person,
+                                    color: greenALS,
+                                  ),
                                   border: OutlineInputBorder(),
                                   labelText: 'Số Điện Thoại',
                                   hintText: 'Nhập Số Điện Thoại',
@@ -220,6 +223,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   context
                                       .read<AuthenticateBloc>()
                                       .add(AuthenticateEvent.loginRequested());
+                                  // Fluttertoast.showToast(
+                                  //     msg: 'Đăng nhập thành công',
+                                  //     backgroundColor: greenALS,
+                                  //     fontSize: 18.0);
                                 }
                               },
                               icon: Icon(Icons.login),
@@ -229,23 +236,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     fontSize: 22.sp,
                                     fontWeight: FontWeight.bold),
                               ),
-                              style: ButtonStyle(
-                                foregroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.white),
-                                backgroundColor:
-                                    MaterialStateProperty.all<Color>(
-                                        Colors.green),
-                                elevation:
-                                    MaterialStateProperty.resolveWith<double>(
-                                        (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.pressed) ||
-                                      (states
-                                          .contains(MaterialState.disabled))) {
-                                    return 0;
-                                  }
-                                  return 5;
-                                }),
+                              style: ElevatedButton.styleFrom(
+                                primary: greenALS,
+                                padding: EdgeInsets.all(10),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                               ),
                             ),
                             TextButton(
@@ -294,7 +290,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     style: TextStyle(
                                         color: Colors.black, fontSize: 18.sp),
                                   ),
-                                  TextButton(
+                                  ElevatedButton(
                                       onPressed: () {
                                         Navigator.push(
                                             context,
@@ -302,11 +298,20 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 builder: (context) =>
                                                     RoleScreen()));
                                       },
+                                      style: ButtonStyle(
+                                          padding: MaterialStateProperty.all(
+                                              EdgeInsets.all(8)),
+                                          shape: MaterialStateProperty.all<
+                                                  RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ))),
                                       child: Text('Đăng ký',
                                           style: TextStyle(
-                                              color: greenALS,
-                                              fontSize: 18.sp,
-                                              fontFamily: 'GothamB'))),
+                                            color: Colors.white,
+                                            fontSize: 18.sp,
+                                          ))),
                                 ],
                               ),
                             ),

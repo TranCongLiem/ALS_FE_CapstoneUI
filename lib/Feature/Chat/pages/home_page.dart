@@ -28,7 +28,8 @@ import 'groupchat_page.dart';
 class HomePage extends StatefulWidget {
   final String userId;
   final String userName;
-  HomePage({Key? key, required this.userId, required this.userName}) : super(key: key);
+  HomePage({Key? key, required this.userId, required this.userName})
+      : super(key: key);
 
   @override
   State createState() => HomePageState();
@@ -99,9 +100,25 @@ class HomePageState extends State<HomePage> {
               0,
             ),
             backgroundColor: greenALS,
-            title: Text(
-              'Trò chuyện',
-              style: TextStyle(),
+            title: Padding(
+              padding: const EdgeInsets.only(left: 5),
+              child: Text(
+                'Trò chuyện',
+                style: TextStyle(fontSize: 23),
+              ),
+            ),
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 40,
+                  ),
+                  onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Home()),
+                      )),
             ),
             actions: [
               Container(
@@ -110,7 +127,9 @@ class HomePageState extends State<HomePage> {
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: IconButton(
                   onPressed: () {
-                    showSearch(context: context, delegate: SearchUser());
+                    showSearch(
+                        context: context,
+                        delegate: SearchUser(hintText: 'Tìm kiếm'));
                   },
                   icon: Icon(
                     Icons.search_sharp,
@@ -124,7 +143,13 @@ class HomePageState extends State<HomePage> {
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                 child: IconButton(
                   onPressed: () {
-                     Navigator.push(context, MaterialPageRoute(builder: (context) => GroupChatPage(userId: state.userId,fullName: widget.userName,)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => GroupChatPage(
+                                  userId: state.userId,
+                                  fullName: widget.userName,
+                                )));
                   },
                   icon: Icon(
                     Icons.person,
@@ -133,15 +158,6 @@ class HomePageState extends State<HomePage> {
                 ),
               )
             ],
-            leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () =>  Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                Home()),
-          )
-        )
           ),
           body: Stack(
             children: [
@@ -194,7 +210,7 @@ class HomePageState extends State<HomePage> {
                                         CircleAvatar(
                                           backgroundImage: NetworkImage(
                                               '${data?[index].imageUser}'),
-                                          maxRadius: 25,
+                                          maxRadius: 30,
                                         ),
                                         SizedBox(
                                           width: 16,
@@ -209,7 +225,7 @@ class HomePageState extends State<HomePage> {
                                                 Text(
                                                   '${data?[index].fullName}',
                                                   style: TextStyle(
-                                                      fontSize: 18,
+                                                      fontSize: 22,
                                                       fontWeight: data?[index]
                                                                   .hasSeen ==
                                                               true
@@ -225,7 +241,7 @@ class HomePageState extends State<HomePage> {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                      fontSize: 13,
+                                                      fontSize: 16,
                                                       fontWeight: data?[index]
                                                                   .hasSeen ==
                                                               true
@@ -239,7 +255,7 @@ class HomePageState extends State<HomePage> {
                                         Text(
                                           timeago.format(time, locale: 'vi'),
                                           style: TextStyle(
-                                              fontSize: 12,
+                                              fontSize: 14,
                                               fontWeight:
                                                   data?[index].hasSeen == true
                                                       ? FontWeight.normal

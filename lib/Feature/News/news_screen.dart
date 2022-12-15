@@ -1,7 +1,13 @@
 import 'package:capstone_ui/Components/BottomNavBar/bottom_nav_bar.dart';
 import 'package:capstone_ui/Components/News/custom_title_list.dart';
 import 'package:capstone_ui/Constant/constant.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Bloc/CategoryNews/CategoryNews_bloc_bloc.dart';

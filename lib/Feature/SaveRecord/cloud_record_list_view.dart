@@ -6,6 +6,7 @@ import 'package:capstone_ui/services/api_ShortCutNotification.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../../Bloc/pushnotisupporter/push_noti_to_supporter_bloc.dart';
 import '../../Model/CreatePushNotiToSupporter_model.dart';
 import 'home_view.dart';
@@ -225,6 +226,13 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
 
                                                                 Navigator.pop(
                                                                     context);
+                                                                Fluttertoast.showToast(
+                                                                    msg:
+                                                                        'Gửi thành công',
+                                                                    backgroundColor:
+                                                                        greenALS,
+                                                                    fontSize:
+                                                                        18.0);
                                                               },
                                                             );
                                                             if (state
@@ -351,6 +359,11 @@ class _CloudRecordListViewState extends State<CloudRecordListView> {
                                                         .add(RemoveRecordEvent
                                                             .removeRecordRequest());
                                                     Navigator.pop(context);
+                                                    Fluttertoast.showToast(
+                                                        msg: 'Xóa thành công',
+                                                        backgroundColor:
+                                                            greenALS,
+                                                        fontSize: 18.0);
                                                   },
                                                   child: Text(
                                                     'XÓA',

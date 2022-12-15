@@ -90,7 +90,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
                   child: Container(
                     padding: EdgeInsets.only(left: 5, right: 5),
                     child: TextFormField(
-                      maxLines: 5,
+                      maxLines: 4,
                       autofocus: false,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -111,11 +111,11 @@ class _TextToSpeechState extends State<TextToSpeech> {
                   padding: EdgeInsets.all(8.0),
                   alignment: Alignment.topLeft,
                   child: Text(
-                    'Lịch sử',
+                    'Lịch sử chuyển đổi',
                     style: TextStyle(
-                        fontSize: 35.0,
+                        fontSize: 30.0,
                         color: Colors.black87,
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 Expanded(
@@ -132,11 +132,13 @@ class _TextToSpeechState extends State<TextToSpeech> {
                               '${list_old_word[index]}',
                               style: TextStyle(
                                   fontSize: 28.0,
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w400,
                                   color: Colors.black45),
                             ),
                             onTap: () {
-                              textEditingController.text = list_old_word[index];
+                              // textEditingController.text = list_old_word[index];
+                              speak(textEditingController.text =
+                                  list_old_word[index]);
                             },
                             trailing: IconButton(
                                 onPressed: () {
@@ -150,30 +152,28 @@ class _TextToSpeechState extends State<TextToSpeech> {
                         );
                       }),
                 ),
-                Container(
-                  child: ElevatedButton(
-                    child: Text("Nhấn để phát"),
-                    onPressed: () {
-                      speak(textEditingController.text);
-                      setState(() {
-                        bool isAdd = checkBeforeAdd(
-                            textEditingController.text, list_old_word);
-                        if (isAdd) {
-                          addAndSave(textEditingController.text, list_old_word);
-                        }
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontStyle: FontStyle.normal,
-                        ),
-                        padding: EdgeInsets.only(
-                            left: 20, right: 20, top: 20, bottom: 20)),
-                  ),
-                )
+                ElevatedButton(
+                  child: Text("Nhấn để phát"),
+                  onPressed: () {
+                    speak(textEditingController.text);
+                    setState(() {
+                      bool isAdd = checkBeforeAdd(
+                          textEditingController.text, list_old_word);
+                      if (isAdd) {
+                        addAndSave(textEditingController.text, list_old_word);
+                      }
+                    });
+                  },
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontStyle: FontStyle.normal,
+                      ),
+                      padding: EdgeInsets.only(
+                          left: 20, right: 20, top: 20, bottom: 20)),
+                ),
               ],
             )));
   }

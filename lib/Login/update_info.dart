@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Constant/profile_widget_imagenull.dart';
 import 'package:capstone_ui/Feature/Newsfeed/newfeeds.dart';
@@ -34,12 +33,15 @@ class _RegisterInfoState extends State<RegisterInfo> {
   TextEditingController conditionController = TextEditingController();
   late String? imagePath;
   MediaType _mediaType = MediaType.image;
+  var imageUserDefault;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     dateOfBirthController.text = "";
+    imageUserDefault =
+        "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/287821475_1116111985634770_5760459797365277053_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=ae9488&_nc_ohc=y9yeetAsLbkAX_tgPwb&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdTS2V3z1huHJ0RnwERW_2QJecLOXsihyZXjKz7DAAblbA&oe=63C222D9";
     imagePath = null;
   }
 
@@ -110,8 +112,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: imagePath == null
-                                                ? AssetImage(
-                                                        "assets/images/logo_Avatar.jpg")
+                                                ? NetworkImage(imageUserDefault)
                                                     as ImageProvider
                                                 : FileImage(File(imagePath!)),
                                           )),
@@ -120,8 +121,8 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                         bottom: 0,
                                         right: 0,
                                         child: Container(
-                                          height: 40,
-                                          width: 40,
+                                          height: 55,
+                                          width: 55,
                                           decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                             border: Border.all(
@@ -132,7 +133,10 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                             color: Colors.green,
                                           ),
                                           child: IconButton(
-                                            icon: Icon(Icons.edit),
+                                            icon: Icon(
+                                              Icons.edit,
+                                              size: 35,
+                                            ),
                                             onPressed: () {
                                               showMaterialModalBottomSheet(
                                                 context: context,
@@ -152,7 +156,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                                       Text(
                                                         'Chọn ảnh từ',
                                                         style: TextStyle(
-                                                            fontSize: 20.0),
+                                                            fontSize: 24.0),
                                                       ),
                                                       SizedBox(
                                                         height: 20.0,
@@ -169,9 +173,15 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                                                         .gallery);
                                                               },
                                                               icon: Icon(
-                                                                  Icons.image),
+                                                                Icons.image,
+                                                                size: 35,
+                                                              ),
                                                               label: Text(
-                                                                  'Thư viện'),
+                                                                'Thư viện',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        24),
+                                                              ),
                                                               style: ElevatedButton
                                                                   .styleFrom(
                                                                       backgroundColor:
@@ -183,9 +193,14 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                                                       .camera);
                                                             },
                                                             icon: Icon(
-                                                                Icons.camera),
-                                                            label:
-                                                                Text('Máy ảnh'),
+                                                              Icons.camera,
+                                                              size: 35,
+                                                            ),
+                                                            label: Text(
+                                                              'Máy ảnh',
+                                                              style: TextStyle(
+                                                                  fontSize: 24),
+                                                            ),
                                                             style: ElevatedButton
                                                                 .styleFrom(
                                                                     backgroundColor:
@@ -400,15 +415,22 @@ class _RegisterInfoState extends State<RegisterInfo> {
 
   Future<void> uploadImage(
       String userId, String fullName, String imageUser, String phone) async {
-    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+    if (imagePath != null) {
+      FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-    Reference reference =
-        firebaseStorage.ref('upload-image-user').child(userId).child(fileName);
-    UploadTask uploadTask = reference.putFile(File(imagePath!));
-    TaskSnapshot snapshot = await uploadTask;
-    String imageDatabase = await snapshot.ref.getDownloadURL();
-    context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      Reference reference = firebaseStorage
+          .ref('upload-image-user')
+          .child(userId)
+          .child(fileName);
+      UploadTask uploadTask = reference.putFile(File(imagePath!));
+      TaskSnapshot snapshot = await uploadTask;
+      String imageDatabase = await snapshot.ref.getDownloadURL();
+      context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+    } else {
+      context.read<UserBloc>().add(UserEvent.getImageUser(imageUserDefault));
+    }
+
     await uploadToFirebase(userId, fullName, imageUser, phone);
   }
 

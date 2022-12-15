@@ -185,7 +185,7 @@ class ChatPageState extends State<ChatPage> {
                     child: Text(
                       messageChat.content,
                       style: TextStyle(
-                          color: ColorConstants.primaryColor, fontSize: 18.0),
+                          color: ColorConstants.primaryColor, fontSize: 22.0),
                     ),
                     padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                     width: 200,
@@ -331,7 +331,7 @@ class ChatPageState extends State<ChatPage> {
                           child: Text(
                             messageChat.content,
                             style: TextStyle(
-                                color: Colors.black87, fontSize: 18.0),
+                                color: Colors.black87, fontSize: 22.0),
                           ),
                           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
                           width: 200,
@@ -497,6 +497,23 @@ class ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         toolbarHeight: MediaQuery.of(context).size.height * 0.09,
         backgroundColor: greenALS.withOpacity(0.8),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15),
+          child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 40,
+              ),
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomePage(
+                              userName: widget.arguments.peerNickname,
+                              userId: widget.userId,
+                            )),
+                  )),
+        ),
         title: Row(
           children: [
             CircleAvatar(
@@ -513,7 +530,7 @@ class ChatPageState extends State<ChatPage> {
               this.widget.arguments.peerNickname,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20.0,
+                  fontSize: 22.0,
                   fontWeight: FontWeight.bold),
             ),
           ],
@@ -721,7 +738,10 @@ class ChatPageState extends State<ChatPage> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
-                icon: Icon(Icons.image),
+                icon: Icon(
+                  Icons.image,
+                  size: 35,
+                ),
                 onPressed: () =>
                     getImage(widget.userId, widget.arguments.peerId),
                 color: greenALS,
@@ -733,7 +753,10 @@ class ChatPageState extends State<ChatPage> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 1),
               child: IconButton(
-                icon: Icon(Icons.face),
+                icon: Icon(
+                  Icons.face,
+                  size: 35,
+                ),
                 onPressed: getSticker,
                 color: greenALS,
               ),
@@ -750,12 +773,13 @@ class ChatPageState extends State<ChatPage> {
                       TypeMessage.text, widget.userId, widget.arguments.peerId);
                 },
                 style:
-                    TextStyle(color: ColorConstants.primaryColor, fontSize: 18),
+                    TextStyle(color: ColorConstants.primaryColor, fontSize: 22),
                 controller: textEditingController,
                 decoration: InputDecoration(
                   border: InputBorder.none,
                   hintText: 'Soạn tin nhắn...',
-                  hintStyle: TextStyle(color: ColorConstants.greyColor),
+                  hintStyle:
+                      TextStyle(color: ColorConstants.greyColor, fontSize: 22),
                   suffixIcon: IconButton(
                     onPressed: (() {
                       onListen();
@@ -763,6 +787,7 @@ class ChatPageState extends State<ChatPage> {
                     icon: Icon(
                       _speech.isListening ? Icons.mic : Icons.mic_none,
                       color: _speech.isListening ? greenALS : Colors.grey,
+                      size: 35,
                     ),
                   ),
                 ),
@@ -770,7 +795,7 @@ class ChatPageState extends State<ChatPage> {
                   _textSpeech = value;
                 },
                 focusNode: focusNode,
-                autofocus: true,
+                autofocus: false,
               ),
             ),
           ),
@@ -783,6 +808,7 @@ class ChatPageState extends State<ChatPage> {
                 icon: Icon(
                   Icons.send,
                   color: greenALS,
+                  size: 35,
                 ),
                 onPressed: () => onSendMessage(textEditingController.text, '',
                     TypeMessage.text, widget.userId, widget.arguments.peerId),

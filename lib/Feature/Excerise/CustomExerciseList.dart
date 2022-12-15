@@ -46,7 +46,8 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                             child: CircleAvatar(
                               backgroundColor: Colors.green,
                               foregroundColor: Colors.green,
-                              backgroundImage: NetworkImage(exericse.exerciseImage??
+                              backgroundImage: NetworkImage(exericse
+                                      .exerciseImage ??
                                   "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
                             ),
                           ),
@@ -63,7 +64,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                   maxLines: 5,
                                   style: TextStyle(
                                       color: Colors.black,
-                                      fontSize: 23.0,
+                                      fontSize: 26.0,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -78,10 +79,10 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                                           //Colors.white,
                                           backgroundColor: Colors.blue[400]),
                                       onPressed: () {},
-                                      child: Text(exericse.exerciseLevel??
-                                        'Khó',
+                                      child: Text(
+                                        exericse.exerciseLevel ?? 'Khó',
                                         style: TextStyle(
-                                            fontSize: 18.0,
+                                            fontSize: 20.0,
                                             color: Colors.white),
                                       )),
                                 ],
@@ -102,7 +103,7 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                       exericse.Description ?? '',
                       maxLines: 5,
                       style: TextStyle(
-                        fontSize: 22.0,
+                        fontSize: 24.0,
                         fontWeight: FontWeight.w300,
                       ),
                     ),

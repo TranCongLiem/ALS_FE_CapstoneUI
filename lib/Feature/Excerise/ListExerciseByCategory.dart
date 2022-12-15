@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Bloc/exercise/exercise_bloc_bloc.dart';
 import '../../services/api_Exercise.dart';
+import 'ListExcerise.dart';
 
 class ListExerciseByCategory extends StatelessWidget {
   const ListExerciseByCategory({super.key, required this.categoryExericse});
@@ -30,10 +31,23 @@ class ListExerciseByCategory extends StatelessWidget {
         ],
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Danh sách bài tập'),
-            elevation: 0.0,
-            backgroundColor: greenALS,
-          ),
+              title: Text('Danh sách bài tập', style: TextStyle(fontSize: 24)),
+              elevation: 0.0,
+              backgroundColor: greenALS,
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: IconButton(
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ListExcerise()),
+                        )),
+              )),
           body: Container(
             child: Column(
               children: [

@@ -90,23 +90,35 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
           builder: (context, state) {
             return Scaffold(
               appBar: AppBar(
-                leading: BackButton(color: Colors.white),
-                backgroundColor: greenALS,
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      uploadInfo(widget.userId);
-                      Fluttertoast.showToast(
-                          msg: 'Cập nhật tài khoản thành công',
-                          backgroundColor: greenALS.withOpacity(0.7));
-                    },
-                    child: Text(
-                      'Lưu',
-                      style: TextStyle(color: Colors.white, fontSize: 28),
-                    ),
-                  )
-                ],
-              ),
+                  backgroundColor: greenALS,
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        uploadInfo(widget.userId);
+                        Fluttertoast.showToast(
+                            msg: 'Cập nhật tài khoản thành công',
+                            backgroundColor: greenALS.withOpacity(0.7));
+                      },
+                      child: Text(
+                        'Lưu',
+                        style: TextStyle(color: Colors.white, fontSize: 28),
+                      ),
+                    )
+                  ],
+                  leading: Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 40,
+                        ),
+                        onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Profile()),
+                            )),
+                  )),
               body: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 32),
                 physics: BouncingScrollPhysics(),
@@ -156,8 +168,8 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                   bottom: 0,
                                   right: 0,
                                   child: Container(
-                                    height: 40,
-                                    width: 40,
+                                    height: 55,
+                                    width: 55,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
@@ -168,7 +180,10 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                       color: Colors.green,
                                     ),
                                     child: IconButton(
-                                      icon: Icon(Icons.edit),
+                                      icon: Icon(
+                                        Icons.edit,
+                                        size: 35,
+                                      ),
                                       onPressed: () {
                                         showMaterialModalBottomSheet(
                                           context: context,
@@ -188,7 +203,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                                 Text(
                                                   'Chọn ảnh từ',
                                                   style:
-                                                      TextStyle(fontSize: 20.0),
+                                                      TextStyle(fontSize: 23.0),
                                                 ),
                                                 SizedBox(
                                                   height: 20.0,
@@ -204,9 +219,17 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                                               .gallery);
                                                         },
                                                         icon: Icon(Icons.image),
-                                                        label: Text('Thư viện'),
+                                                        label: Text(
+                                                          'Thư viện',
+                                                          style: TextStyle(
+                                                              fontSize: 23),
+                                                        ),
                                                         style: ElevatedButton
                                                             .styleFrom(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(
+                                                                            10),
                                                                 backgroundColor:
                                                                     greenALS)),
                                                     ElevatedButton.icon(
@@ -215,9 +238,14 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                                                             ImageSource.camera);
                                                       },
                                                       icon: Icon(Icons.camera),
-                                                      label: Text('Máy ảnh'),
+                                                      label: Text('Máy ảnh',
+                                                          style: TextStyle(
+                                                              fontSize: 23)),
                                                       style: ElevatedButton
                                                           .styleFrom(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(10),
                                                               backgroundColor:
                                                                   greenALS),
                                                     )
@@ -243,7 +271,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     children: [
                       Text(
                         'Họ tên',
-                        style: TextStyle(fontSize: 18, color: Colors.black54),
+                        style: TextStyle(fontSize: 22, color: Colors.black54),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -266,7 +294,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
                     children: [
                       Text(
                         'Địa chỉ',
-                        style: TextStyle(color: Colors.black54, fontSize: 18),
+                        style: TextStyle(color: Colors.black54, fontSize: 22),
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
@@ -318,7 +346,7 @@ class _ProfileUpdateState extends State<ProfileUpdate> {
       TaskSnapshot snapshot = await uploadTask;
       String imageDatabase = await snapshot.ref.getDownloadURL();
       context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
-    }else{
+    } else {
       context.read<UserBloc>().add(UserEvent.getImageUser(imageUser));
     }
     context.read<UserBloc>().add(UserEvent.getFullName(fullName!));

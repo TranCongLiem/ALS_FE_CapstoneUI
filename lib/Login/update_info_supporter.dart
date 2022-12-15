@@ -30,6 +30,7 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
 
   late String? imagePath;
   MediaType _mediaType = MediaType.image;
+  var imageUserDefault;
 
   @override
   void initState() {
@@ -37,6 +38,8 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
     super.initState();
     dateOfBirthController.text = "";
     imagePath = null;
+    imageUserDefault =
+        "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/287821475_1116111985634770_5760459797365277053_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=ae9488&_nc_ohc=y9yeetAsLbkAX_tgPwb&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdTS2V3z1huHJ0RnwERW_2QJecLOXsihyZXjKz7DAAblbA&oe=63C222D9";
   }
 
   @override
@@ -45,10 +48,9 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
       listener: (context, state) {
         if (state.isUpdatedInformationSupporter) {
           context
-                  .read<UserBloc>()
-                  .add(UserEvent.setStateFlaseInformationSupporter());
+              .read<UserBloc>()
+              .add(UserEvent.setStateFlaseInformationSupporter());
           Navigator.pushAndRemoveUntil(
-              
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => new NewFeedSupporter()),
@@ -106,8 +108,7 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
                                           image: DecorationImage(
                                             fit: BoxFit.cover,
                                             image: imagePath == null
-                                                ? AssetImage(
-                                                        "assets/images/logo_Avatar.jpg")
+                                                ? NetworkImage(imageUserDefault)
                                                     as ImageProvider
                                                 : FileImage(File(imagePath!)),
                                           )),
@@ -288,14 +289,21 @@ class _RegisterInfoSupporterState extends State<RegisterInfoSupporter> {
 
   Future<void> uploadImage(
       String userId, String fullName, String imageUser) async {
-    FirebaseStorage firebaseStorage = FirebaseStorage.instance;
-    String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-    Reference reference =
-        firebaseStorage.ref('upload-image-user').child(userId).child(fileName);
-    UploadTask uploadTask = reference.putFile(File(imagePath!));
-    TaskSnapshot snapshot = await uploadTask;
-    String imageDatabase = await snapshot.ref.getDownloadURL();
-    context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+    if (imagePath != null) {
+      FirebaseStorage firebaseStorage = FirebaseStorage.instance;
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+      Reference reference = firebaseStorage
+          .ref('upload-image-user')
+          .child(userId)
+          .child(fileName);
+      UploadTask uploadTask = reference.putFile(File(imagePath!));
+      TaskSnapshot snapshot = await uploadTask;
+      String imageDatabase = await snapshot.ref.getDownloadURL();
+      context.read<UserBloc>().add(UserEvent.getImageUser(imageDatabase));
+    } else {
+      context.read<UserBloc>().add(UserEvent.getImageUser(imageUserDefault));
+    }
+
     uploadToFirebase(userId, fullName, imageUser);
   }
 

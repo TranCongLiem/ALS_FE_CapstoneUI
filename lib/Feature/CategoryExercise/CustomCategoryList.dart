@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 Widget CustomCategoryList(
     CategoryExercise categoryExericse, BuildContext context) {
-  return Container(
+  return SizedBox(
     height: 100,
     width: 200,
     child: Column(
@@ -14,12 +14,12 @@ Widget CustomCategoryList(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
-          child: Expanded(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Ink.image(
-                    height: 150,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Positioned(
+                child: Ink.image(
+                    height: 160,
                     fit: BoxFit.cover,
                     child: InkWell(
                       onTap: () {
@@ -35,20 +35,17 @@ Widget CustomCategoryList(
                       Colors.grey.withOpacity(0.9),
                       BlendMode.modulate,
                     )),
-                Text(
-                  categoryExericse.categoryName ?? '',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 251, 252, 251),
-                      fontSize: 28.0),
-                )
-              ],
-            ),
+              ),
+              Text(
+                categoryExericse.categoryName ?? '',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromARGB(255, 251, 252, 251),
+                    fontSize: 28.0),
+              )
+            ],
           ),
         ),
-        SizedBox(
-          width: 12,
-        )
       ],
     ),
   );

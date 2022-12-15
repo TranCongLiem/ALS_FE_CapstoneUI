@@ -48,7 +48,7 @@ class _ProfiletState extends State<Profile> {
                   title: Text(
                     "Hồ sơ",
                     style:
-                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 23.0, fontWeight: FontWeight.bold),
                   ),
                   backgroundColor: greenALS,
                   actions: <Widget>[
@@ -69,7 +69,7 @@ class _ProfiletState extends State<Profile> {
                         "Chỉnh sửa",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 23,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -110,14 +110,14 @@ class _ProfiletState extends State<Profile> {
                               Text(
                                 'Lịch sử bài đăng',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 22,
                                   color: Colors.black,
                                 ),
                               ),
                               Spacer(),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                size: 16,
+                                size: 20,
                               )
                             ],
                           ),
@@ -131,9 +131,6 @@ class _ProfiletState extends State<Profile> {
                           context
                               .read<AuthenticateBloc>()
                               .add(AuthenticateEvent.Logout());
-                          print("logout nha");
-                          // print(state1.isAuthenticated);
-                          //state1.isAuthenticated=false;
                           ;
                         },
                         child: Padding(
@@ -150,14 +147,14 @@ class _ProfiletState extends State<Profile> {
                               Text(
                                 'Đăng Xuất',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 22,
                                   color: Colors.black,
                                 ),
                               ),
                               Spacer(),
                               Icon(
                                 Icons.arrow_forward_ios,
-                                size: 16,
+                                size: 20,
                               )
                             ],
                           ),

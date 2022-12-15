@@ -29,6 +29,8 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,8 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,8 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +79,10 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -85,6 +95,10 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -97,6 +111,10 @@ mixin _$GroupchatEvent {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -234,6 +252,8 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) {
     return CreatedGroupChatRequest(
         groupChatId, userId, groupChatName, groupChatImage);
@@ -253,6 +273,8 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) {
     return CreatedGroupChatRequest?.call(
         groupChatId, userId, groupChatName, groupChatImage);
@@ -272,6 +294,8 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (CreatedGroupChatRequest != null) {
@@ -293,6 +317,10 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) {
     return CreatedGroupChatRequest(this);
   }
@@ -308,6 +336,10 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) {
     return CreatedGroupChatRequest?.call(this);
   }
@@ -323,6 +355,10 @@ class _$_CreatedGroupChatRequest implements _CreatedGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (CreatedGroupChatRequest != null) {
@@ -426,6 +462,8 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) {
     return groupChatNameChanged(groupChatName);
   }
@@ -444,6 +482,8 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) {
     return groupChatNameChanged?.call(groupChatName);
   }
@@ -462,6 +502,8 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (groupChatNameChanged != null) {
@@ -482,6 +524,10 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) {
     return groupChatNameChanged(this);
   }
@@ -497,6 +543,10 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) {
     return groupChatNameChanged?.call(this);
   }
@@ -512,6 +562,10 @@ class _$_GroupChatNameChanged implements _GroupChatNameChanged {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (groupChatNameChanged != null) {
@@ -635,6 +689,8 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest(
         groupChatId, lastMessageGroup, fullName);
@@ -654,6 +710,8 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest?.call(
         groupChatId, lastMessageGroup, fullName);
@@ -673,6 +731,8 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (UpdatedLastMessageGroupChatRequest != null) {
@@ -694,6 +754,10 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest(this);
   }
@@ -709,6 +773,10 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) {
     return UpdatedLastMessageGroupChatRequest?.call(this);
   }
@@ -724,6 +792,10 @@ class _$_UpdatedLastMessageGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (UpdatedLastMessageGroupChatRequest != null) {
@@ -839,6 +911,8 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) {
     return AddedMemberGroupChatRequest(memberId, groupChatId);
   }
@@ -857,6 +931,8 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) {
     return AddedMemberGroupChatRequest?.call(memberId, groupChatId);
   }
@@ -875,6 +951,8 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (AddedMemberGroupChatRequest != null) {
@@ -895,6 +973,10 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) {
     return AddedMemberGroupChatRequest(this);
   }
@@ -910,6 +992,10 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) {
     return AddedMemberGroupChatRequest?.call(this);
   }
@@ -925,6 +1011,10 @@ class _$_AddedMemberGroupChatRequest implements _AddedMemberGroupChatRequest {
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (AddedMemberGroupChatRequest != null) {
@@ -1038,6 +1128,8 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     required TResult Function(String groupId, String userId)
         RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
   }) {
     return RemovedMemberInGroupChatRequest(groupId, userId);
   }
@@ -1056,6 +1148,8 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
   }) {
     return RemovedMemberInGroupChatRequest?.call(groupId, userId);
   }
@@ -1074,6 +1168,8 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(String groupId, String userId)?
         RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (RemovedMemberInGroupChatRequest != null) {
@@ -1094,6 +1190,10 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     required TResult Function(_RemovedMemberInGroupChatRequest value)
         RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
   }) {
     return RemovedMemberInGroupChatRequest(this);
   }
@@ -1109,6 +1209,10 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
   }) {
     return RemovedMemberInGroupChatRequest?.call(this);
   }
@@ -1124,6 +1228,10 @@ class _$_RemovedMemberInGroupChatRequest
         AddedMemberGroupChatRequest,
     TResult Function(_RemovedMemberInGroupChatRequest value)?
         RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
     required TResult orElse(),
   }) {
     if (RemovedMemberInGroupChatRequest != null) {
@@ -1147,10 +1255,360 @@ abstract class _RemovedMemberInGroupChatRequest implements GroupchatEvent {
 }
 
 /// @nodoc
+abstract class _$$_SetErrorMessageGroupChatRequestCopyWith<$Res> {
+  factory _$$_SetErrorMessageGroupChatRequestCopyWith(
+          _$_SetErrorMessageGroupChatRequest value,
+          $Res Function(_$_SetErrorMessageGroupChatRequest) then) =
+      __$$_SetErrorMessageGroupChatRequestCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetErrorMessageGroupChatRequestCopyWithImpl<$Res>
+    extends _$GroupchatEventCopyWithImpl<$Res>
+    implements _$$_SetErrorMessageGroupChatRequestCopyWith<$Res> {
+  __$$_SetErrorMessageGroupChatRequestCopyWithImpl(
+      _$_SetErrorMessageGroupChatRequest _value,
+      $Res Function(_$_SetErrorMessageGroupChatRequest) _then)
+      : super(_value, (v) => _then(v as _$_SetErrorMessageGroupChatRequest));
+
+  @override
+  _$_SetErrorMessageGroupChatRequest get _value =>
+      super._value as _$_SetErrorMessageGroupChatRequest;
+}
+
+/// @nodoc
+
+class _$_SetErrorMessageGroupChatRequest
+    implements _SetErrorMessageGroupChatRequest {
+  const _$_SetErrorMessageGroupChatRequest();
+
+  @override
+  String toString() {
+    return 'GroupchatEvent.SetErrorMessageGroupChatRequest()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetErrorMessageGroupChatRequest);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String groupChatId, String userId,
+            String groupChatName, String groupChatImage)
+        CreatedGroupChatRequest,
+    required TResult Function(String groupChatName) groupChatNameChanged,
+    required TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)
+        UpdatedLastMessageGroupChatRequest,
+    required TResult Function(String memberId, String groupChatId)
+        AddedMemberGroupChatRequest,
+    required TResult Function(String groupId, String userId)
+        RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
+  }) {
+    return SetErrorMessageGroupChatRequest();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String groupChatId, String userId, String groupChatName,
+            String groupChatImage)?
+        CreatedGroupChatRequest,
+    TResult Function(String groupChatName)? groupChatNameChanged,
+    TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(String memberId, String groupChatId)?
+        AddedMemberGroupChatRequest,
+    TResult Function(String groupId, String userId)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
+  }) {
+    return SetErrorMessageGroupChatRequest?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String groupChatId, String userId, String groupChatName,
+            String groupChatImage)?
+        CreatedGroupChatRequest,
+    TResult Function(String groupChatName)? groupChatNameChanged,
+    TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(String memberId, String groupChatId)?
+        AddedMemberGroupChatRequest,
+    TResult Function(String groupId, String userId)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
+    required TResult orElse(),
+  }) {
+    if (SetErrorMessageGroupChatRequest != null) {
+      return SetErrorMessageGroupChatRequest();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatedGroupChatRequest value)
+        CreatedGroupChatRequest,
+    required TResult Function(_GroupChatNameChanged value) groupChatNameChanged,
+    required TResult Function(_UpdatedLastMessageGroupChatRequest value)
+        UpdatedLastMessageGroupChatRequest,
+    required TResult Function(_AddedMemberGroupChatRequest value)
+        AddedMemberGroupChatRequest,
+    required TResult Function(_RemovedMemberInGroupChatRequest value)
+        RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
+  }) {
+    return SetErrorMessageGroupChatRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CreatedGroupChatRequest value)? CreatedGroupChatRequest,
+    TResult Function(_GroupChatNameChanged value)? groupChatNameChanged,
+    TResult Function(_UpdatedLastMessageGroupChatRequest value)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(_AddedMemberGroupChatRequest value)?
+        AddedMemberGroupChatRequest,
+    TResult Function(_RemovedMemberInGroupChatRequest value)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
+  }) {
+    return SetErrorMessageGroupChatRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatedGroupChatRequest value)? CreatedGroupChatRequest,
+    TResult Function(_GroupChatNameChanged value)? groupChatNameChanged,
+    TResult Function(_UpdatedLastMessageGroupChatRequest value)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(_AddedMemberGroupChatRequest value)?
+        AddedMemberGroupChatRequest,
+    TResult Function(_RemovedMemberInGroupChatRequest value)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
+    required TResult orElse(),
+  }) {
+    if (SetErrorMessageGroupChatRequest != null) {
+      return SetErrorMessageGroupChatRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetErrorMessageGroupChatRequest implements GroupchatEvent {
+  const factory _SetErrorMessageGroupChatRequest() =
+      _$_SetErrorMessageGroupChatRequest;
+}
+
+/// @nodoc
+abstract class _$$_SetIsCreatedGroupChatRequestCopyWith<$Res> {
+  factory _$$_SetIsCreatedGroupChatRequestCopyWith(
+          _$_SetIsCreatedGroupChatRequest value,
+          $Res Function(_$_SetIsCreatedGroupChatRequest) then) =
+      __$$_SetIsCreatedGroupChatRequestCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_SetIsCreatedGroupChatRequestCopyWithImpl<$Res>
+    extends _$GroupchatEventCopyWithImpl<$Res>
+    implements _$$_SetIsCreatedGroupChatRequestCopyWith<$Res> {
+  __$$_SetIsCreatedGroupChatRequestCopyWithImpl(
+      _$_SetIsCreatedGroupChatRequest _value,
+      $Res Function(_$_SetIsCreatedGroupChatRequest) _then)
+      : super(_value, (v) => _then(v as _$_SetIsCreatedGroupChatRequest));
+
+  @override
+  _$_SetIsCreatedGroupChatRequest get _value =>
+      super._value as _$_SetIsCreatedGroupChatRequest;
+}
+
+/// @nodoc
+
+class _$_SetIsCreatedGroupChatRequest implements _SetIsCreatedGroupChatRequest {
+  const _$_SetIsCreatedGroupChatRequest();
+
+  @override
+  String toString() {
+    return 'GroupchatEvent.SetIsCreatedGroupChatRequest()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SetIsCreatedGroupChatRequest);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String groupChatId, String userId,
+            String groupChatName, String groupChatImage)
+        CreatedGroupChatRequest,
+    required TResult Function(String groupChatName) groupChatNameChanged,
+    required TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)
+        UpdatedLastMessageGroupChatRequest,
+    required TResult Function(String memberId, String groupChatId)
+        AddedMemberGroupChatRequest,
+    required TResult Function(String groupId, String userId)
+        RemovedMemberInGroupChatRequest,
+    required TResult Function() SetErrorMessageGroupChatRequest,
+    required TResult Function() SetIsCreatedGroupChatRequest,
+  }) {
+    return SetIsCreatedGroupChatRequest();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String groupChatId, String userId, String groupChatName,
+            String groupChatImage)?
+        CreatedGroupChatRequest,
+    TResult Function(String groupChatName)? groupChatNameChanged,
+    TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(String memberId, String groupChatId)?
+        AddedMemberGroupChatRequest,
+    TResult Function(String groupId, String userId)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
+  }) {
+    return SetIsCreatedGroupChatRequest?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String groupChatId, String userId, String groupChatName,
+            String groupChatImage)?
+        CreatedGroupChatRequest,
+    TResult Function(String groupChatName)? groupChatNameChanged,
+    TResult Function(
+            String groupChatId, String lastMessageGroup, String fullName)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(String memberId, String groupChatId)?
+        AddedMemberGroupChatRequest,
+    TResult Function(String groupId, String userId)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function()? SetErrorMessageGroupChatRequest,
+    TResult Function()? SetIsCreatedGroupChatRequest,
+    required TResult orElse(),
+  }) {
+    if (SetIsCreatedGroupChatRequest != null) {
+      return SetIsCreatedGroupChatRequest();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CreatedGroupChatRequest value)
+        CreatedGroupChatRequest,
+    required TResult Function(_GroupChatNameChanged value) groupChatNameChanged,
+    required TResult Function(_UpdatedLastMessageGroupChatRequest value)
+        UpdatedLastMessageGroupChatRequest,
+    required TResult Function(_AddedMemberGroupChatRequest value)
+        AddedMemberGroupChatRequest,
+    required TResult Function(_RemovedMemberInGroupChatRequest value)
+        RemovedMemberInGroupChatRequest,
+    required TResult Function(_SetErrorMessageGroupChatRequest value)
+        SetErrorMessageGroupChatRequest,
+    required TResult Function(_SetIsCreatedGroupChatRequest value)
+        SetIsCreatedGroupChatRequest,
+  }) {
+    return SetIsCreatedGroupChatRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CreatedGroupChatRequest value)? CreatedGroupChatRequest,
+    TResult Function(_GroupChatNameChanged value)? groupChatNameChanged,
+    TResult Function(_UpdatedLastMessageGroupChatRequest value)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(_AddedMemberGroupChatRequest value)?
+        AddedMemberGroupChatRequest,
+    TResult Function(_RemovedMemberInGroupChatRequest value)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
+  }) {
+    return SetIsCreatedGroupChatRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CreatedGroupChatRequest value)? CreatedGroupChatRequest,
+    TResult Function(_GroupChatNameChanged value)? groupChatNameChanged,
+    TResult Function(_UpdatedLastMessageGroupChatRequest value)?
+        UpdatedLastMessageGroupChatRequest,
+    TResult Function(_AddedMemberGroupChatRequest value)?
+        AddedMemberGroupChatRequest,
+    TResult Function(_RemovedMemberInGroupChatRequest value)?
+        RemovedMemberInGroupChatRequest,
+    TResult Function(_SetErrorMessageGroupChatRequest value)?
+        SetErrorMessageGroupChatRequest,
+    TResult Function(_SetIsCreatedGroupChatRequest value)?
+        SetIsCreatedGroupChatRequest,
+    required TResult orElse(),
+  }) {
+    if (SetIsCreatedGroupChatRequest != null) {
+      return SetIsCreatedGroupChatRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetIsCreatedGroupChatRequest implements GroupchatEvent {
+  const factory _SetIsCreatedGroupChatRequest() =
+      _$_SetIsCreatedGroupChatRequest;
+}
+
+/// @nodoc
 mixin _$GroupchatState {
   String get userId => throw _privateConstructorUsedError;
   String get groupChatName => throw _privateConstructorUsedError;
   bool? get success => throw _privateConstructorUsedError;
+  bool? get isCreated => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
@@ -1168,6 +1626,7 @@ abstract class $GroupchatStateCopyWith<$Res> {
       {String userId,
       String groupChatName,
       bool? success,
+      bool? isCreated,
       String? message,
       String? errorMessage});
 }
@@ -1186,6 +1645,7 @@ class _$GroupchatStateCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? groupChatName = freezed,
     Object? success = freezed,
+    Object? isCreated = freezed,
     Object? message = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -1201,6 +1661,10 @@ class _$GroupchatStateCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isCreated: isCreated == freezed
+          ? _value.isCreated
+          : isCreated // ignore: cast_nullable_to_non_nullable
               as bool?,
       message: message == freezed
           ? _value.message
@@ -1225,6 +1689,7 @@ abstract class _$$_GroupchatStateCopyWith<$Res>
       {String userId,
       String groupChatName,
       bool? success,
+      bool? isCreated,
       String? message,
       String? errorMessage});
 }
@@ -1245,6 +1710,7 @@ class __$$_GroupchatStateCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? groupChatName = freezed,
     Object? success = freezed,
+    Object? isCreated = freezed,
     Object? message = freezed,
     Object? errorMessage = freezed,
   }) {
@@ -1260,6 +1726,10 @@ class __$$_GroupchatStateCopyWithImpl<$Res>
       success: success == freezed
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isCreated: isCreated == freezed
+          ? _value.isCreated
+          : isCreated // ignore: cast_nullable_to_non_nullable
               as bool?,
       message: message == freezed
           ? _value.message
@@ -1280,6 +1750,7 @@ class _$_GroupchatState implements _GroupchatState {
       {required this.userId,
       required this.groupChatName,
       this.success,
+      this.isCreated,
       this.message,
       this.errorMessage});
 
@@ -1290,13 +1761,15 @@ class _$_GroupchatState implements _GroupchatState {
   @override
   final bool? success;
   @override
+  final bool? isCreated;
+  @override
   final String? message;
   @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'GroupchatState(userId: $userId, groupChatName: $groupChatName, success: $success, message: $message, errorMessage: $errorMessage)';
+    return 'GroupchatState(userId: $userId, groupChatName: $groupChatName, success: $success, isCreated: $isCreated, message: $message, errorMessage: $errorMessage)';
   }
 
   @override
@@ -1308,6 +1781,7 @@ class _$_GroupchatState implements _GroupchatState {
             const DeepCollectionEquality()
                 .equals(other.groupChatName, groupChatName) &&
             const DeepCollectionEquality().equals(other.success, success) &&
+            const DeepCollectionEquality().equals(other.isCreated, isCreated) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
                 .equals(other.errorMessage, errorMessage));
@@ -1319,6 +1793,7 @@ class _$_GroupchatState implements _GroupchatState {
       const DeepCollectionEquality().hash(userId),
       const DeepCollectionEquality().hash(groupChatName),
       const DeepCollectionEquality().hash(success),
+      const DeepCollectionEquality().hash(isCreated),
       const DeepCollectionEquality().hash(message),
       const DeepCollectionEquality().hash(errorMessage));
 
@@ -1333,6 +1808,7 @@ abstract class _GroupchatState implements GroupchatState {
       {required final String userId,
       required final String groupChatName,
       final bool? success,
+      final bool? isCreated,
       final String? message,
       final String? errorMessage}) = _$_GroupchatState;
 
@@ -1342,6 +1818,8 @@ abstract class _GroupchatState implements GroupchatState {
   String get groupChatName;
   @override
   bool? get success;
+  @override
+  bool? get isCreated;
   @override
   String? get message;
   @override

@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import 'ListExerciseByCategory.dart';
+
 class Video extends StatefulWidget {
   const Video({Key? key, required this.exericse}) : super(key: key);
   final Exericse exericse;
@@ -55,9 +57,9 @@ class _VideoState extends State<Video> {
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Video'),
             backgroundColor: Color(0xffffff),
             elevation: 0,
+            iconTheme: IconThemeData(size: 35, color: Colors.white),
           ),
           body: SingleChildScrollView(
               child: Column(
@@ -83,46 +85,33 @@ class _VideoState extends State<Video> {
                   ),
                 ],
               ),
-              Text(
-                widget.exericse.ExerciseName ?? '',
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w500),
+              Container(
+                alignment: Alignment.topLeft,
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  widget.exericse.ExerciseName ?? '',
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w500),
+                ),
               ),
-              Divider(
-                color: Colors.black26,
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Divider(
+                  color: Colors.black26,
+                ),
               ),
-              Text(
-                widget.exericse.Description ?? '',
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 26.0,
-                    fontWeight: FontWeight.w300),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  widget.exericse.Description ?? '',
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 26.0,
+                      fontWeight: FontWeight.w300),
+                ),
               ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(
-              //         context,
-              //         MaterialPageRoute(
-              //             builder: (context) => ExerciseWorkoutScreen(
-              //                 exercise: widget.exericse)));
-              //   },
-              //   style: ElevatedButton.styleFrom(
-              //     primary: Colors.blue[300],
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(25),
-              //     ),
-              //     elevation: 15.0,
-              //   ),
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(20.0),
-              //     child: Text(
-              //       'Bắt đầu tập',
-              //       style: TextStyle(fontSize: 20),
-              //     ),
-              //   ),
-              // ),
             ],
           )),
           floatingActionButton: Container(
@@ -153,39 +142,8 @@ class _VideoState extends State<Video> {
               ),
             ),
           ),
-          // label: Text(
-          //   'Bắt đầu tập',
-          //   style: TextStyle(fontSize: 20),
-          // ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
-          // bottomSheet: Container(
-          //   width: MediaQuery.of(context).size.width,
-          //   // alignment: Alignment.center,
-          //   child: ElevatedButton(
-          //     onPressed: () {
-          //       Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) =>
-          //                   ExerciseWorkoutScreen(exercise: widget.exericse)));
-          //     },
-          //     style: ElevatedButton.styleFrom(
-          //       primary: Colors.blue[300],
-          //       shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(25),
-          //       ),
-          //       elevation: 15.0,
-          //     ),
-          //     child: Padding(
-          //       padding: const EdgeInsets.all(20.0),
-          //       child: Text(
-          //         'Bắt đầu tập',
-          //         style: TextStyle(fontSize: 20),
-          //       ),
-          //     ),
-          //   ),
-          // ),
         );
       },
     );
