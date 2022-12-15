@@ -13,6 +13,8 @@ class TextToSpeech extends StatefulWidget {
 
 class _TextToSpeechState extends State<TextToSpeech> {
   var list_old_word = List<String>.empty(growable: true);
+  //var list_old_word = List<String>[5];
+ 
   TextEditingController textEditingController = TextEditingController();
   final FlutterTts flutterTts = FlutterTts();
 
@@ -20,6 +22,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
   void initState() {
     // TODO: implement initState
     super.initState();
+   // list_old_word.length=5;
     getOldText();
   }
 
@@ -32,6 +35,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
         for (var word in list_old_word_cache) {
           list_old_word.add(word);
         }
+        //list_old_word.reversed;
       });
     }
   }
@@ -58,8 +62,11 @@ class _TextToSpeechState extends State<TextToSpeech> {
     return isAdd;
   }
 
-  addAndSave(String newWord, List<String> list_old_word) async {
-    list_old_word.add(newWord);
+  addAndSave(String newWord, List<String> list_old_word) async { 
+   if(list_old_word.length==5){
+    list_old_word.removeAt(4);
+   }
+    list_old_word.insert(0, newWord);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setStringList(
         SharedPreferencesKey.list_old_word_cache, list_old_word);
@@ -124,7 +131,7 @@ class _TextToSpeechState extends State<TextToSpeech> {
                       primary: false,
                       shrinkWrap: true,
                       physics: BouncingScrollPhysics(),
-                      itemCount: list_old_word.length,
+                      itemCount: list_old_word.length>5 ? 5: list_old_word.length,
                       itemBuilder: (context, index) {
                         return Container(
                           child: ListTile(
