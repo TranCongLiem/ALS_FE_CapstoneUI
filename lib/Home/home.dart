@@ -22,6 +22,7 @@ import '../Feature/SpeechToText/SpeechToText.dart';
 import '../Feature/TextToSpeech/TextToSpeech.dart';
 import '../Model/getProfileUser_model.dart';
 import '../Splash/SharePreKey.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Home extends StatefulWidget {
@@ -108,7 +109,8 @@ class _HomeState extends State<Home> {
                                                 .relationshipWith
                                                 .toString()));
                                     if (result != null) {
-                                      launch("tel:${result.phoneNumber}");
+                                      //launch("tel:${result.phoneNumber}");
+                                      FlutterPhoneDirectCaller.callNumber(result.phoneNumber??'085921191121');
                                     }
                                   }
                                 }
