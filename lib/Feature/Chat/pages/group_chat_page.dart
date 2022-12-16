@@ -90,9 +90,14 @@ class _GroupChatPageState extends State<GroupChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(size: 35, color: Colors.white),
         centerTitle: true,
         elevation: 0,
-        title: Text(widget.groupName),
+        title: Text(
+          widget.groupName,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: 22),
+        ),
         backgroundColor: greenALS.withOpacity(0.8),
         actions: [
           IconButton(

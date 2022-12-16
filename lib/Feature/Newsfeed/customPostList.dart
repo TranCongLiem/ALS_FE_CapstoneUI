@@ -184,10 +184,12 @@ class _CustomPostListState extends State<CustomPostList> {
                                                                   .toString()),
                                                       likeBuilder:
                                                           (bool isLiked) {
-                                                        return Icon(
-                                                          Icons.favorite,
-                                                          color: Colors.red,
-                                                          size: 26.0,
+                                                        return SizedBox(
+                                                          child: Icon(
+                                                            Icons.favorite,
+                                                            color: Colors.red,
+                                                            size: 35.0,
+                                                          ),
                                                         );
                                                       },
                                                       countBuilder: (likeCount,
@@ -197,7 +199,8 @@ class _CustomPostListState extends State<CustomPostList> {
                                                         result = Text(
                                                           text,
                                                           style: TextStyle(
-                                                              color: color),
+                                                              color: color,
+                                                              fontSize: 24),
                                                         );
                                                         return result;
                                                       },
@@ -221,7 +224,7 @@ class _CustomPostListState extends State<CustomPostList> {
                                                         return Icon(
                                                           Icons.favorite,
                                                           color: Colors.grey,
-                                                          size: 26.0,
+                                                          size: 35.0,
                                                         );
                                                       },
                                                       countBuilder: (likeCount,
@@ -232,13 +235,15 @@ class _CustomPostListState extends State<CustomPostList> {
                                                           result = Text(
                                                             "Thích",
                                                             style: TextStyle(
-                                                                color: color),
+                                                                color: color,
+                                                                fontSize: 24),
                                                           );
                                                         } else
                                                           result = Text(
                                                             text,
                                                             style: TextStyle(
-                                                                color: color),
+                                                                color: color,
+                                                                fontSize: 24),
                                                           );
                                                         return result;
                                                       },

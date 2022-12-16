@@ -104,7 +104,7 @@ class HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(left: 5),
               child: Text(
                 'Trò chuyện',
-                style: TextStyle(fontSize: 23),
+                style: TextStyle(fontSize: 24),
               ),
             ),
             leading: Padding(
@@ -122,6 +122,8 @@ class HomePageState extends State<HomePage> {
             ),
             actions: [
               Container(
+                width: MediaQuery.of(context).size.width * 0.13,
+                height: MediaQuery.of(context).size.height * 0.05,
                 margin: EdgeInsets.all(15.0),
                 decoration:
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
@@ -134,10 +136,13 @@ class HomePageState extends State<HomePage> {
                   icon: Icon(
                     Icons.search_sharp,
                     color: Colors.black,
+                    size: 35,
                   ),
                 ),
               ),
               Container(
+                width: MediaQuery.of(context).size.width * 0.13,
+                height: MediaQuery.of(context).size.height * 0.05,
                 margin: EdgeInsets.all(15.0),
                 decoration:
                     BoxDecoration(shape: BoxShape.circle, color: Colors.white),
@@ -152,8 +157,9 @@ class HomePageState extends State<HomePage> {
                                 )));
                   },
                   icon: Icon(
-                    Icons.person,
+                    Icons.group,
                     color: Colors.black,
+                    size: 35,
                   ),
                 ),
               )

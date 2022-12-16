@@ -63,6 +63,8 @@ class _GroupChatPageState extends State<GroupChatPage>
               ),
               actions: [
                 Container(
+                  width: MediaQuery.of(context).size.width * 0.13,
+                  height: MediaQuery.of(context).size.height * 0.05,
                   margin: EdgeInsets.all(15.0),
                   decoration: BoxDecoration(
                       shape: BoxShape.circle, color: Colors.white),
@@ -75,7 +77,7 @@ class _GroupChatPageState extends State<GroupChatPage>
                     icon: Icon(
                       Icons.search_sharp,
                       color: Colors.black,
-                      size: 30,
+                      size: 35,
                     ),
                   ),
                 ),

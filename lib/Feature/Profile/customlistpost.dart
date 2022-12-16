@@ -62,10 +62,10 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                               Row(
                                 children: [
                                   CircleAvatar(
-                                    radius: 20.0,
+                                    radius: 25.0,
                                     backgroundColor: greenALS,
                                     child: CircleAvatar(
-                                      radius: 17.0,
+                                      radius: 25.0,
                                       backgroundColor: Colors.grey[200],
                                       backgroundImage: widget
                                                   .listPost.imageUser !=
@@ -87,13 +87,13 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                           widget.listPost.fullNameUser ?? '',
                                           style: const TextStyle(
                                               fontWeight: FontWeight.w500,
-                                              fontSize: 20.0),
+                                              fontSize: 22.0),
                                         ),
                                         Text(
                                           timeago.format(time, locale: 'vi'),
                                           style: TextStyle(
                                             color: Colors.grey[600],
-                                            fontSize: 12.0,
+                                            fontSize: 16.0,
                                           ),
                                         ),
                                       ],
@@ -150,7 +150,7 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                   trimMode: TrimMode.Line,
                                   trimCollapsedText: 'Xem thêm',
                                   trimExpandedText: 'Thu gọn',
-                                  style: TextStyle(fontSize: 20.0),
+                                  style: TextStyle(fontSize: 22.0),
                                 ),
                               ),
                               widget.listPost.image != null
@@ -230,7 +230,7 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                                                 Icons.favorite,
                                                                 color:
                                                                     Colors.red,
-                                                                size: 26.0,
+                                                                size: 35.0,
                                                               );
                                                             },
                                                             countBuilder:
@@ -244,7 +244,9 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                                                 text,
                                                                 style: TextStyle(
                                                                     color:
-                                                                        color),
+                                                                        color,
+                                                                    fontSize:
+                                                                        24),
                                                               );
                                                               return result;
                                                             },
@@ -270,7 +272,7 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                                                 Icons.favorite,
                                                                 color:
                                                                     Colors.grey,
-                                                                size: 26.0,
+                                                                size: 35.0,
                                                               );
                                                             },
                                                             countBuilder:
@@ -286,14 +288,18 @@ class _CustomPostListByUserIDState extends State<CustomPostListByUserID> {
                                                                   "Thích",
                                                                   style: TextStyle(
                                                                       color:
-                                                                          color),
+                                                                          color,
+                                                                      fontSize:
+                                                                          24),
                                                                 );
                                                               } else
                                                                 result = Text(
                                                                   text,
                                                                   style: TextStyle(
                                                                       color:
-                                                                          color),
+                                                                          color,
+                                                                      fontSize:
+                                                                          24),
                                                                 );
                                                               return result;
                                                             },

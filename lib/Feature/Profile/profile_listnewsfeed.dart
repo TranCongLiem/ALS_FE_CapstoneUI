@@ -28,6 +28,7 @@ class _ListNewsFeedState extends State<ListNewsFeed> {
           ],
           child: Scaffold(
             appBar: AppBar(
+              iconTheme: IconThemeData(size: 35, color: Colors.white),
               centerTitle: true,
               backgroundColor: greenALS,
               title: Text(

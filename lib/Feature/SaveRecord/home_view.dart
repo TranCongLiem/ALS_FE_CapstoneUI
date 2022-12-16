@@ -56,30 +56,55 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                     height: 20.5.h,
                     child: Scaffold(
                         appBar: AppBar(
-                            title: Text(
-                              'Hỗ trợ ghi âm',
-                              style: TextStyle(fontSize: 26),
-                            ),
-                            backgroundColor: greenALS,
-                            centerTitle: true,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20.0),
-                                    bottomRight: Radius.circular(20.0))),
-                            leading: Padding(
-                              padding: const EdgeInsets.only(left: 15),
+                          toolbarHeight:
+                              MediaQuery.of(context).size.height * 0.08,
+                          title: Text(
+                            'Hỗ trợ ghi âm',
+                            style: TextStyle(fontSize: 26),
+                          ),
+                          backgroundColor: greenALS,
+                          centerTitle: true,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20.0),
+                                  bottomRight: Radius.circular(20.0))),
+                          leading: Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: IconButton(
+                                icon: Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                  size: 40,
+                                ),
+                                onPressed: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Home()),
+                                    )),
+                          ),
+                          actions: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.13,
+                              height: MediaQuery.of(context).size.height * 0.05,
+                              margin: EdgeInsets.only(right: 15.0),
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.white),
                               child: IconButton(
-                                  icon: Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 40,
-                                  ),
-                                  onPressed: () => Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Home()),
-                                      )),
-                            )),
+                                onPressed: () {
+                                  showSearch(
+                                      context: context,
+                                      delegate:
+                                          SearchRecord(hintText: 'Tìm kiếm'));
+                                },
+                                icon: Icon(
+                                  Icons.search_sharp,
+                                  color: Colors.black,
+                                  size: 40,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         body: SafeArea(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -87,47 +112,6 @@ class _HomeViewRecordState extends State<HomeViewRecord>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                SizedBox(
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                          child: InkWell(
-                                        onTap: () {
-                                          showSearch(
-                                              context: context,
-                                              delegate: SearchRecord(
-                                                  hintText: 'Tìm kiếm'));
-                                        },
-                                        child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          height: size.height / 15,
-                                          decoration: BoxDecoration(
-                                              color: Colors.black12,
-                                              borderRadius:
-                                                  BorderRadius.circular(22)),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(15.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                InkWell(
-                                                  child: Text(
-                                                    'Tìm kiếm',
-                                                    style:
-                                                        TextStyle(fontSize: 24),
-                                                  ),
-                                                ),
-                                                Icon(Icons.search)
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )),
-                                    ],
-                                  ),
-                                ),
                                 ButtonCreateRecord(),
                                 Container(
                                   alignment: Alignment.center,
