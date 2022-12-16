@@ -26,7 +26,7 @@ class CategoryCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(13),
                 child: Container(
                   width: 20.w, //It will take a 20% of screen width
-                  height: 30.h,
+                  height: 35.h,
                   // padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -55,14 +55,14 @@ class CategoryCard extends StatelessWidget {
                             SvgPicture.asset(
                               svgSrc,
                               width: 60.h,
-                              height: 45.h,
+                              height: 40.h,
                             ),
                             Spacer(),
                             Text(
                               title,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 38.0.sp, color: Colors.black),
+                                  fontSize: 36.0.sp, color: Colors.black),
                             )
                           ],
                         ),

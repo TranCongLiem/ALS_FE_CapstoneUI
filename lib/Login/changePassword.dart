@@ -27,6 +27,7 @@ class ChangePasswordScreen extends StatefulWidget {
 
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   bool hidePassword = true;
+  bool hideFirstPassword = true;
   UserService _UserService = UserService();
   String mobileToken = '';
   String newPassword = '';
@@ -55,6 +56,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 MaterialPageRoute(
                     builder: (BuildContext context) => new NewFeed()),
                 (Route<dynamic> route) => false);
+            Fluttertoast.showToast(
+                msg: "Cập nhật mật khẩu thành công",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.SNACKBAR,
+                timeInSecForIosWeb: 1,
+                backgroundColor: greenALS,
+                textColor: Colors.white,
+                fontSize: 16.0);
             context
                 .read<AuthenticateBloc>()
                 .add(AuthenticateEvent.setCheckFalseChangedPassword());
@@ -99,10 +108,23 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             FilteringTextInputFormatter.digitsOnly
                           ],
                           controller: emailController,
+                          obscureText: hideFirstPassword,
                           decoration: InputDecoration(
-                            suffixIcon: Icon(Icons.lock),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                hideFirstPassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  hideFirstPassword = !hideFirstPassword;
+                                });
+                              },
+                              color: Colors.green,
+                            ),
                             border: OutlineInputBorder(),
-                            labelText: 'Mật khẩu mới',
+                            labelText: 'Nhập  mật khẩu',
                             hintText: 'Nhập mật khẩu mới',
                           ),
                           style: TextStyle(fontSize: 25.sp),
@@ -137,7 +159,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                             ),
                             border: OutlineInputBorder(),
                             labelText: 'Nhập lại mật khẩu',
-                            hintText: 'Nhập mật khẩu mới',
+                            hintText: 'Nhập lại mật khẩu mới',
                           ),
                           style: TextStyle(fontSize: 25.sp),
                           onChanged: (value) {},
@@ -145,9 +167,20 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       ElevatedButton.icon(
                         onPressed: () {
-                          context.read<AuthenticateBloc>().add(
-                              AuthenticateEvent.changePasswordRequested(
-                                  widget.phone, newPassword));
+                          if (passwordController.text != emailController.text) {
+                            Fluttertoast.showToast(
+                                msg: "Nhập lại mật khẩu mới chưa đúng.",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.SNACKBAR,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: greenALS,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                          } else {
+                            context.read<AuthenticateBloc>().add(
+                                AuthenticateEvent.changePasswordRequested(
+                                    widget.phone, newPassword));
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: greenALS,

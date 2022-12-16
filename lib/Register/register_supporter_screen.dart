@@ -49,7 +49,8 @@ class _RegisterScreenSupporterState extends State<RegisterScreenSupporter> {
           if (state.errorMessage != '' && state.errorMessage != null) {
             Fluttertoast.showToast(
                 msg: state.errorMessage.toString(),
-                backgroundColor: ColorConstants.greyColor);
+                backgroundColor: greenALS,
+                fontSize: 18.0);
             context
                 .read<AuthenticateBloc>()
                 .add(AuthenticateEvent.setErrorMessageRequested());

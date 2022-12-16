@@ -295,7 +295,10 @@ class _SaveRecordingState extends State<SaveRecording> {
                       onPressed: (() {
                         onListen();
                       }),
-                      icon: Icon(Icons.mic),
+                      icon: Icon(
+                        Icons.mic,
+                        size: 35,
+                      ),
                     ),
                     border: myinputborder(),
                     enabledBorder: myinputborder(),
@@ -312,7 +315,7 @@ class _SaveRecordingState extends State<SaveRecording> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(8.0),
               child: FeatureButtonsView(
                   onUploadComplete: _onUploadComplete,
                   titleText: _textSpeech,

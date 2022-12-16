@@ -55,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
           if (state.isCheckLogin) {
             Fluttertoast.showToast(
                 msg: "Tài khoản hoặc mật khẩu không chính xác",
-                backgroundColor: ColorConstants.greyColor);
+                backgroundColor: greenALS,
+                fontSize: 18.0);
             context
                 .read<AuthenticateBloc>()
                 .add(AuthenticateEvent.checkLoginFalseRequested());
@@ -68,15 +69,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     MaterialPageRoute(
                         builder: (BuildContext context) => new NewFeed()),
                     (Route<dynamic> route) => false);
-                    Fluttertoast.showToast(
-                                    msg:
-                                        "Đăng nhập thành công",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.SNACKBAR,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: greenALS,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                Fluttertoast.showToast(
+                    msg: "Đăng nhập thành công",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.SNACKBAR,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: greenALS,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
               } else {
                 Navigator.push(
                   context,
@@ -118,15 +118,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         builder: (BuildContext context) =>
                             new NewFeedSupporter()),
                     (Route<dynamic> route) => false);
-                    Fluttertoast.showToast(
-                                    msg:
-                                        "Đăng nhập thành công",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.SNACKBAR,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: greenALS,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                Fluttertoast.showToast(
+                    msg: "Đăng nhập thành công",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.SNACKBAR,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: greenALS,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
                 SetUserInfo(state.phoneNumber, state.password, state.userId);
                 UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
                     userId: state.userId, mobileToken: mobileToken));
@@ -500,7 +499,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (error != '' && !error.isEmpty) {
       setState(() {
         Fluttertoast.showToast(
-            msg: error, backgroundColor: ColorConstants.greyColor);
+            msg: error, backgroundColor: greenALS, fontSize: 18.0);
       });
     }
   }

@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/groupchat/groupchat_bloc.dart';
+import 'package:capstone_ui/Bloc/list_group_chat_hasjoin/list_group_chat_hasjoin_bloc.dart';
 import 'package:capstone_ui/Feature/Chat/pages/create_groupchat.dart';
 import 'package:capstone_ui/Feature/Chat/pages/custom_listAllGroupChatHasJoin.dart';
 import 'package:capstone_ui/Feature/Chat/pages/home_page.dart';
@@ -30,6 +32,7 @@ class _GroupChatPageState extends State<GroupChatPage>
     with TickerProviderStateMixin {
   String groupName = "";
   bool _isLoading = false;
+  bool _isFirstTime = true;
   late List<ListAllGroupChatUserJoin> data2;
   GroupChatService _groupList = GroupChatService();
 
@@ -42,152 +45,179 @@ class _GroupChatPageState extends State<GroupChatPage>
   @override
   Widget build(BuildContext context) {
     TabController tabController = TabController(length: 2, vsync: this);
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-          appBar: AppBar(
-              toolbarHeight: MediaQuery.of(context).size.height * 0.12,
-              shape: ShapeBorder.lerp(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0)),
-                ),
-                null,
-                0,
-              ),
-              backgroundColor: greenALS,
-              title: Text(
-                'Trò chuyện nhóm',
-                style: TextStyle(fontSize: 23),
-              ),
-              actions: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.13,
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  margin: EdgeInsets.all(15.0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  child: IconButton(
+    return BlocBuilder<AuthenticateBloc, AuthenticateState>(
+      builder: (context, state) {
+        return BlocProvider(
+          create: (context) => ListGroupChatHasJoinBloc(
+              RepositoryProvider.of<GroupChatService>(context))
+            ..add(LoadListGroupChatByUserIdEvent(userId: state.userId)),
+          child: DefaultTabController(
+            length: 2,
+            child: Scaffold(
+                appBar: AppBar(
+                    toolbarHeight: MediaQuery.of(context).size.height * 0.12,
+                    shape: ShapeBorder.lerp(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20.0),
+                            bottomRight: Radius.circular(20.0)),
+                      ),
+                      null,
+                      0,
+                    ),
+                    backgroundColor: greenALS,
+                    title: Text(
+                      'Trò chuyện nhóm',
+                      style: TextStyle(fontSize: 23),
+                    ),
+                    actions: [
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.13,
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        margin: EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: Colors.white),
+                        child: IconButton(
+                          onPressed: () {
+                            showSearch(
+                                context: context,
+                                delegate: SearchGroup(hintText: 'Tìm kiếm'));
+                          },
+                          icon: Icon(
+                            Icons.search_sharp,
+                            color: Colors.black,
+                            size: 35,
+                          ),
+                        ),
+                      ),
+                    ],
+                    bottom: TabBar(labelStyle: TextStyle(fontSize: 22), tabs: [
+                      Tab(
+                        text: 'Nhóm của bạn',
+                        icon: Icon(
+                          Icons.person,
+                          size: 35,
+                        ),
+                      ),
+                      Tab(
+                        text: 'Nhóm',
+                        icon: Icon(
+                          Icons.group_add,
+                          size: 35,
+                        ),
+                      ),
+                    ]),
+                    leading: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: IconButton(
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage(
+                                          userId: widget.userId,
+                                          userName: widget.fullName,
+                                        )),
+                              )),
+                    )),
+                floatingActionButton: Container(
+                  width: MediaQuery.of(context).size.width * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.08,
+                  child: FloatingActionButton(
                     onPressed: () {
-                      showSearch(
-                          context: context,
-                          delegate: SearchGroup(hintText: 'Tìm kiếm'));
+                      // popUpDialog(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateGroupChat(
+                                    userId: widget.userId,
+                                    fullName: widget.fullName,
+                                  )));
                     },
-                    icon: Icon(
-                      Icons.search_sharp,
-                      color: Colors.black,
+                    elevation: 0,
+                    backgroundColor: greenALS,
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
                       size: 35,
                     ),
                   ),
                 ),
-              ],
-              bottom: TabBar(labelStyle: TextStyle(fontSize: 22), tabs: [
-                Tab(
-                  text: 'Nhóm của bạn',
-                  icon: Icon(
-                    Icons.person,
-                    size: 35,
-                  ),
-                ),
-                Tab(
-                  text: 'Nhóm',
-                  icon: Icon(
-                    Icons.group_add,
-                    size: 35,
-                  ),
-                ),
-              ]),
-              leading: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                      size: 40,
-                    ),
-                    onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomePage(
-                                    userId: widget.userId,
-                                    userName: widget.fullName,
-                                  )),
-                        )),
-              )),
-          floatingActionButton: Container(
-            width: MediaQuery.of(context).size.width * 0.2,
-            height: MediaQuery.of(context).size.height * 0.08,
-            child: FloatingActionButton(
-              onPressed: () {
-                // popUpDialog(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateGroupChat(
-                              userId: widget.userId,
-                              fullName: widget.fullName,
-                            )));
-              },
-              elevation: 0,
-              backgroundColor: greenALS,
-              child: const Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 35,
-              ),
-            ),
-          ),
-          body: TabBarView(
-            children: [
-              FutureBuilder<List<ListAllGroupChatUserJoin>>(
-                  future: _groupList.getAllGroupChatUserJoin(widget.userId),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    data2 = snapshot.data!;
-                    return RefreshIndicator(
-                        onRefresh: refesh,
-                        child: ListView.builder(
-                            itemCount: data2.length,
-                            itemBuilder: (context, index) {
-                              return CustomListAllGroupChatUserJoin(
-                                listAllGroupChatUserJoin: data2[index],
-                                fullName: widget.fullName,
-                                userId: widget.userId,
+                body: TabBarView(
+                  children: [
+                    FutureBuilder<List<ListAllGroupChatUserJoin>>(
+                        future:
+                            _groupList.getAllGroupChatUserJoin(widget.userId),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          data2 = snapshot.data!;
+                          return BlocBuilder<ListGroupChatHasJoinBloc,
+                              ListGroupChatHasJoinState>(
+                            builder: (context, state2) {
+                              if (state2 is GroupChatHasJoinLoadedState) {
+                                if (_isFirstTime) {
+                                  data2 = state2.list1;
+                                }
+                                return RefreshIndicator(
+                                    onRefresh: refesh,
+                                    child: ListView.builder(
+                                        itemCount: data2.length,
+                                        itemBuilder: (context, index) {
+                                          return CustomListAllGroupChatUserJoin(
+                                            listAllGroupChatUserJoin:
+                                                data2[index],
+                                            fullName: widget.fullName,
+                                            userId: widget.userId,
+                                          );
+                                        }));
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(),
                               );
-                            }));
-                  }),
-
-              FutureBuilder<List<ListAllGroupChat>>(
-                  future: _groupList.getAllGroupChat(widget.userId),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    List<ListAllGroupChat>? data = snapshot.data;
-                    return ListView.builder(
-                        itemCount: data?.length,
-                        itemBuilder: (context, index) {
-                          return CustomListAllGroupChat(
-                            listAllGroupChat: data,
-                            index: index,
+                            },
                           );
-                        });
-                  }),
+                        }),
 
-              //Nhom đã tham gia
-            ],
-          )),
+                    FutureBuilder<List<ListAllGroupChat>>(
+                        future: _groupList.getAllGroupChat(widget.userId),
+                        builder: (context, snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          List<ListAllGroupChat>? data = snapshot.data;
+                          return ListView.builder(
+                              itemCount: data?.length,
+                              itemBuilder: (context, index) {
+                                return CustomListAllGroupChat(
+                                  listAllGroupChat: data,
+                                  index: index,
+                                );
+                              });
+                        }),
+
+                    //Nhom đã tham gia
+                  ],
+                )),
+          ),
+        );
+      },
     );
   }
 
   Future refesh() async {
+    setState(() {
+      _isFirstTime = false;
+    });
     final response = await http.get(Uri.parse(
         "https://als.cosplane.asia/api/groupchat/GetAllGroupChatUserJoin?userId=" +
             widget.userId));

@@ -20,4 +20,6 @@ class GroupchatEvent with _$GroupchatEvent {
       _SetErrorMessageGroupChatRequest;
   const factory GroupchatEvent.SetIsCreatedGroupChatRequest() =
       _SetIsCreatedGroupChatRequest;
+  const factory GroupchatEvent.SetIsRemovedGroupChatRequest() =
+      _SetIsRemovedGroupChatRequest;
 }

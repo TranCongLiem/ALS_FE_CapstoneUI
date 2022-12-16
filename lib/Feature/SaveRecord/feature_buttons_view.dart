@@ -148,7 +148,11 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                 label: Text(''),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
+                                  padding: EdgeInsets.only(
+                                      top: 20.0,
+                                      left: 20,
+                                      right: 13,
+                                      bottom: 20),
                                   shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
@@ -167,7 +171,11 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                 label: Text(''),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
+                                  padding: EdgeInsets.only(
+                                      top: 20.0,
+                                      left: 20,
+                                      right: 13,
+                                      bottom: 20),
                                   shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
@@ -181,14 +189,6 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                 icon: Icon(Icons.save_alt,
                                     size: 35.0, color: Colors.white),
                                 onPressed: () {
-                                  // validators:
-                                  // (String? value) {
-                                  //   if (value!.isEmpty)
-                                  //     return 'Required field';
-                                  // };
-                                  // context.read<CreateRecordBloc>().add(
-                                  //     CreateRecordEvent.recordNameChanged(
-                                  //         widget.titleText));
                                   if (widget.formKey.currentState!.validate()) {
                                     context.read<CreateRecordBloc>().add(
                                         CreateRecordEvent.createRecordRequest(
@@ -199,7 +199,11 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                                 label: Text(''),
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: greenALS.withOpacity(0.9),
-                                  padding: EdgeInsets.all(20.0),
+                                  padding: EdgeInsets.only(
+                                      top: 20.0,
+                                      left: 20,
+                                      right: 13,
+                                      bottom: 20),
                                   shape: new RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(10.0),
@@ -226,7 +230,7 @@ class _FeatureButtonsViewState extends State<FeatureButtonsView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white.withOpacity(0.9),
                         padding: EdgeInsets.only(
-                            left: 25, top: 25, right: 25, bottom: 25),
+                            left: 25, top: 25, right: 20, bottom: 25),
                         shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(100.0)),
                       ),

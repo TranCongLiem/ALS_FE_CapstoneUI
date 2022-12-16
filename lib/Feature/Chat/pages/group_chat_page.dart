@@ -187,7 +187,8 @@ class _GroupChatPageState extends State<GroupChatPage> {
     } else {
       Fluttertoast.showToast(
           msg: 'Vui lòng soạn tin nhắn',
-          backgroundColor: ColorConstants.greyColor);
+          backgroundColor: greenALS,
+          fontSize: 18.0);
     }
   }
 

@@ -40,7 +40,17 @@ class _RegisterInfoState extends State<RegisterInfo> {
   GlobalKey<FormFieldState> addressKey = GlobalKey();
   GlobalKey<FormFieldState> birthKey = GlobalKey();
   GlobalKey<FormFieldState> conditionKey = GlobalKey();
-
+  final itemsCondition = [
+    'Khó khăn khi nói chuyện',
+    'Khó khăn khi cử động tay',
+    'Cánh tay đang bị yếu dần',
+    'Bàn tay đang bị yếu dần',
+    'Chân  đang bị yếu dần',
+    'Bàn chân đang bị yếu',
+    'Khả năng nói chuyện đang bị yếu',
+    'Khác'
+  ];
+  String value = '';
   @override
   void initState() {
     // TODO: implement initState
@@ -49,6 +59,10 @@ class _RegisterInfoState extends State<RegisterInfo> {
     imageUserDefault =
         "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/287821475_1116111985634770_5760459797365277053_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=ae9488&_nc_ohc=y9yeetAsLbkAX_tgPwb&_nc_ht=scontent.fsgn13-2.fna&oh=03_AdTS2V3z1huHJ0RnwERW_2QJecLOXsihyZXjKz7DAAblbA&oe=63C222D9";
     imagePath = null;
+    context.read<UserBloc>().add(UserEvent.getcondition(itemsCondition[0]));
+    context.read<UserBloc>().add(UserEvent.getdateOfBirth(
+        DateFormat('yyyy-MM-dd').format(DateTime.now()).toString()));
+    value = itemsCondition[0];
   }
 
   @override
@@ -64,15 +78,14 @@ class _RegisterInfoState extends State<RegisterInfo> {
               MaterialPageRoute(
                   builder: (BuildContext context) => new NewFeed()),
               (Route<dynamic> route) => false);
-              Fluttertoast.showToast(
-                                    msg:
-                                        "Hoàn tất đăng kí",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.SNACKBAR,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: greenALS,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+          Fluttertoast.showToast(
+              msg: "Hoàn tất đăng kí",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.SNACKBAR,
+              timeInSecForIosWeb: 1,
+              backgroundColor: greenALS,
+              textColor: Colors.white,
+              fontSize: 16.0);
         }
       },
       builder: (context, state) {
@@ -380,39 +393,129 @@ class _RegisterInfoState extends State<RegisterInfo> {
                                 ),
                               ],
                             )),
-                        Container(
-                            alignment: Alignment.topLeft,
-                            margin: EdgeInsets.all(20.0),
-                            child: Column(
-                              children: [
-                                Container(
-                                    alignment: Alignment.topLeft,
-                                    child: Text(
-                                      'Tình trạng',
-                                      style: TextStyle(
-                                          fontSize: 22.0,
-                                          fontWeight: FontWeight.w600),
-                                    )),
-                                TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  key: conditionKey,
-                                  controller: conditionController,
-                                  style: TextStyle(
-                                      fontSize: 24.0, color: Colors.black54),
-                                  maxLines: 2,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(color: Colors.blue),
+                        // Container(
+                        //     // alignment: Alignment.topLeft,
+                        //     // margin: EdgeInsets.all(20.0),
+                        //     padding: EdgeInsets.symmetric(
+                        //         horizontal: 12, vertical: 4),
+                        //     decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(12),
+                        //         border: Border.all(color: Colors.black)),
+                        //     child: Column(
+                        //       children: [
+                        //         Container(
+                        //             alignment: Alignment.topLeft,
+                        //             child: Text(
+                        //               'Tình trạng',
+                        //               style: TextStyle(
+                        //                   fontSize: 22.0,
+                        //                   fontWeight: FontWeight.w600),
+                        //             )),
+                        //         Container(
+                        //           child: DropdownButtonHideUnderline(
+                        //             child: DropdownButton<String>(
+                        //               value: value,
+                        //               iconSize: 36,
+                        //               icon: Icon(Icons.arrow_drop_down,
+                        //                   color: Colors.black),
+                        //               isExpanded: true,
+                        //               items: itemsCondition
+                        //                   .map(buildMenuItem)
+                        //                   .toList(),
+                        //               onChanged: (value) => setState(() {
+                        //                 this.value = value;
+                        //               }),
+                        //             ),
+                        //           ),
+                        //         ),
+                        //         this.value ==  'Khác' ?
+                        //             TextFormField(
+                        //               autovalidateMode:
+                        //                   AutovalidateMode.onUserInteraction,
+                        //               key: conditionKey,
+                        //               controller: conditionController,
+                        //               style: TextStyle(
+                        //                   fontSize: 24.0, color: Colors.black54),
+                        //               maxLines: 2,
+                        //               decoration: InputDecoration(
+                        //                 hintStyle: TextStyle(color: Colors.blue),
+                        //               ),
+                        //               onChanged: (value) {
+                        //                 context
+                        //                     .read<UserBloc>()
+                        //                     .add(UserEvent.getcondition(value));
+                        //               },
+                        //               validator: (val) => validateCondition(val!),
+                        //             ) : SizedBox()
+                        //       ],
+                        //     )
+                        //     ),
+                        Padding(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                          child: Column(
+                            children: [
+                              Container(
+                                  alignment: Alignment.topLeft,
+                                  child: Text(
+                                    'Tình trạng',
+                                    style: TextStyle(
+                                        fontSize: 22.0,
+                                        fontWeight: FontWeight.w600),
+                                  )),
+                              Container(
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<String>(
+                                    value: value,
+                                    iconSize: 36,
+                                    icon: Icon(Icons.arrow_drop_down,
+                                        color: Colors.black),
+                                    isExpanded: true,
+                                    items: itemsCondition
+                                        .map(buildMenuItem)
+                                        .toList(),
+                                    onChanged: (value) => setState(() {
+                                      this.value = value ?? itemsCondition[0];
+                                      context
+                                          .read<UserBloc>()
+                                          .add(UserEvent.getcondition(value!));
+                                    }),
                                   ),
-                                  onChanged: (value) {
-                                    context
-                                        .read<UserBloc>()
-                                        .add(UserEvent.getcondition(value));
-                                  },
-                                  validator: (val) => validateCondition(val!),
-                                )
-                              ],
-                            )),
+                                ),
+                              ),
+                              this.value == 'Khác'
+                                  ? Container(
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.grey),
+                                          borderRadius:
+                                              BorderRadius.circular(20)),
+                                      child: TextFormField(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        key: conditionKey,
+                                        controller: conditionController,
+                                        style: TextStyle(
+                                            fontSize: 24.0,
+                                            color: Colors.black54),
+                                        maxLines: 2,
+                                        decoration: InputDecoration(
+                                          hintStyle:
+                                              TextStyle(color: Colors.blue),
+                                          border: InputBorder.none,
+                                        ),
+                                        onChanged: (value) {
+                                          context.read<UserBloc>().add(
+                                              UserEvent.getcondition(value));
+                                        },
+                                        validator: (val) =>
+                                            validateCondition(val!),
+                                      ),
+                                    )
+                                  : SizedBox()
+                            ],
+                          ),
+                        ),
                         Container(
                           margin: EdgeInsets.only(top: 20.0),
                           width: MediaQuery.of(context).size.width * 0.6,
@@ -537,4 +640,12 @@ class _RegisterInfoState extends State<RegisterInfo> {
     }
     return null;
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      );
 }

@@ -163,7 +163,8 @@ class _FeatureButtonsViewTextFunctionState
                             ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: greenALS.withOpacity(0.9),
-                                padding: EdgeInsets.all(20.0),
+                                padding: EdgeInsets.only(
+                                    top: 20.0, left: 20, right: 13, bottom: 20),
                                 shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                 ),
@@ -187,7 +188,8 @@ class _FeatureButtonsViewTextFunctionState
                                 alignment: Alignment.center,
                                 elevation: 3.0,
                                 backgroundColor: greenALS.withOpacity(0.9),
-                                padding: EdgeInsets.all(20.0),
+                                padding: EdgeInsets.only(
+                                    top: 20.0, left: 20, right: 13, bottom: 20),
                                 shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(10.0),
                                 ),

@@ -7,14 +7,15 @@ class GroupchatState with _$GroupchatState {
     required String groupChatName,
     bool? success,
     bool? isCreated,
+    bool? isRemoved,
     String? message,
     String? errorMessage,
   }) = _GroupchatState;
 
   factory GroupchatState.initial() => GroupchatState(
-        userId: '',
-        groupChatName: '',
-        errorMessage: '',
-        isCreated: false,
-      );
+      userId: '',
+      groupChatName: '',
+      errorMessage: '',
+      isCreated: false,
+      isRemoved: false);
 }

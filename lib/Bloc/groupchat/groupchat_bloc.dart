@@ -68,9 +68,9 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
       final result = await _groupChatService.removeMember(reqModel);
       if (result.message != null && result.success != null) {
         emit(state.copyWith(
-          message: result.message ?? '',
-          success: result.success,
-        ));
+            message: result.message ?? '',
+            success: result.success,
+            isRemoved: true));
       } else {
         emit(state.copyWith(errorMessage: "  "));
       }
@@ -81,6 +81,9 @@ class GroupchatBloc extends Bloc<GroupchatEvent, GroupchatState> {
     });
     on<_SetIsCreatedGroupChatRequest>((event, emit) {
       emit(state.copyWith(isCreated: false));
+    });
+    on<_SetIsRemovedGroupChatRequest>((event, emit) {
+      emit(state.copyWith(isRemoved: false));
     });
   }
 }
