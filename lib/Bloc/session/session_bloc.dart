@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Model/session_model.dart';
 import 'package:capstone_ui/services/api_Session.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -93,6 +94,29 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       },
     );
 
+    on<_GetSessionsByAdmin>(
+      (event, emit) async {
+        final list = await _sessionService.getSessionsByUserId(adminId);
+        // final sessionId = list[0].sessionId;
+        // final details = await _sessionService.getSessionsDetail(sessionId);
+        if (list != null) {
+          for (var session in list) {
+            var details =
+                await _sessionService.getSessionsDetail(session.sessionId);
+            //detailsList?.update(session.sessionId, (value) => details);
+            detailsList?[session.sessionId] = details;
+            exercisesCount?[session.sessionId] = details.length;
+            //temp = exercisesCount![session.sessionId];
+          }
+        }
+        emit(state.copyWith(
+          adminSessions: list,
+          detailsList: detailsList,
+          exercisesCount: exercisesCount,
+        ));
+      },
+    );
+
     on<_ShowSessionDetailRequested>(
       (event, emit) {},
     );
@@ -121,7 +145,7 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
         userId: event.userId,
         startTime: state.startTime!,
         endTime: endTime,
-        sessionId: event.sessionId,
+        exercises: event.exercises,
       );
       final result = await _sessionService.createSessionHistory(requestModel);
       if (result.isSuccess) {
@@ -146,47 +170,47 @@ class SessionBloc extends Bloc<SessionEvent, SessionState> {
       }),
     );
 
-    on<_EndExerciseWorkout>(((event, emit) async {
-      final endTime = DateTime.now();
+    // on<_EndExerciseWorkout>(((event, emit) async {
+    //   final endTime = DateTime.now();
 
-      var reqEx =
-          CreateSessionRequestExercise(exerciseId: event.exericse.ExericseID);
-      requestExercises.add(reqEx);
+    //   var reqEx =
+    //       CreateSessionRequestExercise(exerciseId: event.exericse.ExericseID);
+    //   requestExercises.add(reqEx);
 
-      CreateSessionRequestModel sessionRequestModel = CreateSessionRequestModel(
-        userId: event.userId,
-        sessionName: "Tập luyện",
-        startTime: DateTime.now(),
-        endTime: DateTime.now(),
-        exercises: requestExercises,
-      );
-      requestExercises = [];
-      final sessionCreate =
-          await _sessionService.createSession(sessionRequestModel);
-      final listSession =
-          await _sessionService.getSessionsByUserId(event.userId!);
-      final session =
-          listSession.where((ss) => ss.createAt!.isAfter(endTime)).toList();
-      final sessionId = session[0].sessionId;
+    //   CreateSessionRequestModel sessionRequestModel = CreateSessionRequestModel(
+    //     userId: event.userId,
+    //     sessionName: "Tập luyện",
+    //     startTime: DateTime.now(),
+    //     endTime: DateTime.now(),
+    //     exercises: requestExercises,
+    //   );
+    //   requestExercises = [];
+    //   final sessionCreate =
+    //       await _sessionService.createSession(sessionRequestModel);
+    //   final listSession =
+    //       await _sessionService.getSessionsByUserId(event.userId!);
+    //   final session =
+    //       listSession.where((ss) => ss.createAt!.isAfter(endTime)).toList();
+    //   final sessionId = session[0].sessionId;
 
-      CreateSessionHistoryRequestModel historyRequestModel =
-          CreateSessionHistoryRequestModel(
-        userId: event.userId!,
-        startTime: state.startTime!,
-        endTime: endTime,
-        sessionId: sessionId!,
-      );
-      final result =
-          await _sessionService.createSessionHistory(historyRequestModel);
-      if (result.isSuccess) {
-        emit(state.copyWith(
-          message: result.message,
-        ));
-      } else {
-        emit(state.copyWith(
-          message: "Create Session History Failed",
-        ));
-      }
-    }));
+    //   CreateSessionHistoryRequestModel historyRequestModel =
+    //       CreateSessionHistoryRequestModel(
+    //     userId: event.userId!,
+    //     startTime: state.startTime!,
+    //     endTime: endTime,
+    //     exercises: event,
+    //   );
+    //   final result =
+    //       await _sessionService.createSessionHistory(historyRequestModel);
+    //   if (result.isSuccess) {
+    //     emit(state.copyWith(
+    //       message: result.message,
+    //     ));
+    //   } else {
+    //     emit(state.copyWith(
+    //       message: "Create Session History Failed",
+    //     ));
+    //   }
+    // }));
   }
 }

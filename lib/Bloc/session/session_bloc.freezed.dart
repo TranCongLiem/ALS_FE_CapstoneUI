@@ -25,9 +25,12 @@ mixin _$SessionEvent {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -42,9 +45,12 @@ mixin _$SessionEvent {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) =>
@@ -58,9 +64,12 @@ mixin _$SessionEvent {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -78,6 +87,7 @@ mixin _$SessionEvent {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -97,6 +107,7 @@ mixin _$SessionEvent {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -116,6 +127,7 @@ mixin _$SessionEvent {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -215,9 +227,12 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -235,9 +250,12 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -254,9 +272,12 @@ class _$_AddToSession implements _AddToSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -280,6 +301,7 @@ class _$_AddToSession implements _AddToSession {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -302,6 +324,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -324,6 +347,7 @@ class _$_AddToSession implements _AddToSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -433,9 +457,12 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -453,9 +480,12 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -472,9 +502,12 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -498,6 +531,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -520,6 +554,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -542,6 +577,7 @@ class _$_CreateSessionRequested implements _CreateSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -621,9 +657,12 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -641,9 +680,12 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -660,9 +702,12 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -686,6 +731,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -708,6 +754,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -730,6 +777,7 @@ class _$_ShowCreatingSessionRequested implements _ShowCreatingSessionRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -802,9 +850,12 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -822,9 +873,12 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -841,9 +895,12 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -867,6 +924,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -889,6 +947,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -911,6 +970,7 @@ class _$_ShowSessionDetailRequested implements _ShowSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1006,9 +1066,12 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -1026,9 +1089,12 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -1045,9 +1111,12 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -1071,6 +1140,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -1093,6 +1163,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1115,6 +1186,7 @@ class _$_GetSessionDetailRequested implements _GetSessionDetailRequested {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1213,9 +1285,12 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -1233,9 +1308,12 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -1252,9 +1330,12 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -1278,6 +1359,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -1300,6 +1382,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1322,6 +1405,7 @@ class _$_GetSessionsByUserId implements _GetSessionsByUserId {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1345,6 +1429,194 @@ abstract class _GetSessionsByUserId implements SessionEvent {
   @JsonKey(ignore: true)
   _$$_GetSessionsByUserIdCopyWith<_$_GetSessionsByUserId> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_GetSessionsByAdminCopyWith<$Res> {
+  factory _$$_GetSessionsByAdminCopyWith(_$_GetSessionsByAdmin value,
+          $Res Function(_$_GetSessionsByAdmin) then) =
+      __$$_GetSessionsByAdminCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_GetSessionsByAdminCopyWithImpl<$Res>
+    extends _$SessionEventCopyWithImpl<$Res>
+    implements _$$_GetSessionsByAdminCopyWith<$Res> {
+  __$$_GetSessionsByAdminCopyWithImpl(
+      _$_GetSessionsByAdmin _value, $Res Function(_$_GetSessionsByAdmin) _then)
+      : super(_value, (v) => _then(v as _$_GetSessionsByAdmin));
+
+  @override
+  _$_GetSessionsByAdmin get _value => super._value as _$_GetSessionsByAdmin;
+}
+
+/// @nodoc
+
+class _$_GetSessionsByAdmin implements _GetSessionsByAdmin {
+  const _$_GetSessionsByAdmin();
+
+  @override
+  String toString() {
+    return 'SessionEvent.getSessionsByAdmin()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_GetSessionsByAdmin);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Exericse exericse) addToSession,
+    required TResult Function(String? userId, String sessionName)
+        createSessionRequested,
+    required TResult Function() showCreatingSessionRequested,
+    required TResult Function() showSessionDetailRequested,
+    required TResult Function(String? sessionID) getSessionDetailRequested,
+    required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
+    required TResult Function(int index) removeFromCreatingSession,
+    required TResult Function() startSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
+    required TResult Function(String userId) getSessionHistory,
+    required TResult Function(Exericse exericse, String? userId)
+        endExerciseWorkout,
+  }) {
+    return getSessionsByAdmin();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
+    TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
+  }) {
+    return getSessionsByAdmin?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Exericse exericse)? addToSession,
+    TResult Function(String? userId, String sessionName)?
+        createSessionRequested,
+    TResult Function()? showCreatingSessionRequested,
+    TResult Function()? showSessionDetailRequested,
+    TResult Function(String? sessionID)? getSessionDetailRequested,
+    TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
+    TResult Function(int index)? removeFromCreatingSession,
+    TResult Function()? startSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
+    TResult Function(String userId)? getSessionHistory,
+    TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
+    required TResult orElse(),
+  }) {
+    if (getSessionsByAdmin != null) {
+      return getSessionsByAdmin();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddToSession value) addToSession,
+    required TResult Function(_CreateSessionRequested value)
+        createSessionRequested,
+    required TResult Function(_ShowCreatingSessionRequested value)
+        showCreatingSessionRequested,
+    required TResult Function(_ShowSessionDetailRequested value)
+        showSessionDetailRequested,
+    required TResult Function(_GetSessionDetailRequested value)
+        getSessionDetailRequested,
+    required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
+    required TResult Function(_RemoveFromCreatingSession value)
+        removeFromCreatingSession,
+    required TResult Function(_StartSession value) startSession,
+    required TResult Function(_EndSession value) endSession,
+    required TResult Function(_GetSessionHistory value) getSessionHistory,
+    required TResult Function(_EndExerciseWorkout value) endExerciseWorkout,
+  }) {
+    return getSessionsByAdmin(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
+  }) {
+    return getSessionsByAdmin?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_AddToSession value)? addToSession,
+    TResult Function(_CreateSessionRequested value)? createSessionRequested,
+    TResult Function(_ShowCreatingSessionRequested value)?
+        showCreatingSessionRequested,
+    TResult Function(_ShowSessionDetailRequested value)?
+        showSessionDetailRequested,
+    TResult Function(_GetSessionDetailRequested value)?
+        getSessionDetailRequested,
+    TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
+    TResult Function(_RemoveFromCreatingSession value)?
+        removeFromCreatingSession,
+    TResult Function(_StartSession value)? startSession,
+    TResult Function(_EndSession value)? endSession,
+    TResult Function(_GetSessionHistory value)? getSessionHistory,
+    TResult Function(_EndExerciseWorkout value)? endExerciseWorkout,
+    required TResult orElse(),
+  }) {
+    if (getSessionsByAdmin != null) {
+      return getSessionsByAdmin(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetSessionsByAdmin implements SessionEvent {
+  const factory _GetSessionsByAdmin() = _$_GetSessionsByAdmin;
 }
 
 /// @nodoc
@@ -1423,9 +1695,12 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -1443,9 +1718,12 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -1462,9 +1740,12 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -1488,6 +1769,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -1510,6 +1792,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1532,6 +1815,7 @@ class _$_RemoveFromCreatingSession implements _RemoveFromCreatingSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1605,9 +1889,12 @@ class _$_StartSession implements _StartSession {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -1625,9 +1912,12 @@ class _$_StartSession implements _StartSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -1644,9 +1934,12 @@ class _$_StartSession implements _StartSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -1670,6 +1963,7 @@ class _$_StartSession implements _StartSession {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -1692,6 +1986,7 @@ class _$_StartSession implements _StartSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1714,6 +2009,7 @@ class _$_StartSession implements _StartSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1738,7 +2034,7 @@ abstract class _$$_EndSessionCopyWith<$Res> {
   factory _$$_EndSessionCopyWith(
           _$_EndSession value, $Res Function(_$_EndSession) then) =
       __$$_EndSessionCopyWithImpl<$Res>;
-  $Res call({String sessionId, String userId});
+  $Res call({List<CreateSessionRequestExercise> exercises, String userId});
 }
 
 /// @nodoc
@@ -1753,14 +2049,14 @@ class __$$_EndSessionCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? sessionId = freezed,
+    Object? exercises = freezed,
     Object? userId = freezed,
   }) {
     return _then(_$_EndSession(
-      sessionId == freezed
-          ? _value.sessionId
-          : sessionId // ignore: cast_nullable_to_non_nullable
-              as String,
+      exercises == freezed
+          ? _value.exercises
+          : exercises // ignore: cast_nullable_to_non_nullable
+              as List<CreateSessionRequestExercise>,
       userId == freezed
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -1772,16 +2068,16 @@ class __$$_EndSessionCopyWithImpl<$Res> extends _$SessionEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_EndSession implements _EndSession {
-  const _$_EndSession(this.sessionId, this.userId);
+  const _$_EndSession(this.exercises, this.userId);
 
   @override
-  final String sessionId;
+  final List<CreateSessionRequestExercise> exercises;
   @override
   final String userId;
 
   @override
   String toString() {
-    return 'SessionEvent.endSession(sessionId: $sessionId, userId: $userId)';
+    return 'SessionEvent.endSession(exercises: $exercises, userId: $userId)';
   }
 
   @override
@@ -1789,14 +2085,14 @@ class _$_EndSession implements _EndSession {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_EndSession &&
-            const DeepCollectionEquality().equals(other.sessionId, sessionId) &&
+            const DeepCollectionEquality().equals(other.exercises, exercises) &&
             const DeepCollectionEquality().equals(other.userId, userId));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(sessionId),
+      const DeepCollectionEquality().hash(exercises),
       const DeepCollectionEquality().hash(userId));
 
   @JsonKey(ignore: true)
@@ -1814,14 +2110,17 @@ class _$_EndSession implements _EndSession {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
   }) {
-    return endSession(sessionId, userId);
+    return endSession(exercises, userId);
   }
 
   @override
@@ -1834,13 +2133,16 @@ class _$_EndSession implements _EndSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
-    return endSession?.call(sessionId, userId);
+    return endSession?.call(exercises, userId);
   }
 
   @override
@@ -1853,15 +2155,18 @@ class _$_EndSession implements _EndSession {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
   }) {
     if (endSession != null) {
-      return endSession(sessionId, userId);
+      return endSession(exercises, userId);
     }
     return orElse();
   }
@@ -1879,6 +2184,7 @@ class _$_EndSession implements _EndSession {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -1901,6 +2207,7 @@ class _$_EndSession implements _EndSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1923,6 +2230,7 @@ class _$_EndSession implements _EndSession {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -1939,10 +2247,10 @@ class _$_EndSession implements _EndSession {
 }
 
 abstract class _EndSession implements SessionEvent {
-  const factory _EndSession(final String sessionId, final String userId) =
-      _$_EndSession;
+  const factory _EndSession(final List<CreateSessionRequestExercise> exercises,
+      final String userId) = _$_EndSession;
 
-  String get sessionId;
+  List<CreateSessionRequestExercise> get exercises;
   String get userId;
   @JsonKey(ignore: true)
   _$$_EndSessionCopyWith<_$_EndSession> get copyWith =>
@@ -2022,9 +2330,12 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -2042,9 +2353,12 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -2061,9 +2375,12 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -2087,6 +2404,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -2109,6 +2427,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -2131,6 +2450,7 @@ class _$_GetSessionHistory implements _GetSessionHistory {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -2238,9 +2558,12 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     required TResult Function() showSessionDetailRequested,
     required TResult Function(String? sessionID) getSessionDetailRequested,
     required TResult Function(String? userId) getSessionsByUserId,
+    required TResult Function() getSessionsByAdmin,
     required TResult Function(int index) removeFromCreatingSession,
     required TResult Function() startSession,
-    required TResult Function(String sessionId, String userId) endSession,
+    required TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)
+        endSession,
     required TResult Function(String userId) getSessionHistory,
     required TResult Function(Exericse exericse, String? userId)
         endExerciseWorkout,
@@ -2258,9 +2581,12 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
   }) {
@@ -2277,9 +2603,12 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     TResult Function()? showSessionDetailRequested,
     TResult Function(String? sessionID)? getSessionDetailRequested,
     TResult Function(String? userId)? getSessionsByUserId,
+    TResult Function()? getSessionsByAdmin,
     TResult Function(int index)? removeFromCreatingSession,
     TResult Function()? startSession,
-    TResult Function(String sessionId, String userId)? endSession,
+    TResult Function(
+            List<CreateSessionRequestExercise> exercises, String userId)?
+        endSession,
     TResult Function(String userId)? getSessionHistory,
     TResult Function(Exericse exericse, String? userId)? endExerciseWorkout,
     required TResult orElse(),
@@ -2303,6 +2632,7 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     required TResult Function(_GetSessionDetailRequested value)
         getSessionDetailRequested,
     required TResult Function(_GetSessionsByUserId value) getSessionsByUserId,
+    required TResult Function(_GetSessionsByAdmin value) getSessionsByAdmin,
     required TResult Function(_RemoveFromCreatingSession value)
         removeFromCreatingSession,
     required TResult Function(_StartSession value) startSession,
@@ -2325,6 +2655,7 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -2347,6 +2678,7 @@ class _$_EndExerciseWorkout implements _EndExerciseWorkout {
     TResult Function(_GetSessionDetailRequested value)?
         getSessionDetailRequested,
     TResult Function(_GetSessionsByUserId value)? getSessionsByUserId,
+    TResult Function(_GetSessionsByAdmin value)? getSessionsByAdmin,
     TResult Function(_RemoveFromCreatingSession value)?
         removeFromCreatingSession,
     TResult Function(_StartSession value)? startSession,
@@ -2377,6 +2709,8 @@ abstract class _EndExerciseWorkout implements SessionEvent {
 mixin _$SessionState {
   List<GetSessionsResponseModel> get sessions =>
       throw _privateConstructorUsedError;
+  List<GetSessionsResponseModel>? get adminSessions =>
+      throw _privateConstructorUsedError;
   List<Exericse>? get exercises => throw _privateConstructorUsedError;
   List<GetSessionDetailResponseModel>? get details =>
       throw _privateConstructorUsedError;
@@ -2402,6 +2736,7 @@ abstract class $SessionStateCopyWith<$Res> {
       _$SessionStateCopyWithImpl<$Res>;
   $Res call(
       {List<GetSessionsResponseModel> sessions,
+      List<GetSessionsResponseModel>? adminSessions,
       List<Exericse>? exercises,
       List<GetSessionDetailResponseModel>? details,
       String? message,
@@ -2424,6 +2759,7 @@ class _$SessionStateCopyWithImpl<$Res> implements $SessionStateCopyWith<$Res> {
   @override
   $Res call({
     Object? sessions = freezed,
+    Object? adminSessions = freezed,
     Object? exercises = freezed,
     Object? details = freezed,
     Object? message = freezed,
@@ -2439,6 +2775,10 @@ class _$SessionStateCopyWithImpl<$Res> implements $SessionStateCopyWith<$Res> {
           ? _value.sessions
           : sessions // ignore: cast_nullable_to_non_nullable
               as List<GetSessionsResponseModel>,
+      adminSessions: adminSessions == freezed
+          ? _value.adminSessions
+          : adminSessions // ignore: cast_nullable_to_non_nullable
+              as List<GetSessionsResponseModel>?,
       exercises: exercises == freezed
           ? _value.exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -2488,6 +2828,7 @@ abstract class _$$_SessionStateCopyWith<$Res>
   @override
   $Res call(
       {List<GetSessionsResponseModel> sessions,
+      List<GetSessionsResponseModel>? adminSessions,
       List<Exericse>? exercises,
       List<GetSessionDetailResponseModel>? details,
       String? message,
@@ -2513,6 +2854,7 @@ class __$$_SessionStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? sessions = freezed,
+    Object? adminSessions = freezed,
     Object? exercises = freezed,
     Object? details = freezed,
     Object? message = freezed,
@@ -2528,6 +2870,10 @@ class __$$_SessionStateCopyWithImpl<$Res>
           ? _value.sessions
           : sessions // ignore: cast_nullable_to_non_nullable
               as List<GetSessionsResponseModel>,
+      adminSessions: adminSessions == freezed
+          ? _value.adminSessions
+          : adminSessions // ignore: cast_nullable_to_non_nullable
+              as List<GetSessionsResponseModel>?,
       exercises: exercises == freezed
           ? _value.exercises
           : exercises // ignore: cast_nullable_to_non_nullable
@@ -2573,6 +2919,7 @@ class __$$_SessionStateCopyWithImpl<$Res>
 class _$_SessionState implements _SessionState {
   const _$_SessionState(
       {required this.sessions,
+      this.adminSessions,
       this.exercises,
       this.details,
       this.message,
@@ -2585,6 +2932,8 @@ class _$_SessionState implements _SessionState {
 
   @override
   final List<GetSessionsResponseModel> sessions;
+  @override
+  final List<GetSessionsResponseModel>? adminSessions;
   @override
   final List<Exericse>? exercises;
   @override
@@ -2606,7 +2955,7 @@ class _$_SessionState implements _SessionState {
 
   @override
   String toString() {
-    return 'SessionState(sessions: $sessions, exercises: $exercises, details: $details, message: $message, detailsList: $detailsList, exercisesCount: $exercisesCount, sessionId: $sessionId, startTime: $startTime, endTime: $endTime, history: $history)';
+    return 'SessionState(sessions: $sessions, adminSessions: $adminSessions, exercises: $exercises, details: $details, message: $message, detailsList: $detailsList, exercisesCount: $exercisesCount, sessionId: $sessionId, startTime: $startTime, endTime: $endTime, history: $history)';
   }
 
   @override
@@ -2615,6 +2964,8 @@ class _$_SessionState implements _SessionState {
         (other.runtimeType == runtimeType &&
             other is _$_SessionState &&
             const DeepCollectionEquality().equals(other.sessions, sessions) &&
+            const DeepCollectionEquality()
+                .equals(other.adminSessions, adminSessions) &&
             const DeepCollectionEquality().equals(other.exercises, exercises) &&
             const DeepCollectionEquality().equals(other.details, details) &&
             const DeepCollectionEquality().equals(other.message, message) &&
@@ -2632,6 +2983,7 @@ class _$_SessionState implements _SessionState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(sessions),
+      const DeepCollectionEquality().hash(adminSessions),
       const DeepCollectionEquality().hash(exercises),
       const DeepCollectionEquality().hash(details),
       const DeepCollectionEquality().hash(message),
@@ -2651,6 +3003,7 @@ class _$_SessionState implements _SessionState {
 abstract class _SessionState implements SessionState {
   const factory _SessionState(
       {required final List<GetSessionsResponseModel> sessions,
+      final List<GetSessionsResponseModel>? adminSessions,
       final List<Exericse>? exercises,
       final List<GetSessionDetailResponseModel>? details,
       final String? message,
@@ -2663,6 +3016,8 @@ abstract class _SessionState implements SessionState {
 
   @override
   List<GetSessionsResponseModel> get sessions;
+  @override
+  List<GetSessionsResponseModel>? get adminSessions;
   @override
   List<Exericse>? get exercises;
   @override

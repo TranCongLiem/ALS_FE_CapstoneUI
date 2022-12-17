@@ -99,7 +99,28 @@ class GetSessionDetailResponseModel {
   factory GetSessionDetailResponseModel.fromJson(Map<String, dynamic> json) {
     return GetSessionDetailResponseModel(
       exerciseId: json['exerciseId'],
-      sessionId: json['sessionId'],
+      sessionId: json['sessionId'] ?? '',
+      exercise: Exericse.fromJson(json['exercise']),
+    );
+  }
+}
+
+class GetSessionHistoryDetailResponseModel {
+  String? exerciseId;
+  String? practiceHistoryId;
+  Exericse? exercise;
+
+  GetSessionHistoryDetailResponseModel({
+    this.exerciseId,
+    this.practiceHistoryId,
+    this.exercise,
+  });
+
+  factory GetSessionHistoryDetailResponseModel.fromJson(
+      Map<String, dynamic> json) {
+    return GetSessionHistoryDetailResponseModel(
+      exerciseId: json['exerciseId'],
+      practiceHistoryId: json['practiceHistoryId'],
       exercise: Exericse.fromJson(json['exercise']),
     );
   }
@@ -130,7 +151,7 @@ class GetSessionsResponseModel {
 
 class CreateSessionHistoryRequestModel {
   String userId;
-  String sessionId;
+  List<CreateSessionRequestExercise> exercises;
   DateTime startTime;
   DateTime endTime;
 
@@ -138,14 +159,14 @@ class CreateSessionHistoryRequestModel {
     required this.userId,
     required this.startTime,
     required this.endTime,
-    required this.sessionId,
+    required this.exercises,
   });
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'userId': userId,
       'startTime': startTime.toIso8601String(),
       'endTime': endTime.toIso8601String(),
-      'sessionId': sessionId,
+      'exercises': exercises,
     };
     return map;
   }
@@ -170,36 +191,34 @@ class CreateSessionHistoryResponseModel {
 }
 
 class GetSessionHistoryResponseModel {
-  String? sessionHistoryId;
-  String? sessionId;
+  String? practiceHistoryId;
+  // String? sessionId;
   DateTime? startTime;
   DateTime? endTime;
   String? userId;
-  List<GetSessionDetailResponseModel>? sessionDetail;
+  List<GetSessionDetailResponseModel>? practiceHistoryDetails;
 
   GetSessionHistoryResponseModel({
-    this.sessionHistoryId,
-    this.sessionId,
-    this.sessionDetail,
+    this.practiceHistoryId,
+    this.practiceHistoryDetails,
     this.startTime,
     this.endTime,
     this.userId,
   });
 
   factory GetSessionHistoryResponseModel.fromJson(Map<String, dynamic> json) {
-    var tempSessionDetail = json['sessionDetail'];
+    var tempSessionDetail = json['practiceHistoryDetails'];
     List<GetSessionDetailResponseModel> tempList = [];
     for (var element in tempSessionDetail) {
       tempList.add(GetSessionDetailResponseModel.fromJson(element));
     }
 
     return GetSessionHistoryResponseModel(
-      sessionHistoryId: json['sessionHistoryId'],
-      sessionId: json['sessionId'],
+      practiceHistoryId: json['practiceHistoryId'],
       startTime: DateTime.parse(json["startTime"].toString()),
       endTime: DateTime.parse(json["endTime"].toString()),
       userId: json['userId'],
-      sessionDetail: tempList,
+      practiceHistoryDetails: tempList,
     );
   }
 }

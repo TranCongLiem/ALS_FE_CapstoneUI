@@ -5,6 +5,7 @@ import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExerciseByName.dart';
+import 'package:capstone_ui/Feature/Session/history_detail_screen.dart';
 import 'package:capstone_ui/Feature/Session/session_detail_screen.dart';
 import 'package:capstone_ui/Feature/Session/session_exercise.dart';
 import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
@@ -335,8 +336,8 @@ Widget buildCardHistory(
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            SessionDetail(details: history.sessionDetail!)));
+                        builder: (context) => SessionDetail(
+                            details: history.practiceHistoryDetails!)));
               },
               child: Row(
                 children: [
@@ -368,7 +369,8 @@ Widget buildCardHistory(
                             ),
                             Text(
                               //state.details!.length.toString() + ' exercises',
-                              history.sessionDetail!.length.toString() +
+                              history.practiceHistoryDetails!.length
+                                      .toString() +
                                   " Bài tập",
                               style: TextStyle(
                                   color: Colors.black45, fontSize: 18),

@@ -61,7 +61,7 @@ class SessionService {
   Future<CreateSessionHistoryResponseModel> createSessionHistory(
       CreateSessionHistoryRequestModel requestModel) async {
     String url =
-        "https://als.cosplane.asia/api/sessionHistory/CreateNewSessionHistory/";
+        "https://als.cosplane.asia/api/PracticeHistoryDetail/AddPracticeHistoryAndDetail/";
     //var body = jsonEncode(requestModel.toJson());
     final response = await http.post(
       Uri.parse(url),
@@ -81,7 +81,7 @@ class SessionService {
   Future<List<GetSessionHistoryResponseModel>> getSessionHistory(
       String? userId) async {
     String url =
-        "http://als.cosplane.asia/api/sessionHistory/GetSessionHistoryByUserId?userId=";
+        "http://als.cosplane.asia/api/PracticeHistoryDetail/GetPracticeHistoryByUserId?userId=";
     final response = await http.get(Uri.parse(url + userId!));
 
     if (response.statusCode == 200) {
