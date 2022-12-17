@@ -28,6 +28,8 @@ class _ExerciseWorkoutScreenState extends State<ExerciseWorkoutScreen> {
   // Exericse? currentExercise;
   bool _isPlaying = true;
   Duration duration = Duration();
+  int? currentIndex;
+  int? lastIndex;
   Timer? timer;
 
   @override
@@ -69,10 +71,13 @@ class _ExerciseWorkoutScreenState extends State<ExerciseWorkoutScreen> {
                 buildVideoControls(),
                 ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<SessionBloc>()
-                        .add(SessionEvent.endExerciseWorkout(
-                          widget.exercise,
+                    List<CreateSessionRequestExercise> list = [];
+                    CreateSessionRequestExercise temp =
+                        CreateSessionRequestExercise(
+                            exerciseId: widget.exercise.ExericseID);
+                    list.add(temp);
+                    context.read<SessionBloc>().add(SessionEvent.endSession(
+                          list,
                           context.read<AuthenticateBloc>().state.userId,
                         ));
                     Navigator.push(
@@ -125,6 +130,8 @@ class _ExerciseWorkoutScreenState extends State<ExerciseWorkoutScreen> {
   Widget buildVideoControls() => VideoControlsWidget(
         duration: duration,
         exercise: widget.exercise,
+        hasNext: false,
+        hasPrev: false,
         onTogglePlaying: (isPlaying) {
           setState(() {
             if (isPlaying) {

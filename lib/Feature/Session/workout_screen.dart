@@ -26,7 +26,11 @@ class WorkoutScreen extends StatefulWidget {
 class _WorkoutScreenState extends State<WorkoutScreen> {
   final _pageController = PageController();
   Exericse? currentExercise;
+  int? currentIndex;
+  int? lastIndex;
   bool _isPlaying = true;
+  bool _hasPrevious = true;
+  bool _hasNext = true;
   Duration duration = Duration();
   Timer? timer;
 
@@ -36,6 +40,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     super.initState();
 
     currentExercise = widget.details.first.exercise;
+    lastIndex = widget.details.length - 1;
+    currentIndex = 0;
     startTimer();
   }
 
@@ -69,8 +75,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 buildVideoControls(),
                 ElevatedButton(
                   onPressed: () {
+                    List<CreateSessionRequestExercise> list = [];
+                    for (var detail in widget.details) {
+                      CreateSessionRequestExercise temp =
+                          CreateSessionRequestExercise(
+                              exerciseId: detail.exerciseId);
+                      list.add(temp);
+                    }
                     context.read<SessionBloc>().add(SessionEvent.endSession(
-                          widget.details.first.sessionId!,
+                          list,
                           context.read<AuthenticateBloc>().state.userId,
                         ));
                     Navigator.push(
@@ -105,6 +118,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
         controller: _pageController,
         onPageChanged: (index) => setState(() {
           currentExercise = widget.details[index].exercise;
+          currentIndex = index;
+          // _hasPrevious = currentIndex! < lastIndex!;
         }),
         children: widget.details
             .map((detail) => ExerciseVideoScreen(
@@ -122,6 +137,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   Widget buildVideoControls() => VideoControlsWidget(
         duration: duration,
         exercise: currentExercise!,
+        hasNext: currentIndex! < lastIndex!,
+        hasPrev: currentIndex! > 0,
         onTogglePlaying: (isPlaying) {
           setState(() {
             if (isPlaying) {

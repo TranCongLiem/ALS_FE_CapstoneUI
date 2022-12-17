@@ -13,10 +13,12 @@ class SessionEvent with _$SessionEvent {
       _GetSessionDetailRequested;
   const factory SessionEvent.getSessionsByUserId(String? userId) =
       _GetSessionsByUserId;
+  const factory SessionEvent.getSessionsByAdmin() = _GetSessionsByAdmin;
   const factory SessionEvent.removeFromCreatingSession(int index) =
       _RemoveFromCreatingSession;
   const factory SessionEvent.startSession() = _StartSession;
-  const factory SessionEvent.endSession(String sessionId, String userId) =
+  const factory SessionEvent.endSession(
+          List<CreateSessionRequestExercise> exercises, String userId) =
       _EndSession;
   const factory SessionEvent.getSessionHistory(String userId) =
       _GetSessionHistory;
