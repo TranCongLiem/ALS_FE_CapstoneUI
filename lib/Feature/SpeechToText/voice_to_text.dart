@@ -57,14 +57,13 @@ class _SpeechSampleAppState extends State<SpeechSampleApp> {
                       //   SnackBar(content: Text("Đã sao chép")),
                       // );
                       Fluttertoast.showToast(
-                                    msg:
-                                        "Đã sao chép",
-                                    toastLength: Toast.LENGTH_SHORT,
-                                    gravity: ToastGravity.SNACKBAR,
-                                    timeInSecForIosWeb: 1,
-                                    backgroundColor: greenALS,
-                                    textColor: Colors.white,
-                                    fontSize: 16.0);
+                          msg: "Đã sao chép",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.SNACKBAR,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: greenALS,
+                          textColor: Colors.white,
+                          fontSize: 18.0);
                     },
                     icon: Icon(
                       Icons.content_copy,
