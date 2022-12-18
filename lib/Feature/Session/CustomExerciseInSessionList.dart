@@ -3,6 +3,9 @@ import 'package:capstone_ui/Feature/Excerise/VideoScreen.dart';
 import 'package:capstone_ui/Model/getListExerciseByCate_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+import '../../Constant/constant.dart';
 
 Widget CustomExerciseInSessionList(
   Exericse? exericse,
@@ -46,7 +49,8 @@ Widget CustomExerciseInSessionList(
                         child: CircleAvatar(
                           backgroundColor: Colors.green,
                           foregroundColor: Colors.green,
-                          backgroundImage: NetworkImage( exericse?.exerciseImage ??
+                          backgroundImage: NetworkImage(exericse
+                                  ?.exerciseImage ??
                               "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
                         ),
                       ),
@@ -74,9 +78,10 @@ Widget CustomExerciseInSessionList(
                             children: [
                               TextButton(
                                   style: TextButton.styleFrom(
-                                      backgroundColor: Colors.red[400]),
+                                      backgroundColor: Colors.blue[400]),
                                   onPressed: () {},
-                                  child: Text( exericse?.exerciseLevel ?? 'Khó',
+                                  child: Text(
+                                    exericse?.exerciseLevel ?? 'Khó',
                                     style: TextStyle(
                                         fontSize: 18.0, color: Colors.white),
                                   )),
@@ -113,6 +118,10 @@ Widget CustomExerciseInSessionList(
                         .read<SessionBloc>()
                         .add(SessionEvent.removeFromCreatingSession(index));
                     refresh();
+                    Fluttertoast.showToast(
+                        msg: 'Đã xóa thành công',
+                        backgroundColor: greenALS,
+                        fontSize: 18.0);
                   },
                   child: Text(
                     "Xóa khỏi phiên tập",

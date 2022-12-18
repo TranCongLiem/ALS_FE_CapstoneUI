@@ -64,7 +64,7 @@ class _SessionDetailState extends State<SessionDetail> {
                           children: [
                             Text(
                               // widget.session.sessionName != null ? widget.session.sessionName! : "Tên buổi tập",
-                              "Tên buổi tập",
+                              "Tập luyện",
                               style: TextStyle(
                                 fontSize: 28,
                                 color: Colors.white,
@@ -232,7 +232,8 @@ class _SessionDetailState extends State<SessionDetail> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    image: NetworkImage(
+                    image: NetworkImage(widget
+                            .details[index].exercise!.exerciseImage ??
                         "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
                     fit: BoxFit.cover,
                   ),
