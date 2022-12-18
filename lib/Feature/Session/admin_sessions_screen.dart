@@ -1,13 +1,15 @@
+import 'package:capstone_ui/Bloc/authenticate/authenticate_bloc.dart';
 import 'package:capstone_ui/Bloc/session/session_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/Excerise/ListExcerise.dart';
-import 'package:capstone_ui/Feature/Session/admin_sessions_screen.dart';
 import 'package:capstone_ui/Feature/Session/session_detail_screen.dart';
+import 'package:capstone_ui/Feature/Session/sessions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart';
 
-class SessionsScreen extends StatelessWidget {
-  const SessionsScreen({super.key});
+class AdminSessionsScreen extends StatelessWidget {
+  const AdminSessionsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class SessionsScreen extends StatelessWidget {
             backgroundColor: greenALS,
             elevation: 0,
             title: Text(
-              'Buổi tập của bạn',
+              'Buổi tập có sẵn',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 26.0,
@@ -60,11 +62,12 @@ class SessionsScreen extends StatelessWidget {
               ),
               BlocBuilder<SessionBloc, SessionState>(
                 builder: (context, state) {
-                  if (state.sessions != null || state.sessions != []) {
+                  if (state.adminSessions != null ||
+                      state.adminSessions != []) {
                     return Expanded(
                         child: ListView.builder(
                       physics: BouncingScrollPhysics(),
-                      itemCount: state.sessions.length,
+                      itemCount: state.adminSessions!.length,
                       itemBuilder: (context, index) {
                         return _buildSessions(context, index);
                       },
@@ -84,17 +87,15 @@ class SessionsScreen extends StatelessWidget {
             margin: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {
-                context
-                    .read<SessionBloc>()
-                    .add(SessionEvent.getSessionsByAdmin());
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AdminSessionsScreen()));
+                context.read<SessionBloc>().add(
+                    SessionEvent.getSessionsByUserId(
+                        context.read<AuthenticateBloc>().state.userId));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SessionsScreen()));
               },
               child: const Center(
                 child: Text(
-                  'Buổi tập có sẵn',
+                  'Buổi tập của bạn',
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -139,7 +140,7 @@ class SessionsScreen extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   var details =
-                      state.detailsList![state.sessions[index].sessionId];
+                      state.detailsList![state.adminSessions![index].sessionId];
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -171,8 +172,8 @@ class SessionsScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              state.sessions[index].sessionName != null
-                                  ? state.sessions[index].sessionName!
+                              state.adminSessions![index].sessionName != null
+                                  ? state.adminSessions![index].sessionName!
                                   : "Tên buổi tập",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -214,8 +215,8 @@ class SessionsScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   //state.details!.length.toString() + ' exercises',
-                                  state.exercisesCount![
-                                              state.sessions[index].sessionId]
+                                  state.exercisesCount![state
+                                              .adminSessions![index].sessionId]
                                           .toString() +
                                       " Bài tập",
                                   style: TextStyle(

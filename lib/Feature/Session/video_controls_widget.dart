@@ -9,9 +9,13 @@ class VideoControlsWidget extends StatefulWidget {
   final VoidCallback onNextVideo;
   final ValueChanged<bool> onTogglePlaying;
   final bool isPlaying;
+  final bool hasPrev;
+  final bool hasNext;
   final Duration duration;
 
   const VideoControlsWidget({
+    required this.hasPrev,
+    required this.hasNext,
     required this.exercise,
     required this.onRewindVideo,
     required this.onNextVideo,
@@ -107,28 +111,34 @@ class _VideoControlsWidgetState extends State<VideoControlsWidget> {
         ],
       );
 
-  Widget buildButtons(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          IconButton(
-            icon: Icon(
-              Icons.fast_rewind,
-              color: Colors.black87,
-              size: 40,
-            ),
-            onPressed: widget.onRewindVideo,
-          ),
-          buildPlayButton(context),
-          IconButton(
-            icon: Icon(
-              Icons.fast_forward,
-              color: Colors.black87,
-              size: 40,
-            ),
-            onPressed: widget.onNextVideo,
-          ),
-        ],
-      );
+  Widget buildButtons(BuildContext context) => Builder(builder: (context) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            widget.hasPrev
+                ? IconButton(
+                    icon: Icon(
+                      Icons.fast_rewind,
+                      color: Colors.black87,
+                      size: 40,
+                    ),
+                    onPressed: widget.onRewindVideo,
+                  )
+                : SizedBox(width: 40, height: 0),
+            buildPlayButton(context),
+            widget.hasNext
+                ? IconButton(
+                    icon: Icon(
+                      Icons.fast_forward,
+                      color: Colors.black87,
+                      size: 40,
+                    ),
+                    onPressed: widget.onNextVideo,
+                  )
+                : SizedBox(width: 40, height: 0),
+          ],
+        );
+      });
 
   Widget buildPlayButton(BuildContext context) {
     final isLoading = widget.exercise.controller == null ||

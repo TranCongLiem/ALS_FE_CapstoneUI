@@ -14,3 +14,5 @@ const kWarninngColor = Color(0xFFF3BB1C);
 const kErrorColor = Color(0xFFF03738);
 
 const double defaultPadding = 16.0;
+
+const String adminId = 'B9C5D58B-45A4-4E71-800B-ECE47CEED913';

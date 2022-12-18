@@ -4,6 +4,7 @@ part of 'session_bloc.dart';
 class SessionState with _$SessionState {
   const factory SessionState({
     required List<GetSessionsResponseModel> sessions,
+    List<GetSessionsResponseModel>? adminSessions,
     List<Exericse>? exercises,
     List<GetSessionDetailResponseModel>? details,
     String? message,
@@ -17,6 +18,7 @@ class SessionState with _$SessionState {
 
   factory SessionState.initial() => SessionState(
         sessions: [],
+        adminSessions: [],
         exercises: [],
         message: '',
       );
