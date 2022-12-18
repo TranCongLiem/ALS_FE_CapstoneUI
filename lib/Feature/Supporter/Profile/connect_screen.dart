@@ -96,7 +96,6 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                           supporterId: state1.userId,
                                           patientPhoneNumber: controller.text));
                               if (resultAddReation.success ?? false) {
-                               
                                 // Fluttertoast.showToast(
                                 //     msg:
                                 //         "Thêm liên kết đến bệnh nhân thành công",
@@ -114,7 +113,7 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                 context.read<AuthenticateBloc>().add(
                                     AuthenticateEvent.updateRelationshipwith(
                                         profile.userId ?? ''));
-                               // setState(() {});
+                                // setState(() {});
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -122,7 +121,7 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                             SetTimeConnect()));
                               } else if (resultAddReation.success == false &&
                                   resultAddReation.message!
-                                      .contains("doesn't register account")) {                              
+                                      .contains("doesn't register account")) {
                                 Fluttertoast.showToast(
                                     msg:
                                         "Số điện thoại này chưa đăng kí tài khoản",
@@ -288,8 +287,7 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                                 Row(
                                                   children: [
                                                     Icon(
-                                                      Icons
-                                                          .access_time_outlined,
+                                                      Icons.house,
                                                       color: Colors.black45,
                                                     ),
                                                     Text(
@@ -300,6 +298,12 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                                       ),
                                                     )
                                                   ],
+                                                ),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.01,
                                                 ),
                                               ],
                                             ),
@@ -443,6 +447,36 @@ class _ConnectPatientState extends State<ConnectPatient> {
                                 ),
                               ),
                             ),
+                            Container(
+                              alignment: Alignment.centerLeft,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              child: Text(
+                                '(*)Tình trạng bệnh nhân',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w500),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 10),
+                              height: MediaQuery.of(context).size.height * 0.1,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(30.0),
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  snapshot.data.condition ??
+                                      "Tay đang bị yếu dần",
+                                  style: TextStyle(
+                                      color: Colors.black54, fontSize: 20),
+                                ),
+                              ),
+                            )
                           ],
                         ));
                       }

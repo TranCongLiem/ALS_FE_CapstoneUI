@@ -268,6 +268,9 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                             Padding(
                                               padding: EdgeInsets.all(16.0),
                                               child: TextFormField(
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
                                                 controller: captionController,
                                                 maxLines: 3,
                                                 decoration: InputDecoration(
@@ -299,8 +302,9 @@ class _CreatePostNewFeedState extends State<CreatePostNewFeed> {
                                                                 .permanentlyDenied) {
                                                           openAppSettings();
                                                         }
-
-                                                        onListen();
+                                                        _speech.isNotListening
+                                                            ? onListen()
+                                                            : stopListen();
                                                       },
                                                       icon: Icon(
                                                         _speech.isListening

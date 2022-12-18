@@ -98,14 +98,18 @@ class _DetailKnowledgeCustomState extends State<DetailKnowledgeCustom> {
                           SizedBox(
                             height: MediaQuery.of(context).size.height * 0.01,
                           ),
-                          Image.network(
-                            widget.listKnowledge.newsDetail?[index]
-                                    .imageHeader ??
-                                "",
-                            fit: BoxFit.cover,
-                            height: MediaQuery.of(context).size.height * 0.35,
-                            width: MediaQuery.of(context).size.width,
-                          )
+                          widget.listKnowledge.newsDetail?[index].imageHeader !=
+                                  ''
+                              ? Image.network(
+                                  widget.listKnowledge.newsDetail?[index]
+                                          .imageHeader ??
+                                      "",
+                                  fit: BoxFit.cover,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.35,
+                                  width: MediaQuery.of(context).size.width,
+                                )
+                              : SizedBox.shrink()
                         ],
                       ),
                     );

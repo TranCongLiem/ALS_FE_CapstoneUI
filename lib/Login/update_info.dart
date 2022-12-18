@@ -636,7 +636,7 @@ class _RegisterInfoState extends State<RegisterInfo> {
 
   String? validateCondition(String condition) {
     if (condition == null || condition.isEmpty) {
-      return 'Vui lòng nhập tình trạng';
+      return 'Vui lòng chọn tình trạng';
     }
     return null;
   }

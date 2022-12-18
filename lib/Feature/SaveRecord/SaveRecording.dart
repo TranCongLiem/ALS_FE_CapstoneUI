@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../Bloc/create_record/create_record_bloc.dart';
 import 'feature_buttons_view.dart';
@@ -292,11 +293,24 @@ class _SaveRecordingState extends State<SaveRecording> {
                 decoration: InputDecoration(
                     labelText: 'Tên bản ghi',
                     suffixIcon: IconButton(
-                      onPressed: (() {
-                        onListen();
+                      onPressed: (() async {
+                        PermissionStatus microStatus =
+                            await Permission.microphone.request();
+                        if (microStatus == PermissionStatus.granted) {}
+                        if (microStatus == PermissionStatus.denied) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text(
+                                      'Yêu cầu cấp quyền truy cập vào micro')));
+                        }
+                        if (microStatus == PermissionStatus.permanentlyDenied) {
+                          openAppSettings();
+                        }
+                        _speech.isNotListening ? onListen() : stopListen();
                       }),
                       icon: Icon(
-                        Icons.mic,
+                        _speech.isListening ? Icons.mic : Icons.mic_none,
+                        color: _speech.isListening ? greenALS : Colors.grey,
                         size: 35,
                       ),
                     ),

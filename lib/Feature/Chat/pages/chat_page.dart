@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import '../../../Bloc/user_chat/user_chat_bloc.dart';
 import '../constants/color_constants.dart';
@@ -782,8 +782,20 @@ class ChatPageState extends State<ChatPage> {
                   hintStyle:
                       TextStyle(color: ColorConstants.greyColor, fontSize: 22),
                   suffixIcon: IconButton(
-                    onPressed: (() {
-                      onListen();
+                    onPressed: (() async {
+                      PermissionStatus microStatus =
+                          await Permission.microphone.request();
+                      if (microStatus == PermissionStatus.granted) {}
+                      if (microStatus == PermissionStatus.denied) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'Yêu cầu cấp quyền truy cập vào micro')));
+                      }
+                      if (microStatus == PermissionStatus.permanentlyDenied) {
+                        openAppSettings();
+                      }
+                      _speech.isNotListening ? onListen() : stopListen();
                     }),
                     icon: Icon(
                       _speech.isListening ? Icons.mic : Icons.mic_none,

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../Constant/constant.dart';
 import '../constants/color_constants.dart';
 import '../providers/database_service.dart';
@@ -243,8 +244,20 @@ class _GroupChatPageState extends State<GroupChatPage> {
                   hintStyle:
                       TextStyle(color: ColorConstants.greyColor, fontSize: 22),
                   suffixIcon: IconButton(
-                    onPressed: () {
-                      onListen();
+                    onPressed: () async {
+                      PermissionStatus microStatus =
+                          await Permission.microphone.request();
+                      if (microStatus == PermissionStatus.granted) {}
+                      if (microStatus == PermissionStatus.denied) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text(
+                                    'Yêu cầu cấp quyền truy cập vào micro')));
+                      }
+                      if (microStatus == PermissionStatus.permanentlyDenied) {
+                        openAppSettings();
+                      }
+                      _speech.isNotListening ? onListen() : stopListen();
                     },
                     icon: Icon(
                       _speech.isListening ? Icons.mic : Icons.mic_none,

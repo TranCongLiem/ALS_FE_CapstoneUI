@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:uuid/uuid.dart';
 import '../../../Bloc/groupchat/groupchat_bloc.dart';
 import '../../../Constant/constant.dart';
@@ -268,8 +269,24 @@ class _CreateGroupChatState extends State<CreateGroupChat> {
                                       color: Theme.of(context).primaryColor),
                                   borderRadius: BorderRadius.circular(20)),
                               suffixIcon: IconButton(
-                                onPressed: (() {
-                                  onListen();
+                                onPressed: (() async {
+                                  PermissionStatus microStatus =
+                                      await Permission.microphone.request();
+                                  if (microStatus ==
+                                      PermissionStatus.granted) {}
+                                  if (microStatus == PermissionStatus.denied) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                        const SnackBar(
+                                            content: Text(
+                                                'Yêu cầu cấp quyền truy cập vào micro')));
+                                  }
+                                  if (microStatus ==
+                                      PermissionStatus.permanentlyDenied) {
+                                    openAppSettings();
+                                  }
+                                  _speech.isNotListening
+                                      ? onListen()
+                                      : stopListen();
                                 }),
                                 icon: Icon(
                                   _speech.isListening

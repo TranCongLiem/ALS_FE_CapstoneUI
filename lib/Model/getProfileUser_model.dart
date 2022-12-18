@@ -34,12 +34,14 @@ class GetProfilePatientInSupporterByIdResponeModel {
   String? imageUser;
   String? relationshipWith;
   String? phoneNumber;
+  String? condition;
   GetProfilePatientInSupporterByIdResponeModel(
       {this.fullName,
       this.address,
       this.imageUser,
       this.relationshipWith,
-      this.phoneNumber});
+      this.phoneNumber,
+      this.condition});
 
   factory GetProfilePatientInSupporterByIdResponeModel.fromJson(
       Map<String, dynamic> json) {
@@ -49,6 +51,7 @@ class GetProfilePatientInSupporterByIdResponeModel {
       imageUser: json["imageUser"],
       relationshipWith: json["relationshipWith"],
       phoneNumber: json["phoneNumber"],
+      condition: json["condition"],
     );
   }
 }

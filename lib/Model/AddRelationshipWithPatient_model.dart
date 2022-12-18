@@ -13,7 +13,6 @@ class AddRelationwithPatientRequest {
   }
 }
 
-
 class AddRelationwithPatientResponse {
   bool? success;
   String? message;
@@ -33,7 +32,9 @@ class UpdateDateSupportRequest {
   String endSupportDate;
 
   UpdateDateSupportRequest(
-      {required this.supporterId, required this.startSupportDate, required this.endSupportDate});
+      {required this.supporterId,
+      required this.startSupportDate,
+      required this.endSupportDate});
   Map<String, dynamic> toJson() {
     Map<String, dynamic> map = {
       'supporterId': supporterId,
@@ -43,6 +44,7 @@ class UpdateDateSupportRequest {
     return map;
   }
 }
+
 class UpdateDateSupportResponse {
   bool? success;
   String? message;
@@ -56,25 +58,29 @@ class UpdateDateSupportResponse {
   }
 }
 
-class GetDetailUserByPhoneRequest{
+class GetDetailUserByPhoneRequest {
   String patientPhoneNumber;
 
-  GetDetailUserByPhoneRequest(
-      {required this.patientPhoneNumber});
+  GetDetailUserByPhoneRequest({required this.patientPhoneNumber});
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'userId': patientPhoneNumber   
-    };
+    Map<String, dynamic> map = {'userId': patientPhoneNumber};
     return map;
   }
 }
+
 class GetDetailUserByPhoneResponse {
   String? userId;
   String? fullName;
   String? address;
   String? imageUser;
+  String? Condition;
+
   GetDetailUserByPhoneResponse(
-      { this.userId,this.fullName, this.address, this.imageUser});
+      {this.userId,
+      this.fullName,
+      this.address,
+      this.imageUser,
+      this.Condition});
 
   factory GetDetailUserByPhoneResponse.fromJson(Map<String, dynamic> json) {
     return GetDetailUserByPhoneResponse(
@@ -82,30 +88,28 @@ class GetDetailUserByPhoneResponse {
       fullName: json["fullName"],
       address: json["address"],
       imageUser: json["imageUser"],
-      
+      Condition: json["condition"],
     );
   }
 }
-  class DeleteRelationwithPatientRequest {
+
+class DeleteRelationwithPatientRequest {
   String supporterId;
 
-  DeleteRelationwithPatientRequest(
-      {required this.supporterId});
+  DeleteRelationwithPatientRequest({required this.supporterId});
   Map<String, dynamic> toJson() {
-    Map<String, dynamic> map = {
-      'userId': supporterId   
-    };
+    Map<String, dynamic> map = {'userId': supporterId};
     return map;
   }
 }
-
 
 class DeleteRelationwithPatientResponse {
   bool? success;
   String? message;
   DeleteRelationwithPatientResponse({this.success, this.message});
 
-  factory DeleteRelationwithPatientResponse.fromJson(Map<String, dynamic> json) {
+  factory DeleteRelationwithPatientResponse.fromJson(
+      Map<String, dynamic> json) {
     return DeleteRelationwithPatientResponse(
       success: json["success"],
       message: json["message"],
