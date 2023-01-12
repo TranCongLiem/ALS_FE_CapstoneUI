@@ -33,15 +33,16 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        width: 110.0,
-                        height: 110.0,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.green,
-                          foregroundColor: Colors.green,
-                          backgroundImage:
-                              NetworkImage("https://d2f8l4t0zpiyim.cloudfront.net/000_clients/61768/page/617689vc83rMf.gif"),
-                        ),
-                      ),
+                            width: 110.0,
+                            height: 110.0,
+                            child: CircleAvatar(
+                              backgroundColor: Colors.green,
+                              foregroundColor: Colors.green,
+                              backgroundImage: NetworkImage(exericse
+                                      .exerciseImage ??
+                                  "https://bloganchoi.com/wp-content/uploads/2018/09/bai-tap-ta-tay.jpg"),
+                            ),
+                          ),
                       SizedBox(
                         width: 10.0,
                       ),
@@ -63,20 +64,21 @@ Widget CustomExerciseList(Exericse exericse, BuildContext context) {
                             height: 5.0,
                           ),
                           Row(
-                            children: [
-                              TextButton(
-                                  style: TextButton.styleFrom(
-                                      // foregroundColor:
-                                      //Colors.white,
-                                      backgroundColor: Colors.red[400]),
-                                  onPressed: () {},
-                                  child: Text(
-                                    'Khó',
-                                    style: TextStyle(
-                                        fontSize: 20.0, color: Colors.white),
-                                  )),
-                            ],
-                          ),
+                                children: [
+                                  TextButton(
+                                      style: TextButton.styleFrom(
+                                          // foregroundColor:
+                                          //Colors.white,
+                                          backgroundColor: Colors.blue[400]),
+                                      onPressed: () {},
+                                      child: Text(
+                                        exericse.exerciseLevel ?? 'Khó',
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            color: Colors.white),
+                                      )),
+                                ],
+                              ),
                         ],
                       )
                     ],

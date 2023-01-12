@@ -42,12 +42,12 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "alsvn.mobileALS.capstone_ui"
+        applicationId "alsvnfirst.mobileALS.capstone_ui"
         // You can update the following values to match your application needs. 
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
         minSdkVersion 21
         targetSdkVersion 33
-        versionCode flutterVersionCode.toInteger() +12
+        versionCode flutterVersionCode.toInteger() +13
         versionName flutterVersionName + 12
     }
 

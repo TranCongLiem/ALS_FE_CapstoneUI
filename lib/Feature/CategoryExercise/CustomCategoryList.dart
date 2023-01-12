@@ -21,12 +21,10 @@ Widget CustomCategoryList(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
-          child: Expanded(
-            child: Stack(
-              alignment: Alignment.center,
+          child: Column(
               children: [
                 Ink.image(
-                    height: 150,
+                    height: 100,
                     fit: BoxFit.cover,
                     child: InkWell(
                       onTap: () {
@@ -46,11 +44,11 @@ Widget CustomCategoryList(
                   categoryExericse.categoryName ?? '',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                      fontSize: 28.0),
+                      color: Colors.green,
+                      fontSize: 20.0),
                 )
               ],
-            ),
+
           ),
         ),
         SizedBox(

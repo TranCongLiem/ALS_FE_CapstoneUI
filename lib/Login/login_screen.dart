@@ -103,8 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            new Home()),
+                        builder: (BuildContext context) => new Home()),
                     (Route<dynamic> route) => false);
                 SetUserInfo(state.phoneNumber, state.password, state.userId);
                 UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
@@ -113,8 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            new RegisterInfo()),
+                        builder: (BuildContext context) => new RegisterInfo()),
                     (Route<dynamic> route) => false);
                 SetUserInfo(state.phoneNumber, state.password, state.userId);
                 UpdateDeviceMobileToken(UpdateDevicetokenMobileRequest(
@@ -225,10 +223,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             ElevatedButton.icon(
                               onPressed: () {
                                 // validate();
+                                if (state.phoneNumber.length < 10 ||
+                                    state.phoneNumber.length > 10) {
+                                  Fluttertoast.showToast(
+                                      msg: "Số điện thoại không hợp lệ",
+                                      backgroundColor: Colors.green);
+                                } else {
+                                  context
+                                      .read<AuthenticateBloc>()
+                                      .add(AuthenticateEvent.loginRequested());
+                                }
 
-                                context
-                                    .read<AuthenticateBloc>()
-                                    .add(AuthenticateEvent.loginRequested());
                                 // setState(() {
                                 //   validated = state.errorMessage ?? '';
                                 // });
@@ -484,8 +489,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void checkInvalidPassword(String error) {
     if (error != '' && !error.isEmpty) {
       setState(() {
-        Fluttertoast.showToast(
-            msg: error, backgroundColor: Colors.green);
+        Fluttertoast.showToast(msg: error, backgroundColor: Colors.green);
       });
     }
   }

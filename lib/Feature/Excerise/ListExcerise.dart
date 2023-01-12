@@ -1,6 +1,7 @@
 import 'package:capstone_ui/Bloc/categoryExercise/category_exercise_bloc.dart';
 import 'package:capstone_ui/Constant/constant.dart';
 import 'package:capstone_ui/Feature/CategoryExercise/CustomCategoryList.dart';
+import 'package:capstone_ui/Feature/Excerise/ListExerciseByName.dart';
 import 'package:capstone_ui/Feature/Excerise/view_all_exercise.dart';
 import 'package:capstone_ui/services/api_CategoryExercise.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ class ListExcerise extends StatefulWidget {
 }
 
 class _ListExceriseState extends State<ListExcerise> {
+  String outputText = 'Tìm kiếm';
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -52,27 +55,33 @@ class _ListExceriseState extends State<ListExcerise> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: Container(
-                        height: size.height / 15,
-                        decoration: BoxDecoration(
-                            color: Colors.black12,
-                            borderRadius: BorderRadius.circular(22)),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 24),
+                          child: InkWell(
+                        onTap: () {
+                          showSearch(
+                              context: context,
+                              delegate: SearchExercise(hintText: 'Tìm kiếm'));
+                        },
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          height: size.height / 12,
+                          decoration: BoxDecoration(
+                              color: Colors.black12,
+                              borderRadius: BorderRadius.circular(22)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                InkWell(
+                                  child: Text(
+                                    outputText,
+                                    style: TextStyle(fontSize: 24),
+                                  ),
+                                ),
+                                Icon(Icons.search)
+                              ],
                             ),
-                            Expanded(
-                                child: TextField(
-                              decoration: InputDecoration(
-                                  hintText: "Tìm kiếm",
-                                  border: InputBorder.none,
-                                  suffixIcon: Icon(Icons.search),
-                                  hintStyle: TextStyle(
-                                      fontSize: 22.0,
-                                      fontWeight: FontWeight.w500)),
-                            )),
-                          ],
+                          ),
                         ),
                       )),
                     ],
